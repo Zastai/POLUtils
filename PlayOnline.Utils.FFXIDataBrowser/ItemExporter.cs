@@ -14,12 +14,17 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
   internal class ItemExporter : IItemExporter {
 
-    public ItemExporter() {
-    }
-
     private ExportMethodDialog EMD_ = null;
     private IItemExporter      CSV_ = null;
     private IItemExporter      XML_ = null;
+
+    public ItemExporter() {
+    }
+
+    public ItemExporter(ItemDataLanguage L, ItemDataType T) {
+      this.CSV_ = new CSVItemExporter(L, T);
+      this.XML_ = new XMLItemExporter(L, T);
+    }
 
     public void DoExport(ItemExportMethod Method, FFXIItem[] Items) {
       if (Method == ItemExportMethod.UserSelect) {
