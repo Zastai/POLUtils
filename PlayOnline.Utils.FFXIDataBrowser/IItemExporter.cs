@@ -20,11 +20,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	IItemExporter.dlgBrowseFolder.Description = I18N.GetText("Export:DirDialogDesc");
       string DefaultLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Path.Combine("POLUtils", "Exported Item Data"));
       string InitialLocation = null;
-	try {
-	RegistryKey RK = Registry.CurrentUser.CreateSubKey(@"Software\Pebbles\POLUtils");
-	  InitialLocation = RK.GetValue("Export Location", null) as string;
-	  RK.Close();
-	} catch { }
+	using (RegistryKey RK = POL.OpenPOLUtilsConfigKey()) {
+	  if (RK != null)
+	    InitialLocation = RK.GetValue(@"Data Browser\Export Location", null) as string;
+	}
 	if (InitialLocation == null || InitialLocation == String.Empty)
 	  InitialLocation = DefaultLocation;
 	if (!Directory.Exists(InitialLocation))
@@ -43,11 +42,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     public static void BrowseForOutputPath() {
       IItemExporter.PrepareFolderBrowser();
       if (IItemExporter.dlgBrowseFolder.ShowDialog() == DialogResult.OK) {
-	try {
-	RegistryKey RK = Registry.CurrentUser.CreateSubKey(@"Software\Pebbles\POLUtils");
-	  RK.SetValue("Export Location", IItemExporter.dlgBrowseFolder.SelectedPath);
-	  RK.Close();
-	} catch { }
+	using (RegistryKey RK = POL.OpenPOLUtilsConfigKey()) {
+	  if (RK != null)
+	    RK.SetValue(@"Data Browser\Export Location", IItemExporter.dlgBrowseFolder.SelectedPath);
+	}
       }
     }
 
