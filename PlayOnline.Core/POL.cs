@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -129,7 +130,7 @@ namespace PlayOnline.Core {
 	case Region.NorthAmerica:
 	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineUS\InstallFolder");
 	  break;
-	case Region.Europe:
+	case Region.Europe: // Assumption
 	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder");
 	  break;
       }
@@ -142,6 +143,24 @@ namespace PlayOnline.Core {
 
     public static bool IsAppInstalled(string ID) {
       return (POL.GetApplicationPath(ID) != null);
+    }
+
+    public static RegistryKey OpenAppConfigKey(string ID) {
+      if (POL.SelectedRegion_ == Region.None)
+	return null;
+    string BaseKey;
+      switch (POL.SelectedRegion_) {
+	case Region.Europe:       BaseKey = @"Software\PlayOnlineEU\SquareEnix"; break;
+	case Region.Japan:        BaseKey = @"Software\PlayOnline\SQUARE";       break;
+	case Region.NorthAmerica: BaseKey = @"Software\PlayOnlineUS\SquareEnix"; break;
+	default: return null;
+      }
+    string AppKey;
+           if (ID == AppID.FFXI)        AppKey = "FinalFantasyXI";
+      else if (ID == AppID.TetraMaster) AppKey = "TetraMaster";
+      else if (ID == AppID.POLViewer)   AppKey = "PlayOnlineViewer";
+      else return null;
+      return Registry.LocalMachine.OpenSubKey(Path.Combine(BaseKey, AppKey), true);
     }
 
   }
