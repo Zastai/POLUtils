@@ -81,40 +81,4 @@
     <data name="E:ItemField.Description" type="System.String">
         <value>描写</value>
     </data>
-    <data name="E:ItemField.ResourceID" type="System.String">
-        <value>Resource ID</value>
-    </data>
-    <data name="E:ItemField.Level" type="System.String">
-        <value>Level</value>
-    </data>
-    <data name="E:ItemField.Slots" type="System.String">
-        <value>Slots</value>
-    </data>
-    <data name="E:ItemField.Races" type="System.String">
-        <value>Races</value>
-    </data>
-    <data name="E:ItemField.Jobs" type="System.String">
-        <value>Jobs</value>
-    </data>
-    <data name="E:ItemField.MaxCharges" type="System.String">
-        <value>Max. Charges</value>
-    </data>
-    <data name="E:ItemField.EquipDelay" type="System.String">
-        <value>Equip Delay</value>
-    </data>
-    <data name="E:ItemField.ReuseTimer" type="System.String">
-        <value>Reuse Timer</value>
-    </data>
-    <data name="E:ItemField.ShieldSize" type="System.String">
-        <value>Shield Size</value>
-    </data>
-    <data name="E:ItemField.Damage" type="System.String">
-        <value>Damage</value>
-    </data>
-    <data name="E:ItemField.Delay" type="System.String">
-        <value>Delay</value>
-    </data>
-    <data name="E:ItemField.Skill" type="System.String">
-        <value>Skill</value>
-    </data>
 </root>
