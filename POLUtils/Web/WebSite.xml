@@ -82,6 +82,15 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="I ATEN'T DEAD" author="Pebbles" date="March 6th, 2005">
+      <p>No, the POLUtils project isn't dead.  I am rewriting a lot of stuff (data browser, macro editor)
+         and am writing a text decoder from scratch (good: no more codepage dependencies, bad: lots of
+         boring mapping table data entry).  On top of all that, I plan to add an FFXI config editor
+         (resolution / sample count already in; also looking into other stuff) and an item search (i.e.
+         look for all items containing "Aketon" in their name or "Ranged Accuracy" in their description).</p>
+      <p>This is all going to take some time, and I'm not going to release 0.5.0 until that's finished;
+         so bear with me ^^.</p>
+    </news-item>
     <news-item title="foo_pol 1.1 Released" author="Pebbles" date="January 20th, 2005">
       <p>I'm release an update to foo_pol today. Nothing spectacular, but rather useful.</p>
       <p><strong>New Features:</strong><br/><ul>
