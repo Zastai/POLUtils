@@ -227,12 +227,30 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private FFXIItem[] LoadedItems_ = null;
 
     private void btnExportItems_Click(object sender, System.EventArgs e) {
-    ItemExporter IE = new ItemExporter();
+    ItemExporter IE = new ItemExporter(this.ChosenItemLanguage, this.ChosenItemType);
       IE.DoExport(this.LoadedItems_);
+    }
+
+    private ItemDataLanguage ChosenItemLanguage {
+      get {
+	return ((this.chkViewItemAsEArmor.Checked || this.chkViewItemAsEObject.Checked || this.chkViewItemAsEWeapon.Checked) ? ItemDataLanguage.English : ItemDataLanguage.Japanese);
+      }
+    }
+
+    private ItemDataType ChosenItemType {
+      get {
+	if (this.chkViewItemAsEArmor.Checked || this.chkViewItemAsJArmor.Checked)
+	  return ItemDataType.Armor;
+	if (this.chkViewItemAsEWeapon.Checked || this.chkViewItemAsJWeapon.Checked)
+	  return ItemDataType.Weapon;
+	return ItemDataType.Object;
+      }
     }
 
     private void btnFindItems_Click(object sender, System.EventArgs e) {
       using (ItemFindDialog IFD = new ItemFindDialog(this.LoadedItems_)) {
+	IFD.Language = this.ChosenItemLanguage;
+	IFD.Type     = this.ChosenItemType;
 	if (IFD.ShowDialog(this) == DialogResult.OK && IFD.SelectedItem != null)
 	  this.cmbItems.SelectedItem = IFD.SelectedItem;
       }
