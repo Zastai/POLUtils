@@ -2,6 +2,45 @@ using System;
 
 namespace PlayOnline.FFXI {
 
+  public enum ItemDataType {
+    Armor,
+    Object,
+    Weapon
+  }
+
+  public enum ItemDataLanguage {
+    English,
+    Japanese
+  }
+
+  public enum ItemField {
+    // Common
+    ID,
+    Flags,
+    StackSize,
+    Type,
+    EnglishName,
+    JapaneseName,
+    LogNameSingular,
+    LogNamePlural,
+    Description,
+    // Armor & Weapons
+    ResourceID,
+    Level,
+    Slots,
+    Races,
+    Jobs,
+    MaxCharges,
+    EquipDelay,
+    ReuseTimer,
+    // Armor Only
+    ShieldSize,
+    // Weapon Only
+    Damage,
+    Delay,
+    Skill,
+  }
+
   [Flags]
   public enum Job : ushort {
     None = 0x0000,
@@ -96,26 +135,26 @@ namespace PlayOnline.FFXI {
 
   [Flags]
   public enum ItemFlags : ushort {
-    None      = 0x0000,
+    None       = 0x0000,
     // Simple Flags - mostly assumed meanings
-    Flag00     = 0x0001,
-    Flag01     = 0x0002,
-    Flag02     = 0x0004,
-    Flag03     = 0x0008,
-    Flag04     = 0x0010,
-    Flag05     = 0x0020,
-    NoAuction  = 0x0040,
-    Scroll     = 0x0080,
-    Linkshell  = 0x0100,
-    Flag09     = 0x0200,
-    Flag10     = 0x0400,
-    CanEquip   = 0x0800,
-    NoSale     = 0x1000,
-    NoDelivery = 0x2000,
-    NoTrade    = 0x4000,
-    Rare       = 0x8000,
+    Flag00      = 0x0001,
+    Flag01      = 0x0002,
+    Flag02      = 0x0004,
+    Flag03      = 0x0008,
+    Flag04      = 0x0010,
+    Inscribable = 0x0020,
+    NoAuction   = 0x0040,
+    Scroll      = 0x0080,
+    Linkshell   = 0x0100,
+    Flag09      = 0x0200,
+    Flag10      = 0x0400,
+    CanEquip    = 0x0800,
+    NoSale      = 0x1000,
+    NoDelivery  = 0x2000,
+    NoTrade     = 0x4000,
+    Rare        = 0x8000,
     // Combined Flags
-    Ex         = 0x6040, // NoAuction + NoDelivery + NoTrade
+    Ex          = 0x6040, // NoAuction + NoDelivery + NoTrade
   }
 
   public enum ItemType : ushort {
@@ -128,9 +167,11 @@ namespace PlayOnline.FFXI {
     Linkshell  = 0x0006,
     UsableItem = 0x0007,
     Crystal    = 0x0008,
+    Unknown    = 0x000C,
     Furnishing = 0x000A,
     Plant      = 0x000B,
     Flowerpot  = 0x000C,
+    Material   = 0x000D,
     Mannequin  = 0x000E,
   }
 
