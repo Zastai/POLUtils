@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <website name="Pebbles&apos; Program Page" home="index.html">
   <!-- Site Sections -->
-  <section name="Home" file="index.html">
+  <section name="Home" file="index.html" nedstat="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
     <para>Welcome to Pebbles&apos; Program Page.</para>
     <para>
       Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
@@ -33,7 +33,7 @@
       </p>
     </para>
   </section>
-  <section name="Download Area" file="downloads.html">
+  <section name="Download Area" file="downloads.html" nedstat="ADNQdQo0vLkP4XweMb5W1npl0G7w">
     <para>Here you can download Pebbles&apos; programs.</para>
     <downloads/>
   </section>
