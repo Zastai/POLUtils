@@ -18,16 +18,23 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	CSVItemExporter.dlgOptions = new CSVOptionDialog();
     }
 
+    public CSVItemExporter(ItemDataLanguage L, ItemDataType T) : this() {
+      CSVItemExporter.dlgOptions.Language = L;
+      CSVItemExporter.dlgOptions.Type     = T;
+    }
+
     public void DoExport(FFXIItem[] Items) {
       if (CSVItemExporter.dlgOptions.ShowDialog() == DialogResult.OK) {
       StreamWriter CSVFile = new StreamWriter(CSVItemExporter.dlgOptions.FileName, false, CSVItemExporter.dlgOptions.Encoding);
       char TextQuote = '"';
       long Index = 0;
+      ItemField[] Fields = CSVItemExporter.dlgOptions.Fields;
 	foreach (FFXIItem I in Items) {
 	FFXIItem.IItemInfo II = I.GetInfo(CSVItemExporter.dlgOptions.Language, CSVItemExporter.dlgOptions.Type);
 	  if (Index == 0) {
+	    //if (CSVItemExporter.dlgOptions.IncludeIndex)
 	    CSVFile.Write("{0}{1}{0}", TextQuote, I18N.GetText("ColumnHeader:Index"));
-	    foreach (ItemField IF in II.GetFields()) {
+	    foreach (ItemField IF in Fields) {
 	      if (IF == ItemField.Description) {
 	      string FieldName = new NamedEnum(IF).Name;
 		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:DescriptionLineCount"), FieldName));
@@ -39,8 +46,9 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	    }
 	    CSVFile.WriteLine();
 	  }
+	  //if (CSVItemExporter.dlgOptions.IncludeIndex)
 	  CSVFile.Write(++Index);
-	  foreach (ItemField IF in II.GetFields()) {
+	  foreach (ItemField IF in Fields) {
 	    if (IF == ItemField.Description) {
 	    string[] DescriptionLines = II.GetFieldText(IF).Replace(new string(TextQuote, 1), new string(TextQuote, 2)).Split('\n');
 	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, DescriptionLines.Length.ToString());
