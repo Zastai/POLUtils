@@ -1,0 +1,204 @@
+General Data Types
+==================
+
+RESID := {
+  UINT32 ID (may contain specific portions, but that's not 100% clear yet)
+}
+
+
+Data Files
+==========
+
+NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-JIS encoding used by POL;
+      0x85 is used as a prefix to encode accented Latin characters and cyrillic characters.
+
+- Many different files (e.g. ROM\97\54.DAT and ROM\97\54.DAT - zone names)
+  Contents:
+    Strings
+  Format:
+    DATAFILE := [MARKER] [HEADER] [ENTRY]* [STRING-DATA]*
+    MARKER := "XISTRING\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+    HEADER := {
+      UINT32 FILE-SIZE
+      UINT32 ENTRY-COUNT
+      UINT32 ENTRY-BYTES (= ENTRY-COUNT * sizeof(INDEX))
+      UINT32 DATA-BYTES
+      UINT32 UNKNOWN
+      UINT32 UNKNOWN
+    }
+    ENTRY := {
+      UINT32 OFFSET (from data start)
+      UINT16 LENGTH (bytes, includes terminating NUL)
+      UINT16 UNKNOWN (0 or 1, so some sort of flag most likely)
+      UINT32 UNKNOWN
+    }
+    STRING-DATA := {
+      BYTE DATA[<n>] (n specified by index table, Shift-JIS)
+    }
+
+- ROM/76/23.DAT
+  Contents:
+    Auto-Translator messages (English & Japanese)
+  Format:
+    DATAFILE := [MESSAGE-GROUP]*
+    MESSAGE-GROUP := [GROUP-HEADER] [MESSAGE]<GROUP-HEADER.MESSAGE-COUNT>
+    GROUP-HEADER := {
+      RESID  ID (With ENTRY-ID = 0)
+      BYTE   BRACKETEDNAME[32] (Shift-JIS)
+      BYTE   NAME[32] (Shift-JIS)
+      UINT32 MESSAGE-COUNT
+      UINT32 GROUP-BYTES
+    }
+    MESSAGE := {
+      UINT32 ID
+      UINT32 SIZE
+      BYTE   TEXT[SIZE] (Shift-JIS)
+    }
+  NOTE: For both groups and messages, categories are 0x0202 (English Messages)
+        and 0x0104 (Japanese Messages).
+
+- ROM/0/4.DAT, ROM/0/5.DAT, ROM/0/6.DAT, ROM/0/7.DAT, ROM/0/8.DAT
+  Contents:
+    Japanese item information (4 = Objects, 5 = Items, 6 = Weapons, 7 = Armor, 8 = Materials (Unused))
+  Format:
+    The entire file is encoded; to get actual data, each byte needs to have ((B << 3) | (B >> 5)) applied.
+    DATAFILE := ([JP-ITEM-INFO]|[JP-WEAPON-INFO]|[JP-ARMOR-INFO])*
+
+    JP-ITEM-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT32  NUMBER
+      BYTE    NAME        [ 22] (Shift-JIS)
+      BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
+      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+    JP-WEAPON-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT32  NUMBER
+      UINT16  LEVEL
+      UINT16  SLOT
+      UINT16  RACES
+      UINT16  JOBS
+      UINT16  DAMAGE
+      UINT16  DELAY
+      UINT16  UNKNOWN
+      UINT16  WEAPONTYPE
+      BYTE    NAME        [ 22] (Shift-JIS)
+      BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
+      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+    JP-ARMOR-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT16  LEVEL
+      UINT16  SLOT
+      UINT16  RACES
+      UINT16  JOBS
+      UINT16  DEFENSE
+      BYTE    NAME        [ 22] (Shift-JIS)
+      BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
+      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+- ROM/118/106.DAT, ROM/118/107.DAT, ROM/118/108.DAT, ROM/118/109.DAT, ROM/118/110.DAT
+  Contents:
+    English item information (106 = Objects, 107 = Items, 108 = Weapons, 109 = Armor, 110 = Materials (Unused))
+  Format:
+    The entire file is encoded; to get actual data, each byte needs to have ((B << 3) | (B >> 5)) applied.
+    DATAFILE := ([EN-ITEM-INFO]|[EN-WEAPON-INFO]|[EN-ARMOR-INFO])*
+
+    EN-ITEM-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT32  NUMBER
+      BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
+      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
+      BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
+      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+    EN-WEAPON-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT32  NUMBER
+      UINT16  LEVEL
+      UINT16  SLOT
+      UINT16  RACES
+      UINT16  JOBS
+      UINT16  DAMAGE
+      UINT16  DELAY
+      UINT16  UNKNOWN
+      UINT16  WEAPONTYPE
+      BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
+      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
+      BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
+      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+    EN-ARMOR-INFO := {
+      RESID  ID
+      UINT16  ITEMTYPE
+      UINT32  UNKNOWN
+      UINT16  LEVEL
+      UINT16  SLOT
+      UINT16  RACES
+      UINT16  JOBS
+      UINT16  DEFENSE
+      BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
+      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
+      BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
+      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    PADDING[] (padding to 0x200)
+      UINT32  IMAGESIZE
+      GRAPHIC IMAGE
+      BYTE    PADDING[] (padding to 0xc00)
+    }
+
+- ROM/?/?.DAT, ROM2/13/101.DAT, ROM3/?/?.DAT
+  Contents: NPC and Monster Names
+  Format:
+    DATAFILE := [NPC-NAME]*
+    NPC-NAME := {
+      BYTE   NAME[24] (Shift-JIS)
+      RESID  ID (category = 0x0107 (NPC Name))
+    }
+
+- ROM/119/54.DAT (English), ROM/119/54.DAT (Japanese)
+  Content: Profile Titles
+  Format:
+    DATAFILE := [TITLE]*
+    TITLE := {
+      RESID ID (Category = 0x0000)
+      BYTE  TEXT[58] (Shift-JIS)
+    }
