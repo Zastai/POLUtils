@@ -45,7 +45,7 @@ namespace PlayOnline.FFXI {
       return byteCount * 15;
     }
 
-    private BinaryReader GetConversionTable(byte Table) {
+    internal BinaryReader GetConversionTable(byte Table) {
       if (FFXIEncoding.ConversionTables[Table] == null) {
       Stream ResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(String.Format("ConversionTables.{0:X2}xx.dat", Table));
 	if (ResourceStream != null)
