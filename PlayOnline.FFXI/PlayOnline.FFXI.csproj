@@ -25,7 +25,7 @@
                 <Config
                     Name = "Debug"
                     AllowUnsafeBlocks = "false"
-                    BaseAddress = "275212672"
+                    BaseAddress = "295212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
@@ -45,7 +45,7 @@
                 <Config
                     Name = "Release"
                     AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
+                    BaseAddress = "295212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "TRACE"
@@ -110,7 +110,7 @@
                 />
                 <File
                     RelPath = "DataFiles.txt"
-                    BuildAction = "EmbeddedResource"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "Enums.cs"
@@ -118,7 +118,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FFXIEncoding.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "FFXIGraphic.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -138,9 +148,265 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Messages.ja.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Messages.nl.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Messages.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "POLEncoding.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ConversionTables\00xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\81xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\82xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\83xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\84xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\85xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\86xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\87xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\88xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\89xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Axx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Bxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Cxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Dxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Exx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Fxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\90xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\91xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\92xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\93xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\94xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\95xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\96xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\97xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\98xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\99xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Axx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Bxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Cxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Dxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Exx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Fxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E0xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E1xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E2xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E3xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E4xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E5xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E6xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E7xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E8xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E9xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EAxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EBxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\ECxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EDxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EExx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EFxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F0xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F1xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F2xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F3xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F4xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F5xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F6xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F7xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F8xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F9xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FAxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FBxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FCxx.dat"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>
