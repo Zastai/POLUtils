@@ -35,11 +35,17 @@ namespace PlayOnline.Core {
     }
 
     private static Icon GetPOLIcon(ushort ResourceID) {
-      return Icons.GetIcon(Path.Combine(POL.GetApplicationPath("1000"), "pol.exe"), ResourceID);
+    string POLPath = POL.GetApplicationPath("1000");
+      if (POLPath == null)
+	return null;
+      return Icons.GetIcon(Path.Combine(POLPath, "pol.exe"), ResourceID);
     }
 
     private static Icon GetPOLConfigIcon(ushort ResourceID) {
-      return Icons.GetIcon(Path.Combine(POL.GetApplicationPath("1000"), Path.Combine("polcfg", "polcfg.exe")), ResourceID);
+    string POLPath = POL.GetApplicationPath("1000");
+      if (POLPath == null)
+	return null;
+      return Icons.GetIcon(Path.Combine(POLPath, Path.Combine("polcfg", "polcfg.exe")), ResourceID);
     }
 
     private static Icon GetShell32Icon(ushort ResourceID) {
