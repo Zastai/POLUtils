@@ -38,12 +38,18 @@ namespace PlayOnline.Core {
       return Icons.GetIcon(Path.Combine(POL.GetApplicationPath("1000"), "pol.exe"), ResourceID);
     }
 
+    private static Icon GetPOLConfigIcon(ushort ResourceID) {
+      return Icons.GetIcon(Path.Combine(POL.GetApplicationPath("1000"), Path.Combine("polcfg", "polcfg.exe")), ResourceID);
+    }
+
     private static Icon GetShell32Icon(ushort ResourceID) {
       return Icons.GetIcon("shell32.dll", ResourceID);
     }
 
-    public static Icon POLViewer    { get { return Icons.GetPOLIcon(3); } }
-    public static Icon TetraMaster  { get { return Icons.GetPOLIcon(5); } }
+    public static Icon POLViewer     { get { return Icons.GetPOLIcon      (  3); } }
+    public static Icon POLConfig     { get { return Icons.GetPOLConfigIcon(128); } }
+    public static Icon POLConfigWarn { get { return Icons.GetPOLConfigIcon(141); } }
+    public static Icon TetraMaster   { get { return Icons.GetPOLIcon      (  5); } }
 
     public static Icon Joystick     { get { return Icons.GetIcon("joy.cpl", 102); } }
 
