@@ -15,21 +15,60 @@
   </section>
   <section name="FAQ" file="faq.html">
     <para>
-      <h3>1. What are the system requirements?</h3>
+      <h3>1. What is POLUtils anyway?</h3>
       <p>
-        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
-        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
-        rather essential element of that perticular tool).  As for Windows version, any version of windows that
-        can install those two dependencies should do.<br/>
-        Unfortunately, Managed DirectX is not automatically installed along with DirectX - you can find a
-        suitable installer for it on the downloads page.
+        POLUtils is a collection of utilities related to PlayOnline, Square/Enix' online gaming framework.<br/>
+        It currently contains:<br/>
+        <ul>
+	  <li>an audio manager (with POL, TetraMaster and FFXI support - would add FMO support if I could get
+	      someone to give me the info)</li>
+	  <li>data browsers for Tetra Master and FFXI</li>
+	  <li>an offline macro editor for FFXI</li>
+	</ul>
       </p>
     </para>
     <para>
-      <h3>2. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
+      <h3>2. What are the system requirements?</h3>
+      <p>
+        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
+        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
+        rather essential element of that perticular tool).  Unfortunately, Managed DirectX is not automatically
+        installed along with DirectX - you can find a suitable installer for it on the downloads page.<br/>
+        As for Windows version, any version of windows that can install those two dependencies should do (which
+        basically means Windows 98 or later).  Future versions of POLUtils may use the 2.0 framework, which will
+        probably require Win2K or later.
+      </p>
+    </para>
+    <para>
+      <h3>3. I get an exception saying Invalid Codepage - why is that?</h3>
+      <p>
+        FFXI uses a text encoding based on shift-jis, and it seems the .NET framework relies on a Windows code
+        page to process shift-jis.  However, the shift-jis codepage isn't installed by default.  You can easily
+        install it in one of two ways: either you enable support for East-Asian languages (Control Panel\Regional
+        and Language Options\Languages), but that requires 230MB of disk space, or you can just make sure
+        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.
+      </p>
+    </para>
+    <para>
+      <h3>4. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
       <p>
 	Easy - noone has volunteered to help with the translation yet.  If you want to provide the translation,
 	let me know; all help is appreciated.
+      </p>
+    </para>
+    <para>
+      <h3>5. Is POLUtils going to steal my passwords or destroy my PC?</h3>
+      <p>
+	I sure hope not ^^.  POLUtils currently never ever connects to the internet, so your passwords
+	are safe.  As for destroying your PC, that's unlikely as well (of course, the .Net framework is
+	Microsoft technology, so you never know).
+      </p>
+    </para>
+    <para>
+      <h3>6. Will you make a WinAmp plugin for .bgw/.spw files?</h3>
+      <p>
+	No.  I considered doing so, but decided against it since a) there already is such a plugin, and b) the
+	WinAmp SDK is, well, crap (I never realized how great the foobar APIs were until I saw the WinAmp SDK).
       </p>
     </para>
   </section>
@@ -43,6 +82,16 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="foo_pol 1.1 Released" author="Pebbles" date="January 20th, 2005">
+      <p>I'm release an update to foo_pol today. Nothing spectacular, but rather useful.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  There is a new "Fade Out (10 seconds)" loop option.  For looped files, this will cause
+	  it to loop for a maximum of 10 seconds, with a slow fade.  This makes listening to looped
+	  tracks more pleasant.  This feature was suggested by Feenicks on the FFXIOnline forums.
+	</li>
+      </ul></p>
+    </news-item>
     <news-item title="POLUtils 0.4.0 Released" author="Pebbles" date="January 16th, 2005">
       <p>Today I'm releasing POLUtils 0.4.0, a collection of PlayOnline-related utilities.</p>
       <p><strong>New Features:</strong><br/><ul>
@@ -182,11 +231,14 @@
       </file>
     </group>
     <group name="foo_pol">
+      <file name="foo_pol-1.1.zip">
+	Adds a "fade out" loop mode.<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
       <file name="foo_pol-1.0.zip">
 	Version 1.0 of a plugin for the <a href="http://www.foobar2000.org/">FooBar2000</a> audio player that allows
 	playback of .bgw and .spw files.<br/>
-	It's fully functional; unless there are specific feature requests this will be the only version (although
-	I will recompile to the latest SDK when needed for compatibility).
+	For use with version 0.8.3 (and compatible) of foobar2000.
       </file>
     </group>
     <group name="Other Stuff">
