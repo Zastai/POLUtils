@@ -23,16 +23,6 @@ namespace PlayOnline.Core {
       Europe       = 0x04,
     }
 
-    public static string RegionText(Region R) {
-      switch (R) {
-	case POL.Region.Europe:       return I18N.GetText("RegionEU");
-	case POL.Region.Japan:        return I18N.GetText("RegionJP");
-	case POL.Region.NorthAmerica: return I18N.GetText("RegionUS");
-	case POL.Region.None:         return I18N.GetText("NoRegion");
-	default:                      return I18N.GetText("BadRegion");
-      }
-    }
-
     private static Region AvailableRegions_ = Region.None;
     private static Region SelectedRegion_   = Region.None;
 
