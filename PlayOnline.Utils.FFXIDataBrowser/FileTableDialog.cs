@@ -3,6 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
@@ -11,35 +12,6 @@ using PlayOnline.FFXI;
 namespace PlayOnline.Utils.FFXIDataBrowser {
 
   internal class FileTableDialog : System.Windows.Forms.Form {
-
-    private class ListViewItemSorter : IComparer {
-
-      public int       Item  = 0;
-      public SortOrder Order = SortOrder.Ascending;
-
-      public int Compare(object x, object y) {
-	if (this.Order == SortOrder.None)
-	  return 0;
-      ListViewItem LVI1 = x as ListViewItem;
-      ListViewItem LVI2 = y as ListViewItem;
-	if (LVI1 == null || LVI2 == null || LVI1.SubItems.Count <= this.Item || LVI2.SubItems.Count <= this.Item)
-	  return 0;
-      int result = 0;
-	if (this.Item == 0) { // File ID -> compare as numbers
-	  try {
-	  long L1 = long.Parse(LVI1.SubItems[this.Item].Text);
-	  long L2 = long.Parse(LVI2.SubItems[this.Item].Text);
-	    result = L1.CompareTo(L2);
-	  } catch { }
-	}
-	else
-	  result = LVI1.SubItems[this.Item].Text.CompareTo(LVI2.SubItems[this.Item].Text);
-	if (this.Order == SortOrder.Descending)
-	  result *= -1;
-	return result;
-      }
-
-    }
 
     #region Controls
 
@@ -55,7 +27,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     public FileTableDialog() {
       this.InitializeComponent();
-      this.Show();
+      this.lstFileTable.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
+    }
+
+    private void PopulateList() {
+      this.lstFileTable.HeaderStyle = ColumnHeaderStyle.Nonclickable;
     string DataRoot = POL.GetApplicationPath(AppID.FFXI);
       for (int i = 1; i < 10; ++i) {
       string AppName = I18N.GetText(String.Format("FFXI{0}", i));
@@ -76,7 +52,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  long FileCount = 0;
 	    for (long FileNo = 0; FileNo < MaxFileNo; ++FileNo) {
 	      if (VBR.ReadByte() == i) {
-	      ListViewItem LVI = this.lstFileTable.Items.Add(FileNo.ToString());
+	      ListViewItem LVI = this.lstFileTable.Items.Add(String.Format("{0:D6}", FileNo));
 		LVI.SubItems.Add(AppName);
 		FBR.BaseStream.Seek(2 * FileNo, SeekOrigin.Begin);
 	      ushort Location = FBR.ReadUInt16();
@@ -94,15 +70,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  catch (Exception E) { Console.WriteLine("{0}", E.ToString()); }
 	}
       }
-      this.lstFileTable.ListViewItemSorter = new ListViewItemSorter();
-      this.DoSort();
-    }
-
-    private void DoSort() {
-      this.stbStatus.Visible = true;
-      this.stbStatus.Text = I18N.GetText("FileTableDialog:StatusSorting");
-      this.lstFileTable.Sort();
-      this.stbStatus.Visible = false;
+      Application.DoEvents();
+      this.lstFileTable.HeaderStyle = ColumnHeaderStyle.Clickable;
+      this.stbStatus.Text = String.Empty;
+      Application.DoEvents();
     }
 
     #region Windows Form Designer generated code
@@ -150,7 +121,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstFileTable.Text = resources.GetString("lstFileTable.Text");
       this.lstFileTable.View = System.Windows.Forms.View.Details;
       this.lstFileTable.Visible = ((bool)(resources.GetObject("lstFileTable.Visible")));
-      this.lstFileTable.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstFileTable_ColumnClick);
       // 
       // colFileID
       // 
@@ -213,24 +183,18 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.ShowInTaskbar = false;
       this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
       this.Text = resources.GetString("$this.Text");
+      this.Activated += new System.EventHandler(this.FileTableDialog_Activated);
       this.ResumeLayout(false);
 
     }
 
     #endregion
 
-    private void lstFileTable_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e) {
-    ListViewItemSorter LVIS = this.lstFileTable.ListViewItemSorter as ListViewItemSorter;
-      if (LVIS == null)
-	return;
-      if (LVIS.Item == e.Column)
-	LVIS.Order = ((LVIS.Order == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending);
-      else {
-	LVIS.Item = e.Column;
-	LVIS.Order = SortOrder.Ascending;
-      }
-      this.DoSort();
+    private void FileTableDialog_Activated(object sender, System.EventArgs e) {
+      if (this.Visible && this.lstFileTable.Items.Count == 0)
+	this.PopulateList();
     }
+
 
   }
 
