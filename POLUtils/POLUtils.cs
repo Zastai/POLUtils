@@ -34,10 +34,9 @@ namespace PlayOnline.Utils {
       set {
 	CultureChoice.Current_ = value;
 	Thread.CurrentThread.CurrentUICulture = value.Culture;
-      RegistryKey SettingsKey = Registry.LocalMachine.CreateSubKey(@"Software\Pebbles\POLUtils");
-	if (SettingsKey != null) {
-	  SettingsKey.SetValue("UI Culture", value.Culture.Name);
-	  SettingsKey.Close();
+	using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey()) {
+	  if (SettingsKey != null)
+	    SettingsKey.SetValue("UI Culture", value.Culture.Name);
 	}
       }
     }
@@ -65,11 +64,11 @@ namespace PlayOnline.Utils {
       else {
 	POLUtils.AvailableCultures = new ArrayList();
       string LastCulture = String.Empty;
-	{
-	RegistryKey SettingsKey = Registry.LocalMachine.OpenSubKey(@"Software\Pebbles\POLUtils");
+	using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey()) {
 	  if (SettingsKey != null) {
-	    LastCulture = SettingsKey.GetValue("UI Culture", "") as string;
-	    SettingsKey.Close();
+	    LastCulture = SettingsKey.GetValue("UI Culture", null) as string;
+	    if (LastCulture == null)
+	      LastCulture = String.Empty;
 	  }
 	}
 	// Detect Available Languages
