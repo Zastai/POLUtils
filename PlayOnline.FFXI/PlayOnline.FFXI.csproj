@@ -84,6 +84,16 @@
                     AssemblyName = "System.Drawing"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -111,6 +121,16 @@
                 <File
                     RelPath = "DataFiles.txt"
                     BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EncodingTestUI.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EncodingTestUI.resx"
+                    DependentUpon = "EncodingTestUI.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Enums.cs"
