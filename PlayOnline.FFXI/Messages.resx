@@ -48,4 +48,82 @@
     <data name="MacroBarLabel" type="System.String">
         <value>Macro Bar #{0}</value>
     </data>
+    <data name="E:ItemDataLanguage.English" type="System.String">
+        <value>English Data</value>
+    </data>
+    <data name="E:ItemDataLanguage.Japanese" type="System.String">
+        <value>Japanese Data</value>
+    </data>
+    <data name="E:ItemDataType.Armor" type="System.String">
+        <value>Armor</value>
+    </data>
+    <data name="E:ItemDataType.Weapon" type="System.String">
+        <value>Weapon</value>
+    </data>
+    <data name="E:ItemDataType.Object" type="System.String">
+        <value>Object</value>
+    </data>
+    <data name="E:ItemField.ID" type="System.String">
+        <value>Item ID</value>
+    </data>
+    <data name="E:ItemField.Flags" type="System.String">
+        <value>Flags</value>
+    </data>
+    <data name="E:ItemField.StackSize" type="System.String">
+        <value>Stack Size</value>
+    </data>
+    <data name="E:ItemField.Type" type="System.String">
+        <value>Type</value>
+    </data>
+    <data name="E:ItemField.EnglishName" type="System.String">
+        <value>English Name</value>
+    </data>
+    <data name="E:ItemField.JapaneseName" type="System.String">
+        <value>Japanese Name</value>
+    </data>
+    <data name="E:ItemField.LogNameSingular" type="System.String">
+        <value>Log Name (Singular)</value>
+    </data>
+    <data name="E:ItemField.LogNamePlural" type="System.String">
+        <value>Log Name (Plural)</value>
+    </data>
+    <data name="E:ItemField.Description" type="System.String">
+        <value>Description</value>
+    </data>
+    <data name="E:ItemField.ResourceID" type="System.String">
+        <value>Resource ID</value>
+    </data>
+    <data name="E:ItemField.Level" type="System.String">
+        <value>Level</value>
+    </data>
+    <data name="E:ItemField.Slots" type="System.String">
+        <value>Slots</value>
+    </data>
+    <data name="E:ItemField.Races" type="System.String">
+        <value>Races</value>
+    </data>
+    <data name="E:ItemField.Jobs" type="System.String">
+        <value>Jobs</value>
+    </data>
+    <data name="E:ItemField.MaxCharges" type="System.String">
+        <value>Max. Charges</value>
+    </data>
+    <data name="E:ItemField.EquipDelay" type="System.String">
+        <value>Equip Delay</value>
+    </data>
+    <data name="E:ItemField.ReuseTimer" type="System.String">
+        <value>Reuse Timer</value>
+    </data>
+    <data name="E:ItemField.ShieldSize" type="System.String">
+        <value>Shield Size</value>
+    </data>
+    <data name="E:ItemField.Damage" type="System.String">
+        <value>Damage</value>
+    </data>
+    <data name="E:ItemField.Delay" type="System.String">
+        <value>Delay</value>
+    </data>
+    <data name="E:ItemField.Skill" type="System.String">
+        <value>Skill</value>
+    </data>
 </root>
