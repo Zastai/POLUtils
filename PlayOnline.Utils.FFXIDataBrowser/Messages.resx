@@ -186,10 +186,7 @@
     <data name="ColumnHeader:Index" type="System.String">
         <value>Index</value>
     </data>
-    <data name="CSVExport:SaveDialogTitle" type="System.String">
-        <value>Export Item Data To...</value>
-    </data>
-    <data name="CSVExport:SaveDialogFilter" type="System.String">
-        <value>Comma-Separated Values (*.csv)|*.csv</value>
+    <data name="Export:DirDialogDesc" type="System.String">
+        <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
     </data>
 </root>
