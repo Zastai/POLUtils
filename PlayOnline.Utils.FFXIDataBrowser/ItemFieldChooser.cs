@@ -13,77 +13,66 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
   
     #region Controls
 
-    private System.Windows.Forms.TreeView tvItemFields;
     private System.Windows.Forms.Button btnOK;
+    private System.Windows.Forms.CheckedListBox clstFields;
 
     private System.ComponentModel.Container components = null;
 
     #endregion
 
-    public ItemDataType     T;
-    public ItemDataLanguage L;
-    public ItemField        F;
-
-    public ItemFieldChooser() {
-      InitializeComponent();
-      foreach (NamedEnum NE in NamedEnum.GetAll(typeof(ItemDataLanguage))) {
-      TreeNode TN = this.tvItemFields.Nodes.Add(NE.Name);
-	TN.Tag = NE.Value;
-	this.AddTypeTrees((ItemDataLanguage) NE.Value, TN);
-      }
-    }
-
-    private void AddTypeTrees(ItemDataLanguage L, TreeNode Parent) {
-      foreach (NamedEnum NE in NamedEnum.GetAll(typeof(ItemDataType))) {
-      TreeNode TN = Parent.Nodes.Add(NE.Name);
-	TN.Tag = NE.Value;
-	this.AddFields(L, (ItemDataType) NE.Value, TN);
-      }
-    }
-
-    private void AddFields(ItemDataLanguage L, ItemDataType T, TreeNode Parent) {
-      this.AddField(ItemField.ID, Parent);
-      this.AddField(ItemField.Flags, Parent);
-      this.AddField(ItemField.StackSize, Parent);
-      this.AddField(ItemField.Type, Parent);
-      this.AddField(ItemField.EnglishName, Parent);
-      this.AddField(ItemField.JapaneseName, Parent);
+    public ItemFieldChooser(ItemDataLanguage L, ItemDataType T, bool IncludeAny, params ItemField[] FieldParams) {
+      this.InitializeComponent();
+      // Set up fields - this should really be done via an IItemInfo, but that requires an item instance.
+    ArrayList FieldsToCheck = new ArrayList(FieldParams);
+      if (IncludeAny)
+	this.AddField(ItemField.Any, FieldsToCheck);
+      this.AddField(ItemField.ID, FieldsToCheck);
+      this.AddField(ItemField.Flags, FieldsToCheck);
+      this.AddField(ItemField.StackSize, FieldsToCheck);
+      this.AddField(ItemField.Type, FieldsToCheck);
+      this.AddField(ItemField.EnglishName, FieldsToCheck);
+      this.AddField(ItemField.JapaneseName, FieldsToCheck);
       if (L == ItemDataLanguage.English) {
-	this.AddField(ItemField.LogNameSingular, Parent);
-	this.AddField(ItemField.LogNamePlural, Parent);
+	this.AddField(ItemField.LogNameSingular, FieldsToCheck);
+	this.AddField(ItemField.LogNamePlural, FieldsToCheck);
       }
-      this.AddField(ItemField.Description, Parent);
+      this.AddField(ItemField.Description, FieldsToCheck);
       if (T != ItemDataType.Object) {
-	this.AddField(ItemField.ResourceID, Parent);
-	this.AddField(ItemField.Level, Parent);
-	this.AddField(ItemField.Slots, Parent);
-	this.AddField(ItemField.Jobs, Parent);
-	this.AddField(ItemField.Races, Parent);
+	this.AddField(ItemField.ResourceID, FieldsToCheck);
+	this.AddField(ItemField.Level, FieldsToCheck);
+	this.AddField(ItemField.Slots, FieldsToCheck);
+	this.AddField(ItemField.Jobs, FieldsToCheck);
+	this.AddField(ItemField.Races, FieldsToCheck);
 	if (T == ItemDataType.Weapon) {
-	  this.AddField(ItemField.Damage, Parent);
-	  this.AddField(ItemField.Delay, Parent);
-	  this.AddField(ItemField.Skill, Parent);
+	  this.AddField(ItemField.Damage, FieldsToCheck);
+	  this.AddField(ItemField.Delay, FieldsToCheck);
+	  this.AddField(ItemField.Skill, FieldsToCheck);
 	}
 	else
-	  this.AddField(ItemField.ShieldSize, Parent);
-	this.AddField(ItemField.MaxCharges, Parent);
-	this.AddField(ItemField.EquipDelay, Parent);
-	this.AddField(ItemField.ReuseTimer, Parent);
+	  this.AddField(ItemField.ShieldSize, FieldsToCheck);
+	this.AddField(ItemField.MaxCharges, FieldsToCheck);
+	this.AddField(ItemField.EquipDelay, FieldsToCheck);
+	this.AddField(ItemField.ReuseTimer, FieldsToCheck);
       }
     }
 
-    private void AddField(ItemField F, TreeNode Parent) {
-    NamedEnum NE = new NamedEnum(F);
-    TreeNode TN = Parent.Nodes.Add(NE.Name);
-      TN.Tag = NE.Value;
+    private void AddField(ItemField Field, ArrayList FieldsToCheck) {
+      this.clstFields.Items.Add(new NamedEnum(Field), FieldsToCheck.Contains(Field));
     }
 
-    private void tvItemFields_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
-      this.btnOK.Enabled = (e.Node.Nodes.Count == 0);
-      if (e.Node.Nodes.Count == 0) { // Leaf Node
-	this.F = (ItemField) e.Node.Tag;
-	this.T = (ItemDataType) e.Node.Parent.Tag;
-	this.L = (ItemDataLanguage) e.Node.Parent.Parent.Tag;
+    public ArrayList Fields {
+      get {
+      ArrayList Fields = new ArrayList();
+	foreach (NamedEnum NE in this.clstFields.CheckedItems) {
+	  if ((ItemField) NE.Value == ItemField.Any) {
+	    Fields.Clear();
+	    Fields.Add(ItemField.Any);
+	    break;
+	  }
+	  else
+	    Fields.Add(NE.Value);
+	}
+	return Fields;
       }
     }
 
@@ -97,33 +86,9 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     private void InitializeComponent() {
       System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ItemFieldChooser));
-      this.tvItemFields = new System.Windows.Forms.TreeView();
       this.btnOK = new System.Windows.Forms.Button();
+      this.clstFields = new System.Windows.Forms.CheckedListBox();
       this.SuspendLayout();
-      // 
-      // tvItemFields
-      // 
-      this.tvItemFields.AccessibleDescription = resources.GetString("tvItemFields.AccessibleDescription");
-      this.tvItemFields.AccessibleName = resources.GetString("tvItemFields.AccessibleName");
-      this.tvItemFields.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tvItemFields.Anchor")));
-      this.tvItemFields.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tvItemFields.BackgroundImage")));
-      this.tvItemFields.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tvItemFields.Dock")));
-      this.tvItemFields.Enabled = ((bool)(resources.GetObject("tvItemFields.Enabled")));
-      this.tvItemFields.Font = ((System.Drawing.Font)(resources.GetObject("tvItemFields.Font")));
-      this.tvItemFields.ImageIndex = ((int)(resources.GetObject("tvItemFields.ImageIndex")));
-      this.tvItemFields.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tvItemFields.ImeMode")));
-      this.tvItemFields.Indent = ((int)(resources.GetObject("tvItemFields.Indent")));
-      this.tvItemFields.ItemHeight = ((int)(resources.GetObject("tvItemFields.ItemHeight")));
-      this.tvItemFields.Location = ((System.Drawing.Point)(resources.GetObject("tvItemFields.Location")));
-      this.tvItemFields.Name = "tvItemFields";
-      this.tvItemFields.PathSeparator = ".";
-      this.tvItemFields.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tvItemFields.RightToLeft")));
-      this.tvItemFields.SelectedImageIndex = ((int)(resources.GetObject("tvItemFields.SelectedImageIndex")));
-      this.tvItemFields.Size = ((System.Drawing.Size)(resources.GetObject("tvItemFields.Size")));
-      this.tvItemFields.TabIndex = ((int)(resources.GetObject("tvItemFields.TabIndex")));
-      this.tvItemFields.Text = resources.GetString("tvItemFields.Text");
-      this.tvItemFields.Visible = ((bool)(resources.GetObject("tvItemFields.Visible")));
-      this.tvItemFields.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvItemFields_AfterSelect);
       // 
       // btnOK
       // 
@@ -149,6 +114,30 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.btnOK.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnOK.TextAlign")));
       this.btnOK.Visible = ((bool)(resources.GetObject("btnOK.Visible")));
       // 
+      // clstFields
+      // 
+      this.clstFields.AccessibleDescription = resources.GetString("clstFields.AccessibleDescription");
+      this.clstFields.AccessibleName = resources.GetString("clstFields.AccessibleName");
+      this.clstFields.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("clstFields.Anchor")));
+      this.clstFields.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("clstFields.BackgroundImage")));
+      this.clstFields.CheckOnClick = true;
+      this.clstFields.ColumnWidth = ((int)(resources.GetObject("clstFields.ColumnWidth")));
+      this.clstFields.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("clstFields.Dock")));
+      this.clstFields.Enabled = ((bool)(resources.GetObject("clstFields.Enabled")));
+      this.clstFields.Font = ((System.Drawing.Font)(resources.GetObject("clstFields.Font")));
+      this.clstFields.HorizontalExtent = ((int)(resources.GetObject("clstFields.HorizontalExtent")));
+      this.clstFields.HorizontalScrollbar = ((bool)(resources.GetObject("clstFields.HorizontalScrollbar")));
+      this.clstFields.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("clstFields.ImeMode")));
+      this.clstFields.IntegralHeight = ((bool)(resources.GetObject("clstFields.IntegralHeight")));
+      this.clstFields.Location = ((System.Drawing.Point)(resources.GetObject("clstFields.Location")));
+      this.clstFields.Name = "clstFields";
+      this.clstFields.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("clstFields.RightToLeft")));
+      this.clstFields.ScrollAlwaysVisible = ((bool)(resources.GetObject("clstFields.ScrollAlwaysVisible")));
+      this.clstFields.Size = ((System.Drawing.Size)(resources.GetObject("clstFields.Size")));
+      this.clstFields.TabIndex = ((int)(resources.GetObject("clstFields.TabIndex")));
+      this.clstFields.Visible = ((bool)(resources.GetObject("clstFields.Visible")));
+      this.clstFields.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clstFields_ItemCheck);
+      // 
       // ItemFieldChooser
       // 
       this.AcceptButton = this.btnOK;
@@ -160,11 +149,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+      this.Controls.Add(this.clstFields);
       this.Controls.Add(this.btnOK);
-      this.Controls.Add(this.tvItemFields);
       this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
       this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
       this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
@@ -182,6 +171,13 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     }
 
     #endregion
+
+    private void clstFields_ItemCheck(object sender, System.Windows.Forms.ItemCheckEventArgs e) {
+      // Enable button if at least one entry selected
+      this.btnOK.Enabled = false;
+      if (this.clstFields.CheckedItems.Count > 1 || e.NewValue == CheckState.Checked)
+	this.btnOK.Enabled = true;
+    }
 
   }
 
