@@ -56,10 +56,10 @@ namespace PlayOnline.FFXI {
     // Specific Slots
     Main   = 0x0001,
     Sub    = 0x0002,
-    Ranged = 0x0004,
+    Range  = 0x0004,
     Ammo   = 0x0008,
     Head   = 0x0010,
-    Torso  = 0x0020,
+    Body   = 0x0020,
     Hands  = 0x0040,
     Legs   = 0x0080,
     Feet   = 0x0100,
@@ -86,7 +86,7 @@ namespace PlayOnline.FFXI {
     GreatKatana      = 0x0a,
     Club             = 0x0b,
     Staff            = 0x0c,
-    Bow              = 0x19,
+    Ranged           = 0x19,
     Marksmanship     = 0x1a,
     Thrown           = 0x1b,
     StringInstrument = 0x29,
@@ -97,28 +97,41 @@ namespace PlayOnline.FFXI {
   [Flags]
   public enum ItemFlags : ushort {
     None      = 0x0000,
-    // Unknown Bits
+    // Simple Flags - mostly assumed meanings
     Flag00     = 0x0001,
     Flag01     = 0x0002,
     Flag02     = 0x0004,
     Flag03     = 0x0008,
     Flag04     = 0x0010,
     Flag05     = 0x0020,
-    Flag06     = 0x0040,
-    Flag07     = 0x0080,
-    Flag08     = 0x0100,
+    NoAuction  = 0x0040,
+    Scroll     = 0x0080,
+    Linkshell  = 0x0100,
     Flag09     = 0x0200,
     Flag10     = 0x0400,
-    Flag11     = 0x0800,
-    Flag12     = 0x1000,
-    Flag13     = 0x2000,
-    Flag14     = 0x4000,
-    Flag15     = 0x8000,
-    // Assumed Bits
-    NoAuction = 0x0040,
-    CanEquip  = 0x0800,
-    Ex        = 0x6040,
-    Rare      = 0x8000,
+    CanEquip   = 0x0800,
+    NoSale     = 0x1000,
+    NoDelivery = 0x2000,
+    NoTrade    = 0x4000,
+    Rare       = 0x8000,
+    // Combined Flags
+    Ex         = 0x6040, // NoAuction + NoDelivery + NoTrade
+  }
+
+  public enum ItemType : ushort {
+    Nothing    = 0x0000,
+    Item       = 0x0001,
+    QuestItem  = 0x0002,
+    Fish       = 0x0003,
+    Weapon     = 0x0004,
+    Armor      = 0x0005,
+    Linkshell  = 0x0006,
+    UsableItem = 0x0007,
+    Crystal    = 0x0008,
+    Furnishing = 0x000A,
+    Plant      = 0x000B,
+    Flowerpot  = 0x000C,
+    Mannequin  = 0x000E,
   }
 
 }
