@@ -27,12 +27,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private System.Windows.Forms.CheckBox chkShowIcons;
     private System.Windows.Forms.ContextMenu mnuItemListContext;
     private System.Windows.Forms.MenuItem mnuILCCopy;
-    private System.Windows.Forms.MenuItem mnuILCExportToCSV;
-    private System.Windows.Forms.MenuItem mnuILCECAll;
-    private System.Windows.Forms.MenuItem mnuILCECResults;
-    private System.Windows.Forms.MenuItem mnuILCECSelected;
-    private System.Windows.Forms.SaveFileDialog dlgExportItemData;
     private System.Windows.Forms.StatusBar stbStatus;
+    private System.Windows.Forms.MenuItem mnuILCExport;
+    private System.Windows.Forms.MenuItem mnuILCEAll;
+    private System.Windows.Forms.MenuItem mnuILCEResults;
+    private System.Windows.Forms.MenuItem mnuILCESelected;
     private System.ComponentModel.IContainer components;
 
     #endregion
@@ -42,13 +41,12 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.Icon   = Icons.Search;
       this.Items_ = Items;
       this.SelectedItem_ = null;
-      this.dlgExportItemData.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "exported-ffxi-items.csv");
+      this.Predicates_ = new ArrayList(1);
       this.cmbLanguage.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataLanguage)));
       this.cmbLanguage.SelectedIndex = 0;
       this.cmbItemType.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataType)));
       this.cmbItemType.SelectedIndex = 1;
       this.lstItems.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
-      this.Predicates_ = new ArrayList(1);
       this.AddPredicate();
     }
 
@@ -59,6 +57,34 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       get { return this.SelectedItem_; }
     }
 
+    public ItemDataType Type {
+      get {
+	return (ItemDataType) (this.cmbItemType.SelectedItem as NamedEnum).Value;
+      }
+      set {
+	foreach (NamedEnum NE in this.cmbItemType.Items) {
+	  if ((ItemDataType) NE.Value == value) {
+	    this.cmbItemType.SelectedItem = NE;
+	    break;
+	  }
+	}
+      }
+    }
+
+    public ItemDataLanguage Language {
+      get {
+	return (ItemDataLanguage) (this.cmbLanguage.SelectedItem as NamedEnum).Value;
+      }
+      set {
+	foreach (NamedEnum NE in this.cmbLanguage.Items) {
+	  if ((ItemDataLanguage) NE.Value == value) {
+	    this.cmbLanguage.SelectedItem = NE;
+	    break;
+	  }
+	}
+      }
+    }
+
     #region Predicate Handling
 
     private ArrayList Predicates_;
@@ -66,10 +92,12 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private void AddPredicate() {
     ItemPredicate IP = new ItemPredicate();
       this.pnlSearchOptions.Height += IP.Height + 4;
-      IP.Left    = this.grpDisplayMode.Left;
-      IP.Top     = this.pnlSearchOptions.Height - IP.Height - 4;
-      IP.Width   = this.pnlSearchOptions.Width - 2 * IP.Left;
-      IP.Anchor  = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+      IP.Left     = this.grpDisplayMode.Left;
+      IP.Top      = this.pnlSearchOptions.Height - IP.Height - 4;
+      IP.Width    = this.pnlSearchOptions.Width - 2 * IP.Left;
+      IP.Anchor   = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+      IP.Language = this.Language;
+      IP.Type     = this.Type;
       this.pnlSearchOptions.Controls.Add(IP);
     Button B = new Button(); // Add or Remove button
       B.Tag       = IP;
@@ -122,7 +150,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     #endregion
 
-    private void InitializeResultsPane(ItemDataType Type, ItemDataLanguage Language) {
+    private void InitializeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
       this.lstItems.Items.Clear();
       this.lstItems.Columns.Clear();
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -132,7 +160,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       Application.DoEvents();
     }
 
-    private void AddResult(FFXIItem Item, ItemDataType Type, ItemDataLanguage Language) {
+    private void AddResult(FFXIItem Item, ItemDataLanguage Language, ItemDataType Type) {
       this.ilItemIcons.Images.Add(Item.IconGraphic.Bitmap);
     bool AddColumns = (this.lstItems.Columns.Count == 0);
       if (AddColumns)
@@ -166,7 +194,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       Application.DoEvents();
     }
 
-    private void FinalizeResultsPane(ItemDataType Type, ItemDataLanguage Language) {
+    private void FinalizeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
       this.mnuILCECResults.Enabled = (this.lstItems.Items.Count > 0);
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Length);
@@ -195,10 +223,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems = new System.Windows.Forms.ListView();
       this.mnuItemListContext = new System.Windows.Forms.ContextMenu();
       this.mnuILCCopy = new System.Windows.Forms.MenuItem();
-      this.mnuILCExportToCSV = new System.Windows.Forms.MenuItem();
-      this.mnuILCECAll = new System.Windows.Forms.MenuItem();
-      this.mnuILCECResults = new System.Windows.Forms.MenuItem();
-      this.mnuILCECSelected = new System.Windows.Forms.MenuItem();
+      this.mnuILCExport = new System.Windows.Forms.MenuItem();
+      this.mnuILCEAll = new System.Windows.Forms.MenuItem();
+      this.mnuILCEResults = new System.Windows.Forms.MenuItem();
+      this.mnuILCESelected = new System.Windows.Forms.MenuItem();
       this.ilItemIcons = new System.Windows.Forms.ImageList(this.components);
       this.pnlSearchOptions = new System.Windows.Forms.Panel();
       this.btnClose = new System.Windows.Forms.Button();
@@ -207,7 +235,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.cmbItemType = new System.Windows.Forms.ComboBox();
       this.cmbLanguage = new System.Windows.Forms.ComboBox();
       this.btnRunQuery = new System.Windows.Forms.Button();
-      this.dlgExportItemData = new System.Windows.Forms.SaveFileDialog();
       this.stbStatus = new System.Windows.Forms.StatusBar();
       this.pnlSearchOptions.SuspendLayout();
       this.grpDisplayMode.SuspendLayout();
@@ -245,7 +272,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       // 
       this.mnuItemListContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 										       this.mnuILCCopy,
-										       this.mnuILCExportToCSV});
+										       this.mnuILCExport});
       this.mnuItemListContext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuItemListContext.RightToLeft")));
       this.mnuItemListContext.Popup += new System.EventHandler(this.mnuItemListContext_Popup);
       // 
@@ -258,48 +285,48 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.mnuILCCopy.Text = resources.GetString("mnuILCCopy.Text");
       this.mnuILCCopy.Visible = ((bool)(resources.GetObject("mnuILCCopy.Visible")));
       // 
-      // mnuILCExportToCSV
+      // mnuILCExport
       // 
-      this.mnuILCExportToCSV.Enabled = ((bool)(resources.GetObject("mnuILCExportToCSV.Enabled")));
-      this.mnuILCExportToCSV.Index = 1;
-      this.mnuILCExportToCSV.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-										      this.mnuILCECAll,
-										      this.mnuILCECResults,
-										      this.mnuILCECSelected});
-      this.mnuILCExportToCSV.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCExportToCSV.Shortcut")));
-      this.mnuILCExportToCSV.ShowShortcut = ((bool)(resources.GetObject("mnuILCExportToCSV.ShowShortcut")));
-      this.mnuILCExportToCSV.Text = resources.GetString("mnuILCExportToCSV.Text");
-      this.mnuILCExportToCSV.Visible = ((bool)(resources.GetObject("mnuILCExportToCSV.Visible")));
+      this.mnuILCExport.Enabled = ((bool)(resources.GetObject("mnuILCExport.Enabled")));
+      this.mnuILCExport.Index = 1;
+      this.mnuILCExport.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+										 this.mnuILCEAll,
+										 this.mnuILCEResults,
+										 this.mnuILCESelected});
+      this.mnuILCExport.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCExport.Shortcut")));
+      this.mnuILCExport.ShowShortcut = ((bool)(resources.GetObject("mnuILCExport.ShowShortcut")));
+      this.mnuILCExport.Text = resources.GetString("mnuILCExport.Text");
+      this.mnuILCExport.Visible = ((bool)(resources.GetObject("mnuILCExport.Visible")));
       // 
-      // mnuILCECAll
+      // mnuILCEAll
       // 
-      this.mnuILCECAll.Enabled = ((bool)(resources.GetObject("mnuILCECAll.Enabled")));
-      this.mnuILCECAll.Index = 0;
-      this.mnuILCECAll.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCECAll.Shortcut")));
-      this.mnuILCECAll.ShowShortcut = ((bool)(resources.GetObject("mnuILCECAll.ShowShortcut")));
-      this.mnuILCECAll.Text = resources.GetString("mnuILCECAll.Text");
-      this.mnuILCECAll.Visible = ((bool)(resources.GetObject("mnuILCECAll.Visible")));
-      this.mnuILCECAll.Click += new System.EventHandler(this.mnuILCECAll_Click);
+      this.mnuILCEAll.Enabled = ((bool)(resources.GetObject("mnuILCEAll.Enabled")));
+      this.mnuILCEAll.Index = 0;
+      this.mnuILCEAll.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCEAll.Shortcut")));
+      this.mnuILCEAll.ShowShortcut = ((bool)(resources.GetObject("mnuILCEAll.ShowShortcut")));
+      this.mnuILCEAll.Text = resources.GetString("mnuILCEAll.Text");
+      this.mnuILCEAll.Visible = ((bool)(resources.GetObject("mnuILCEAll.Visible")));
+      this.mnuILCEAll.Click += new System.EventHandler(this.mnuILCECAll_Click);
       // 
-      // mnuILCECResults
+      // mnuILCEResults
       // 
-      this.mnuILCECResults.Enabled = ((bool)(resources.GetObject("mnuILCECResults.Enabled")));
-      this.mnuILCECResults.Index = 1;
-      this.mnuILCECResults.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCECResults.Shortcut")));
-      this.mnuILCECResults.ShowShortcut = ((bool)(resources.GetObject("mnuILCECResults.ShowShortcut")));
-      this.mnuILCECResults.Text = resources.GetString("mnuILCECResults.Text");
-      this.mnuILCECResults.Visible = ((bool)(resources.GetObject("mnuILCECResults.Visible")));
-      this.mnuILCECResults.Click += new System.EventHandler(this.mnuILCECResults_Click);
+      this.mnuILCEResults.Enabled = ((bool)(resources.GetObject("mnuILCEResults.Enabled")));
+      this.mnuILCEResults.Index = 1;
+      this.mnuILCEResults.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCEResults.Shortcut")));
+      this.mnuILCEResults.ShowShortcut = ((bool)(resources.GetObject("mnuILCEResults.ShowShortcut")));
+      this.mnuILCEResults.Text = resources.GetString("mnuILCEResults.Text");
+      this.mnuILCEResults.Visible = ((bool)(resources.GetObject("mnuILCEResults.Visible")));
+      this.mnuILCEResults.Click += new System.EventHandler(this.mnuILCECResults_Click);
       // 
-      // mnuILCECSelected
+      // mnuILCESelected
       // 
-      this.mnuILCECSelected.Enabled = ((bool)(resources.GetObject("mnuILCECSelected.Enabled")));
-      this.mnuILCECSelected.Index = 2;
-      this.mnuILCECSelected.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCECSelected.Shortcut")));
-      this.mnuILCECSelected.ShowShortcut = ((bool)(resources.GetObject("mnuILCECSelected.ShowShortcut")));
-      this.mnuILCECSelected.Text = resources.GetString("mnuILCECSelected.Text");
-      this.mnuILCECSelected.Visible = ((bool)(resources.GetObject("mnuILCECSelected.Visible")));
-      this.mnuILCECSelected.Click += new System.EventHandler(this.mnuILCECSelected_Click);
+      this.mnuILCESelected.Enabled = ((bool)(resources.GetObject("mnuILCESelected.Enabled")));
+      this.mnuILCESelected.Index = 2;
+      this.mnuILCESelected.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuILCESelected.Shortcut")));
+      this.mnuILCESelected.ShowShortcut = ((bool)(resources.GetObject("mnuILCESelected.ShowShortcut")));
+      this.mnuILCESelected.Text = resources.GetString("mnuILCESelected.Text");
+      this.mnuILCESelected.Visible = ((bool)(resources.GetObject("mnuILCESelected.Visible")));
+      this.mnuILCESelected.Click += new System.EventHandler(this.mnuILCECSelected_Click);
       // 
       // ilItemIcons
       // 
@@ -428,6 +455,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.cmbItemType.TabIndex = ((int)(resources.GetObject("cmbItemType.TabIndex")));
       this.cmbItemType.Text = resources.GetString("cmbItemType.Text");
       this.cmbItemType.Visible = ((bool)(resources.GetObject("cmbItemType.Visible")));
+      this.cmbItemType.SelectedIndexChanged += new System.EventHandler(this.cmbItemType_SelectedIndexChanged);
       // 
       // cmbLanguage
       // 
@@ -453,6 +481,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.cmbLanguage.TabIndex = ((int)(resources.GetObject("cmbLanguage.TabIndex")));
       this.cmbLanguage.Text = resources.GetString("cmbLanguage.Text");
       this.cmbLanguage.Visible = ((bool)(resources.GetObject("cmbLanguage.Visible")));
+      this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
       // 
       // btnRunQuery
       // 
@@ -477,11 +506,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.btnRunQuery.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnRunQuery.TextAlign")));
       this.btnRunQuery.Visible = ((bool)(resources.GetObject("btnRunQuery.Visible")));
       this.btnRunQuery.Click += new System.EventHandler(this.btnRunQuery_Click);
-      // 
-      // dlgExportItemData
-      // 
-      this.dlgExportItemData.Filter = resources.GetString("dlgExportItemData.Filter");
-      this.dlgExportItemData.Title = resources.GetString("dlgExportItemData.Title");
       // 
       // stbStatus
       // 
@@ -539,14 +563,26 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     #region Events
 
     private void btnRunQuery_Click(object sender, System.EventArgs e) {
-    ItemDataType     Type     = (ItemDataType) (this.cmbItemType.SelectedItem as NamedEnum).Value;
-    ItemDataLanguage Language = (ItemDataLanguage) (this.cmbLanguage.SelectedItem as NamedEnum).Value;
-      this.InitializeResultsPane(Type, Language);
+      this.InitializeResultsPane(this.Language, this.Type);
       foreach (FFXIItem FI in this.Items_) {
 	if (this.CheckQuery(FI))
-	  this.AddResult(FI, Type, Language);
+	  this.AddResult(FI, this.Language, this.Type);
       }
-      this.FinalizeResultsPane(Type, Language);
+      this.FinalizeResultsPane(this.Language, this.Type);
+    }
+
+    private void cmbLanguage_SelectedIndexChanged(object sender, System.EventArgs e) {
+      if (this.cmbLanguage.SelectedItem == null)
+	return;
+      foreach (ItemPredicate IP in this.Predicates_)
+	IP.Language = this.Language;
+    }
+
+    private void cmbItemType_SelectedIndexChanged(object sender, System.EventArgs e) {
+      if (this.cmbItemType.SelectedItem == null)
+	return;
+      foreach (ItemPredicate IP in this.Predicates_)
+	IP.Type = this.Type;
     }
 
     private void chkShowIcons_CheckedChanged(object sender, System.EventArgs e) {
@@ -584,79 +620,24 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     }
 
     private void mnuILCECAll_Click(object sender, System.EventArgs e) {
-      if (this.dlgExportItemData.ShowDialog() == DialogResult.OK) {
-      StreamWriter CSVFile = new StreamWriter(this.dlgExportItemData.FileName, false, Encoding.UTF8);
-      char TextQuote = '"';
-      long Index = 0;
-	foreach (FFXIItem I in this.Items_) {
-	FFXIItem.IItemInfo II = I.GetInfo((ItemDataLanguage) (this.cmbLanguage.SelectedItem as NamedEnum).Value, (ItemDataType) (this.cmbItemType.SelectedItem as NamedEnum).Value);
-	  if (Index == 0) {
-	    CSVFile.Write("{0}{1}{0}", TextQuote, I18N.GetText("ColumnHeader:Index"));
-	    foreach (ItemField IF in II.GetFields()) {
-	      if (IF == ItemField.Description) {
-	      string FieldName = new NamedEnum(IF).Name;
-		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:DescriptionLineCount"), FieldName));
-		for (byte i = 0; i < 6; ++i) // Max 6 lines - should be plenty
-		  CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:DescriptionLine"), FieldName, i + 1));
-	      }
-	      else
-		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, new NamedEnum(IF).Name);
-	    }
-	    CSVFile.WriteLine();
-	  }
-	  CSVFile.Write(++Index);
-	  foreach (ItemField IF in II.GetFields()) {
-	    if (IF == ItemField.Description) {
-	    string[] DescriptionLines = II.GetFieldText(IF).Replace(new string(TextQuote, 1), new string(TextQuote, 2)).Split('\n');
-	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, DescriptionLines.Length.ToString());
-	      for (int i = 0; i < 6; ++i)
-		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, ((i < DescriptionLines.Length) ? DescriptionLines[i] : ""));
-	    }
-	    else
-	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, II.GetFieldText(IF).Replace(new string(TextQuote, 1), new string(TextQuote, 2)));
-	  }
-	  CSVFile.WriteLine();
-	}
-	CSVFile.Close();
-      }
+    IItemExporter IE = new ItemExporter(this.Language, this.Type);
+      IE.DoExport(this.Items_);
     }
 
     private void mnuILCECResults_Click(object sender, System.EventArgs e) {
-      if (this.dlgExportItemData.ShowDialog() == DialogResult.OK) {
-      StreamWriter CSVFile = new StreamWriter(this.dlgExportItemData.FileName, false, Encoding.UTF8);
-      char TextQuote = '"';
-	CSVFile.Write("{0}{1}{0}", TextQuote, I18N.GetText("ColumnHeader:Index"));
-	foreach (ColumnHeader CH in this.lstItems.Columns)
-	  CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, CH.Text);
-	CSVFile.WriteLine();
-      long Index = 0;
-	foreach (ListViewItem LVI in this.lstItems.Items) {
-	  CSVFile.Write(++Index);
-	  foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems)
-	    CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, LVSI.Text.Replace(new string(TextQuote, 1), new string(TextQuote, 2)));
-	  CSVFile.WriteLine();
-	}
-	CSVFile.Close();
-      }
+    ArrayList Items = new ArrayList();
+      foreach (ListViewItem LVI in this.lstItems.Items)
+	Items.Add(LVI.Tag);
+    IItemExporter IE = new ItemExporter(this.Language, this.Type);
+      IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
     }
 
     private void mnuILCECSelected_Click(object sender, System.EventArgs e) {
-      if (this.dlgExportItemData.ShowDialog() == DialogResult.OK) {
-      StreamWriter CSVFile = new StreamWriter(this.dlgExportItemData.FileName, false, Encoding.UTF8);
-      char TextQuote = '"';
-	CSVFile.Write("{0}{1}{0}", TextQuote, I18N.GetText("ColumnHeader:Index"));
-	foreach (ColumnHeader CH in this.lstItems.Columns)
-	  CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, CH.Text);
-	CSVFile.WriteLine();
-      long Index = 0;
-	foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
-	  CSVFile.Write(++Index);
-	  foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems)
-	    CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, LVSI.Text.Replace(new string(TextQuote, 1), new string(TextQuote, 2)));
-	  CSVFile.WriteLine();
-	}
-	CSVFile.Close();
-      }
+    ArrayList Items = new ArrayList();
+      foreach (ListViewItem LVI in this.lstItems.SelectedItems)
+	Items.Add(LVI.Tag);
+    IItemExporter IE = new ItemExporter(this.Language, this.Type);
+      IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
     }
 
     #endregion
