@@ -165,6 +165,9 @@
     <data name="E:Test.Contains" type="System.String">
         <value>contains</value>
     </data>
+    <data name="E:Test.DoesntContain" type="System.String">
+        <value>doesn't contain</value>
+    </data>
     <data name="E:Test.Equals" type="System.String">
         <value>exactly matches</value>
     </data>
@@ -176,6 +179,9 @@
     </data>
     <data name="E:Test.MatchesRegexp" type="System.String">
         <value>matches regexp</value>
+    </data>
+    <data name="E:Test.DoesntMatchRegexp" type="System.String">
+        <value>doesn't match regexp</value>
     </data>
     <data name="ColumnHeader:DescriptionLineCount" type="System.String">
         <value>{0} (Line Count)</value>
