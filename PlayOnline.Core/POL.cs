@@ -57,12 +57,12 @@ namespace PlayOnline.Core {
       if ((POL.AvailableRegions_ & POL.SelectedRegion_) != POL.SelectedRegion_)
 	POL.SelectedRegion_ = Region.None;
       if (POL.SelectedRegion_ == Region.None) {
-	if ((POL.AvailableRegions_ & Region.Japan) != 0)
-	  POL.SelectedRegion_ = Region.Japan;
-	else if ((POL.AvailableRegions_ & Region.NorthAmerica) != 0)
+	if ((POL.AvailableRegions_ & Region.NorthAmerica) != 0)
 	  POL.SelectedRegion_ = Region.NorthAmerica;
 	else if ((POL.AvailableRegions_ & Region.Europe) != 0)
 	  POL.SelectedRegion_ = Region.Europe;
+	else if ((POL.AvailableRegions_ & Region.Japan) != 0)
+	  POL.SelectedRegion_ = Region.Japan;
       }
     }
 
