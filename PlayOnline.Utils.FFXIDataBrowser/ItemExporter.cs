@@ -47,7 +47,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       }
     }
 
-    public void DoExport(FFXIItem[] Items) {
+    public override void DoExport(FFXIItem[] Items) {
       this.DoExport(ItemExportMethod.UserSelect, Items);
     }
 

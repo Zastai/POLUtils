@@ -23,7 +23,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       CSVItemExporter.dlgOptions.Type     = T;
     }
 
-    public void DoExport(FFXIItem[] Items) {
+    public override void DoExport(FFXIItem[] Items) {
+      CSVItemExporter.dlgOptions.Reset();
       if (CSVItemExporter.dlgOptions.ShowDialog() == DialogResult.OK) {
       StreamWriter CSVFile = new StreamWriter(CSVItemExporter.dlgOptions.FileName, false, CSVItemExporter.dlgOptions.Encoding);
       char TextQuote = '"';

@@ -24,7 +24,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       XMLItemExporter.dlgOptions.Type     = T;
     }
 
-    public void DoExport(FFXIItem[] Items) {
+    public override void DoExport(FFXIItem[] Items) {
+      XMLItemExporter.dlgOptions.Reset();
       if (XMLItemExporter.dlgOptions.ShowDialog() == DialogResult.OK) {
       XmlDocument XD = new XmlDocument();
 	XD.AppendChild(XD.CreateElement("ffxi-item-info"));
