@@ -14,6 +14,7 @@ namespace PlayOnline.FFXI {
   }
 
   public enum ItemField {
+    Any,
     // Common
     ID,
     Flags,
