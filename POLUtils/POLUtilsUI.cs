@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -27,6 +28,7 @@ namespace PlayOnline.Utils {
     private System.Windows.Forms.Button btnFFXIDataBrowser;
     private System.Windows.Forms.Button btnTetraViewer;
     private System.Windows.Forms.Label lblToolLanguage;
+    private System.Windows.Forms.Button btnFFXIConfigEditor;
 
     private System.ComponentModel.Container components = null;
 
@@ -35,6 +37,10 @@ namespace PlayOnline.Utils {
     public POLUtilsUI() {
       this.InitializeComponent();
       this.Icon = Icons.POLViewer;
+      {
+      Version V = Assembly.GetExecutingAssembly().GetName().Version;
+	this.Text += String.Format(" {0}.{1}.{2}", V.Major, V.Minor, V.Revision);
+      }
       this.cmbCultures.Items.AddRange(POLUtils.AvailableCultures.ToArray());
       this.cmbCultures.SelectedItem = CultureChoice.Current;
       if (this.cmbCultures.Items.Count < 2)
@@ -46,9 +52,10 @@ namespace PlayOnline.Utils {
     private void UpdateSelectedRegion() {
       this.txtSelectedRegion.Text      = POL.RegionText(POL.SelectedRegion);
       this.btnChooseRegion.Enabled     = POL.MultipleRegionsAvailable;
-      this.btnTetraViewer.Enabled      = POL.IsAppInstalled(AppID.TetraMaster);
+      this.btnFFXIConfigEditor.Enabled = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIDataBrowser.Enabled  = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIMacroManager.Enabled = POL.IsAppInstalled(AppID.FFXI);
+      this.btnTetraViewer.Enabled      = POL.IsAppInstalled(AppID.TetraMaster);
     }
 
     #region Windows Form Designer generated code
@@ -71,6 +78,7 @@ namespace PlayOnline.Utils {
       this.btnAudioManager = new System.Windows.Forms.Button();
       this.btnFFXIMacroManager = new System.Windows.Forms.Button();
       this.btnFFXIDataBrowser = new System.Windows.Forms.Button();
+      this.btnFFXIConfigEditor = new System.Windows.Forms.Button();
       this.grpRegion.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -193,6 +201,7 @@ namespace PlayOnline.Utils {
       this.txtSelectedRegion.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("txtSelectedRegion.ScrollBars")));
       this.txtSelectedRegion.Size = ((System.Drawing.Size)(resources.GetObject("txtSelectedRegion.Size")));
       this.txtSelectedRegion.TabIndex = ((int)(resources.GetObject("txtSelectedRegion.TabIndex")));
+      this.txtSelectedRegion.TabStop = false;
       this.txtSelectedRegion.Text = resources.GetString("txtSelectedRegion.Text");
       this.txtSelectedRegion.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("txtSelectedRegion.TextAlign")));
       this.txtSelectedRegion.Visible = ((bool)(resources.GetObject("txtSelectedRegion.Visible")));
@@ -316,6 +325,30 @@ namespace PlayOnline.Utils {
       this.btnFFXIDataBrowser.Visible = ((bool)(resources.GetObject("btnFFXIDataBrowser.Visible")));
       this.btnFFXIDataBrowser.Click += new System.EventHandler(this.btnFFXIDataBrowser_Click);
       // 
+      // btnFFXIConfigEditor
+      // 
+      this.btnFFXIConfigEditor.AccessibleDescription = resources.GetString("btnFFXIConfigEditor.AccessibleDescription");
+      this.btnFFXIConfigEditor.AccessibleName = resources.GetString("btnFFXIConfigEditor.AccessibleName");
+      this.btnFFXIConfigEditor.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnFFXIConfigEditor.Anchor")));
+      this.btnFFXIConfigEditor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFFXIConfigEditor.BackgroundImage")));
+      this.btnFFXIConfigEditor.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnFFXIConfigEditor.Dock")));
+      this.btnFFXIConfigEditor.Enabled = ((bool)(resources.GetObject("btnFFXIConfigEditor.Enabled")));
+      this.btnFFXIConfigEditor.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnFFXIConfigEditor.FlatStyle")));
+      this.btnFFXIConfigEditor.Font = ((System.Drawing.Font)(resources.GetObject("btnFFXIConfigEditor.Font")));
+      this.btnFFXIConfigEditor.Image = ((System.Drawing.Image)(resources.GetObject("btnFFXIConfigEditor.Image")));
+      this.btnFFXIConfigEditor.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnFFXIConfigEditor.ImageAlign")));
+      this.btnFFXIConfigEditor.ImageIndex = ((int)(resources.GetObject("btnFFXIConfigEditor.ImageIndex")));
+      this.btnFFXIConfigEditor.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnFFXIConfigEditor.ImeMode")));
+      this.btnFFXIConfigEditor.Location = ((System.Drawing.Point)(resources.GetObject("btnFFXIConfigEditor.Location")));
+      this.btnFFXIConfigEditor.Name = "btnFFXIConfigEditor";
+      this.btnFFXIConfigEditor.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnFFXIConfigEditor.RightToLeft")));
+      this.btnFFXIConfigEditor.Size = ((System.Drawing.Size)(resources.GetObject("btnFFXIConfigEditor.Size")));
+      this.btnFFXIConfigEditor.TabIndex = ((int)(resources.GetObject("btnFFXIConfigEditor.TabIndex")));
+      this.btnFFXIConfigEditor.Text = resources.GetString("btnFFXIConfigEditor.Text");
+      this.btnFFXIConfigEditor.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnFFXIConfigEditor.TextAlign")));
+      this.btnFFXIConfigEditor.Visible = ((bool)(resources.GetObject("btnFFXIConfigEditor.Visible")));
+      this.btnFFXIConfigEditor.Click += new System.EventHandler(this.btnFFXIConfigEditor_Click);
+      // 
       // POLUtilsUI
       // 
       this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -326,6 +359,7 @@ namespace PlayOnline.Utils {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+      this.Controls.Add(this.btnFFXIConfigEditor);
       this.Controls.Add(this.btnFFXIDataBrowser);
       this.Controls.Add(this.btnFFXIMacroManager);
       this.Controls.Add(this.btnAudioManager);
@@ -382,9 +416,9 @@ namespace PlayOnline.Utils {
       this.Activate();
     }
 
-    private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
+    private void btnFFXIConfigEditor_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new FFXIMacroManager.MainWindow())
+      using (Form Utility = new FFXIConfigEditor.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
@@ -393,6 +427,14 @@ namespace PlayOnline.Utils {
     private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new FFXIDataBrowser.MainWindow())
+	Utility.ShowDialog(this);
+      this.Show();
+      this.Activate();
+    }
+
+    private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
+      this.Hide();
+      using (Form Utility = new FFXIMacroManager.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
