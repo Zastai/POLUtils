@@ -548,6 +548,20 @@ namespace PlayOnline.FFXI {
       return null;
     }
 
+    public static ItemField[] GetFields(ItemDataLanguage L, ItemDataType T) {
+    byte[] DummyData = new byte[0x200];
+    MemoryStream DummyStream = new MemoryStream(DummyData, false);
+      switch (T) {
+	case ItemDataType.Armor:
+	  return new LangSpecificArmorInfo(DummyStream, L).GetFields();
+	case ItemDataType.Object:
+	  return new LangSpecificObjectInfo(DummyStream, L).GetFields();
+	case ItemDataType.Weapon:
+	  return new LangSpecificWeaponInfo(DummyStream, L).GetFields();
+      }
+      return null;
+    }
+
   }
 
 }
