@@ -143,7 +143,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnTetraViewer.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>91, 168</value>
+    <value>89, 192</value>
   </data>
   <data name="btnTetraViewer.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -152,7 +152,7 @@
     <value>172, 24</value>
   </data>
   <data name="btnTetraViewer.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="btnTetraViewer.Text">
     <value>&amp;Tetra Master Data Viewer</value>
@@ -173,7 +173,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTetraViewer.ZOrder">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="grpRegion.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -227,7 +227,7 @@
     <value>336, 76</value>
   </data>
   <data name="grpRegion.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>42</value>
+    <value>0</value>
   </data>
   <data name="grpRegion.Text">
     <value />
@@ -245,7 +245,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpRegion.ZOrder">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cmbCultures.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
@@ -302,7 +302,7 @@
     <value>236, 21</value>
   </data>
   <data name="cmbCultures.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>46</value>
+    <value>102</value>
   </data>
   <data name="cmbCultures.Text">
     <value />
@@ -377,7 +377,7 @@
     <value>23, 20</value>
   </data>
   <data name="btnChooseRegion.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>2</value>
+    <value>101</value>
   </data>
   <data name="btnChooseRegion.Text">
     <value>...</value>
@@ -458,7 +458,7 @@
     <value>168, 20</value>
   </data>
   <data name="txtSelectedRegion.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1</value>
+    <value>100</value>
   </data>
   <data name="txtSelectedRegion.Text">
     <value />
@@ -611,7 +611,7 @@
     <value>84, 16</value>
   </data>
   <data name="lblToolLanguage.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>47</value>
+    <value>0</value>
   </data>
   <data name="lblToolLanguage.Text">
     <value>Tool Language:</value>
@@ -680,7 +680,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnAudioManager.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>92, 84</value>
+    <value>89, 80</value>
   </data>
   <data name="btnAudioManager.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -710,7 +710,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAudioManager.ZOrder">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnFFXIMacroManager.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -758,7 +758,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnFFXIMacroManager.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>91, 112</value>
+    <value>89, 164</value>
   </data>
   <data name="btnFFXIMacroManager.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -767,7 +767,7 @@
     <value>172, 24</value>
   </data>
   <data name="btnFFXIMacroManager.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>43</value>
+    <value>4</value>
   </data>
   <data name="btnFFXIMacroManager.Text">
     <value>FFXI &amp;Macro Manager</value>
@@ -788,7 +788,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIMacroManager.ZOrder">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFFXIDataBrowser.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -836,7 +836,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnFFXIDataBrowser.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>91, 140</value>
+    <value>89, 136</value>
   </data>
   <data name="btnFFXIDataBrowser.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Inherit</value>
@@ -845,7 +845,7 @@
     <value>172, 24</value>
   </data>
   <data name="btnFFXIDataBrowser.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>44</value>
+    <value>3</value>
   </data>
   <data name="btnFFXIDataBrowser.Text">
     <value>FFXI &amp;Data Browser</value>
@@ -866,13 +866,91 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIDataBrowser.ZOrder">
-    <value>0</value>
+    <value>1</value>
   </data>
-  <data name="$this.Name">
-    <value>POLUtilsUI</value>
+  <data name="btnFFXIConfigEditor.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="btnFFXIConfigEditor.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="btnFFXIConfigEditor.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="btnFFXIConfigEditor.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="btnFFXIConfigEditor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="btnFFXIConfigEditor.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="btnFFXIConfigEditor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="btnFFXIConfigEditor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>System</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="btnFFXIConfigEditor.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="btnFFXIConfigEditor.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btnFFXIConfigEditor.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="btnFFXIConfigEditor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>89, 108</value>
+  </data>
+  <data name="btnFFXIConfigEditor.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 24</value>
+  </data>
+  <data name="btnFFXIConfigEditor.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>2</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Text">
+    <value>FFXI &amp;Configuration Editor</value>
+  </data>
+  <data name="btnFFXIConfigEditor.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btnFFXIConfigEditor.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnFFXIConfigEditor.Name">
+    <value>btnFFXIConfigEditor</value>
+  </data>
+  <data name="&gt;&gt;btnFFXIConfigEditor.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFFXIConfigEditor.Parent">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnFFXIConfigEditor.ZOrder">
+    <value>0</value>
   </data>
   <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="$this.Name">
+    <value>POLUtilsUI</value>
   </data>
   <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>(Default)</value>
@@ -920,7 +998,7 @@
     <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>350, 200</value>
+    <value>350, 220</value>
   </data>
   <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -932,7 +1010,7 @@
     <value />
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
