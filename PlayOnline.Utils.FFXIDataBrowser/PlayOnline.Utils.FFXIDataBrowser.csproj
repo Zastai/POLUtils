@@ -109,6 +109,31 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CSVItemExporter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CSVOptionDialog.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CSVOptionDialog.resx"
+                    DependentUpon = "CSVOptionDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ExportMethodDialog.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ExportMethodDialog.resx"
+                    DependentUpon = "ExportMethodDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "FileScanDialog.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -129,7 +154,47 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "HelperTypes.cs"
+                    RelPath = "IItemExporter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ItemExporter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ItemFieldChooser.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ItemFieldChooser.resx"
+                    DependentUpon = "ItemFieldChooser.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ItemFindDialog.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ItemFindDialog.resx"
+                    DependentUpon = "ItemFindDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ItemPredicate.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ItemPredicate.resx"
+                    DependentUpon = "ItemPredicate.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ListViewColumnSorter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -160,6 +225,11 @@
                 <File
                     RelPath = "Messages.resx"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "XMLItemExporter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
             </Include>
         </Files>
