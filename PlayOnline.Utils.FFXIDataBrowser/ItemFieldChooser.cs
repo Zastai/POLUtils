@@ -20,12 +20,14 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     #endregion
 
-    public ItemFieldChooser(ItemDataLanguage L, ItemDataType T, bool IncludeAny, params ItemField[] FieldParams) {
+    public ItemFieldChooser(ItemDataLanguage L, ItemDataType T, bool IncludeAnyAndAll, params ItemField[] FieldParams) {
       this.InitializeComponent();
       // Set up fields - this should really be done via an IItemInfo, but that requires an item instance.
     ArrayList FieldsToCheck = new ArrayList(FieldParams);
-      if (IncludeAny)
+      if (IncludeAnyAndAll) {
 	this.AddField(ItemField.Any, FieldsToCheck);
+	this.AddField(ItemField.All, FieldsToCheck);
+      }
       this.AddField(ItemField.ID, FieldsToCheck);
       this.AddField(ItemField.Flags, FieldsToCheck);
       this.AddField(ItemField.StackSize, FieldsToCheck);
@@ -173,10 +175,31 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     #endregion
 
     private void clstFields_ItemCheck(object sender, System.Windows.Forms.ItemCheckEventArgs e) {
-      // Enable button if at least one entry selected
-      this.btnOK.Enabled = false;
-      if (this.clstFields.CheckedItems.Count > 1 || e.NewValue == CheckState.Checked)
-	this.btnOK.Enabled = true;
+    NamedEnum NE = this.clstFields.Items[e.Index] as NamedEnum;
+      if (NE != null && e.NewValue == CheckState.Checked) {
+	switch ((ItemField) NE.Value) {
+	  case ItemField.Any: case ItemField.All: // if selected, unselect all others
+	    for (int i = 0; i < this.clstFields.Items.Count; ++i) {
+	      if (i != e.Index)
+		this.clstFields.SetItemChecked(i, false);
+	    }
+	    break;
+	  default: // if selected, unselect any/all
+	    for (int i = 0; i < this.clstFields.Items.Count; ++i) {
+	    NamedEnum NE2 = this.clstFields.Items[i] as NamedEnum;
+	      if (NE2 != null) {
+		switch ((ItemField) NE2.Value) {
+		  case ItemField.Any: case ItemField.All:
+		    this.clstFields.SetItemChecked(i, false);
+		    break;
+		}
+	      }
+	    }
+	    break;
+	}
+      }
+      // Enable button as long as at least one entry selected
+      this.btnOK.Enabled = !(this.clstFields.CheckedItems.Count <= 1 && e.NewValue != CheckState.Checked);
     }
 
   }
