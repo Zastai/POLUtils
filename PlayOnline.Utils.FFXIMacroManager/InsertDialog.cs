@@ -10,14 +10,15 @@ using PlayOnline.FFXI;
 namespace PlayOnline.Utils.FFXIMacroManager {
 
   public class InsertDialog : System.Windows.Forms.Form {
+
+    #region Controls
+
     private System.Windows.Forms.TreeView tvCategories;
     private System.Windows.Forms.Panel pnlCommands;
     private System.Windows.Forms.ListView lvEntries;
     private System.Windows.Forms.Button btnInsert;
     private System.Windows.Forms.Button btnCancel;
     private System.Windows.Forms.TextBox txtPreview;
-
-    #region Controls
 
     private System.ComponentModel.Container components = null;
 
