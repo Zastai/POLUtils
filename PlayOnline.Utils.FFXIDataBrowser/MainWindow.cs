@@ -179,32 +179,36 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private void ShowItemData() {
       this.lstItems.Items.Clear();
       this.lstItems.Columns.Clear();
+      this.lstItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
     bool AddImages = false;
-      if (this.ilItemIcons.Images.Count == 0)
+      if (this.ilItemIcons.Images.Count == 0) {
 	AddImages = true;
+	this.cmbImageChooser.Items.Clear();
+      }
       // Set up columns
-      this.lstItems.Columns.Add("Item Number", 90, HorizontalAlignment.Left);
-      this.lstItems.Columns.Add("Flags",       60, HorizontalAlignment.Left);
-      this.lstItems.Columns.Add("Stack Size",  75, HorizontalAlignment.Left);
-      this.lstItems.Columns.Add("Unknown 1",   70, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Item Number",    90, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Flags",          60, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Stack Size",     75, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Item Type",      70, HorizontalAlignment.Left);
       if (this.cmbItemType.SelectedIndex >= 2) {
-	this.lstItems.Columns.Add("Level",  45, HorizontalAlignment.Left);
-	this.lstItems.Columns.Add("Slots",  70, HorizontalAlignment.Left);
-	this.lstItems.Columns.Add("Races",  85, HorizontalAlignment.Left);
-	this.lstItems.Columns.Add("Jobs",  300, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Resource ID",  90, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Level",        45, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Slots",        70, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Races",        85, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Jobs",        300, HorizontalAlignment.Left);
 	if (this.cmbItemType.SelectedIndex < 4)
-	  this.lstItems.Columns.Add("Defense", 60, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Defense",    60, HorizontalAlignment.Left);
 	else {
-	  this.lstItems.Columns.Add("Damage", 60, HorizontalAlignment.Left);
-	  this.lstItems.Columns.Add("Delay",  50, HorizontalAlignment.Left);
-	  this.lstItems.Columns.Add("Unknown 2", 70, HorizontalAlignment.Left);
-	  this.lstItems.Columns.Add("Skill",  80, HorizontalAlignment.Left);
-	  this.lstItems.Columns.Add("Unknown 3", 70, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Damage",     60, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Delay",      50, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Unknown 2",  70, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Skill",      80, HorizontalAlignment.Left);
+	  this.lstItems.Columns.Add("Unknown 3",  70, HorizontalAlignment.Left);
 	}
       }
       else {
-	this.lstItems.Columns.Add("Unknown 2", 70, HorizontalAlignment.Left);
-	this.lstItems.Columns.Add("Unknown 3", 70, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Unknown 2",    70, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add("Unknown 3",    70, HorizontalAlignment.Left);
       }
       this.lstItems.Columns.Add("Japanese Name", 125, HorizontalAlignment.Left);
       this.lstItems.Columns.Add("English Name",  125, HorizontalAlignment.Left);
@@ -216,6 +220,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems.Columns.Add("Description (2)", 200, HorizontalAlignment.Left);
       this.lstItems.Columns.Add("Description (3)", 200, HorizontalAlignment.Left);
       this.lstItems.Columns.Add("Description (4)", 200, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Description (5)", 200, HorizontalAlignment.Left);
+      this.lstItems.Columns.Add("Description (6)", 200, HorizontalAlignment.Left);
       this.lstItems.Columns.Add("Icon Info",   190, HorizontalAlignment.Left);
       Application.DoEvents();
       // Load values
@@ -228,15 +234,18 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       ListViewItem LVI = this.lstItems.Items.Add("", ItemCount++);
       Encoding E = new POLEncoding();
       BinaryReader BR = new BinaryReader(new MemoryStream(FI.Data, false));
-	LVI.Text = String.Format("{0,8:X}", BR.ReadUInt32());
+	LVI.Text = String.Format("{0:X8}", BR.ReadUInt32());
 	{
 	ushort Flags = BR.ReadUInt16();
-	  LVI.SubItems.Add(String.Format("{0,4:X} ({1})", Flags, (ItemFlags) Flags));
+	  LVI.SubItems.Add(String.Format("{0:X4} ({1})", Flags, (ItemFlags) Flags));
 	}
 	LVI.SubItems.Add(String.Format("{0}", BR.ReadUInt16()));
-	LVI.SubItems.Add(String.Format("{0,4:X} ({0})", BR.ReadUInt16()));
+	{
+	ushort ItemType = BR.ReadUInt16();
+	  LVI.SubItems.Add(String.Format("{0:X4} ({1})", ItemType, (ItemType) ItemType));
+	}
 	if (this.cmbItemType.SelectedIndex >= 2) {
-	  LVI.Text = String.Format("{0,8:X}", BR.ReadUInt32());
+	  LVI.SubItems.Add(String.Format("{0:X8}", BR.ReadUInt32()));
 	  LVI.SubItems.Add(String.Format("{0}", BR.ReadUInt16()));
 	  LVI.SubItems.Add(String.Format("{0}", (EquipmentSlot) BR.ReadUInt16()));
 	  LVI.SubItems.Add(String.Format("{0}", (Race) BR.ReadUInt16()));
@@ -244,14 +253,17 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  LVI.SubItems.Add(String.Format("{0}", BR.ReadUInt16()));
 	}
 	else {
-	  LVI.SubItems.Add(String.Format("{0,4:X} ({0})", BR.ReadUInt16()));
-	  LVI.SubItems.Add(String.Format("{0,4:X} ({0})", BR.ReadUInt16()));
+	  LVI.SubItems.Add(String.Format("{0:X4} ({0})", BR.ReadUInt16()));
+	  LVI.SubItems.Add(String.Format("{0:X4} ({0})", BR.ReadUInt16()));
 	}
 	if (this.cmbItemType.SelectedIndex >= 4) {
 	  LVI.SubItems.Add(String.Format("{0}", BR.ReadUInt16()));
-	  LVI.SubItems.Add(String.Format("{0,4:X} ({0})", BR.ReadUInt16()));
-	  LVI.SubItems.Add(String.Format("{0}", (ItemSkill) BR.ReadByte()));
-	  LVI.SubItems.Add(String.Format("{0,2:X} ({0})", BR.ReadByte()));
+	  LVI.SubItems.Add(String.Format("{0:X4} ({0})", BR.ReadUInt16()));
+	  {
+	  byte ItemSkill = BR.ReadByte();
+	    LVI.SubItems.Add(String.Format("{0:X2} ({1})", ItemSkill, (ItemSkill) ItemSkill));
+	  }
+	  LVI.SubItems.Add(String.Format("{0:X2} ({0})", BR.ReadByte()));
 	}
 	if ((this.cmbItemType.SelectedIndex % 2) == 1) { // JP
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(22)).TrimEnd('\0'));
@@ -263,14 +275,18 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(64)).TrimEnd('\0'));
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(64)).TrimEnd('\0'));
 	}
-	{
-	string[] DescriptionLines = E.GetString(BR.ReadBytes(128)).TrimEnd('\0').Split(new char[] { '\0' }, 4);
-	  for (int i = 0; i < 4; ++i)
+	{ // 188 is a guess, based on non-NUL chars after a string of NULs - so this could be less
+	string DescriptionText = E.GetString(BR.ReadBytes(188)).TrimEnd('\0');
+	string[] DescriptionLines = DescriptionText.Split(new char[] { '\0' });
+	  for (int i = 0; i < 6; ++i)
 	    LVI.SubItems.Add((i < DescriptionLines.Length) ? DescriptionLines[i] : "");
 	}
 	LVI.SubItems.Add(FI.Image.ToString());
 	Application.DoEvents();
       }
+      this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
+      if (AddImages)
+	this.cmbImageChooser.SelectedIndex = 0;
     }
 
     private void cmbItemType_SelectedIndexChanged(object sender, System.EventArgs e) {
@@ -1459,7 +1475,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  this.LoadedItems = FSD.Items.ToArray(typeof(FFXIItem)) as FFXIItem[];
 	  Application.DoEvents();
 	  this.cmbItemType.SelectedIndex = 0;
-	  this.cmbImageChooser.SelectedIndex = 0;
 	}
 	if (FSD.Images.Count > 0) {
 	  this.tabViewers.Visible = true;
