@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<website name="Pebbles&apos; Program Page" home="index.html">
+  <!-- Site Sections -->
+  <section name="Home" file="index.html">
+    <para>Welcome to Pebbles&apos; Program Page.</para>
+    <para>
+      Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
+      <acronym title="Final Fantasy XI">FFXI</acronym> Online, or to <acronym title="PlayOnline">POL</acronym> in general.
+    </para>
+    <news-headlines/>
+    <para><span class="link-description">Pebbles can be contacted via email (pebbles DOT pandemonium AT telenet DOT be).</span></para>
+  </section>
+  <section name="News" file="news.html">
+    <news/>
+  </section>
+  <section name="FAQ" file="faq.html">
+    <para>
+      <h3>1. What are the system requirements?</h3>
+      <p>
+        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
+        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
+        rather essential element of that perticular tool).  As for Windows version, any version of windows that
+        can install those two dependencies should do.<br/>
+        Unfortunately, Managed DirectX is not automatically installed along with DirectX - you can find a
+        suitable installer for it on the downloads page.
+      </p>
+    </para>
+    <para>
+      <h3>2. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
+      <p>
+	Easy - noone has volunteered to help with the translation yet.  If you want to provide the translation,
+	let me know; all help is appreciated.
+      </p>
+    </para>
+  </section>
+  <section name="Download Area" file="downloads.html">
+    <para>Here you can download Pebbles&apos; programs.</para>
+    <downloads/>
+  </section>
+  <section name="Links" file="links.html">
+    <para>This page contains various links you may (or may not) find useful.</para>
+    <links/>
+  </section>
+  <!-- News Items -->
+  <news file="news.html">
+    <news-item title="POLUtils 0.4.0 Released" author="Pebbles" date="January 16th, 2005">
+      <p>Today I'm releasing POLUtils 0.4.0, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  POLUtils is deployed via an installer now - this also checks for the presence of the .NET
+	  framework 1.1, to avoid unexpected and/or cryptic Windows errors.
+	</li><li>
+	  The language choice on the main dialog will now only list available options (and in its
+	  native form).  Additionally, the selection will be preserved across runs.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  There was a logic error in the data browser - if a second item data file was opened, the
+	  item icons of the first one were reused.  This is now fixed.
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.3.5 Released" author="Pebbles" date="January 15th, 2005">
+      <p>Today I'm releasing POLUtils 0.3.5, a collection of PlayOnline-related utilities.<br/>
+         This is really an intermediate release, there weren't enough major changes to
+         warrant a 0.4 version.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  The data browser has a menu now, that allows you to easily find several kinds of "interesting" files
+	  (maps, item data, etc.).
+	</li><li>
+	  The data browser now has support for item data - not quite all available info has been figured out
+	  at the moment (e.g. Rare/Ex/NoAuction flags).
+	</li><li>
+	  The data browser will now scan files for any images they may contain (instead of just checking the
+	  start of the file and displaying the first one it found).  Unfortunately, this can take some time,
+	  and you cannot abort the scan at the moment.  I will look into making that more convenient (improving
+	  the speed probably won't be possible, but I'll try the too) - however, threading doesn't play very
+	  nice when Windows Forms controls are involved, so it's a bit tricky.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  Some of the picture loading code was broken and/or missing - the current data browser should
+	  support most formats (DXT1-DXT5 and the various bitmaps) properly.
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.3 Released" author="Pebbles" date="January 4th, 2005">
+      <p>Today I'm releasing POLUtils 0.3, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  You can select the interface language - only small portions have been localized at the moment,
+	  and only for Dutch and Japanese.  Volunteers will be needed to assist further.
+	</li><li>
+	  FFXI Data Browser - allows browsing the contents of the .DAT files of FFXI.<br/>
+	  Currently, only string tables (e.g. ROM\97\17-57.DAT) and maps (e.g. ROM3\4\0-20.DAT) will be shown
+	  (although some non-map images will also be shown (e.g. ROM\0\1.DAT, which contains the game's font,
+	  and ROM\97\10.DAT, which has the treasure chest texture).<br/>
+	  I'll probably add menus in the next version to help locate "interesting" files.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  POLUtils will refuse to start if no POL clients are installed (instead of crashing).
+	</li><li>
+	  The AudioManager now dynamically loads Managed DirectSound - previously it had a hard dependency on it
+	  so for most people it would simply crash when started.  It also no longer tries to buffer the sound
+	  files itself; this fixes the stuttering issue (although it seems DirectSound preloads the entire file
+	  now, causing a noticeable delay when starting playback, and also causing a marked increase in memory
+	  use).
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.2 Released" author="Pebbles" date="December 26th, 2004">
+      <p>Today I'm releasing POLUtils 0.2, a collection of PlayOnline-related utilities.</p>
+      <p><strong>Current Features:</strong><br/><ul>
+	<li>Audio Browser - allows playing &amp; decoding of all PlayOnline-related audio files.</li>
+	<li>Macro Manager - allows editing of character macro bars (with auto-translator support).</li>
+	<li>TetraMaster image viewer - allows viewing (and extracting) of the image files of Tetra Master.</li>
+      </ul></p>
+      <p><strong>Known Issues:</strong><br/><ul>
+	<li>
+	  Macro editing works, but is in a beta stage - I recommend using it on macro bars that are currently
+	  empty, to avoid loss of data. Note that you need to explicitly ask the tool to save changes; so it
+	  is perfectly safe to simply browse the macros.
+	</li><li>
+	  POLUtils loads the icons it needs at runtime (from POL and Windows files); if you run anything other
+	  than WinXP, they may not look right. If that is the case, let me know (e.g. by sending screenshots
+	  and mentioning what OS version you use).
+	</li>
+      </ul></p>
+      <p><strong>Things I would like:</strong><br/><ul>
+	<li>
+	  The name mappings for the music and sound effect files is incomplete; if you can put a name to any
+	  unnamed tracks, let me know.
+	</li><li>
+	  The "Insert Special Character" and "Insert Faces" context menu entries for the macro command text
+	  are not implemented yet. I welcome suggestions, especially for the Faces category (the special chars
+	  I can extract from the shift-jis character set).
+	</li><li>
+	  Any and all suggestions/requests are welcomed (new utility, new feature in existing utility, ...). But
+	  please don't request a model viewer (yet) - that's outside the scope of my technical skills for the
+	  moment.
+	</li><li>
+	  If you have the JP client and have Front Mission Online installed, please contact me, so I can get some
+	  information from you.
+	</li><li>
+	  If you have the EU client, let me know - i need to verify some registry settings. If you can provide an
+	  ISO or whatever of the EU POL Viewer disc, even better.
+	</li><li>
+	  Send in your favourite macros, for future inclusion in the standard macro library.
+	</li>
+      </ul></p>
+    </news-item>
+  </news>
+  <!-- Downloads -->
+  <downloads>
+    <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.4.0-Release.exe">
+	Added installer, fixed data browser bug, improved localization support.<br/>
+      </file>
+      <file name="POLUtils-0.3.5-Release.zip">
+	Some data browser enhancements: an item data viewer and a menu to easily find some "interesting" files.<br/>
+      </file>
+      <file name="POLUtils-0.3.0-Release.zip">
+	The second release of the POL Utils; introduces an initial version of the FFXI Data Browser.<br/>
+      </file>
+      <file name="mdxredist.msi">
+	The latest version (9.0c, December 2004) of the Microsoft Managed DirectX redistributable.<br/>
+	As of version 0.3, the POLUtils Audio Manager component dynamically accesses Managed DirectSound, so
+	it no longer depends on a specific version being installed (in fact it should be able to handle its
+	absence just fine).  So if you already have an older version installed, it's not required to install
+	this as well (but it also doesn't hurt).
+      </file>
+      <file name="POLUtils-0.2.0-Release.zip">
+	The first real release of the POL Utils.<br/>
+      </file>
+      <file name="mdxredist-0.2.msi">
+	Microsoft Managed DirectX redistributable (9.0b) - needed by the Audio Manager component of POLUtils 0.2.
+      </file>
+    </group>
+    <group name="foo_pol">
+      <file name="foo_pol-1.0.zip">
+	Version 1.0 of a plugin for the <a href="http://www.foobar2000.org/">FooBar2000</a> audio player that allows
+	playback of .bgw and .spw files.<br/>
+	It's fully functional; unless there are specific feature requests this will be the only version (although
+	I will recompile to the latest SDK when needed for compatibility).
+      </file>
+    </group>
+    <group name="Other Stuff">
+    </group>
+  </downloads>
+  <!-- Links -->
+  <links>
+  </links>
+</website>
