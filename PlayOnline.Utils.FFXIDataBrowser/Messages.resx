@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="ResMimeType">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="Version">
+        <value>1.0.0.0</value>
+    </resheader>
+    <resheader name="Reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="Writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="FFXI1" type="System.String">
+        <value>Final Fantasy XI</value>
+    </data>
+    <data name="FFXI2" type="System.String">
+        <value>Final Fantasy XI - Rise of the Zilart</value>
+    </data>
+    <data name="FFXI3" type="System.String">
+        <value>Final Fantasy XI - Chains of Promathia</value>
+    </data>
+    <data name="InvalidEntry" type="System.String">
+        <value>&lt;invalid entry&gt;</value>
+    </data>
+    <data name="Menu:MapN" type="System.String">
+        <value>Map &amp;{0}</value>
+    </data>
+    <data name="Menu:AreaNames" type="System.String">
+        <value>&amp;Area Names</value>
+    </data>
+    <data name="Menu:AreaNamesAlt" type="System.String">
+        <value>&amp;Area Names (Alternate)</value>
+    </data>
+    <data name="Menu:AreaNamesShort" type="System.String">
+        <value>&amp;Area Names (Search)</value>
+    </data>
+    <data name="Menu:ChatFilterTypes" type="System.String">
+        <value>&amp;Chat Filter Types</value>
+    </data>
+    <data name="Menu:DayNames" type="System.String">
+        <value>&amp;Day Names</value>
+    </data>
+    <data name="Menu:Directions" type="System.String">
+        <value>&amp;Directions</value>
+    </data>
+    <data name="Menu:ErrorMessages" type="System.String">
+        <value>&amp;Error Messages</value>
+    </data>
+    <data name="Menu:InGameMessages1" type="System.String">
+        <value>&amp;In-Game Messages (1)</value>
+    </data>
+    <data name="Menu:InGameMessages2" type="System.String">
+        <value>&amp;In-Game Messages (2)</value>
+    </data>
+    <data name="Menu:JobNames" type="System.String">
+        <value>&amp;Job Names</value>
+    </data>
+    <data name="Menu:MenuItemDesc" type="System.String">
+        <value>&amp;Menu Item Descriptions</value>
+    </data>
+    <data name="Menu:MenuItemText" type="System.String">
+        <value>&amp;Menu Item Text</value>
+    </data>
+    <data name="Menu:MoonPhases" type="System.String">
+        <value>&amp;Moon Phases</value>
+    </data>
+    <data name="Menu:POLMessages" type="System.String">
+        <value>&amp;POL Messages</value>
+    </data>
+    <data name="Menu:RegionNames" type="System.String">
+        <value>&amp;Region Names</value>
+    </data>
+    <data name="Menu:Various1" type="System.String">
+        <value>&amp;Various (1)</value>
+    </data>
+    <data name="Menu:Various2" type="System.String">
+        <value>&amp;Various (2)</value>
+    </data>
+    <data name="Menu:Various3" type="System.String">
+        <value>&amp;Various (3)</value>
+    </data>
+    <data name="Menu:WeatherTypes" type="System.String">
+        <value>&amp;Weather Types</value>
+    </data>
+    <data name="FileTableDialog:StatusFormat" type="System.String">
+        <value>{0} - {1} file(s) assigned</value>
+    </data>
+    <data name="FileTableDialog:StatusSorting" type="System.String">
+        <value>Sorting...</value>
+    </data>
+    <data name="Menu:JobNamesShort" type="System.String">
+        <value>&amp;Job Names (Short)</value>
+    </data>
+    <data name="Menu:RaceNames" type="System.String">
+        <value>&amp;Race Names</value>
+    </data>
+    <data name="StringScan" type="System.String">
+        <value>Loading string table entries - please wait...</value>
+    </data>
+    <data name="ImageScan" type="System.String">
+        <value>Scanning file for images ({0} found so far) - please wait...</value>
+    </data>
+    <data name="StringCheck" type="System.String">
+        <value>Checking whether file contains a string table...</value>
+    </data>
+    <data name="FileLoad" type="System.String">
+        <value>Loading data from file into memory...</value>
+    </data>
+    <data name="ItemCheck" type="System.String">
+        <value>Checking whether or not the file contains valid item data...</value>
+    </data>
+    <data name="ItemLoad" type="System.String">
+        <value>Data for {0} of {1} items loaded...</value>
+    </data>
+    <data name="Menu:Items1" type="System.String">
+        <value>Items (Part &amp;1)</value>
+    </data>
+    <data name="Menu:Items2" type="System.String">
+        <value>Items (Part &amp;2)</value>
+    </data>
+    <data name="Menu:Unused" type="System.String">
+        <value>Unused</value>
+    </data>
+    <data name="Menu:Armor" type="System.String">
+        <value>Armor</value>
+    </data>
+    <data name="Menu:Weapons" type="System.String">
+        <value>Weapons</value>
+    </data>
+</root>
