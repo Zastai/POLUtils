@@ -8,6 +8,11 @@ namespace PlayOnline.FFXI {
 
   public class Character {
 
+    internal Character(string ContentID) {
+      this.ID_ = ContentID;
+      this.DataDir_ = Path.Combine(POL.GetApplicationPath(AppID.FFXI), Path.Combine("User", ContentID));
+    }
+
     #region Data Members
 
     public string ID { get { return this.ID_; } }
@@ -35,7 +40,11 @@ namespace PlayOnline.FFXI {
     }
 
     public MacroFolderCollection MacroBars {
-      get { return this.MacroBars_; }
+      get {
+	if (this.MacroBars_ == null)
+	  this.LoadMacroBars();
+	return this.MacroBars_;
+      }
     }
 
     #region Private Fields
@@ -48,19 +57,27 @@ namespace PlayOnline.FFXI {
 
     #endregion
 
-    internal Character(string ContentID) {
-      this.ID_ = ContentID;
-      this.DataDir_ = Path.Combine(POL.GetApplicationPath(AppID.FFXI), Path.Combine("User", ContentID));
-      this.MacroBars_ = new MacroFolderCollection();
-      for (int i = 0; i < 10; ++i) {
-      MacroFolder MF = MacroFolder.LoadFromMacroBar(Path.Combine(this.DataDir_, String.Format("mcr{0:#}.dat", i)));
-	MF.Name = String.Format("Macro Bar #{0}", i + 1);
-	this.MacroBars_.Add(MF);
-      }
+    public override string ToString() { return this.Name; }
+
+    public FileStream OpenUserFile(string FileName, FileMode Mode, FileAccess Access) {
+    FileStream Result = null;
+      try {
+	Result = new FileStream(Path.Combine(this.DataDir_, FileName), Mode, Access, FileShare.Read);
+      } catch (Exception E) { Console.WriteLine("{0}", E.ToString()); }
+      return Result;
     }
 
     public void SaveMacroBar(int Index) {
       this.MacroBars_[Index].WriteToMacroBar(Path.Combine(this.DataDir_, String.Format("mcr{0:#}.dat", Index)));
+    }
+
+    private void LoadMacroBars() {
+      this.MacroBars_ = new MacroFolderCollection();
+      for (int i = 0; i < 10; ++i) {
+      MacroFolder MF = MacroFolder.LoadFromMacroBar(Path.Combine(this.DataDir_, String.Format("mcr{0:#}.dat", i)));
+	MF.Name = String.Format(I18N.GetText("MacroBarLabel"), i + 1);
+	this.MacroBars_.Add(MF);
+      }
     }
 
   }
