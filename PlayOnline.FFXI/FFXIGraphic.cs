@@ -67,7 +67,7 @@ namespace PlayOnline.FFXI {
 	  for (int i = 0; i < 4; ++i)
 	    FourCC = (char) BR.ReadByte() + FourCC;
 	  FourCC = FourCC.TrimEnd('\0');
-	  FG.Format = FourCC;
+	  FG.Format = String.Format(I18N.GetText("GraphicTypeDXT"), FourCC);
 	  // Currently, only the DirectX texture format is (partially) supported
 	  if (FourCC.StartsWith("DXT")) { // DirectX Texture format
 	  int TexelBlockCount = PixelCount / 16; // 4x4 blocks
@@ -97,7 +97,7 @@ namespace PlayOnline.FFXI {
 	  if (FG.Flag == 0xB1)
 	    BR.ReadInt32(); // Unknown - always seems to be 10 (0x0000000A)
 	Bitmap BM = new Bitmap(FG.Width, FG.Height, PixelFormat.Format32bppArgb);
-	  FG.Format = String.Format("{0}-bit Bitmap", FG.BitCount);
+	  FG.Format = String.Format(I18N.GetText("GraphicTypeBitmap"), FG.BitCount);
 	  if (FG.BitCount == 8) { // 8-bit, with palette
 	  Color[] Palette = new Color[256];
 	    for (int i = 0; i < 256; ++i)
@@ -122,7 +122,7 @@ namespace PlayOnline.FFXI {
       return ((FG != null && FG.Bitmap != null) ? FG : null);
     }
 
-    private static Color ReadColor(BinaryReader BR, int BitDepth) {
+    public static Color ReadColor(BinaryReader BR, int BitDepth) {
       switch (BitDepth) {
 	case 16: return FFXIGraphic.DecodeRGB565(BR.ReadUInt16());
 	case 32: case 24: {
