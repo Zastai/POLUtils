@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.FFXI.Macros")]
-[assembly: AssemblyDescription  ("Components related to FFXI macro files")]
+[assembly: AssemblyTitle        ("PlayOnline.FFXI")]
+[assembly: AssemblyDescription  ("Core components related to FFXI")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
