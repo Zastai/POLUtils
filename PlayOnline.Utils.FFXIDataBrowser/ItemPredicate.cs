@@ -105,17 +105,26 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     public bool IsMatch(FFXIItem I) {
     FFXIItem.IItemInfo II = I.GetInfo(this.L, this.T);
       if (II != null) {
+	// Any => OR of test on all fields
 	if (this.Fields.Contains(ItemField.Any)) {
 	  foreach (ItemField IF in II.GetFields()) {
 	    if (this.MatchString(II.GetFieldText(IF)))
 	      return true;
 	  }
+	  return false;
 	}
-	else {
-	  foreach (ItemField IF in this.Fields) {
-	    if (this.MatchString(II.GetFieldText(IF)))
-	      return true;
+	// All => AND of test on all fields
+	if (this.Fields.Contains(ItemField.All)) {
+	  foreach (ItemField IF in II.GetFields()) {
+	    if (!this.MatchString(II.GetFieldText(IF)))
+	      return false;
 	  }
+	  return true;
+	}
+	// Otherwise: OR of all selected fields
+	foreach (ItemField IF in this.Fields) {
+	  if (this.MatchString(II.GetFieldText(IF)))
+	    return true;
 	}
       }
       return false;
