@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
+using System.Globalization;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -108,6 +109,9 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private System.Windows.Forms.MenuItem mnuIDEnglish;
     private System.Windows.Forms.MenuItem mnuIDJapanese;
     private System.Windows.Forms.TabPage tabViewerStringTable;
+    private System.Windows.Forms.ContextMenu mnuItemDataContext;
+    private System.Windows.Forms.MenuItem mnuIDCExport;
+    private System.Windows.Forms.SaveFileDialog dlgExportItemData;
 
     private System.ComponentModel.IContainer components;
 
@@ -180,6 +184,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems.Items.Clear();
       this.lstItems.Columns.Clear();
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+      this.cmbItemType.Enabled = false;
+      this.mnuIDCExport.Enabled = false;
     bool AddImages = false;
       if (this.ilItemIcons.Images.Count == 0) {
 	AddImages = true;
@@ -212,7 +218,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       }
       this.lstItems.Columns.Add("Japanese Name", 125, HorizontalAlignment.Left);
       this.lstItems.Columns.Add("English Name",  125, HorizontalAlignment.Left);
-      if ((this.cmbItemType.SelectedIndex % 2) == 0) { // English data has two additional text fields
+      if ((this.cmbItemType.SelectedIndex % 2) == 0) { // English data has an extra byte, and two additional text fields
+	this.lstItems.Columns.Add("Unknown 4", 70, HorizontalAlignment.Left);
 	this.lstItems.Columns.Add("Log Name (Singular)", 200, HorizontalAlignment.Left);
 	this.lstItems.Columns.Add("Log Name (Plural)",   200, HorizontalAlignment.Left);
       }
@@ -271,7 +278,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	}
 	else { // EN
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(22)).TrimEnd('\0'));
-	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(34)).TrimEnd('\0'));
+	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(32)).TrimEnd('\0')); // Maybe just 22 after all, with 12 unknown bytes after it?
+	  LVI.SubItems.Add(String.Format("{0:X4} ({0})", BR.ReadUInt16()));
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(64)).TrimEnd('\0'));
 	  LVI.SubItems.Add(E.GetString(BR.ReadBytes(64)).TrimEnd('\0'));
 	}
@@ -284,9 +292,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	LVI.SubItems.Add(FI.Image.ToString());
 	Application.DoEvents();
       }
-      this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
       if (AddImages)
 	this.cmbImageChooser.SelectedIndex = 0;
+      this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
+      this.cmbItemType.Enabled = true;
+      this.mnuIDCExport.Enabled = true;
     }
 
     private void cmbItemType_SelectedIndexChanged(object sender, System.EventArgs e) {
@@ -370,6 +380,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.tabViewers = new System.Windows.Forms.TabControl();
       this.tabViewerItems = new System.Windows.Forms.TabPage();
       this.lstItems = new System.Windows.Forms.ListView();
+      this.mnuItemDataContext = new System.Windows.Forms.ContextMenu();
+      this.mnuIDCExport = new System.Windows.Forms.MenuItem();
       this.ilItemIcons = new System.Windows.Forms.ImageList(this.components);
       this.label2 = new System.Windows.Forms.Label();
       this.cmbItemType = new System.Windows.Forms.ComboBox();
@@ -384,6 +396,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.colXIEntryText = new System.Windows.Forms.ColumnHeader();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
+      this.dlgExportItemData = new System.Windows.Forms.SaveFileDialog();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -1092,6 +1105,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems.AllowColumnReorder = true;
       this.lstItems.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lstItems.Anchor")));
       this.lstItems.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstItems.BackgroundImage")));
+      this.lstItems.ContextMenu = this.mnuItemDataContext;
       this.lstItems.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lstItems.Dock")));
       this.lstItems.Enabled = ((bool)(resources.GetObject("lstItems.Enabled")));
       this.lstItems.Font = ((System.Drawing.Font)(resources.GetObject("lstItems.Font")));
@@ -1110,6 +1124,22 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems.Text = resources.GetString("lstItems.Text");
       this.lstItems.View = System.Windows.Forms.View.Details;
       this.lstItems.Visible = ((bool)(resources.GetObject("lstItems.Visible")));
+      // 
+      // mnuItemDataContext
+      // 
+      this.mnuItemDataContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+										       this.mnuIDCExport});
+      this.mnuItemDataContext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuItemDataContext.RightToLeft")));
+      // 
+      // mnuIDCExport
+      // 
+      this.mnuIDCExport.Enabled = ((bool)(resources.GetObject("mnuIDCExport.Enabled")));
+      this.mnuIDCExport.Index = 0;
+      this.mnuIDCExport.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuIDCExport.Shortcut")));
+      this.mnuIDCExport.ShowShortcut = ((bool)(resources.GetObject("mnuIDCExport.ShowShortcut")));
+      this.mnuIDCExport.Text = resources.GetString("mnuIDCExport.Text");
+      this.mnuIDCExport.Visible = ((bool)(resources.GetObject("mnuIDCExport.Visible")));
+      this.mnuIDCExport.Click += new System.EventHandler(this.mnuIDCExport_Click);
       // 
       // ilItemIcons
       // 
@@ -1398,6 +1428,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lblNoViewers.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblNoViewers.TextAlign")));
       this.lblNoViewers.Visible = ((bool)(resources.GetObject("lblNoViewers.Visible")));
       // 
+      // dlgExportItemData
+      // 
+      this.dlgExportItemData.Filter = resources.GetString("dlgExportItemData.Filter");
+      this.dlgExportItemData.Title = resources.GetString("dlgExportItemData.Title");
+      // 
       // MainWindow
       // 
       this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -1614,6 +1649,29 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       }
       if (ItemText != String.Empty)
 	Clipboard.SetDataObject(ItemText);
+    }
+
+    #endregion
+
+    #region Item Data Context Menu Events
+
+    private void mnuIDCExport_Click(object sender, System.EventArgs e) {
+      this.dlgExportItemData.FileName = "exported-item-data.csv";
+      if (this.dlgExportItemData.ShowDialog() == DialogResult.OK) {
+      StreamWriter SW = new StreamWriter(this.dlgExportItemData.FileName, false, Encoding.UTF8);
+	SW.Write("{0}Index{0}", '"');
+	foreach (ColumnHeader CH in this.lstItems.Columns)
+	  SW.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, '"', CH.Text.Replace("\"", "\"\""));
+	SW.WriteLine();
+      long Index = 0;
+	foreach (ListViewItem LVI in this.lstItems.Items) {
+	  SW.Write(++Index);
+	  foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems)
+	    SW.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, '"', LVSI.Text);
+	  SW.WriteLine();
+	}
+	SW.Close();
+      }
     }
 
     #endregion
