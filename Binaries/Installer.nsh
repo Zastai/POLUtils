@@ -29,11 +29,11 @@ InstallDirRegKey HKCU "Software\Pebbles\POLUtils" "Install Location"
 !define MUI_HEADERIMAGE
 
 !define MUI_FINISHPAGE_NOAUTOCLOSE
-!define MUI_FINISHPAGE_RUN "$INSTDIR\POLUtils.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "&Run POLUtils"
 !define MUI_FINISHPAGE_RUN_NOTCHECKED
-!define MUI_FINISHPAGE_LINK "Pebbles' Program Page"
-!define MUI_FINISHPAGE_LINK_LOCATION ${SITE_URL}
+!define MUI_FINISHPAGE_RUN            $INSTDIR\POLUtils.exe
+!define MUI_FINISHPAGE_RUN_TEXT       $(UI_RUNPROG)
+!define MUI_FINISHPAGE_LINK           $(SITE_NAME)
+!define MUI_FINISHPAGE_LINK_LOCATION  ${SITE_URL}
 
 Var START_MENU_FOLDER
 
@@ -52,15 +52,7 @@ Var START_MENU_FOLDER
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
 
-!insertmacro MUI_LANGUAGE "English"
-
-;; Enable these once all relevant strings are LangString'ed (and translated)
-;;!insertmacro MUI_LANGUAGE "Dutch"
-;;!insertmacro MUI_LANGUAGE "Japanese"
-;;!insertmacro MUI_RESERVEFILE_LANGDLL
-;;Function .onInit
-;;  !insertmacro MUI_LANGDLL_DISPLAY
-;;FunctionEnd
+!include "Languages.nsh"
 
 InstType "Basic"
 InstType "Full"
@@ -72,21 +64,45 @@ InstType "Full"
 Section "-DotNetCheck"
   Push "v1.1"
   Call CheckDotNet
-  StrCmp $DOTNET_VERSION "" "" NoAbort
-    MessageBox MB_OK|MB_ICONSTOP "Version 1.1 of the Microsoft .NET Framework was not found on this system.$\r$\nYou should be able to install it using Windows Update (Windows 98 or higher required).$\r$\n$\r$\nUnable to continue this installation."
+  StrCmp $DOTNET_VERSION "" 0 NoAbort
+    MessageBox MB_OK|MB_ICONSTOP $(MB_DOTNET_NOT_FOUND)
     Abort
   NoAbort:
-  DetailPrint "Found .NET framework $DOTNET_VERSION (build $DOTNET_BUILD) (mscorlib.dll version $DOTNET_DLLVERSION)"
+  DetailPrint $(LOG_DOTNET_FOUND)
 SectionEnd
 
 Section "-ManagedDirectXCheck"
   IfFileExists $WINDIR\Assembly\GAC\Microsoft.DirectX.* MDXFound
-    MessageBox MB_OK|MB_ICONINFORMATION "Managed DirectX does not seem to be installed on this system$\r$\naAudio playback will not be available.$\r$\n$\r$\nAn installer for Managed DirectX is available on the web page."
-    DetailPrint "WARNING: Managed DirectX not found - no audio playback possible until it is installed."
+    MessageBox MB_OK|MB_ICONINFORMATION $(MB_MDX_NOT_FOUND)
+    DetailPrint $(LOG_MDX_NOT_FOUND)
     GoTo MDXTestDone
   MDXFound:
-    DetailPrint "Found Managed DirectX - audio playback will be available."
+    DetailPrint $(LOG_MDX_FOUND)
   MDXTestDone:
+SectionEnd
+
+Section "-CodePageCheck"
+  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "932"
+  StrCmp $0 "" CPNoSJIS
+  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "1251"
+  StrCmp $0 "" CPNoCyrillic
+  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "1252"
+  StrCmp $0 "" CPNoWestern
+  DetailPrint "All necessary codepages are available."
+  GoTo CPTestDone
+CPNoSJIS:
+  DetailPrint "Shift-JIS codepage not available."
+  GoTo CPNotFound
+CPNoCyrillic:
+  DetailPrint "Cyrillic codepage not available."
+  GoTo CPNotFound
+CPNoWestern:
+  DetailPrint "Western codepage not available."
+  GoTo CPNotFound
+CPNotFound:
+  MessageBox MB_OK|MB_ICONINFORMATION "At least one required codepage (Western, Cyrillic or Shift-JIS) is not available on this system.$\r$\nThe FFXI Data Browser and Macro Manager will not run until they are installed."
+  GoTo CPTestDone
+CPTestDone:
 SectionEnd
 
 Section "Main Program" SECTION_MAIN
@@ -95,6 +111,7 @@ Section "Main Program" SECTION_MAIN
   File "${BUILDDIR}\PlayOnline.Core.dll"
   File "${BUILDDIR}\PlayOnline.FFXI.dll"
   File "${BUILDDIR}\PlayOnline.Utils.AudioManager.dll"
+  File "${BUILDDIR}\PlayOnline.Utils.FFXIConfigEditor.dll"
   File "${BUILDDIR}\PlayOnline.Utils.FFXIDataBrowser.dll"
   File "${BUILDDIR}\PlayOnline.Utils.FFXIMacroManager.dll"
   File "${BUILDDIR}\PlayOnline.Utils.TetraViewer.dll"
@@ -134,7 +151,7 @@ Section "-FinishUp"
     CreateDirectory "$SMPROGRAMS\$START_MENU_FOLDER"
     SetOutPath "$INSTDIR"
     CreateShortCut "$SMPROGRAMS\$START_MENU_FOLDER\POLUtils.lnk" "$INSTDIR\POLUtils.exe" "" "shell32.dll" 165 SW_SHOWNORMAL "" $(DESC_SHORTCUT)
-    WriteINIStr "$SMPROGRAMS\$START_MENU_FOLDER\Pebbles' Program Page.url" "InternetShortCut" "URL" ${SITE_URL}
+    WriteINIStr "$SMPROGRAMS\$START_MENU_FOLDER\$(SITE_NAME).url" "InternetShortCut" "URL" ${SITE_URL}
     CreateShortCut "$SMPROGRAMS\$START_MENU_FOLDER\Uninstall POLUtils.lnk" "$INSTDIR\uninstall.exe" "" "" 0 SW_SHOWNORMAL "" ""
   !insertmacro MUI_STARTMENU_WRITE_END
   ; Store install folder
@@ -145,6 +162,7 @@ Section "un.Main Program"
   Delete "$INSTDIR\PlayOnline.Core.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
   Delete "$INSTDIR\PlayOnline.Utils.AudioManager.dll"
+  Delete "$INSTDIR\PlayOnline.Utils.FFXIConfigEditor.dll"
   Delete "$INSTDIR\PlayOnline.Utils.FFXIDataBrowser.dll"
   Delete "$INSTDIR\PlayOnline.Utils.FFXIMacroManager.dll"
   Delete "$INSTDIR\PlayOnline.Utils.TetraViewer.dll"
@@ -178,7 +196,7 @@ Section "un.TheRest"
   !insertmacro MUI_STARTMENU_GETFOLDER "StartMenu" $START_MENU_FOLDER
   StrCmp $START_MENU_FOLDER "" NoSMSubDir
     Delete "$SMPROGRAMS\$START_MENU_FOLDER\POLUtils.lnk"
-    Delete "$SMPROGRAMS\$START_MENU_FOLDER\Pebbles' Program Page.url"
+    Delete "$SMPROGRAMS\$START_MENU_FOLDER\$(SITE_NAME).url"
     Delete "$SMPROGRAMS\$START_MENU_FOLDER\Uninstall POLUtils.lnk"
     RMDir  "$SMPROGRAMS\$START_MENU_FOLDER"
     GoTo EndSMClean
@@ -189,13 +207,6 @@ Section "un.TheRest"
 SectionEnd
 
 ;; --- Section Descriptions ---
-
-LangString DESC_SECTION_MAIN                      ${LANG_ENGLISH} "POLUtils itself."
-LangString DESC_SECTION_TRANS                     ${LANG_ENGLISH} "Translated resources for POLUtils (optional)."
-LangString DESC_SECTION_TR_JA                     ${LANG_ENGLISH} "Japanese resources for POLUtils."
-LangString DESC_SECTION_TR_NL                     ${LANG_ENGLISH} "Dutch resources for POLUtils."
-LangString DESC_SECTION_DESKTOP_SHORTCUT          ${LANG_ENGLISH} "A shortcut to POLUtils on the Desktop."
-LangString DESC_SHORTCUT                          ${LANG_ENGLISH} "A collection of PlayOnline-related utilities."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_MAIN}             $(DESC_SECTION_MAIN)
