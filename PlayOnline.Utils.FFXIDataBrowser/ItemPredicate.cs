@@ -36,9 +36,45 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     public ItemPredicate() {
       InitializeComponent();
+      this.cmbTest.Items.AddRange(NamedEnum.GetAll(typeof(Test)));
+      this.cmbTest.SelectedIndex = 0; // Contains
+      this.L = ItemDataLanguage.English;
+      this.T = ItemDataType.Object;
+      this.Fields = new ArrayList();
+      this.Fields.Add(ItemField.Any);
       this.SetFieldText();
-      this.cmbTest.Items.AddRange(new NamedEnum[] { new NamedEnum(Test.Contains), new NamedEnum(Test.StartsWith), new NamedEnum(Test.EndsWith), new NamedEnum(Test.Equals), new NamedEnum(Test.MatchesRegexp) });
-      this.cmbTest.SelectedIndex = 0;
+    }
+
+    private ItemDataLanguage L;
+    private ItemDataType     T;
+    private ArrayList        Fields;
+
+    public ItemDataLanguage Language {
+      get {
+	return this.L;
+      }
+      set {
+	if (value != this.L) {
+	  this.L = value;
+	  this.Fields.Clear();
+	  this.Fields.Add(ItemField.Any);
+	  this.SetFieldText();
+	}
+      }
+    }
+
+    public ItemDataType Type {
+      get {
+	return this.T;
+      }
+      set {
+	if (value != this.T) {
+	  this.T = value;
+	  this.Fields.Clear();
+	  this.Fields.Add(ItemField.Any);
+	  this.SetFieldText();
+	}
+      }
     }
 
     #region Applying The Selected Predicate
@@ -66,16 +102,23 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       return false;
     }
 
-    private ItemDataLanguage L = ItemDataLanguage.English;
-    private ItemDataType     T = ItemDataType.Object;
-    private ItemField        F = ItemField.EnglishName;
-
     public bool IsMatch(FFXIItem I) {
     FFXIItem.IItemInfo II = I.GetInfo(this.L, this.T);
-      if (II == null)
-	return false;
-      else
-	return this.MatchString(II.GetFieldText(this.F));
+      if (II != null) {
+	if (this.Fields.Contains(ItemField.Any)) {
+	  foreach (ItemField IF in II.GetFields()) {
+	    if (this.MatchString(II.GetFieldText(IF)))
+	      return true;
+	  }
+	}
+	else {
+	  foreach (ItemField IF in this.Fields) {
+	    if (this.MatchString(II.GetFieldText(IF)))
+	      return true;
+	  }
+	}
+      }
+      return false;
     }
 
     #endregion
@@ -152,15 +195,20 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     #endregion
 
     private void SetFieldText() {
-      this.txtField.Text = String.Format("{0}\u2192{1}\u2192{2}", new NamedEnum(this.L).Name, new NamedEnum(this.T).Name, new NamedEnum(this.F).Name);
+      this.txtField.Text = String.Format("{0}\u2192{1}\u2192", new NamedEnum(this.L).Name, new NamedEnum(this.T).Name);
+    bool FieldAdded = false;
+      foreach (ItemField IF in this.Fields) {
+	if (FieldAdded)
+	  this.txtField.Text += ", ";
+	this.txtField.Text += new NamedEnum(IF).Name;
+	FieldAdded = true;
+      }
     }
 
     private void btnChooseField_Click(object sender, System.EventArgs e) {
-      using (ItemFieldChooser IFC = new ItemFieldChooser()) {
+      using (ItemFieldChooser IFC = new ItemFieldChooser(this.Language, this.Type, true, (ItemField[]) this.Fields.ToArray(typeof(ItemField)))) {
 	if (IFC.ShowDialog(this) == DialogResult.OK) {
-	  this.T = IFC.T;
-	  this.L = IFC.L;
-	  this.F = IFC.F;
+	  this.Fields = IFC.Fields;
 	  this.SetFieldText();
 	}
       }
