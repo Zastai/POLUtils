@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--*- sgml -*-->
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
 	       xmlns="http://www.w3.org/1999/xhtml"
@@ -27,28 +27,35 @@
   <xsl:message>Creating page (<xsl:value-of select="@name"/>)...</xsl:message>
   <xsl:variable name="uri" select="concat($output-uri, '/', @file)"/>
   <exsl:document href="{$uri}" method="xml" version="1.0" encoding="iso-8859-1" omit-xml-declaration="no"
-                 media-type="text/xhtml" indent="yes"
-                 doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
-                 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		 media-type="text/xhtml" indent="yes"
+		 doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xsl:space="preserve">
       <xsl:message>  Page Header &amp; Navigation</xsl:message>
       <xsl:call-template name="emit-header"/>
       <body>
-        <table height="100%" width="100%">
-          <tr class="top-area"><td>
-            <xsl:value-of select="/website/@name"/> - <xsl:value-of select="@name"/><br/>
-          </td></tr>
-          <tr><td>
-            <xsl:message>  Sidebar</xsl:message>
-            <xsl:call-template name="emit-sidebar"/>
-            <xsl:message>  Content</xsl:message>
-            <xsl:apply-templates/>
-          </td></tr>
-          <tr class="bottom-area"><td>
-            Optimized to look good in <a href="http://www.mozilla.org/products/firefox/">Firefox</a>; other browsers may render this page incorrectly.<br/>
-            Copyright (c) 2004,2005 Tim Van Holder.
-          </td></tr>
-        </table>
+	<table height="100%" width="100%">
+	  <tr class="top-area"><td>
+	    <xsl:value-of select="/website/@name"/> - <xsl:value-of select="@name"/><br/>
+	  </td></tr>
+	  <tr><td>
+	    <xsl:message>  Sidebar</xsl:message>
+	    <xsl:call-template name="emit-sidebar"/>
+	    <xsl:message>  Content</xsl:message>
+	    <xsl:apply-templates/>
+	  </td></tr>
+	  <tr class="bottom-area"><td>
+	    Optimized to look good in <a href="http://www.mozilla.org/products/firefox/">Firefox</a>; other browsers may render this
+	    page incorrectly.<br/>
+	    Copyright (c) 2004,2005 Tim Van Holder.
+	    <xsl:if test="@nedstat">
+	      <a target="_blank" href="http://www.nedstatbasic.net/stats?{@nedstat}">
+	        <img src="http://m1.nedstatbasic.net/n?id={@nedstat}" border="0" width="18" height="18"
+		     alt="Nedstat Basic - Free Web Statistics"/>
+	      </a>
+	    </xsl:if>
+	  </td></tr>
+	</table>
       </body>
     </html>
   </exsl:document>
@@ -95,13 +102,13 @@
     </a>
     <table class="news-item">
       <th>
-        <xsl:value-of select="@title"/>
-        <div class="news-byline">Posted on <xsl:value-of select="@date"/> by <xsl:value-of select="@author"/></div>
+	<xsl:value-of select="@title"/>
+	<div class="news-byline">Posted on <xsl:value-of select="@date"/> by <xsl:value-of select="@author"/></div>
       </th>
       <tr class="news-body">
-        <td>
-          <xsl:apply-templates mode="copy-source-tree"/>
-        </td>
+	<td>
+	  <xsl:apply-templates mode="copy-source-tree"/>
+	</td>
       </tr>
     </table>
   </p>
@@ -203,8 +210,8 @@
     </link>
     <xsl:for-each select="/website/section">
       <link rel="section">
-        <xsl:attribute name="href"><xsl:value-of select="@file"/></xsl:attribute>
-        <xsl:attribute name="title"><xsl:value-of select="@name"/></xsl:attribute>
+	<xsl:attribute name="href"><xsl:value-of select="@file"/></xsl:attribute>
+	<xsl:attribute name="title"><xsl:value-of select="@name"/></xsl:attribute>
       </link>
     </xsl:for-each>
     <link rel="top">
@@ -214,20 +221,20 @@
     <!-- No "up" Link -->
     <xsl:if test="count(preceding-sibling::section) != 0">
       <link rel="first">
-        <xsl:attribute name="href"><xsl:value-of select="/website/section[1]/@file"/></xsl:attribute>
+	<xsl:attribute name="href"><xsl:value-of select="/website/section[1]/@file"/></xsl:attribute>
       </link>
       <xsl:variable name="prev-pos" select="count(preceding-sibling::section)"/>
       <link rel="prev">
-        <xsl:attribute name="href"><xsl:value-of select="/website/section[$prev-pos]/@file"/></xsl:attribute>
+	<xsl:attribute name="href"><xsl:value-of select="/website/section[$prev-pos]/@file"/></xsl:attribute>
       </link>
     </xsl:if>
     <xsl:if test="count(following-sibling::section) != 0">
       <xsl:variable name="next-pos" select="2 + count(preceding-sibling::section)"/>
       <link rel="next">
-        <xsl:attribute name="href"><xsl:value-of select="/website/section[$next-pos]/@file"/></xsl:attribute>
+	<xsl:attribute name="href"><xsl:value-of select="/website/section[$next-pos]/@file"/></xsl:attribute>
       </link>
       <link rel="last">
-        <xsl:attribute name="href"><xsl:value-of select="/website/section[last()]/@file"/></xsl:attribute>
+	<xsl:attribute name="href"><xsl:value-of select="/website/section[last()]/@file"/></xsl:attribute>
       </link>
     </xsl:if>
   </head>
@@ -239,13 +246,13 @@
     <table>
       <th>Pages</th>
       <tr><td>
-        <xsl:for-each select="/website/section">
-          <xsl:if test="preceding-sibling::section"><br/></xsl:if>
+	<xsl:for-each select="/website/section">
+	  <xsl:if test="preceding-sibling::section"><br/></xsl:if>
 	  <a>
-            <xsl:attribute name="href"><xsl:value-of select="@file"/></xsl:attribute>
-            <xsl:value-of select="@name"/>
-          </a>
-        </xsl:for-each>
+	    <xsl:attribute name="href"><xsl:value-of select="@file"/></xsl:attribute>
+	    <xsl:value-of select="@name"/>
+	  </a>
+	</xsl:for-each>
       </td></tr>
     </table>
     <br/>
