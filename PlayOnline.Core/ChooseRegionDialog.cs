@@ -7,6 +7,9 @@ using System.Windows.Forms;
 namespace PlayOnline.Core {
 
   internal class ChooseRegionDialog : System.Windows.Forms.Form {
+
+    #region Controls
+
     private System.Windows.Forms.Label lblExplanation;
     private System.Windows.Forms.RadioButton radJapan;
     private System.Windows.Forms.RadioButton radNorthAmerica;
@@ -15,8 +18,10 @@ namespace PlayOnline.Core {
 
     private System.ComponentModel.Container components = null;
 
+    #endregion
+
     public ChooseRegionDialog() {
-      InitializeComponent();
+      this.InitializeComponent();
       this.radJapan.Checked        = (POL.SelectedRegion == POL.Region.Japan);
       this.radJapan.Enabled        = ((POL.AvailableRegions & POL.Region.Japan)        != 0);
       this.radNorthAmerica.Checked = (POL.SelectedRegion == POL.Region.NorthAmerica);
@@ -25,13 +30,13 @@ namespace PlayOnline.Core {
       this.radEurope.Enabled       = ((POL.AvailableRegions & POL.Region.Europe)       != 0);
     }
 
+    #region Windows Form Designer generated code
+
     protected override void Dispose(bool disposing) {
       if(disposing && components != null)
 	components.Dispose();
       base.Dispose(disposing);
     }
-
-    #region Windows Form Designer generated code
 
     private void InitializeComponent() {
       System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ChooseRegionDialog));
@@ -201,11 +206,15 @@ namespace PlayOnline.Core {
 
     #endregion
 
+    #region Events
+
     private void btnOK_Click(object sender, System.EventArgs e) {
       if (this.radJapan.Checked)        POL.SelectedRegion = POL.Region.Japan;
       if (this.radNorthAmerica.Checked) POL.SelectedRegion = POL.Region.NorthAmerica;
       if (this.radEurope.Checked)       POL.SelectedRegion = POL.Region.Europe;
     }
+
+    #endregion
 
   }
 
