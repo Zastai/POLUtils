@@ -27,6 +27,7 @@ LangString LOG_MDX_NOT_FOUND             ${LANG_ENGLISH} "WARNING: Managed Direc
 LangString MB_CODEPAGE_MISSING           ${LANG_ENGLISH} "At least one required codepage (Western, Cyrillic or Shift-JIS) is not available on this system.$\r$\nThe FFXI Data Browser and Macro Manager will not run until they are installed."
 LangString MB_DOTNET_NOT_FOUND           ${LANG_ENGLISH} "Version 1.1 of the Microsoft .NET Framework was not found on this system.$\r$\nYou should be able to install it using Windows Update (Windows 98 or higher required).$\r$\n$\r$\nUnable to continue this installation."
 LangString MB_ENSURE_TRUSTED_SOURCE      ${LANG_ENGLISH} "Please ensure you downloaded this file from ${SITE_URL} and nowhere else.$\r$\nFiles from other sources may have been modified to contain viruses and/or keyloggers that could result in your POL account being hacked."
+LangString MB_SPECIAL_BUILD              ${LANG_ENGLISH} "This is a special (${BUILD}) build; please do not distribute it without the explicit consent of the author."
 LangString MB_MDX_NOT_FOUND              ${LANG_ENGLISH} "Managed DirectX does not seem to be installed on this system$\r$\naAudio playback will not be available.$\r$\n$\r$\nAn installer for Managed DirectX is available on the web page."
 LangString SITE_NAME                     ${LANG_ENGLISH} "Pebbles' Program Page"
 LangString UI_RUNPROG                    ${LANG_ENGLISH} "&Run POLUtils"
