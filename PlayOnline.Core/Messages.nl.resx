@@ -45,20 +45,17 @@
     <data name="POLRegionNotInstalled" type="System.String">
         <value>De client voor de gevraagde regio is niet beschikbaar op deze computer.</value>
     </data>
-    <data name="RegionEU" type="System.String">
+    <data name="E:Region.Europe" type="System.String">
         <value>Europa &amp; Australië</value>
     </data>
-    <data name="RegionJP" type="System.String">
+    <data name="E:Region.Japan" type="System.String">
         <value>Japan</value>
     </data>
-    <data name="RegionUS" type="System.String">
+    <data name="E:Region.NorthAmerica" type="System.String">
         <value>Noord-Amerika</value>
     </data>
-    <data name="NoRegion" type="System.String">
+    <data name="E:Region.None" type="System.String">
         <value>Geen Regio's Beschikbaar</value>
-    </data>
-    <data name="BadRegion" type="System.String">
-        <value>Onbekend</value>
     </data>
     <data name="SeekNotAllowed" type="System.String">
         <value>Zoeken wordt niet ondersteund door deze stream.</value>
