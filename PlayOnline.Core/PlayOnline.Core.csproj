@@ -25,7 +25,7 @@
                 <Config
                     Name = "Debug"
                     AllowUnsafeBlocks = "false"
-                    BaseAddress = "265212672"
+                    BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
