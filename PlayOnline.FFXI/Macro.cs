@@ -80,7 +80,6 @@ namespace PlayOnline.FFXI {
 	    }
 	    else if (B == 0xFD) { // AutoTrans Code
 	      if (TextBytes.Count > 0) {
-		//E.GetCharCount((byte[]) TextBytes.ToArray(typeof(byte)));
 		Command += E.GetString((byte[]) TextBytes.ToArray(typeof(byte)));
 		TextBytes.Clear();
 	      }
