@@ -44,21 +44,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	this.prbScanProgress.Visible = true;
       BinaryReader BR = null;
 	try {
-	FileStream FS = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-#if PreLoadFile
-	  this.lblScanProgress.Text = I18N.GetText("FileLoad");
-	  if (FS.Length < Int32.MaxValue) {
-	  byte[] FileData = new byte[(int) FS.Length];
-	    FS.Read(FileData, 0, FileData.Length);
-	    BR = new BinaryReader(new MemoryStream(FileData, false), Encoding.ASCII);
-	    FS.Close();
-	  }
-	  else
-#else
-	    BR = new BinaryReader(FS, Encoding.ASCII);
-#endif
-	}
-	catch (Exception E) { Console.WriteLine("{0}", E.ToString()); }
+	  BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read));
+	} catch { }
 	if (BR != null && BR.BaseStream.CanSeek) {
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -124,24 +111,23 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       for (long i = 0; i < ItemCount; ++i) {
 	this.SetProgress(i + 1, ItemCount);
 	this.lblScanProgress.Text = String.Format(I18N.GetText("ItemLoad"), i, ItemCount);
-      FFXIItem FI = new FFXIItem(i + 1);
-	FI.Data = BR.ReadBytes(0x200);
-	for (int j = 0; j < 0x200; ++j)
-	  FI.Data[j] = (byte) ((FI.Data[j] << 3) | (FI.Data[j] >> 5));
-      byte[] ImageData = BR.ReadBytes(0xa00);
-	for (int j = 0; j < 0xa00; ++j)
-	  ImageData[j] = (byte) ((ImageData[j] << 3) | (ImageData[j] >> 5));
+      byte[] ItemData  = BR.ReadBytes(0xc00);
+	for (int j = 0; j < 0xc00; ++j)
+	  ItemData[j] = (byte) ((ItemData[j] << 3) | (ItemData[j] >> 5));
+      FFXIGraphic ItemIcon = null;
 	{
-	BinaryReader ImageBR = new BinaryReader(new MemoryStream(ImageData, false));
+	BinaryReader ImageBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
 	int ImageDataSize = ImageBR.ReadInt32();
 	  if (ImageDataSize > 0)
-	    FI.Image = FFXIGraphic.Read(ImageBR);
+	    ItemIcon = FFXIGraphic.Read(ImageBR);
 	}
-	if (FI.Image == null) { // No image -> bad data
+	if (ItemIcon == null) { // No image -> bad data
 	  this.Items.Clear();
+	  this.Images.Clear();
 	  return;
 	}
-	this.Items.Add(FI);
+	this.Items.Add(new FFXIItem(i + 1, ItemData, ItemIcon));
+	this.Images.Add(ItemIcon);
       }
       this.lblScanProgress.Text = String.Format(I18N.GetText("ItemLoad"), ItemCount, ItemCount);
     }
@@ -156,7 +142,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if (BR.BaseStream.Length < 0x38)
 	return;
-    Encoding E = new POLEncoding();
+    Encoding E = new FFXIEncoding();
       // Read past the marker (32 bytes)
       if ((E.GetString(BR.ReadBytes(10)) != "XISTRING".PadRight(10, '\0')) || BR.ReadUInt16() != 2)
 	return;
