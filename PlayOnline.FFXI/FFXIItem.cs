@@ -97,6 +97,12 @@ namespace PlayOnline.FFXI {
       }
 
       public virtual object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.ID:        return this.ID_;
+	  case ItemField.Flags:     return this.Flags_;
+	  case ItemField.StackSize: return this.StackSize_;
+	  case ItemField.Type:      return this.Type_;
+	}
 	return null;
       }
 
@@ -159,6 +165,17 @@ namespace PlayOnline.FFXI {
 	return base.GetFieldText(F);
       }
 
+      public override object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.JapaneseName:    return this.JapaneseName;
+	  case ItemField.EnglishName:     return this.EnglishName;
+	  case ItemField.LogNameSingular: return this.LogNameSingular;
+	  case ItemField.LogNamePlural:   return this.LogNamePlural;
+	  case ItemField.Description:     return this.Description;
+	}
+	return base.GetFieldValue(F);
+      }
+
       protected void ReadTextFields(BinaryReader BR, ItemDataLanguage L) {
       FFXIEncoding E = new FFXIEncoding();
 	this.JapaneseName_ = E.GetString(BR.ReadBytes( 22)).TrimEnd('\0');
@@ -189,6 +206,10 @@ namespace PlayOnline.FFXI {
 
       public override string GetFieldText(ItemField F) {
 	return base.GetFieldText(F);
+      }
+
+      public override object GetFieldValue(ItemField F) {
+	return base.GetFieldValue(F);
       }
 
       #endregion
@@ -255,6 +276,20 @@ namespace PlayOnline.FFXI {
 	return base.GetFieldText(F);
       }
 
+      public override object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.ResourceID: return this.ResourceID_;
+	  case ItemField.Level:      return this.Level_;
+	  case ItemField.Slots:      return this.Slots_;
+	  case ItemField.Races:      return this.Races_;
+	  case ItemField.Jobs:       return this.Jobs_;
+	  case ItemField.MaxCharges: return this.MaxCharges_;
+	  case ItemField.EquipDelay: return this.EquipDelay_;
+	  case ItemField.ReuseTimer: return this.ReuseTimer_;
+	}
+	return base.GetFieldValue(F);
+      }
+
       #endregion
 
     }
@@ -287,6 +322,13 @@ namespace PlayOnline.FFXI {
 	  case ItemField.ShieldSize: return String.Format("{0}", this.ShieldSize_);
 	}
 	return base.GetFieldText(F);
+      }
+
+      public override object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.ShieldSize: return this.ShieldSize_;
+	}
+	return base.GetFieldValue(F);
       }
 
       #endregion
@@ -331,6 +373,15 @@ namespace PlayOnline.FFXI {
 	  case ItemField.Delay:  return String.Format("{0} ({1:+###0;-###0})", this.Delay_, this.Delay_ - 240);
 	}
 	return base.GetFieldText(F);
+      }
+
+      public override object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.Damage: return this.Damage_;
+	  case ItemField.Skill:  return this.Skill_;
+	  case ItemField.Delay:  return this.Delay_;
+	}
+	return base.GetFieldValue(F);
       }
 
       #endregion
