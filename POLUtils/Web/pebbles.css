@@ -1,0 +1,102 @@
+/* pebbles.css
+ * Default style sheet for the POLUtils/foo_pol web site.
+ *
+ * Copyright (c) 2004,2005 Tim Van Holder.
+ */
+
+body {
+  font-family: /* Georgia, */ Verdana, Tahoma, Arial, Helvetica;
+  background-color: #ffffee;
+  color: black;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px dotted #800000;
+  font-style: normal;
+  color: black;
+}
+a:hover   { font-style: italic; border-bottom: 2px dotted #800000; }
+a:active  { color: black; }
+a:visited { color: black; }
+
+p {
+  text-align: justify;
+}
+
+span.link-description {
+  font-weight: lighter;
+  font-size: small;
+  font-style: italic;
+}
+
+tr.top-area {
+  margin-bottom: 2em;
+}
+
+tr.top-area td {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+tr.bottom-area {
+  margin-top: 2em;
+}
+
+tr.bottom-area td {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+}
+
+div.sidebar {
+  margin-left: 2em;
+  float: right;
+  width: 16em;
+}
+
+div.sidebar table {
+  width: 100%;
+  border: 1px dotted #aaaa88;
+  background: #eeeecc;
+  padding: 0 0 0 0;
+  border-collapse: collapse;
+}
+
+div.sidebar table tr td {
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.sidebar table th {
+  background: #aaaa88;
+}
+
+table.news-item {
+  width: 100%;
+  border: 1px dotted #aaaa88;
+  background: white;
+  padding: 0 0 0 0;
+  border-collapse: collapse;
+}
+
+table.news-item th {
+  background: #aaaa88;
+  font-weight: bold;
+  font-size: large;
+  text-align: left;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+table.news-item th div.news-byline {
+  font-weight: lighter;
+  font-size: x-small;
+  font-style: italic;
+  text-align: right;
+}
+
+table.news-item tr td {
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
