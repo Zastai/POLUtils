@@ -196,7 +196,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     private void FinalizeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
-      this.mnuILCECResults.Enabled = (this.lstItems.Items.Count > 0);
+      this.mnuILCEResults.Enabled = (this.lstItems.Items.Count > 0);
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Length);
     }
 
@@ -590,7 +590,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     }
 
     private void lstItems_SelectedIndexChanged(object sender, System.EventArgs e) {
-      this.mnuILCECSelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
+      this.mnuILCESelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
     }
 
     private void lstItems_DoubleClick(object sender, System.EventArgs e) {
