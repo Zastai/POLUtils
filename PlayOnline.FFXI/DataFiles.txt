@@ -65,13 +65,14 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     DATAFILE := ([JP-ITEM-INFO]|[JP-WEAPON-INFO]|[JP-ARMOR-INFO])*
 
     JP-ITEM-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT32  NUMBER
       BYTE    NAME        [ 22] (Shift-JIS)
       BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
-      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION [188] (Shift-JIS; NULs indicate line breaks)
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
@@ -79,9 +80,10 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     }
 
     JP-WEAPON-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT32  NUMBER
       UINT16  LEVEL
       UINT16  SLOT
@@ -93,7 +95,13 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
       UINT16  WEAPONTYPE
       BYTE    NAME        [ 22] (Shift-JIS)
       BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
-      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION [188] (Shift-JIS; NULs indicate line breaks)
+      UINT16  UNKNOWN
+      UINT32  UNKNOWN
+      BYTE    MAX CHARGES
+      BYTE    UNKNOWN
+      UINT16  EQUIP TIMER
+      UINT32  REUSE TIMER
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
@@ -101,17 +109,22 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     }
 
     JP-ARMOR-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT16  LEVEL
       UINT16  SLOT
       UINT16  RACES
       UINT16  JOBS
-      UINT16  DEFENSE
+      UINT16  SHIELD SIZE (used to hold DEF, but was changed in patch of Feb 23 2005)
       BYTE    NAME        [ 22] (Shift-JIS)
       BYTE    ENGLISH-NAME[ 22] (Shift-JIS)
-      BYTE    DESCRIPTION [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION [188] (Shift-JIS; NULs indicate line breaks)
+      BYTE    MAX CHARGES
+      BYTE    UNKNOWN
+      UINT16  EQUIP TIMER
+      UINT32  REUSE TIMER
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
@@ -126,15 +139,18 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     DATAFILE := ([EN-ITEM-INFO]|[EN-WEAPON-INFO]|[EN-ARMOR-INFO])*
 
     EN-ITEM-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT32  NUMBER
       BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
-      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    NAME         [ 22] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    UNKNOWN      [ 10] (NULs)
+      UINT16  UNKNOWN  
       BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
       BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
-      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION  [188] (Shift-JIS; NULs indicate line breaks)
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
@@ -142,9 +158,10 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     }
 
     EN-WEAPON-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT32  NUMBER
       UINT16  LEVEL
       UINT16  SLOT
@@ -155,10 +172,18 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
       UINT16  UNKNOWN
       UINT16  WEAPONTYPE
       BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
-      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    NAME         [ 22] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    UNKNOWN      [ 10] (NULs)
+      UINT16  UNKNOWN  
       BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
       BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
-      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION  [188] (Shift-JIS; NULs indicate line breaks)
+      UINT16  UNKNOWN
+      UINT32  UNKNOWN
+      BYTE    MAX CHARGES
+      BYTE    UNKNOWN
+      UINT16  EQUIP TIMER
+      UINT32  REUSE TIMER
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
@@ -166,19 +191,26 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     }
 
     EN-ARMOR-INFO := {
-      RESID  ID
+      UINT32  ID
       UINT16  ITEMTYPE
-      UINT32  UNKNOWN
+      UINT16  STACK SIZE
+      UINT16  FLAGS
       UINT16  LEVEL
       UINT16  SLOT
       UINT16  RACES
       UINT16  JOBS
-      UINT16  DEFENSE
+      UINT16  SHIELD SIZE (used to hold DEF, but was changed in patch of Feb 23 2005)
       BYTE    JAPANESE-NAME[ 22] (Shift-JIS) (e.g. ヒュージモスアクス)
-      BYTE    NAME         [ 34] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    NAME         [ 22] (Shift-JIS) (e.g. Huge Moth Axe)
+      BYTE    UNKNOWN      [ 10] (NULs)
+      UINT16  UNKNOWN  
       BYTE    SINGULAR-NAME[ 64] (Shift-JIS) (e.g. huge moth axe)
       BYTE    PLURAL-NAME  [ 64] (Shift-JIS) (e.g. huge moth axes)
-      BYTE    DESCRIPTION  [128] (Shift-JIS; NULs indicate line breaks)
+      BYTE    DESCRIPTION  [188] (Shift-JIS; NULs indicate line breaks)
+      BYTE    MAX CHARGES
+      BYTE    UNKNOWN
+      UINT16  EQUIP TIMER
+      UINT32  REUSE TIMER
       BYTE    PADDING[] (padding to 0x200)
       UINT32  IMAGESIZE
       GRAPHIC IMAGE
