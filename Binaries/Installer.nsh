@@ -13,7 +13,7 @@ Name "POLUtils"
 
 !include "Version.nsh"
 
-OutFile "Installers\POLUtils-${VERSION}-${BUILDDIR}.exe"
+OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
 
 InstallDir       "$PROGRAMFILES\Pebbles\POLUtils"
 InstallDirRegKey HKCU "Software\Pebbles\POLUtils" "Install Location"
@@ -56,6 +56,9 @@ Var START_MENU_FOLDER
 
 Function .oninit
   MessageBox MB_OK|MB_ICONINFORMATION $(MB_ENSURE_TRUSTED_SOURCE)
+  StrCmp "${BUILD}" "Release" ReleaseBuild
+    MessageBox MB_OK|MB_ICONINFORMATION $(MB_SPECIAL_BUILD)
+  ReleaseBuild:
 FunctionEnd
 
 !include "DotNet.nsh"
