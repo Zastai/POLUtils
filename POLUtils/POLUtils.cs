@@ -50,8 +50,16 @@ namespace PlayOnline.Utils {
 
     internal static ArrayList AvailableCultures;
 
+    private static void KaBOOM(object sender, UnhandledExceptionEventArgs args) {
+      if (args.IsTerminating)
+	MessageBox.Show("POLUtils has encountered an exception and needs to close.\nPlease report this to Pebbles:\n\n" + args.ExceptionObject.ToString(), "Oops", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      else
+	MessageBox.Show("POLUtils has encountered an exception.\nPlease report this to Pebbles:\n\n" + args.ExceptionObject.ToString(), "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+    }
+
     [STAThread]
     public static int Main(string[] Arguments) {
+      AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(POLUtils.KaBOOM);
       if (POL.AvailableRegions == POL.Region.None)
 	MessageBox.Show(I18N.GetText("Text:NoPOL"), I18N.GetText("Caption:NoPOL"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
       else {
