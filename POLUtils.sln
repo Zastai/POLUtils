@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.TetraViewe
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIConfigEditor", "PlayOnline.Utils.FFXIConfigEditor\PlayOnline.Utils.FFXIConfigEditor.csproj", "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -61,6 +65,10 @@ Global
 		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Debug.Build.0 = Debug|.NET
 		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release.ActiveCfg = Release|.NET
 		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release.Build.0 = Release|.NET
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug.ActiveCfg = Debug|.NET
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug.Build.0 = Debug|.NET
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.ActiveCfg = Release|.NET
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
