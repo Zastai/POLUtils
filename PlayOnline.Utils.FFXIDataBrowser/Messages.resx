@@ -156,4 +156,40 @@
     <data name="Menu:Weapons" type="System.String">
         <value>Weapons</value>
     </data>
+    <data name="Status:ItemSearch" type="System.String">
+        <value>Searching... ({0} match(es) found so far)</value>
+    </data>
+    <data name="Status:ItemSearchDone" type="System.String">
+        <value>Found {0} matching item(s) (out of {1})</value>
+    </data>
+    <data name="E:Test.Contains" type="System.String">
+        <value>contains</value>
+    </data>
+    <data name="E:Test.Equals" type="System.String">
+        <value>exactly matches</value>
+    </data>
+    <data name="E:Test.StartsWith" type="System.String">
+        <value>starts with</value>
+    </data>
+    <data name="E:Test.EndsWith" type="System.String">
+        <value>ends with</value>
+    </data>
+    <data name="E:Test.MatchesRegexp" type="System.String">
+        <value>matches regexp</value>
+    </data>
+    <data name="ColumnHeader:DescriptionLineCount" type="System.String">
+        <value>{0} (Line Count)</value>
+    </data>
+    <data name="ColumnHeader:DescriptionLine" type="System.String">
+        <value>{0} (Line {1})</value>
+    </data>
+    <data name="ColumnHeader:Index" type="System.String">
+        <value>Index</value>
+    </data>
+    <data name="CSVExport:SaveDialogTitle" type="System.String">
+        <value>Export Item Data To...</value>
+    </data>
+    <data name="CSVExport:SaveDialogFilter" type="System.String">
+        <value>Comma-Separated Values (*.csv)|*.csv</value>
+    </data>
 </root>
