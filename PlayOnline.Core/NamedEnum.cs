@@ -32,6 +32,10 @@ namespace PlayOnline.Core {
       }
     }
 
+    public override string ToString() {
+      return this.Name;
+    }
+
     public static NamedEnum[] GetAll(Type T) {
       if (!T.IsEnum)
 	return null;
