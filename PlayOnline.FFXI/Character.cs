@@ -19,22 +19,22 @@ namespace PlayOnline.FFXI {
 
     public string Name {
       get {
-      string value = String.Format("Unknown Character ({0})", this.ID_);
-      RegistryKey NameMappings = Registry.LocalMachine.OpenSubKey(@"Software\Pebbles\POLUtils\Character Names");
-	if (NameMappings != null) {
-	  value = NameMappings.GetValue(this.ID_, value) as string;
-	  NameMappings.Close();
+      string DefaultName = String.Format("Unknown Character ({0})", this.ID_);
+      string value = null;
+	using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey(true)) {
+	  if (NameMappings != null)
+	    value = NameMappings.GetValue(this.ID_, null) as string;
 	}
-	return value;
+	return ((value == null) ? DefaultName : value);
       }
       set {
-      RegistryKey NameMappings = Registry.LocalMachine.CreateSubKey(@"Software\Pebbles\POLUtils\Character Names");
-	if (NameMappings != null) {
-	  if (value == null)
-	    NameMappings.DeleteValue(this.ID_, false);
-	  else
-	    NameMappings.SetValue(this.ID_, value);
-	  NameMappings.Close();
+	using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey(true)) {
+	  if (NameMappings != null) {
+	    if (value == null)
+	      NameMappings.DeleteValue(this.ID_, false);
+	    else
+	      NameMappings.SetValue(this.ID_, value);
+	  }
 	}
       }
     }
