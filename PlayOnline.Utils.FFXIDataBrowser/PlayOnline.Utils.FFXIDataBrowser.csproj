@@ -134,11 +134,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "HelperTypes.resx"
-                    DependentUpon = "HelperTypes.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "MainWindow.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
