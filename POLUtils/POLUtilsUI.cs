@@ -50,7 +50,7 @@ namespace PlayOnline.Utils {
     }
 
     private void UpdateSelectedRegion() {
-      this.txtSelectedRegion.Text      = POL.RegionText(POL.SelectedRegion);
+      this.txtSelectedRegion.Text      = new NamedEnum(POL.SelectedRegion).Name;
       this.btnChooseRegion.Enabled     = POL.MultipleRegionsAvailable;
       this.btnFFXIConfigEditor.Enabled = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIDataBrowser.Enabled  = POL.IsAppInstalled(AppID.FFXI);
