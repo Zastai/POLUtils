@@ -13,8 +13,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
   internal class XMLOptionDialog : System.Windows.Forms.Form {
 
-    private static FolderBrowserDialog dlgBrowseFolder = null;
-
     #region Controls
 
     private System.Windows.Forms.Button btnOK;
@@ -32,16 +30,16 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     public XMLOptionDialog() {
       this.InitializeComponent();
-      if (XMLOptionDialog.dlgBrowseFolder == null) {
-	XMLOptionDialog.dlgBrowseFolder = new FolderBrowserDialog();
-	XMLOptionDialog.dlgBrowseFolder.Description = I18N.GetText("Export:DirDialogDesc");
-	XMLOptionDialog.dlgBrowseFolder.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-      }
-      this.txtFolder.Text = XMLOptionDialog.dlgBrowseFolder.SelectedPath;
+      this.txtFolder.Text = IItemExporter.OutputPath;
       this.cmbLanguage.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataLanguage)));
       this.cmbLanguage.SelectedIndex = 0; // English
       this.cmbItemType.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataType)));
       this.cmbItemType.SelectedIndex = 1; // Object
+    }
+
+    public void Reset() {
+      // About to be (re)used - so refresh the output path
+      this.txtFolder.Text = IItemExporter.OutputPath;
     }
 
     #region Option Properties
@@ -340,9 +338,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     #region Events
 
     private void btnBrowseFolder_Click(object sender, System.EventArgs e) {
-      XMLOptionDialog.dlgBrowseFolder.SelectedPath = this.txtFolder.Text;
-      if (XMLOptionDialog.dlgBrowseFolder.ShowDialog() == DialogResult.OK)
-	this.txtFolder.Text = XMLOptionDialog.dlgBrowseFolder.SelectedPath;
+      IItemExporter.BrowseForOutputPath();
+      this.txtFolder.Text = IItemExporter.OutputPath;
     }
 
     private void cmbLanguage_SelectedIndexChanged(object sender, System.EventArgs e) {

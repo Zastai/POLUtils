@@ -13,8 +13,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
   internal class CSVOptionDialog : System.Windows.Forms.Form {
 
-    private static FolderBrowserDialog dlgBrowseFolder = null;
-
     #region Controls
 
     private System.Windows.Forms.Button btnOK;
@@ -35,12 +33,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     public CSVOptionDialog() {
       this.InitializeComponent();
-      if (CSVOptionDialog.dlgBrowseFolder == null) {
-	CSVOptionDialog.dlgBrowseFolder = new FolderBrowserDialog();
-	CSVOptionDialog.dlgBrowseFolder.Description = I18N.GetText("Export:DirDialogDesc");
-	CSVOptionDialog.dlgBrowseFolder.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-      }
-      this.txtFolder.Text = CSVOptionDialog.dlgBrowseFolder.SelectedPath;
+      this.txtFolder.Text = IItemExporter.OutputPath;
       this.cmbTextEncoding.Items.Add(Encoding.ASCII);
       this.cmbTextEncoding.Items.Add(Encoding.UTF8);
       this.cmbTextEncoding.Items.Add(Encoding.Unicode);
@@ -50,6 +43,19 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.cmbLanguage.SelectedIndex = 0; // English
       this.cmbItemType.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataType)));
       this.cmbItemType.SelectedIndex = 1; // Object
+    }
+
+    public void Reset() {
+      // About to be (re)used - so clear the last run's field selection, and refresh the output path
+      this.ResetFields();
+      this.txtFolder.Text = IItemExporter.OutputPath;
+    }
+
+    private void ResetFields() {
+      if (this.cmbLanguage.SelectedItem == null || this.cmbItemType.SelectedItem == null)
+	return;
+      this.Fields_.Clear();
+      this.Fields_.AddRange(FFXIItem.GetFields(this.Language, this.Type));
     }
 
     #region Option Properties
@@ -114,13 +120,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     }
 
     #endregion
-
-    private void ResetFields() {
-      if (this.cmbLanguage.SelectedItem == null || this.cmbItemType.SelectedItem == null)
-	return;
-      this.Fields_.Clear();
-      this.Fields_.AddRange(FFXIItem.GetFields(this.Language, this.Type));
-    }
 
     #region Windows Form Designer generated code
 
@@ -455,9 +454,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     #region Events
 
     private void btnBrowseFolder_Click(object sender, System.EventArgs e) {
-      CSVOptionDialog.dlgBrowseFolder.SelectedPath = this.txtFolder.Text;
-      if (CSVOptionDialog.dlgBrowseFolder.ShowDialog() == DialogResult.OK)
-	this.txtFolder.Text = CSVOptionDialog.dlgBrowseFolder.SelectedPath;
+      IItemExporter.BrowseForOutputPath();
+      this.txtFolder.Text = IItemExporter.OutputPath;
     }
 
     private void cmbLanguage_SelectedIndexChanged(object sender, System.EventArgs e) {
