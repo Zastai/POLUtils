@@ -16,7 +16,8 @@ namespace PlayOnline.FFXI {
     private Encoding Western;
     
     public POLEncoding() {
-      this.ShiftJIS = Encoding.GetEncoding("shift-jis");
+      // http://www.microsoft.com/globaldev/reference/dbcs/932.htm
+      this.ShiftJIS = Encoding.GetEncoding(932);
       this.Cyrillic = Encoding.GetEncoding(1251);
       this.Western  = Encoding.GetEncoding(1252);
     }
