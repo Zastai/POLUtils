@@ -150,7 +150,18 @@ namespace PlayOnline.Core {
       else if (ID == AppID.TetraMaster) AppKey = "TetraMaster";
       else if (ID == AppID.POLViewer)   AppKey = "PlayOnlineViewer";
       else return null;
-      return Registry.LocalMachine.OpenSubKey(Path.Combine(BaseKey, AppKey), true);
+      try { return Registry.LocalMachine.OpenSubKey(Path.Combine(BaseKey, AppKey), true); } catch { }
+      return null;
+    }
+
+    public static RegistryKey OpenPOLUtilsConfigKey() {
+      return POL.OpenPOLUtilsConfigKey(false);
+    }
+
+    public static RegistryKey OpenPOLUtilsConfigKey(bool MachineWide) {
+    RegistryKey Root = (MachineWide ? Registry.LocalMachine : Registry.CurrentUser);
+      try { return Root.CreateSubKey(@"Software\Pebbles\POLUtils"); } catch { }
+      return null;
     }
 
   }
