@@ -27,35 +27,35 @@ namespace PlayOnline.Core {
     private static Region SelectedRegion_   = Region.None;
 
     public static void DetectRegions() {
-    RegistryKey POLKey;
-      POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnline\InstallFolder");
-      if (POLKey != null) {
-	POLKey.Close();
-	POL.AvailableRegions_ |= Region.Japan;
-      }
-      POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineUS\InstallFolder");
-      if (POLKey != null) {
-	POLKey.Close();
-	POL.AvailableRegions_ |= Region.NorthAmerica;
-      }
-      POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder");
-      if (POLKey != null) {
-	POLKey.Close();
-	POL.AvailableRegions_ |= Region.Europe;
-      }
-      POLKey = Registry.LocalMachine.OpenSubKey(@"Software\Pebbles\POLUtils");
-      if (POLKey != null) {
-      string UserRegion = POLKey.GetValue("Region", "None") as string;
-	try {
-	  POL.SelectedRegion_ = (Region) Enum.Parse(typeof(Region), UserRegion, true);
+      // Get configured region
+      using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey(true)) {
+	if (SettingsKey != null) {
+	string UserRegion = SettingsKey.GetValue("Region", "None") as string;
+	  try {
+	    POL.SelectedRegion_ = (Region) Enum.Parse(typeof(Region), UserRegion, true);
+	  }
+	  catch {
+	    POL.SelectedRegion_ = Region.None;
+	  }
 	}
-	catch {
-	  POL.SelectedRegion_ = Region.None;
-	}
-	POLKey.Close();
       }
+      // Check for installed POL software
+      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnline\InstallFolder")) {
+	if (POLKey != null)
+	  POL.AvailableRegions_ |= Region.Japan;
+      }
+      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineUS\InstallFolder")) {
+	if (POLKey != null)
+	  POL.AvailableRegions_ |= Region.NorthAmerica;
+      }
+      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder")) {
+	if (POLKey != null)
+	  POL.AvailableRegions_ |= Region.Europe;
+      }
+      // If user's choice is not available, clear that selection
       if ((POL.AvailableRegions_ & POL.SelectedRegion_) != POL.SelectedRegion_)
 	POL.SelectedRegion_ = Region.None;
+      // Select a region based on what's available
       if (POL.SelectedRegion_ == Region.None) {
 	if ((POL.AvailableRegions_ & Region.NorthAmerica) != 0)
 	  POL.SelectedRegion_ = Region.NorthAmerica;
@@ -102,10 +102,9 @@ namespace PlayOnline.Core {
       }
       else // No multiple regions installed? No choice to be made then!
 	POL.SelectedRegion_ = POL.AvailableRegions_;
-    RegistryKey POLKey = Registry.LocalMachine.CreateSubKey(@"Software\Pebbles\POLUtils");
-      if (POLKey != null) {
-	POLKey.SetValue("Region", POL.SelectedRegion_.ToString());
-	POLKey.Close();
+      using (RegistryKey POLKey = POL.OpenPOLUtilsConfigKey(true)) {
+	if (POLKey != null)
+	  POLKey.SetValue("Region", POL.SelectedRegion_.ToString());
       }
     }
 
