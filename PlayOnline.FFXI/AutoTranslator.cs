@@ -140,8 +140,10 @@ namespace PlayOnline.FFXI {
     long MessageStart = BR.BaseStream.Position;
       for (int i = 0; i < MessageCount; ++i)
 	MG.Messages.Add(AutoTranslator.ReadMessage(BR, E));
+#if DEBUG
       if (BR.BaseStream.Position != MessageStart + MessageBytes)
 	Console.WriteLine("Advanced {0} bytes reading group, but group specified a size of {0} bytes.", BR.BaseStream.Position - MessageStart, MessageBytes);
+#endif
       return MG;
     }
 
