@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="ResMimeType">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="Version">
+        <value>1.0.0.0</value>
+    </resheader>
+    <resheader name="Reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="Writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ADPCMBadChannelCount" type="System.String">
+        <value>Het aantal kanalen moet een geheel getal van 1 tot 6 zijn.</value>
+    </data>
+    <data name="POLRegionNotInstalled" type="System.String">
+        <value>De client voor de gevraagde regio is niet beschikbaar op deze computer.</value>
+    </data>
+    <data name="RegionEU" type="System.String">
+        <value>Europa &amp; Australië</value>
+    </data>
+    <data name="RegionJP" type="System.String">
+        <value>Japan</value>
+    </data>
+    <data name="RegionUS" type="System.String">
+        <value>Noord-Amerika</value>
+    </data>
+    <data name="NoRegion" type="System.String">
+        <value>Geen Regio's Beschikbaar</value>
+    </data>
+    <data name="BadRegion" type="System.String">
+        <value>Onbekend</value>
+    </data>
+    <data name="SeekNotAllowed" type="System.String">
+        <value>Zoeken wordt niet ondersteund door deze stream.</value>
+    </data>
+    <data name="WriteNotAllowed" type="System.String">
+        <value>Schrijven wordt niet ondersteund door deze stream.</value>
+    </data>
+    <data name="SetLengthNotAllowed" type="System.String">
+        <value>De lengte van deze stream kan niet gewijzigd worden.</value>
+    </data>
+    <data name="ADPCMEncodingNotSupported" type="System.String">
+        <value>Het encoderen via ADPCM wordt nog niet ondersteund.</value>
+    </data>
+    <data name="ADPCMInputTooSmall" type="System.String">
+        <value>Invoerbuffer te klein - per kanaal moeten {0} bytes beschikbaar zijn.</value>
+    </data>
+    <data name="ADPCMOutputTooSmall" type="System.String">
+        <value>Uitvoerbuffer te klein - er moet plaats zijn voor {0} bytes per kanaal.</value>
+    </data>
+</root>
