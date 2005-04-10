@@ -52,7 +52,7 @@ namespace PlayOnline.Utils {
     private static void KaBOOM(object sender, UnhandledExceptionEventArgs args) {
       if (args.IsTerminating)
 	MessageBox.Show("POLUtils has encountered an exception and needs to close.\nPlease report this to Pebbles:\n\n" + args.ExceptionObject.ToString(), "Oops", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-      else
+      else if (!(args.ExceptionObject is ThreadAbortException))
 	MessageBox.Show("POLUtils has encountered an exception.\nPlease report this to Pebbles:\n\n" + args.ExceptionObject.ToString(), "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
     }
 
