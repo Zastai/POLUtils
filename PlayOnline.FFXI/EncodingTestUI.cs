@@ -153,13 +153,7 @@ namespace PlayOnline.FFXI {
       BinaryReader BR = this.E.GetConversionTable(HB.Value);
 	if (BR != null) {
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	  if (HB.Value == 0) {
-	    for (short i = 0x00; i < 0x40; ++i) {
-	      if (BR.ReadUInt16() < 0xFFFE)
-		this.cmbSecondByte.Items.Add(new HexByte((byte) i));
-  	    }
-  	  }
-	  for (short i = 0x40; i < 0x100; ++i) {
+	  for (short i = 0x00; i <= 0xff; ++i) {
 	    if (BR.ReadUInt16() < 0xFFFE)
 	      this.cmbSecondByte.Items.Add(new HexByte((byte) i));
   	  }
@@ -176,10 +170,7 @@ namespace PlayOnline.FFXI {
       if (HB1 != null && HB2 != null) {
         this.lblFFXICode.Text = String.Format("{0:X2}{1:X2}", HB1.Value, HB2.Value);
       BinaryReader BR = this.E.GetConversionTable(HB1.Value);
-      byte Offset = HB2.Value;
-	if (HB1.Value != 0)
-	  Offset -= 0x40;
-	BR.BaseStream.Seek(2 * Offset, SeekOrigin.Begin);
+	BR.BaseStream.Seek(2 * HB2.Value, SeekOrigin.Begin);
       ushort DecodedChar = BR.ReadUInt16();
 	this.lblUniCode.Text = String.Format("{0:X4}", DecodedChar);
 	this.lblCharacter.Text = String.Format("{0}", (char) DecodedChar);
