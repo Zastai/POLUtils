@@ -1,6 +1,7 @@
 ;; --- General Settings ---
 
 !include "MUI.nsh"
+!include "Sections.nsh"
 
 SetCompressor LZMA
 AllowSkipFiles off
@@ -15,8 +16,10 @@ Name "POLUtils"
 
 OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
 
+!define INSTALLER_REG_KEY Software\Pebbles\Installation\POLUtils
+
 InstallDir       "$PROGRAMFILES\Pebbles\POLUtils"
-InstallDirRegKey HKCU "Software\Pebbles\POLUtils" "Install Location"
+InstallDirRegKey HKLM "${INSTALLER_REG_KEY}" "Install Location"
 
 !define MUI_ICON                 "${NSISDIR}\Contrib\Graphics\Icons\modern-install-colorful.ico"
 !define MUI_UNICON               "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall-colorful.ico"
@@ -29,6 +32,7 @@ InstallDirRegKey HKCU "Software\Pebbles\POLUtils" "Install Location"
 !define MUI_HEADERIMAGE
 
 !define MUI_FINISHPAGE_NOAUTOCLOSE
+!define MUI_FINISHPAGE_NOREBOOTSUPPORT
 !define MUI_FINISHPAGE_RUN_NOTCHECKED
 !define MUI_FINISHPAGE_RUN            $INSTDIR\POLUtils.exe
 !define MUI_FINISHPAGE_RUN_TEXT       $(UI_RUNPROG)
@@ -38,11 +42,12 @@ InstallDirRegKey HKCU "Software\Pebbles\POLUtils" "Install Location"
 Var START_MENU_FOLDER
 
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER      "Pebbles"
-!define MUI_STARTMENUPAGE_REGISTRY_ROOT      HKCU
-!define MUI_STARTMENUPAGE_REGISTRY_KEY       "Software\Pebbles\POLUtils"
+!define MUI_STARTMENUPAGE_REGISTRY_ROOT      HKLM
+!define MUI_STARTMENUPAGE_REGISTRY_KEY       "${INSTALLER_REG_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
 !insertmacro MUI_PAGE_WELCOME
+Page Custom PageUninstallPre050 PageLeaveUninstallPre050
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_STARTMENU "StartMenu" $START_MENU_FOLDER
@@ -62,6 +67,14 @@ Function .oninit
 FunctionEnd
 
 !include "DotNet.nsh"
+
+Function PageUninstallPre050
+;; TODO: Check for old installer info, and if present, show custom page explaining that it needs to be uninstalled first
+FunctionEnd
+
+Function PageLeaveUninstallPre050
+;; TODO: If uninstall requested: run uninstaller
+FunctionEnd
 
 ;; --- Sections ---
 
@@ -112,7 +125,7 @@ CPNotFound:
 CPTestDone:
 SectionEnd
 
-Section "Main Program" SECTION_MAIN
+Section $(NAME_SECTION_MAIN) SECTION_MAIN
   SectionIn 1 2 RO
   SetOutPath "$INSTDIR"
   File "${BUILDDIR}\PlayOnline.Core.dll"
@@ -126,15 +139,15 @@ Section "Main Program" SECTION_MAIN
   File "${BUILDDIR}\POLUtils.exe.manifest"
 SectionEnd
 
-SubSection "Translations" SECTION_TRANS
+SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
 
-  Section "Dutch" SECTION_TR_NL
+  Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
     SectionIn 2
     SetOutPath "$INSTDIR\nl"
     File "${BUILDDIR}\nl\*.resources.dll"
   SectionEnd
 
-  Section "Japanese" SECTION_TR_JA
+  Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
     SectionIn 2
     SetOutPath "$INSTDIR\ja"
     File "${BUILDDIR}\ja\*.resources.dll"
@@ -142,9 +155,34 @@ SubSection "Translations" SECTION_TRANS
 
 SubSectionEnd
 
-Section "Desktop Shortcut" SECTION_DESKTOP_SHORTCUT
+Section $(NAME_SECTION_DESKTOP_SHORTCUT) SECTION_DESKTOP_SHORTCUT
   SetOutPath "$INSTDIR"
   CreateShortCut "$DESKTOP\POLUtils.lnk" "$INSTDIR\POLUtils.exe" "" "shell32.dll" 165 SW_SHOWNORMAL "" $(DESC_SHORTCUT)
+SectionEnd
+
+Section "-RegisterInstallationInfo"
+  ;; Common Info
+  WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Installer Language" $LANGUAGE
+  WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Install Location" $INSTDIR
+  ;; Components
+  goto s00_check ;; so that the blocks below can stay nearly identical and s00_check isn't unused
+  s00_check: !insertmacro SectionFlagIsSet ${SECTION_MAIN} ${SF_SELECTED} s00_yes s00_no
+  s00_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) 1
+             goto s01_check
+  s00_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) 0
+  s01_check: !insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} s01_yes s01_no
+  s01_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_NL)" 1
+             goto s02_check
+  s01_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_NL)" 0
+  s02_check: !insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} s02_yes s02_no
+  s02_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_JA)" 1
+             goto s03_check
+  s02_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_JA)" 0
+  s03_check: !insertmacro SectionFlagIsSet ${SECTION_DESKTOP_SHORTCUT} ${SF_SELECTED} s03_yes s03_no
+  s03_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_DESKTOP_SHORTCUT) 1
+             goto s04_check
+  s03_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_DESKTOP_SHORTCUT) 0
+  s04_check: ;; done
 SectionEnd
 
 Section "-FinishUp"
@@ -161,65 +199,7 @@ Section "-FinishUp"
     WriteINIStr "$SMPROGRAMS\$START_MENU_FOLDER\$(SITE_NAME).url" "InternetShortCut" "URL" ${SITE_URL}
     CreateShortCut "$SMPROGRAMS\$START_MENU_FOLDER\$(UNINSTALL_SHORTCUT).lnk" "$INSTDIR\uninstall.exe" "" "" 0 SW_SHOWNORMAL "" ""
   !insertmacro MUI_STARTMENU_WRITE_END
-  ; Store install folder
-  WriteRegStr HKCU "Software\Pebbles\POLUtils" "Install Location" $INSTDIR
 SectionEnd
-
-!ifdef SECTIONS_IN_UNINSTALLER
-
-Section "un.Main Program"
-  Delete "$INSTDIR\PlayOnline.Core.dll"
-  Delete "$INSTDIR\PlayOnline.FFXI.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.AudioManager.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIConfigEditor.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIDataBrowser.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIMacroManager.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.TetraViewer.dll"
-  Delete "$INSTDIR\POLUtils.exe"
-  Delete "$INSTDIR\POLUtils.exe.manifest"
-SectionEnd
-
-SubSection "un.Translations"
-
-  Section "un.Dutch" UNSECTION_TR_NL
-    Delete "$INSTDIR\nl\*.resources.dll"
-    RMDir "$INSTDIR\nl"
-  SectionEnd
-
-  Section "un.Japanese" UNSECTION_TR_JA
-    Delete "$INSTDIR\ja\*.resources.dll"
-    RMDir "$INSTDIR\ja"
-  SectionEnd
-
-SubSectionEnd
-
-Section "un.Desktop Shortcut"
-  Delete "$DESKTOP\POLUtils.lnk"
-SectionEnd
-
-Section "un.Start Menu Entries"
-  !insertmacro MUI_STARTMENU_GETFOLDER "StartMenu" $START_MENU_FOLDER
-  StrCmp $START_MENU_FOLDER "" NoSMSubDir
-    Delete "$SMPROGRAMS\$START_MENU_FOLDER\POLUtils.lnk"
-    Delete "$SMPROGRAMS\$START_MENU_FOLDER\$(SITE_NAME).url"
-    Delete "$SMPROGRAMS\$START_MENU_FOLDER\$(UNINSTALL_SHORTCUT).lnk"
-    RMDir  "$SMPROGRAMS\$START_MENU_FOLDER"
-    GoTo EndSMClean
-  NoSMSubDir:
-    Delete "$SMPROGRAMS\POLUtils.lnk"
-    Delete "$SMPROGRAMS\$(SITE_NAME).url"
-  EndSMClean:
-SectionEnd
-
-Section "un.Uninstaller"
-  ;; TODO: Only do these if all other parts selected for uninstall
-  Delete "$INSTDIR\uninstall.exe"
-  RMDir "$INSTDIR"
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\POLUtils"
-  DeleteRegKey HKCU "Software\Pebbles\POLUtils"
-SectionEnd
-
-!else
 
 Section "Uninstall"
   ;; Main Program
@@ -255,10 +235,8 @@ Section "Uninstall"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\POLUtils"
-  DeleteRegKey HKCU "Software\Pebbles\POLUtils"
+  DeleteRegKey HKLM "${INSTALLER_REG_KEY}"
 SectionEnd
-
-!endif
 
 ;; --- Section Descriptions ---
 
