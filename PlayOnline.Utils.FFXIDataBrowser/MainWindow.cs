@@ -3048,42 +3048,43 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.ResetViewers();
     string FileName = this.tvDataFiles.SelectedNode.Tag as string;
       if (FileName != null && File.Exists(FileName)) {
-      FileScanDialog FSD = new FileScanDialog(FileName);
 	this.Enabled = false;
-	FSD.ShowDialog(this);
-	this.Enabled = true;
-	if (FSD.StringTableEntries.Count > 0) {
-	  this.tabViewers.Visible = true;
-	  this.tabViewers.TabPages.Add(this.tabViewerStringTable);
-	  Application.DoEvents();
-	  this.lstEntries.Select();
-	int i = 0;
-	  foreach (string S in FSD.StringTableEntries) {
-	    this.lstEntries.Items.Add(String.Format("{0:00000000}", ++i)).SubItems.Add(S);
+      FileScanDialog FSD = new FileScanDialog(FileName);
+	if (FSD.ShowDialog(this) == DialogResult.OK) {
+	  if (FSD.StringTableEntries.Count > 0) {
+	    this.tabViewers.Visible = true;
+	    this.tabViewers.TabPages.Add(this.tabViewerStringTable);
+	    Application.DoEvents();
+	    this.lstEntries.Select();
+	  int i = 0;
+	    foreach (string S in FSD.StringTableEntries) {
+	      this.lstEntries.Items.Add(String.Format("{0:00000000}", ++i)).SubItems.Add(S);
+	      Application.DoEvents();
+	    }
+	  }
+	  if (FSD.Items.Count > 0) {
+	    this.tabViewers.Visible = true;
+	    this.tabViewers.TabPages.Add(this.tabViewerItems);
+	    this.LoadedItems_ = FSD.Items.ToArray(typeof(FFXIItem)) as FFXIItem[];
+	    this.cmbItems.Select();
+	    this.cmbItems.SelectedItem = null;
+	    this.cmbItems.Items.AddRange(this.LoadedItems_);
+	    this.cmbItems.SelectedIndex = 0;
+	    Application.DoEvents();
+	  }
+	  if (FSD.Images.Count > 0) {
+	    this.tabViewers.Visible = true;
+	    this.tabViewers.TabPages.Add(this.tabViewerImages);
+	    this.cmbImageChooser.Select();
+	    this.cmbImageChooser.SelectedItem = null;
+	    this.cmbImageChooser.Items.AddRange(FSD.Images.ToArray());
+	    this.cmbImageChooser.SelectedIndex = 0;
 	    Application.DoEvents();
 	  }
 	}
-	if (FSD.Items.Count > 0) {
-	  this.tabViewers.Visible = true;
-	  this.tabViewers.TabPages.Add(this.tabViewerItems);
-	  this.LoadedItems_ = FSD.Items.ToArray(typeof(FFXIItem)) as FFXIItem[];
-	  this.cmbItems.Select();
-	  this.cmbItems.SelectedItem = null;
-	  this.cmbItems.Items.AddRange(this.LoadedItems_);
-	  this.cmbItems.SelectedIndex = 0;
-	  Application.DoEvents();
-	}
-	if (FSD.Images.Count > 0) {
-	  this.tabViewers.Visible = true;
-	  this.tabViewers.TabPages.Add(this.tabViewerImages);
-	  this.cmbImageChooser.Select();
-	  this.cmbImageChooser.SelectedItem = null;
-	  this.cmbImageChooser.Items.AddRange(FSD.Images.ToArray());
-	  this.cmbImageChooser.SelectedIndex = 0;
-	  Application.DoEvents();
-	}
 	if (!this.tabViewers.Visible)
 	  this.pnlNoViewers.Visible = true;
+	this.Enabled = true;
       }
     }
 
@@ -4049,24 +4050,25 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
 	MI.MenuItems.Clear();
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0, 97, 57, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNamesAlt"),    0, 97, 53, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0, 97, 39, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:DayNames"),        0, 97, 45, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Directions"),      0, 97, 43, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ErrorMessages"),   0, 97, 35, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages1"), 0, 97, 37, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages2"), 0, 97, 38, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:JobNames"),        0, 97, 55, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemDesc"),    0, 97, 42, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemText"),    0, 97, 41, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MoonPhases"),      0, 97, 46, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0, 97, 36, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0, 97, 48, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0, 97, 34, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0, 97, 40, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0, 97, 49, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:WeatherTypes"),    0, 97, 44, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0,  97,  57, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNamesAlt"),    0,  97,  53, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0,  97,  39, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:DayNames"),        0,  97,  45, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Directions"),      0,  97,  43, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ErrorMessages"),   0,  97,  35, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages1"), 0,  97,  37, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages2"), 0,  97,  38, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:JobNames"),        0,  97,  55, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemDesc"),    0,  97,  42, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemText"),    0,  97,  41, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MoonPhases"),      0,  97,  46, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0,  97,  36, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0,  97,  48, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Time+Pronouns"),   0, 118, 103, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0,  97,  34, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0,  97,  40, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0,  97,  49, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:WeatherTypes"),    0,  97,  44, new EventHandler(this.ROMMenuItem_Click)));
       }
     }
 
@@ -4074,23 +4076,24 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
 	MI.MenuItems.Clear();
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0, 97, 56, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0, 97, 21, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:DayNames"),        0, 97, 27, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Directions"),      0, 97, 25, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ErrorMessages"),   0, 97, 18, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages1"), 0, 97, 19, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages2"), 0, 97, 20, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:JobNames"),        0, 97, 29, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemDesc"),    0, 97, 24, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemText"),    0, 97, 23, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MoonPhases"),      0, 97, 28, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0, 97,  8, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0, 97, 30, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0, 97, 17, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0, 97, 22, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0, 97, 31, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:WeatherTypes"),    0, 97, 26, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0,  97,  56, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0,  97,  21, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:DayNames"),        0,  97,  27, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Directions"),      0,  97,  25, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ErrorMessages"),   0,  97,  18, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages1"), 0,  97,  19, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:InGameMessages2"), 0,  97,  20, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:JobNames"),        0,  97,  29, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemDesc"),    0,  97,  24, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MenuItemText"),    0,  97,  23, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:MoonPhases"),      0,  97,  28, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0,  97,   8, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0,  97,  30, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Time+Pronouns"),   0, 118, 102, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0,  97,  17, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0,  97,  22, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0,  97,  31, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:WeatherTypes"),    0,  97,  26, new EventHandler(this.ROMMenuItem_Click)));
       }
     }
 
