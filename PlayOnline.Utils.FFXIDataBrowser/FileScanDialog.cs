@@ -1,6 +1,6 @@
-// If defined, this causes the input file to be loaded into an array an accessed via a MemoryStream instead of
-// using a normal FileStream.
-//#define PreLoadFile
+// If this is defined, the scanning is done in a thread.  This has the positive effect of being able to abort
+// the scan by closing the window, but the negative effect of making the scan much slower...
+//#define ThreadBased
 
 using System;
 using System.Collections;
@@ -8,7 +8,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Text;
+#if ThreadBased
 using System.Threading;
+#endif
 using System.Windows.Forms;
 
 using PlayOnline.Core;
@@ -36,7 +38,13 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     public FileScanDialog(string FileName) {
       InitializeComponent();
       this.FileName = FileName;
+      this.DialogResult = DialogResult.None;
+#if !ThreadBased
+      this.ControlBox = false;
+#endif
     }
+
+    #region Scanners
 
     private void ScanFile() {
       if (FileName != null && File.Exists(FileName)) {
@@ -44,7 +52,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	this.prbScanProgress.Visible = true;
       BinaryReader BR = null;
 	try {
-	  BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read));
+	  BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII);
 	} catch { }
 	if (BR != null && BR.BaseStream.CanSeek) {
   	  Application.DoEvents();
@@ -63,10 +71,14 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  BR.Close();
 	}
       }
+#if ThreadBased
+      this.ScanThread = null;
+#else
+      this.Scanning = false;
+#endif
+      this.DialogResult = DialogResult.OK;
       this.Close();
     }
-
-    #region Scanners
 
     private void SetProgress(long Current, long Max) {
       this.prbScanProgress.Value = (int) (Math.Min((decimal) Current / Max, 1.0M) * this.prbScanProgress.Maximum);
@@ -83,17 +95,20 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     int ImageCount = 0;
       this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScan"), ImageCount);
       this.prbScanProgress.Value = 0;
+      BR.BaseStream.Seek(Pos, SeekOrigin.Begin);
       while (Pos < MaxPos) {
-	BR.BaseStream.Seek(Pos, SeekOrigin.Begin);
       FFXIGraphic FG = FFXIGraphic.Read(BR);
 	if (FG != null) {
 	  this.Images.Add(FG);
 	  Pos = BR.BaseStream.Position;
+	  this.SetProgress(Pos, MaxPos);
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScan"), ++ImageCount);
 	}
-	else
-	  ++Pos;
-	this.SetProgress(Pos, MaxPos);
+	else {
+	  BR.BaseStream.Seek(++Pos, SeekOrigin.Begin);
+	  if (Pos == MaxPos || (Pos % 0x100) == 0)
+	    this.SetProgress(Pos, MaxPos);
+	}
       }
     }
 
@@ -250,7 +265,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-      this.ControlBox = false;
       this.Controls.Add(this.prbScanProgress);
       this.Controls.Add(this.lblScanProgress);
       this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
@@ -266,12 +280,39 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.ShowInTaskbar = false;
       this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
       this.Text = resources.GetString("$this.Text");
+      this.Closing += new System.ComponentModel.CancelEventHandler(this.FileScanDialog_Closing);
       this.Activated += new System.EventHandler(this.FileScanDialog_Activated);
       this.ResumeLayout(false);
 
     }
 
     #endregion
+
+#if ThreadBased
+
+    private Thread ScanThread = null;
+
+    private void FileScanDialog_Activated(object sender, System.EventArgs e) {
+      lock (this) {
+	if (this.ScanThread != null)
+	  return;
+	this.ScanThread = new Thread(new ThreadStart(this.ScanFile));
+	this.ScanThread.Start();
+      }
+    }
+
+    private void FileScanDialog_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+      if (this.ScanThread != null) {
+	this.ScanThread.Abort();
+	this.ScanThread = null;
+	this.StringTableEntries.Clear();
+	this.Images.Clear();
+	this.Items.Clear();
+	this.DialogResult = DialogResult.Abort;
+      }
+    }
+
+#else
 
     private bool Scanning = false;
 
@@ -283,6 +324,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	this.ScanFile();
       }
     }
+
+    private void FileScanDialog_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+    }
+
+#endif
 
   }
 
