@@ -195,4 +195,7 @@
     <data name="Export:DirDialogDesc" type="System.String">
         <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
     </data>
+    <data name="Menu:Time+Pronouns" type="System.String">
+        <value>&amp;Time-Related Terms + Pronouns</value>
+    </data>
 </root>
