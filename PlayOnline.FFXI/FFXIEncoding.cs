@@ -77,7 +77,7 @@ namespace PlayOnline.FFXI {
     BinaryReader MainBR = this.GetConversionTable(0x00);
       if (MainBR != null) {
 	MainBR.BaseStream.Seek(0, SeekOrigin.Begin);
-	for (ushort i = 0; i < 0x100; ++i) {
+	for (ushort i = 0; i <= 0xff; ++i) {
 	ushort MainEntry = MainBR.ReadUInt16();
 	  if (MainEntry == (ushort) C) // match found
 	    return i;
@@ -85,7 +85,7 @@ namespace PlayOnline.FFXI {
 	  BinaryReader SubBR = this.GetConversionTable((byte) i);
 	    if (SubBR != null) {
 	      SubBR.BaseStream.Seek(0, SeekOrigin.Begin);
-	      for (ushort j = 0x40; j < 0x100; ++j) {
+	      for (ushort j = 0x00; j <= 0xff; ++j) {
 		if (SubBR.ReadUInt16() == (ushort) C) // match found
 		  return (ushort) ((i << 8) + j);
 	      }
@@ -114,7 +114,7 @@ namespace PlayOnline.FFXI {
 	}
       ushort TableEntry = this.FindTableEntry(chars[pos]);
 	if (TableEntry != 0xFFFF) {
-	  if (TableEntry >= 0x100)
+	  if (TableEntry > 0xff)
 	    EncodedBytes.Add((byte) ((TableEntry & 0xFF00) >> 8));
 	  EncodedBytes.Add((byte) (TableEntry & 0xFF));
 	}
@@ -166,9 +166,9 @@ namespace PlayOnline.FFXI {
 	// Default behaviour - use table
       ushort DecodedChar = this.GetTableEntry(0, bytes[pos]);
 	if (DecodedChar == 0xFFFE) { // Possible Lead Byte
-	  if (pos + 1 < index + count && bytes[pos + 1] >= 0x40) {
+	  if (pos + 1 < index + count) {
 	  byte Table = bytes[pos++];
-	    DecodedChar = this.GetTableEntry(Table, (byte) (bytes[pos] - 0x40));
+	    DecodedChar = this.GetTableEntry(Table, bytes[pos]);
 	    if (DecodedChar == 0xFFFF)
 	      DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2:X2}{3}", FFXIEncoding.SpecialMarkerStart, Table, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
 	    else
