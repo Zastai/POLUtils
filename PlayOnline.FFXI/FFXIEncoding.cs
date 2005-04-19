@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -14,6 +15,7 @@ namespace PlayOnline.FFXI {
     private static SortedList ConversionTables = new SortedList(61);
 
     public FFXIEncoding() {
+      FFXIResourceManager.Init();
     }
 
     public override string EncodingName { get { return "Japanese (Shift-JIS, with FFXI extensions)"; } }
@@ -21,8 +23,14 @@ namespace PlayOnline.FFXI {
     public override string HeaderName   { get { return "iso-2022-jp-ffxi"; } }
     public override string WebName      { get { return "iso-2022-jp-ffxi"; } }
 
-    private static readonly char SpecialMarkerStart = '\u00AB';
-    private static readonly char SpecialMarkerEnd   = '\u00BB';
+    //private static readonly char SpecialMarkerStart = '\u22D8'; // ⋘
+    //private static readonly char SpecialMarkerEnd   = '\u22D9'; // ⋙
+    //private static readonly char SpecialMarkerStart = '\u227A'; // ≺
+    //private static readonly char SpecialMarkerEnd   = '\u227B'; // ≻
+    private static readonly char SpecialMarkerStart = '\u3018'; // 〘
+    private static readonly char SpecialMarkerEnd   = '\u3019'; // 〙
+    //private static readonly char SpecialMarkerStart = '\u301A'; // 〚
+    //private static readonly char SpecialMarkerEnd   = '\u301B'; // 〛
 
     #region Utility Functions
 
@@ -68,6 +76,55 @@ namespace PlayOnline.FFXI {
     #region Encoding
 
     private byte[] EncodeSpecialMarker(string Marker) {
+      if (Marker.StartsWith("BAD CHAR:")) {
+      string HexBytes = Marker.Substring(9).Trim();
+	if (HexBytes.Length > 0 && (HexBytes.Length % 2) == 0) {
+	  try {
+	  byte[] EncodedBadChar = new byte[HexBytes.Length / 2];
+	    for (int i = 0; i < EncodedBadChar.Length; ++i)
+	      EncodedBadChar[i] = byte.Parse(HexBytes.Substring(2 * i, 2), NumberStyles.HexNumber);
+	    return EncodedBadChar;
+	  } catch { }
+	}
+      }
+      else if (Marker.StartsWith("Element:")) {
+      string Element = Marker.Substring(8).Trim();
+      byte ElementCode = 0x00;
+	switch (Element) {
+	  case "Fire":    ElementCode = 0x1F; break;
+	  case "Ice":     ElementCode = 0x20; break;
+	  case "Wind":    ElementCode = 0x21; break;
+	  case "Earth":   ElementCode = 0x22; break;
+	  case "Thunder": ElementCode = 0x23; break;
+	  case "Water":   ElementCode = 0x24; break;
+	  case "Light":   ElementCode = 0x25; break;
+	  case "Dark":    ElementCode = 0x26; break;
+	}
+	if (ElementCode != 0x00)
+	  return new byte[] { 0xEF, ElementCode };
+	else if (Element.StartsWith("???")) {
+	  try {
+	    return new byte[] { 0xEF, byte.Parse(Element.Substring(3), NumberStyles.HexNumber | NumberStyles.AllowParentheses) };
+	  } catch { }
+	}
+      }
+      else if (Marker.StartsWith("[")) {
+      int CloseBracket = Marker.IndexOf(']', 1);
+	if (CloseBracket > 0) {
+	string HexID = Marker.Substring(1, CloseBracket - 1);
+	  try {
+	  uint ResourceID = uint.Parse(HexID, NumberStyles.HexNumber);
+	  byte[] EncodedResourceString = new byte[6];
+	    EncodedResourceString[0] = 0xFD;
+	    EncodedResourceString[1] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[2] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[3] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[4] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[5] = 0xFD;
+	    return EncodedResourceString;
+	  } catch { }
+	}
+      }
       // No match with one of our special marker formats => let GetBytes() do regular processing
       return null;
     }
@@ -107,7 +164,7 @@ namespace PlayOnline.FFXI {
 	  byte[] EncodedMarker = this.EncodeSpecialMarker(new string(chars, pos + 1, endpos - pos - 1));
 	    if (EncodedMarker != null) {
 	      EncodedBytes.AddRange(EncodedMarker);
-	      pos = endpos - 1;
+	      pos = endpos;
 	      continue;
 	    }
 	  }
@@ -159,7 +216,12 @@ namespace PlayOnline.FFXI {
 	}
 	// FFXI Extension: Resource Text (Auto-Translator or Item)
 	if (bytes[pos] == 0xFD && pos + 5 < index + count && bytes[pos + 5] == 0xFD) {
-	  DecodedString += String.Format("{0}{1:X2}/{2:X2}/{3:X2}/{4:X2}: String Resource{5}", FFXIEncoding.SpecialMarkerStart, bytes[pos + 1], bytes[pos + 2], bytes[pos + 3], bytes[pos + 4], FFXIEncoding.SpecialMarkerEnd);
+	uint ResourceID = 0;
+	  ResourceID <<= 8; ResourceID += bytes[pos + 4];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 3];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 2];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 1];
+	  DecodedString += String.Format("{0}[{1:X8}] {2}{3}", FFXIEncoding.SpecialMarkerStart, ResourceID, FFXIResourceManager.GetResourceString(ResourceID), FFXIEncoding.SpecialMarkerEnd);
 	  pos += 5;
 	  continue;
 	}
