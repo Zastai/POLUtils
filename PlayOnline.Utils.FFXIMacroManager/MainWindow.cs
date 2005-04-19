@@ -863,7 +863,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand6.ContextMenu = this.mnuTextContext;
       this.txtCommand6.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand6.Location = new System.Drawing.Point(8, 180);
-      this.txtCommand6.MaxLength = 60;
       this.txtCommand6.Name = "txtCommand6";
       this.txtCommand6.Size = new System.Drawing.Size(364, 26);
       this.txtCommand6.TabIndex = 5;
@@ -923,7 +922,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand5.ContextMenu = this.mnuTextContext;
       this.txtCommand5.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand5.Location = new System.Drawing.Point(8, 148);
-      this.txtCommand5.MaxLength = 60;
       this.txtCommand5.Name = "txtCommand5";
       this.txtCommand5.Size = new System.Drawing.Size(364, 26);
       this.txtCommand5.TabIndex = 4;
@@ -936,7 +934,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand4.ContextMenu = this.mnuTextContext;
       this.txtCommand4.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand4.Location = new System.Drawing.Point(8, 116);
-      this.txtCommand4.MaxLength = 60;
       this.txtCommand4.Name = "txtCommand4";
       this.txtCommand4.Size = new System.Drawing.Size(364, 26);
       this.txtCommand4.TabIndex = 3;
@@ -949,7 +946,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand3.ContextMenu = this.mnuTextContext;
       this.txtCommand3.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand3.Location = new System.Drawing.Point(8, 84);
-      this.txtCommand3.MaxLength = 60;
       this.txtCommand3.Name = "txtCommand3";
       this.txtCommand3.Size = new System.Drawing.Size(364, 26);
       this.txtCommand3.TabIndex = 2;
@@ -962,7 +958,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand2.ContextMenu = this.mnuTextContext;
       this.txtCommand2.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand2.Location = new System.Drawing.Point(8, 52);
-      this.txtCommand2.MaxLength = 60;
       this.txtCommand2.Name = "txtCommand2";
       this.txtCommand2.Size = new System.Drawing.Size(364, 26);
       this.txtCommand2.TabIndex = 1;
@@ -976,7 +971,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.txtCommand1.ContextMenu = this.mnuTextContext;
       this.txtCommand1.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
       this.txtCommand1.Location = new System.Drawing.Point(8, 20);
-      this.txtCommand1.MaxLength = 60;
       this.txtCommand1.Name = "txtCommand1";
       this.txtCommand1.Size = new System.Drawing.Size(364, 26);
       this.txtCommand1.TabIndex = 0;
