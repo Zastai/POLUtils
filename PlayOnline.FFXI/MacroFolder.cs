@@ -1,8 +1,11 @@
+#define VerifyChecksum
+
 using System;
 using System.Collections;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
 
 using PlayOnline.Core;
@@ -62,6 +65,7 @@ namespace PlayOnline.FFXI {
 	else { // Read past header
 	  BR.ReadUInt32(); // Unknown - sometimes zero, sometimes 0x80000000
 	byte[] StoredMD5 = BR.ReadBytes(16); // MD5 Checksum of the rest of the data
+#if VerifyChecksum
 	  {
 	  byte[] Data = BR.ReadBytes(7600);
 	    BR.BaseStream.Seek(-7600, SeekOrigin.Current);
@@ -69,19 +73,19 @@ namespace PlayOnline.FFXI {
 	  byte[] ComputedMD5 = Hash.ComputeHash(Data);
 	    for (int i = 0; i < 16; ++i) {
 	      if (StoredMD5[i] != ComputedMD5[i]) {
-		Console.WriteLine("MD5 Checksum failure for {0}:", PathName);
-		Console.Write("- Stored Hash  :");
+	      string Message = String.Format("MD5 Checksum failure for {0}:\n- Stored Hash  :", PathName);
 		for (int j = 0; j < 16; ++j)
-		  Console.Write(" {0,2:X}", StoredMD5[j]);
-		Console.WriteLine();
-		Console.Write("- Computed Hash:");
+		  Message += String.Format(" {0,2:X}", StoredMD5[j]);
+		Message += "\n- Computed Hash:";
 		for (int j = 0; j < 16; ++j)
-		  Console.Write(" {0,2:X}", ComputedMD5[j]);
-		Console.WriteLine();
+		  Message += String.Format(" {0,2:X}", ComputedMD5[j]);
+		Message += '\n';
+		MessageBox.Show(null, Message, "Warning");
 		break;
 	      }
 	    }
 	  }
+#endif
 	}
       }
       for (int i = 0; i < 2; ++i) {
