@@ -1,3 +1,5 @@
+#define UsePOLEncoding
+
 using System;
 using System.Collections;
 using System.IO;
@@ -66,11 +68,16 @@ namespace PlayOnline.FFXI {
     internal static Macro ReadFromMacroBar(BinaryReader BR) {
     Macro M = new Macro();
       if (BR != null) {
+#if UsePOLEncoding
       Encoding E = new POLEncoding();
+#else
+      Encoding E = new FFXIEncoding();
+#endif
 	BR.ReadInt32(); // Unknown
 	for (int i = 0; i < 6; ++i) { // 6 Lines of text, 61 bytes each, null-terminated shift-jis
-	ArrayList TextBytes = new ArrayList();
 	string Command = "";
+#if UsePOLEncoding
+	ArrayList TextBytes = new ArrayList();
 	  for (int j = 0; j < 61; ++j) {
 	  byte B = BR.ReadByte();
 	    if (j < 60 && (B == 0x81 || B == 0x85)) { // Two-byte code - read them away
@@ -105,6 +112,9 @@ namespace PlayOnline.FFXI {
 	    Command += E.GetString((byte[]) TextBytes.ToArray(typeof(byte)));
 	    TextBytes.Clear();
 	  }
+#else
+	  Command = E.GetString(BR.ReadBytes(61));
+#endif
 	  M.Commands_[i] = Command.TrimEnd('\0');
 	}
 	M.Name_ = E.GetString(BR.ReadBytes(10)).TrimEnd('\0');
@@ -113,7 +123,11 @@ namespace PlayOnline.FFXI {
     }
 
     internal void WriteToMacroBar(BinaryWriter BW) {
+#if UsePOLEncoding
     Encoding E = new POLEncoding();
+#else
+    Encoding E = new FFXIEncoding();
+#endif
       BW.Write((uint) 0);
       for (int i = 0; i < 6; ++i) // 6 Lines of text, 61 bytes each, nul-terminated shift-jis
 	this.WriteEncodedString(BW, this.Commands_[i], E, 61);
@@ -122,6 +136,7 @@ namespace PlayOnline.FFXI {
 
     private void WriteEncodedString(BinaryWriter BW, string Text, Encoding E, int Bytes) {
     ArrayList OutBytes = new ArrayList(Bytes);
+#if UsePOLEncoding
       if (Text != null && Text != String.Empty) {
       CharEnumerator C = Text.GetEnumerator();
 	while (C.MoveNext()) {
@@ -205,6 +220,11 @@ namespace PlayOnline.FFXI {
 	  }
 	}
       }
+#else
+      OutBytes.AddRange(E.GetBytes(Text));
+#endif
+      while (OutBytes.Count > Bytes)
+	OutBytes.RemoveAt(Bytes);
       while (OutBytes.Count < Bytes)
 	OutBytes.Add((byte) 0);
       BW.Write((byte[]) OutBytes.ToArray(typeof(byte)));
