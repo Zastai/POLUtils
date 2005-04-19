@@ -3,30 +3,6 @@ using System.Collections;
 
 namespace PlayOnline.FFXI {
 
-  public class CharacterCollection : ReadOnlyCollectionBase {
-
-    public void Add     (Character C) {        this.InnerList.Add     (C); }
-    public bool Contains(Character C) { return this.InnerList.Contains(C); }
-    public int  IndexOf (Character C) { return this.InnerList.IndexOf (C); }
-    public void Remove  (Character C) {        this.InnerList.Remove  (C); }
-
-    public Character this[int Index] {
-      get { return this.InnerList[Index] as Character; }
-      set { this.InnerList[Index] = value; }
-    }
-
-    public Character this[string ID] {
-      get {
-	foreach (Character C in this.InnerList) {
-	  if (C.ID == ID)
-	    return C;
-	}
-	return null;
-      }
-    }
-
-  }
-
   public class MacroFolderCollection : CollectionBase {
 
     public void Add     (MacroFolder MF) {        this.InnerList.Add     (MF); }
