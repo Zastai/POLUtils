@@ -1,4 +1,6 @@
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -51,6 +53,31 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	    }
 	    XField.InnerText = II.GetFieldValue(IF).ToString();
 	    XItem.AppendChild(XField);
+	  }
+	  if (XMLItemExporter.dlgOptions.IncludeIconData) { // Add the icon (raw bitmap data, in base64)
+	  XmlElement XIcon = XD.CreateElement("icon");
+	    {
+	    XmlAttribute XHeight = XD.CreateAttribute("height");
+	      XHeight.InnerText = I.IconGraphic.Height.ToString();
+	      XIcon.Attributes.Append(XHeight);
+	    }
+	    {
+	    XmlAttribute XWidth = XD.CreateAttribute("width");
+	      XWidth.InnerText = I.IconGraphic.Width.ToString();
+	      XIcon.Attributes.Append(XWidth);
+	    }
+	    {
+	    XmlAttribute XContentType = XD.CreateAttribute("content-type");
+	      XContentType.InnerText = "image/png+base64";
+	      XIcon.Attributes.Append(XContentType);
+	    }
+	    {
+	    MemoryStream MS = new MemoryStream();
+	      I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
+	      XIcon.InnerText = Convert.ToBase64String(MS.GetBuffer());
+	      MS.Close();
+	    }
+	    XItem.AppendChild(XIcon);
 	  }
 	  XD.DocumentElement.AppendChild(XItem);
 	}
