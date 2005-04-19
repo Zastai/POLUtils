@@ -154,12 +154,25 @@ namespace PlayOnline.Core {
     }
 
     public static RegistryKey OpenPOLUtilsConfigKey() {
-      return POL.OpenPOLUtilsConfigKey(false);
+      return POL.OpenPOLUtilsConfigKey(null, false);
     }
 
     public static RegistryKey OpenPOLUtilsConfigKey(bool MachineWide) {
+      return POL.OpenPOLUtilsConfigKey(null, MachineWide);
+    }
+
+    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey) {
+      return POL.OpenPOLUtilsConfigKey(SubKey, false);
+    }
+
+    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey, bool MachineWide) {
     RegistryKey Root = (MachineWide ? Registry.LocalMachine : Registry.CurrentUser);
-      try { return Root.CreateSubKey(@"Software\Pebbles\POLUtils"); } catch { }
+      try {
+      string KeyName = @"Software\Pebbles\POLUtils\";
+	if (SubKey != null)
+	  KeyName += SubKey;
+	return Root.CreateSubKey(KeyName);
+      } catch { }
       return null;
     }
 
