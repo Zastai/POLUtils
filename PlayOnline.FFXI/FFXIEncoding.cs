@@ -15,7 +15,6 @@ namespace PlayOnline.FFXI {
     private static SortedList ConversionTables = new SortedList(61);
 
     public FFXIEncoding() {
-      FFXIResourceManager.Init();
     }
 
     public override string EncodingName { get { return "Japanese (Shift-JIS, with FFXI extensions)"; } }
@@ -23,14 +22,8 @@ namespace PlayOnline.FFXI {
     public override string HeaderName   { get { return "iso-2022-jp-ffxi"; } }
     public override string WebName      { get { return "iso-2022-jp-ffxi"; } }
 
-    //private static readonly char SpecialMarkerStart = '\u22D8'; // ⋘
-    //private static readonly char SpecialMarkerEnd   = '\u22D9'; // ⋙
-    //private static readonly char SpecialMarkerStart = '\u227A'; // ≺
-    //private static readonly char SpecialMarkerEnd   = '\u227B'; // ≻
-    private static readonly char SpecialMarkerStart = '\u3018'; // 〘
-    private static readonly char SpecialMarkerEnd   = '\u3019'; // 〙
-    //private static readonly char SpecialMarkerStart = '\u301A'; // 〚
-    //private static readonly char SpecialMarkerEnd   = '\u301B'; // 〛
+    public static readonly char SpecialMarkerStart = '\u227A'; // ≺
+    public static readonly char SpecialMarkerEnd   = '\u227B'; // ≻
 
     #region Utility Functions
 
@@ -115,12 +108,12 @@ namespace PlayOnline.FFXI {
 	  try {
 	  uint ResourceID = uint.Parse(HexID, NumberStyles.HexNumber);
 	  byte[] EncodedResourceString = new byte[6];
-	    EncodedResourceString[0] = 0xFD;
-	    EncodedResourceString[1] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[2] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[3] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[4] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
 	    EncodedResourceString[5] = 0xFD;
+	    EncodedResourceString[4] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[3] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[2] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[1] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+	    EncodedResourceString[0] = 0xFD;
 	    return EncodedResourceString;
 	  } catch { }
 	}
@@ -217,10 +210,10 @@ namespace PlayOnline.FFXI {
 	// FFXI Extension: Resource Text (Auto-Translator or Item)
 	if (bytes[pos] == 0xFD && pos + 5 < index + count && bytes[pos + 5] == 0xFD) {
 	uint ResourceID = 0;
-	  ResourceID <<= 8; ResourceID += bytes[pos + 4];
-	  ResourceID <<= 8; ResourceID += bytes[pos + 3];
-	  ResourceID <<= 8; ResourceID += bytes[pos + 2];
 	  ResourceID <<= 8; ResourceID += bytes[pos + 1];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 2];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 3];
+	  ResourceID <<= 8; ResourceID += bytes[pos + 4];
 	  DecodedString += String.Format("{0}[{1:X8}] {2}{3}", FFXIEncoding.SpecialMarkerStart, ResourceID, FFXIResourceManager.GetResourceString(ResourceID), FFXIEncoding.SpecialMarkerEnd);
 	  pos += 5;
 	  continue;
