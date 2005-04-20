@@ -185,9 +185,14 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "POLEncoding.cs"
-                    SubType = "Code"
+                    RelPath = "PleaseWaitDialog.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ConversionTables\00xx.dat"
