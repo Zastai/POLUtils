@@ -1,5 +1,3 @@
-#define UsePOLEncoding
-
 using System;
 using System.Collections;
 using System.IO;
@@ -68,53 +66,11 @@ namespace PlayOnline.FFXI {
     internal static Macro ReadFromMacroBar(BinaryReader BR) {
     Macro M = new Macro();
       if (BR != null) {
-#if UsePOLEncoding
-      Encoding E = new POLEncoding();
-#else
       Encoding E = new FFXIEncoding();
-#endif
 	BR.ReadInt32(); // Unknown
 	for (int i = 0; i < 6; ++i) { // 6 Lines of text, 61 bytes each, null-terminated shift-jis
 	string Command = "";
-#if UsePOLEncoding
-	ArrayList TextBytes = new ArrayList();
-	  for (int j = 0; j < 61; ++j) {
-	  byte B = BR.ReadByte();
-	    if (j < 60 && (B == 0x81 || B == 0x85)) { // Two-byte code - read them away
-	      TextBytes.Add(B);
-	      ++j;
-	      TextBytes.Add(BR.ReadByte());
-	    }
-	    else if (B == 0xFD) { // AutoTrans Code
-	      if (TextBytes.Count > 0) {
-		Command += E.GetString((byte[]) TextBytes.ToArray(typeof(byte)));
-		TextBytes.Clear();
-	      }
-	    ushort Category = BR.ReadUInt16();
-	    byte   Group    = BR.ReadByte();
-	    byte   ID       = BR.ReadByte();
-	      if (BR.ReadByte() == 0xFD)
-		Command += String.Format("\x00AB{0}/{1}/{2}: {3}\x00BB", Category, Group, ID, AutoTranslator.GetMessage(Group, ID, Category));
-	      else { // Assume regular text content
-		TextBytes.Add((byte) 0xFD);
-		TextBytes.Add((byte) ((Category >> 0) & 0xff));
-		TextBytes.Add((byte) ((Category >> 8) & 0xff));
-		TextBytes.Add((byte) Group);
-		TextBytes.Add((byte) ID);
-		TextBytes.Add((byte) 0xFD);
-	      }
-	      j += 5;
-	    }
-	    else
-	      TextBytes.Add(B);
-	  }
-	  if (TextBytes.Count > 0) {
-	    Command += E.GetString((byte[]) TextBytes.ToArray(typeof(byte)));
-	    TextBytes.Clear();
-	  }
-#else
 	  Command = E.GetString(BR.ReadBytes(61));
-#endif
 	  M.Commands_[i] = Command.TrimEnd('\0');
 	}
 	M.Name_ = E.GetString(BR.ReadBytes(10)).TrimEnd('\0');
@@ -123,11 +79,7 @@ namespace PlayOnline.FFXI {
     }
 
     internal void WriteToMacroBar(BinaryWriter BW) {
-#if UsePOLEncoding
-    Encoding E = new POLEncoding();
-#else
     Encoding E = new FFXIEncoding();
-#endif
       BW.Write((uint) 0);
       for (int i = 0; i < 6; ++i) // 6 Lines of text, 61 bytes each, nul-terminated shift-jis
 	this.WriteEncodedString(BW, this.Commands_[i], E, 61);
@@ -136,93 +88,7 @@ namespace PlayOnline.FFXI {
 
     private void WriteEncodedString(BinaryWriter BW, string Text, Encoding E, int Bytes) {
     ArrayList OutBytes = new ArrayList(Bytes);
-#if UsePOLEncoding
-      if (Text != null && Text != String.Empty) {
-      CharEnumerator C = Text.GetEnumerator();
-	while (C.MoveNext()) {
-	  if (C.Current == '\x00AB' && OutBytes.Count + 6 <= Bytes) { // Possible start of autotrans message
-	  CharEnumerator Walker = C.Clone() as CharEnumerator;
-	  bool ValidMarker = true;
-	  string category = String.Empty;
-	    if (ValidMarker) {
-	      ValidMarker = false;
-	      while (Walker.MoveNext()) { // Scan language number
-		if (Char.IsDigit(Walker.Current))
-		  category += Walker.Current;
-		else if (Walker.Current == '/') {
-		  ValidMarker = true;
-		  break;
-		}
-		else
-		  break;
-	      }
-	    }
-	  string group = String.Empty;
-	    if (ValidMarker) {
-	      ValidMarker = false;
-	      while (Walker.MoveNext()) { // Scan group number
-		if (Char.IsDigit(Walker.Current))
-		  group += Walker.Current;
-		else if (Walker.Current == '/') {
-		  ValidMarker = true;
-		  break;
-		}
-		else
-		  break;
-	      }
-	    }
-	  string id = String.Empty;
-	    if (ValidMarker) {
-	      ValidMarker = false;
-	      while (Walker.MoveNext()) { // Scan message number
-		if (Char.IsDigit(Walker.Current))
-		  id += Walker.Current;
-		else if (Walker.Current == ':') {
-		  ValidMarker = true;
-		  break;
-		}
-		else
-		  break;
-	      }
-	    }
-	    if (ValidMarker) { // Scan to end of message text
-	      ValidMarker = false;
-	      while (Walker.MoveNext()) {
-		if (Walker.Current == '\x00BB') {
-		  ValidMarker = true;
-		  break;
-		}
-	      }
-	    }
-	    if (ValidMarker) { // Almost there - we sucessfully scanned an autotrans message
-	      try {
-	      ushort catnum   = ushort.Parse(category);
-	      byte   groupnum = byte.Parse(group);
-	      byte   idnum    = byte.Parse(id);
-		OutBytes.Add((byte) 0xFD);
-		OutBytes.Add((byte) ((catnum >> 0) & 0xff));
-		OutBytes.Add((byte) ((catnum >> 8) & 0xff));
-		OutBytes.Add((byte) groupnum);
-		OutBytes.Add((byte) idnum);
-		OutBytes.Add((byte) 0xFD);
-		C = Walker;
-		continue;
-	      }
-	      catch { }
-	    }
-	  }
-	  {
-	  byte[] EncodedChar = E.GetBytes(new char[] { C.Current });
-	    if (OutBytes.Count + EncodedChar.Length <= Bytes)
-	      OutBytes.AddRange(EncodedChar);
-	    else
-	      break;
-	  }
-	}
-      }
-#else
       OutBytes.AddRange(E.GetBytes(Text));
-#endif
       while (OutBytes.Count > Bytes)
 	OutBytes.RemoveAt(Bytes);
       while (OutBytes.Count < Bytes)
