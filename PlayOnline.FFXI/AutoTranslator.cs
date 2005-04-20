@@ -33,7 +33,7 @@ namespace PlayOnline.FFXI {
 
       public byte   ParentGroup;
       public byte   ID;
-      public ushort Category; // 0x0202 = English Text, 0x0104 = Japanese Text, 0x0702 = Item Name
+      public ushort Category; // 0x0202 = English Text, 0x0104 = Japanese Text
       public string Text;
       public string AlternateText;
 
@@ -74,56 +74,12 @@ namespace PlayOnline.FFXI {
       try { // Get pure autotranslator text
       string DataFilePath = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "ROM/76/23.DAT");
       FileStream FS = new FileStream(DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-      Encoding E = new POLEncoding();
+      Encoding E = new FFXIEncoding();
       BinaryReader BR = new BinaryReader(FS, E);
 	while (FS.Position < FS.Length)
 	  AutoTranslator.Data_.Add(AutoTranslator.ReadMessageGroup(BR, E));
 	BR.Close();
       } catch (Exception E) { Console.WriteLine(E.ToString()); }
-#if !false
-      try { // Get item names - weapons
-      string DataFilePath = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "ROM/118/108.DAT");
-      FileStream FS = new FileStream(DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-      Encoding E = new POLEncoding();
-      BinaryReader BR = new BinaryReader(FS, E);
-      MessageGroup MG = new MessageGroup();
-	MG.Category = 0x0207;
-	MG.Title = MG.Description = "Weapon Names";
-	MG.ParentGroup = 0;
-	MG.ID = 0;
-	while (FS.Position < FS.Length) {
-	Message M = new Message();
-	  M.Category = 0x0207;
-	  { byte B = BR.ReadByte(); M.ID          = (byte) ((B << 3) | (B >> 5)); }
-	  { byte B = BR.ReadByte(); M.ParentGroup = (byte) ((B << 3) | (B >> 5)); }
-	  FS.Seek(0x1C, SeekOrigin.Current);
-	  { // JP Name
-	  byte[] EncodedBytes = BR.ReadBytes(22);
-	    for (int i = 0; i < EncodedBytes.Length; ++i)
-	      EncodedBytes[i] = (byte) ((EncodedBytes[i] << 3) | (EncodedBytes[i] >> 5));
-	  string DecodedText = E.GetString(EncodedBytes).TrimEnd('\0');
-	    if (POL.SelectedRegion == POL.Region.Japan)
-	      M.Text = DecodedText;
-	    else
-	      M.AlternateText = DecodedText;
-	  }
-	  { // EN Name
-	  byte[] EncodedBytes = BR.ReadBytes(22);
-	    for (int i = 0; i < EncodedBytes.Length; ++i)
-	      EncodedBytes[i] = (byte) ((EncodedBytes[i] << 3) | (EncodedBytes[i] >> 5));
-	  string DecodedText = E.GetString(EncodedBytes).TrimEnd('\0');
-	    if (POL.SelectedRegion == POL.Region.Japan)
-	      M.AlternateText = DecodedText;
-	    else
-	      M.Text = DecodedText;
-	  }
-	  FS.Seek(0xC00 - 2 - 0x1C - 22 - 22, SeekOrigin.Current);
-	  MG.Messages.Add(M);
-	}
-	BR.Close();
-	AutoTranslator.Data_.Add(MG);
-      } catch (Exception E) { Console.WriteLine(E.ToString()); }
-#endif
       try { // Get key item names
       } catch (Exception E) { Console.WriteLine(E.ToString()); }
     }
@@ -140,10 +96,6 @@ namespace PlayOnline.FFXI {
     long MessageStart = BR.BaseStream.Position;
       for (int i = 0; i < MessageCount; ++i)
 	MG.Messages.Add(AutoTranslator.ReadMessage(BR, E));
-#if DEBUG
-      if (BR.BaseStream.Position != MessageStart + MessageBytes)
-	Console.WriteLine("Advanced {0} bytes reading group, but group specified a size of {0} bytes.", BR.BaseStream.Position - MessageStart, MessageBytes);
-#endif
       return MG;
     }
 
