@@ -14,6 +14,17 @@ namespace PlayOnline.Utils.FFXIMacroManager {
 
     private string MacroLibraryFile;
 
+    private class ATMenuItem : MenuItem {
+
+      public ATMenuItem(uint ResourceID, EventHandler OnClick) : base(FFXIResourceManager.GetResourceString(ResourceID), OnClick) {
+	this.ResourceID_ = ResourceID;
+      }
+
+      private uint ResourceID_;
+      public  uint ResourceID { get { return this.ResourceID_;  } }
+
+    }
+
     #region Controls
 
     private System.Windows.Forms.TreeView tvMacroTree;
@@ -300,15 +311,6 @@ namespace PlayOnline.Utils.FFXIMacroManager {
 
     private void CreateTextInsertMenu() {
     MenuItem InsertMenu = this.mnuTextContext.MenuItems.Add("&Insert");
-//      {
-//      MenuItem MI = InsertMenu.MenuItems.Add("&Test");
-//	for (int i = 0x0000; i <= 0x0000; i += 16) {
-//	string S = String.Empty;
-//	  for (int j = 0; j < 16; ++j)
-//	    S += (char) (i + j);
-//	  MI.MenuItems.Add(String.Format("{0,4:X}: {1}", i, S), new EventHandler(this.InsertMenuItem_Click));
-//	}
-//      }
       this.AddAutoTransMenuItems  (InsertMenu.MenuItems.Add("&Auto-Translator Text"));
       this.AddFacesMenuItems      (InsertMenu.MenuItems.Add("&Faces"));
       this.AddAlphabetMenuItems   (InsertMenu.MenuItems.Add("&Alphabets"));
@@ -321,28 +323,18 @@ namespace PlayOnline.Utils.FFXIMacroManager {
 	foreach (AutoTranslator.MessageGroup MG in AutoTranslator.Data) {
 	MenuItem CategoryMenu = CategoryMenus[MG.Category] as MenuItem;
 	  if (CategoryMenu == null) {
-	    CategoryMenu = ParentMenu.MenuItems.Add(String.Format("{0}: &Unknown Category", MG.Category));
-	    // Update name if we know the category
+	    CategoryMenu = ParentMenu.MenuItems.Add("&Unknown Category");
 	    switch (MG.Category) {
-	      case 0x0104: CategoryMenu.Text = String.Format("{0}: &Japanese Messages", MG.Category); break;
-	      case 0x0202: CategoryMenu.Text = String.Format("{0}: &English Messages",  MG.Category); break;
-	      case 0x0207: CategoryMenu.Text = String.Format("{0}: &Item Names",        MG.Category); break;
+	      case 0x0104: CategoryMenu.Text = String.Format("&Japanese Messages", MG.Category); break;
+	      case 0x0202: CategoryMenu.Text = String.Format("&English Messages",  MG.Category); break;
 	    }
 	    CategoryMenus[MG.Category] = CategoryMenu;
 	  }
-	MenuItem GroupMenu = CategoryMenu.MenuItems.Add(String.Format("{0}/{1}: {2}", MG.Category, MG.ID, MG.Title));
+	MenuItem GroupMenu = CategoryMenu.MenuItems.Add(MG.Title);
 	  GroupMenu.MenuItems.Add(MG.Description).Enabled = false;
 	  foreach (AutoTranslator.Message M in MG.Messages) {
-#if false
-	    GroupMenu.MenuItems.Add(String.Format("{0}/{1}/{2}: {3}", M.Category, M.ParentGroup, M.ID, M.Text), new EventHandler(this.AutoTransMenuItem_Click));
-	    if (M.AlternateText != null && M.AlternateText != String.Empty) 
-	      GroupMenu.MenuItems.Add(String.Format("{0}/{1}/{2}: {3}", M.Category, M.ParentGroup, M.ID, M.AlternateText), new EventHandler(this.AutoTransMenuItem_Click));
-#else
-	    if (M.AlternateText != null && M.AlternateText != String.Empty) 
-	      GroupMenu.MenuItems.Add(String.Format("{0}/{1}/{2}: {3} / {4}", M.Category, M.ParentGroup, M.ID, M.Text, M.AlternateText), new EventHandler(this.AutoTransMenuItem_Click));
-	    else
-	      GroupMenu.MenuItems.Add(String.Format("{0}/{1}/{2}: {3}", M.Category, M.ParentGroup, M.ID, M.Text), new EventHandler(this.AutoTransMenuItem_Click));
-#endif
+	  uint ResID = (uint) ((uint) (M.Category << 16) + (ushort) (M.ParentGroup << 8) + M.ID);
+	    GroupMenu.MenuItems.Add(new ATMenuItem(ResID, new EventHandler(this.AutoTransMenuItem_Click)));
 	  }
 	}
       }
@@ -1000,14 +992,14 @@ namespace PlayOnline.Utils.FFXIMacroManager {
     #region Menu Events
 
     private void AutoTransMenuItem_Click(object sender, EventArgs e) {
-    MenuItem MI = sender as MenuItem;
+    ATMenuItem MI = sender as ATMenuItem;
       if (MI != null) {
       ContextMenu TopMenu = MI.GetContextMenu();
 	if (TopMenu != null) {
 	TextBoxBase Owner = TopMenu.SourceControl as TextBoxBase;
 	  if (Owner != null) {
 	  string NewText = Owner.Text.Substring(0, Owner.SelectionStart);
-	    NewText += '\x00AB' + MI.Text + '\x00BB';
+	    NewText += String.Format("{0}[{1:X8}] {2}{3}", FFXIEncoding.SpecialMarkerStart, MI.ResourceID, MI.Text, FFXIEncoding.SpecialMarkerEnd);
 	  int caretpos = NewText.Length;
 	    NewText += Owner.Text.Substring(Owner.SelectionStart + Owner.SelectionLength);
 	    Owner.Text = NewText;
