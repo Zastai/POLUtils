@@ -132,4 +132,8 @@
     <data name="E:ItemField.All" type="System.String">
         <value>Every Field</value>
     </data>
+    <data name="PWD:StringResources" type="System.String">
+      <value>Loading string resources (auto-translator, item names) from the various DAT files...
+This may take a while, depending on the speed of your machine.</value>
+    </data>
 </root>
