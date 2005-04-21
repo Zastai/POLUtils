@@ -57,16 +57,19 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	if (BR != null && BR.BaseStream.CanSeek) {
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	  this.ScanXIStringFile(BR);
-	  if (this.StringTableEntries.Count == 0) {
+	  this.ScanItemData(BR);
+  	  Application.DoEvents();
+	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
+	  this.ScanDialogFile(BR);
+	  if (this.StringTableEntries.Count == 0) { // These share a result field (they're mutually exclusive anyway)
   	    Application.DoEvents();
 	    BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	    this.ScanItemData(BR);
-	    if (this.Items.Count == 0) {
-  	      Application.DoEvents();
-	      BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	      this.ScanImages(BR);
-	    }
+	    this.ScanXIStringFile(BR);
+	  }
+	  if (this.Items.Count == 0) { // Items already contain the images - don't scan for them again
+  	    Application.DoEvents();
+	    BR.BaseStream.Seek(0, SeekOrigin.Begin);
+	    this.ScanImages(BR);
 	  }
 	  BR.Close();
 	}
@@ -192,6 +195,46 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	else
 	  this.StringTableEntries.Add(I18N.GetText("InvalidEntry"));
 	this.SetProgress(i, EntryCount);
+      }
+    }
+
+    #endregion
+
+    #region Dialog Files
+
+    private void ScanDialogFile(BinaryReader BR) {
+      this.lblScanProgress.Text = I18N.GetText("DialogCheck");
+      this.prbScanProgress.Value = 0;
+      BR.BaseStream.Seek(0, SeekOrigin.Begin);
+      if (BR.BaseStream.Length < 4)
+	return;
+    uint FileSizeMaybe = BR.ReadUInt32();
+      if (FileSizeMaybe != (0x10000000 + BR.BaseStream.Length - 4))
+	return;
+    uint FirstTextPos = (BR.ReadUInt32() ^ 0x80808080);
+      if ((FirstTextPos % 4) != 0 || FirstTextPos > BR.BaseStream.Length || FirstTextPos < 8)
+	return;
+      this.lblScanProgress.Text = I18N.GetText("DialogScan");
+    Encoding E = new FFXIEncoding();
+    uint EntryCount = FirstTextPos / 4;
+      for (int i = 0; i < EntryCount; ++i) {
+	BR.BaseStream.Seek(4 + 4 * i, SeekOrigin.Begin);
+      long Offset = (BR.ReadUInt32() ^ 0x80808080);
+      long NextOffset = (((i + 1) == EntryCount) ? BR.BaseStream.Length : (BR.ReadUInt32() ^ 0x80808080));
+	if (NextOffset < Offset || NextOffset > (Offset + 1024)) { // Sanity check - the 1024 is arbitrary
+	  this.StringTableEntries.Clear();
+	  return;
+	}
+	this.SetProgress(i, EntryCount);
+	if (NextOffset == Offset) {
+	  this.StringTableEntries.Add(String.Empty);
+	  continue;
+	}
+	BR.BaseStream.Seek(4 + Offset, SeekOrigin.Begin);
+      byte[] TextBytes = BR.ReadBytes((int) (NextOffset - Offset));
+	for (int j = 0; j < TextBytes.Length; ++j)
+	  TextBytes[j] ^= 0x80;
+	this.StringTableEntries.Add(E.GetString(TextBytes));
       }
     }
 
