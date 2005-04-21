@@ -198,4 +198,10 @@
     <data name="Menu:Time+Pronouns" type="System.String">
         <value>&amp;Time-Related Terms + Pronouns</value>
     </data>
+    <data name="DialogCheck" type="System.String">
+        <value>Checking whether file contains a dialog strings...</value>
+    </data>
+    <data name="DialogScan" type="System.String">
+        <value>Loading dialog strings - please wait...</value>
+    </data>
 </root>
