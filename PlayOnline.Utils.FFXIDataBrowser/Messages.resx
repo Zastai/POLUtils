@@ -39,6 +39,12 @@
     <resheader name="Writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="FileTableDialog:StatusFormat" type="System.String">
+        <value>{0} - {1} file(s) assigned</value>
+    </data>
+    <data name="FileTableDialog:StatusSorting" type="System.String">
+        <value>Sorting...</value>
+    </data>
     <data name="FFXI1" type="System.String">
         <value>Final Fantasy XI</value>
     </data>
@@ -53,6 +59,9 @@
     </data>
     <data name="Menu:MapN" type="System.String">
         <value>Map &amp;{0}</value>
+    </data>
+    <data name="Menu:Abilities" type="System.String">
+        <value>&amp;Abilities</value>
     </data>
     <data name="Menu:AreaNames" type="System.String">
         <value>&amp;Area Names</value>
@@ -84,6 +93,9 @@
     <data name="Menu:JobNames" type="System.String">
         <value>&amp;Job Names</value>
     </data>
+    <data name="Menu:JobNamesShort" type="System.String">
+        <value>&amp;Job Names (Short)</value>
+    </data>
     <data name="Menu:MenuItemDesc" type="System.String">
         <value>&amp;Menu Item Descriptions</value>
     </data>
@@ -96,8 +108,17 @@
     <data name="Menu:POLMessages" type="System.String">
         <value>&amp;POL Messages</value>
     </data>
+    <data name="Menu:RaceNames" type="System.String">
+        <value>&amp;Race Names</value>
+    </data>
     <data name="Menu:RegionNames" type="System.String">
         <value>&amp;Region Names</value>
+    </data>
+    <data name="Menu:Time+Pronouns" type="System.String">
+        <value>&amp;Time-Related Terms + Pronouns</value>
+    </data>
+    <data name="Menu:Titles" type="System.String">
+        <value>&amp;Titles</value>
     </data>
     <data name="Menu:Various1" type="System.String">
         <value>&amp;Various (1)</value>
@@ -111,35 +132,47 @@
     <data name="Menu:WeatherTypes" type="System.String">
         <value>&amp;Weather Types</value>
     </data>
-    <data name="FileTableDialog:StatusFormat" type="System.String">
-        <value>{0} - {1} file(s) assigned</value>
+    <data name="AbilityCheck" type="System.String">
+        <value>Checking whether the file contains ability information...</value>
     </data>
-    <data name="FileTableDialog:StatusSorting" type="System.String">
-        <value>Sorting...</value>
+    <data name="AbilityLoad" type="System.String">
+        <value>Loading ability information - please wait...</value>
     </data>
-    <data name="Menu:JobNamesShort" type="System.String">
-        <value>&amp;Job Names (Short)</value>
+    <data name="AbilityLoadProgress" type="System.String">
+        <value>Loading ability information ({0}/{1}) - please wait...</value>
     </data>
-    <data name="Menu:RaceNames" type="System.String">
-        <value>&amp;Race Names</value>
+    <data name="DialogCheck" type="System.String">
+        <value>Checking whether the file contains dialog strings...</value>
     </data>
-    <data name="StringScan" type="System.String">
-        <value>Loading string table entries - please wait...</value>
+    <data name="DialogLoad" type="System.String">
+        <value>Loading dialog strings - please wait...</value>
+    </data>
+    <data name="DialogLoadProgress" type="System.String">
+        <value>Loading dialog strings ({0}/{1}) - please wait...</value>
     </data>
     <data name="ImageScan" type="System.String">
+        <value>Scanning file for images - please wait...</value>
+    </data>
+    <data name="ImageScanProgress" type="System.String">
         <value>Scanning file for images ({0} found so far) - please wait...</value>
     </data>
-    <data name="StringCheck" type="System.String">
-        <value>Checking whether file contains a string table...</value>
-    </data>
-    <data name="FileLoad" type="System.String">
-        <value>Loading data from file into memory...</value>
-    </data>
     <data name="ItemCheck" type="System.String">
-        <value>Checking whether or not the file contains valid item data...</value>
+        <value>Checking whether the file contains item data...</value>
     </data>
     <data name="ItemLoad" type="System.String">
-        <value>Data for {0} of {1} items loaded...</value>
+        <value>Loading item information - please wait...</value>
+    </data>
+    <data name="ItemLoadProgress" type="System.String">
+        <value>Loading item information ({0}/{1}) - please wait...</value>
+    </data>
+    <data name="StringCheck" type="System.String">
+        <value>Checking whether the file contains a string table...</value>
+    </data>
+    <data name="StringLoad" type="System.String">
+        <value>Loading string table entries - please wait...</value>
+    </data>
+    <data name="StringLoadProgress" type="System.String">
+        <value>Loading string table entries ({0}/{1}) - please wait...</value>
     </data>
     <data name="Menu:Items1" type="System.String">
         <value>Items (Part &amp;1)</value>
@@ -194,14 +227,5 @@
     </data>
     <data name="Export:DirDialogDesc" type="System.String">
         <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
-    </data>
-    <data name="Menu:Time+Pronouns" type="System.String">
-        <value>&amp;Time-Related Terms + Pronouns</value>
-    </data>
-    <data name="DialogCheck" type="System.String">
-        <value>Checking whether file contains a dialog strings...</value>
-    </data>
-    <data name="DialogScan" type="System.String">
-        <value>Loading dialog strings - please wait...</value>
     </data>
 </root>
