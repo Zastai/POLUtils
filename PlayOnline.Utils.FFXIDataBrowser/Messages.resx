@@ -49,10 +49,10 @@
         <value>Final Fantasy XI</value>
     </data>
     <data name="FFXI2" type="System.String">
-        <value>Final Fantasy XI - Rise of the Zilart</value>
+        <value>Rise of the Zilart</value>
     </data>
     <data name="FFXI3" type="System.String">
-        <value>Final Fantasy XI - Chains of Promathia</value>
+        <value>Chains of Promathia</value>
     </data>
     <data name="InvalidEntry" type="System.String">
         <value>&lt;invalid entry&gt;</value>
