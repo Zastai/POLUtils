@@ -197,10 +197,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	    Entry += String.Format("{0}Speaker Name{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd);
 	    LastPos = j + 1;
 	  }
-	  else if (TextBytes[j] == 0x0a && j + 1 < TextBytes.Length) { // ???
+	  else if (TextBytes[j] == 0x0a && j + 1 < TextBytes.Length) {
 	    if (LastPos < j)
 	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
-	    Entry += String.Format("{0}Parameter {1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
+	    Entry += String.Format("{0}Numeric Parameter {1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
 	    LastPos = j + 2;
 	    ++j;
 	  }
@@ -210,6 +210,34 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	    Entry += String.Format("{0}Selection Dialog{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd);
 	    LastPos = j + 1;
 	  }
+	  else if (TextBytes[j] == 0x0c && j + 1 < TextBytes.Length) {
+	    if (LastPos < j)
+	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
+	    Entry += String.Format("{0}Multiple Choice (Parameter {1}){2}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
+	    LastPos = j + 2;
+	    ++j;
+	  }
+	  else if (TextBytes[j] == 0x19 && j + 1 < TextBytes.Length) {
+	    if (LastPos < j)
+	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
+	    Entry += String.Format("{0}Item Parameter {1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
+	    LastPos = j + 2;
+	    ++j;
+	  }
+	  else if (TextBytes[j] == 0x1a && j + 1 < TextBytes.Length) {
+	    if (LastPos < j)
+	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
+	    Entry += String.Format("{0}Marker: {1:X2}{2:X2}{3}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 0], TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
+	    LastPos = j + 2;
+	    ++j;
+	  }
+	  else if (TextBytes[j] == 0x1e && j + 1 < TextBytes.Length) {
+	    if (LastPos < j)
+	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
+	    Entry += String.Format("{0}Set Color #{1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[j + 1], FFXIEncoding.SpecialMarkerEnd);
+	    LastPos = j + 2;
+	    ++j;
+	  }
 	  else if (TextBytes[j] == 0x7f && j + 2 < TextBytes.Length) { // Unknown Type of Text Substitution
 	    if (LastPos < j)
 	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
@@ -217,6 +245,14 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	    LastPos = j + 3;
 	    j += 2;
 	  }
+#if DEBUG
+	  else if (TextBytes[j] < 0x20) {
+	    if (LastPos < j)
+	      Entry += E.GetString(TextBytes, LastPos, j - LastPos);
+	    Entry += String.Format("{0}Possible Special Code: {2:X2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[j]);
+	    LastPos = j + 1;
+	  }
+#endif
 	}
 	if (LastPos < TextBytes.Length)
 	  Entry += E.GetString(TextBytes, LastPos, TextBytes.Length - LastPos);
