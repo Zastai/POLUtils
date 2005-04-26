@@ -22,6 +22,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	this.App_  = App;
 	this.Dir_  = Dir;
 	this.File_ = File;
+	this.Enabled = System.IO.File.Exists(this.ROMFilePath);
       }
 
       public int ROMApp  { get { return this.App_;  } }
@@ -31,6 +32,15 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       private int App_;
       private int Dir_;
       private int File_;
+
+      public string ROMFilePath {
+	get {
+	string ROMDir = "Rom";
+	  if (this.App_ > 0)
+	    ROMDir += String.Format("{0}", this.App_ + 1);
+	  return Path.Combine(Path.Combine(Path.Combine(POL.GetApplicationPath(AppID.FFXI), ROMDir), this.Dir_.ToString()), String.Format("{0}.DAT", this.File_));
+	}
+      }
 
     }
 
@@ -62,7 +72,6 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private System.Windows.Forms.MenuItem mnuIOther;
     private System.Windows.Forms.Panel pnlViewerArea;
     private System.Windows.Forms.MenuItem mnuWindows;
-    private System.Windows.Forms.MenuItem mnuWFileTable;
     private System.Windows.Forms.TabControl tabViewers;
     private System.Windows.Forms.ListView lstEntries;
     private System.Windows.Forms.TabPage tabViewerImages;
@@ -162,6 +171,11 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     private System.Windows.Forms.TextBox txtItemMaxCharges;
     private System.Windows.Forms.Label lblItemStackSize;
     private System.Windows.Forms.Label lblItemFlags;
+    private System.Windows.Forms.MenuItem mnuDialogTables;
+    private System.Windows.Forms.MenuItem mnuDTEnglish;
+    private System.Windows.Forms.MenuItem mnuDTJapanese;
+    private System.Windows.Forms.MenuItem mnuOFileTable;
+    private System.Windows.Forms.MenuItem mnuOSettings;
 
     private System.ComponentModel.IContainer components;
 
@@ -425,6 +439,10 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     #region String Table Viewer Events
 
+    private void lstEntries_SizeChanged(object sender, System.EventArgs e) {
+      this.lstEntries.Columns[1].Width = this.lstEntries.Width - this.lstEntries.Columns[0].Width - 25;
+    }
+
     #endregion
 
     #region Windows Form Designer generated code
@@ -455,6 +473,9 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.mnuStringTableContext = new System.Windows.Forms.ContextMenu();
       this.mnuSTCCopy = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu();
+      this.mnuDialogTables = new System.Windows.Forms.MenuItem();
+      this.mnuDTEnglish = new System.Windows.Forms.MenuItem();
+      this.mnuDTJapanese = new System.Windows.Forms.MenuItem();
       this.mnuImages = new System.Windows.Forms.MenuItem();
       this.mnuIMaps = new System.Windows.Forms.MenuItem();
       this.mnuIMSandoria = new System.Windows.Forms.MenuItem();
@@ -492,7 +513,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.mnuSTJapanese = new System.Windows.Forms.MenuItem();
       this.mnuSTShared = new System.Windows.Forms.MenuItem();
       this.mnuWindows = new System.Windows.Forms.MenuItem();
-      this.mnuWFileTable = new System.Windows.Forms.MenuItem();
+      this.mnuOFileTable = new System.Windows.Forms.MenuItem();
+      this.mnuOSettings = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea = new System.Windows.Forms.Panel();
       this.tabViewers = new System.Windows.Forms.TabControl();
       this.tabViewerItems = new System.Windows.Forms.TabPage();
@@ -770,16 +792,50 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       // mnuMain
       // 
       this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+									    this.mnuDialogTables,
 									    this.mnuImages,
 									    this.mnuItemData,
 									    this.mnuStringTables,
 									    this.mnuWindows});
       this.mnuMain.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuMain.RightToLeft")));
       // 
+      // mnuDialogTables
+      // 
+      this.mnuDialogTables.Enabled = ((bool)(resources.GetObject("mnuDialogTables.Enabled")));
+      this.mnuDialogTables.Index = 0;
+      this.mnuDialogTables.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+										    this.mnuDTEnglish,
+										    this.mnuDTJapanese});
+      this.mnuDialogTables.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuDialogTables.Shortcut")));
+      this.mnuDialogTables.ShowShortcut = ((bool)(resources.GetObject("mnuDialogTables.ShowShortcut")));
+      this.mnuDialogTables.Text = resources.GetString("mnuDialogTables.Text");
+      this.mnuDialogTables.Visible = ((bool)(resources.GetObject("mnuDialogTables.Visible")));
+      this.mnuDialogTables.Popup += new System.EventHandler(this.mnuDialogTables_Popup);
+      // 
+      // mnuDTEnglish
+      // 
+      this.mnuDTEnglish.Enabled = ((bool)(resources.GetObject("mnuDTEnglish.Enabled")));
+      this.mnuDTEnglish.Index = 0;
+      this.mnuDTEnglish.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuDTEnglish.Shortcut")));
+      this.mnuDTEnglish.ShowShortcut = ((bool)(resources.GetObject("mnuDTEnglish.ShowShortcut")));
+      this.mnuDTEnglish.Text = resources.GetString("mnuDTEnglish.Text");
+      this.mnuDTEnglish.Visible = ((bool)(resources.GetObject("mnuDTEnglish.Visible")));
+      this.mnuDTEnglish.Popup += new System.EventHandler(this.mnuDTEnglish_Popup);
+      // 
+      // mnuDTJapanese
+      // 
+      this.mnuDTJapanese.Enabled = ((bool)(resources.GetObject("mnuDTJapanese.Enabled")));
+      this.mnuDTJapanese.Index = 1;
+      this.mnuDTJapanese.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuDTJapanese.Shortcut")));
+      this.mnuDTJapanese.ShowShortcut = ((bool)(resources.GetObject("mnuDTJapanese.ShowShortcut")));
+      this.mnuDTJapanese.Text = resources.GetString("mnuDTJapanese.Text");
+      this.mnuDTJapanese.Visible = ((bool)(resources.GetObject("mnuDTJapanese.Visible")));
+      this.mnuDTJapanese.Popup += new System.EventHandler(this.mnuDTJapanese_Popup);
+      // 
       // mnuImages
       // 
       this.mnuImages.Enabled = ((bool)(resources.GetObject("mnuImages.Enabled")));
-      this.mnuImages.Index = 0;
+      this.mnuImages.Index = 1;
       this.mnuImages.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 									      this.mnuIMaps,
 									      this.mnuIOther});
@@ -1099,7 +1155,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       // mnuItemData
       // 
       this.mnuItemData.Enabled = ((bool)(resources.GetObject("mnuItemData.Enabled")));
-      this.mnuItemData.Index = 1;
+      this.mnuItemData.Index = 2;
       this.mnuItemData.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 										this.mnuIDEnglish,
 										this.mnuIDJapanese});
@@ -1132,7 +1188,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       // mnuStringTables
       // 
       this.mnuStringTables.Enabled = ((bool)(resources.GetObject("mnuStringTables.Enabled")));
-      this.mnuStringTables.Index = 2;
+      this.mnuStringTables.Index = 3;
       this.mnuStringTables.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 										    this.mnuSTEnglish,
 										    this.mnuSTJapanese,
@@ -1176,23 +1232,34 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       // mnuWindows
       // 
       this.mnuWindows.Enabled = ((bool)(resources.GetObject("mnuWindows.Enabled")));
-      this.mnuWindows.Index = 3;
+      this.mnuWindows.Index = 4;
       this.mnuWindows.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-									       this.mnuWFileTable});
+									       this.mnuOFileTable,
+									       this.mnuOSettings});
       this.mnuWindows.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuWindows.Shortcut")));
       this.mnuWindows.ShowShortcut = ((bool)(resources.GetObject("mnuWindows.ShowShortcut")));
       this.mnuWindows.Text = resources.GetString("mnuWindows.Text");
       this.mnuWindows.Visible = ((bool)(resources.GetObject("mnuWindows.Visible")));
       // 
-      // mnuWFileTable
+      // mnuOFileTable
       // 
-      this.mnuWFileTable.Enabled = ((bool)(resources.GetObject("mnuWFileTable.Enabled")));
-      this.mnuWFileTable.Index = 0;
-      this.mnuWFileTable.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuWFileTable.Shortcut")));
-      this.mnuWFileTable.ShowShortcut = ((bool)(resources.GetObject("mnuWFileTable.ShowShortcut")));
-      this.mnuWFileTable.Text = resources.GetString("mnuWFileTable.Text");
-      this.mnuWFileTable.Visible = ((bool)(resources.GetObject("mnuWFileTable.Visible")));
-      this.mnuWFileTable.Click += new System.EventHandler(this.mnuWFileTable_Click);
+      this.mnuOFileTable.Enabled = ((bool)(resources.GetObject("mnuOFileTable.Enabled")));
+      this.mnuOFileTable.Index = 0;
+      this.mnuOFileTable.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuOFileTable.Shortcut")));
+      this.mnuOFileTable.ShowShortcut = ((bool)(resources.GetObject("mnuOFileTable.ShowShortcut")));
+      this.mnuOFileTable.Text = resources.GetString("mnuOFileTable.Text");
+      this.mnuOFileTable.Visible = ((bool)(resources.GetObject("mnuOFileTable.Visible")));
+      this.mnuOFileTable.Click += new System.EventHandler(this.mnuOFileTable_Click);
+      // 
+      // mnuOSettings
+      // 
+      this.mnuOSettings.Enabled = ((bool)(resources.GetObject("mnuOSettings.Enabled")));
+      this.mnuOSettings.Index = 1;
+      this.mnuOSettings.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuOSettings.Shortcut")));
+      this.mnuOSettings.ShowShortcut = ((bool)(resources.GetObject("mnuOSettings.ShowShortcut")));
+      this.mnuOSettings.Text = resources.GetString("mnuOSettings.Text");
+      this.mnuOSettings.Visible = ((bool)(resources.GetObject("mnuOSettings.Visible")));
+      this.mnuOSettings.Click += new System.EventHandler(this.mnuOSettings_Click);
       // 
       // pnlViewerArea
       // 
@@ -2929,6 +2996,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.ttToolTip.SetToolTip(this.lstEntries, resources.GetString("lstEntries.ToolTip"));
       this.lstEntries.View = System.Windows.Forms.View.Details;
       this.lstEntries.Visible = ((bool)(resources.GetObject("lstEntries.Visible")));
+      this.lstEntries.SizeChanged += new System.EventHandler(this.lstEntries_SizeChanged);
       // 
       // colXIEntryNum
       // 
@@ -3059,7 +3127,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	  int i = 0;
 	    foreach (string S in FSD.StringTableEntries) {
 	      this.lstEntries.Items.Add(String.Format("{0:00000000}", ++i)).SubItems.Add(S);
-	      Application.DoEvents();
+	      if ((i % 100) == 1)
+		Application.DoEvents();
 	    }
 	  }
 	  if (FSD.Items.Count > 0) {
@@ -3255,6 +3324,227 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       if (RMI != null)
 	this.SelectEntry(RMI.ROMApp, RMI.ROMDir, RMI.ROMFile);
     }
+
+    #region Dialog Tables
+
+    private void mnuDialogTables_Popup(object sender, System.EventArgs e) {
+      if (this.mnuDTEnglish.MenuItems.Count  == 0)  this.mnuDTEnglish.MenuItems.Add(this.DummyText);
+      if (this.mnuDTJapanese.MenuItems.Count == 0) this.mnuDTJapanese.MenuItems.Add(this.DummyText);
+    }
+
+    private void mnuDTEnglish_Popup(object sender, System.EventArgs e) {
+    MenuItem MI = sender as MenuItem;
+      if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
+	MI.MenuItems.Clear();
+	{ // FFXI
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI1"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("West Ronfaure",         1,  17,  33, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("East Ronfaure",         1,  17,  34, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("La Theine Plateau",     1,  17,  35, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Valkurm Dunes",         1,  17,  36, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Jugner Forest",         1,  17,  37, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Batallia Downs",        1,  17,  38, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("North Gustaberg",       1,  17,  39, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("South Gustaberg",       1,  17,  40, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Konschtat Highlands",   1,  17,  41, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pashhow Marshland",     1,  17,  42, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Rolanberry Fields",     1,  17,  43, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Beaucedine Glacier",    1,  17,  44, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Xarcabard",             1,  17,  45, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Cape Terrigan",         1,  17,  46, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("West Sarutabaruta",     1,  17,  48, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("East Sarutabaruta",     1,  17,  49, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Tahrongi Canyon",       1,  17,  50, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Buburimu Peninsula",    1,  17,  51, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Meriphataud Mountains", 1,  17,  52, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Sauromugue Champaign",  1,  17,  53, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Qu'fim Island",         1,  17,  59, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Behemoth's Dominion",   1,  17,  60, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Mordion Gaol",          1,  17,  64, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Horlais Peak",          1,  17,  72, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Outpost",       1,  17,  73, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Fort",          1,  17,  74, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yhugott Grotto",        1,  17,  75, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Palborough Mines",      1,  17,  76, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Waughroon Shrine",      1,  17,  77, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Giddeus",               1,  17,  78, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Balga's Dais",          1,  17,  79, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Beadeaux",              1,  17,  80, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Qu'lun Dome",           1,  17,  81, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Davoi",                 1,  17,  82, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Monastic Cavern",       1,  17,  83, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Castle Oztroja",        1,  17,  84, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Altar Room",            1,  17,  85, new EventHandler(this.ROMMenuItem_Click)));
+	}
+	{ // Zilart
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI2"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Eastern Altepa Desert", 1,  17,  47, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Sanctuary Of Zi'tah",   1,  17,  54, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ro'Maeve",              1,  17,  55, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yuhtunga Jungle",       1,  17,  56, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yhoator Jungle",        1,  17,  57, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Western Altepa Desert", 1,  17,  58, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Valley Of Sorrows",     1,  17,  61, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Tu'lia",                1,  17,  63, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Dynamis Beaucedine",    1,  17,  67, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Dynamis Xarcabard",     1,  17,  68, new EventHandler(this.ROMMenuItem_Click)));
+	}
+	{ // Promathia
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI3"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Bibiki Bay",          2,   2,  11, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Carpenter's Landing", 2,   2,  12, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Manaclipper",         2,   2,  13, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle",     2,   2,  14, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Uleguerand Range",    2,   2,  15, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Bearclaw Pinnacle",   2,   2,  16, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Attohwa Chasm",       2,   2,  17, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Boneyard Gully",      2,   2,  18, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pso'Xja (60 Cap)",    2,   2,  19, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pso'Xja",             2,   2,  20, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Oldton Movalpolos",   2,   2,  21, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  22, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Mine Shaft #2716",    2,   2,  23, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  24, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  26, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  27, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  28, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  29, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  30, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  31, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  32, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  33, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  34, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  35, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  36, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  37, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  38, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  39, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  40, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  41, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  42, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  43, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  44, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  45, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  46, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  47, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  48, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  49, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  50, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  51, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  52, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  53, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   2,  54, new EventHandler(this.ROMMenuItem_Click)));
+	}
+      }
+    }
+
+    private void mnuDTJapanese_Popup(object sender, System.EventArgs e) {
+    MenuItem MI = sender as MenuItem;
+      if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
+	MI.MenuItems.Clear();
+	{ // FFXI
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI1"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("West Ronfaure",         0,  22,  37, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("East Ronfaure",         0,  22,  38, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("La Theine Plateau",     0,  22,  39, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Valkurm Dunes",         0,  22,  40, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Jugner Forest",         0,  22,  41, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Batallia Downs",        0,  22,  42, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("North Gustaberg",       0,  22,  43, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("South Gustaberg",       0,  22,  44, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Konschtat Highlands",   0,  22,  45, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pashhow Marshland",     0,  22,  46, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Rolanberry Fields",     0,  22,  47, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Beaucedine Glacier",    0,  22,  48, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Xarcabard",             0,  22,  49, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Cape Terrigan",         0,  22,  50, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("West Sarutabaruta",     0,  22,  52, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("East Sarutabaruta",     0,  22,  53, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Tahrongi Canyon",       0,  22,  54, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Buburimu Peninsula",    0,  22,  55, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Meriphataud Mountains", 0,  22,  56, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Sauromugue Champaign",  0,  22,  57, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Qu'fim Island",         0,  22,  63, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Behemoth's Dominion",   0,  22,  64, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Mordion Gaol",          0,  22,  68, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Horlais Peak",          0,  22,  76, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Outpost",       0,  22,  77, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Fort",          0,  22,  78, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yhugott Grotto",        0,  22,  79, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Palborough Mines",      0,  22,  80, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Waughroon Shrine",      0,  22,  81, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Giddeus",               0,  22,  82, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Balga's Dais",          0,  22,  83, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Beadeaux",              0,  22,  84, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Qu'lun Dome",           0,  22,  85, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Davoi",                 0,  22,  86, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Monastic Cavern",       0,  22,  87, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Castle Oztroja",        0,  22,  88, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Altar Room",            0,  22,  89, new EventHandler(this.ROMMenuItem_Click)));
+	}
+	{ // Zilart
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI2"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Eastern Altepa Desert", 1,  13,  51, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Sanctuary Of Zi'tah",   1,  13,  52, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Ro'Maeve",              1,  13,  53, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yuhtunga Jungle",       1,  13,  54, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Yhoator Jungle",        1,  13,  55, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Western Altepa Desert", 1,  13,  56, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Valley Of Sorrows",     1,  13,  57, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Tu'lia",                1,  13,  58, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Dynamis Beaucedine",    1,  13,  59, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Dynamis Xarcabard",     1,  13,  60, new EventHandler(this.ROMMenuItem_Click)));
+	}
+	{ // Promathia
+	MenuItem ExpansionMenu = MI.MenuItems.Add(I18N.GetText("FFXI3"));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Bibiki Bay",          2,   1,  39, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Carpenter's Landing", 2,   1,  40, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Manaclipper",         2,   1,  41, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle",     2,   1,  42, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Uleguerand Range",    2,   1,  43, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Bearclaw Pinnacle",   2,   1,  44, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Attohwa Chasm",       2,   1,  45, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Boneyard Gully",      2,   1,  46, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pso'Xja (60 Cap)",    2,   1,  47, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Pso'Xja",             2,   1,  48, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Oldton Movalpolos",   2,   1,  49, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  50, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("Mine Shaft #2716",    2,   1,  51, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  52, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  54, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  55, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  56, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  57, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  58, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  59, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  60, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  61, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  62, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  63, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  64, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  65, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  66, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  67, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  68, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  69, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  70, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  71, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  72, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  73, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  74, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  75, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  76, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  77, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  78, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  79, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  80, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  81, new EventHandler(this.ROMMenuItem_Click)));
+	  ExpansionMenu.MenuItems.Add(new ROMMenuItem("???",                 2,   1,  82, new EventHandler(this.ROMMenuItem_Click)));
+	}
+      }
+    }
+
+    #endregion
 
     #region Images
 
@@ -3868,17 +4158,8 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	RegionMenu.MenuItems.Clear();
 	RegionMenu.MenuItems.Add(new ROMMenuItem("Al'taieu", 2, 4, 14, new EventHandler(this.ROMMenuItem_Click)));
 	{
-	MenuItem ZoneMenu = RegionMenu.MenuItems.Add("Diorama Abdhaljs");
-	  RegionMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Outpost",   2, 8, 33, new EventHandler(this.ROMMenuItem_Click)));
-	  RegionMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle 1", 2, 8, 34, new EventHandler(this.ROMMenuItem_Click)));
-	  RegionMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle 2", 2, 8, 35, new EventHandler(this.ROMMenuItem_Click)));
-	}
-	RegionMenu.MenuItems.Add(new ROMMenuItem("Al'taieu", 2, 4, 14, new EventHandler(this.ROMMenuItem_Click)));
-	RegionMenu.MenuItems.Add(new ROMMenuItem("Al'taieu", 2, 4, 14, new EventHandler(this.ROMMenuItem_Click)));
-	{
 	MenuItem ZoneMenu = RegionMenu.MenuItems.Add("Grand Palace of Hu'Xzoi");
 	int MapNum = 0;
-	  ZoneMenu.MenuItems.Add(new ROMMenuItem(String.Format(I18N.GetText("Menu:MapN"), ++MapNum), 2, 4,  14, new EventHandler(this.ROMMenuItem_Click)));
 	  ZoneMenu.MenuItems.Add(new ROMMenuItem(String.Format(I18N.GetText("Menu:MapN"), ++MapNum), 2, 4,  15, new EventHandler(this.ROMMenuItem_Click)));
 	  ZoneMenu.MenuItems.Add(new ROMMenuItem(String.Format(I18N.GetText("Menu:MapN"), ++MapNum), 2, 4,  16, new EventHandler(this.ROMMenuItem_Click)));
 	  ZoneMenu.MenuItems.Add(new ROMMenuItem(String.Format(I18N.GetText("Menu:MapN"), ++MapNum), 2, 5, 120, new EventHandler(this.ROMMenuItem_Click)));
@@ -3956,6 +4237,12 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	OtherMenu.MenuItems.Clear();
 	OtherMenu.MenuItems.Add(new ROMMenuItem("Conquest",           0, 17,  23, new EventHandler(this.ROMMenuItem_Click)));
 	OtherMenu.MenuItems.Add(new ROMMenuItem("Creature Chart",     0, 18, 124, new EventHandler(this.ROMMenuItem_Click)));
+	{
+	MenuItem ZoneMenu = OtherMenu.MenuItems.Add("Diorama Abdhaljs");
+	  ZoneMenu.MenuItems.Add(new ROMMenuItem("Ghelsba Outpost",   2, 8, 33, new EventHandler(this.ROMMenuItem_Click)));
+	  ZoneMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle 1", 2, 8, 34, new EventHandler(this.ROMMenuItem_Click)));
+	  ZoneMenu.MenuItems.Add(new ROMMenuItem("Purgonorgo Isle 2", 2, 8, 35, new EventHandler(this.ROMMenuItem_Click)));
+	}
 	// Also: 0/17/38,45,46,49,64,75-82,97-100,102-106,115,116,118,119,123-127
 	// Also: 0/18/0-7,35,36,58,73,82,83
 	OtherMenu.MenuItems.Add(new ROMMenuItem("Dummy Map",          0, 17,  37, new EventHandler(this.ROMMenuItem_Click)));
@@ -3984,11 +4271,12 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
 	MI.MenuItems.Clear();
-	MI.MenuItems.Add(new ROMMenuItem("&Fonts && Menus",    0,  0,   1, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem("&Rank (Bastok)",     0, 16, 101, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem("&Rank (Windurst)",   0, 16, 116, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem("&Rank (San d'Oria)", 0, 17,   4, new EventHandler(this.ROMMenuItem_Click)));
-	MI.MenuItems.Add(new ROMMenuItem("&Status Icons",      0,  0,  12, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Fonts && Menus",    0,   0,   1, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Rank (Bastok)",     0,  16, 101, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Rank (Windurst)",   0,  16, 116, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Rank (San d'Oria)", 0,  17,   4, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Status Icons (JP)", 0,   0,  12, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem("&Status Icons (EN)", 0, 119,  57, new EventHandler(this.ROMMenuItem_Click)));
 	{
 	MenuItem UIStyleMenu = MI.MenuItems.Add("&UI Windows");
 	  UIStyleMenu.MenuItems.Add(new ROMMenuItem("Style &1",  0,  0,  14, new EventHandler(this.ROMMenuItem_Click)));
@@ -4050,6 +4338,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
 	MI.MenuItems.Clear();
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Abilities"),       0, 119,  55, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0,  97,  57, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNamesAlt"),    0,  97,  53, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0,  97,  39, new EventHandler(this.ROMMenuItem_Click)));
@@ -4065,6 +4354,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0,  97,  36, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0,  97,  48, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Time+Pronouns"),   0, 118, 103, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Titles"),          0, 119,  54, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0,  97,  34, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0,  97,  40, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0,  97,  49, new EventHandler(this.ROMMenuItem_Click)));
@@ -4076,6 +4366,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && MI.MenuItems.Count == 1 && MI.MenuItems[0].Text == this.DummyText) {
 	MI.MenuItems.Clear();
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Abilities"),       0,   0,  10, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:AreaNames"),       0,  97,  56, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:ChatFilterTypes"), 0,  97,  21, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:DayNames"),        0,  97,  27, new EventHandler(this.ROMMenuItem_Click)));
@@ -4090,6 +4381,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:POLMessages"),     0,  97,   8, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:RegionNames"),     0,  97,  30, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Time+Pronouns"),   0, 118, 102, new EventHandler(this.ROMMenuItem_Click)));
+	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Titles"),          0,   0,  22, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various1"),        0,  97,  17, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various2"),        0,  97,  22, new EventHandler(this.ROMMenuItem_Click)));
 	MI.MenuItems.Add(new ROMMenuItem(I18N.GetText("Menu:Various3"),        0,  97,  31, new EventHandler(this.ROMMenuItem_Click)));
@@ -4109,11 +4401,21 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
 
     #endregion
 
-    private void mnuWFileTable_Click(object sender, System.EventArgs e) {
+    #region Other Dialogs
+
+    private void mnuOFileTable_Click(object sender, System.EventArgs e) {
       using (FileTableDialog FTD = new FileTableDialog())
 	FTD.ShowDialog(this);
       this.Activate();
     }
+
+    private void mnuOSettings_Click(object sender, System.EventArgs e) {
+      using (SettingsDialog SD = new SettingsDialog())
+	SD.ShowDialog(this);
+      this.Activate();
+    }
+
+    #endregion
 
     #endregion
 
