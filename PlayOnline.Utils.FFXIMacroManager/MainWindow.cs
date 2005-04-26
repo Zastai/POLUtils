@@ -84,7 +84,7 @@ namespace PlayOnline.Utils.FFXIMacroManager {
       this.CreateTextInsertMenu();
       // Build macro library file name
     string LocalAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-    string SettingsDir = Path.Combine(LocalAppData, Path.Combine("Pebbles", "PolUtils"));
+    string SettingsDir = Path.Combine(LocalAppData, Path.Combine("Pebbles", "POLUtils"));
       if (!Directory.Exists(SettingsDir))
 	Directory.CreateDirectory(SettingsDir);
       this.MacroLibraryFile = Path.Combine(SettingsDir, "macro-library.xml");
