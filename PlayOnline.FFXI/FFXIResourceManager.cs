@@ -61,7 +61,7 @@ namespace PlayOnline.FFXI {
     private static void LoadAutoTranslatorMessages() {
       foreach (AutoTranslator.MessageGroup MG in AutoTranslator.Data) {
 	foreach (AutoTranslator.Message M in MG.Messages) {
-	uint ResID = (uint) ((uint) (M.Category << 16) + (ushort) (M.ParentGroup << 8) + M.ID);
+	uint ResID = (uint) ((uint) ((M.Category & 0xff) << 24) + ((M.Category & 0xff00) << 8) + (ushort) (M.ParentGroup << 8) + M.ID);
 	  FFXIResourceManager.ResourceStrings.Add(ResID, new ResourceString(ResID, M.Text, M.Text));
 	}
       }
