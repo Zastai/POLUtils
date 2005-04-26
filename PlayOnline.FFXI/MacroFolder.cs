@@ -75,10 +75,10 @@ namespace PlayOnline.FFXI {
 	      if (StoredMD5[i] != ComputedMD5[i]) {
 	      string Message = String.Format("MD5 Checksum failure for {0}:\n- Stored Hash  :", PathName);
 		for (int j = 0; j < 16; ++j)
-		  Message += String.Format(" {0,2:X}", StoredMD5[j]);
+		  Message += String.Format(" {0:X2}", StoredMD5[j]);
 		Message += "\n- Computed Hash:";
 		for (int j = 0; j < 16; ++j)
-		  Message += String.Format(" {0,2:X}", ComputedMD5[j]);
+		  Message += String.Format(" {0:X2}", ComputedMD5[j]);
 		Message += '\n';
 		MessageBox.Show(null, Message, "Warning");
 		break;
@@ -88,9 +88,10 @@ namespace PlayOnline.FFXI {
 #endif
 	}
       }
+    Encoding E = new FFXIEncoding();
       for (int i = 0; i < 2; ++i) {
 	for (int j = 0; j < 10; ++j)
-	  MF.Folders_[i].Macros_.Add((BR != null) ? Macro.ReadFromMacroBar(BR) : new Macro());
+	  MF.Folders_[i].Macros_.Add((BR != null) ? Macro.ReadFromMacroBar(BR, E) : new Macro());
       }
       if (BR != null)
 	BR.Close();
@@ -103,7 +104,8 @@ namespace PlayOnline.FFXI {
 	{ // Since we need the MD5 hash, we use a MemoryStream first
 	MemoryStream MS = new MemoryStream(MacroBytes, true);
 	BinaryWriter BW = new BinaryWriter(MS);
-	  this.WriteToMacroBar(BW);
+	Encoding     E  = new FFXIEncoding();
+	  this.WriteToMacroBar(BW, E);
 	  BW.Close();
 	}
 	{
@@ -120,11 +122,11 @@ namespace PlayOnline.FFXI {
       return false;
     }
 
-    private void WriteToMacroBar(BinaryWriter BW) {
+    private void WriteToMacroBar(BinaryWriter BW, Encoding E) {
       foreach (MacroFolder MF in this.Folders_)
-	MF.WriteToMacroBar(BW);
+	MF.WriteToMacroBar(BW, E);
       foreach (Macro M in this.Macros_)
-	M.WriteToMacroBar(BW);
+	M.WriteToMacroBar(BW, E);
     }
 
     #endregion
