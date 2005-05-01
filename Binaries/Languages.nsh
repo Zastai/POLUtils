@@ -17,10 +17,6 @@ LangString DESC_SECTION_TRANS            ${LANG_ENGLISH} "Translated resources f
 LangString DESC_SECTION_TR_JA            ${LANG_ENGLISH} "Japanese resources for POLUtils."
 LangString DESC_SECTION_TR_NL            ${LANG_ENGLISH} "Dutch resources for POLUtils."
 LangString DESC_SHORTCUT                 ${LANG_ENGLISH} "A collection of PlayOnline-related utilities."
-LangString LOG_CODEPAGE_NO1251           ${LANG_ENGLISH} "Cyrillic codepage not available."
-LangString LOG_CODEPAGE_NO1252           ${LANG_ENGLISH} "Western codepage not available."
-LangString LOG_CODEPAGE_NO932            ${LANG_ENGLISH} "Shift-JIS codepage not available."
-LangString LOG_CODEPAGE_OK               ${LANG_ENGLISH} "All necessary codepages are available."
 LangString LOG_DOTNET_FOUND              ${LANG_ENGLISH} "Found .NET framework $DOTNET_VERSION (build $DOTNET_BUILD) (mscorlib.dll version $DOTNET_DLLVERSION)"
 LangString LOG_MDX_FOUND                 ${LANG_ENGLISH} "Found Managed DirectX - audio playback will be available."
 LangString LOG_MDX_NOT_FOUND             ${LANG_ENGLISH} "WARNING: Managed DirectX not found - no audio playback possible until it is installed."
@@ -34,6 +30,11 @@ LangString MB_DOTNET_NOT_FOUND           ${LANG_ENGLISH} "Version 1.1 of the Mic
 LangString MB_ENSURE_TRUSTED_SOURCE      ${LANG_ENGLISH} "Please ensure you downloaded this file from ${SITE_URL} and nowhere else.$\r$\nFiles from other sources may have been modified to contain viruses and/or keyloggers that could result in your POL account being hacked."
 LangString MB_SPECIAL_BUILD              ${LANG_ENGLISH} "This is a special (${BUILD}) build; please do not distribute it without the explicit consent of the author."
 LangString MB_MDX_NOT_FOUND              ${LANG_ENGLISH} "Managed DirectX does not seem to be installed on this system$\r$\naAudio playback will not be available.$\r$\n$\r$\nAn installer for Managed DirectX is available on the web page."
+LangString MB_DELETE_MACROLIB_V4         ${LANG_ENGLISH} "Do you want to remove your old (pre-0.5.0) macro library?$\r$\nIts contents have been copied to the new location for 0.5.0 and higher, so you only need this if you want to go back to version 0.4.0 or earlier."
 LangString SITE_NAME                     ${LANG_ENGLISH} "Pebbles' Program Page"
 LangString UI_RUNPROG                    ${LANG_ENGLISH} "&Run POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_ENGLISH} "Uninstall POLUtils"
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:
