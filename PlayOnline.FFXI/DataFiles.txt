@@ -12,7 +12,7 @@ Data Files
 NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-JIS encoding used by POL;
       0x85 is used as a prefix to encode accented Latin characters and cyrillic characters.
 
-- Many different files (e.g. ROM\97\54.DAT and ROM\97\54.DAT - zone names)
+- Many different files (e.g. ROM\97\54.DAT - zone names)
   Contents:
     Strings
   Format:
@@ -43,7 +43,7 @@ NOTE: When the entries below mention "Shift-JIS", they mean the extended Shift-J
     DATAFILE := [MESSAGE-GROUP]*
     MESSAGE-GROUP := [GROUP-HEADER] [MESSAGE]<GROUP-HEADER.MESSAGE-COUNT>
     GROUP-HEADER := {
-      RESID  ID (With ENTRY-ID = 0)
+      UINT32 ID
       BYTE   BRACKETEDNAME[32] (Shift-JIS)
       BYTE   NAME[32] (Shift-JIS)
       UINT32 MESSAGE-COUNT
