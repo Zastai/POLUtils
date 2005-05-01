@@ -31,6 +31,7 @@ LangString MB_ENSURE_TRUSTED_SOURCE      ${LANG_ENGLISH} "Please ensure you down
 LangString MB_SPECIAL_BUILD              ${LANG_ENGLISH} "This is a special (${BUILD}) build; please do not distribute it without the explicit consent of the author."
 LangString MB_MDX_NOT_FOUND              ${LANG_ENGLISH} "Managed DirectX does not seem to be installed on this system$\r$\naAudio playback will not be available.$\r$\n$\r$\nAn installer for Managed DirectX is available on the web page."
 LangString MB_DELETE_MACROLIB_V4         ${LANG_ENGLISH} "Do you want to remove your old (pre-0.5.0) macro library?$\r$\nIts contents have been copied to the new location for 0.5.0 and higher, so you only need this if you want to go back to version 0.4.0 or earlier."
+LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_ENGLISH} "Do you want to remove your macro library?"
 LangString SITE_NAME                     ${LANG_ENGLISH} "Pebbles' Program Page"
 LangString UI_RUNPROG                    ${LANG_ENGLISH} "&Run POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_ENGLISH} "Uninstall POLUtils"
