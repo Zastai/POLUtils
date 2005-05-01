@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace ManagedDirectX {
 
@@ -20,11 +21,16 @@ namespace ManagedDirectX {
 
     private static void Load() {
       if (!ManagedDirectSound.Initialized) {
-	try { // This can be quite slow (due to internal exceptions)
-	  ManagedDirectSound.Assembly = Assembly.LoadWithPartialName("Microsoft.DirectX.DirectSound");
-	} catch {
-	  ManagedDirectSound.Assembly = null;
-	}
+	try {
+	RegistryKey MDXRoot = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\.NETFramework\AssemblyFolders\ManagedDX");
+	  if (MDXRoot != null) {
+	  AppDomainSetup DXDomainSetup = new AppDomainSetup();
+	    DXDomainSetup.ApplicationBase = MDXRoot.GetValue("") as string;
+	  AppDomain DXDomain = AppDomain.CreateDomain("ManagedDirectX", AppDomain.CurrentDomain.Evidence, DXDomainSetup);
+	    ManagedDirectSound.Assembly = DXDomain.Load("Microsoft.DirectX.DirectSound");
+	    MDXRoot.Close();
+	  }
+	} catch (Exception E) { Console.WriteLine(E.ToString()); }
 	ManagedDirectSound.Initialized = true;
       }
     }
