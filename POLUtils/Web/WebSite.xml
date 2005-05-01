@@ -82,6 +82,63 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.5.0 Release" author="Pebbles" date="May 1st, 2005">
+      <p>Today I'm releasing POLUtils 0.5.0, a collection of PlayOnline-related utilities.</p>
+      <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
+         (email is on main page).</p>
+      <p>I'm also interested in DAT file mappings - if you know what a particular DAT file contains, and it's
+         not yet linked to from the data browser menu, let me know.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  Improved installer; added warning message to make sure people only use installers they
+	  dowload from the official page.
+	</li><li>
+	  Fully implemented character set conversion using internal translation tables - this means POLUtils
+	  no longer depends on any Windows codepages; it should be fully Unicode.  There will probably still
+	  be gaps in the extended mappings added by SE; if you see any &lt;BAD CHAR: xxxx&gt; markers, please
+	  report them (and if possible, let me know what character shouldve been shown instead).
+	</li><li>
+	  Lots of improvement to the data browser.  The item viewer was completely overhauled, and a
+	  "find item" dialog was added, with moderately poweful query capability.  Exporting item data
+	  to XML or CSV is also fully supported (no progress window for it yet though).  Several more
+	  string table formats are supported (titles, abilities, area dialog tables).
+	</li><li>
+	  The data browser has 2 settings of its own (not currently preserved between runs) - you can
+	  opt to see a more detailed progress report (e.g. "loaded 5/200 items" instead of "loading items..."),
+	  and you can choose to make the file scan abortable.  Either option slows down the file scans though,
+	  so they're disabled by default.
+	</li><li>
+	  Added FFXI Config Editor.  Currently allows changing only resolution and sound effect count
+	  (free editing, not limited options).
+	</li>
+      </ul></p>
+      <p><strong>New Bugs:</strong><br/><ul>
+	<li>Lots. Probably.</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>Too many to mention.</li>
+      </ul></p>
+      <p><strong>Plans For Next Release</strong><br/><ul>
+	<li>
+	  Overhaul the macro editor.  If you have any layout/design suggestions, please let me know.
+	</li><li>
+	  Rework the menu system for the data browser, perhaps basing the menus completely on an XML file
+	  that describes known DAT files.
+	</li><li>
+	  Rework the audio manager so that it doesn't do a full scan, but instead only scans parts of the
+	  directory tree on an as-needed basis.  While not much an issue for the music files, scanning the
+	  SFX files takes waaaay too long.
+	</li><li>
+	  (Maybe) Add a recipe database.
+	</li><li>
+	  Add a tool to compare exported item lists (mainly for my own use, so that i can report item data
+	  changes after each patch).
+	</li><li>
+	  (Maybe) Extend the config editor to allow full configuration (would help people that use JP POL +
+	  NA POL + 1 FFXI install, as that means no JP FFXIConfig).
+	</li>
+      </ul></p>
+    </news-item>
     <news-item title="I ATEN'T DEAD" author="Pebbles" date="March 6th, 2005">
       <p>No, the POLUtils project isn't dead.  I am rewriting a lot of stuff (data browser, macro editor)
          and am writing a text decoder from scratch (good: no more codepage dependencies, bad: lots of
