@@ -18,6 +18,9 @@ OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
 
 !define INSTALLER_REG_KEY Software\Pebbles\Installation\POLUtils
 
+;; This should be a NSIS builtin...
+!define LOCALAPPDATA "$PROFILE\Local Settings\Application Data"
+
 InstallDir       "$PROGRAMFILES\Pebbles\POLUtils"
 InstallDirRegKey HKLM "${INSTALLER_REG_KEY}" "Install Location"
 
@@ -69,11 +72,11 @@ FunctionEnd
 !include "DotNet.nsh"
 
 Function PageUninstallPre050
-;; TODO: Check for old installer info, and if present, show custom page explaining that it needs to be uninstalled first
+  ;; TODO: Check for old installer info, and if present, show custom page explaining that it needs to be uninstalled first
 FunctionEnd
 
 Function PageLeaveUninstallPre050
-;; TODO: If uninstall requested: run uninstaller
+  ;; TODO: If uninstall requested: run uninstaller
 FunctionEnd
 
 ;; --- Sections ---
@@ -92,6 +95,7 @@ Section "-DotNetCheck"
 SectionEnd
 
 Section "-ManagedDirectXCheck"
+  ;; TODO: Maybe check the same regkey that POLUtils uses
   IfFileExists $WINDIR\Assembly\GAC\Microsoft.DirectX.* MDXFound
     MessageBox MB_OK|MB_ICONINFORMATION $(MB_MDX_NOT_FOUND)
     DetailPrint $(LOG_MDX_NOT_FOUND)
@@ -101,28 +105,16 @@ Section "-ManagedDirectXCheck"
   MDXTestDone:
 SectionEnd
 
-Section "-CodePageCheck"
-  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "932"
-  StrCmp $0 "" CPNoSJIS
-  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "1251"
-  StrCmp $0 "" CPNoCyrillic
-  ReadRegStr $0 HKLM SYSTEM\CurrentControlSet\Control\Nls\Codepage "1252"
-  StrCmp $0 "" CPNoWestern
-  DetailPrint $(LOG_CODEPAGE_OK)
-  GoTo CPTestDone
-CPNoSJIS:
-  DetailPrint $(LOG_CODEPAGE_NO932)
-  GoTo CPNotFound
-CPNoCyrillic:
-  DetailPrint $(LOG_CODEPAGE_NO1251)
-  GoTo CPNotFound
-CPNoWestern:
-  DetailPrint $(LOG_CODEPAGE_NO1252)
-  GoTo CPNotFound
-CPNotFound:
-  MessageBox MB_OK|MB_ICONINFORMATION $(MB_CODEPAGE_MISSING)
-  GoTo CPTestDone
-CPTestDone:
+Section "-UpdateMacroLibrary"
+  IfFileExists "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml" LibUpdateComplete
+  IfFileExists "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml" +1 LibUpdateComplete
+    CreateDirectory "${LOCALAPPDATA}\Pebbles\POLUtils\"
+    CopyFiles "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml" "${LOCALAPPDATA}\Pebbles\POLUtils\"
+    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_MACROLIB_V4) IDNO LibUpdateComplete
+    Delete "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml"
+    RMDir "${LOCALAPPDATA}\ZastaiSoft\POLUtils"
+    RMDir "${LOCALAPPDATA}\ZastaiSoft"
+  LibUpdateComplete:
 SectionEnd
 
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
