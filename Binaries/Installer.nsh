@@ -223,6 +223,13 @@ Section "Uninstall"
     Delete "$SMPROGRAMS\POLUtils.lnk"
     Delete "$SMPROGRAMS\$(SITE_NAME).url"
   EndSMClean:
+  ;; Macro Library
+  IfFileExists "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml" +1 LibRemovalComplete
+    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_CURRENT_MACROLIB) IDNO LibRemovalComplete
+    Delete "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml"
+    RMDir "${LOCALAPPDATA}\Pebbles\POLUtils"
+    RMDir "${LOCALAPPDATA}\Pebbles"
+  LibRemovalComplete:
   ;; The uninstaller itself
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
