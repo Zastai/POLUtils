@@ -153,6 +153,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FFXIItemEditor.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIItemEditor.resx"
+                    DependentUpon = "FFXIItemEditor.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "FFXIResourceManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
