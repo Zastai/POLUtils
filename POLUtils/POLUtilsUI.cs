@@ -9,9 +9,8 @@ using System.Threading;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils {
+namespace POLUtils {
 
   public class POLUtilsUI : System.Windows.Forms.Form {
 
@@ -410,7 +409,7 @@ namespace PlayOnline.Utils {
 
     private void btnAudioManager_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new AudioManager.MainWindow())
+      using (Form Utility = new PlayOnline.Utils.AudioManager.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
@@ -418,7 +417,7 @@ namespace PlayOnline.Utils {
 
     private void btnFFXIConfigEditor_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new FFXIConfigEditor.MainWindow())
+      using (Form Utility = new PlayOnline.FFXI.Utils.ConfigEditor.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
@@ -426,7 +425,7 @@ namespace PlayOnline.Utils {
 
     private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new FFXIDataBrowser.MainWindow())
+      using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
@@ -434,7 +433,7 @@ namespace PlayOnline.Utils {
 
     private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new FFXIMacroManager.MainWindow())
+      using (Form Utility = new PlayOnline.FFXI.Utils.MacroManager.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
@@ -442,7 +441,7 @@ namespace PlayOnline.Utils {
 
     private void btnTetraViewer_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new TetraViewer.MainWindow())
+      using (Form Utility = new PlayOnline.Utils.TetraViewer.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();

@@ -6,9 +6,8 @@ using System.Text;
 using System.Xml;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIConfigEditor {
+namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
   public class CharacterConfig {
 

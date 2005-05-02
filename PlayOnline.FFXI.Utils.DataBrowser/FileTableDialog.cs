@@ -7,9 +7,8 @@ using System.Threading;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal class FileTableDialog : System.Windows.Forms.Form {
 

@@ -8,9 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal class ItemFindDialog : System.Windows.Forms.Form {
 

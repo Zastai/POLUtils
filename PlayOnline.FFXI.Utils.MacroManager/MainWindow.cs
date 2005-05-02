@@ -6,9 +6,8 @@ using System.IO;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIMacroManager {
+namespace PlayOnline.FFXI.Utils.MacroManager {
 
   public class MainWindow : System.Windows.Forms.Form {
 

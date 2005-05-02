@@ -7,9 +7,8 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIConfigEditor {
+namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
   public class MainWindow : System.Windows.Forms.Form {
 

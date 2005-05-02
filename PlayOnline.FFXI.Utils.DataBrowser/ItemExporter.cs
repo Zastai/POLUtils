@@ -1,10 +1,6 @@
-using System;
 using System.Windows.Forms;
 
-using PlayOnline.Core;
-using PlayOnline.FFXI;
-
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal enum ItemExportMethod {
     CSV,

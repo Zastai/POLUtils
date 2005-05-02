@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal class SettingsDialog : System.Windows.Forms.Form {
   

@@ -8,9 +8,8 @@ using System.Windows.Forms;
 using System.Xml;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal class XMLItemExporter : IItemExporter {
 

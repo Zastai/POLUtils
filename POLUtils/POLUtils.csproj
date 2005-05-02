@@ -20,7 +20,7 @@
                 PostBuildEvent = 'rem This is run in $(OutDir), not $(ProjectDir)!&#xd;&#xa;copy "$(ProjectDir)$(TargetFileName).manifest" "." >NUL&#xd;&#xa;make -C "$(ProjectDir)Web"'
                 RootNamespace = ""
                 RunPostBuildEvent = "Always"
-                StartupObject = "PlayOnline.Utils.POLUtils"
+                StartupObject = "POLUtils.POLUtils"
             >
                 <Config
                     Name = "Debug"
@@ -76,11 +76,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
@@ -101,33 +96,33 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
+                    Name = "PlayOnline.FFXI.Utils.ConfigEditor"
+                    Project = "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "PlayOnline.FFXI.Utils.DataBrowser"
+                    Project = "{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "PlayOnline.FFXI.Utils.ItemComparison"
+                    Project = "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "PlayOnline.FFXI.Utils.MacroManager"
+                    Project = "{966ACE61-C745-4B5E-AFFA-31A50E24341B}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
                     Name = "PlayOnline.Utils.AudioManager"
                     Project = "{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "PlayOnline.Utils.FFXIDataBrowser"
-                    Project = "{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "PlayOnline.Utils.FFXIMacroManager"
-                    Project = "{966ACE61-C745-4B5E-AFFA-31A50E24341B}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "PlayOnline.Utils.TetraViewer"
                     Project = "{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "PlayOnline.Utils.FFXIConfigEditor"
-                    Project = "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "PlayOnline.Utils.FFXIItemComparison"
-                    Project = "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>

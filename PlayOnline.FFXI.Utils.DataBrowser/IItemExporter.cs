@@ -4,9 +4,8 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIDataBrowser {
+namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal abstract class IItemExporter {
 

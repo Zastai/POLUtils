@@ -7,9 +7,8 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils {
+namespace POLUtils {
 
   internal class CultureChoice {
 

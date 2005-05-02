@@ -5,9 +5,8 @@ using System.ComponentModel;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
-namespace PlayOnline.Utils.FFXIMacroManager {
+namespace PlayOnline.FFXI.Utils.MacroManager {
 
   public class InsertDialog : System.Windows.Forms.Form {
 
