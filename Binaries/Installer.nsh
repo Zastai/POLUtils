@@ -120,15 +120,12 @@ SectionEnd
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
   SectionIn 1 2 RO
   SetOutPath "$INSTDIR"
-  File "${BUILDDIR}\PlayOnline.Core.dll"
-  File "${BUILDDIR}\PlayOnline.FFXI.dll"
-  File "${BUILDDIR}\PlayOnline.Utils.AudioManager.dll"
-  File "${BUILDDIR}\PlayOnline.Utils.FFXIConfigEditor.dll"
-  File "${BUILDDIR}\PlayOnline.Utils.FFXIDataBrowser.dll"
-  File "${BUILDDIR}\PlayOnline.Utils.FFXIMacroManager.dll"
-  File "${BUILDDIR}\PlayOnline.Utils.TetraViewer.dll"
-  File "${BUILDDIR}\POLUtils.exe"
-  File "${BUILDDIR}\POLUtils.exe.manifest"
+  File           "${BUILDDIR}\PlayOnline.Core.dll"
+  File /nonfatal "${BUILDDIR}\PlayOnline.Utils.*.dll"
+  File           "${BUILDDIR}\PlayOnline.FFXI.dll"
+; File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
+  File           "${BUILDDIR}\POLUtils.exe"
+  File           "${BUILDDIR}\POLUtils.exe.manifest"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
