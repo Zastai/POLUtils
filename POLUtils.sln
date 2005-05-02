@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIConfig
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIItemComparison", "PlayOnline.Utils.FFXIItemComparison\PlayOnline.Utils.FFXIItemComparison.csproj", "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -69,6 +73,10 @@ Global
 		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug.Build.0 = Debug|.NET
 		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.ActiveCfg = Release|.NET
 		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.Build.0 = Release|.NET
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug.ActiveCfg = Debug|.NET
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug.Build.0 = Debug|.NET
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release.ActiveCfg = Release|.NET
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
