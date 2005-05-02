@@ -125,6 +125,11 @@
                     Project = "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "PlayOnline.Utils.FFXIItemComparison"
+                    Project = "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
