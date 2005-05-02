@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "PlayOnline.Utils.FFXIDataBrowser"
+                AssemblyName = "PlayOnline.FFXI.Utils.DataBrowser"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"

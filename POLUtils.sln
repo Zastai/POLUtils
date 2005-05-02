@@ -11,27 +11,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI", "PlayOnli
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.ConfigEditor", "PlayOnline.Utils.FFXIConfigEditor\PlayOnline.FFXI.Utils.ConfigEditor.csproj", "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.DataBrowser", "PlayOnline.Utils.FFXIDataBrowser\PlayOnline.FFXI.Utils.DataBrowser.csproj", "{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.ItemComparison", "PlayOnline.Utils.FFXIItemComparison\PlayOnline.FFXI.Utils.ItemComparison.csproj", "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.MacroManager", "PlayOnline.Utils.FFXIMacroManager\PlayOnline.FFXI.Utils.MacroManager.csproj", "{966ACE61-C745-4B5E-AFFA-31A50E24341B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.AudioManager", "PlayOnline.Utils.AudioManager\PlayOnline.Utils.AudioManager.csproj", "{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIDataBrowser", "PlayOnline.Utils.FFXIDataBrowser\PlayOnline.Utils.FFXIDataBrowser.csproj", "{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIMacroManager", "PlayOnline.Utils.FFXIMacroManager\PlayOnline.Utils.FFXIMacroManager.csproj", "{966ACE61-C745-4B5E-AFFA-31A50E24341B}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.TetraViewer", "PlayOnline.Utils.TetraViewer\PlayOnline.Utils.TetraViewer.csproj", "{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIConfigEditor", "PlayOnline.Utils.FFXIConfigEditor\PlayOnline.Utils.FFXIConfigEditor.csproj", "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.FFXIItemComparison", "PlayOnline.Utils.FFXIItemComparison\PlayOnline.Utils.FFXIItemComparison.csproj", "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

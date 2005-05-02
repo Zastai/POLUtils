@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.Utils.FFXIDataBrowser")]
+[assembly: AssemblyTitle        ("PlayOnline.FFXI.Utils.DataBrowser")]
 [assembly: AssemblyDescription  ("Components for browsing Final Fantasy XI data files")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]

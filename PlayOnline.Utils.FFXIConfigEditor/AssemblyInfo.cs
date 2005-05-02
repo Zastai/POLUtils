@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.Utils.FFXIConfigEditor")]
+[assembly: AssemblyTitle        ("PlayOnline.FFXI.Utils.ConfigEditor")]
 [assembly: AssemblyDescription  ("Components for editing Final Fantasy XI configuration")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]

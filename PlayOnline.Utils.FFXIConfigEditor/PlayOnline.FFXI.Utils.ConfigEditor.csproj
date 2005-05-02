@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "PlayOnline.Utils.FFXIConfigEditor"
+                AssemblyName = "PlayOnline.FFXI.Utils.ConfigEditor"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"

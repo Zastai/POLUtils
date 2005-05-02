@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.Utils.FFXIItemComparison")]
+[assembly: AssemblyTitle        ("PlayOnline.FFXI.Utils.ItemComparison")]
 [assembly: AssemblyDescription  ("Components for comparing exported FFXI item data")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]

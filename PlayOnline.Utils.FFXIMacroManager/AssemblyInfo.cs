@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.Utils.FFXIMacroManager")]
+[assembly: AssemblyTitle        ("PlayOnline.FFXI.Utils.MacroManager")]
 [assembly: AssemblyDescription  ("Components for managing Final Fantasy XI macros")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
