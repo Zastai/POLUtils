@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "WinExe"
                 PreBuildEvent = ""
-                PostBuildEvent = 'make -C "$(ProjectDir)Web"'
+                PostBuildEvent = 'rem This is run in $(OutDir), not $(ProjectDir)!&#xd;&#xa;copy "$(ProjectDir)$(TargetFileName).manifest" "." >NUL&#xd;&#xa;make -C "$(ProjectDir)Web"'
                 RootNamespace = ""
                 RunPostBuildEvent = "Always"
                 StartupObject = "PlayOnline.Utils.POLUtils"
