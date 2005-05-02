@@ -254,6 +254,7 @@ namespace PlayOnline.Utils.FFXIDataBrowser {
       this.lstItems.Font = ((System.Drawing.Font)(resources.GetObject("lstItems.Font")));
       this.lstItems.FullRowSelect = true;
       this.lstItems.GridLines = true;
+      this.lstItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
       this.lstItems.HideSelection = false;
       this.lstItems.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lstItems.ImeMode")));
       this.lstItems.LabelWrap = ((bool)(resources.GetObject("lstItems.LabelWrap")));
