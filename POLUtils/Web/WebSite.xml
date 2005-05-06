@@ -24,6 +24,7 @@
 	      someone to give me the info)</li>
 	  <li>data browsers for Tetra Master and FFXI</li>
 	  <li>an offline macro editor for FFXI</li>
+	  <li>a configuration editor for FFXI</li>
 	</ul>
       </p>
     </para>
@@ -46,7 +47,9 @@
         page to process shift-jis.  However, the shift-jis codepage isn't installed by default.  You can easily
         install it in one of two ways: either you enable support for East-Asian languages (Control Panel\Regional
         and Language Options\Languages), but that requires 230MB of disk space, or you can just make sure
-        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.
+        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.<br/>
+        As of version 0.5.0, POLUtils uses a handwritten encoding handler for FFXI, so no additional codepages
+        should be needed.
       </p>
     </para>
     <para>
@@ -82,6 +85,12 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.5.1 Release" author="Pebbles" date="May 6th, 2005">
+      <p>Today I'm releasing POLUtils 0.5.1, a collection of PlayOnline-related utilities.</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>Fixed broken loading of Managed DirectSound.</li>
+      </ul></p>
+    </news-item>
     <news-item title="POLUtils 0.5.0 Release" author="Pebbles" date="May 1st, 2005">
       <p>Today I'm releasing POLUtils 0.5.0, a collection of PlayOnline-related utilities.</p>
       <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
@@ -273,6 +282,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.5.1-Release.exe">
+	Fixed loading of Managed DirectSound.<br/>
+      </file>
       <file name="POLUtils-0.5.0-Release.exe">
 	Reworked data browser, removed codepage dependencies, added config editor.<br/>
       </file>
@@ -285,15 +297,17 @@
       <file name="POLUtils-0.3.0-Release.zip">
 	The second release of the POL Utils; introduces an initial version of the FFXI Data Browser.<br/>
       </file>
+      <file name="POLUtils-0.2.0-Release.zip">
+	The first real release of the POL Utils.<br/>
+      </file>
+    </group>
+    <group name="POLUtils - Support Files">
       <file name="mdxredist.msi">
 	The latest version (9.0c, December 2004) of the Microsoft Managed DirectX redistributable.<br/>
 	As of version 0.3, the POLUtils Audio Manager component dynamically accesses Managed DirectSound, so
 	it no longer depends on a specific version being installed (in fact it should be able to handle its
 	absence just fine).  So if you already have an older version installed, it's not required to install
 	this as well (but it also doesn't hurt).
-      </file>
-      <file name="POLUtils-0.2.0-Release.zip">
-	The first real release of the POL Utils.<br/>
       </file>
       <file name="mdxredist-0.2.msi">
 	Microsoft Managed DirectX redistributable (9.0b) - needed by the Audio Manager component of POLUtils 0.2.
