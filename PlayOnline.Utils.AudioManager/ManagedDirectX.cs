@@ -21,16 +21,10 @@ namespace ManagedDirectX {
 
     private static void Load() {
       if (!ManagedDirectSound.Initialized) {
-	try {
-	RegistryKey MDXRoot = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\.NETFramework\AssemblyFolders\ManagedDX");
-	  if (MDXRoot != null) {
-	  AppDomainSetup DXDomainSetup = new AppDomainSetup();
-	    DXDomainSetup.ApplicationBase = MDXRoot.GetValue("") as string;
-	  AppDomain DXDomain = AppDomain.CreateDomain("ManagedDirectX", AppDomain.CurrentDomain.Evidence, DXDomainSetup);
-	    ManagedDirectSound.Assembly = DXDomain.Load("Microsoft.DirectX.DirectSound");
-	    MDXRoot.Close();
-	  }
-	} catch (Exception E) { Console.WriteLine(E.ToString()); }
+	if (ManagedDirectSound.Assembly == null)
+	  try { ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"); } catch { }
+	if (ManagedDirectSound.Assembly == null)
+	  try { ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"); } catch { }
 	ManagedDirectSound.Initialized = true;
       }
     }
