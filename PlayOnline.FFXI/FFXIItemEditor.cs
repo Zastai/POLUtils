@@ -11,6 +11,9 @@ namespace PlayOnline.FFXI {
 
   public class FFXIItemEditor : System.Windows.Forms.UserControl {
 
+    private FFXIItem ItemToShow_    = null;
+    private CheckBox LockedViewMode = null;
+
     #region Controls
 
     private System.Windows.Forms.GroupBox grpItemViewMode;
@@ -70,12 +73,7 @@ namespace PlayOnline.FFXI {
 
     #endregion
 
-    public FFXIItemEditor() {
-      this.InitializeComponent();
-      this.ShowItem();
-    }
-
-    private FFXIItem ItemToShow_ = null;
+    #region Properties
 
     [Browsable(false)]
     public FFXIItem Item {
@@ -113,10 +111,128 @@ namespace PlayOnline.FFXI {
       set { }
     }
 
+    #endregion
+
+    #region Public Methods
+
+    public FFXIItemEditor() {
+      this.InitializeComponent();
+      this.ShowItem();
+    }
+
+    public void Reset() {
+      // this.UnmarkAll();
+      this.UnlockViewMode();
+    }
+
+    public void UnlockViewMode() {
+      this.chkViewItemAsEArmor.Enabled  = true;
+      this.chkViewItemAsEObject.Enabled = true;
+      this.chkViewItemAsEWeapon.Enabled = true;
+      this.chkViewItemAsJArmor.Enabled  = true;
+      this.chkViewItemAsJObject.Enabled = true;
+      this.chkViewItemAsJWeapon.Enabled = true;
+      this.LockedViewMode = null;
+    }
+
+    public void LockViewMode() { // Locks selection, but leaves autodetection active
+      this.chkViewItemAsEArmor.Enabled  = false;
+      this.chkViewItemAsEObject.Enabled = false;
+      this.chkViewItemAsEWeapon.Enabled = false;
+      this.chkViewItemAsJArmor.Enabled  = false;
+      this.chkViewItemAsJObject.Enabled = false;
+      this.chkViewItemAsJWeapon.Enabled = false;
+      this.LockedViewMode = null;
+    }
+
+    public void LockViewMode(ItemDataLanguage L, ItemDataType T) { // Locks view to the specified mode
+      this.LockedViewMode = null;
+      this.chkViewItemAsEArmor.Enabled  = (L == ItemDataLanguage.English  && T == ItemDataType.Armor);
+      this.chkViewItemAsEObject.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Object);
+      this.chkViewItemAsEWeapon.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Weapon);
+      this.chkViewItemAsJArmor.Enabled  = (L == ItemDataLanguage.Japanese && T == ItemDataType.Armor);
+      this.chkViewItemAsJObject.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Object);
+      this.chkViewItemAsJWeapon.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Weapon);
+      if (this.chkViewItemAsEArmor.Enabled)  this.LockedViewMode = this.chkViewItemAsEArmor;
+      if (this.chkViewItemAsEObject.Enabled) this.LockedViewMode = this.chkViewItemAsEObject;
+      if (this.chkViewItemAsEWeapon.Enabled) this.LockedViewMode = this.chkViewItemAsEWeapon;
+      if (this.chkViewItemAsJArmor.Enabled)  this.LockedViewMode = this.chkViewItemAsJArmor;
+      if (this.chkViewItemAsJObject.Enabled) this.LockedViewMode = this.chkViewItemAsJObject;
+      if (this.chkViewItemAsJWeapon.Enabled) this.LockedViewMode = this.chkViewItemAsJWeapon;
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void DetectViewMode(FFXIItem I) {
+    CheckBox SelectedMode = this.chkViewItemAsEObject;
+      switch (I.Common.Type) {
+	case ItemType.Armor: {
+	string LogNames = I.ENArmor.LogNameSingular + I.ENArmor.LogNamePlural;
+	  if (LogNames == String.Empty)
+	    SelectedMode = this.chkViewItemAsJArmor;
+	  else {
+	  bool ExtendedCharSeen = false;
+	    foreach (char C in LogNames) {
+	      if ((int) C > 0x100) {
+		ExtendedCharSeen = true;
+		break;
+	      }
+	    }
+	    if (ExtendedCharSeen)
+	      SelectedMode = this.chkViewItemAsEArmor;
+	    else
+	      SelectedMode = this.chkViewItemAsJArmor;
+	  }
+	  break;
+	}
+	case ItemType.Weapon: {
+	string LogNames = I.ENWeapon.LogNameSingular + I.ENArmor.LogNamePlural;
+	  if (LogNames == String.Empty)
+	    SelectedMode = this.chkViewItemAsJWeapon;
+	  else {
+	  bool ExtendedCharSeen = false;
+	    foreach (char C in LogNames) {
+	      if ((int) C > 0x100) {
+		ExtendedCharSeen = true;
+		break;
+	      }
+	    }
+	    if (ExtendedCharSeen)
+	      SelectedMode = this.chkViewItemAsEWeapon;
+	    else
+	      SelectedMode = this.chkViewItemAsJWeapon;
+	  }
+	  break;
+	}
+	default: {
+	string LogNames = I.ENObject.LogNameSingular + I.ENArmor.LogNamePlural;
+	  if (LogNames == String.Empty)
+	    SelectedMode = this.chkViewItemAsJObject;
+	  else {
+	  bool ExtendedCharSeen = false;
+	    foreach (char C in LogNames) {
+	      if ((int) C > 0x100) {
+		ExtendedCharSeen = true;
+		break;
+	      }
+	    }
+	    if (ExtendedCharSeen)
+	      SelectedMode = this.chkViewItemAsEObject;
+	    else
+	      SelectedMode = this.chkViewItemAsJObject;
+	  }
+	  break;
+	}
+      }
+      SelectedMode.Checked = true;
+    }
+
     private void ShowItem() {
+    FFXIItem I = this.ItemToShow_;
       this.chkViewItemAsEArmor.Checked = this.chkViewItemAsEObject.Checked = this.chkViewItemAsEWeapon.Checked = false;
       this.chkViewItemAsJArmor.Checked = this.chkViewItemAsJObject.Checked = this.chkViewItemAsJWeapon.Checked = false;
-    FFXIItem I = this.ItemToShow_;
       if (I != null) {
 	// Common Info
 	this.picItemIcon.Image     = I.IconGraphic.Bitmap;
@@ -125,59 +241,10 @@ namespace PlayOnline.FFXI {
 	this.txtItemType.Text      = String.Format("{0:X} ({0})",  I.Common.Type);
 	this.txtItemFlags.Text     = String.Format("{0:X} ({0})",  I.Common.Flags);
 	this.txtItemStackSize.Text = String.Format("{0}",          I.Common.StackSize);
-	switch (I.Common.Type) {
-	  case ItemType.Armor: {
-	  string LogNames = I.ENArmor.LogNameSingular + I.ENArmor.LogNamePlural;
-	    if (LogNames == String.Empty)
-	      this.chkViewItemAsJArmor.Checked = true;
-	    else {
-	    bool ExtendedCharSeen = false;
-	      foreach (char C in LogNames) {
-		if ((int) C > 0x100) {
-		  ExtendedCharSeen = true;
-		  break;
-		}
-	      }
-	      this.chkViewItemAsEArmor.Checked = !ExtendedCharSeen;
-	      this.chkViewItemAsJArmor.Checked =  ExtendedCharSeen;
-	    }
-	    break;
-	  }
-	  case ItemType.Weapon: {
-	  string LogNames = I.ENWeapon.LogNameSingular + I.ENArmor.LogNamePlural;
-	    if (LogNames == String.Empty)
-	      this.chkViewItemAsJWeapon.Checked = true;
-	    else {
-	    bool ExtendedCharSeen = false;
-	      foreach (char C in LogNames) {
-		if ((int) C > 0x100) {
-		  ExtendedCharSeen = true;
-		  break;
-		}
-	      }
-	      this.chkViewItemAsEWeapon.Checked = !ExtendedCharSeen;
-	      this.chkViewItemAsJWeapon.Checked =  ExtendedCharSeen;
-	    }
-	    break;
-	  }
-	  default: {
-	  string LogNames = I.ENObject.LogNameSingular + I.ENArmor.LogNamePlural;
-	    if (LogNames == String.Empty)
-	      this.chkViewItemAsJObject.Checked = true;
-	    else {
-	    bool ExtendedCharSeen = false;
-	      foreach (char C in LogNames) {
-		if ((int) C > 0x100) {
-		  ExtendedCharSeen = true;
-		  break;
-		}
-	      }
-	      this.chkViewItemAsEObject.Checked = !ExtendedCharSeen;
-	      this.chkViewItemAsJObject.Checked =  ExtendedCharSeen;
-	    }
-	    break;
-	  }
-	}
+	if (this.LockedViewMode != null)
+	  this.LockedViewMode.Checked = true;
+	else
+	  this.DetectViewMode(I);
       }
       else { // Clear all fields
 	this.picItemIcon.Image = null;
@@ -190,6 +257,8 @@ namespace PlayOnline.FFXI {
 	this.grpSpecializedItemInfo.Visible = false;
       }
     }
+
+    #endregion
 
     #region Component Designer generated code
 
