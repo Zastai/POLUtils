@@ -19,7 +19,7 @@
                 PreBuildEvent = ""
                 PostBuildEvent = 'rem This is run in $(OutDir), not $(ProjectDir)!&#xd;&#xa;copy "$(ProjectDir)$(TargetFileName).manifest" "." >NUL&#xd;&#xa;make -C "$(ProjectDir)Web"'
                 RootNamespace = ""
-                RunPostBuildEvent = "Always"
+                RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = "POLUtils.POLUtils"
             >
                 <Config
@@ -32,7 +32,7 @@
                     DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
-                    IncrementalBuild = "false"
+                    IncrementalBuild = "true"
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
