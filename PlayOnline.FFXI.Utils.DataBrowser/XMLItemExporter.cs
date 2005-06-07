@@ -56,14 +56,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  if (XMLItemExporter.dlgOptions.IncludeIconData) { // Add the icon (raw bitmap data, in base64)
 	  XmlElement XIcon = XD.CreateElement("icon");
 	    {
-	    XmlAttribute XHeight = XD.CreateAttribute("height");
-	      XHeight.InnerText = I.IconGraphic.Height.ToString();
-	      XIcon.Attributes.Append(XHeight);
+	    XmlAttribute XCategory = XD.CreateAttribute("category");
+	      XCategory.InnerText = I.IconGraphic.Category;
+	      XIcon.Attributes.Append(XCategory);
 	    }
 	    {
-	    XmlAttribute XWidth = XD.CreateAttribute("width");
-	      XWidth.InnerText = I.IconGraphic.Width.ToString();
-	      XIcon.Attributes.Append(XWidth);
+	    XmlAttribute XID = XD.CreateAttribute("id");
+	      XID.InnerText = I.IconGraphic.ID;
+	      XIcon.Attributes.Append(XID);
+	    }
+	    {
+	    XmlAttribute XFormat = XD.CreateAttribute("format");
+	      XFormat.InnerText = I.IconGraphic.Format;
+	      XIcon.Attributes.Append(XFormat);
 	    }
 	    {
 	    XmlAttribute XContentType = XD.CreateAttribute("content-type");
