@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Xml;
 
 using PlayOnline.Core;
 using PlayOnline.FFXI;
@@ -21,6 +23,11 @@ namespace PlayOnline.FFXI {
       this.Data_        = new byte[0x200];
       Array.Copy(Data, 0, this.Data_, 0, 0x200);
       this.IconGraphic_ = IconGraphic;
+    }
+
+    public FFXIItem(long Index, XmlElement DumpedItem) {
+      this.Index_ = Index;
+      this.UndumpItem(DumpedItem);
     }
 
     public long Index {
@@ -43,6 +50,17 @@ namespace PlayOnline.FFXI {
 
     public override string ToString() {
       return String.Format("{0:0000} - Item #{1:X4} ({2})", this.Index_, this.Common.ID, this.Common.Type);
+    }
+
+    private void UndumpItem(XmlElement DumpedItem) {
+      this.Common_   = new DumpedItemInfo(DumpedItem);
+      this.ENObject_ = new DumpedObjectInfo(DumpedItem);
+      this.JPObject_ = this.ENObject_;
+      this.ENArmor_  = new DumpedArmorInfo(DumpedItem);
+      this.JPArmor_  = this.ENArmor_;
+      this.ENWeapon_ = new DumpedWeaponInfo(DumpedItem);
+      this.JPWeapon_ = this.ENWeapon_;
+      this.IconGraphic_ = FFXIGraphic.UnDump(DumpedItem);
     }
 
     #region Property Base Classes
@@ -392,7 +410,9 @@ namespace PlayOnline.FFXI {
 
     #region The Property Handlers
 
-    #region Common Properties
+    #region ByteStream-Based
+
+    #region Common Property Handler
 
     private class CommonInfo : BasicItemInfo {
 
@@ -404,18 +424,9 @@ namespace PlayOnline.FFXI {
 
     }
 
-    private CommonInfo Common_ = null;
-    public BasicItemInfo Common {
-      get {
-	if (this.Common_ == null)
-	  this.Common_ = new CommonInfo(this.RawData);
-	return this.Common_;
-      }
-    }
-
     #endregion
 
-    #region Object Properties
+    #region Object Property Handler
 
     private class LangSpecificObjectInfo : ObjectInfo {
 
@@ -446,27 +457,9 @@ namespace PlayOnline.FFXI {
 
     }
 
-    private LangSpecificObjectInfo ENObject_ = null;
-    public ObjectInfo ENObject {
-      get {
-	if (this.ENObject_ == null)
-	  this.ENObject_ = new LangSpecificObjectInfo(this.RawData, ItemDataLanguage.English);
-	return this.ENObject_;
-      }
-    }
-
-    private LangSpecificObjectInfo JPObject_ = null;
-    public ObjectInfo JPObject {
-      get {
-	if (this.JPObject_ == null)
-	  this.JPObject_ = new LangSpecificObjectInfo(this.RawData, ItemDataLanguage.Japanese);
-	return this.JPObject_;
-      }
-    }
-
     #endregion
 
-    #region Armor Properties
+    #region Armor Property Handler
 
     private class LangSpecificArmorInfo : ArmorInfo {
 
@@ -503,27 +496,9 @@ namespace PlayOnline.FFXI {
 
     }
 
-    private LangSpecificArmorInfo ENArmor_ = null;
-    public ArmorInfo ENArmor {
-      get {
-	if (this.ENArmor_ == null)
-	  this.ENArmor_ = new LangSpecificArmorInfo(this.RawData, ItemDataLanguage.English);
-	return this.ENArmor_;
-      }
-    }
-
-    private LangSpecificArmorInfo JPArmor_ = null;
-    public ArmorInfo JPArmor {
-      get {
-	if (this.JPArmor_ == null)
-	  this.JPArmor_ = new LangSpecificArmorInfo(this.RawData, ItemDataLanguage.Japanese);
-	return this.JPArmor_;
-      }
-    }
-
     #endregion
 
-    #region Weapon Properties
+    #region Weapon Property Handler
 
     private class LangSpecificWeaponInfo : WeaponInfo {
 
@@ -567,7 +542,296 @@ namespace PlayOnline.FFXI {
 
     }
 
-    private LangSpecificWeaponInfo ENWeapon_ = null;
+    #endregion
+
+    #endregion
+
+    #region XML-Based
+
+    private class DumpedItemInfo : BasicItemInfo {
+
+      public DumpedItemInfo(XmlElement DumpedItem) {
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
+	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
+	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
+	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
+	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
+	} catch { }
+      }
+
+    }
+
+    private class DumpedObjectInfo : ObjectInfo {
+
+      public DumpedObjectInfo(XmlElement DumpedItem) {
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
+	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
+	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
+	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
+	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
+	  this.EnglishName_ = XField.InnerText;
+	} catch { this.EnglishName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
+	  this.JapaneseName_ = XField.InnerText;
+	} catch { this.JapaneseName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
+	  this.LogNameSingular_ = XField.InnerText;
+	} catch { this.LogNameSingular_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
+	  this.LogNamePlural_ = XField.InnerText;
+	} catch { this.LogNamePlural_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
+	  this.Description_ = XField.InnerText;
+	} catch { this.Description_ = String.Empty; }
+      }
+
+    }
+
+    private class DumpedArmorInfo : ArmorInfo {
+
+      public DumpedArmorInfo(XmlElement DumpedItem) {
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
+	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
+	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
+	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
+	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ResourceID']");
+	  this.ResourceID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
+	  this.Level_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Slots']");
+	  this.Slots_ = (EquipmentSlot) Enum.Parse(typeof(EquipmentSlot), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Races']");
+	  this.Races_ = (Race) Enum.Parse(typeof(Race), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Jobs']");
+	  this.Jobs_ = (Job) Enum.Parse(typeof(Job), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ShieldSize']");
+	  this.ShieldSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
+	  this.EnglishName_ = XField.InnerText;
+	} catch { this.EnglishName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
+	  this.JapaneseName_ = XField.InnerText;
+	} catch { this.JapaneseName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
+	  this.LogNameSingular_ = XField.InnerText;
+	} catch { this.LogNameSingular_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
+	  this.LogNamePlural_ = XField.InnerText;
+	} catch { this.LogNamePlural_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
+	  this.Description_ = XField.InnerText;
+	} catch { this.Description_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'MaxCharges']");
+	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");
+	  this.EquipDelay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ReuseTimer']");
+	  this.ReuseTimer_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+      }
+
+    }
+
+    private class DumpedWeaponInfo : WeaponInfo {
+
+      public DumpedWeaponInfo(XmlElement DumpedItem) {
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
+	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
+	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
+	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
+	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ResourceID']");
+	  this.ResourceID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
+	  this.Level_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Slots']");
+	  this.Slots_ = (EquipmentSlot) Enum.Parse(typeof(EquipmentSlot), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Races']");
+	  this.Races_ = (Race) Enum.Parse(typeof(Race), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Jobs']");
+	  this.Jobs_ = (Job) Enum.Parse(typeof(Job), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Damage']");
+	  this.Damage_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Delay']");
+	  this.Delay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Skill']");
+	  this.Skill_ = (ItemSkill) Enum.Parse(typeof(ItemSkill), XField.InnerText, false);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
+	  this.EnglishName_ = XField.InnerText;
+	} catch { this.EnglishName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
+	  this.JapaneseName_ = XField.InnerText;
+	} catch { this.JapaneseName_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
+	  this.LogNameSingular_ = XField.InnerText;
+	} catch { this.LogNameSingular_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
+	  this.LogNamePlural_ = XField.InnerText;
+	} catch { this.LogNamePlural_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
+	  this.Description_ = XField.InnerText;
+	} catch { this.Description_ = String.Empty; }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'MaxCharges']");
+	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");
+	  this.EquipDelay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ReuseTimer']");
+	  this.ReuseTimer_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+      }
+
+    }
+
+    #endregion
+
+    #endregion
+
+    #region The Main Properties
+
+    private BasicItemInfo Common_ = null;
+    public BasicItemInfo Common {
+      get {
+	if (this.Common_ == null)
+	  this.Common_ = new CommonInfo(this.RawData);
+	return this.Common_;
+      }
+    }
+
+    private ObjectInfo ENObject_ = null;
+    public ObjectInfo ENObject {
+      get {
+	if (this.ENObject_ == null)
+	  this.ENObject_ = new LangSpecificObjectInfo(this.RawData, ItemDataLanguage.English);
+	return this.ENObject_;
+      }
+    }
+
+    private ObjectInfo JPObject_ = null;
+    public ObjectInfo JPObject {
+      get {
+	if (this.JPObject_ == null)
+	  this.JPObject_ = new LangSpecificObjectInfo(this.RawData, ItemDataLanguage.Japanese);
+	return this.JPObject_;
+      }
+    }
+
+    private ArmorInfo ENArmor_ = null;
+    public ArmorInfo ENArmor {
+      get {
+	if (this.ENArmor_ == null)
+	  this.ENArmor_ = new LangSpecificArmorInfo(this.RawData, ItemDataLanguage.English);
+	return this.ENArmor_;
+      }
+    }
+
+    private ArmorInfo JPArmor_ = null;
+    public ArmorInfo JPArmor {
+      get {
+	if (this.JPArmor_ == null)
+	  this.JPArmor_ = new LangSpecificArmorInfo(this.RawData, ItemDataLanguage.Japanese);
+	return this.JPArmor_;
+      }
+    }
+
+    private WeaponInfo ENWeapon_ = null;
     public WeaponInfo ENWeapon {
       get {
 	if (this.ENWeapon_ == null)
@@ -576,7 +840,7 @@ namespace PlayOnline.FFXI {
       }
     }
 
-    private LangSpecificWeaponInfo JPWeapon_ = null;
+    private WeaponInfo JPWeapon_ = null;
     public WeaponInfo JPWeapon {
       get {
 	if (this.JPWeapon_ == null)
@@ -584,8 +848,6 @@ namespace PlayOnline.FFXI {
 	return this.JPWeapon_;
       }
     }
-
-    #endregion
 
     #endregion
 
