@@ -28,6 +28,7 @@ namespace POLUtils {
     private System.Windows.Forms.Button btnTetraViewer;
     private System.Windows.Forms.Label lblToolLanguage;
     private System.Windows.Forms.Button btnFFXIConfigEditor;
+    private System.Windows.Forms.Button btnFFXIItemComparison;
 
     private System.ComponentModel.Container components = null;
 
@@ -78,6 +79,7 @@ namespace POLUtils {
       this.btnFFXIMacroManager = new System.Windows.Forms.Button();
       this.btnFFXIDataBrowser = new System.Windows.Forms.Button();
       this.btnFFXIConfigEditor = new System.Windows.Forms.Button();
+      this.btnFFXIItemComparison = new System.Windows.Forms.Button();
       this.grpRegion.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -348,6 +350,30 @@ namespace POLUtils {
       this.btnFFXIConfigEditor.Visible = ((bool)(resources.GetObject("btnFFXIConfigEditor.Visible")));
       this.btnFFXIConfigEditor.Click += new System.EventHandler(this.btnFFXIConfigEditor_Click);
       // 
+      // btnFFXIItemComparison
+      // 
+      this.btnFFXIItemComparison.AccessibleDescription = resources.GetString("btnFFXIItemComparison.AccessibleDescription");
+      this.btnFFXIItemComparison.AccessibleName = resources.GetString("btnFFXIItemComparison.AccessibleName");
+      this.btnFFXIItemComparison.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnFFXIItemComparison.Anchor")));
+      this.btnFFXIItemComparison.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFFXIItemComparison.BackgroundImage")));
+      this.btnFFXIItemComparison.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnFFXIItemComparison.Dock")));
+      this.btnFFXIItemComparison.Enabled = ((bool)(resources.GetObject("btnFFXIItemComparison.Enabled")));
+      this.btnFFXIItemComparison.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnFFXIItemComparison.FlatStyle")));
+      this.btnFFXIItemComparison.Font = ((System.Drawing.Font)(resources.GetObject("btnFFXIItemComparison.Font")));
+      this.btnFFXIItemComparison.Image = ((System.Drawing.Image)(resources.GetObject("btnFFXIItemComparison.Image")));
+      this.btnFFXIItemComparison.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnFFXIItemComparison.ImageAlign")));
+      this.btnFFXIItemComparison.ImageIndex = ((int)(resources.GetObject("btnFFXIItemComparison.ImageIndex")));
+      this.btnFFXIItemComparison.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnFFXIItemComparison.ImeMode")));
+      this.btnFFXIItemComparison.Location = ((System.Drawing.Point)(resources.GetObject("btnFFXIItemComparison.Location")));
+      this.btnFFXIItemComparison.Name = "btnFFXIItemComparison";
+      this.btnFFXIItemComparison.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnFFXIItemComparison.RightToLeft")));
+      this.btnFFXIItemComparison.Size = ((System.Drawing.Size)(resources.GetObject("btnFFXIItemComparison.Size")));
+      this.btnFFXIItemComparison.TabIndex = ((int)(resources.GetObject("btnFFXIItemComparison.TabIndex")));
+      this.btnFFXIItemComparison.Text = resources.GetString("btnFFXIItemComparison.Text");
+      this.btnFFXIItemComparison.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnFFXIItemComparison.TextAlign")));
+      this.btnFFXIItemComparison.Visible = ((bool)(resources.GetObject("btnFFXIItemComparison.Visible")));
+      this.btnFFXIItemComparison.Click += new System.EventHandler(this.btnFFXIItemComparison_Click);
+      // 
       // POLUtilsUI
       // 
       this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -358,6 +384,7 @@ namespace POLUtils {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+      this.Controls.Add(this.btnFFXIItemComparison);
       this.Controls.Add(this.btnFFXIConfigEditor);
       this.Controls.Add(this.btnFFXIDataBrowser);
       this.Controls.Add(this.btnFFXIMacroManager);
@@ -426,6 +453,14 @@ namespace POLUtils {
     private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow())
+	Utility.ShowDialog(this);
+      this.Show();
+      this.Activate();
+    }
+
+    private void btnFFXIItemComparison_Click(object sender, System.EventArgs e) {
+      this.Hide();
+      using (Form Utility = new PlayOnline.FFXI.Utils.ItemComparison.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();
