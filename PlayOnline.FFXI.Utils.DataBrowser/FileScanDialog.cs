@@ -281,7 +281,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  this.Images.Add(FG);
 	  Pos = BR.BaseStream.Position;
 	  this.SetProgress(Pos + 1, MaxPos);
-	  this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScanProgress"), ++ImageCount);
+	  if (FileScanDialog.ShowProgressDetails)
+	    this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScanProgress"), ++ImageCount);
 	}
 	else {
 	  BR.BaseStream.Seek(++Pos, SeekOrigin.Begin);
