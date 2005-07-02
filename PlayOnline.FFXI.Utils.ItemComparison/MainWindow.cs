@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -42,8 +43,70 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     public MainWindow() {
       this.InitializeComponent();
+      this.Icon = Icons.FileSearch;
       this.EnableNavigation();
     }
+
+    #region Item Loading
+
+    private void LoadItems(string FileName, FFXIItemEditor IE) {
+    ArrayList LoadedItems = new ArrayList();
+    ItemDataLanguage LoadedLanguage = ItemDataLanguage.English;
+    ItemDataType LoadedType = ItemDataType.Object;
+    Thread T = new Thread(new ThreadStart(this.TLoadItems));
+      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+      T.Start();
+      Application.DoEvents();
+      try {
+      XmlDocument XD = new XmlDocument();
+	XD.Load(FileName);
+	Application.DoEvents();
+	if (XD.DocumentElement.Name == "ffxi-item-info") {
+	int Index = 0;
+	  {
+	  XmlNode XLang = XD.DocumentElement.SelectSingleNode("data-language");
+	    try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XLang.InnerText); } catch { }
+	  XmlNode XType = XD.DocumentElement.SelectSingleNode("data-type");
+	    try { LoadedType = (ItemDataType) Enum.Parse(typeof(ItemDataType), XType.InnerText); } catch { }
+	    IE.LockViewMode(LoadedLanguage, LoadedType);
+	  }
+	  foreach (XmlNode XN in XD.DocumentElement.ChildNodes) {
+	    if (XN is XmlElement && XN.Name == "item") {
+	      LoadedItems.Add(new FFXIItem(Index++, XN as XmlElement));
+	      Application.DoEvents();
+	    }
+	  }
+	}
+      } catch { }
+      {
+      FFXIItem[] LoadedItemArray = (FFXIItem[]) LoadedItems.ToArray(typeof(FFXIItem));
+	if (IE == this.ieLeft) {
+	  this.LeftItems = LoadedItemArray;
+	  this.LLanguage = LoadedLanguage;
+	  this.LType     = LoadedType;
+	}
+	else {
+	  this.RightItems = LoadedItemArray;
+	  this.RLanguage  = LoadedLanguage;
+	  this.RType      = LoadedType;
+	}
+      }
+      this.LeftItemsShown = null;
+      this.RightItemsShown = null;
+      if (this.RightItems == null && this.LeftItems == null)
+	this.CurrentItem = -1;
+      else
+	this.CurrentItem = 0;
+      if (this.RightItems != null && this.LeftItems != null)
+	this.btnRemoveUnchanged.Enabled = true;
+      T.Abort();
+      this.EnableNavigation();
+      this.MarkItemChanges();
+    }
+
+    #endregion
+
+    #region Item Display
 
     private string GetIconString(FFXIItem I) {
     string IconString = I.IconGraphic.ToString(); // general description
@@ -70,53 +133,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	  this.ieRight.MarkField(IF, FieldChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
 	}
       }
-    }
-
-    private void LoadItems(string FileName, FFXIItemEditor IE) {
-    ArrayList LoadedItems = new ArrayList();
-    ItemDataLanguage LoadedLanguage = ItemDataLanguage.English;
-    ItemDataType LoadedType = ItemDataType.Object;
-      try {
-      XmlDocument XD = new XmlDocument();
-	XD.Load(FileName);
-	if (XD.DocumentElement.Name == "ffxi-item-info") {
-	int Index = 0;
-	  {
-	  XmlNode XLang = XD.DocumentElement.SelectSingleNode("data-language");
-	    try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XLang.InnerText); } catch { }
-	  XmlNode XType = XD.DocumentElement.SelectSingleNode("data-type");
-	    try { LoadedType = (ItemDataType) Enum.Parse(typeof(ItemDataType), XType.InnerText); } catch { }
-	    IE.LockViewMode(LoadedLanguage, LoadedType);
-	  }
-	  foreach (XmlNode XN in XD.DocumentElement.ChildNodes) {
-	    if (XN is XmlElement && XN.Name == "item")
-	      LoadedItems.Add(new FFXIItem(Index++, XN as XmlElement));
-	  }
-	}
-      } catch { }
-      {
-      FFXIItem[] LoadedItemArray = (FFXIItem[]) LoadedItems.ToArray(typeof(FFXIItem));
-	if (IE == this.ieLeft) {
-	  this.LeftItems = LoadedItemArray;
-	  this.LLanguage = LoadedLanguage;
-	  this.LType     = LoadedType;
-	}
-	else {
-	  this.RightItems = LoadedItemArray;
-	  this.RLanguage  = LoadedLanguage;
-	  this.RType      = LoadedType;
-	}
-      }
-      this.LeftItemsShown = null;
-      this.RightItemsShown = null;
-      if (this.RightItems == null && this.LeftItems == null)
-	this.CurrentItem = -1;
-      else
-	this.CurrentItem = 0;
-      if (this.RightItems != null && this.LeftItems != null)
-	this.btnRemoveUnchanged.Enabled = true;
-      this.EnableNavigation();
-      this.MarkItemChanges();
     }
 
     private void EnableNavigation() {
@@ -153,6 +169,28 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieRight.Item = RightItem;
       this.ResumeLayout(true);
     }
+
+    #endregion
+
+    #region "Please Wait" Threads
+
+    public void TLoadItems() {
+    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:LoadItems"));
+      try {
+	Application.DoEvents();
+	PWD.ShowDialog(this);
+      } catch { PWD.Close(); PWD.Dispose(); }
+    }
+
+    public void TRemoveUnchanged() {
+    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:RemoveUnchanged"));
+      try {
+	Application.DoEvents();
+	PWD.ShowDialog(this);
+      } catch { PWD.Close(); PWD.Dispose(); }
+    }
+
+    #endregion
 
     #region Windows Form Designer generated code
 
@@ -406,26 +444,39 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private void btnRemoveUnchanged_Click(object sender, System.EventArgs e) {
       this.btnRemoveUnchanged.Enabled = false;
+    Thread T = new Thread(new ThreadStart(this.TLoadItems));
+      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+      T.Start();
+      Application.DoEvents();
       this.LeftItemsShown  = null;
       this.RightItemsShown = null;
     ArrayList LIS = new ArrayList();
     ArrayList RIS = new ArrayList();
       for (int i = 0; i < this.LeftItems.Length && i < this.RightItems.Length; ++i) {
-	foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
-	  if (this.LeftItems[i].GetInfo(this.LLanguage, this.LType).GetFieldText(IF)
-	      != this.RightItems[i].GetInfo(this.RLanguage, this.RType).GetFieldText(IF)) {
-	    LIS.Add(this.LeftItems[i]);
-	    RIS.Add(this.RightItems[i]);
-	    break;
+      bool DifferenceSeen = false;
+	if (this.GetIconString(this.LeftItems[i]) != this.GetIconString(this.RightItems[i]))
+	  DifferenceSeen = true;
+	else {
+	  foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
+	    if (this.LeftItems[i].GetInfo(this.LLanguage, this.LType).GetFieldText(IF)
+		!= this.RightItems[i].GetInfo(this.RLanguage, this.RType).GetFieldText(IF)) {
+	      DifferenceSeen = true;
+	      break;
+	    }
 	  }
 	}
+	if (DifferenceSeen) {
+	  LIS.Add(this.LeftItems[i]);
+	  RIS.Add(this.RightItems[i]);
+	}
+	Application.DoEvents();
       }
-      if (LIS.Count > 0 && RIS.Count > 0) {
-	this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
-	this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
-      }
-      this.CurrentItem = ((this.RightItems == null && this.LeftItems == null) ? -1 : 0);
+      T.Abort();
+      this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
+      this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
+      this.CurrentItem = ((LIS.Count == 0) ? -1 : 0);
       this.EnableNavigation();
+      this.MarkItemChanges();
     }
 
     #endregion
