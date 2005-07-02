@@ -11,8 +11,8 @@ namespace PlayOnline.FFXI {
 
   public class FFXIItemEditor : System.Windows.Forms.UserControl {
 
-    private FFXIItem ItemToShow_    = null;
-    private CheckBox LockedViewMode = null;
+    private FFXIItem ItemToShow_     = null;
+    private CheckBox LockedViewMode_ = null;
 
     #region Controls
 
@@ -87,6 +87,15 @@ namespace PlayOnline.FFXI {
     }
 
     [Browsable(false)]
+    public FFXIItem.IItemInfo ItemInfo {
+      get {
+	if (this.ItemToShow_ == null)
+	  return null;
+	return this.ItemToShow_.GetInfo(this.ChosenItemLanguage, this.ChosenItemType);
+      }
+    }
+
+    [Browsable(false)]
     public ItemDataLanguage ChosenItemLanguage {
       get {
 	return ((this.chkViewItemAsEArmor.Checked || this.chkViewItemAsEObject.Checked || this.chkViewItemAsEWeapon.Checked) ? ItemDataLanguage.English : ItemDataLanguage.Japanese);
@@ -113,6 +122,65 @@ namespace PlayOnline.FFXI {
 
     #endregion
 
+    #region Field Marks
+
+    public enum Mark { None, New, Changed, Removed };
+
+    private Control GetFieldControl(ItemField IF) {
+      switch (IF) {
+	case ItemField.Damage:          return this.txtItemDamage;
+	case ItemField.Delay:           return this.txtItemDelay;
+	case ItemField.Description:     return this.txtItemDescription;
+	case ItemField.EnglishName:     return this.txtItemEName;
+	case ItemField.EquipDelay:      return this.txtItemEquipDelay;
+	case ItemField.Flags:           return this.txtItemFlags;
+	case ItemField.ID:              return this.txtItemID;
+	case ItemField.JapaneseName:    return this.txtItemJName;
+	case ItemField.Jobs:            return this.txtItemJobs;
+	case ItemField.Level:           return this.txtItemLevel;
+	case ItemField.LogNamePlural:   return this.txtItemPlural;
+	case ItemField.LogNameSingular: return this.txtItemSingular;
+	case ItemField.MaxCharges:      return this.txtItemMaxCharges;
+	case ItemField.Races:           return this.txtItemRaces;
+	case ItemField.ResourceID:      return this.txtItemResourceID;
+	case ItemField.ReuseTimer:      return this.txtItemReuseTimer;
+	case ItemField.ShieldSize:      return this.txtItemShieldSize;
+	case ItemField.Skill:           return this.txtItemSkill;
+	case ItemField.Slots:           return this.txtItemSlots;
+	case ItemField.StackSize:       return this.txtItemStackSize;
+	case ItemField.Type:            return this.txtItemType;
+	default:                        return null;
+      }
+    }
+
+    public void UnmarkAll() {
+      this.MarkIcon(Mark.None);
+      foreach (ItemField IF in Enum.GetValues(typeof(ItemField)))
+	this.MarkField(IF, Mark.None);
+    }
+
+    private void MarkControl(Control C, Mark M) {
+      if (C != null) {
+	switch (M) {
+	  case Mark.None:    C.BackColor = SystemColors.Control;       break;
+	  case Mark.New:     C.BackColor = Color.LightGreen;           break;
+	  case Mark.Changed: C.BackColor = Color.LightGoldenrodYellow; break;
+	  case Mark.Removed: C.BackColor = Color.LightPink;            break;
+	}
+	C.Font = new Font(C.Font, ((M == Mark.None) ? FontStyle.Regular : FontStyle.Bold));
+      }
+    }
+
+    public void MarkField(ItemField IF, Mark M) {
+      this.MarkControl(this.GetFieldControl(IF), M);
+    }
+
+    public void MarkIcon(Mark M) {
+      this.MarkControl(this.picItemIcon, M);
+    }
+
+    #endregion
+
     #region Public Methods
 
     public FFXIItemEditor() {
@@ -121,7 +189,7 @@ namespace PlayOnline.FFXI {
     }
 
     public void Reset() {
-      // this.UnmarkAll();
+      this.UnmarkAll();
       this.UnlockViewMode();
     }
 
@@ -132,7 +200,7 @@ namespace PlayOnline.FFXI {
       this.chkViewItemAsJArmor.Enabled  = true;
       this.chkViewItemAsJObject.Enabled = true;
       this.chkViewItemAsJWeapon.Enabled = true;
-      this.LockedViewMode = null;
+      this.LockedViewMode_ = null;
     }
 
     public void LockViewMode() { // Locks selection, but leaves autodetection active
@@ -142,23 +210,23 @@ namespace PlayOnline.FFXI {
       this.chkViewItemAsJArmor.Enabled  = false;
       this.chkViewItemAsJObject.Enabled = false;
       this.chkViewItemAsJWeapon.Enabled = false;
-      this.LockedViewMode = null;
+      this.LockedViewMode_ = null;
     }
 
     public void LockViewMode(ItemDataLanguage L, ItemDataType T) { // Locks view to the specified mode
-      this.LockedViewMode = null;
+      this.LockedViewMode_ = null;
       this.chkViewItemAsEArmor.Enabled  = (L == ItemDataLanguage.English  && T == ItemDataType.Armor);
       this.chkViewItemAsEObject.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Object);
       this.chkViewItemAsEWeapon.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Weapon);
       this.chkViewItemAsJArmor.Enabled  = (L == ItemDataLanguage.Japanese && T == ItemDataType.Armor);
       this.chkViewItemAsJObject.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Object);
       this.chkViewItemAsJWeapon.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Weapon);
-      if (this.chkViewItemAsEArmor.Enabled)  this.LockedViewMode = this.chkViewItemAsEArmor;
-      if (this.chkViewItemAsEObject.Enabled) this.LockedViewMode = this.chkViewItemAsEObject;
-      if (this.chkViewItemAsEWeapon.Enabled) this.LockedViewMode = this.chkViewItemAsEWeapon;
-      if (this.chkViewItemAsJArmor.Enabled)  this.LockedViewMode = this.chkViewItemAsJArmor;
-      if (this.chkViewItemAsJObject.Enabled) this.LockedViewMode = this.chkViewItemAsJObject;
-      if (this.chkViewItemAsJWeapon.Enabled) this.LockedViewMode = this.chkViewItemAsJWeapon;
+      if (this.chkViewItemAsEArmor.Enabled)  this.LockedViewMode_ = this.chkViewItemAsEArmor;
+      if (this.chkViewItemAsEObject.Enabled) this.LockedViewMode_ = this.chkViewItemAsEObject;
+      if (this.chkViewItemAsEWeapon.Enabled) this.LockedViewMode_ = this.chkViewItemAsEWeapon;
+      if (this.chkViewItemAsJArmor.Enabled)  this.LockedViewMode_ = this.chkViewItemAsJArmor;
+      if (this.chkViewItemAsJObject.Enabled) this.LockedViewMode_ = this.chkViewItemAsJObject;
+      if (this.chkViewItemAsJWeapon.Enabled) this.LockedViewMode_ = this.chkViewItemAsJWeapon;
     }
 
     #endregion
@@ -241,8 +309,8 @@ namespace PlayOnline.FFXI {
 	this.txtItemType.Text      = String.Format("{0:X} ({0})",  I.Common.Type);
 	this.txtItemFlags.Text     = String.Format("{0:X} ({0})",  I.Common.Flags);
 	this.txtItemStackSize.Text = String.Format("{0}",          I.Common.StackSize);
-	if (this.LockedViewMode != null)
-	  this.LockedViewMode.Checked = true;
+	if (this.LockedViewMode_ != null)
+	  this.LockedViewMode_.Checked = true;
 	else
 	  this.DetectViewMode(I);
       }
