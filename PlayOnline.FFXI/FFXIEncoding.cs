@@ -80,26 +80,29 @@ namespace PlayOnline.FFXI {
 	  } catch { }
 	}
       }
+      else if (Marker.StartsWith("AutoTrans:")) {
+      byte[] Result = new byte[] { 0xEF, 0x00 };
+	switch (Marker.Substring(8).Trim()) {
+	  case "Start": Result[1] = 0x27; break;
+	  case "End":   Result[1] = 0x28; break;
+	}
+	if (Result[1] != 0x00)
+	  return Result;
+      }
       else if (Marker.StartsWith("Element:")) {
-      string Element = Marker.Substring(8).Trim();
-      byte ElementCode = 0x00;
-	switch (Element) {
-	  case "Fire":    ElementCode = 0x1F; break;
-	  case "Ice":     ElementCode = 0x20; break;
-	  case "Wind":    ElementCode = 0x21; break;
-	  case "Earth":   ElementCode = 0x22; break;
-	  case "Thunder": ElementCode = 0x23; break;
-	  case "Water":   ElementCode = 0x24; break;
-	  case "Light":   ElementCode = 0x25; break;
-	  case "Dark":    ElementCode = 0x26; break;
+      byte[] Result = new byte[] { 0xEF, 0x00 };
+	switch (Marker.Substring(8).Trim()) {
+	  case "Fire":    Result[1] = 0x1F; break;
+	  case "Ice":     Result[1] = 0x20; break;
+	  case "Wind":    Result[1] = 0x21; break;
+	  case "Earth":   Result[1] = 0x22; break;
+	  case "Thunder": Result[1] = 0x23; break;
+	  case "Water":   Result[1] = 0x24; break;
+	  case "Light":   Result[1] = 0x25; break;
+	  case "Dark":    Result[1] = 0x26; break;
 	}
-	if (ElementCode != 0x00)
-	  return new byte[] { 0xEF, ElementCode };
-	else if (Element.StartsWith("???")) {
-	  try {
-	    return new byte[] { 0xEF, byte.Parse(Element.Substring(3), NumberStyles.HexNumber | NumberStyles.AllowParentheses) };
-	  } catch { }
-	}
+	if (Result[1] != 0x00)
+	  return Result;
       }
       else if (Marker.StartsWith("[")) {
       int CloseBracket = Marker.IndexOf(']', 1);
@@ -202,7 +205,17 @@ namespace PlayOnline.FFXI {
 	    case 0x24: DecodedString += "Water";   break;
 	    case 0x25: DecodedString += "Light";   break;
 	    case 0x26: DecodedString += "Dark";    break;
-	    default:   DecodedString += String.Format("??? ({0:X2})", bytes[pos]); break;
+	  }
+	  DecodedString += FFXIEncoding.SpecialMarkerEnd;
+	  continue;
+	}
+	// FFXI Extension: Open/Close AutoTranslator Text
+	if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x27 && bytes[pos + 1] <= 0x28) {
+	  DecodedString += FFXIEncoding.SpecialMarkerStart;
+	  DecodedString += "AutoTrans: ";
+	  switch (bytes[++pos]) {
+	    case 0x27: DecodedString += "Start"; break;
+	    case 0x28: DecodedString += "End";  break;
 	  }
 	  DecodedString += FFXIEncoding.SpecialMarkerEnd;
 	  continue;
