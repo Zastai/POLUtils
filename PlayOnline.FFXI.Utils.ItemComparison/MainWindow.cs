@@ -1,7 +1,9 @@
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Collections;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -12,7 +14,14 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
   public class MainWindow : System.Windows.Forms.Form {
 
     private FFXIItem[] LeftItems;
+    private FFXIItem[] LeftItemsShown;
     private FFXIItem[] RightItems;
+    private FFXIItem[] RightItemsShown;
+
+    private ItemDataLanguage LLanguage;
+    private ItemDataType     LType;
+    private ItemDataLanguage RLanguage;
+    private ItemDataType     RType;
 
     private int CurrentItem = -1;
 
@@ -20,11 +29,12 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private PlayOnline.FFXI.FFXIItemEditor ieLeft;
     private PlayOnline.FFXI.FFXIItemEditor ieRight;
-    private System.Windows.Forms.Button btnLoadItemsLeft;
-    private System.Windows.Forms.Button btnLoadItemsRight;
+    private System.Windows.Forms.Button btnLoadItemSet1;
+    private System.Windows.Forms.Button btnLoadItemSet2;
     private System.Windows.Forms.OpenFileDialog dlgLoadItems;
-    private System.Windows.Forms.Button btnBack;
-    private System.Windows.Forms.Button btnForward;
+    private System.Windows.Forms.Button btnPrevious;
+    private System.Windows.Forms.Button btnNext;
+    private System.Windows.Forms.Button btnRemoveUnchanged;
 
     private System.ComponentModel.Container components = null;
 
@@ -35,22 +45,36 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.EnableNavigation();
     }
 
-    private void CompareItems() {
-      this.ieLeft.Item = null;
-      this.ieRight.Item = null;
-      if (this.CurrentItem < 0)
-	return;
-      if (this.LeftItems != null && this.LeftItems.Length > this.CurrentItem)
-	this.ieLeft.Item = this.LeftItems[this.CurrentItem];
-      if (this.RightItems != null && this.RightItems.Length > this.CurrentItem)
-	this.ieRight.Item = this.RightItems[this.CurrentItem];
+    private string GetIconString(FFXIItem I) {
+    string IconString = I.IconGraphic.ToString(); // general description
+      {
+      MemoryStream MS = new MemoryStream();
+	I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
+	IconString += Convert.ToBase64String(MS.GetBuffer());
+	MS.Close();
+      }
+      return IconString;
+    }
+
+    private void MarkItemChanges() {
       if (this.ieLeft.Item != null && this.ieRight.Item != null) {
-	// TODO: Mark fields that differ
+	{ // Compare icon
+	bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
+	  this.ieLeft.MarkIcon(IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
+	}
+	// Compare fields
+	foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
+	bool FieldChanged = (this.ieLeft.ItemInfo.GetFieldText(IF) != this.ieRight.ItemInfo.GetFieldText(IF));
+	  this.ieLeft.MarkField (IF, FieldChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
+	  this.ieRight.MarkField(IF, FieldChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
+	}
       }
     }
 
-    private FFXIItem[] LoadItems(string FileName, FFXIItemEditor IE) {
+    private void LoadItems(string FileName, FFXIItemEditor IE) {
     ArrayList LoadedItems = new ArrayList();
+    ItemDataLanguage LoadedLanguage = ItemDataLanguage.English;
+    ItemDataType LoadedType = ItemDataType.Object;
       try {
       XmlDocument XD = new XmlDocument();
 	XD.Load(FileName);
@@ -58,11 +82,10 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	int Index = 0;
 	  {
 	  XmlNode XLang = XD.DocumentElement.SelectSingleNode("data-language");
+	    try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XLang.InnerText); } catch { }
 	  XmlNode XType = XD.DocumentElement.SelectSingleNode("data-type");
-	    if (XLang != null && XType != null) try {
-	      IE.LockViewMode((ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XLang.InnerText),
-			      (ItemDataType) Enum.Parse(typeof(ItemDataType), XType.InnerText));
-	    } catch { }
+	    try { LoadedType = (ItemDataType) Enum.Parse(typeof(ItemDataType), XType.InnerText); } catch { }
+	    IE.LockViewMode(LoadedLanguage, LoadedType);
 	  }
 	  foreach (XmlNode XN in XD.DocumentElement.ChildNodes) {
 	    if (XN is XmlElement && XN.Name == "item")
@@ -70,20 +93,64 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	  }
 	}
       } catch { }
-      if (LoadedItems.Count == 0)
-	return null;
-      return (FFXIItem[]) LoadedItems.ToArray(typeof(FFXIItem));
+      {
+      FFXIItem[] LoadedItemArray = (FFXIItem[]) LoadedItems.ToArray(typeof(FFXIItem));
+	if (IE == this.ieLeft) {
+	  this.LeftItems = LoadedItemArray;
+	  this.LLanguage = LoadedLanguage;
+	  this.LType     = LoadedType;
+	}
+	else {
+	  this.RightItems = LoadedItemArray;
+	  this.RLanguage  = LoadedLanguage;
+	  this.RType      = LoadedType;
+	}
+      }
+      this.LeftItemsShown = null;
+      this.RightItemsShown = null;
+      if (this.RightItems == null && this.LeftItems == null)
+	this.CurrentItem = -1;
+      else
+	this.CurrentItem = 0;
+      if (this.RightItems != null && this.LeftItems != null)
+	this.btnRemoveUnchanged.Enabled = true;
+      this.EnableNavigation();
+      this.MarkItemChanges();
     }
 
     private void EnableNavigation() {
-      this.btnBack.Enabled = (this.CurrentItem > 0);
-      this.btnForward.SuspendLayout();
-      this.btnForward.Enabled = false;
-      if (this.LeftItems != null && this.CurrentItem < (this.LeftItems.Length - 1))
-	this.btnForward.Enabled = true;
-      if (this.RightItems != null && this.CurrentItem < (this.RightItems.Length - 1))
-	this.btnForward.Enabled = true;
-      this.btnForward.ResumeLayout(true);
+      this.SuspendLayout();
+      this.ieLeft.Item = null;
+      this.ieRight.Item = null;
+      this.btnPrevious.Enabled = (this.CurrentItem > 0);
+      this.btnNext.Enabled = false;
+    FFXIItem LeftItem  = null;
+    FFXIItem RightItem = null;
+      if (this.CurrentItem >= 0) {
+	if (this.LeftItemsShown != null) {
+	  LeftItem = this.LeftItemsShown[this.CurrentItem];
+	  if (this.CurrentItem < (this.LeftItemsShown.Length - 1))
+	    this.btnNext.Enabled = true;
+	}
+	else if (this.LeftItems != null) {
+	  LeftItem = this.LeftItems[this.CurrentItem];
+	  if (this.CurrentItem < (this.LeftItems.Length - 1))
+	    this.btnNext.Enabled = true;
+	}
+	if (this.RightItemsShown != null) {
+	  RightItem = this.RightItemsShown[this.CurrentItem];
+	  if (this.CurrentItem < (this.RightItemsShown.Length - 1))
+	    this.btnNext.Enabled = true;
+	}
+	else if (this.RightItems != null) {
+	  RightItem = this.RightItems[this.CurrentItem];
+	  if (this.CurrentItem < (this.RightItems.Length - 1))
+	    this.btnNext.Enabled = true;
+	}
+      }
+      this.ieLeft.Item  = LeftItem;
+      this.ieRight.Item = RightItem;
+      this.ResumeLayout(true);
     }
 
     #region Windows Form Designer generated code
@@ -98,11 +165,12 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainWindow));
       this.ieLeft = new PlayOnline.FFXI.FFXIItemEditor();
       this.ieRight = new PlayOnline.FFXI.FFXIItemEditor();
-      this.btnLoadItemsLeft = new System.Windows.Forms.Button();
-      this.btnLoadItemsRight = new System.Windows.Forms.Button();
+      this.btnLoadItemSet1 = new System.Windows.Forms.Button();
+      this.btnLoadItemSet2 = new System.Windows.Forms.Button();
       this.dlgLoadItems = new System.Windows.Forms.OpenFileDialog();
-      this.btnBack = new System.Windows.Forms.Button();
-      this.btnForward = new System.Windows.Forms.Button();
+      this.btnPrevious = new System.Windows.Forms.Button();
+      this.btnNext = new System.Windows.Forms.Button();
+      this.btnRemoveUnchanged = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // ieLeft
@@ -149,106 +217,130 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieRight.TabIndex = ((int)(resources.GetObject("ieRight.TabIndex")));
       this.ieRight.Visible = ((bool)(resources.GetObject("ieRight.Visible")));
       // 
-      // btnLoadItemsLeft
+      // btnLoadItemSet1
       // 
-      this.btnLoadItemsLeft.AccessibleDescription = resources.GetString("btnLoadItemsLeft.AccessibleDescription");
-      this.btnLoadItemsLeft.AccessibleName = resources.GetString("btnLoadItemsLeft.AccessibleName");
-      this.btnLoadItemsLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnLoadItemsLeft.Anchor")));
-      this.btnLoadItemsLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoadItemsLeft.BackgroundImage")));
-      this.btnLoadItemsLeft.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnLoadItemsLeft.Dock")));
-      this.btnLoadItemsLeft.Enabled = ((bool)(resources.GetObject("btnLoadItemsLeft.Enabled")));
-      this.btnLoadItemsLeft.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnLoadItemsLeft.FlatStyle")));
-      this.btnLoadItemsLeft.Font = ((System.Drawing.Font)(resources.GetObject("btnLoadItemsLeft.Font")));
-      this.btnLoadItemsLeft.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadItemsLeft.Image")));
-      this.btnLoadItemsLeft.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemsLeft.ImageAlign")));
-      this.btnLoadItemsLeft.ImageIndex = ((int)(resources.GetObject("btnLoadItemsLeft.ImageIndex")));
-      this.btnLoadItemsLeft.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnLoadItemsLeft.ImeMode")));
-      this.btnLoadItemsLeft.Location = ((System.Drawing.Point)(resources.GetObject("btnLoadItemsLeft.Location")));
-      this.btnLoadItemsLeft.Name = "btnLoadItemsLeft";
-      this.btnLoadItemsLeft.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnLoadItemsLeft.RightToLeft")));
-      this.btnLoadItemsLeft.Size = ((System.Drawing.Size)(resources.GetObject("btnLoadItemsLeft.Size")));
-      this.btnLoadItemsLeft.TabIndex = ((int)(resources.GetObject("btnLoadItemsLeft.TabIndex")));
-      this.btnLoadItemsLeft.Text = resources.GetString("btnLoadItemsLeft.Text");
-      this.btnLoadItemsLeft.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemsLeft.TextAlign")));
-      this.btnLoadItemsLeft.Visible = ((bool)(resources.GetObject("btnLoadItemsLeft.Visible")));
-      this.btnLoadItemsLeft.Click += new System.EventHandler(this.btnLoadItemsLeft_Click);
+      this.btnLoadItemSet1.AccessibleDescription = resources.GetString("btnLoadItemSet1.AccessibleDescription");
+      this.btnLoadItemSet1.AccessibleName = resources.GetString("btnLoadItemSet1.AccessibleName");
+      this.btnLoadItemSet1.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnLoadItemSet1.Anchor")));
+      this.btnLoadItemSet1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoadItemSet1.BackgroundImage")));
+      this.btnLoadItemSet1.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnLoadItemSet1.Dock")));
+      this.btnLoadItemSet1.Enabled = ((bool)(resources.GetObject("btnLoadItemSet1.Enabled")));
+      this.btnLoadItemSet1.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnLoadItemSet1.FlatStyle")));
+      this.btnLoadItemSet1.Font = ((System.Drawing.Font)(resources.GetObject("btnLoadItemSet1.Font")));
+      this.btnLoadItemSet1.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadItemSet1.Image")));
+      this.btnLoadItemSet1.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemSet1.ImageAlign")));
+      this.btnLoadItemSet1.ImageIndex = ((int)(resources.GetObject("btnLoadItemSet1.ImageIndex")));
+      this.btnLoadItemSet1.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnLoadItemSet1.ImeMode")));
+      this.btnLoadItemSet1.Location = ((System.Drawing.Point)(resources.GetObject("btnLoadItemSet1.Location")));
+      this.btnLoadItemSet1.Name = "btnLoadItemSet1";
+      this.btnLoadItemSet1.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnLoadItemSet1.RightToLeft")));
+      this.btnLoadItemSet1.Size = ((System.Drawing.Size)(resources.GetObject("btnLoadItemSet1.Size")));
+      this.btnLoadItemSet1.TabIndex = ((int)(resources.GetObject("btnLoadItemSet1.TabIndex")));
+      this.btnLoadItemSet1.Text = resources.GetString("btnLoadItemSet1.Text");
+      this.btnLoadItemSet1.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemSet1.TextAlign")));
+      this.btnLoadItemSet1.Visible = ((bool)(resources.GetObject("btnLoadItemSet1.Visible")));
+      this.btnLoadItemSet1.Click += new System.EventHandler(this.btnLoadItemSet1_Click);
       // 
-      // btnLoadItemsRight
+      // btnLoadItemSet2
       // 
-      this.btnLoadItemsRight.AccessibleDescription = resources.GetString("btnLoadItemsRight.AccessibleDescription");
-      this.btnLoadItemsRight.AccessibleName = resources.GetString("btnLoadItemsRight.AccessibleName");
-      this.btnLoadItemsRight.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnLoadItemsRight.Anchor")));
-      this.btnLoadItemsRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoadItemsRight.BackgroundImage")));
-      this.btnLoadItemsRight.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnLoadItemsRight.Dock")));
-      this.btnLoadItemsRight.Enabled = ((bool)(resources.GetObject("btnLoadItemsRight.Enabled")));
-      this.btnLoadItemsRight.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnLoadItemsRight.FlatStyle")));
-      this.btnLoadItemsRight.Font = ((System.Drawing.Font)(resources.GetObject("btnLoadItemsRight.Font")));
-      this.btnLoadItemsRight.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadItemsRight.Image")));
-      this.btnLoadItemsRight.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemsRight.ImageAlign")));
-      this.btnLoadItemsRight.ImageIndex = ((int)(resources.GetObject("btnLoadItemsRight.ImageIndex")));
-      this.btnLoadItemsRight.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnLoadItemsRight.ImeMode")));
-      this.btnLoadItemsRight.Location = ((System.Drawing.Point)(resources.GetObject("btnLoadItemsRight.Location")));
-      this.btnLoadItemsRight.Name = "btnLoadItemsRight";
-      this.btnLoadItemsRight.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnLoadItemsRight.RightToLeft")));
-      this.btnLoadItemsRight.Size = ((System.Drawing.Size)(resources.GetObject("btnLoadItemsRight.Size")));
-      this.btnLoadItemsRight.TabIndex = ((int)(resources.GetObject("btnLoadItemsRight.TabIndex")));
-      this.btnLoadItemsRight.Text = resources.GetString("btnLoadItemsRight.Text");
-      this.btnLoadItemsRight.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemsRight.TextAlign")));
-      this.btnLoadItemsRight.Visible = ((bool)(resources.GetObject("btnLoadItemsRight.Visible")));
-      this.btnLoadItemsRight.Click += new System.EventHandler(this.btnLoadItemsRight_Click);
+      this.btnLoadItemSet2.AccessibleDescription = resources.GetString("btnLoadItemSet2.AccessibleDescription");
+      this.btnLoadItemSet2.AccessibleName = resources.GetString("btnLoadItemSet2.AccessibleName");
+      this.btnLoadItemSet2.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnLoadItemSet2.Anchor")));
+      this.btnLoadItemSet2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoadItemSet2.BackgroundImage")));
+      this.btnLoadItemSet2.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnLoadItemSet2.Dock")));
+      this.btnLoadItemSet2.Enabled = ((bool)(resources.GetObject("btnLoadItemSet2.Enabled")));
+      this.btnLoadItemSet2.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnLoadItemSet2.FlatStyle")));
+      this.btnLoadItemSet2.Font = ((System.Drawing.Font)(resources.GetObject("btnLoadItemSet2.Font")));
+      this.btnLoadItemSet2.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadItemSet2.Image")));
+      this.btnLoadItemSet2.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemSet2.ImageAlign")));
+      this.btnLoadItemSet2.ImageIndex = ((int)(resources.GetObject("btnLoadItemSet2.ImageIndex")));
+      this.btnLoadItemSet2.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnLoadItemSet2.ImeMode")));
+      this.btnLoadItemSet2.Location = ((System.Drawing.Point)(resources.GetObject("btnLoadItemSet2.Location")));
+      this.btnLoadItemSet2.Name = "btnLoadItemSet2";
+      this.btnLoadItemSet2.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnLoadItemSet2.RightToLeft")));
+      this.btnLoadItemSet2.Size = ((System.Drawing.Size)(resources.GetObject("btnLoadItemSet2.Size")));
+      this.btnLoadItemSet2.TabIndex = ((int)(resources.GetObject("btnLoadItemSet2.TabIndex")));
+      this.btnLoadItemSet2.Text = resources.GetString("btnLoadItemSet2.Text");
+      this.btnLoadItemSet2.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnLoadItemSet2.TextAlign")));
+      this.btnLoadItemSet2.Visible = ((bool)(resources.GetObject("btnLoadItemSet2.Visible")));
+      this.btnLoadItemSet2.Click += new System.EventHandler(this.btnLoadItemSet2_Click);
       // 
       // dlgLoadItems
       // 
       this.dlgLoadItems.Filter = resources.GetString("dlgLoadItems.Filter");
       this.dlgLoadItems.Title = resources.GetString("dlgLoadItems.Title");
       // 
-      // btnBack
+      // btnPrevious
       // 
-      this.btnBack.AccessibleDescription = resources.GetString("btnBack.AccessibleDescription");
-      this.btnBack.AccessibleName = resources.GetString("btnBack.AccessibleName");
-      this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnBack.Anchor")));
-      this.btnBack.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBack.BackgroundImage")));
-      this.btnBack.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnBack.Dock")));
-      this.btnBack.Enabled = ((bool)(resources.GetObject("btnBack.Enabled")));
-      this.btnBack.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnBack.FlatStyle")));
-      this.btnBack.Font = ((System.Drawing.Font)(resources.GetObject("btnBack.Font")));
-      this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
-      this.btnBack.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnBack.ImageAlign")));
-      this.btnBack.ImageIndex = ((int)(resources.GetObject("btnBack.ImageIndex")));
-      this.btnBack.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnBack.ImeMode")));
-      this.btnBack.Location = ((System.Drawing.Point)(resources.GetObject("btnBack.Location")));
-      this.btnBack.Name = "btnBack";
-      this.btnBack.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnBack.RightToLeft")));
-      this.btnBack.Size = ((System.Drawing.Size)(resources.GetObject("btnBack.Size")));
-      this.btnBack.TabIndex = ((int)(resources.GetObject("btnBack.TabIndex")));
-      this.btnBack.Text = resources.GetString("btnBack.Text");
-      this.btnBack.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnBack.TextAlign")));
-      this.btnBack.Visible = ((bool)(resources.GetObject("btnBack.Visible")));
-      this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+      this.btnPrevious.AccessibleDescription = resources.GetString("btnPrevious.AccessibleDescription");
+      this.btnPrevious.AccessibleName = resources.GetString("btnPrevious.AccessibleName");
+      this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnPrevious.Anchor")));
+      this.btnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrevious.BackgroundImage")));
+      this.btnPrevious.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnPrevious.Dock")));
+      this.btnPrevious.Enabled = ((bool)(resources.GetObject("btnPrevious.Enabled")));
+      this.btnPrevious.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnPrevious.FlatStyle")));
+      this.btnPrevious.Font = ((System.Drawing.Font)(resources.GetObject("btnPrevious.Font")));
+      this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
+      this.btnPrevious.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnPrevious.ImageAlign")));
+      this.btnPrevious.ImageIndex = ((int)(resources.GetObject("btnPrevious.ImageIndex")));
+      this.btnPrevious.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnPrevious.ImeMode")));
+      this.btnPrevious.Location = ((System.Drawing.Point)(resources.GetObject("btnPrevious.Location")));
+      this.btnPrevious.Name = "btnPrevious";
+      this.btnPrevious.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnPrevious.RightToLeft")));
+      this.btnPrevious.Size = ((System.Drawing.Size)(resources.GetObject("btnPrevious.Size")));
+      this.btnPrevious.TabIndex = ((int)(resources.GetObject("btnPrevious.TabIndex")));
+      this.btnPrevious.Text = resources.GetString("btnPrevious.Text");
+      this.btnPrevious.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnPrevious.TextAlign")));
+      this.btnPrevious.Visible = ((bool)(resources.GetObject("btnPrevious.Visible")));
+      this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
       // 
-      // btnForward
+      // btnNext
       // 
-      this.btnForward.AccessibleDescription = resources.GetString("btnForward.AccessibleDescription");
-      this.btnForward.AccessibleName = resources.GetString("btnForward.AccessibleName");
-      this.btnForward.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnForward.Anchor")));
-      this.btnForward.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnForward.BackgroundImage")));
-      this.btnForward.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnForward.Dock")));
-      this.btnForward.Enabled = ((bool)(resources.GetObject("btnForward.Enabled")));
-      this.btnForward.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnForward.FlatStyle")));
-      this.btnForward.Font = ((System.Drawing.Font)(resources.GetObject("btnForward.Font")));
-      this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
-      this.btnForward.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnForward.ImageAlign")));
-      this.btnForward.ImageIndex = ((int)(resources.GetObject("btnForward.ImageIndex")));
-      this.btnForward.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnForward.ImeMode")));
-      this.btnForward.Location = ((System.Drawing.Point)(resources.GetObject("btnForward.Location")));
-      this.btnForward.Name = "btnForward";
-      this.btnForward.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnForward.RightToLeft")));
-      this.btnForward.Size = ((System.Drawing.Size)(resources.GetObject("btnForward.Size")));
-      this.btnForward.TabIndex = ((int)(resources.GetObject("btnForward.TabIndex")));
-      this.btnForward.Text = resources.GetString("btnForward.Text");
-      this.btnForward.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnForward.TextAlign")));
-      this.btnForward.Visible = ((bool)(resources.GetObject("btnForward.Visible")));
-      this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+      this.btnNext.AccessibleDescription = resources.GetString("btnNext.AccessibleDescription");
+      this.btnNext.AccessibleName = resources.GetString("btnNext.AccessibleName");
+      this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnNext.Anchor")));
+      this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
+      this.btnNext.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnNext.Dock")));
+      this.btnNext.Enabled = ((bool)(resources.GetObject("btnNext.Enabled")));
+      this.btnNext.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnNext.FlatStyle")));
+      this.btnNext.Font = ((System.Drawing.Font)(resources.GetObject("btnNext.Font")));
+      this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+      this.btnNext.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnNext.ImageAlign")));
+      this.btnNext.ImageIndex = ((int)(resources.GetObject("btnNext.ImageIndex")));
+      this.btnNext.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnNext.ImeMode")));
+      this.btnNext.Location = ((System.Drawing.Point)(resources.GetObject("btnNext.Location")));
+      this.btnNext.Name = "btnNext";
+      this.btnNext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnNext.RightToLeft")));
+      this.btnNext.Size = ((System.Drawing.Size)(resources.GetObject("btnNext.Size")));
+      this.btnNext.TabIndex = ((int)(resources.GetObject("btnNext.TabIndex")));
+      this.btnNext.Text = resources.GetString("btnNext.Text");
+      this.btnNext.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnNext.TextAlign")));
+      this.btnNext.Visible = ((bool)(resources.GetObject("btnNext.Visible")));
+      this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+      // 
+      // btnRemoveUnchanged
+      // 
+      this.btnRemoveUnchanged.AccessibleDescription = resources.GetString("btnRemoveUnchanged.AccessibleDescription");
+      this.btnRemoveUnchanged.AccessibleName = resources.GetString("btnRemoveUnchanged.AccessibleName");
+      this.btnRemoveUnchanged.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnRemoveUnchanged.Anchor")));
+      this.btnRemoveUnchanged.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemoveUnchanged.BackgroundImage")));
+      this.btnRemoveUnchanged.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnRemoveUnchanged.Dock")));
+      this.btnRemoveUnchanged.Enabled = ((bool)(resources.GetObject("btnRemoveUnchanged.Enabled")));
+      this.btnRemoveUnchanged.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnRemoveUnchanged.FlatStyle")));
+      this.btnRemoveUnchanged.Font = ((System.Drawing.Font)(resources.GetObject("btnRemoveUnchanged.Font")));
+      this.btnRemoveUnchanged.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveUnchanged.Image")));
+      this.btnRemoveUnchanged.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnRemoveUnchanged.ImageAlign")));
+      this.btnRemoveUnchanged.ImageIndex = ((int)(resources.GetObject("btnRemoveUnchanged.ImageIndex")));
+      this.btnRemoveUnchanged.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnRemoveUnchanged.ImeMode")));
+      this.btnRemoveUnchanged.Location = ((System.Drawing.Point)(resources.GetObject("btnRemoveUnchanged.Location")));
+      this.btnRemoveUnchanged.Name = "btnRemoveUnchanged";
+      this.btnRemoveUnchanged.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnRemoveUnchanged.RightToLeft")));
+      this.btnRemoveUnchanged.Size = ((System.Drawing.Size)(resources.GetObject("btnRemoveUnchanged.Size")));
+      this.btnRemoveUnchanged.TabIndex = ((int)(resources.GetObject("btnRemoveUnchanged.TabIndex")));
+      this.btnRemoveUnchanged.Text = resources.GetString("btnRemoveUnchanged.Text");
+      this.btnRemoveUnchanged.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnRemoveUnchanged.TextAlign")));
+      this.btnRemoveUnchanged.Visible = ((bool)(resources.GetObject("btnRemoveUnchanged.Visible")));
+      this.btnRemoveUnchanged.Click += new System.EventHandler(this.btnRemoveUnchanged_Click);
       // 
       // MainWindow
       // 
@@ -261,10 +353,11 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.BackColor = System.Drawing.SystemColors.Control;
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-      this.Controls.Add(this.btnForward);
-      this.Controls.Add(this.btnBack);
-      this.Controls.Add(this.btnLoadItemsRight);
-      this.Controls.Add(this.btnLoadItemsLeft);
+      this.Controls.Add(this.btnRemoveUnchanged);
+      this.Controls.Add(this.btnNext);
+      this.Controls.Add(this.btnPrevious);
+      this.Controls.Add(this.btnLoadItemSet2);
+      this.Controls.Add(this.btnLoadItemSet1);
       this.Controls.Add(this.ieLeft);
       this.Controls.Add(this.ieRight);
       this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
@@ -288,44 +381,50 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     #region Event Handlers
 
-    private void btnLoadItemsLeft_Click(object sender, System.EventArgs e) {
-      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK) {
-	this.ieLeft.Item = null;
-	this.ieLeft.Reset();
-	this.LeftItems = this.LoadItems(this.dlgLoadItems.FileName, this.ieLeft);
-	if (this.RightItems == null && this.LeftItems == null)
-	  this.CurrentItem = -1;
-	else if (this.CurrentItem < 0)
-	  this.CurrentItem = 0;
-	this.EnableNavigation();
-	this.CompareItems();
-      }
+    private void btnLoadItemSet1_Click(object sender, System.EventArgs e) {
+      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK)
+	this.LoadItems(this.dlgLoadItems.FileName, this.ieLeft);
     }
 
-    private void btnLoadItemsRight_Click(object sender, System.EventArgs e) {
-      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK) {
-	this.ieRight.Item = null;
-	this.ieRight.Reset();
-	this.RightItems = this.LoadItems(this.dlgLoadItems.FileName, this.ieRight);
-	if (this.RightItems == null && this.LeftItems == null)
-	  this.CurrentItem = -1;
-	else if (this.CurrentItem < 0)
-	  this.CurrentItem = 0;
-	this.EnableNavigation();
-	this.CompareItems();
-      }
+    private void btnLoadItemSet2_Click(object sender, System.EventArgs e) {
+      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK)
+	this.LoadItems(this.dlgLoadItems.FileName, this.ieRight);
     }
 
-    private void btnBack_Click(object sender, System.EventArgs e) {
+    private void btnPrevious_Click(object sender, System.EventArgs e) {
       --this.CurrentItem;
       this.EnableNavigation();
-      this.CompareItems();
+      this.MarkItemChanges();
     }
 
-    private void btnForward_Click(object sender, System.EventArgs e) {
+    private void btnNext_Click(object sender, System.EventArgs e) {
       ++this.CurrentItem;
       this.EnableNavigation();
-      this.CompareItems();
+      this.MarkItemChanges();
+    }
+
+    private void btnRemoveUnchanged_Click(object sender, System.EventArgs e) {
+      this.btnRemoveUnchanged.Enabled = false;
+      this.LeftItemsShown  = null;
+      this.RightItemsShown = null;
+    ArrayList LIS = new ArrayList();
+    ArrayList RIS = new ArrayList();
+      for (int i = 0; i < this.LeftItems.Length && i < this.RightItems.Length; ++i) {
+	foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
+	  if (this.LeftItems[i].GetInfo(this.LLanguage, this.LType).GetFieldText(IF)
+	      != this.RightItems[i].GetInfo(this.RLanguage, this.RType).GetFieldText(IF)) {
+	    LIS.Add(this.LeftItems[i]);
+	    RIS.Add(this.RightItems[i]);
+	    break;
+	  }
+	}
+      }
+      if (LIS.Count > 0 && RIS.Count > 0) {
+	this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
+	this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
+      }
+      this.CurrentItem = ((this.RightItems == null && this.LeftItems == null) ? -1 : 0);
+      this.EnableNavigation();
     }
 
     #endregion
