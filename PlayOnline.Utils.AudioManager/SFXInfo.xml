@@ -3,30 +3,41 @@
   <application id="0001" name="FinalFantasy XI">
     <data-path>sound/win/se</data-path>
     <subdir name="se000">Main Sounds</subdir>
+    <track id="1"><title>Main Sounds - Menu Movement</title></track>
+    <track id="2"><title>Main Sounds - Menu Selection</title></track>
+    <track id="3"><title>Main Sounds - Dialog Confirmation</title></track>
+    <track id="4"><title>Main Sounds - Unavailable Action</title></track>
     <track id="7"><title>Main Sounds - Level-Up</title></track>
     <track id="8"><title>Main Sounds - Quest Completed</title></track>
-    <track id="17"><title>Main Sounds - Call Sound #1</title></track>
-    <track id="18"><title>Main Sounds - Call Sound #2</title></track>
-    <track id="19"><title>Main Sounds - Call Sound #3</title></track>
-    <track id="20"><title>Main Sounds - Call Sound #4</title></track>
-    <track id="21"><title>Main Sounds - Call Sound #5</title></track>
-    <track id="22"><title>Main Sounds - Call Sound #6</title></track>
-    <track id="23"><title>Main Sounds - Call Sound #7</title></track>
-    <track id="24"><title>Main Sounds - Call Sound #8</title></track>
-    <track id="25"><title>Main Sounds - Call Sound #9</title></track>
-    <track id="26"><title>Main Sounds - Call Sound #10</title></track>
-    <track id="27"><title>Main Sounds - Call Sound #11</title></track>
-    <track id="28"><title>Main Sounds - Call Sound #12</title></track>
-    <track id="29"><title>Main Sounds - Call Sound #13</title></track>
-    <track id="30"><title>Main Sounds - Call Sound #14</title></track>
-    <track id="31"><title>Main Sounds - Call Sound #15</title></track>
-    <track id="32"><title>Main Sounds - Call Sound #16</title></track>
-    <track id="33"><title>Main Sounds - Call Sound #17</title></track>
-    <track id="34"><title>Main Sounds - Call Sound #18</title></track>
-    <track id="35"><title>Main Sounds - Call Sound #19</title></track>
-    <track id="36"><title>Main Sounds - Call Sound #20</title></track>
-    <track id="37"><title>Main Sounds - Call Sound #21</title></track>
-    <track id="38"><title>Main Sounds - Call Sound #22</title></track>
+    <track id="9"><title>Main Sounds - Target Selection</title></track>
+    <track id="10"><title>Main Sounds - Target Switch</title></track>
+    <track id="11"><title>Main Sounds - Target Menu Open</title></track>
+    <track id="13"><title>Main Sounds - Main Menu Page Switch</title></track>
+    <track id="14"><title>Main Sounds - Main Menu Open</title></track>
+    <track id="15"><title>Main Sounds - Close Menu</title></track>
+    <track id="16"><title>Main Sounds - Take Screenshot</title></track>
+    <track id="17"><title>Main Sounds - &lt;call0&gt;</title></track>
+    <track id="18"><title>Main Sounds - &lt;call1&gt;</title></track>
+    <track id="19"><title>Main Sounds - &lt;call2&gt;</title></track>
+    <track id="20"><title>Main Sounds - &lt;call3&gt;</title></track>
+    <track id="21"><title>Main Sounds - &lt;call4&gt;</title></track>
+    <track id="22"><title>Main Sounds - &lt;call5&gt;</title></track>
+    <track id="23"><title>Main Sounds - &lt;call6&gt;</title></track>
+    <track id="24"><title>Main Sounds - &lt;call7&gt;</title></track>
+    <track id="25"><title>Main Sounds - &lt;call8&gt;</title></track>
+    <track id="26"><title>Main Sounds - &lt;call9&gt;</title></track>
+    <track id="27"><title>Main Sounds - &lt;call10&gt;</title></track>
+    <track id="28"><title>Main Sounds - &lt;call11&gt;</title></track>
+    <track id="29"><title>Main Sounds - &lt;call12&gt;</title></track>
+    <track id="30"><title>Main Sounds - &lt;call13&gt;</title></track>
+    <track id="31"><title>Main Sounds - &lt;call14&gt;</title></track>
+    <track id="32"><title>Main Sounds - &lt;call15&gt;</title></track>
+    <track id="33"><title>Main Sounds - &lt;call16&gt;</title></track>
+    <track id="34"><title>Main Sounds - &lt;call17&gt;</title></track>
+    <track id="35"><title>Main Sounds - &lt;call18&gt;</title></track>
+    <track id="36"><title>Main Sounds - &lt;call19&gt;</title></track>
+    <track id="37"><title>Main Sounds - &lt;call20&gt;</title></track>
+    <track id="38"><title>Main Sounds - &lt;call21&gt;</title></track>
     <track id="39"><title>Main Sounds - Message Arrival</title></track>
     <subdir name="se001">Ambient Sounds - Wind</subdir>
     <subdir name="se002">Ambient Sounds - Environment</subdir>
@@ -44,6 +55,7 @@
     <subdir name="se006">Weapon Sounds</subdir>
     <subdir name="se007">Weapon Sounds</subdir>
     <subdir name="se008">Area Sounds</subdir>
+    <track id="8233"><title>Fishing - Creaking Rod</title></track>
     <subdir name="se009">Door/Portal Sounds</subdir>
     <subdir name="se010">Various Effects</subdir>
     <subdir name="se011">Various Effects</subdir>
@@ -54,7 +66,10 @@
     <subdir name="se016">Various Effects</subdir>
     <subdir name="se017">Various Effects</subdir>
     <subdir name="se018">Various Effects</subdir>
-    <subdir name="se019">Skillchain Sounds (?)</subdir>
+    <subdir name="se019">Skillchain Sounds</subdir>
+    <track id="19002"><title>SkillChain - Fragmentation</title></track>
+    <track id="19003"><title>SkillChain - Distortion</title></track>
+    <track id="19011"><title>SkillChain - Scission</title></track>
     <subdir name="se020">Various Effects</subdir>
     <subdir name="se021">Bard Sounds</subdir>
     <track id="21001"><title>Bard Song - Wind Instrument</title></track>
@@ -64,6 +79,7 @@
     <track id="21005"><title>Bard Song - Male Voice</title></track>
     <track id="21006"><title>Bard Song - Mithran Voice</title></track>
     <track id="21007"><title>Bard Song - Galkan Voice</title></track>
+    <track id="21008"><title>Bard Song - Unknown Voice</title></track>
     <subdir name="se022">Weapon Sounds</subdir>
     <subdir name="se023">Various Effects</subdir>
     <subdir name="se024">Various Short Effects</subdir>
@@ -162,48 +178,20 @@
   </application>
   <application id="1000" name="PlayOnline Viewer - Ambient Noise">
     <data-path>viewer/data/system/bgm</data-path>
-    <track id="1001">
-      <title>Gentle Winds Over Wild Plains</title>
-    </track>
-    <track id="1002">
-      <title>A Walk In The Spring Woods</title>
-    </track>
-    <track id="1003">
-      <title>Hill Of The Howling Winds</title>
-    </track>
-    <track id="1004">
-      <title>Stream of Tranquility</title>
-    </track>
-    <track id="1005">
-      <title>Waterfalls and Fall Foliage</title>
-    </track>
-    <track id="1006">
-      <title>Summer Shores</title>
-    </track>
-    <track id="1007">
-      <title>The Source Of Life</title>
-    </track>
-    <track id="1008">
-      <title>City Streets</title>
-    </track>
-    <track id="1009">
-      <title>The Shimomeguro Festival</title>
-    </track>
-    <track id="1010">
-      <title>Submarine Wars</title>
-    </track>
-    <track id="1011">
-      <title>Computer Room</title>
-    </track>
-    <track id="1012">
-      <title>SATORI</title>
-    </track>
-    <track id="1013">
-      <title>Standing Ovation</title>
-    </track>
-    <track id="1014">
-      <title>Cathedral Overlooking Town</title>
-    </track>
+    <track id="1001"><title>Gentle Winds Over Wild Plains</title></track>
+    <track id="1002"><title>A Walk In The Spring Woods</title></track>
+    <track id="1003"><title>Hill Of The Howling Winds</title></track>
+    <track id="1004"><title>Stream of Tranquility</title></track>
+    <track id="1005"><title>Waterfalls and Fall Foliage</title></track>
+    <track id="1006"><title>Summer Shores</title></track>
+    <track id="1007"><title>The Source Of Life</title></track>
+    <track id="1008"><title>City Streets</title></track>
+    <track id="1009"><title>The Shimomeguro Festival</title></track>
+    <track id="1010"><title>Submarine Wars</title></track>
+    <track id="1011"><title>Computer Room</title></track>
+    <track id="1012"><title>SATORI</title></track>
+    <track id="1013"><title>Standing Ovation</title></track>
+    <track id="1014"><title>Cathedral Overlooking Town</title></track>
   </application>
   <application id="1000" name="PlayOnline Viewer - Sound Effects">
     <data-path>viewer/data/system/sound</data-path>
