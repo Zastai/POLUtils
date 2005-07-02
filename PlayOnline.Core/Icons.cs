@@ -59,20 +59,23 @@ namespace PlayOnline.Core {
 
     public static Icon Joystick     { get { return Icons.GetIcon("joy.cpl", 102); } }
 
-    public static Icon AudioFile    { get { return Icons.GetShell32Icon(225); } }
-    public static Icon AudioStuff   { get { return Icons.GetShell32Icon(277); } }
-    public static Icon AudioFolder  { get { return Icons.GetShell32Icon(237); } }
-    public static Icon CheckedPage  { get { return Icons.GetShell32Icon(137); } }
-    public static Icon ConfigFile   { get { return Icons.GetShell32Icon(151); } }
-    public static Icon DocFolder    { get { return Icons.GetShell32Icon(235); } }
-    public static Icon Favourites   { get { return Icons.GetShell32Icon( 44); } }
-    public static Icon FileSearch   { get { return Icons.GetShell32Icon(134); } }
-    public static Icon FolderOpen   { get { return Icons.GetShell32Icon(  5); } }
-    public static Icon FolderClosed { get { return Icons.GetShell32Icon(  4); } }
-    public static Icon Help         { get { return Icons.GetShell32Icon( 24); } }
-    public static Icon People       { get { return Icons.GetShell32Icon(269); } }
-    public static Icon Search       { get { return Icons.GetShell32Icon( 23); } }
-    public static Icon TextFile     { get { return Icons.GetShell32Icon(152); } }
+    public static Icon AudioFile     { get { return Icons.GetShell32Icon(225); } }
+    public static Icon AudioStuff    { get { return Icons.GetShell32Icon(277); } }
+    public static Icon AudioFolder   { get { return Icons.GetShell32Icon(237); } }
+    public static Icon CheckedPage   { get { return Icons.GetShell32Icon( 22); } }
+    public static Icon ConfigFile    { get { return Icons.GetShell32Icon(151); } }
+    public static Icon DocFolder     { get { return Icons.GetShell32Icon(235); } }
+    public static Icon Favourites    { get { return Icons.GetShell32Icon( 44); } }
+    public static Icon FileSearch    { get { return Icons.GetShell32Icon(134); } }
+    public static Icon FolderOpen    { get { return Icons.GetShell32Icon(  5); } }
+    public static Icon FolderClosed  { get { return Icons.GetShell32Icon(  4); } }
+    public static Icon Help          { get { return Icons.GetShell32Icon( 24); } }
+    public static Icon People        { get { return Icons.GetShell32Icon(269); } }
+    public static Icon Search        { get { return Icons.GetShell32Icon( 23); } }
+    public static Icon SmallHelp     { get { return Icons.GetShell32Icon(324); } }
+    public static Icon SmallSearch   { get { return Icons.GetShell32Icon(323); } }
+    public static Icon TextFile      { get { return Icons.GetShell32Icon(152); } }
+    public static Icon TimeConsuming { get { return Icons.GetShell32Icon( 21); } }
 
   }
 
