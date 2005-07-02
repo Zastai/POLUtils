@@ -57,8 +57,74 @@
     <data name="InvalidEntry" type="System.String">
         <value>&lt;invalid entry&gt;</value>
     </data>
+    <data name="Menu:Dialog Tables" type="System.String">
+        <value>&amp;Dialog Tables</value>
+    </data>
+    <data name="Menu:English" type="System.String">
+        <value>&amp;English</value>
+    </data>
+    <data name="Menu:Japanese" type="System.String">
+        <value>&amp;Japanese</value>
+    </data>
+    <data name="Menu:Images" type="System.String">
+        <value>&amp;Images</value>
+    </data>
+    <data name="Menu:Maps" type="System.String">
+        <value>&amp;Maps</value>
+    </data>
     <data name="Menu:MapN" type="System.String">
         <value>Map &amp;{0}</value>
+    </data>
+    <data name="Menu:Other" type="System.String">
+        <value>&amp;Other</value>
+    </data>
+    <data name="Menu:Fonts+Menus" type="System.String">
+        <value>&amp;Fonts &amp;&amp; Menus</value>
+    </data>
+    <data name="Menu:Rank (Bastok)" type="System.String">
+        <value>&amp;Rank (Bastok)</value>
+    </data>
+    <data name="Menu:Rank (Windurst)" type="System.String">
+        <value>&amp;Rank (Windurst)</value>
+    </data>
+    <data name="Menu:Rank (San d'Oria)" type="System.String">
+        <value>&amp;Rank (San d'Oria)</value>
+    </data>
+    <data name="Menu:Status Icons (JP)" type="System.String">
+        <value>&amp;Status Icons (JP)</value>
+    </data>
+    <data name="Menu:Status Icons (EN)" type="System.String">
+        <value>&amp;Status Icons (EN)</value>
+    </data>
+    <data name="Menu:UI Windows" type="System.String">
+        <value>&amp;UI Windows</value>
+    </data>
+    <data name="Menu:StyleN" type="System.String">
+        <value>Style &amp;</value>
+    </data>
+    <data name="Menu:Item Data" type="System.String">
+        <value>I&amp;tem Data</value>
+    </data>
+    <data name="Menu:Items1" type="System.String">
+        <value>Items (Part &amp;1)</value>
+    </data>
+    <data name="Menu:Items2" type="System.String">
+        <value>Items (Part &amp;2)</value>
+    </data>
+    <data name="Menu:Unused" type="System.String">
+        <value>Unused</value>
+    </data>
+    <data name="Menu:Armor" type="System.String">
+        <value>Armor</value>
+    </data>
+    <data name="Menu:Weapons" type="System.String">
+        <value>Weapons</value>
+    </data>
+    <data name="Menu:String Tables" type="System.String">
+        <value>&amp;String Tables</value>
+    </data>
+    <data name="Menu:Common" type="System.String">
+        <value>&amp;Common</value>
     </data>
     <data name="Menu:Abilities" type="System.String">
         <value>&amp;Abilities</value>
@@ -173,21 +239,6 @@
     </data>
     <data name="StringLoadProgress" type="System.String">
         <value>Loading string table entries ({0}/{1}) - please wait...</value>
-    </data>
-    <data name="Menu:Items1" type="System.String">
-        <value>Items (Part &amp;1)</value>
-    </data>
-    <data name="Menu:Items2" type="System.String">
-        <value>Items (Part &amp;2)</value>
-    </data>
-    <data name="Menu:Unused" type="System.String">
-        <value>Unused</value>
-    </data>
-    <data name="Menu:Armor" type="System.String">
-        <value>Armor</value>
-    </data>
-    <data name="Menu:Weapons" type="System.String">
-        <value>Weapons</value>
     </data>
     <data name="Status:ItemSearch" type="System.String">
         <value>Searching... ({0} match(es) found so far)</value>

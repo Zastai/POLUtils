@@ -32,7 +32,7 @@
                     DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
-                    IncrementalBuild = "false"
+                    IncrementalBuild = "true"
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
@@ -85,11 +85,6 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "PlayOnline.FFXI"
-                    Project = "{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "System.Data"
                     AssemblyName = "System.Data"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
@@ -98,6 +93,11 @@
                     Name = "System.XML"
                     AssemblyName = "System.Xml"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "PlayOnline.FFXI"
+                    Project = "{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
@@ -224,6 +224,10 @@
                 />
                 <File
                     RelPath = "Messages.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ROMFileMappings.xml"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
