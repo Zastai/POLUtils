@@ -61,6 +61,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	{ // Compare icon
 	bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
 	  this.ieLeft.MarkIcon(IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
+	  this.ieRight.MarkIcon(IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
 	}
 	// Compare fields
 	foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
