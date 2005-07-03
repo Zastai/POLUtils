@@ -1,8 +1,9 @@
+// $Id$
+
 using System;
+using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace PlayOnline.FFXI {
@@ -25,7 +26,7 @@ namespace PlayOnline.FFXI {
     #region Windows Form Designer generated code
 
     protected override void Dispose(bool disposing) {
-      if(disposing && components != null)
+      if (disposing && components != null)
 	components.Dispose();
       base.Dispose(disposing);
     }
@@ -41,6 +42,7 @@ namespace PlayOnline.FFXI {
       this.lblMessage.AccessibleName = resources.GetString("lblMessage.AccessibleName");
       this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblMessage.Anchor")));
       this.lblMessage.AutoSize = ((bool)(resources.GetObject("lblMessage.AutoSize")));
+      this.lblMessage.BackColor = System.Drawing.Color.Transparent;
       this.lblMessage.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblMessage.Dock")));
       this.lblMessage.Enabled = ((bool)(resources.GetObject("lblMessage.Enabled")));
       this.lblMessage.Font = ((System.Drawing.Font)(resources.GetObject("lblMessage.Font")));
@@ -55,6 +57,7 @@ namespace PlayOnline.FFXI {
       this.lblMessage.TabIndex = ((int)(resources.GetObject("lblMessage.TabIndex")));
       this.lblMessage.Text = resources.GetString("lblMessage.Text");
       this.lblMessage.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblMessage.TextAlign")));
+      this.lblMessage.UseMnemonic = false;
       this.lblMessage.Visible = ((bool)(resources.GetObject("lblMessage.Visible")));
       // 
       // PleaseWaitDialog
@@ -79,12 +82,12 @@ namespace PlayOnline.FFXI {
       this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
       this.Name = "PleaseWaitDialog";
       this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-      this.ShowInTaskbar = false;
       this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
       this.Text = resources.GetString("$this.Text");
       this.ResumeLayout(false);
 
     }
+
     #endregion
 
   }

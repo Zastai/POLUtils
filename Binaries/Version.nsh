@@ -1,3 +1,5 @@
+;; $Id$
+
 ;; --- Version Information ---
 
 VIProductVersion 0.6.0.0
@@ -11,3 +13,4 @@ VIAddVersionKey  "FileVersion"     "${VERSION} (${BUILD})"
 VIAddVersionKey  "FileDescription" "Installer for POLUtils ${VERSION}"
 VIAddVersionKey  "LegalCopyright"  "Copyright (c) 2004, 2005 Tim Van Holder"
 VIAddVersionKey  "SpecialBuild"    "${BUILD}"
+VIAddVersionKey  "SVN Revision"    "$Revision$"

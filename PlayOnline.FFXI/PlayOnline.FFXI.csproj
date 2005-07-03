@@ -119,10 +119,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DataFiles.txt"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "EncodingTestUI.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -198,6 +194,16 @@
                     RelPath = "PleaseWaitDialog.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.ja.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.nl.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "PleaseWaitDialog.resx"

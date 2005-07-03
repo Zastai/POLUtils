@@ -130,26 +130,6 @@
                     RelPath = "Messages.resx"
                     BuildAction = "EmbeddedResource"
                 />
-                <File
-                    RelPath = "PleaseWaitDialog.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PleaseWaitDialog.ja.resx"
-                    DependentUpon = "PleaseWaitDialog.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PleaseWaitDialog.nl.resx"
-                    DependentUpon = "PleaseWaitDialog.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "PleaseWaitDialog.resx"
-                    DependentUpon = "PleaseWaitDialog.cs"
-                    BuildAction = "EmbeddedResource"
-                />
             </Include>
         </Files>
     </CSHARP>

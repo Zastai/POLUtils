@@ -1,3 +1,5 @@
+// $Id$
+
 //#define UseDirectX
 
 #if UseDirectX // We only support this mess for "real" DirectX

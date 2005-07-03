@@ -1,3 +1,5 @@
+// $Id$
+
 #define VerifyChecksum
 
 using System;

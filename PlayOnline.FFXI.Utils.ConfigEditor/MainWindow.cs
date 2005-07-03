@@ -1,3 +1,5 @@
+// $Id$
+
 using System;
 using System.Drawing;
 using System.Collections;
@@ -11,6 +13,8 @@ using PlayOnline.Core;
 namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
   public class MainWindow : System.Windows.Forms.Form {
+
+    private Label[] ColorLabels;
 
     #region Controls
 
@@ -53,15 +57,13 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
     private System.Windows.Forms.Label lblColor7;
     private System.Windows.Forms.Label lblColor16;
     private System.Windows.Forms.Label lblColor8;
-
-    private System.ComponentModel.Container components = null;
-
-    #endregion
     private System.Windows.Forms.ColorDialog dlgChooseColor;
     private System.Windows.Forms.TextBox txtSoundEffects;
     private System.Windows.Forms.Label lblSoundEffects;
 
-    private Label[] ColorLabels;
+    private System.ComponentModel.Container components = null;
+
+    #endregion
 
     public MainWindow() {
       this.InitializeComponent();

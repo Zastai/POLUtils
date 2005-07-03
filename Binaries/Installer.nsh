@@ -1,3 +1,5 @@
+;; $Id$
+
 ;; --- General Settings ---
 
 !include "MUI.nsh"

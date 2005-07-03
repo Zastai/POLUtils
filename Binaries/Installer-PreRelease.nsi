@@ -1,3 +1,5 @@
+;; $Id$
+
 !define BUILDDIR Release
 !define BUILD    PreRelease
 

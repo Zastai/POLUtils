@@ -1,3 +1,5 @@
+// $Id$
+
 // Define this to write the WAV header in the WaveWriter class instead of relying on AudioFileStream to
 // provide one.  If set, a loop marker will also be added to the WAV file if appropriate.
 #define LocalWAVHeader

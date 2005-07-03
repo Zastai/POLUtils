@@ -1,3 +1,5 @@
+;; $Id$
+
 !insertmacro MUI_LANGUAGE "English"
 
 ;; Enable these once all relevant strings are LangString'ed (and translated)

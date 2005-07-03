@@ -1,5 +1,7 @@
 ;; Checks related to the .NET Framework
 
+;; $Id$
+
 Var DOTNET_VERSION
 Var DOTNET_BUILD
 Var DOTNET_ROOT

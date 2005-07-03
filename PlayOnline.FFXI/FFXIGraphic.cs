@@ -1,3 +1,5 @@
+// $Id$
+
 #define EnableTransparency
 
 using System;
