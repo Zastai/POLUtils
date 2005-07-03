@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- $Id$ -->
 <pol-audio-data>
   <application id="0001" name="Final Fantasy XI">
@@ -156,11 +156,11 @@
     <track id="107"><title>Jungle</title></track>
     <track id="108"><title>Henbyoushi</title></track>
     <track id="109"><title>Dance</title></track>
-    <track id="110"><title>Honobono (�»�®�¼�® - Heartwarming)</title></track>
+    <track id="110"><title>Honobono (ほのぼの - Heartwarming)</title></track>
     <track id="111"><title>Jazz 2</title></track>
     <track id="113"><title>Dolphin</title></track>
     <track id="114"><title>Daikoukai</title></track>
-    <track id="115"><title>Fuwafuwa (�µ��µわ - Fluffy)</title></track>
+    <track id="115"><title>Fuwafuwa (ふわふわ - Fluffy)</title></track>
     <track id="116"><title>Funky Monkey</title></track>
     <track id="117"><title>Solid Wax</title></track>
     <track id="118"><title>Filter Branch</title></track>
@@ -169,9 +169,9 @@
     <track id="121"><title>P'z</title></track>
     <track id="122"><title>Foster Family</title></track>
     <track id="123"><title>Kemushi</title></track>
-    <track id="124"><title>Oka no Mukouni (丘�®向こ��« - On The Other Side of the Hill)</title></track>
+    <track id="124"><title>Oka no Mukouni (丘の向こうに - On The Other Side of the Hill)</title></track>
     <track id="125"><title>Payload Pasific</title></track>
-    <track id="126"><title>Tsuioku (追�� - Recollection)</title></track>
+    <track id="126"><title>Tsuioku (追憶 - Recollection)</title></track>
   </application>
   <!-- Add-On Package Music (different directory per region) -->
   <application id="1000" name="PlayOnline Viewer - Additional Content">
