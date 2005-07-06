@@ -125,7 +125,7 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\PlayOnline.Core.dll"
   File /nonfatal "${BUILDDIR}\PlayOnline.Utils.*.dll"
   File           "${BUILDDIR}\PlayOnline.FFXI.dll"
-; File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
+  File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\POLUtils.exe"
   File           "${BUILDDIR}\POLUtils.exe.manifest"
 SectionEnd
