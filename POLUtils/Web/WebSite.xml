@@ -33,7 +33,7 @@
       <p>
         Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
         dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
-        rather essential element of that perticular tool).  Unfortunately, Managed DirectX is not automatically
+        rather essential element of that particular tool).  Unfortunately, Managed DirectX is not automatically
         installed along with DirectX - you can find a suitable installer for it on the downloads page.<br/>
         As for Windows version, any version of windows that can install those two dependencies should do (which
         basically means Windows 98 or later).  Future versions of POLUtils may use the 2.0 framework, which will
@@ -85,6 +85,10 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="Still not dead" author="Pebbles" date="July 6th, 2005">
+      <p>POLUtils still isn't dead, I've just been doing other stuff; there's not much to report
+         at the moment.  0.6.0.0 will be done when it's done.</p>
+    </news-item>
     <news-item title="POLUtils 0.5.1 Release" author="Pebbles" date="May 6th, 2005">
       <p>Today I'm releasing POLUtils 0.5.1, a collection of PlayOnline-related utilities.</p>
       <p><strong>Fixes:</strong><br/><ul>
