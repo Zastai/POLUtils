@@ -102,6 +102,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       if (this.RightItems != null && this.LeftItems != null)
 	this.btnRemoveUnchanged.Enabled = true;
       T.Abort();
+      this.Activate();
       this.EnableNavigation();
       this.MarkItemChanges();
     }
@@ -138,7 +139,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     }
 
     private void EnableNavigation() {
-      this.SuspendLayout();
       this.ieLeft.Item = null;
       this.ieRight.Item = null;
       this.btnPrevious.Enabled = (this.CurrentItem > 0);
@@ -169,7 +169,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       }
       this.ieLeft.Item  = LeftItem;
       this.ieRight.Item = RightItem;
-      this.ResumeLayout(true);
     }
 
     #endregion
@@ -181,7 +180,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       try {
 	Application.DoEvents();
 	PWD.ShowDialog(this);
-      } catch { PWD.Close(); PWD.Dispose(); }
+      } catch { PWD.Close(); }
     }
 
     public void TRemoveUnchanged() {
@@ -189,7 +188,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       try {
 	Application.DoEvents();
 	PWD.ShowDialog(this);
-      } catch { PWD.Close(); PWD.Dispose(); }
+      } catch { PWD.Close(); }
     }
 
     #endregion
@@ -446,7 +445,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private void btnRemoveUnchanged_Click(object sender, System.EventArgs e) {
       this.btnRemoveUnchanged.Enabled = false;
-    Thread T = new Thread(new ThreadStart(this.TLoadItems));
+    Thread T = new Thread(new ThreadStart(this.TRemoveUnchanged));
       T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
       T.Start();
       Application.DoEvents();
@@ -474,6 +473,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	Application.DoEvents();
       }
       T.Abort();
+      this.Activate();
       this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
       this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
       this.CurrentItem = ((LIS.Count == 0) ? -1 : 0);
