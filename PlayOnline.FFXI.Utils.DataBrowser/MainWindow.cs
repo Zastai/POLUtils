@@ -889,6 +889,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.Text = resources.GetString("lstEntries.Text");
       this.lstEntries.View = System.Windows.Forms.View.Details;
       this.lstEntries.Visible = ((bool)(resources.GetObject("lstEntries.Visible")));
+      this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
       this.lstEntries.SizeChanged += new System.EventHandler(this.lstEntries_SizeChanged);
       // 
       // colXIEntryNum
@@ -1160,7 +1161,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region String Table Context Menu Events
 
-    private void mnuSTCCopy_Click(object sender, System.EventArgs e) {
+    private void CopyStringTableText() {
     string ItemText = String.Empty;
       foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
 	if (ItemText != String.Empty)
@@ -1169,6 +1170,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
       if (ItemText != String.Empty)
 	Clipboard.SetDataObject(ItemText);
+    }
+
+    private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+      if (e.Modifiers == Keys.Control && (e.KeyCode == Keys.C || e.KeyCode == Keys.Insert))
+	this.CopyStringTableText();
+    }
+
+    private void mnuSTCCopy_Click(object sender, System.EventArgs e) {
+      this.CopyStringTableText();
     }
 
     #endregion
