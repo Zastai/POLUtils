@@ -78,6 +78,29 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
+    public string ValidateQuery() {
+    NamedEnum NE = this.cmbTest.SelectedItem as NamedEnum;
+      if (NE == null)
+	return I18N.GetText("Query:NoQueryType");
+    Test T = (Test) NE.Value;
+      switch (T) {
+	case Test.StartsWith: case Test.EndsWith: case Test.Contains: case Test.DoesntContain:
+	  if (this.txtTestParameter.Text == String.Empty)
+	    return I18N.GetText("Query:NoEmptyString");
+	  return null;
+	case Test.Equals:
+	  return null;
+	case Test.MatchesRegexp: case Test.DoesntMatchRegexp:
+	  if (this.txtTestParameter.Text == String.Empty)
+	    return I18N.GetText("Query:NoEmptyString");
+	  try { // Try to parse the regex
+	    Regex RE = new Regex(this.txtTestParameter.Text, RegexOptions.Multiline | RegexOptions.ExplicitCapture);
+	  } catch { return I18N.GetText("Query:BadRegexp"); }
+	  return null;
+      }
+      return I18N.GetText("Query:BadQueryType");
+    }
+
     #region Applying The Selected Predicate
 
     private bool MatchString(string S) {

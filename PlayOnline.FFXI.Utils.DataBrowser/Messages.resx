@@ -279,4 +279,23 @@
     <data name="Export:DirDialogDesc" type="System.String">
         <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
     </data>
+    <data name="Title:InvalidQuery" type="System.String">
+        <value>Invalid Query</value>
+    </data>
+    <data name="Message:InvalidQuery" type="System.String">
+        <value>Query component #{0} is not valid: {1}
+Correct the problem and try again.</value>
+    </data>
+    <data name="Query:NoEmptyString" type="System.String">
+        <value>Cannot run this test using an empty string.</value>
+    </data>
+    <data name="Query:BadRegexp" type="System.String">
+        <value>Invalid regular expression.</value>
+    </data>
+    <data name="Query:NoQueryType" type="System.String">
+        <value>No (valid) query method selected.</value>
+    </data>
+    <data name="Query:BadQueryType" type="System.String">
+        <value>Unknown or unhandled query type.</value>
+    </data>
 </root>

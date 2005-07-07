@@ -565,7 +565,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Events
 
     private void btnRunQuery_Click(object sender, System.EventArgs e) {
+      // Ensure the query is valid
+      for (int i = 0; i < this.Predicates_.Count; ++i) {
+      ItemPredicate IP = this.Predicates_[i] as ItemPredicate;
+	if (IP == null)
+	  continue;
+      string ValidationError = IP.ValidateQuery();
+	if (ValidationError != null) {
+	  MessageBox.Show(this, String.Format(I18N.GetText("Message:InvalidQuery"), i + 1, ValidationError), I18N.GetText("Title:InvalidQuery"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+	  return;
+	}
+      }
+      // Clear the results
       this.InitializeResultsPane(this.Language, this.Type);
+      // And add all items that match
       foreach (FFXIItem FI in this.Items_) {
 	if (this.CheckQuery(FI))
 	  this.AddResult(FI, this.Language, this.Type);
