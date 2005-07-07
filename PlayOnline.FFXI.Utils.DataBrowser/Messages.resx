@@ -186,6 +186,9 @@
     <data name="Menu:Titles" type="System.String">
         <value>&amp;Titles</value>
     </data>
+    <data name="Menu:TransportRoutes" type="System.String">
+        <value>&amp;Transport Routes</value>
+    </data>
     <data name="Menu:Various1" type="System.String">
         <value>&amp;Various (1)</value>
     </data>

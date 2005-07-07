@@ -933,6 +933,29 @@
 	</category>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
+	<rom-file app="0" dir="017" file="023">Conquest Map</rom-file>
+	<rom-file app="0" dir="018" file="124">Creature Chart</rom-file>
+        <category><name>Diorama Abdhaljs</name>
+	  <rom-file app="2" dir="008" file="033">Ghelsba Outpost</rom-file>
+	  <rom-file app="2" dir="008" file="034">Purgonorgo Isle - Map 1</rom-file>
+	  <rom-file app="2" dir="008" file="035">Purgonorgo Isle - Map 2</rom-file>
+	</category>
+	<!-- Also: 0/17/38,45,46,49,64,75-82,97-100,102-106,115,116,118,119,123-127 and 0/18/0-7,35,36,58,73,82,83 -->
+	<rom-file app="0" dir="017" file="037">Dummy Map</rom-file>
+	<rom-file app="0" dir="018" file="123">Element Chart</rom-file>
+	<!-- Also: 0/17/61,73,74 and 0/18/41,105,106 -->
+	<rom-file app="0" dir="017" file="050">No Map</rom-file>
+	<!-- Also: 0/17/83 -->
+	<rom-file app="0" dir="017" file="058">No Map (Alternate)</rom-file>
+	<rom-file app="0" dir="018" file="122">Stellar Map</rom-file>
+        <category><name><i18n-string id="Menu:TransportRoutes"/></name>
+	  <rom-file app="0" dir="018" file="056">Airship - Jeuno → Bastok</rom-file>
+	  <rom-file app="1" dir="017" file="028">Airship - Jeuno → Kazham</rom-file>
+	  <rom-file app="0" dir="018" file="055">Airship - Jeuno → San d'Oria</rom-file>
+	  <rom-file app="0" dir="018" file="057">Airship - Jeuno → Windurst</rom-file>
+	  <rom-file app="0" dir="018" file="054">Ship - Mhaura → Selbina</rom-file>
+	  <rom-file app="0" dir="018" file="053">Ship - Selbina → Mhaura</rom-file>
+	</category>
       </category>
     </category>
     <category><name><i18n-string id="Menu:Other"/></name>
