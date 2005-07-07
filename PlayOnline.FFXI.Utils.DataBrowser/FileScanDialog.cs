@@ -131,7 +131,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("AbilityLoad");
       for (int i = 0; i < EntryCount; ++i) {
-	// index (ushort), unknown = 8 bytes, name = 32 bytes, desc = 96 bytes, rest is padding, last byte is 0xff
+	// index (ushort), unknown = 8 bytes, name = 32 bytes, desc = 256 bytes, rest is padding, last byte is 0xff
       byte[] Bytes = BR.ReadBytes(0x400);
 	this.DecodeAbility(Bytes);
 	if (Bytes[0x3ff] != 0xff || ((Bytes[0] + (Bytes[1] << 8)) != i)) {
@@ -139,7 +139,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  return;
 	}
 	// Even better: separate results with name & desc separate
-	this.StringTableEntries.Add(String.Format("\u3010{0}\u3011 {1}", E.GetString(Bytes, 10, 32).TrimEnd('\0'), E.GetString(Bytes, 42, 96).TrimEnd('\0')));
+	this.StringTableEntries.Add(String.Format("\u3010{0}\u3011 {1}", E.GetString(Bytes, 10, 32).TrimEnd('\0'), E.GetString(Bytes, 42, 256).TrimEnd('\0')));
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("AbilityLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
@@ -329,6 +329,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	this.SetProgress(i + 1, ItemCount);
       }
     }
+
+    #endregion
+
+    #region Spell Info
+
+    // Coming Soon
 
     #endregion
 
