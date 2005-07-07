@@ -123,7 +123,6 @@
 	<rom-file app="1" dir="017" file="064">Mordion Gaol</rom-file>
 	<rom-file app="1" dir="017" file="059">Qu'fim Island</rom-file>
 	<rom-file app="1" dir="017" file="112">Stellar Fulcrum</rom-file>
-	<!-- JP Version Of <rom-file app="1" dir="013" file="058">Tu'lia</rom-file> Goes Here -->
 	<rom-file app="1" dir="017" file="091">Upper Delkfutt's Tower</rom-file>
       </category>
       <category><name><ffxi-string id="0001000F"/></name>
@@ -180,16 +179,36 @@
 	<rom-file app="1" dir="017" file="068">Dynamis Xarcabard</rom-file>
       </category>
       <category><name><ffxi-string id="00010016"/></name>
-	<rom-file app="2" dir="002" file="021">Oldton Movalpolos</rom-file>
+	<rom-file app="2" dir="002" file="022">Newton Movalpolos</rom-file>
 	<rom-file app="2" dir="002" file="023">Mine Shaft #2716</rom-file>
+	<rom-file app="2" dir="002" file="021">Oldton Movalpolos</rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
+	<rom-file app="2" dir="002" file="036">Tavnazian Safehold</rom-file>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
+	<rom-file app="2" dir="002" file="034">Lufaise Meadows</rom-file>
+	<rom-file app="2" dir="002" file="035">Misareux Coast</rom-file>
+	<rom-file app="2" dir="002" file="037">Phomiuna Aqueducts</rom-file>
+	<rom-file app="2" dir="002" file="038">Sacrarium</rom-file>
+	<rom-file app="2" dir="002" file="039">Riverne - Site #B01</rom-file>
+	<rom-file app="2" dir="002" file="040">Riverne - Site #A01</rom-file>
+	<rom-file app="2" dir="002" file="041">Monarch Linn</rom-file>
+	<rom-file app="2" dir="002" file="042">Sealion's Den</rom-file>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
+	<rom-file app="2" dir="002" file="024">Hall Of Transference</rom-file>
+	<rom-file app="2" dir="002" file="026">Promyvion - Holla (?)</rom-file>
+	<rom-file app="2" dir="002" file="027">Spire Of Holla</rom-file>
+	<rom-file app="2" dir="002" file="028">Promyvion - Dem (?)</rom-file>
+	<rom-file app="2" dir="002" file="029">Spire Of Dem</rom-file>
+	<rom-file app="2" dir="002" file="030">Promyvion - Mea (?)</rom-file>
+	<rom-file app="2" dir="002" file="031">Spire Of Mea</rom-file>
+	<rom-file app="2" dir="002" file="032">Promyvion - Vazhl</rom-file>
+	<rom-file app="2" dir="002" file="033">Spire Of Vazhl</rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
+	<rom-file app="2" dir="002" file="044">Al'Taieu (?)</rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
 	<rom-file app="1" dir="018" file="029">Bastok-Jeuno Airship</rom-file>
@@ -202,30 +221,11 @@
 	<rom-file app="1" dir="018" file="025">Ship Bound For Selbina</rom-file>
 	<rom-file app="1" dir="018" file="032">Ship Bound For Selbina (2)</rom-file>
 	<separator/>
+	<rom-file app="2" dir="002" file="053">Diorama Abdhaljs-Ghelsba</rom-file>
 	<rom-file app="1" dir="017" file="116">The Last Stand</rom-file>
       </category>
       <category><name>Unknown</name>
-	<rom-file app="2" dir="002" file="022">???</rom-file>
-	<rom-file app="2" dir="002" file="024">???</rom-file>
-	<rom-file app="2" dir="002" file="026">???</rom-file>
-	<rom-file app="2" dir="002" file="027">???</rom-file>
-	<rom-file app="2" dir="002" file="028">???</rom-file>
-	<rom-file app="2" dir="002" file="029">???</rom-file>
-	<rom-file app="2" dir="002" file="030">???</rom-file>
-	<rom-file app="2" dir="002" file="031">???</rom-file>
-	<rom-file app="2" dir="002" file="032">???</rom-file>
-	<rom-file app="2" dir="002" file="033">???</rom-file>
-	<rom-file app="2" dir="002" file="034">???</rom-file>
-	<rom-file app="2" dir="002" file="035">???</rom-file>
-	<rom-file app="2" dir="002" file="036">???</rom-file>
-	<rom-file app="2" dir="002" file="037">???</rom-file>
-	<rom-file app="2" dir="002" file="038">???</rom-file>
-	<rom-file app="2" dir="002" file="039">???</rom-file>
-	<rom-file app="2" dir="002" file="040">???</rom-file>
-	<rom-file app="2" dir="002" file="041">???</rom-file>
-	<rom-file app="2" dir="002" file="042">???</rom-file>
 	<rom-file app="2" dir="002" file="043">???</rom-file>
-	<rom-file app="2" dir="002" file="044">???</rom-file>
 	<rom-file app="2" dir="002" file="045">???</rom-file>
 	<rom-file app="2" dir="002" file="046">???</rom-file>
 	<rom-file app="2" dir="002" file="047">???</rom-file>
@@ -234,7 +234,6 @@
 	<rom-file app="2" dir="002" file="050">???</rom-file>
 	<rom-file app="2" dir="002" file="051">???</rom-file>
 	<rom-file app="2" dir="002" file="052">???</rom-file>
-	<rom-file app="2" dir="002" file="053">???</rom-file>
 	<rom-file app="2" dir="002" file="054">???</rom-file>
       </category>
     </category>
@@ -359,7 +358,6 @@
 	<rom-file app="0" dir="022" file="068">Mordion Gaol</rom-file>
 	<rom-file app="0" dir="022" file="063">Qu'fim Island</rom-file>
 	<rom-file app="1" dir="013" file="073">Stellar Fulcrum</rom-file>
-	<rom-file app="1" dir="013" file="058">Tu'lia</rom-file>
 	<rom-file app="0" dir="022" file="095">Upper Delkfutt's Tower</rom-file>
       </category>
       <category><name><ffxi-string id="0001000F"/></name>
@@ -402,7 +400,7 @@
       </category>
       <category><name><ffxi-string id="00010014"/></name>
 	<rom-file app="1" dir="013" file="074">La'Loff Amphiteatre</rom-file>
-	<!-- JP Version Of <rom-file app="1" dir="017" file="063">Ru'Aun Gardens</rom-file> Goes Here -->
+	<rom-file app="1" dir="013" file="058">Ru'Aun Gardens</rom-file>
 	<rom-file app="1" dir="013" file="075">The Celestial Nexus</rom-file>
 	<rom-file app="1" dir="013" file="072">The Shrine Of Ru'Avitau</rom-file>
 	<rom-file app="1" dir="013" file="071">Ve'Lugannon Palace</rom-file>
@@ -416,16 +414,36 @@
 	<rom-file app="1" dir="013" file="079">Dynamis Jeuno</rom-file>
       </category>
       <category><name><ffxi-string id="00010016"/></name>
-	<rom-file app="2" dir="001" file="049">Oldton Movalpolos</rom-file>
+	<rom-file app="2" dir="001" file="050">Newton Movalpolos</rom-file>
 	<rom-file app="2" dir="001" file="051">Mine Shaft #2716</rom-file>
+	<rom-file app="2" dir="001" file="049">Oldton Movalpolos</rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
+	<rom-file app="2" dir="001" file="064">Tavnazian Safehold</rom-file>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
+	<rom-file app="2" dir="001" file="062">Lufaise Meadows</rom-file>
+	<rom-file app="2" dir="001" file="063">Misareux Coast</rom-file>
+	<rom-file app="2" dir="001" file="065">Phomiuna Aqueducts</rom-file>
+	<rom-file app="2" dir="001" file="066">Sacrarium</rom-file>
+	<rom-file app="2" dir="001" file="067">Riverne - Site #B01</rom-file>
+	<rom-file app="2" dir="001" file="068">Riverne - Site #A01</rom-file>
+	<rom-file app="2" dir="001" file="069">Monarch Linn</rom-file>
+	<rom-file app="2" dir="001" file="070">Sealion's Den</rom-file>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
+	<rom-file app="2" dir="001" file="052">Hall Of Transference</rom-file>
+	<rom-file app="2" dir="001" file="054">Promyvion - Holla (?)</rom-file>
+	<rom-file app="2" dir="001" file="055">Spire Of Holla</rom-file>
+	<rom-file app="2" dir="001" file="056">Promyvion - Dem (?)</rom-file>
+	<rom-file app="2" dir="001" file="057">Spire Of Dem</rom-file>
+	<rom-file app="2" dir="001" file="058">Promyvion - Mea (?)</rom-file>
+	<rom-file app="2" dir="001" file="059">Spire Of Mea</rom-file>
+	<rom-file app="2" dir="001" file="060">Promyvion - Vazhl</rom-file>
+	<rom-file app="2" dir="001" file="061">Spire Of Vazhl</rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
+	<rom-file app="2" dir="001" file="072">Al'Taieu (?)</rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
 	<rom-file app="0" dir="023" file="033">Bastok-Jeuno Airship</rom-file>
@@ -438,30 +456,11 @@
 	<rom-file app="0" dir="023" file="029">Ship Bound For Selbina</rom-file>
 	<rom-file app="0" dir="023" file="036">Ship Bound For Selbina (2)</rom-file>
 	<separator/>
+	<rom-file app="2" dir="001" file="081">Diorama Abdhaljs-Ghelsba</rom-file>
 	<rom-file app="0" dir="022" file="120">The Last Stand</rom-file>
       </category>
       <category><name>Unknown</name>
-	<rom-file app="2" dir="001" file="050">???</rom-file>
-	<rom-file app="2" dir="001" file="052">???</rom-file>
-	<rom-file app="2" dir="001" file="054">???</rom-file>
-	<rom-file app="2" dir="001" file="055">???</rom-file>
-	<rom-file app="2" dir="001" file="056">???</rom-file>
-	<rom-file app="2" dir="001" file="057">???</rom-file>
-	<rom-file app="2" dir="001" file="058">???</rom-file>
-	<rom-file app="2" dir="001" file="059">???</rom-file>
-	<rom-file app="2" dir="001" file="060">???</rom-file>
-	<rom-file app="2" dir="001" file="061">???</rom-file>
-	<rom-file app="2" dir="001" file="062">???</rom-file>
-	<rom-file app="2" dir="001" file="063">???</rom-file>
-	<rom-file app="2" dir="001" file="064">???</rom-file>
-	<rom-file app="2" dir="001" file="065">???</rom-file>
-	<rom-file app="2" dir="001" file="066">???</rom-file>
-	<rom-file app="2" dir="001" file="067">???</rom-file>
-	<rom-file app="2" dir="001" file="068">???</rom-file>
-	<rom-file app="2" dir="001" file="069">???</rom-file>
-	<rom-file app="2" dir="001" file="070">???</rom-file>
 	<rom-file app="2" dir="001" file="071">???</rom-file>
-	<rom-file app="2" dir="001" file="072">???</rom-file>
 	<rom-file app="2" dir="001" file="073">???</rom-file>
 	<rom-file app="2" dir="001" file="074">???</rom-file>
 	<rom-file app="2" dir="001" file="075">???</rom-file>
@@ -470,7 +469,6 @@
 	<rom-file app="2" dir="001" file="078">???</rom-file>
 	<rom-file app="2" dir="001" file="079">???</rom-file>
 	<rom-file app="2" dir="001" file="080">???</rom-file>
-	<rom-file app="2" dir="001" file="081">???</rom-file>
 	<rom-file app="2" dir="001" file="082">???</rom-file>
       </category>
     </category>
@@ -883,17 +881,10 @@
 	<rom-file app="2" dir="003" file="121">Newton Movalpolos</rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
-	<rom-file app="2" dir="004" file="014">Al'taieu</rom-file>
-	<category><name>Grand Palace of Hu'Xzoi</name>
-	  <rom-file app="2" dir="004" file="015">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="016">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="005" file="120">Map &amp;3</rom-file>
-	</category>
-	<category><name>The Garden of Ru'Hmet</name>
-	  <rom-file app="2" dir="004" file="017">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="018">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="004" file="019">Map &amp;3</rom-file>
-	  <rom-file app="2" dir="004" file="020">Map &amp;4</rom-file>
+	<category><name>Tavnazian Safehold</name>
+	  <rom-file app="2" dir="004" file="003">Map &amp;1</rom-file>
+	  <rom-file app="2" dir="004" file="004">Map &amp;2</rom-file>
+	  <rom-file app="2" dir="004" file="005">Map &amp;3</rom-file>
 	</category>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
@@ -917,11 +908,6 @@
 	  <rom-file app="2" dir="004" file="009">Map &amp;2</rom-file>
 	</category>
 	<rom-file app="2" dir="005" file="119">Sealion's Den</rom-file>
-	<category><name>Tavnazian Safehold</name>
-	  <rom-file app="2" dir="004" file="003">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="004">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="004" file="005">Map &amp;3</rom-file>
-	</category>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
 	<rom-file app="2" dir="003" file="123">Hall of Transference (Dem?)</rom-file>
@@ -933,6 +919,18 @@
 	<rom-file app="2" dir="004" file="000">Promyvion - Vahzl</rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
+	<rom-file app="2" dir="004" file="014">Al'taieu</rom-file>
+	<category><name>Grand Palace of Hu'Xzoi</name>
+	  <rom-file app="2" dir="004" file="015">Map &amp;1</rom-file>
+	  <rom-file app="2" dir="004" file="016">Map &amp;2</rom-file>
+	  <rom-file app="2" dir="005" file="120">Map &amp;3</rom-file>
+	</category>
+	<category><name>The Garden of Ru'Hmet</name>
+	  <rom-file app="2" dir="004" file="017">Map &amp;1</rom-file>
+	  <rom-file app="2" dir="004" file="018">Map &amp;2</rom-file>
+	  <rom-file app="2" dir="004" file="019">Map &amp;3</rom-file>
+	  <rom-file app="2" dir="004" file="020">Map &amp;4</rom-file>
+	</category>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
       </category>
