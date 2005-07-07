@@ -239,59 +239,77 @@ namespace PlayOnline.FFXI {
     CheckBox SelectedMode = this.chkViewItemAsEObject;
       switch (I.Common.Type) {
 	case ItemType.Armor: {
-	string LogNames = I.ENArmor.LogNameSingular + I.ENArmor.LogNamePlural;
-	  if (LogNames == String.Empty)
+	  if (I.ENArmor.Description != String.Empty && I.JPArmor.Description == String.Empty)
+	    SelectedMode = this.chkViewItemAsEArmor;
+	  else if (I.JPArmor.Description != String.Empty && I.ENArmor.Description == String.Empty)
 	    SelectedMode = this.chkViewItemAsJArmor;
 	  else {
-	  bool ExtendedCharSeen = false;
-	    foreach (char C in LogNames) {
-	      if ((int) C > 0x100) {
-		ExtendedCharSeen = true;
-		break;
-	      }
-	    }
-	    if (ExtendedCharSeen)
-	      SelectedMode = this.chkViewItemAsEArmor;
-	    else
+	  string LogNames = I.ENArmor.LogNameSingular + I.ENArmor.LogNamePlural;
+	    if (LogNames == String.Empty)
 	      SelectedMode = this.chkViewItemAsJArmor;
+	    else {
+	    bool ExtendedCharSeen = false;
+	      foreach (char C in LogNames) {
+		if ((int) C > 0x100) {
+		  ExtendedCharSeen = true;
+		  break;
+		}
+	      }
+	      if (ExtendedCharSeen)
+		SelectedMode = this.chkViewItemAsJArmor;
+	      else
+		SelectedMode = this.chkViewItemAsEArmor;
+	    }
 	  }
 	  break;
 	}
 	case ItemType.Weapon: {
-	string LogNames = I.ENWeapon.LogNameSingular + I.ENArmor.LogNamePlural;
-	  if (LogNames == String.Empty)
+	  if (I.ENWeapon.Description != String.Empty && I.JPWeapon.Description == String.Empty)
+	    SelectedMode = this.chkViewItemAsEWeapon;
+	  else if (I.JPWeapon.Description != String.Empty && I.ENWeapon.Description == String.Empty)
 	    SelectedMode = this.chkViewItemAsJWeapon;
 	  else {
-	  bool ExtendedCharSeen = false;
-	    foreach (char C in LogNames) {
-	      if ((int) C > 0x100) {
-		ExtendedCharSeen = true;
-		break;
-	      }
-	    }
-	    if (ExtendedCharSeen)
-	      SelectedMode = this.chkViewItemAsEWeapon;
-	    else
+	  string LogNames = I.ENWeapon.LogNameSingular + I.ENWeapon.LogNamePlural;
+	    if (LogNames == String.Empty)
 	      SelectedMode = this.chkViewItemAsJWeapon;
+	    else {
+	    bool ExtendedCharSeen = false;
+	      foreach (char C in LogNames) {
+		if ((int) C > 0x100) {
+		  ExtendedCharSeen = true;
+		  break;
+		}
+	      }
+	      if (ExtendedCharSeen)
+		SelectedMode = this.chkViewItemAsJWeapon;
+	      else
+		SelectedMode = this.chkViewItemAsEWeapon;
+	    }
 	  }
 	  break;
 	}
 	default: {
-	string LogNames = I.ENObject.LogNameSingular + I.ENArmor.LogNamePlural;
-	  if (LogNames == String.Empty)
+	  if (I.ENObject.Description != String.Empty && I.JPObject.Description == String.Empty)
+	    SelectedMode = this.chkViewItemAsEObject;
+	  else if (I.JPObject.Description != String.Empty && I.ENObject.Description == String.Empty)
 	    SelectedMode = this.chkViewItemAsJObject;
 	  else {
-	  bool ExtendedCharSeen = false;
-	    foreach (char C in LogNames) {
-	      if ((int) C > 0x100) {
-		ExtendedCharSeen = true;
-		break;
-	      }
-	    }
-	    if (ExtendedCharSeen)
-	      SelectedMode = this.chkViewItemAsEObject;
-	    else
+	  string LogNames = I.ENObject.LogNameSingular + I.ENObject.LogNamePlural;
+	    if (LogNames == String.Empty)
 	      SelectedMode = this.chkViewItemAsJObject;
+	    else {
+	    bool ExtendedCharSeen = false;
+	      foreach (char C in LogNames) {
+		if ((int) C > 0x100) {
+		  ExtendedCharSeen = true;
+		  break;
+		}
+	      }
+	      if (ExtendedCharSeen)
+		SelectedMode = this.chkViewItemAsJObject;
+	      else
+		SelectedMode = this.chkViewItemAsEObject;
+	    }
 	  }
 	  break;
 	}
