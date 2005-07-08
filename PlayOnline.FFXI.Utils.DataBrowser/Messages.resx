@@ -180,6 +180,9 @@
     <data name="Menu:RegionNames" type="System.String">
         <value>&amp;Region Names</value>
     </data>
+    <data name="Menu:Spells" type="System.String">
+        <value>&amp;Spells</value>
+    </data>
     <data name="Menu:Time+Pronouns" type="System.String">
         <value>&amp;Time-Related Terms + Pronouns</value>
     </data>
@@ -233,6 +236,15 @@
     </data>
     <data name="ItemLoadProgress" type="System.String">
         <value>Loading item information ({0}/{1}) - please wait...</value>
+    </data>
+    <data name="SpellCheck" type="System.String">
+        <value>Checking whether the file contains spell information...</value>
+    </data>
+    <data name="SpellLoad" type="System.String">
+        <value>Loading spell information - please wait...</value>
+    </data>
+    <data name="SpellLoadProgress" type="System.String">
+        <value>Loading spell information ({0}/{1}) - please wait...</value>
     </data>
     <data name="StringCheck" type="System.String">
         <value>Checking whether the file contains a string table...</value>

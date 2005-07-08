@@ -73,6 +73,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    goto Done;
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
+	  this.ScanSpellFile(BR);
+	  if (this.StringTableEntries.Count != 0)
+	    goto Done;
+  	  Application.DoEvents();
+	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
 	  this.ScanItemData(BR);
 	  if (this.Items.Count != 0)
 	    goto Done;
@@ -95,31 +100,38 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       Application.DoEvents();
     }
 
-    #region Abilities
+    private byte Rotate(byte B, int Bits) {
+      return (byte) ((B >> Bits) | (B << (8 - Bits)));
+    }
 
     private int CountBits(byte B) {
     int Count = 0;
       while (B != 0) {
-	if ((B & 0x01) != 0)
-	  ++Count;
-	 B >>= 1;
+       if ((B & 0x01) != 0)
+         ++Count;
+        B >>= 1;
       }
       return Count;
     }
 
-    private void DecodeAbility(byte[] Bytes) {
+    private bool DecodeInfoBlock(int Index, byte[] Bytes) {
     int BitCount = this.CountBits(Bytes[2]) - this.CountBits(Bytes[11]) + this.CountBits(Bytes[12]);
     byte ShiftSize = 0;
       switch (Math.Abs(BitCount) % 5) {
-	case 0: ShiftSize = 7; break;
-	case 1: ShiftSize = 1; break;
-	case 2: ShiftSize = 6; break;
-	case 3: ShiftSize = 2; break;
-	case 4: ShiftSize = 5; break;
+       case 0: ShiftSize = 7; break;
+       case 1: ShiftSize = 1; break;
+       case 2: ShiftSize = 6; break;
+       case 3: ShiftSize = 2; break;
+       case 4: ShiftSize = 5; break;
       }
+      if (ShiftSize == 0 || Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
+	return false;
       for (int i = 0; i < Bytes.Length; ++i)
-	Bytes[i] = (byte) ((Bytes[i] >> ShiftSize) | (Bytes[i] << (8 - ShiftSize)));
+       Bytes[i] = this.Rotate(Bytes[i], ShiftSize);
+      return true;
     }
+
+    #region Abilities
 
     private void ScanAbilityFile(BinaryReader BR) {
       this.lblScanProgress.Text = I18N.GetText("AbilityCheck");
@@ -130,16 +142,42 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     long EntryCount = BR.BaseStream.Length / 0x400;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("AbilityLoad");
+      // Block Layout:
+      // 000-001 U16 Index
+      // 002-003 U16 Unknown
+      // 004-005 U16 MP Cost
+      // 006-007 U16 Cooldown
+      // 008-008 U8  Target (1 = Self, 5 = PT Member, 20 = Monster)
+      // 009-009 U8  Unknown (NUL?)
+      // 00a-029 TXT Name
+      // 02a-129 TXT Description (exact length unknown)
+      // 12a-3fe U8  Padding (NULs)
+      // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
-	// index (ushort), unknown = 8 bytes, name = 32 bytes, desc = 256 bytes, rest is padding, last byte is 0xff
       byte[] Bytes = BR.ReadBytes(0x400);
-	this.DecodeAbility(Bytes);
-	if (Bytes[0x3ff] != 0xff || ((Bytes[0] + (Bytes[1] << 8)) != i)) {
+	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !this.DecodeInfoBlock(i, Bytes)) {
 	  this.StringTableEntries.Clear();
 	  return;
 	}
-	// Even better: separate results with name & desc separate
-	this.StringTableEntries.Add(String.Format("\u3010{0}\u3011 {1}", E.GetString(Bytes, 10, 32).TrimEnd('\0'), E.GetString(Bytes, 42, 256).TrimEnd('\0')));
+      string TextVersion = String.Empty;
+	TextVersion += String.Format("\u3010{0}\u3011 ", E.GetString(Bytes, 10, 32).TrimEnd('\0'));
+      int MP = Bytes[4] + (Bytes[5] << 8);
+	if (MP != 0)
+	  TextVersion += String.Format("(Cost: {0} MP) ", MP);
+      int Cooldown = Bytes[6] + (Bytes[7] << 8);
+	if (Cooldown != 0)
+	  TextVersion += String.Format("{{{0}}} ", new TimeSpan(0, 0, Cooldown));
+	switch (Bytes[8]) {
+	  case  0: TextVersion += "<Trait> ";         break;
+	  case  1: TextVersion += "<Target: Self> ";  break;
+	  case  5: TextVersion += "<Target: Party> "; break;
+	  case 32: TextVersion += "<Target: Enemy> "; break;
+	  default:
+	    this.StringTableEntries.Clear();
+	    return;
+	}
+	TextVersion += E.GetString(Bytes, 42, 256).TrimEnd('\0');
+	this.StringTableEntries.Add(TextVersion);
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("AbilityLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
@@ -309,7 +347,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       for (long i = 0; i < ItemCount; ++i) {
       byte[] ItemData  = BR.ReadBytes(0xc00);
 	for (int j = 0; j < 0xc00; ++j)
-	  ItemData[j] = (byte) ((ItemData[j] << 3) | (ItemData[j] >> 5));
+	  ItemData[j] = this.Rotate(ItemData[j], 3);
       FFXIGraphic ItemIcon = null;
 	{
 	BinaryReader ImageBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
@@ -334,7 +372,82 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Spell Info
 
-    // Coming Soon
+    // Same general layout as the ability info, different data
+    private void ScanSpellFile(BinaryReader BR) {
+      this.lblScanProgress.Text = I18N.GetText("SpellCheck");
+      this.SetProgress(0, 1);
+      BR.BaseStream.Seek(0, SeekOrigin.Begin);
+      if ((BR.BaseStream.Length % 0x400) != 0)
+	return;
+    long EntryCount = BR.BaseStream.Length / 0x400;
+    Encoding E = new FFXIEncoding();
+      this.lblScanProgress.Text = I18N.GetText("SpellLoad");
+      // Block Layout:
+      // 000-001 U16 Index
+      // 002-003 U16 Spell Type (1/2/3/4/5 - White/Black/Summon/Ninja/Bard)
+      // 004-005 U16 Unknown
+      // 006-007 U16 Unknown (Targeting Flags; 0x9D = Dead Player, 0x20 = Monster, etc.)?
+      // 008-009 U16 Unknown
+      // 00a-00b U16 MP Cost
+      // 00c-00c U8  Cast Time (1/4 second)
+      // 00d-00d U8  Recast Time (1/4 second)
+      // 00f-01e U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff)
+      // 01f-032 TXT Japanese Name
+      // 033-046 TXT English Name
+      // 047-0C6 TXT Japanese Description
+      // 0C7-146 TXT English Description
+      // 147-3fe U8  Padding (NULs)
+      // 3ff-3ff U8  End marker (0xff)
+      for (int i = 0; i < EntryCount; ++i) {
+      byte[] Bytes = BR.ReadBytes(0x400);
+	if (Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff || !this.DecodeInfoBlock(i, Bytes)) {
+	  this.StringTableEntries.Clear();
+	  return;
+	}
+      string TextVersion = String.Empty;
+	{ // Spell Type
+	int SpellType = Bytes[0x2] + (Bytes[0x3] << 8);
+	  TextVersion += '\u3010';
+	  switch (SpellType) {
+	    case 0: TextVersion += "None";        break;
+	    case 1: TextVersion += "White Magic"; break;
+	    case 2: TextVersion += "Black Magic"; break;
+	    case 3: TextVersion += "Summons";     break;
+	    case 4: TextVersion += "Ninjutsu";    break;
+	    case 5: TextVersion += "Bard Song";   break;
+	    default:
+	      this.StringTableEntries.Clear();
+	      return;
+	  }
+	  TextVersion += "\u3011 ";
+	}
+	TextVersion += String.Format("{0} ({1}) ", E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'), E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
+	{ // MP Cost
+	int MP = Bytes[0xa] + (Bytes[0xb] << 8);
+	  if (MP != 0)
+	    TextVersion += String.Format("(Cost: {0} MP) ", MP);
+	}
+	TextVersion += String.Format("(Cast Time: {0}s) ", Bytes[0xc] / 4.0);
+	TextVersion += String.Format("(Recast Time: {0}s) ", Bytes[0xd] / 4.0);
+	{ // Minimum Required Job Level (x16)
+	string JobInfo = String.Empty;
+	  for (int j = 1; j < 16; ++j) {
+	    if (Bytes[0x00e + j] != 0xFF) {
+	      if (JobInfo != String.Empty) JobInfo += '/';
+	      JobInfo += Bytes[0x00e + j].ToString();
+	      JobInfo += ((Job) (1 << j)).ToString();
+	    }
+	  }
+	  if (JobInfo != String.Empty)
+	    TextVersion += String.Format("[{0}] ", JobInfo);
+	}
+	TextVersion += String.Format("{0} ({1}) ", E.GetString(Bytes, 0x47, 128).TrimEnd('\0'), E.GetString(Bytes, 0xC7, 128).TrimEnd('\0'));
+	this.StringTableEntries.Add(TextVersion);
+	if (FileScanDialog.ShowProgressDetails)
+	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
+	this.SetProgress(i + 1, EntryCount);
+      }
+    }
 
     #endregion
 
