@@ -196,6 +196,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void FinalizeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
+      foreach (ColumnHeader CH in this.lstItems.Columns) {
+	CH.Width = -1;
+	CH.Width += 2;
+      }
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
       this.mnuILCEResults.Enabled = (this.lstItems.Items.Count > 0);
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Length);

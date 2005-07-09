@@ -69,4 +69,10 @@
     <data name="Menu:Items2" type="System.String">
         <value>物　(&amp;２)</value>
     </data>
+    <data name="ColumnHeader:Entry" type="System.String">
+        <value>位置</value>
+    </data>
+    <data name="ColumnHeader:Text" type="System.String">
+        <value>原文</value>
+    </data>
 </root>

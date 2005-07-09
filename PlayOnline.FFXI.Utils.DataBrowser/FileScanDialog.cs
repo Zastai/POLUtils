@@ -68,12 +68,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    goto Done;
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	  this.ScanAbilityFile(BR);
+	  this.ScanSpellFile(BR);
 	  if (this.StringTableEntries.Count != 0)
 	    goto Done;
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	  this.ScanSpellFile(BR);
+	  this.ScanAbilityFile(BR);
 	  if (this.StringTableEntries.Count != 0)
 	    goto Done;
   	  Application.DoEvents();
@@ -133,10 +133,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
       if (ShiftSize < 1 || ShiftSize > 7)
 	return false;
-#if false // This is usually a good test, BUT two of the status info blocks have a "bad" index...
-      if (Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
-	return;
-#endif
+      // This is usually a good test, BUT two of the status info blocks have a "bad" index...
+      // if (Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
+      //   return false;
       for (int i = 0; i < Bytes.Length; ++i)
        Bytes[i] = this.Rotate(Bytes[i], ShiftSize);
       return true;
@@ -150,6 +149,28 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if ((BR.BaseStream.Length % 0x400) != 0)
 	return;
+    ColumnHeader[] InfoColumns = new ColumnHeader[5];
+      InfoColumns[0]           = new ColumnHeader();
+      InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Name");
+      InfoColumns[0].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[0].Width     = 80;
+      InfoColumns[1]           = new ColumnHeader();
+      InfoColumns[1].Text      = I18N.GetText("ColumnHeader:MPCost");
+      InfoColumns[1].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[1].Width     = 30;
+      InfoColumns[2]           = new ColumnHeader();
+      InfoColumns[2].Text      = I18N.GetText("ColumnHeader:CoolDown");
+      InfoColumns[2].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[2].Width     = 50;
+      InfoColumns[3]           = new ColumnHeader();
+      InfoColumns[3].Text      = I18N.GetText("ColumnHeader:ValidTargets");
+      InfoColumns[3].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[3].Width     = 80;
+      InfoColumns[4]           = new ColumnHeader();
+      InfoColumns[4].Text      = I18N.GetText("ColumnHeader:Description");
+      InfoColumns[4].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[4].Width     = 120;
+      this.StringTableEntries.Add(InfoColumns);
     long EntryCount = BR.BaseStream.Length / 0x400;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("AbilityLoad");
@@ -168,23 +189,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       byte[] Bytes = BR.ReadBytes(0x400);
 	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !this.DecodeInfoBlock(i, Bytes))
 	  goto BadFormat;
-      string TextVersion = String.Empty;
-	TextVersion += String.Format("\u3010{0}\u3011 ", E.GetString(Bytes, 10, 32).TrimEnd('\0'));
-      int MP = Bytes[4] + (Bytes[5] << 8);
-	if (MP != 0)
-	  TextVersion += String.Format("(Cost: {0} MP) ", MP);
-      int Cooldown = Bytes[6] + (Bytes[7] << 8);
-	if (Cooldown != 0)
-	  TextVersion += String.Format("{{{0}}} ", new TimeSpan(0, 0, Cooldown));
-	switch (Bytes[8]) {
-	  case  0: TextVersion += "<Trait> ";         break;
-	  case  1: TextVersion += "<Target: Self> ";  break;
-	  case  5: TextVersion += "<Target: Party> "; break;
-	  case 32: TextVersion += "<Target: Enemy> "; break;
-	  default: goto BadFormat;
-	}
-	TextVersion += E.GetString(Bytes, 42, 256).TrimEnd('\0');
-	this.StringTableEntries.Add(TextVersion);
+      ArrayList Fields = new ArrayList(5);
+	Fields.Add(E.GetString(Bytes, 0x0a, 32).TrimEnd('\0'));
+	Fields.Add(String.Format("{0}", Bytes[0x04] + (Bytes[0x05] << 8)));
+	Fields.Add(String.Format("{0}", new TimeSpan(0, 0, Bytes[0x06] + (Bytes[0x07] << 8))));
+	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[8]));
+	Fields.Add(E.GetString(Bytes, 42, 256).TrimEnd('\0'));
+	this.StringTableEntries.Add(Fields.ToArray());
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("AbilityLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
@@ -210,6 +221,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     uint FirstTextPos = (BR.ReadUInt32() ^ 0x80808080);
       if ((FirstTextPos % 4) != 0 || FirstTextPos > BR.BaseStream.Length || FirstTextPos < 8)
 	return;
+    ColumnHeader[] InfoColumns = new ColumnHeader[1];
+      InfoColumns[0]           = new ColumnHeader();
+      InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Text");
+      InfoColumns[0].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[0].Width     = 100;
+      this.StringTableEntries.Add(InfoColumns);
     uint EntryCount = FirstTextPos / 4;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("DialogLoad");
@@ -217,10 +234,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	BR.BaseStream.Seek(4 + 4 * i, SeekOrigin.Begin);
       long Offset = (BR.ReadUInt32() ^ 0x80808080);
       long NextOffset = (((i + 1) == EntryCount) ? BR.BaseStream.Length : (BR.ReadUInt32() ^ 0x80808080));
-	if (NextOffset < Offset || NextOffset > (Offset + 1024)) { // Sanity check - the 1024 is arbitrary
-	  this.StringTableEntries.Clear();
-	  return;
-	}
+	if (NextOffset < Offset || NextOffset > (Offset + 1024)) // Sanity check - the 1024 is arbitrary
+	  goto BadFormat;
 	BR.BaseStream.Seek(4 + Offset, SeekOrigin.Begin);
       byte[] TextBytes = BR.ReadBytes((int) (NextOffset - Offset));
 	for (int j = 0; j < TextBytes.Length; ++j)
@@ -305,11 +320,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
 	if (LastPos < TextBytes.Length)
 	  Entry += E.GetString(TextBytes, LastPos, TextBytes.Length - LastPos);
-	this.StringTableEntries.Add(Entry);
+	this.StringTableEntries.Add(new string[] { Entry });
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("DialogLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
       }
+      return;
+    BadFormat:
+      this.StringTableEntries.Clear();
     }
 
     #endregion
@@ -362,7 +380,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	{
 	BinaryReader IconBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
 	int IconSize = IconBR.ReadInt32();
-	  if (IconSize > 0) {
+	  if (IconSize > 0 && IconSize <= 0x9fc) {
 	    ItemIcon = FFXIGraphic.Read(IconBR);
 	    if (IconBR.BaseStream.Position != 4 + IconSize)
 	      goto BadFormat;
@@ -394,15 +412,65 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if ((BR.BaseStream.Length % 0x400) != 0)
 	return;
+    ColumnHeader[] InfoColumns = new ColumnHeader[12];
+      InfoColumns[00]           = new ColumnHeader();
+      InfoColumns[00].Text      = I18N.GetText("ColumnHeader:Type");
+      InfoColumns[00].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[00].Width     = 50;
+      InfoColumns[01]           = new ColumnHeader();
+      InfoColumns[01].Text      = I18N.GetText("ColumnHeader:EnglishName");
+      InfoColumns[01].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[01].Width     = 50;
+      InfoColumns[02]           = new ColumnHeader();
+      InfoColumns[02].Text      = I18N.GetText("ColumnHeader:JapaneseName");
+      InfoColumns[02].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[02].Width     = 50;
+      InfoColumns[03]           = new ColumnHeader();
+      InfoColumns[03].Text      = I18N.GetText("ColumnHeader:Skill");
+      InfoColumns[03].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[03].Width     = 50;
+      InfoColumns[04]           = new ColumnHeader();
+      InfoColumns[04].Text      = I18N.GetText("ColumnHeader:Element");
+      InfoColumns[04].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[04].Width     = 50;
+      InfoColumns[05]           = new ColumnHeader();
+      InfoColumns[05].Text      = I18N.GetText("ColumnHeader:Jobs");
+      InfoColumns[05].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[05].Width     = 50;
+      InfoColumns[06]           = new ColumnHeader();
+      InfoColumns[06].Text      = I18N.GetText("ColumnHeader:MPCost");
+      InfoColumns[06].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[06].Width     = 50;
+      InfoColumns[07]           = new ColumnHeader();
+      InfoColumns[07].Text      = I18N.GetText("ColumnHeader:CastTime");
+      InfoColumns[07].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[07].Width     = 50;
+      InfoColumns[08]           = new ColumnHeader();
+      InfoColumns[08].Text      = I18N.GetText("ColumnHeader:RecastTime");
+      InfoColumns[08].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[08].Width     = 50;
+      InfoColumns[09]           = new ColumnHeader();
+      InfoColumns[09].Text      = I18N.GetText("ColumnHeader:ValidTargets");
+      InfoColumns[09].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[09].Width     = 50;
+      InfoColumns[10]           = new ColumnHeader();
+      InfoColumns[10].Text      = I18N.GetText("ColumnHeader:EnglishDescription");
+      InfoColumns[10].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[10].Width     = 120;
+      InfoColumns[11]           = new ColumnHeader();
+      InfoColumns[11].Text      = I18N.GetText("ColumnHeader:JapaneseDescription");
+      InfoColumns[11].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[11].Width     = 120;
+      this.StringTableEntries.Add(InfoColumns);
     long EntryCount = BR.BaseStream.Length / 0x400;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("SpellLoad");
       // Block Layout:
       // 000-001 U16 Index
       // 002-003 U16 Spell Type (1/2/3/4/5 - White/Black/Summon/Ninja/Bard)
-      // 004-005 U16 Unknown
-      // 006-007 U16 Unknown (Targeting Flags; 0x9D = Dead Player, 0x20 = Monster, etc.)?
-      // 008-009 U16 Unknown
+      // 004-005 U16 Element
+      // 006-007 U16 Valid Targets
+      // 008-009 U16 Skill
       // 00a-00b U16 MP Cost
       // 00c-00c U8  Cast Time (1/4 second)
       // 00d-00d U8  Recast Time (1/4 second)
@@ -415,45 +483,34 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff || !this.DecodeInfoBlock(i, Bytes))
+	if (Bytes[0x3] != 0x00 || Bytes[0x5] != 0x00 || Bytes[0x7] != 0x00 || Bytes[0x9] != 0x00 || Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff)
 	  goto BadFormat;
-      string TextVersion = String.Empty;
-	{ // Spell Type
-	int SpellType = Bytes[0x2] + (Bytes[0x3] << 8);
-	  TextVersion += '\u3010';
-	  switch (SpellType) {
-	    case 0: TextVersion += "None";        break;
-	    case 1: TextVersion += "White Magic"; break;
-	    case 2: TextVersion += "Black Magic"; break;
-	    case 3: TextVersion += "Summons";     break;
-	    case 4: TextVersion += "Ninjutsu";    break;
-	    case 5: TextVersion += "Bard Song";   break;
-	    default: goto BadFormat;
-	  }
-	  TextVersion += "\u3011 ";
-	}
-	TextVersion += String.Format("{0} ({1}) ", E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'), E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
-	{ // MP Cost
-	int MP = Bytes[0xa] + (Bytes[0xb] << 8);
-	  if (MP != 0)
-	    TextVersion += String.Format("(Cost: {0} MP) ", MP);
-	}
-	TextVersion += String.Format("(Cast Time: {0}s) ", Bytes[0xc] / 4.0);
-	TextVersion += String.Format("(Recast Time: {0}s) ", Bytes[0xd] / 4.0);
+	if (!this.DecodeInfoBlock(i, Bytes))
+	  goto BadFormat;
+      ArrayList Fields = new ArrayList(9);
+	Fields.Add(String.Format("{0}", (MagicType) Bytes[0x02]));
+	Fields.Add(E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'));
+	Fields.Add(String.Format("{0}", (ItemSkill) Bytes[0x08]));
+	Fields.Add(String.Format("{0}", (Element) Bytes[0x04]));
 	{ // Minimum Required Job Level (x16)
 	string JobInfo = String.Empty;
 	  for (int j = 1; j < 16; ++j) {
 	    if (Bytes[0x00e + j] != 0xFF) {
-	      if (JobInfo != String.Empty) JobInfo += '/';
+	      if (JobInfo != String.Empty) JobInfo += ", ";
 	      JobInfo += Bytes[0x00e + j].ToString();
 	      JobInfo += ((Job) (1 << j)).ToString();
 	    }
 	  }
-	  if (JobInfo != String.Empty)
-	    TextVersion += String.Format("[{0}] ", JobInfo);
+	  Fields.Add(JobInfo);
 	}
-	TextVersion += String.Format("{0} ({1}) ", E.GetString(Bytes, 0x47, 128).TrimEnd('\0'), E.GetString(Bytes, 0xC7, 128).TrimEnd('\0'));
-	this.StringTableEntries.Add(TextVersion);
+	Fields.Add(String.Format("{0}", Bytes[0x0a] + (Bytes[0x0b] << 8)));
+	Fields.Add(String.Format("{0}s", Bytes[0x0c] / 4.0));
+	Fields.Add(String.Format("{0}s", Bytes[0x0d] / 4.0));
+	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[0x06]));
+	Fields.Add(E.GetString(Bytes, 0xc7, 128).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x47, 128).TrimEnd('\0'));
+	this.StringTableEntries.Add(Fields.ToArray());
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
@@ -474,6 +531,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if ((BR.BaseStream.Length % 0xc00) != 0)
 	return;
+    ColumnHeader[] InfoColumns = new ColumnHeader[3];
+      InfoColumns[0]           = new ColumnHeader();
+      InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Name");
+      InfoColumns[0].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[0].Width     = 100;
+      InfoColumns[1]           = new ColumnHeader();
+      InfoColumns[1].Text      = I18N.GetText("ColumnHeader:Status");
+      InfoColumns[1].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[1].Width     = 100;
+      InfoColumns[2]           = new ColumnHeader();
+      InfoColumns[2].Text      = I18N.GetText("ColumnHeader:Description");
+      InfoColumns[2].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[2].Width     = 100;
+      this.StringTableEntries.Add(InfoColumns);
     long EntryCount = BR.BaseStream.Length / 0xc00;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("StatusLoad");
@@ -488,11 +559,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       byte[] Bytes = BR.ReadBytes(0x200);
 	if (!this.DecodeInfoBlock(i, Bytes))
 	  goto BadFormat;
-	{
+      byte[] IconBytes = BR.ReadBytes(0xa00);
+	if (IconBytes[0x9ff] != 0xff)
+	  goto BadFormat;
+	{ // Verify that the icon info is valid
 	FFXIGraphic StatusIcon = null;
-	BinaryReader IconBR = new BinaryReader(new MemoryStream(BR.ReadBytes(0xa00), 0, 0xa00, false));
+	BinaryReader IconBR = new BinaryReader(new MemoryStream(IconBytes, 0, 0xa00, false));
 	int IconSize = IconBR.ReadInt32();
-	  if (IconSize > 0) {
+	  if (IconSize > 0 && IconSize <= 0x9fb) {
 	    StatusIcon = FFXIGraphic.Read(IconBR);
 	    if (IconBR.BaseStream.Position != 4 + IconSize)
 	      goto BadFormat;
@@ -502,9 +576,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    goto BadFormat;
 	  this.Images.Add(StatusIcon);
 	}
-	this.StringTableEntries.Add(String.Format("\u3010{0}\u3011 {1} - {2}", E.GetString(Bytes, 2, 32).TrimEnd('\0'), E.GetString(Bytes, 34, 32).TrimEnd('\0'), E.GetString(Bytes, 66, 128).TrimEnd('\0')));
+	this.StringTableEntries.Add(new string[] { E.GetString(Bytes, 2, 32).TrimEnd('\0'), E.GetString(Bytes, 34, 32).TrimEnd('\0'), E.GetString(Bytes, 66, 128).TrimEnd('\0') });
 	if (FileScanDialog.ShowProgressDetails)
-	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
+	  this.lblScanProgress.Text = String.Format(I18N.GetText("StatusLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
       }
       return;
@@ -523,21 +597,28 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if ((BR.BaseStream.Length % 0x40) != 0)
 	return;
+    ColumnHeader[] InfoColumns = new ColumnHeader[1];
+      InfoColumns[0]           = new ColumnHeader();
+      InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Text");
+      InfoColumns[0].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[0].Width     = 100;
+      this.StringTableEntries.Add(InfoColumns);
     long EntryCount = BR.BaseStream.Length / 0x40;
     Encoding E = new FFXIEncoding();
       this.lblScanProgress.Text = I18N.GetText("StringLoad");
       for (int i = 0; i < EntryCount; ++i) {
       uint EntryIndex = BR.ReadUInt32();
       byte[] EntryBytes = BR.ReadBytes(0x3c);
-	if (EntryIndex != i || EntryBytes[0x3b] != 0xff) {
-	  this.StringTableEntries.Clear();
-	  return;
-	}
-	this.StringTableEntries.Add(E.GetString(EntryBytes, 0, 0x3b).TrimEnd('\0'));
+	if (EntryIndex != i || EntryBytes[0x3b] != 0xff)
+	  goto BadFormat;
+	this.StringTableEntries.Add(new string[] { E.GetString(EntryBytes, 0, 0x3b).TrimEnd('\0') });
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("StringLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
       }
+      return;
+    BadFormat:
+      this.StringTableEntries.Clear();
     }
 
     private void ScanXIStringFile(BinaryReader BR) {
@@ -566,6 +647,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       if (EntryBytes != EntryCount * 12 || FileSize != 0x38 + EntryBytes + DataBytes)
 	return;
       this.lblScanProgress.Text = I18N.GetText("StringLoad");
+      {
+      ColumnHeader[] InfoColumns = new ColumnHeader[1];
+	InfoColumns[0]           = new ColumnHeader();
+	InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Text");
+	InfoColumns[0].TextAlign = HorizontalAlignment.Left;
+	InfoColumns[0].Width     = 100;
+	this.StringTableEntries.Add(InfoColumns);
+      }
       for (int i = 0; i < EntryCount; ++i) {
       uint  Offset = BR.ReadUInt32();
       short Size = BR.ReadInt16();
@@ -576,10 +665,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  BR.BaseStream.Seek(0x38 + EntryBytes + Offset, SeekOrigin.Begin);
 	string Text = E.GetString(BR.ReadBytes(Size)).TrimEnd('\0');
 	  BR.BaseStream.Seek(IndexPos, SeekOrigin.Begin);
-	  this.StringTableEntries.Add(Text);
+	  this.StringTableEntries.Add(new string[] { Text });
 	}
 	else
-	  this.StringTableEntries.Add(I18N.GetText("InvalidEntry"));
+	  this.StringTableEntries.Add(new string[] { I18N.GetText("InvalidEntry") });
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("StringLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);

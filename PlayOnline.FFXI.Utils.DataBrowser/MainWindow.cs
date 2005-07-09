@@ -18,6 +18,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   public class MainWindow : System.Windows.Forms.Form {
 
+    #region Custom Menu Items
+
     private class ROMMenuItem : MenuItem {
 
       public ROMMenuItem(string Text, int App, int Dir, int File, EventHandler OnClick) : base(Text, OnClick) {
@@ -108,6 +110,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     }
 
+    #endregion
+
     #region Controls
 
     private System.Windows.Forms.TreeView tvDataFiles;
@@ -139,8 +143,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.Panel pnlNoViewers;
     private System.Windows.Forms.Label lblNoViewers;
     private System.Windows.Forms.TabPage tabViewerItems;
-    private System.Windows.Forms.ColumnHeader colXIEntryNum;
-    private System.Windows.Forms.ColumnHeader colXIEntryText;
     private System.Windows.Forms.TabPage tabViewerStringTable;
     private System.Windows.Forms.Button btnExportItems;
     private System.Windows.Forms.Button btnFindItems;
@@ -236,10 +238,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region String Table Viewer Events
 
-    private void lstEntries_SizeChanged(object sender, System.EventArgs e) {
-      this.lstEntries.Columns[1].Width = this.lstEntries.Width - this.lstEntries.Columns[0].Width - 25;
-    }
-
     #endregion
 
     #region Windows Form Designer generated code
@@ -288,8 +286,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
       this.tabViewerStringTable = new System.Windows.Forms.TabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
-      this.colXIEntryNum = new System.Windows.Forms.ColumnHeader();
-      this.colXIEntryText = new System.Windows.Forms.ColumnHeader();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.pnlViewerArea.SuspendLayout();
@@ -870,9 +866,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lstEntries.Alignment")));
       this.lstEntries.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lstEntries.Anchor")));
       this.lstEntries.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstEntries.BackgroundImage")));
-      this.lstEntries.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-										 this.colXIEntryNum,
-										 this.colXIEntryText});
       this.lstEntries.ContextMenu = this.mnuStringTableContext;
       this.lstEntries.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lstEntries.Dock")));
       this.lstEntries.Enabled = ((bool)(resources.GetObject("lstEntries.Enabled")));
@@ -890,19 +883,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.View = System.Windows.Forms.View.Details;
       this.lstEntries.Visible = ((bool)(resources.GetObject("lstEntries.Visible")));
       this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
-      this.lstEntries.SizeChanged += new System.EventHandler(this.lstEntries_SizeChanged);
-      // 
-      // colXIEntryNum
-      // 
-      this.colXIEntryNum.Text = resources.GetString("colXIEntryNum.Text");
-      this.colXIEntryNum.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("colXIEntryNum.TextAlign")));
-      this.colXIEntryNum.Width = ((int)(resources.GetObject("colXIEntryNum.Width")));
-      // 
-      // colXIEntryText
-      // 
-      this.colXIEntryText.Text = resources.GetString("colXIEntryText.Text");
-      this.colXIEntryText.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("colXIEntryText.TextAlign")));
-      this.colXIEntryText.Width = ((int)(resources.GetObject("colXIEntryText.Width")));
       // 
       // pnlNoViewers
       // 
@@ -1013,11 +993,27 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    Application.DoEvents();
 	    this.lstEntries.Select();
 	  int i = 0;
-	    foreach (string S in FSD.StringTableEntries) {
-	      this.lstEntries.Items.Add(String.Format("{0:00000000}", ++i)).SubItems.Add(S);
-	      if ((i % 100) == 1)
+	    foreach (Array A in FSD.StringTableEntries) {
+	      if (i == 0) {
+		this.lstEntries.Columns.Clear();
+		this.lstEntries.Columns.Add(I18N.GetText("ColumnHeader:Entry"), 1, HorizontalAlignment.Center);
+		foreach (ColumnHeader CH in A)
+		  this.lstEntries.Columns.Add(CH);
+		++i;
+	      }
+	      else {
+	      ListViewItem LVI = this.lstEntries.Items.Add(String.Format("{0:00000000}", i++));
+		foreach (string S in A)
+		  LVI.SubItems.Add(S);
+	      }
+	      if ((i % 100) == 0)
 		Application.DoEvents();
 	    }
+	    foreach (ColumnHeader CH in this.lstEntries.Columns) {
+	      CH.Width = -1;
+	      CH.Width += 2;
+	    }
+	    Application.DoEvents();
 	  }
 	  if (FSD.Items.Count > 0) {
 	    this.tabViewers.Visible = true;
@@ -1162,14 +1158,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region String Table Context Menu Events
 
     private void CopyStringTableText() {
-    string ItemText = String.Empty;
+    string FullText = String.Empty;
       foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
-	if (ItemText != String.Empty)
-	  ItemText += '\n';
-	ItemText += LVI.SubItems[1].Text;
+      string ItemText = String.Empty;
+	foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems) {
+	  if (ItemText != String.Empty)
+	    ItemText += '\t';
+	  ItemText += LVSI.Text;
+	}
+	if (FullText != String.Empty)
+	  FullText += '\n';
+	FullText += ItemText;
       }
-      if (ItemText != String.Empty)
-	Clipboard.SetDataObject(ItemText);
+      if (FullText != String.Empty)
+	Clipboard.SetDataObject(FullText);
     }
 
     private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
