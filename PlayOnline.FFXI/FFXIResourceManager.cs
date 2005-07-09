@@ -43,6 +43,7 @@ namespace PlayOnline.FFXI {
 	  FFXIResourceManager.E = new FFXIEncoding();
       }
     PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("PWD:StringResources"));
+      PWD.StartPosition = FormStartPosition.CenterScreen;
       PWD.Show();
       Application.DoEvents();
       FFXIResourceManager.LoadAutoTranslatorMessages();
