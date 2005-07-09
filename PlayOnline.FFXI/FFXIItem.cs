@@ -359,17 +359,17 @@ namespace PlayOnline.FFXI {
 
       #region Private Data
 
-      protected ushort    Damage_;
-      protected ushort    Delay_;
-      protected ItemSkill Skill_;
+      protected ushort Damage_;
+      protected ushort Delay_;
+      protected Skill  Skill_;
 
       #endregion
 
       #region Public Properties
 
-      public ushort    Damage     { get { return this.Damage_; } }
-      public ushort    Delay      { get { return this.Delay_;  } }
-      public ItemSkill Skill      { get { return this.Skill_;  } }
+      public ushort Damage { get { return this.Damage_; } }
+      public ushort Delay  { get { return this.Delay_;  } }
+      public Skill  Skill  { get { return this.Skill_;  } }
 
       #endregion
 
@@ -515,7 +515,7 @@ namespace PlayOnline.FFXI {
 	this.Damage_     =                 BR.ReadUInt16();
 	this.Delay_      =                 BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
-	this.Skill_      = (ItemSkill)     BR.ReadByte();
+	this.Skill_      = (Skill)         BR.ReadByte();
 	/* Unknown */                      BR.ReadByte();
 	this.ReadTextFields(BR, L);
 	/* Unknown */                      BR.ReadUInt16();
@@ -744,7 +744,7 @@ namespace PlayOnline.FFXI {
 	} catch { }
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Skill']");
-	  this.Skill_ = (ItemSkill) Enum.Parse(typeof(ItemSkill), XField.InnerText, false);
+	  this.Skill_ = (Skill) Enum.Parse(typeof(Skill), XField.InnerText, false);
 	} catch { }
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");

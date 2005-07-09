@@ -491,7 +491,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Fields.Add(String.Format("{0}", (MagicType) Bytes[0x02]));
 	Fields.Add(E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
 	Fields.Add(E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'));
-	Fields.Add(String.Format("{0}", (ItemSkill) Bytes[0x08]));
+	Fields.Add(String.Format("{0}", (Skill) Bytes[0x08]));
 	Fields.Add(String.Format("{0}", (Element) Bytes[0x04]));
 	{ // Minimum Required Job Level (x16)
 	string JobInfo = String.Empty;

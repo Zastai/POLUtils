@@ -178,7 +178,7 @@ namespace PlayOnline.FFXI {
     Female         = 0x00D4,
   }
 
-  public enum ItemSkill : byte {
+  public enum Skill : byte {
     None             = 0x00,
     HandToHand       = 0x01,
     Dagger           = 0x02,
