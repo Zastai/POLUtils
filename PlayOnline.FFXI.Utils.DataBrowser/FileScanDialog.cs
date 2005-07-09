@@ -347,7 +347,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       for (long i = 0; i < ItemCount; ++i) {
       byte[] ItemData  = BR.ReadBytes(0xc00);
 	for (int j = 0; j < 0xc00; ++j)
-	  ItemData[j] = this.Rotate(ItemData[j], 3);
+	  ItemData[j] = this.Rotate(ItemData[j], 5);
       FFXIGraphic ItemIcon = null;
 	{
 	BinaryReader ImageBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
