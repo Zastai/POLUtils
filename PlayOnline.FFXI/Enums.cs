@@ -45,48 +45,16 @@ namespace PlayOnline.FFXI {
     Skill,
   }
 
-  [Flags]
-  public enum Job : ushort {
-    None = 0x0000,
-    All  = 0xFFFE,
-    // Specific
-    WAR  = 0x0002,
-    MNK  = 0x0004,
-    WHM  = 0x0008,
-    BLM  = 0x0010,
-    RDM  = 0x0020,
-    THF  = 0x0040,
-    PLD  = 0x0080,
-    DRK  = 0x0100,
-    BST  = 0x0200,
-    BRD  = 0x0400,
-    RNG  = 0x0800,
-    SAM  = 0x1000,
-    NIN  = 0x2000,
-    DRG  = 0x4000,
-    SMN  = 0x8000,
-  }
-
-  [Flags]
-  public enum Race : ushort {
-    None           = 0x0000,
-    All            = 0x01FE,
-    // Specific
-    HumeMale       = 0x0002,
-    HumeFemale     = 0x0004,
-    ElvaanMale     = 0x0008,
-    ElvaanFemale   = 0x0010,
-    TarutaruMale   = 0x0020,
-    TarutaruFemale = 0x0040,
-    Mithra         = 0x0080,
-    Galka          = 0x0100,
-    // Race Groups
-    Hume           = 0x0006,
-    Elvaan         = 0x0018,
-    Tarutaru       = 0x0060,
-    // Gender Groups (with Mithra = female, and Galka = male)
-    Male           = 0x012A,
-    Female         = 0x00D4,
+  public enum Element : byte {
+    Fire,
+    Ice,
+    Wind,
+    Earth,
+    Thunder,
+    Water,
+    Light,
+    Dark,
+    Special = 15 // this is the element set on the Meteor spell
   }
 
   [Flags]
@@ -113,28 +81,6 @@ namespace PlayOnline.FFXI {
     LRing  = 0x2000,
     RRing  = 0x4000,
     Back   = 0x8000,
-  }
-
-  public enum ItemSkill : byte {
-    None             = 0x00,
-    HandToHand       = 0x01,
-    Dagger           = 0x02,
-    Sword            = 0x03,
-    GreatSword       = 0x04,
-    Axe              = 0x05,
-    GreatAxe         = 0x06,
-    Scythe           = 0x07,
-    PoleArm          = 0x08,
-    Katana           = 0x09,
-    GreatKatana      = 0x0a,
-    Club             = 0x0b,
-    Staff            = 0x0c,
-    Ranged           = 0x19,
-    Marksmanship     = 0x1a,
-    Thrown           = 0x1b,
-    StringInstrument = 0x29,
-    WindInstrument   = 0x2a,
-    Fishing          = 0x30,
   }
 
   [Flags]
@@ -177,6 +123,104 @@ namespace PlayOnline.FFXI {
     Flowerpot  = 0x000C,
     Material   = 0x000D,
     Mannequin  = 0x000E,
+  }
+
+  [Flags]
+  public enum Job : ushort {
+    None = 0x0000,
+    All  = 0xFFFE,
+    // Specific
+    WAR  = 0x0002,
+    MNK  = 0x0004,
+    WHM  = 0x0008,
+    BLM  = 0x0010,
+    RDM  = 0x0020,
+    THF  = 0x0040,
+    PLD  = 0x0080,
+    DRK  = 0x0100,
+    BST  = 0x0200,
+    BRD  = 0x0400,
+    RNG  = 0x0800,
+    SAM  = 0x1000,
+    NIN  = 0x2000,
+    DRG  = 0x4000,
+    SMN  = 0x8000,
+  }
+
+  public enum MagicType : byte {
+    None,
+    WhiteMagic,
+    BlackMagic,
+    SummonerPact,
+    Ninjutsu,
+    BardSong
+  }
+
+  [Flags]
+  public enum Race : ushort {
+    None           = 0x0000,
+    All            = 0x01FE,
+    // Specific
+    HumeMale       = 0x0002,
+    HumeFemale     = 0x0004,
+    ElvaanMale     = 0x0008,
+    ElvaanFemale   = 0x0010,
+    TarutaruMale   = 0x0020,
+    TarutaruFemale = 0x0040,
+    Mithra         = 0x0080,
+    Galka          = 0x0100,
+    // Race Groups
+    Hume           = 0x0006,
+    Elvaan         = 0x0018,
+    Tarutaru       = 0x0060,
+    // Gender Groups (with Mithra = female, and Galka = male)
+    Male           = 0x012A,
+    Female         = 0x00D4,
+  }
+
+  public enum ItemSkill : byte {
+    None             = 0x00,
+    HandToHand       = 0x01,
+    Dagger           = 0x02,
+    Sword            = 0x03,
+    GreatSword       = 0x04,
+    Axe              = 0x05,
+    GreatAxe         = 0x06,
+    Scythe           = 0x07,
+    PoleArm          = 0x08,
+    Katana           = 0x09,
+    GreatKatana      = 0x0a,
+    Club             = 0x0b,
+    Staff            = 0x0c,
+    Ranged           = 0x19,
+    Marksmanship     = 0x1a,
+    Thrown           = 0x1b,
+    DivineMagic      = 0x20,
+    HealingMagic     = 0x21,
+    EnhancingMagic   = 0x22,
+    EnfeeblingMagic  = 0x23,
+    ElementalMagic   = 0x24,
+    DarkMagic        = 0x25,
+    SummoningMagic   = 0x26,
+    Ninjutsu         = 0x27,
+    Singing          = 0x28,
+    StringInstrument = 0x29,
+    WindInstrument   = 0x2a,
+    Fishing          = 0x30,
+  }
+
+  [Flags]
+  public enum ValidTarget : ushort {
+    None        = 0x00,
+    Self        = 0x01,
+    Player      = 0x02,
+    PartyMember = 0x04,
+    Ally        = 0x08,
+    NPC         = 0x10,
+    Enemy       = 0x20,
+    Flag40      = 0x40,
+    Flag80      = 0x80,
+    Corpse      = 0x9D
   }
 
 }
