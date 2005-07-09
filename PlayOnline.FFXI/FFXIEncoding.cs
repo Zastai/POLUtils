@@ -93,17 +93,11 @@ namespace PlayOnline.FFXI {
       }
       else if (Marker.StartsWith("Element:")) {
       byte[] Result = new byte[] { 0xEF, 0x00 };
-	switch (Marker.Substring(8).Trim()) {
-	  case "Fire":    Result[1] = 0x1F; break;
-	  case "Ice":     Result[1] = 0x20; break;
-	  case "Wind":    Result[1] = 0x21; break;
-	  case "Earth":   Result[1] = 0x22; break;
-	  case "Thunder": Result[1] = 0x23; break;
-	  case "Water":   Result[1] = 0x24; break;
-	  case "Light":   Result[1] = 0x25; break;
-	  case "Dark":    Result[1] = 0x26; break;
-	}
-	if (Result[1] != 0x00)
+	try {
+	  Result[1] = (byte) Enum.Parse(typeof(Element), Marker.Substring(8).Trim());
+	  Result[1] += 0x1f;
+	} catch { }
+	if (Result[1] >= 0x1f && Result[1] <= 0x26)
 	  return Result;
       }
       else if (Marker.StartsWith("[")) {
@@ -196,19 +190,7 @@ namespace PlayOnline.FFXI {
       for (int pos = index; pos < index + count; ++pos) {
 	// FFXI Extension: Elemental symbols
 	if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x1F && bytes[pos + 1] <= 0x26) {
-	  DecodedString += FFXIEncoding.SpecialMarkerStart;
-	  DecodedString += "Element: ";
-	  switch (bytes[++pos]) {
-	    case 0x1F: DecodedString += "Fire";    break;
-	    case 0x20: DecodedString += "Ice";     break;
-	    case 0x21: DecodedString += "Wind";    break;
-	    case 0x22: DecodedString += "Earth";   break;
-	    case 0x23: DecodedString += "Thunder"; break;
-	    case 0x24: DecodedString += "Water";   break;
-	    case 0x25: DecodedString += "Light";   break;
-	    case 0x26: DecodedString += "Dark";    break;
-	  }
-	  DecodedString += FFXIEncoding.SpecialMarkerEnd;
+	  DecodedString += String.Format("{0}Element: {1}{2}", FFXIEncoding.SpecialMarkerStart, (Element) (bytes[++pos] - 0x1f), FFXIEncoding.SpecialMarkerEnd);
 	  continue;
 	}
 	// FFXI Extension: Open/Close AutoTranslator Text
