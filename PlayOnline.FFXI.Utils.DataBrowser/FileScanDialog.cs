@@ -78,6 +78,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    goto Done;
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
+	  this.ScanStatusFile(BR);
+	  if (this.StringTableEntries.Count != 0)
+	    goto Done;
+  	  Application.DoEvents();
+	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
 	  this.ScanItemData(BR);
 	  if (this.Items.Count != 0)
 	    goto Done;
@@ -115,17 +120,23 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private bool DecodeInfoBlock(int Index, byte[] Bytes) {
-    int BitCount = this.CountBits(Bytes[2]) - this.CountBits(Bytes[11]) + this.CountBits(Bytes[12]);
     byte ShiftSize = 0;
+      // This is the heuristic that ffxitool uses to determine the shift size - it makes absolutely no
+      // sense to me, but it works; I suppose the author of ffxitool reverse engineered what FFXI does.
+    int BitCount = this.CountBits(Bytes[2]) - this.CountBits(Bytes[11]) + this.CountBits(Bytes[12]);
       switch (Math.Abs(BitCount) % 5) {
-       case 0: ShiftSize = 7; break;
-       case 1: ShiftSize = 1; break;
-       case 2: ShiftSize = 6; break;
-       case 3: ShiftSize = 2; break;
-       case 4: ShiftSize = 5; break;
+	case 0: ShiftSize = 7; break;
+	case 1: ShiftSize = 1; break;
+	case 2: ShiftSize = 6; break;
+	case 3: ShiftSize = 2; break;
+	case 4: ShiftSize = 5; break;
       }
-      if (ShiftSize == 0 || Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
+      if (ShiftSize < 1 || ShiftSize > 7)
 	return false;
+#if false // This is usually a good test, BUT two of the status info blocks have a "bad" index...
+      if (Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
+	return;
+#endif
       for (int i = 0; i < Bytes.Length; ++i)
        Bytes[i] = this.Rotate(Bytes[i], ShiftSize);
       return true;
@@ -155,10 +166,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !this.DecodeInfoBlock(i, Bytes)) {
-	  this.StringTableEntries.Clear();
-	  return;
-	}
+	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !this.DecodeInfoBlock(i, Bytes))
+	  goto BadFormat;
       string TextVersion = String.Empty;
 	TextVersion += String.Format("\u3010{0}\u3011 ", E.GetString(Bytes, 10, 32).TrimEnd('\0'));
       int MP = Bytes[4] + (Bytes[5] << 8);
@@ -172,9 +181,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  case  1: TextVersion += "<Target: Self> ";  break;
 	  case  5: TextVersion += "<Target: Party> "; break;
 	  case 32: TextVersion += "<Target: Enemy> "; break;
-	  default:
-	    this.StringTableEntries.Clear();
-	    return;
+	  default: goto BadFormat;
 	}
 	TextVersion += E.GetString(Bytes, 42, 256).TrimEnd('\0');
 	this.StringTableEntries.Add(TextVersion);
@@ -182,6 +189,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("AbilityLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
       }
+      return;
+    BadFormat:
+      this.StringTableEntries.Clear();
     }
 
     #endregion
@@ -350,22 +360,27 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  ItemData[j] = this.Rotate(ItemData[j], 5);
       FFXIGraphic ItemIcon = null;
 	{
-	BinaryReader ImageBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
-	int ImageDataSize = ImageBR.ReadInt32();
-	  if (ImageDataSize > 0)
-	    ItemIcon = FFXIGraphic.Read(ImageBR);
+	BinaryReader IconBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
+	int IconSize = IconBR.ReadInt32();
+	  if (IconSize > 0) {
+	    ItemIcon = FFXIGraphic.Read(IconBR);
+	    if (IconBR.BaseStream.Position != 4 + IconSize)
+	      goto BadFormat;
+	  }
+	  IconBR.Close();
 	}
-	if (ItemIcon == null) { // No image -> bad data
-	  this.Items.Clear();
-	  this.Images.Clear();
-	  return;
-	}
+	if (ItemIcon == null)
+	  goto BadFormat;
 	this.Items.Add(new FFXIItem(i + 1, ItemData, ItemIcon));
 	this.Images.Add(ItemIcon);
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("ItemLoadProgress"), i + 1, ItemCount);
 	this.SetProgress(i + 1, ItemCount);
       }
+      return;
+    BadFormat:
+      this.Items.Clear();
+      this.Images.Clear();
     }
 
     #endregion
@@ -400,10 +415,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff || !this.DecodeInfoBlock(i, Bytes)) {
-	  this.StringTableEntries.Clear();
-	  return;
-	}
+	if (Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff || !this.DecodeInfoBlock(i, Bytes))
+	  goto BadFormat;
       string TextVersion = String.Empty;
 	{ // Spell Type
 	int SpellType = Bytes[0x2] + (Bytes[0x3] << 8);
@@ -415,9 +428,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    case 3: TextVersion += "Summons";     break;
 	    case 4: TextVersion += "Ninjutsu";    break;
 	    case 5: TextVersion += "Bard Song";   break;
-	    default:
-	      this.StringTableEntries.Clear();
-	      return;
+	    default: goto BadFormat;
 	  }
 	  TextVersion += "\u3011 ";
 	}
@@ -447,13 +458,60 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
 	this.SetProgress(i + 1, EntryCount);
       }
+      return;
+    BadFormat:
+      this.StringTableEntries.Clear();
     }
 
     #endregion
 
     #region Status Effects
 
-    // Coming Soon
+    // Same general layout as the item info, but only the first 0x200 bytes are encoded (and in the ability/spell style)
+    private void ScanStatusFile(BinaryReader BR) {
+      this.lblScanProgress.Text = I18N.GetText("StatusCheck");
+      this.SetProgress(0, 1);
+      BR.BaseStream.Seek(0, SeekOrigin.Begin);
+      if ((BR.BaseStream.Length % 0xc00) != 0)
+	return;
+    long EntryCount = BR.BaseStream.Length / 0xc00;
+    Encoding E = new FFXIEncoding();
+      this.lblScanProgress.Text = I18N.GetText("StatusLoad");
+      // Block Layout:
+      // 000-001 U16 Index
+      // 002-021 TXT Name
+      // 022-041 TXT Status
+      // 042-141 TXT Description
+      // 200-201 U16 Icon Size
+      // 202-bff IMG Icon (+ padding)
+      for (int i = 0; i < EntryCount; ++i) {
+      byte[] Bytes = BR.ReadBytes(0x200);
+	if (!this.DecodeInfoBlock(i, Bytes))
+	  goto BadFormat;
+	{
+	FFXIGraphic StatusIcon = null;
+	BinaryReader IconBR = new BinaryReader(new MemoryStream(BR.ReadBytes(0xa00), 0, 0xa00, false));
+	int IconSize = IconBR.ReadInt32();
+	  if (IconSize > 0) {
+	    StatusIcon = FFXIGraphic.Read(IconBR);
+	    if (IconBR.BaseStream.Position != 4 + IconSize)
+	      goto BadFormat;
+	  }
+	  IconBR.Close();
+	  if (StatusIcon == null)
+	    goto BadFormat;
+	  this.Images.Add(StatusIcon);
+	}
+	this.StringTableEntries.Add(String.Format("\u3010{0}\u3011 {1} - {2}", E.GetString(Bytes, 2, 32).TrimEnd('\0'), E.GetString(Bytes, 34, 32).TrimEnd('\0'), E.GetString(Bytes, 66, 128).TrimEnd('\0')));
+	if (FileScanDialog.ShowProgressDetails)
+	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
+	this.SetProgress(i + 1, EntryCount);
+      }
+      return;
+    BadFormat:
+      this.Images.Clear();
+      this.StringTableEntries.Clear();
+    }
 
     #endregion
 

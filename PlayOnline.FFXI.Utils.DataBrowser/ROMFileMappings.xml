@@ -963,8 +963,6 @@
       <rom-file app="0" dir="016" file="101"><i18n-string id="Menu:Rank (Bastok)"/></rom-file>
       <rom-file app="0" dir="016" file="116"><i18n-string id="Menu:Rank (Windurst)"/></rom-file>
       <rom-file app="0" dir="017" file="004"><i18n-string id="Menu:Rank (San d'Oria)"/></rom-file>
-      <rom-file app="0" dir="000" file="012"><i18n-string id="Menu:Status Icons (JP)"/></rom-file>
-      <rom-file app="0" dir="119" file="057"><i18n-string id="Menu:Status Icons (EN)"/></rom-file>
       <category><name><i18n-string id="Menu:UI Windows"/></name>
 	<rom-file app="0" dir="000" file="014"><i18n-string id="Menu:StyleN"/>1</rom-file>
 	<rom-file app="0" dir="000" file="015"><i18n-string id="Menu:StyleN"/>2</rom-file>
@@ -1011,6 +1009,7 @@
       <rom-file app="0" dir="097" file="036"><i18n-string id="Menu:POLMessages"/></rom-file>
       <rom-file app="0" dir="097" file="048"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="119" file="056"><i18n-string id="Menu:Spells"/></rom-file>
+      <rom-file app="0" dir="119" file="057"><i18n-string id="Menu:Status"/></rom-file>
       <rom-file app="0" dir="118" file="103"><i18n-string id="Menu:Time+Pronouns"/></rom-file>
       <rom-file app="0" dir="119" file="054"><i18n-string id="Menu:Titles"/></rom-file>
       <rom-file app="0" dir="097" file="034"><i18n-string id="Menu:Various1"/></rom-file>
@@ -1034,6 +1033,7 @@
       <rom-file app="0" dir="097" file="008"><i18n-string id="Menu:POLMessages"/></rom-file>
       <rom-file app="0" dir="097" file="030"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="000" file="011"><i18n-string id="Menu:Spells"/></rom-file>
+      <rom-file app="0" dir="000" file="012"><i18n-string id="Menu:Status"/></rom-file>
       <rom-file app="0" dir="118" file="102"><i18n-string id="Menu:Time+Pronouns"/></rom-file>
       <rom-file app="0" dir="000" file="022"><i18n-string id="Menu:Titles"/></rom-file>
       <rom-file app="0" dir="097" file="017"><i18n-string id="Menu:Various1"/></rom-file>

@@ -90,12 +90,6 @@
     <data name="Menu:Rank (San d'Oria)" type="System.String">
         <value>&amp;Rank (San d'Oria)</value>
     </data>
-    <data name="Menu:Status Icons (JP)" type="System.String">
-        <value>&amp;Status Icons (JP)</value>
-    </data>
-    <data name="Menu:Status Icons (EN)" type="System.String">
-        <value>&amp;Status Icons (EN)</value>
-    </data>
     <data name="Menu:UI Windows" type="System.String">
         <value>&amp;UI Windows</value>
     </data>
@@ -183,6 +177,9 @@
     <data name="Menu:Spells" type="System.String">
         <value>&amp;Spells</value>
     </data>
+    <data name="Menu:Status" type="System.String">
+        <value>&amp;Status</value>
+    </data>
     <data name="Menu:Time+Pronouns" type="System.String">
         <value>&amp;Time-Related Terms + Pronouns</value>
     </data>
@@ -245,6 +242,15 @@
     </data>
     <data name="SpellLoadProgress" type="System.String">
         <value>Loading spell information ({0}/{1}) - please wait...</value>
+    </data>
+    <data name="StatusCheck" type="System.String">
+        <value>Checking whether the file contains status information...</value>
+    </data>
+    <data name="StatusLoad" type="System.String">
+        <value>Loading status information - please wait...</value>
+    </data>
+    <data name="StatusLoadProgress" type="System.String">
+        <value>Loading status information ({0}/{1}) - please wait...</value>
     </data>
     <data name="StringCheck" type="System.String">
         <value>Checking whether the file contains a string table...</value>
