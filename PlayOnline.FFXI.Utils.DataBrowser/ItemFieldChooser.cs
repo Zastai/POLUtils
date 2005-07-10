@@ -29,34 +29,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	this.AddField(ItemField.Any, FieldsToCheck);
 	this.AddField(ItemField.All, FieldsToCheck);
       }
-      this.AddField(ItemField.ID, FieldsToCheck);
-      this.AddField(ItemField.Flags, FieldsToCheck);
-      this.AddField(ItemField.StackSize, FieldsToCheck);
-      this.AddField(ItemField.Type, FieldsToCheck);
-      this.AddField(ItemField.EnglishName, FieldsToCheck);
-      this.AddField(ItemField.JapaneseName, FieldsToCheck);
-      if (L == ItemDataLanguage.English) {
-	this.AddField(ItemField.LogNameSingular, FieldsToCheck);
-	this.AddField(ItemField.LogNamePlural, FieldsToCheck);
-      }
-      this.AddField(ItemField.Description, FieldsToCheck);
-      if (T != ItemDataType.Object) {
-	this.AddField(ItemField.ResourceID, FieldsToCheck);
-	this.AddField(ItemField.Level, FieldsToCheck);
-	this.AddField(ItemField.Slots, FieldsToCheck);
-	this.AddField(ItemField.Jobs, FieldsToCheck);
-	this.AddField(ItemField.Races, FieldsToCheck);
-	if (T == ItemDataType.Weapon) {
-	  this.AddField(ItemField.Damage, FieldsToCheck);
-	  this.AddField(ItemField.Delay, FieldsToCheck);
-	  this.AddField(ItemField.Skill, FieldsToCheck);
-	}
-	else
-	  this.AddField(ItemField.ShieldSize, FieldsToCheck);
-	this.AddField(ItemField.MaxCharges, FieldsToCheck);
-	this.AddField(ItemField.EquipDelay, FieldsToCheck);
-	this.AddField(ItemField.ReuseTimer, FieldsToCheck);
-      }
+      foreach (ItemField IF in FFXIItem.GetFields(L, T))
+	this.AddField(IF, FieldsToCheck);
     }
 
     private void AddField(ItemField Field, ArrayList FieldsToCheck) {

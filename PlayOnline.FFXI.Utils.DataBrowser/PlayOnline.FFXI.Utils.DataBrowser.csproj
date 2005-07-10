@@ -223,6 +223,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Messages.nl.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Messages.resx"
                     BuildAction = "EmbeddedResource"
                 />

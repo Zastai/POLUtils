@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
@@ -643,12 +644,28 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       IE.DoExport(this.Items_);
     }
 
+    private void TExportItems() {
+    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+      try {
+	Application.DoEvents();
+	PWD.ShowDialog(this);
+      } catch { PWD.Close(); }
+    }
+
     private void mnuILCECResults_Click(object sender, System.EventArgs e) {
     ArrayList Items = new ArrayList();
       foreach (ListViewItem LVI in this.lstItems.Items)
 	Items.Add(LVI.Tag);
     IItemExporter IE = new ItemExporter(this.Language, this.Type);
-      IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
+      if (IE.PrepareExport()) {
+      Thread T = new Thread(new ThreadStart(this.TExportItems));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	Application.DoEvents();
+	IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
+	T.Abort();
+	this.Activate();
+      }
     }
 
     private void mnuILCECSelected_Click(object sender, System.EventArgs e) {
@@ -656,7 +673,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       foreach (ListViewItem LVI in this.lstItems.SelectedItems)
 	Items.Add(LVI.Tag);
     IItemExporter IE = new ItemExporter(this.Language, this.Type);
-      IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
+      if (IE.PrepareExport()) {
+      Thread T = new Thread(new ThreadStart(this.TExportItems));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	Application.DoEvents();
+	IE.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
+	T.Abort();
+	this.Activate();
+      }
     }
 
     #endregion

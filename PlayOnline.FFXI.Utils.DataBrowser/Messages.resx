@@ -376,4 +376,8 @@ Correct the problem and try again.</value>
     <data name="Query:BadQueryType" type="System.String">
         <value>Unknown or unhandled query type.</value>
     </data>
+    <data name="Dialog:ExportItems" type="System.String">
+        <value>Exporting item data.
+This may take quite a while.</value>
+    </data>
 </root>

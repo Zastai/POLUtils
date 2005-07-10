@@ -11,6 +11,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal abstract class IItemExporter {
 
+    public abstract bool PrepareExport();
+
     public abstract void DoExport(FFXIItem[] Items);
 
     private static FolderBrowserDialog dlgBrowseFolder = null;

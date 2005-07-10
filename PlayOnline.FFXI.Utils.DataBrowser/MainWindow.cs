@@ -214,11 +214,27 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Item Data Viewer Events
 
+    private void TExportItems() {
+    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+      try {
+	Application.DoEvents();
+	PWD.ShowDialog(this);
+      } catch { PWD.Close(); }
+    }
+
     private FFXIItem[] LoadedItems_ = null;
 
     private void btnExportItems_Click(object sender, System.EventArgs e) {
     ItemExporter IE = new ItemExporter(this.ieItemViewer.ChosenItemLanguage, this.ieItemViewer.ChosenItemType);
-      IE.DoExport(this.LoadedItems_);
+      if (IE.PrepareExport()) {
+      Thread T = new Thread(new ThreadStart(this.TExportItems));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	Application.DoEvents();
+	IE.DoExport(this.LoadedItems_);
+	T.Abort();
+	this.Activate();
+      }
     }
 
     private void btnFindItems_Click(object sender, System.EventArgs e) {

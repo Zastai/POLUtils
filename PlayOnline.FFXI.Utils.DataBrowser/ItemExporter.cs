@@ -12,9 +12,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal class ItemExporter : IItemExporter {
 
-    private ExportMethodDialog EMD_ = null;
-    private IItemExporter      CSV_ = null;
-    private IItemExporter      XML_ = null;
+    private ItemExportMethod Method_ = ItemExportMethod.UserSelect;
+    private IItemExporter    CSV_ = null;
+    private IItemExporter    XML_ = null;
 
     public ItemExporter() {
     }
@@ -24,14 +24,32 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.XML_ = new XMLItemExporter(L, T);
     }
 
-    public void DoExport(ItemExportMethod Method, FFXIItem[] Items) {
+    public override bool PrepareExport() {
+      return this.PrepareExport(ItemExportMethod.UserSelect);
+    }
+
+    public bool PrepareExport(ItemExportMethod Method) {
       if (Method == ItemExportMethod.UserSelect) {
-	if (this.EMD_ == null)
-	  this.EMD_ = new ExportMethodDialog();
-	if (this.EMD_.ShowDialog() == DialogResult.OK)
-	  Method = this.EMD_.SelectedMethod;
+      ExportMethodDialog EMD = new ExportMethodDialog();
+	if (EMD.ShowDialog() != DialogResult.OK)
+	  return false;
+	this.Method_ = EMD.SelectedMethod;
       }
-      switch (Method) {
+      switch (this.Method_) {
+	case ItemExportMethod.CSV:
+	  if (this.CSV_ == null)
+	    this.CSV_ = new CSVItemExporter();
+	  return this.CSV_.PrepareExport();
+	case ItemExportMethod.XML:
+	  if (this.XML_ == null)
+	    this.XML_ = new XMLItemExporter();
+	  return this.XML_.PrepareExport();
+      }
+      return false;
+    }
+
+    public override void DoExport(FFXIItem[] Items) {
+      switch (this.Method_) {
 	case ItemExportMethod.CSV:
 	  if (this.CSV_ == null)
 	    this.CSV_ = new CSVItemExporter();
@@ -43,10 +61,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  this.XML_.DoExport(Items);
 	  break;
       }
-    }
-
-    public override void DoExport(FFXIItem[] Items) {
-      this.DoExport(ItemExportMethod.UserSelect, Items);
     }
 
   }
