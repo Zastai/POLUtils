@@ -175,7 +175,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     #region "Please Wait" Threads
 
-    public void TLoadItems() {
+    private void TLoadItems() {
     PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:LoadItems"));
       try {
 	Application.DoEvents();
@@ -183,7 +183,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       } catch { PWD.Close(); }
     }
 
-    public void TRemoveUnchanged() {
+    private void TRemoveUnchanged() {
     PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:RemoveUnchanged"));
       try {
 	Application.DoEvents();
