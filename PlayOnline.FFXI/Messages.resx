@@ -108,6 +108,9 @@
     <data name="E:ItemField.MaxCharges" type="System.String">
         <value>Max. Charges</value>
     </data>
+    <data name="E:ItemField.CastTime" type="System.String">
+        <value>Casting Time</value>
+    </data>
     <data name="E:ItemField.EquipDelay" type="System.String">
         <value>Equip Delay</value>
     </data>

@@ -35,6 +35,7 @@ namespace PlayOnline.FFXI {
     Races,
     Jobs,
     MaxCharges,
+    CastTime,
     EquipDelay,
     ReuseTimer,
     // Armor Only

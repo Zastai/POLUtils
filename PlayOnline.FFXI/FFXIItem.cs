@@ -246,6 +246,7 @@ namespace PlayOnline.FFXI {
       protected Race          Races_;
       protected Job           Jobs_;
       protected byte          MaxCharges_;
+      protected byte          CastTime_;
       protected ushort        EquipDelay_;
       protected uint          ReuseTimer_;
 
@@ -276,6 +277,7 @@ namespace PlayOnline.FFXI {
 	  ItemField.Races,
 	  ItemField.Jobs,
 	  ItemField.MaxCharges,
+	  ItemField.CastTime,
 	  ItemField.EquipDelay,
 	  ItemField.ReuseTimer
 	});
@@ -290,6 +292,7 @@ namespace PlayOnline.FFXI {
 	  case ItemField.Races:      return String.Format("<{0:X}> {0}", this.Races_);
 	  case ItemField.Jobs:       return String.Format("<{0:X}> {0}", this.Jobs_);
 	  case ItemField.MaxCharges: return String.Format("{0}",         this.MaxCharges_);
+	  case ItemField.CastTime:   return String.Format("{0}s",        this.CastTime_ / 4.0);
 	  case ItemField.EquipDelay: return String.Format("{0}", TimeSpan.FromSeconds(this.EquipDelay_));
 	  case ItemField.ReuseTimer: return String.Format("{0}", TimeSpan.FromSeconds(this.ReuseTimer_));
 	}
@@ -304,6 +307,7 @@ namespace PlayOnline.FFXI {
 	  case ItemField.Races:      return this.Races_;
 	  case ItemField.Jobs:       return this.Jobs_;
 	  case ItemField.MaxCharges: return this.MaxCharges_;
+	  case ItemField.CastTime:   return this.CastTime_;
 	  case ItemField.EquipDelay: return this.EquipDelay_;
 	  case ItemField.ReuseTimer: return this.ReuseTimer_;
 	}
@@ -476,7 +480,7 @@ namespace PlayOnline.FFXI {
 	this.ShieldSize_ =                 BR.ReadUInt16();
 	this.ReadTextFields(BR, L);
 	this.MaxCharges_ =                 BR.ReadByte();
-	/* Unknown */                      BR.ReadByte();
+	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
 	this.ReuseTimer_ =                 BR.ReadUInt32();
 	BR.Close();
@@ -522,7 +526,7 @@ namespace PlayOnline.FFXI {
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
 	this.MaxCharges_ =                 BR.ReadByte();
-	/* Unknown */                      BR.ReadByte();
+	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
 	this.ReuseTimer_ =                 BR.ReadUInt32();
 	BR.Close();
@@ -684,6 +688,10 @@ namespace PlayOnline.FFXI {
 	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
 	} catch { }
 	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'CastTime']");
+	  this.CastTime_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");
 	  this.EquipDelay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
 	} catch { }
@@ -769,6 +777,10 @@ namespace PlayOnline.FFXI {
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'MaxCharges']");
 	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
+	} catch { }
+	try {
+	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'CastTime']");
+	  this.CastTime_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
 	} catch { }
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");

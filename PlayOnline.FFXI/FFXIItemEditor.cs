@@ -18,59 +18,61 @@ namespace PlayOnline.FFXI {
 
     #region Controls
 
-    private System.Windows.Forms.GroupBox grpItemViewMode;
-    private System.Windows.Forms.CheckBox chkViewItemAsJWeapon;
-    private System.Windows.Forms.CheckBox chkViewItemAsJObject;
-    private System.Windows.Forms.CheckBox chkViewItemAsJArmor;
-    private System.Windows.Forms.CheckBox chkViewItemAsEWeapon;
-    private System.Windows.Forms.CheckBox chkViewItemAsEObject;
-    private System.Windows.Forms.CheckBox chkViewItemAsEArmor;
-    private System.Windows.Forms.GroupBox grpSpecializedItemInfo;
-    private System.Windows.Forms.Label lblItemRaces;
-    private System.Windows.Forms.TextBox txtItemRaces;
-    private System.Windows.Forms.Label lblItemSlots;
-    private System.Windows.Forms.TextBox txtItemSlots;
-    private System.Windows.Forms.Label lblItemJobs;
-    private System.Windows.Forms.TextBox txtItemJobs;
-    private System.Windows.Forms.Label lblItemLevel;
-    private System.Windows.Forms.TextBox txtItemLevel;
-    private System.Windows.Forms.Label lblItemEquipDelay;
-    private System.Windows.Forms.Label lblItemReuseTimer;
-    private System.Windows.Forms.Label lblItemMaxCharges;
-    private System.Windows.Forms.Label lblItemResourceID;
-    private System.Windows.Forms.TextBox txtItemReuseTimer;
-    private System.Windows.Forms.TextBox txtItemEquipDelay;
-    private System.Windows.Forms.TextBox txtItemMaxCharges;
-    private System.Windows.Forms.TextBox txtItemResourceID;
-    private System.Windows.Forms.Label lblItemSkill;
-    private System.Windows.Forms.Label lblItemDelay;
-    private System.Windows.Forms.Label lblItemDamage;
-    private System.Windows.Forms.TextBox txtItemSkill;
-    private System.Windows.Forms.TextBox txtItemDelay;
-    private System.Windows.Forms.TextBox txtItemDamage;
-    private System.Windows.Forms.Label lblItemShieldSize;
-    private System.Windows.Forms.TextBox txtItemShieldSize;
-    private System.Windows.Forms.GroupBox grpCommonItemInfo;
-    private System.Windows.Forms.Label lblItemDescription;
-    private System.Windows.Forms.Label lblItemPlural;
-    private System.Windows.Forms.Label lblItemSingular;
-    private System.Windows.Forms.Label lblItemJName;
-    private System.Windows.Forms.Label lblItemEName;
-    private System.Windows.Forms.TextBox txtItemPlural;
-    private System.Windows.Forms.TextBox txtItemSingular;
-    private System.Windows.Forms.TextBox txtItemJName;
-    private System.Windows.Forms.TextBox txtItemEName;
-    private System.Windows.Forms.TextBox txtItemDescription;
-    private System.Windows.Forms.Label lblItemStackSize;
-    private System.Windows.Forms.Label lblItemFlags;
-    private System.Windows.Forms.Label lblItemType;
-    private System.Windows.Forms.Label lblItemID;
-    private System.Windows.Forms.TextBox txtItemStackSize;
-    private System.Windows.Forms.TextBox txtItemFlags;
-    private System.Windows.Forms.TextBox txtItemType;
-    private System.Windows.Forms.TextBox txtItemID;
-    private System.Windows.Forms.PictureBox picItemIcon;
+    private System.Windows.Forms.GroupBox grpViewMode;
+    private System.Windows.Forms.CheckBox chkViewAsJWeapon;
+    private System.Windows.Forms.CheckBox chkViewAsJObject;
+    private System.Windows.Forms.CheckBox chkViewAsJArmor;
+    private System.Windows.Forms.CheckBox chkViewAsEWeapon;
+    private System.Windows.Forms.CheckBox chkViewAsEObject;
+    private System.Windows.Forms.CheckBox chkViewAsEArmor;
+    private System.Windows.Forms.GroupBox grpSpecializedInfo;
+    private System.Windows.Forms.Label lblRaces;
+    private System.Windows.Forms.TextBox txtRaces;
+    private System.Windows.Forms.Label lblSlots;
+    private System.Windows.Forms.TextBox txtSlots;
+    private System.Windows.Forms.Label lblJobs;
+    private System.Windows.Forms.TextBox txtJobs;
+    private System.Windows.Forms.Label lblLevel;
+    private System.Windows.Forms.TextBox txtLevel;
+    private System.Windows.Forms.Label lblEquipDelay;
+    private System.Windows.Forms.Label lblReuseTimer;
+    private System.Windows.Forms.Label lblMaxCharges;
+    private System.Windows.Forms.Label lblResourceID;
+    private System.Windows.Forms.TextBox txtReuseTimer;
+    private System.Windows.Forms.TextBox txtEquipDelay;
+    private System.Windows.Forms.TextBox txtMaxCharges;
+    private System.Windows.Forms.TextBox txtResourceID;
+    private System.Windows.Forms.Label lblSkill;
+    private System.Windows.Forms.Label lblDelay;
+    private System.Windows.Forms.Label lblDamage;
+    private System.Windows.Forms.TextBox txtSkill;
+    private System.Windows.Forms.TextBox txtDelay;
+    private System.Windows.Forms.TextBox txtDamage;
+    private System.Windows.Forms.Label lblShieldSize;
+    private System.Windows.Forms.TextBox txtShieldSize;
+    private System.Windows.Forms.GroupBox grpCommonInfo;
+    private System.Windows.Forms.Label lblDescription;
+    private System.Windows.Forms.Label lblPlural;
+    private System.Windows.Forms.Label lblSingular;
+    private System.Windows.Forms.Label lblJName;
+    private System.Windows.Forms.Label lblEName;
+    private System.Windows.Forms.TextBox txtPlural;
+    private System.Windows.Forms.TextBox txtSingular;
+    private System.Windows.Forms.TextBox txtJName;
+    private System.Windows.Forms.TextBox txtEName;
+    private System.Windows.Forms.TextBox txtDescription;
+    private System.Windows.Forms.Label lblStackSize;
+    private System.Windows.Forms.Label lblFlags;
+    private System.Windows.Forms.Label lblType;
+    private System.Windows.Forms.Label lblID;
+    private System.Windows.Forms.TextBox txtStackSize;
+    private System.Windows.Forms.TextBox txtFlags;
+    private System.Windows.Forms.TextBox txtType;
+    private System.Windows.Forms.TextBox txtID;
+    private System.Windows.Forms.PictureBox picIcon;
     private System.Windows.Forms.ToolTip ttToolTip;
+    private System.Windows.Forms.Label lblCastTime;
+    private System.Windows.Forms.TextBox txtCastTime;
     private System.ComponentModel.IContainer components;
 
     #endregion
@@ -100,16 +102,16 @@ namespace PlayOnline.FFXI {
     [Browsable(false)]
     public ItemDataLanguage ChosenItemLanguage {
       get {
-	return ((this.chkViewItemAsEArmor.Checked || this.chkViewItemAsEObject.Checked || this.chkViewItemAsEWeapon.Checked) ? ItemDataLanguage.English : ItemDataLanguage.Japanese);
+	return ((this.chkViewAsEArmor.Checked || this.chkViewAsEObject.Checked || this.chkViewAsEWeapon.Checked) ? ItemDataLanguage.English : ItemDataLanguage.Japanese);
       }
     }
 
     [Browsable(false)]
     public ItemDataType ChosenItemType {
       get {
-	if (this.chkViewItemAsEArmor.Checked || this.chkViewItemAsJArmor.Checked)
+	if (this.chkViewAsEArmor.Checked || this.chkViewAsJArmor.Checked)
 	  return ItemDataType.Armor;
-	if (this.chkViewItemAsEWeapon.Checked || this.chkViewItemAsJWeapon.Checked)
+	if (this.chkViewAsEWeapon.Checked || this.chkViewAsJWeapon.Checked)
 	  return ItemDataType.Weapon;
 	return ItemDataType.Object;
       }
@@ -130,29 +132,30 @@ namespace PlayOnline.FFXI {
 
     private Control GetFieldControl(ItemField IF) {
       switch (IF) {
-	case ItemField.Damage:          return this.txtItemDamage;
-	case ItemField.Delay:           return this.txtItemDelay;
-	case ItemField.Description:     return this.txtItemDescription;
-	case ItemField.EnglishName:     return this.txtItemEName;
-	case ItemField.EquipDelay:      return this.txtItemEquipDelay;
-	case ItemField.Flags:           return this.txtItemFlags;
-	case ItemField.ID:              return this.txtItemID;
-	case ItemField.JapaneseName:    return this.txtItemJName;
-	case ItemField.Jobs:            return this.txtItemJobs;
-	case ItemField.Level:           return this.txtItemLevel;
-	case ItemField.LogNamePlural:   return this.txtItemPlural;
-	case ItemField.LogNameSingular: return this.txtItemSingular;
-	case ItemField.MaxCharges:      return this.txtItemMaxCharges;
-	case ItemField.Races:           return this.txtItemRaces;
-	case ItemField.ResourceID:      return this.txtItemResourceID;
-	case ItemField.ReuseTimer:      return this.txtItemReuseTimer;
-	case ItemField.ShieldSize:      return this.txtItemShieldSize;
-	case ItemField.Skill:           return this.txtItemSkill;
-	case ItemField.Slots:           return this.txtItemSlots;
-	case ItemField.StackSize:       return this.txtItemStackSize;
-	case ItemField.Type:            return this.txtItemType;
-	default:                        return null;
+	case ItemField.CastTime:        return this.txtCastTime;
+	case ItemField.Damage:          return this.txtDamage;
+	case ItemField.Delay:           return this.txtDelay;
+	case ItemField.Description:     return this.txtDescription;
+	case ItemField.EnglishName:     return this.txtEName;
+	case ItemField.EquipDelay:      return this.txtEquipDelay;
+	case ItemField.Flags:           return this.txtFlags;
+	case ItemField.ID:              return this.txtID;
+	case ItemField.JapaneseName:    return this.txtJName;
+	case ItemField.Jobs:            return this.txtJobs;
+	case ItemField.Level:           return this.txtLevel;
+	case ItemField.LogNamePlural:   return this.txtPlural;
+	case ItemField.LogNameSingular: return this.txtSingular;
+	case ItemField.MaxCharges:      return this.txtMaxCharges;
+	case ItemField.Races:           return this.txtRaces;
+	case ItemField.ResourceID:      return this.txtResourceID;
+	case ItemField.ReuseTimer:      return this.txtReuseTimer;
+	case ItemField.ShieldSize:      return this.txtShieldSize;
+	case ItemField.Skill:           return this.txtSkill;
+	case ItemField.Slots:           return this.txtSlots;
+	case ItemField.StackSize:       return this.txtStackSize;
+	case ItemField.Type:            return this.txtType;
       }
+      return null;
     }
 
     public void UnmarkAll() {
@@ -178,7 +181,7 @@ namespace PlayOnline.FFXI {
     }
 
     public void MarkIcon(Mark M) {
-      this.MarkControl(this.picItemIcon, M);
+      this.MarkControl(this.picIcon, M);
     }
 
     #endregion
@@ -196,39 +199,39 @@ namespace PlayOnline.FFXI {
     }
 
     public void UnlockViewMode() {
-      this.chkViewItemAsEArmor.Enabled  = true;
-      this.chkViewItemAsEObject.Enabled = true;
-      this.chkViewItemAsEWeapon.Enabled = true;
-      this.chkViewItemAsJArmor.Enabled  = true;
-      this.chkViewItemAsJObject.Enabled = true;
-      this.chkViewItemAsJWeapon.Enabled = true;
+      this.chkViewAsEArmor.Enabled  = true;
+      this.chkViewAsEObject.Enabled = true;
+      this.chkViewAsEWeapon.Enabled = true;
+      this.chkViewAsJArmor.Enabled  = true;
+      this.chkViewAsJObject.Enabled = true;
+      this.chkViewAsJWeapon.Enabled = true;
       this.LockedViewMode_ = null;
     }
 
     public void LockViewMode() { // Locks selection, but leaves autodetection active
-      this.chkViewItemAsEArmor.Enabled  = false;
-      this.chkViewItemAsEObject.Enabled = false;
-      this.chkViewItemAsEWeapon.Enabled = false;
-      this.chkViewItemAsJArmor.Enabled  = false;
-      this.chkViewItemAsJObject.Enabled = false;
-      this.chkViewItemAsJWeapon.Enabled = false;
+      this.chkViewAsEArmor.Enabled  = false;
+      this.chkViewAsEObject.Enabled = false;
+      this.chkViewAsEWeapon.Enabled = false;
+      this.chkViewAsJArmor.Enabled  = false;
+      this.chkViewAsJObject.Enabled = false;
+      this.chkViewAsJWeapon.Enabled = false;
       this.LockedViewMode_ = null;
     }
 
     public void LockViewMode(ItemDataLanguage L, ItemDataType T) { // Locks view to the specified mode
       this.LockedViewMode_ = null;
-      this.chkViewItemAsEArmor.Enabled  = (L == ItemDataLanguage.English  && T == ItemDataType.Armor);
-      this.chkViewItemAsEObject.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Object);
-      this.chkViewItemAsEWeapon.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Weapon);
-      this.chkViewItemAsJArmor.Enabled  = (L == ItemDataLanguage.Japanese && T == ItemDataType.Armor);
-      this.chkViewItemAsJObject.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Object);
-      this.chkViewItemAsJWeapon.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Weapon);
-      if (this.chkViewItemAsEArmor.Enabled)  this.LockedViewMode_ = this.chkViewItemAsEArmor;
-      if (this.chkViewItemAsEObject.Enabled) this.LockedViewMode_ = this.chkViewItemAsEObject;
-      if (this.chkViewItemAsEWeapon.Enabled) this.LockedViewMode_ = this.chkViewItemAsEWeapon;
-      if (this.chkViewItemAsJArmor.Enabled)  this.LockedViewMode_ = this.chkViewItemAsJArmor;
-      if (this.chkViewItemAsJObject.Enabled) this.LockedViewMode_ = this.chkViewItemAsJObject;
-      if (this.chkViewItemAsJWeapon.Enabled) this.LockedViewMode_ = this.chkViewItemAsJWeapon;
+      this.chkViewAsEArmor.Enabled  = (L == ItemDataLanguage.English  && T == ItemDataType.Armor);
+      this.chkViewAsEObject.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Object);
+      this.chkViewAsEWeapon.Enabled = (L == ItemDataLanguage.English  && T == ItemDataType.Weapon);
+      this.chkViewAsJArmor.Enabled  = (L == ItemDataLanguage.Japanese && T == ItemDataType.Armor);
+      this.chkViewAsJObject.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Object);
+      this.chkViewAsJWeapon.Enabled = (L == ItemDataLanguage.Japanese && T == ItemDataType.Weapon);
+      if (this.chkViewAsEArmor.Enabled)  this.LockedViewMode_ = this.chkViewAsEArmor;
+      if (this.chkViewAsEObject.Enabled) this.LockedViewMode_ = this.chkViewAsEObject;
+      if (this.chkViewAsEWeapon.Enabled) this.LockedViewMode_ = this.chkViewAsEWeapon;
+      if (this.chkViewAsJArmor.Enabled)  this.LockedViewMode_ = this.chkViewAsJArmor;
+      if (this.chkViewAsJObject.Enabled) this.LockedViewMode_ = this.chkViewAsJObject;
+      if (this.chkViewAsJWeapon.Enabled) this.LockedViewMode_ = this.chkViewAsJWeapon;
     }
 
     #endregion
@@ -236,17 +239,17 @@ namespace PlayOnline.FFXI {
     #region Private Methods
 
     private void DetectViewMode(FFXIItem I) {
-    CheckBox SelectedMode = this.chkViewItemAsEObject;
+    CheckBox SelectedMode = this.chkViewAsEObject;
       switch (I.Common.Type) {
 	case ItemType.Armor: {
 	  if (I.ENArmor.Description != String.Empty && I.JPArmor.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsEArmor;
+	    SelectedMode = this.chkViewAsEArmor;
 	  else if (I.JPArmor.Description != String.Empty && I.ENArmor.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsJArmor;
+	    SelectedMode = this.chkViewAsJArmor;
 	  else {
 	  string LogNames = I.ENArmor.LogNameSingular + I.ENArmor.LogNamePlural;
 	    if (LogNames == String.Empty)
-	      SelectedMode = this.chkViewItemAsJArmor;
+	      SelectedMode = this.chkViewAsJArmor;
 	    else {
 	    bool ExtendedCharSeen = false;
 	      foreach (char C in LogNames) {
@@ -256,22 +259,22 @@ namespace PlayOnline.FFXI {
 		}
 	      }
 	      if (ExtendedCharSeen)
-		SelectedMode = this.chkViewItemAsJArmor;
+		SelectedMode = this.chkViewAsJArmor;
 	      else
-		SelectedMode = this.chkViewItemAsEArmor;
+		SelectedMode = this.chkViewAsEArmor;
 	    }
 	  }
 	  break;
 	}
 	case ItemType.Weapon: {
 	  if (I.ENWeapon.Description != String.Empty && I.JPWeapon.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsEWeapon;
+	    SelectedMode = this.chkViewAsEWeapon;
 	  else if (I.JPWeapon.Description != String.Empty && I.ENWeapon.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsJWeapon;
+	    SelectedMode = this.chkViewAsJWeapon;
 	  else {
 	  string LogNames = I.ENWeapon.LogNameSingular + I.ENWeapon.LogNamePlural;
 	    if (LogNames == String.Empty)
-	      SelectedMode = this.chkViewItemAsJWeapon;
+	      SelectedMode = this.chkViewAsJWeapon;
 	    else {
 	    bool ExtendedCharSeen = false;
 	      foreach (char C in LogNames) {
@@ -281,22 +284,22 @@ namespace PlayOnline.FFXI {
 		}
 	      }
 	      if (ExtendedCharSeen)
-		SelectedMode = this.chkViewItemAsJWeapon;
+		SelectedMode = this.chkViewAsJWeapon;
 	      else
-		SelectedMode = this.chkViewItemAsEWeapon;
+		SelectedMode = this.chkViewAsEWeapon;
 	    }
 	  }
 	  break;
 	}
 	default: {
 	  if (I.ENObject.Description != String.Empty && I.JPObject.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsEObject;
+	    SelectedMode = this.chkViewAsEObject;
 	  else if (I.JPObject.Description != String.Empty && I.ENObject.Description == String.Empty)
-	    SelectedMode = this.chkViewItemAsJObject;
+	    SelectedMode = this.chkViewAsJObject;
 	  else {
 	  string LogNames = I.ENObject.LogNameSingular + I.ENObject.LogNamePlural;
 	    if (LogNames == String.Empty)
-	      SelectedMode = this.chkViewItemAsJObject;
+	      SelectedMode = this.chkViewAsJObject;
 	    else {
 	    bool ExtendedCharSeen = false;
 	      foreach (char C in LogNames) {
@@ -306,9 +309,9 @@ namespace PlayOnline.FFXI {
 		}
 	      }
 	      if (ExtendedCharSeen)
-		SelectedMode = this.chkViewItemAsJObject;
+		SelectedMode = this.chkViewAsJObject;
 	      else
-		SelectedMode = this.chkViewItemAsEObject;
+		SelectedMode = this.chkViewAsEObject;
 	    }
 	  }
 	  break;
@@ -319,30 +322,30 @@ namespace PlayOnline.FFXI {
 
     private void ShowItem() {
     FFXIItem I = this.ItemToShow_;
-      this.chkViewItemAsEArmor.Checked = this.chkViewItemAsEObject.Checked = this.chkViewItemAsEWeapon.Checked = false;
-      this.chkViewItemAsJArmor.Checked = this.chkViewItemAsJObject.Checked = this.chkViewItemAsJWeapon.Checked = false;
+      this.chkViewAsEArmor.Checked = this.chkViewAsEObject.Checked = this.chkViewAsEWeapon.Checked = false;
+      this.chkViewAsJArmor.Checked = this.chkViewAsJObject.Checked = this.chkViewAsJWeapon.Checked = false;
       if (I != null) {
 	// Common Info
-	this.picItemIcon.Image     = I.IconGraphic.Bitmap;
-	this.ttToolTip.SetToolTip(this.picItemIcon, I.IconGraphic.ToString());
-	this.txtItemID.Text        = String.Format("{0:X4} ({0})", I.Common.ID);
-	this.txtItemType.Text      = String.Format("{0:X} ({0})",  I.Common.Type);
-	this.txtItemFlags.Text     = String.Format("{0:X} ({0})",  I.Common.Flags);
-	this.txtItemStackSize.Text = String.Format("{0}",          I.Common.StackSize);
+	this.picIcon.Image     = I.IconGraphic.Bitmap;
+	this.ttToolTip.SetToolTip(this.picIcon, I.IconGraphic.ToString());
+	this.txtID.Text        = String.Format("{0:X4} ({0})", I.Common.ID);
+	this.txtType.Text      = String.Format("{0:X} ({0})",  I.Common.Type);
+	this.txtFlags.Text     = String.Format("{0:X} ({0})",  I.Common.Flags);
+	this.txtStackSize.Text = String.Format("{0}",          I.Common.StackSize);
 	if (this.LockedViewMode_ != null)
 	  this.LockedViewMode_.Checked = true;
 	else
 	  this.DetectViewMode(I);
       }
       else { // Clear all fields
-	this.picItemIcon.Image = null;
-	this.ttToolTip.SetToolTip(this.picItemIcon, null);
-	this.txtItemID.Text          = this.txtItemType.Text      = String.Empty;
-	this.txtItemEName.Text       = this.txtItemJName.Text     = String.Empty;
-	this.txtItemSingular.Text    = this.txtItemPlural.Text    = String.Empty;
-	this.txtItemFlags.Text       = this.txtItemStackSize.Text = String.Empty;
-	this.txtItemDescription.Text = String.Empty;
-	this.grpSpecializedItemInfo.Visible = false;
+	this.picIcon.Image = null;
+	this.ttToolTip.SetToolTip(this.picIcon, null);
+	this.txtID.Text          = this.txtType.Text      = String.Empty;
+	this.txtEName.Text       = this.txtJName.Text     = String.Empty;
+	this.txtSingular.Text    = this.txtPlural.Text    = String.Empty;
+	this.txtFlags.Text       = this.txtStackSize.Text = String.Empty;
+	this.txtDescription.Text = String.Empty;
+	this.grpSpecializedInfo.Visible = false;
       }
     }
 
@@ -358,678 +361,703 @@ namespace PlayOnline.FFXI {
 
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      this.grpItemViewMode = new System.Windows.Forms.GroupBox();
-      this.chkViewItemAsJWeapon = new System.Windows.Forms.CheckBox();
-      this.chkViewItemAsJObject = new System.Windows.Forms.CheckBox();
-      this.chkViewItemAsJArmor = new System.Windows.Forms.CheckBox();
-      this.chkViewItemAsEWeapon = new System.Windows.Forms.CheckBox();
-      this.chkViewItemAsEObject = new System.Windows.Forms.CheckBox();
-      this.chkViewItemAsEArmor = new System.Windows.Forms.CheckBox();
-      this.grpSpecializedItemInfo = new System.Windows.Forms.GroupBox();
-      this.lblItemRaces = new System.Windows.Forms.Label();
-      this.txtItemRaces = new System.Windows.Forms.TextBox();
-      this.lblItemSlots = new System.Windows.Forms.Label();
-      this.txtItemSlots = new System.Windows.Forms.TextBox();
-      this.lblItemJobs = new System.Windows.Forms.Label();
-      this.txtItemJobs = new System.Windows.Forms.TextBox();
-      this.lblItemLevel = new System.Windows.Forms.Label();
-      this.txtItemLevel = new System.Windows.Forms.TextBox();
-      this.lblItemEquipDelay = new System.Windows.Forms.Label();
-      this.lblItemReuseTimer = new System.Windows.Forms.Label();
-      this.lblItemMaxCharges = new System.Windows.Forms.Label();
-      this.lblItemResourceID = new System.Windows.Forms.Label();
-      this.txtItemReuseTimer = new System.Windows.Forms.TextBox();
-      this.txtItemEquipDelay = new System.Windows.Forms.TextBox();
-      this.txtItemMaxCharges = new System.Windows.Forms.TextBox();
-      this.txtItemResourceID = new System.Windows.Forms.TextBox();
-      this.lblItemSkill = new System.Windows.Forms.Label();
-      this.lblItemDelay = new System.Windows.Forms.Label();
-      this.lblItemDamage = new System.Windows.Forms.Label();
-      this.txtItemSkill = new System.Windows.Forms.TextBox();
-      this.txtItemDelay = new System.Windows.Forms.TextBox();
-      this.txtItemDamage = new System.Windows.Forms.TextBox();
-      this.lblItemShieldSize = new System.Windows.Forms.Label();
-      this.txtItemShieldSize = new System.Windows.Forms.TextBox();
-      this.grpCommonItemInfo = new System.Windows.Forms.GroupBox();
-      this.lblItemDescription = new System.Windows.Forms.Label();
-      this.lblItemPlural = new System.Windows.Forms.Label();
-      this.lblItemSingular = new System.Windows.Forms.Label();
-      this.lblItemJName = new System.Windows.Forms.Label();
-      this.lblItemEName = new System.Windows.Forms.Label();
-      this.txtItemPlural = new System.Windows.Forms.TextBox();
-      this.txtItemSingular = new System.Windows.Forms.TextBox();
-      this.txtItemJName = new System.Windows.Forms.TextBox();
-      this.txtItemEName = new System.Windows.Forms.TextBox();
-      this.txtItemDescription = new System.Windows.Forms.TextBox();
-      this.lblItemStackSize = new System.Windows.Forms.Label();
-      this.lblItemFlags = new System.Windows.Forms.Label();
-      this.lblItemType = new System.Windows.Forms.Label();
-      this.lblItemID = new System.Windows.Forms.Label();
-      this.txtItemStackSize = new System.Windows.Forms.TextBox();
-      this.txtItemFlags = new System.Windows.Forms.TextBox();
-      this.txtItemType = new System.Windows.Forms.TextBox();
-      this.txtItemID = new System.Windows.Forms.TextBox();
-      this.picItemIcon = new System.Windows.Forms.PictureBox();
+      this.grpViewMode = new System.Windows.Forms.GroupBox();
+      this.chkViewAsJWeapon = new System.Windows.Forms.CheckBox();
+      this.chkViewAsJObject = new System.Windows.Forms.CheckBox();
+      this.chkViewAsJArmor = new System.Windows.Forms.CheckBox();
+      this.chkViewAsEWeapon = new System.Windows.Forms.CheckBox();
+      this.chkViewAsEObject = new System.Windows.Forms.CheckBox();
+      this.chkViewAsEArmor = new System.Windows.Forms.CheckBox();
+      this.grpSpecializedInfo = new System.Windows.Forms.GroupBox();
+      this.lblCastTime = new System.Windows.Forms.Label();
+      this.txtCastTime = new System.Windows.Forms.TextBox();
+      this.lblRaces = new System.Windows.Forms.Label();
+      this.txtRaces = new System.Windows.Forms.TextBox();
+      this.lblSlots = new System.Windows.Forms.Label();
+      this.txtSlots = new System.Windows.Forms.TextBox();
+      this.lblJobs = new System.Windows.Forms.Label();
+      this.txtJobs = new System.Windows.Forms.TextBox();
+      this.lblLevel = new System.Windows.Forms.Label();
+      this.txtLevel = new System.Windows.Forms.TextBox();
+      this.lblEquipDelay = new System.Windows.Forms.Label();
+      this.lblReuseTimer = new System.Windows.Forms.Label();
+      this.lblMaxCharges = new System.Windows.Forms.Label();
+      this.lblResourceID = new System.Windows.Forms.Label();
+      this.txtReuseTimer = new System.Windows.Forms.TextBox();
+      this.txtEquipDelay = new System.Windows.Forms.TextBox();
+      this.txtMaxCharges = new System.Windows.Forms.TextBox();
+      this.txtResourceID = new System.Windows.Forms.TextBox();
+      this.lblSkill = new System.Windows.Forms.Label();
+      this.lblDelay = new System.Windows.Forms.Label();
+      this.lblDamage = new System.Windows.Forms.Label();
+      this.txtSkill = new System.Windows.Forms.TextBox();
+      this.txtDelay = new System.Windows.Forms.TextBox();
+      this.txtDamage = new System.Windows.Forms.TextBox();
+      this.lblShieldSize = new System.Windows.Forms.Label();
+      this.txtShieldSize = new System.Windows.Forms.TextBox();
+      this.grpCommonInfo = new System.Windows.Forms.GroupBox();
+      this.lblDescription = new System.Windows.Forms.Label();
+      this.lblPlural = new System.Windows.Forms.Label();
+      this.lblSingular = new System.Windows.Forms.Label();
+      this.lblJName = new System.Windows.Forms.Label();
+      this.lblEName = new System.Windows.Forms.Label();
+      this.txtPlural = new System.Windows.Forms.TextBox();
+      this.txtSingular = new System.Windows.Forms.TextBox();
+      this.txtJName = new System.Windows.Forms.TextBox();
+      this.txtEName = new System.Windows.Forms.TextBox();
+      this.txtDescription = new System.Windows.Forms.TextBox();
+      this.lblStackSize = new System.Windows.Forms.Label();
+      this.lblFlags = new System.Windows.Forms.Label();
+      this.lblType = new System.Windows.Forms.Label();
+      this.lblID = new System.Windows.Forms.Label();
+      this.txtStackSize = new System.Windows.Forms.TextBox();
+      this.txtFlags = new System.Windows.Forms.TextBox();
+      this.txtType = new System.Windows.Forms.TextBox();
+      this.txtID = new System.Windows.Forms.TextBox();
+      this.picIcon = new System.Windows.Forms.PictureBox();
       this.ttToolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.grpItemViewMode.SuspendLayout();
-      this.grpSpecializedItemInfo.SuspendLayout();
-      this.grpCommonItemInfo.SuspendLayout();
+      this.grpViewMode.SuspendLayout();
+      this.grpSpecializedInfo.SuspendLayout();
+      this.grpCommonInfo.SuspendLayout();
       this.SuspendLayout();
       // 
-      // grpItemViewMode
-      // 
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsJWeapon);
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsJObject);
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsJArmor);
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsEWeapon);
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsEObject);
-      this.grpItemViewMode.Controls.Add(this.chkViewItemAsEArmor);
-      this.grpItemViewMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.grpItemViewMode.Location = new System.Drawing.Point(0, 0);
-      this.grpItemViewMode.Name = "grpItemViewMode";
-      this.grpItemViewMode.Size = new System.Drawing.Size(424, 76);
-      this.grpItemViewMode.TabIndex = 4;
-      this.grpItemViewMode.TabStop = false;
-      this.grpItemViewMode.Text = "View Item Info As";
-      // 
-      // chkViewItemAsJWeapon
-      // 
-      this.chkViewItemAsJWeapon.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsJWeapon.AutoCheck = false;
-      this.chkViewItemAsJWeapon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsJWeapon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsJWeapon.Location = new System.Drawing.Point(276, 44);
-      this.chkViewItemAsJWeapon.Name = "chkViewItemAsJWeapon";
-      this.chkViewItemAsJWeapon.Size = new System.Drawing.Size(140, 24);
-      this.chkViewItemAsJWeapon.TabIndex = 6;
-      this.chkViewItemAsJWeapon.Text = "Weapon Information - JP";
-      this.chkViewItemAsJWeapon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsJWeapon.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsJWeapon.CheckedChanged += new System.EventHandler(this.chkViewItemAsJWeapon_CheckedChanged);
-      // 
-      // chkViewItemAsJObject
-      // 
-      this.chkViewItemAsJObject.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsJObject.AutoCheck = false;
-      this.chkViewItemAsJObject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsJObject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsJObject.Location = new System.Drawing.Point(140, 44);
-      this.chkViewItemAsJObject.Name = "chkViewItemAsJObject";
-      this.chkViewItemAsJObject.Size = new System.Drawing.Size(132, 24);
-      this.chkViewItemAsJObject.TabIndex = 5;
-      this.chkViewItemAsJObject.Text = "Object Information - JP";
-      this.chkViewItemAsJObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsJObject.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsJObject.CheckedChanged += new System.EventHandler(this.chkViewItemAsJObject_CheckedChanged);
-      // 
-      // chkViewItemAsJArmor
-      // 
-      this.chkViewItemAsJArmor.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsJArmor.AutoCheck = false;
-      this.chkViewItemAsJArmor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsJArmor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsJArmor.Location = new System.Drawing.Point(8, 44);
-      this.chkViewItemAsJArmor.Name = "chkViewItemAsJArmor";
-      this.chkViewItemAsJArmor.Size = new System.Drawing.Size(128, 24);
-      this.chkViewItemAsJArmor.TabIndex = 4;
-      this.chkViewItemAsJArmor.Text = "Armor Information - JP";
-      this.chkViewItemAsJArmor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsJArmor.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsJArmor.CheckedChanged += new System.EventHandler(this.chkViewItemAsJArmor_CheckedChanged);
-      // 
-      // chkViewItemAsEWeapon
-      // 
-      this.chkViewItemAsEWeapon.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsEWeapon.AutoCheck = false;
-      this.chkViewItemAsEWeapon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsEWeapon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsEWeapon.Location = new System.Drawing.Point(276, 16);
-      this.chkViewItemAsEWeapon.Name = "chkViewItemAsEWeapon";
-      this.chkViewItemAsEWeapon.Size = new System.Drawing.Size(140, 24);
-      this.chkViewItemAsEWeapon.TabIndex = 3;
-      this.chkViewItemAsEWeapon.Text = "Weapon Information - EN";
-      this.chkViewItemAsEWeapon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsEWeapon.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsEWeapon.CheckedChanged += new System.EventHandler(this.chkViewItemAsEWeapon_CheckedChanged);
-      // 
-      // chkViewItemAsEObject
-      // 
-      this.chkViewItemAsEObject.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsEObject.AutoCheck = false;
-      this.chkViewItemAsEObject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsEObject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsEObject.Location = new System.Drawing.Point(140, 16);
-      this.chkViewItemAsEObject.Name = "chkViewItemAsEObject";
-      this.chkViewItemAsEObject.Size = new System.Drawing.Size(132, 24);
-      this.chkViewItemAsEObject.TabIndex = 2;
-      this.chkViewItemAsEObject.Text = "Object Information - EN";
-      this.chkViewItemAsEObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsEObject.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsEObject.CheckedChanged += new System.EventHandler(this.chkViewItemAsEObject_CheckedChanged);
-      // 
-      // chkViewItemAsEArmor
-      // 
-      this.chkViewItemAsEArmor.Appearance = System.Windows.Forms.Appearance.Button;
-      this.chkViewItemAsEArmor.AutoCheck = false;
-      this.chkViewItemAsEArmor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.chkViewItemAsEArmor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.chkViewItemAsEArmor.Location = new System.Drawing.Point(8, 16);
-      this.chkViewItemAsEArmor.Name = "chkViewItemAsEArmor";
-      this.chkViewItemAsEArmor.Size = new System.Drawing.Size(128, 24);
-      this.chkViewItemAsEArmor.TabIndex = 1;
-      this.chkViewItemAsEArmor.Text = "Armor Information - EN";
-      this.chkViewItemAsEArmor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.chkViewItemAsEArmor.Click += new System.EventHandler(this.chkViewItem_Click);
-      this.chkViewItemAsEArmor.CheckedChanged += new System.EventHandler(this.chkViewItemAsEArmor_CheckedChanged);
-      // 
-      // grpSpecializedItemInfo
-      // 
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemRaces);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemRaces);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemSlots);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemSlots);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemJobs);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemJobs);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemLevel);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemLevel);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemEquipDelay);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemReuseTimer);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemMaxCharges);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemResourceID);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemReuseTimer);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemEquipDelay);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemMaxCharges);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemResourceID);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemSkill);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemDelay);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemDamage);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemSkill);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemDelay);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemDamage);
-      this.grpSpecializedItemInfo.Controls.Add(this.lblItemShieldSize);
-      this.grpSpecializedItemInfo.Controls.Add(this.txtItemShieldSize);
-      this.grpSpecializedItemInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.grpSpecializedItemInfo.Location = new System.Drawing.Point(0, 364);
-      this.grpSpecializedItemInfo.Name = "grpSpecializedItemInfo";
-      this.grpSpecializedItemInfo.Size = new System.Drawing.Size(424, 122);
-      this.grpSpecializedItemInfo.TabIndex = 6;
-      this.grpSpecializedItemInfo.TabStop = false;
-      this.grpSpecializedItemInfo.Text = "Specialized Information";
-      this.grpSpecializedItemInfo.Visible = false;
-      // 
-      // lblItemRaces
-      // 
-      this.lblItemRaces.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemRaces.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemRaces.Location = new System.Drawing.Point(264, 48);
-      this.lblItemRaces.Name = "lblItemRaces";
-      this.lblItemRaces.Size = new System.Drawing.Size(36, 16);
-      this.lblItemRaces.TabIndex = 38;
-      this.lblItemRaces.Text = "Races:";
-      // 
-      // txtItemRaces
-      // 
-      this.txtItemRaces.Location = new System.Drawing.Point(304, 44);
-      this.txtItemRaces.Name = "txtItemRaces";
-      this.txtItemRaces.ReadOnly = true;
-      this.txtItemRaces.Size = new System.Drawing.Size(112, 20);
-      this.txtItemRaces.TabIndex = 37;
-      this.txtItemRaces.Text = "";
-      // 
-      // lblItemSlots
-      // 
-      this.lblItemSlots.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemSlots.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemSlots.Location = new System.Drawing.Point(228, 24);
-      this.lblItemSlots.Name = "lblItemSlots";
-      this.lblItemSlots.Size = new System.Drawing.Size(32, 16);
-      this.lblItemSlots.TabIndex = 36;
-      this.lblItemSlots.Text = "Slots:";
-      // 
-      // txtItemSlots
-      // 
-      this.txtItemSlots.Location = new System.Drawing.Point(260, 20);
-      this.txtItemSlots.Name = "txtItemSlots";
-      this.txtItemSlots.ReadOnly = true;
-      this.txtItemSlots.Size = new System.Drawing.Size(156, 20);
-      this.txtItemSlots.TabIndex = 35;
-      this.txtItemSlots.Text = "";
-      // 
-      // lblItemJobs
-      // 
-      this.lblItemJobs.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemJobs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemJobs.Location = new System.Drawing.Point(8, 48);
-      this.lblItemJobs.Name = "lblItemJobs";
-      this.lblItemJobs.Size = new System.Drawing.Size(32, 16);
-      this.lblItemJobs.TabIndex = 34;
-      this.lblItemJobs.Text = "Jobs:";
-      // 
-      // txtItemJobs
-      // 
-      this.txtItemJobs.Location = new System.Drawing.Point(40, 44);
-      this.txtItemJobs.Name = "txtItemJobs";
-      this.txtItemJobs.ReadOnly = true;
-      this.txtItemJobs.Size = new System.Drawing.Size(216, 20);
-      this.txtItemJobs.TabIndex = 33;
-      this.txtItemJobs.Text = "";
-      // 
-      // lblItemLevel
-      // 
-      this.lblItemLevel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemLevel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemLevel.Location = new System.Drawing.Point(156, 24);
-      this.lblItemLevel.Name = "lblItemLevel";
-      this.lblItemLevel.Size = new System.Drawing.Size(32, 16);
-      this.lblItemLevel.TabIndex = 32;
-      this.lblItemLevel.Text = "Level:";
-      // 
-      // txtItemLevel
-      // 
-      this.txtItemLevel.Location = new System.Drawing.Point(192, 20);
-      this.txtItemLevel.Name = "txtItemLevel";
-      this.txtItemLevel.ReadOnly = true;
-      this.txtItemLevel.Size = new System.Drawing.Size(28, 20);
-      this.txtItemLevel.TabIndex = 31;
-      this.txtItemLevel.Text = "";
-      // 
-      // lblItemEquipDelay
-      // 
-      this.lblItemEquipDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemEquipDelay.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemEquipDelay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemEquipDelay.Location = new System.Drawing.Point(108, 98);
-      this.lblItemEquipDelay.Name = "lblItemEquipDelay";
-      this.lblItemEquipDelay.Size = new System.Drawing.Size(60, 16);
-      this.lblItemEquipDelay.TabIndex = 25;
-      this.lblItemEquipDelay.Text = "Equip Delay:";
-      // 
-      // lblItemReuseTimer
-      // 
-      this.lblItemReuseTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemReuseTimer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemReuseTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemReuseTimer.Location = new System.Drawing.Point(264, 98);
-      this.lblItemReuseTimer.Name = "lblItemReuseTimer";
-      this.lblItemReuseTimer.Size = new System.Drawing.Size(64, 16);
-      this.lblItemReuseTimer.TabIndex = 24;
-      this.lblItemReuseTimer.Text = "Reuse Timer:";
-      // 
-      // lblItemMaxCharges
-      // 
-      this.lblItemMaxCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemMaxCharges.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemMaxCharges.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemMaxCharges.Location = new System.Drawing.Point(8, 98);
-      this.lblItemMaxCharges.Name = "lblItemMaxCharges";
-      this.lblItemMaxCharges.Size = new System.Drawing.Size(48, 16);
-      this.lblItemMaxCharges.TabIndex = 23;
-      this.lblItemMaxCharges.Text = "Charges:";
-      // 
-      // lblItemResourceID
-      // 
-      this.lblItemResourceID.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemResourceID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemResourceID.Location = new System.Drawing.Point(8, 24);
-      this.lblItemResourceID.Name = "lblItemResourceID";
-      this.lblItemResourceID.Size = new System.Drawing.Size(68, 16);
-      this.lblItemResourceID.TabIndex = 22;
-      this.lblItemResourceID.Text = "Resource ID:";
-      // 
-      // txtItemReuseTimer
-      // 
-      this.txtItemReuseTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemReuseTimer.Location = new System.Drawing.Point(332, 94);
-      this.txtItemReuseTimer.Name = "txtItemReuseTimer";
-      this.txtItemReuseTimer.ReadOnly = true;
-      this.txtItemReuseTimer.Size = new System.Drawing.Size(84, 20);
-      this.txtItemReuseTimer.TabIndex = 21;
-      this.txtItemReuseTimer.Text = "";
-      // 
-      // txtItemEquipDelay
-      // 
-      this.txtItemEquipDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemEquipDelay.Location = new System.Drawing.Point(172, 94);
-      this.txtItemEquipDelay.Name = "txtItemEquipDelay";
-      this.txtItemEquipDelay.ReadOnly = true;
-      this.txtItemEquipDelay.Size = new System.Drawing.Size(84, 20);
-      this.txtItemEquipDelay.TabIndex = 20;
-      this.txtItemEquipDelay.Text = "";
-      // 
-      // txtItemMaxCharges
-      // 
-      this.txtItemMaxCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemMaxCharges.Location = new System.Drawing.Point(56, 94);
-      this.txtItemMaxCharges.Name = "txtItemMaxCharges";
-      this.txtItemMaxCharges.ReadOnly = true;
-      this.txtItemMaxCharges.Size = new System.Drawing.Size(44, 20);
-      this.txtItemMaxCharges.TabIndex = 19;
-      this.txtItemMaxCharges.Text = "";
-      // 
-      // txtItemResourceID
-      // 
-      this.txtItemResourceID.Location = new System.Drawing.Point(76, 20);
-      this.txtItemResourceID.Name = "txtItemResourceID";
-      this.txtItemResourceID.ReadOnly = true;
-      this.txtItemResourceID.Size = new System.Drawing.Size(72, 20);
-      this.txtItemResourceID.TabIndex = 15;
-      this.txtItemResourceID.Text = "";
-      // 
-      // lblItemSkill
-      // 
-      this.lblItemSkill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemSkill.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemSkill.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemSkill.Location = new System.Drawing.Point(190, 72);
-      this.lblItemSkill.Name = "lblItemSkill";
-      this.lblItemSkill.Size = new System.Drawing.Size(68, 16);
-      this.lblItemSkill.TabIndex = 28;
-      this.lblItemSkill.Text = "Weapon Skill:";
-      this.lblItemSkill.Visible = false;
-      // 
-      // lblItemDelay
-      // 
-      this.lblItemDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemDelay.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemDelay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemDelay.Location = new System.Drawing.Point(90, 72);
-      this.lblItemDelay.Name = "lblItemDelay";
-      this.lblItemDelay.Size = new System.Drawing.Size(32, 16);
-      this.lblItemDelay.TabIndex = 27;
-      this.lblItemDelay.Text = "Delay:";
-      this.lblItemDelay.Visible = false;
-      // 
-      // lblItemDamage
-      // 
-      this.lblItemDamage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemDamage.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemDamage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemDamage.Location = new System.Drawing.Point(8, 72);
-      this.lblItemDamage.Name = "lblItemDamage";
-      this.lblItemDamage.Size = new System.Drawing.Size(46, 16);
-      this.lblItemDamage.TabIndex = 26;
-      this.lblItemDamage.Text = "Damage:";
-      this.lblItemDamage.Visible = false;
-      // 
-      // txtItemSkill
-      // 
-      this.txtItemSkill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemSkill.Location = new System.Drawing.Point(260, 68);
-      this.txtItemSkill.Name = "txtItemSkill";
-      this.txtItemSkill.ReadOnly = true;
-      this.txtItemSkill.Size = new System.Drawing.Size(156, 20);
-      this.txtItemSkill.TabIndex = 18;
-      this.txtItemSkill.Text = "";
-      this.txtItemSkill.Visible = false;
-      // 
-      // txtItemDelay
-      // 
-      this.txtItemDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemDelay.Location = new System.Drawing.Point(124, 68);
-      this.txtItemDelay.Name = "txtItemDelay";
-      this.txtItemDelay.ReadOnly = true;
-      this.txtItemDelay.Size = new System.Drawing.Size(60, 20);
-      this.txtItemDelay.TabIndex = 17;
-      this.txtItemDelay.Text = "";
-      this.txtItemDelay.Visible = false;
-      // 
-      // txtItemDamage
-      // 
-      this.txtItemDamage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemDamage.Location = new System.Drawing.Point(56, 68);
-      this.txtItemDamage.Name = "txtItemDamage";
-      this.txtItemDamage.ReadOnly = true;
-      this.txtItemDamage.Size = new System.Drawing.Size(28, 20);
-      this.txtItemDamage.TabIndex = 16;
-      this.txtItemDamage.Text = "";
-      this.txtItemDamage.Visible = false;
-      // 
-      // lblItemShieldSize
-      // 
-      this.lblItemShieldSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.lblItemShieldSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemShieldSize.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemShieldSize.Location = new System.Drawing.Point(8, 72);
-      this.lblItemShieldSize.Name = "lblItemShieldSize";
-      this.lblItemShieldSize.Size = new System.Drawing.Size(56, 16);
-      this.lblItemShieldSize.TabIndex = 30;
-      this.lblItemShieldSize.Text = "Shield Size:";
-      this.lblItemShieldSize.Visible = false;
-      // 
-      // txtItemShieldSize
-      // 
-      this.txtItemShieldSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.txtItemShieldSize.Location = new System.Drawing.Point(68, 68);
-      this.txtItemShieldSize.Name = "txtItemShieldSize";
-      this.txtItemShieldSize.ReadOnly = true;
-      this.txtItemShieldSize.Size = new System.Drawing.Size(32, 20);
-      this.txtItemShieldSize.TabIndex = 29;
-      this.txtItemShieldSize.Text = "";
-      this.txtItemShieldSize.Visible = false;
-      // 
-      // grpCommonItemInfo
-      // 
-      this.grpCommonItemInfo.Controls.Add(this.lblItemDescription);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemPlural);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemSingular);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemJName);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemEName);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemPlural);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemSingular);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemJName);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemEName);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemDescription);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemStackSize);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemFlags);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemType);
-      this.grpCommonItemInfo.Controls.Add(this.lblItemID);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemStackSize);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemFlags);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemType);
-      this.grpCommonItemInfo.Controls.Add(this.txtItemID);
-      this.grpCommonItemInfo.Controls.Add(this.picItemIcon);
-      this.grpCommonItemInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.grpCommonItemInfo.Location = new System.Drawing.Point(0, 76);
-      this.grpCommonItemInfo.Name = "grpCommonItemInfo";
-      this.grpCommonItemInfo.Size = new System.Drawing.Size(424, 284);
-      this.grpCommonItemInfo.TabIndex = 5;
-      this.grpCommonItemInfo.TabStop = false;
-      this.grpCommonItemInfo.Text = "Common Information";
-      // 
-      // lblItemDescription
-      // 
-      this.lblItemDescription.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemDescription.Location = new System.Drawing.Point(8, 144);
-      this.lblItemDescription.Name = "lblItemDescription";
-      this.lblItemDescription.Size = new System.Drawing.Size(60, 16);
-      this.lblItemDescription.TabIndex = 0;
-      this.lblItemDescription.Text = "Description:";
-      // 
-      // lblItemPlural
-      // 
-      this.lblItemPlural.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemPlural.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemPlural.Location = new System.Drawing.Point(8, 120);
-      this.lblItemPlural.Name = "lblItemPlural";
-      this.lblItemPlural.Size = new System.Drawing.Size(100, 16);
-      this.lblItemPlural.TabIndex = 0;
-      this.lblItemPlural.Text = "Log Name (Multiple):";
-      // 
-      // lblItemSingular
-      // 
-      this.lblItemSingular.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemSingular.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemSingular.Location = new System.Drawing.Point(8, 96);
-      this.lblItemSingular.Name = "lblItemSingular";
-      this.lblItemSingular.Size = new System.Drawing.Size(100, 16);
-      this.lblItemSingular.TabIndex = 0;
-      this.lblItemSingular.Text = "Log Name (Single):";
-      // 
-      // lblItemJName
-      // 
-      this.lblItemJName.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemJName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemJName.Location = new System.Drawing.Point(80, 72);
-      this.lblItemJName.Name = "lblItemJName";
-      this.lblItemJName.Size = new System.Drawing.Size(80, 16);
-      this.lblItemJName.TabIndex = 0;
-      this.lblItemJName.Text = "Japanese Name:";
-      // 
-      // lblItemEName
-      // 
-      this.lblItemEName.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemEName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemEName.Location = new System.Drawing.Point(80, 48);
-      this.lblItemEName.Name = "lblItemEName";
-      this.lblItemEName.Size = new System.Drawing.Size(80, 16);
-      this.lblItemEName.TabIndex = 0;
-      this.lblItemEName.Text = "English Name:";
-      // 
-      // txtItemPlural
-      // 
-      this.txtItemPlural.Location = new System.Drawing.Point(112, 116);
-      this.txtItemPlural.Name = "txtItemPlural";
-      this.txtItemPlural.ReadOnly = true;
-      this.txtItemPlural.Size = new System.Drawing.Size(304, 20);
-      this.txtItemPlural.TabIndex = 6;
-      this.txtItemPlural.Text = "";
-      // 
-      // txtItemSingular
-      // 
-      this.txtItemSingular.Location = new System.Drawing.Point(112, 92);
-      this.txtItemSingular.Name = "txtItemSingular";
-      this.txtItemSingular.ReadOnly = true;
-      this.txtItemSingular.Size = new System.Drawing.Size(304, 20);
-      this.txtItemSingular.TabIndex = 5;
-      this.txtItemSingular.Text = "";
-      // 
-      // txtItemJName
-      // 
-      this.txtItemJName.Location = new System.Drawing.Point(164, 68);
-      this.txtItemJName.Name = "txtItemJName";
-      this.txtItemJName.ReadOnly = true;
-      this.txtItemJName.Size = new System.Drawing.Size(252, 20);
-      this.txtItemJName.TabIndex = 4;
-      this.txtItemJName.Text = "";
-      // 
-      // txtItemEName
-      // 
-      this.txtItemEName.Location = new System.Drawing.Point(164, 44);
-      this.txtItemEName.Name = "txtItemEName";
-      this.txtItemEName.ReadOnly = true;
-      this.txtItemEName.Size = new System.Drawing.Size(252, 20);
-      this.txtItemEName.TabIndex = 3;
-      this.txtItemEName.Text = "";
-      // 
-      // txtItemDescription
-      // 
-      this.txtItemDescription.Location = new System.Drawing.Point(68, 140);
-      this.txtItemDescription.Multiline = true;
-      this.txtItemDescription.Name = "txtItemDescription";
-      this.txtItemDescription.ReadOnly = true;
-      this.txtItemDescription.Size = new System.Drawing.Size(348, 112);
-      this.txtItemDescription.TabIndex = 7;
-      this.txtItemDescription.Text = "";
-      // 
-      // lblItemStackSize
-      // 
-      this.lblItemStackSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemStackSize.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemStackSize.Location = new System.Drawing.Point(324, 260);
-      this.lblItemStackSize.Name = "lblItemStackSize";
-      this.lblItemStackSize.Size = new System.Drawing.Size(56, 16);
-      this.lblItemStackSize.TabIndex = 0;
-      this.lblItemStackSize.Text = "Stack Size:";
-      // 
-      // lblItemFlags
-      // 
-      this.lblItemFlags.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemFlags.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemFlags.Location = new System.Drawing.Point(8, 260);
-      this.lblItemFlags.Name = "lblItemFlags";
-      this.lblItemFlags.Size = new System.Drawing.Size(28, 16);
-      this.lblItemFlags.TabIndex = 0;
-      this.lblItemFlags.Text = "Flags:";
-      // 
-      // lblItemType
-      // 
-      this.lblItemType.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemType.Location = new System.Drawing.Point(196, 24);
-      this.lblItemType.Name = "lblItemType";
-      this.lblItemType.Size = new System.Drawing.Size(28, 16);
-      this.lblItemType.TabIndex = 0;
-      this.lblItemType.Text = "Type:";
-      // 
-      // lblItemID
-      // 
-      this.lblItemID.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.lblItemID.Location = new System.Drawing.Point(80, 24);
-      this.lblItemID.Name = "lblItemID";
-      this.lblItemID.Size = new System.Drawing.Size(20, 16);
-      this.lblItemID.TabIndex = 0;
-      this.lblItemID.Text = "ID:";
-      // 
-      // txtItemStackSize
-      // 
-      this.txtItemStackSize.Location = new System.Drawing.Point(384, 256);
-      this.txtItemStackSize.Name = "txtItemStackSize";
-      this.txtItemStackSize.ReadOnly = true;
-      this.txtItemStackSize.Size = new System.Drawing.Size(32, 20);
-      this.txtItemStackSize.TabIndex = 9;
-      this.txtItemStackSize.Text = "";
-      // 
-      // txtItemFlags
-      // 
-      this.txtItemFlags.Location = new System.Drawing.Point(40, 256);
-      this.txtItemFlags.Name = "txtItemFlags";
-      this.txtItemFlags.ReadOnly = true;
-      this.txtItemFlags.Size = new System.Drawing.Size(276, 20);
-      this.txtItemFlags.TabIndex = 8;
-      this.txtItemFlags.Text = "";
-      // 
-      // txtItemType
-      // 
-      this.txtItemType.Location = new System.Drawing.Point(228, 20);
-      this.txtItemType.Name = "txtItemType";
-      this.txtItemType.ReadOnly = true;
-      this.txtItemType.Size = new System.Drawing.Size(188, 20);
-      this.txtItemType.TabIndex = 2;
-      this.txtItemType.Text = "";
-      // 
-      // txtItemID
-      // 
-      this.txtItemID.Location = new System.Drawing.Point(100, 20);
-      this.txtItemID.Name = "txtItemID";
-      this.txtItemID.ReadOnly = true;
-      this.txtItemID.Size = new System.Drawing.Size(88, 20);
-      this.txtItemID.TabIndex = 1;
-      this.txtItemID.Text = "";
-      // 
-      // picItemIcon
-      // 
-      this.picItemIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-      this.picItemIcon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-      this.picItemIcon.Location = new System.Drawing.Point(8, 20);
-      this.picItemIcon.Name = "picItemIcon";
-      this.picItemIcon.Size = new System.Drawing.Size(64, 64);
-      this.picItemIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picItemIcon.TabIndex = 3;
-      this.picItemIcon.TabStop = false;
+      // grpViewMode
+      // 
+      this.grpViewMode.Controls.Add(this.chkViewAsJWeapon);
+      this.grpViewMode.Controls.Add(this.chkViewAsJObject);
+      this.grpViewMode.Controls.Add(this.chkViewAsJArmor);
+      this.grpViewMode.Controls.Add(this.chkViewAsEWeapon);
+      this.grpViewMode.Controls.Add(this.chkViewAsEObject);
+      this.grpViewMode.Controls.Add(this.chkViewAsEArmor);
+      this.grpViewMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpViewMode.Location = new System.Drawing.Point(0, 0);
+      this.grpViewMode.Name = "grpViewMode";
+      this.grpViewMode.Size = new System.Drawing.Size(424, 76);
+      this.grpViewMode.TabIndex = 4;
+      this.grpViewMode.TabStop = false;
+      this.grpViewMode.Text = "View Item Info As";
+      // 
+      // chkViewAsJWeapon
+      // 
+      this.chkViewAsJWeapon.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsJWeapon.AutoCheck = false;
+      this.chkViewAsJWeapon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsJWeapon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsJWeapon.Location = new System.Drawing.Point(276, 44);
+      this.chkViewAsJWeapon.Name = "chkViewAsJWeapon";
+      this.chkViewAsJWeapon.Size = new System.Drawing.Size(140, 24);
+      this.chkViewAsJWeapon.TabIndex = 6;
+      this.chkViewAsJWeapon.Text = "Weapon Information - JP";
+      this.chkViewAsJWeapon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsJWeapon.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsJWeapon.CheckedChanged += new System.EventHandler(this.chkViewAsJWeapon_CheckedChanged);
+      // 
+      // chkViewAsJObject
+      // 
+      this.chkViewAsJObject.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsJObject.AutoCheck = false;
+      this.chkViewAsJObject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsJObject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsJObject.Location = new System.Drawing.Point(140, 44);
+      this.chkViewAsJObject.Name = "chkViewAsJObject";
+      this.chkViewAsJObject.Size = new System.Drawing.Size(132, 24);
+      this.chkViewAsJObject.TabIndex = 5;
+      this.chkViewAsJObject.Text = "Object Information - JP";
+      this.chkViewAsJObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsJObject.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsJObject.CheckedChanged += new System.EventHandler(this.chkViewAsJObject_CheckedChanged);
+      // 
+      // chkViewAsJArmor
+      // 
+      this.chkViewAsJArmor.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsJArmor.AutoCheck = false;
+      this.chkViewAsJArmor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsJArmor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsJArmor.Location = new System.Drawing.Point(8, 44);
+      this.chkViewAsJArmor.Name = "chkViewAsJArmor";
+      this.chkViewAsJArmor.Size = new System.Drawing.Size(128, 24);
+      this.chkViewAsJArmor.TabIndex = 4;
+      this.chkViewAsJArmor.Text = "Armor Information - JP";
+      this.chkViewAsJArmor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsJArmor.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsJArmor.CheckedChanged += new System.EventHandler(this.chkViewAsJArmor_CheckedChanged);
+      // 
+      // chkViewAsEWeapon
+      // 
+      this.chkViewAsEWeapon.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsEWeapon.AutoCheck = false;
+      this.chkViewAsEWeapon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsEWeapon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsEWeapon.Location = new System.Drawing.Point(276, 16);
+      this.chkViewAsEWeapon.Name = "chkViewAsEWeapon";
+      this.chkViewAsEWeapon.Size = new System.Drawing.Size(140, 24);
+      this.chkViewAsEWeapon.TabIndex = 3;
+      this.chkViewAsEWeapon.Text = "Weapon Information - EN";
+      this.chkViewAsEWeapon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsEWeapon.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsEWeapon.CheckedChanged += new System.EventHandler(this.chkViewAsEWeapon_CheckedChanged);
+      // 
+      // chkViewAsEObject
+      // 
+      this.chkViewAsEObject.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsEObject.AutoCheck = false;
+      this.chkViewAsEObject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsEObject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsEObject.Location = new System.Drawing.Point(140, 16);
+      this.chkViewAsEObject.Name = "chkViewAsEObject";
+      this.chkViewAsEObject.Size = new System.Drawing.Size(132, 24);
+      this.chkViewAsEObject.TabIndex = 2;
+      this.chkViewAsEObject.Text = "Object Information - EN";
+      this.chkViewAsEObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsEObject.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsEObject.CheckedChanged += new System.EventHandler(this.chkViewAsEObject_CheckedChanged);
+      // 
+      // chkViewAsEArmor
+      // 
+      this.chkViewAsEArmor.Appearance = System.Windows.Forms.Appearance.Button;
+      this.chkViewAsEArmor.AutoCheck = false;
+      this.chkViewAsEArmor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.chkViewAsEArmor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkViewAsEArmor.Location = new System.Drawing.Point(8, 16);
+      this.chkViewAsEArmor.Name = "chkViewAsEArmor";
+      this.chkViewAsEArmor.Size = new System.Drawing.Size(128, 24);
+      this.chkViewAsEArmor.TabIndex = 1;
+      this.chkViewAsEArmor.Text = "Armor Information - EN";
+      this.chkViewAsEArmor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.chkViewAsEArmor.Click += new System.EventHandler(this.chkView_Click);
+      this.chkViewAsEArmor.CheckedChanged += new System.EventHandler(this.chkViewAsEArmor_CheckedChanged);
+      // 
+      // grpSpecializedInfo
+      // 
+      this.grpSpecializedInfo.Controls.Add(this.lblCastTime);
+      this.grpSpecializedInfo.Controls.Add(this.txtCastTime);
+      this.grpSpecializedInfo.Controls.Add(this.lblRaces);
+      this.grpSpecializedInfo.Controls.Add(this.txtRaces);
+      this.grpSpecializedInfo.Controls.Add(this.lblSlots);
+      this.grpSpecializedInfo.Controls.Add(this.txtSlots);
+      this.grpSpecializedInfo.Controls.Add(this.lblJobs);
+      this.grpSpecializedInfo.Controls.Add(this.txtJobs);
+      this.grpSpecializedInfo.Controls.Add(this.lblLevel);
+      this.grpSpecializedInfo.Controls.Add(this.txtLevel);
+      this.grpSpecializedInfo.Controls.Add(this.lblEquipDelay);
+      this.grpSpecializedInfo.Controls.Add(this.lblReuseTimer);
+      this.grpSpecializedInfo.Controls.Add(this.lblMaxCharges);
+      this.grpSpecializedInfo.Controls.Add(this.lblResourceID);
+      this.grpSpecializedInfo.Controls.Add(this.txtReuseTimer);
+      this.grpSpecializedInfo.Controls.Add(this.txtEquipDelay);
+      this.grpSpecializedInfo.Controls.Add(this.txtMaxCharges);
+      this.grpSpecializedInfo.Controls.Add(this.txtResourceID);
+      this.grpSpecializedInfo.Controls.Add(this.lblSkill);
+      this.grpSpecializedInfo.Controls.Add(this.lblDelay);
+      this.grpSpecializedInfo.Controls.Add(this.lblDamage);
+      this.grpSpecializedInfo.Controls.Add(this.txtSkill);
+      this.grpSpecializedInfo.Controls.Add(this.txtDelay);
+      this.grpSpecializedInfo.Controls.Add(this.txtDamage);
+      this.grpSpecializedInfo.Controls.Add(this.lblShieldSize);
+      this.grpSpecializedInfo.Controls.Add(this.txtShieldSize);
+      this.grpSpecializedInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpSpecializedInfo.Location = new System.Drawing.Point(0, 364);
+      this.grpSpecializedInfo.Name = "grpSpecializedInfo";
+      this.grpSpecializedInfo.Size = new System.Drawing.Size(424, 122);
+      this.grpSpecializedInfo.TabIndex = 6;
+      this.grpSpecializedInfo.TabStop = false;
+      this.grpSpecializedInfo.Text = "Specialized Information";
+      this.grpSpecializedInfo.Visible = false;
+      // 
+      // lblCastTime
+      // 
+      this.lblCastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblCastTime.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblCastTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblCastTime.Location = new System.Drawing.Point(84, 96);
+      this.lblCastTime.Name = "lblCastTime";
+      this.lblCastTime.Size = new System.Drawing.Size(64, 16);
+      this.lblCastTime.TabIndex = 40;
+      this.lblCastTime.Text = "Casting Time:";
+      // 
+      // txtCastTime
+      // 
+      this.txtCastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtCastTime.Location = new System.Drawing.Point(152, 94);
+      this.txtCastTime.Name = "txtCastTime";
+      this.txtCastTime.ReadOnly = true;
+      this.txtCastTime.Size = new System.Drawing.Size(34, 20);
+      this.txtCastTime.TabIndex = 39;
+      this.txtCastTime.Text = "";
+      // 
+      // lblRaces
+      // 
+      this.lblRaces.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblRaces.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblRaces.Location = new System.Drawing.Point(264, 48);
+      this.lblRaces.Name = "lblRaces";
+      this.lblRaces.Size = new System.Drawing.Size(36, 16);
+      this.lblRaces.TabIndex = 38;
+      this.lblRaces.Text = "Races:";
+      // 
+      // txtRaces
+      // 
+      this.txtRaces.Location = new System.Drawing.Point(304, 44);
+      this.txtRaces.Name = "txtRaces";
+      this.txtRaces.ReadOnly = true;
+      this.txtRaces.Size = new System.Drawing.Size(112, 20);
+      this.txtRaces.TabIndex = 37;
+      this.txtRaces.Text = "";
+      // 
+      // lblSlots
+      // 
+      this.lblSlots.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblSlots.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblSlots.Location = new System.Drawing.Point(228, 24);
+      this.lblSlots.Name = "lblSlots";
+      this.lblSlots.Size = new System.Drawing.Size(32, 16);
+      this.lblSlots.TabIndex = 36;
+      this.lblSlots.Text = "Slots:";
+      // 
+      // txtSlots
+      // 
+      this.txtSlots.Location = new System.Drawing.Point(260, 20);
+      this.txtSlots.Name = "txtSlots";
+      this.txtSlots.ReadOnly = true;
+      this.txtSlots.Size = new System.Drawing.Size(156, 20);
+      this.txtSlots.TabIndex = 35;
+      this.txtSlots.Text = "";
+      // 
+      // lblJobs
+      // 
+      this.lblJobs.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblJobs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblJobs.Location = new System.Drawing.Point(8, 48);
+      this.lblJobs.Name = "lblJobs";
+      this.lblJobs.Size = new System.Drawing.Size(32, 16);
+      this.lblJobs.TabIndex = 34;
+      this.lblJobs.Text = "Jobs:";
+      // 
+      // txtJobs
+      // 
+      this.txtJobs.Location = new System.Drawing.Point(40, 44);
+      this.txtJobs.Name = "txtJobs";
+      this.txtJobs.ReadOnly = true;
+      this.txtJobs.Size = new System.Drawing.Size(216, 20);
+      this.txtJobs.TabIndex = 33;
+      this.txtJobs.Text = "";
+      // 
+      // lblLevel
+      // 
+      this.lblLevel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblLevel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblLevel.Location = new System.Drawing.Point(156, 24);
+      this.lblLevel.Name = "lblLevel";
+      this.lblLevel.Size = new System.Drawing.Size(32, 16);
+      this.lblLevel.TabIndex = 32;
+      this.lblLevel.Text = "Level:";
+      // 
+      // txtLevel
+      // 
+      this.txtLevel.Location = new System.Drawing.Point(192, 20);
+      this.txtLevel.Name = "txtLevel";
+      this.txtLevel.ReadOnly = true;
+      this.txtLevel.Size = new System.Drawing.Size(28, 20);
+      this.txtLevel.TabIndex = 31;
+      this.txtLevel.Text = "";
+      // 
+      // lblEquipDelay
+      // 
+      this.lblEquipDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblEquipDelay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblEquipDelay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblEquipDelay.Location = new System.Drawing.Point(192, 96);
+      this.lblEquipDelay.Name = "lblEquipDelay";
+      this.lblEquipDelay.Size = new System.Drawing.Size(60, 16);
+      this.lblEquipDelay.TabIndex = 25;
+      this.lblEquipDelay.Text = "Equip Delay:";
+      // 
+      // lblReuseTimer
+      // 
+      this.lblReuseTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblReuseTimer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblReuseTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblReuseTimer.Location = new System.Drawing.Point(312, 96);
+      this.lblReuseTimer.Name = "lblReuseTimer";
+      this.lblReuseTimer.Size = new System.Drawing.Size(40, 16);
+      this.lblReuseTimer.TabIndex = 24;
+      this.lblReuseTimer.Text = "Re-Use:";
+      // 
+      // lblMaxCharges
+      // 
+      this.lblMaxCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblMaxCharges.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblMaxCharges.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblMaxCharges.Location = new System.Drawing.Point(8, 96);
+      this.lblMaxCharges.Name = "lblMaxCharges";
+      this.lblMaxCharges.Size = new System.Drawing.Size(48, 16);
+      this.lblMaxCharges.TabIndex = 23;
+      this.lblMaxCharges.Text = "Charges:";
+      // 
+      // lblResourceID
+      // 
+      this.lblResourceID.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblResourceID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblResourceID.Location = new System.Drawing.Point(8, 24);
+      this.lblResourceID.Name = "lblResourceID";
+      this.lblResourceID.Size = new System.Drawing.Size(68, 16);
+      this.lblResourceID.TabIndex = 22;
+      this.lblResourceID.Text = "Resource ID:";
+      // 
+      // txtReuseTimer
+      // 
+      this.txtReuseTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtReuseTimer.Location = new System.Drawing.Point(356, 94);
+      this.txtReuseTimer.Name = "txtReuseTimer";
+      this.txtReuseTimer.ReadOnly = true;
+      this.txtReuseTimer.Size = new System.Drawing.Size(60, 20);
+      this.txtReuseTimer.TabIndex = 21;
+      this.txtReuseTimer.Text = "";
+      // 
+      // txtEquipDelay
+      // 
+      this.txtEquipDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtEquipDelay.Location = new System.Drawing.Point(256, 94);
+      this.txtEquipDelay.Name = "txtEquipDelay";
+      this.txtEquipDelay.ReadOnly = true;
+      this.txtEquipDelay.Size = new System.Drawing.Size(48, 20);
+      this.txtEquipDelay.TabIndex = 20;
+      this.txtEquipDelay.Text = "";
+      // 
+      // txtMaxCharges
+      // 
+      this.txtMaxCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtMaxCharges.Location = new System.Drawing.Point(56, 94);
+      this.txtMaxCharges.Name = "txtMaxCharges";
+      this.txtMaxCharges.ReadOnly = true;
+      this.txtMaxCharges.Size = new System.Drawing.Size(24, 20);
+      this.txtMaxCharges.TabIndex = 19;
+      this.txtMaxCharges.Text = "";
+      // 
+      // txtResourceID
+      // 
+      this.txtResourceID.Location = new System.Drawing.Point(76, 20);
+      this.txtResourceID.Name = "txtResourceID";
+      this.txtResourceID.ReadOnly = true;
+      this.txtResourceID.Size = new System.Drawing.Size(72, 20);
+      this.txtResourceID.TabIndex = 15;
+      this.txtResourceID.Text = "";
+      // 
+      // lblSkill
+      // 
+      this.lblSkill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblSkill.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblSkill.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblSkill.Location = new System.Drawing.Point(190, 72);
+      this.lblSkill.Name = "lblSkill";
+      this.lblSkill.Size = new System.Drawing.Size(68, 16);
+      this.lblSkill.TabIndex = 28;
+      this.lblSkill.Text = "Weapon Skill:";
+      this.lblSkill.Visible = false;
+      // 
+      // lblDelay
+      // 
+      this.lblDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblDelay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblDelay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblDelay.Location = new System.Drawing.Point(90, 72);
+      this.lblDelay.Name = "lblDelay";
+      this.lblDelay.Size = new System.Drawing.Size(32, 16);
+      this.lblDelay.TabIndex = 27;
+      this.lblDelay.Text = "Delay:";
+      this.lblDelay.Visible = false;
+      // 
+      // lblDamage
+      // 
+      this.lblDamage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblDamage.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblDamage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblDamage.Location = new System.Drawing.Point(8, 72);
+      this.lblDamage.Name = "lblDamage";
+      this.lblDamage.Size = new System.Drawing.Size(46, 16);
+      this.lblDamage.TabIndex = 26;
+      this.lblDamage.Text = "Damage:";
+      this.lblDamage.Visible = false;
+      // 
+      // txtSkill
+      // 
+      this.txtSkill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtSkill.Location = new System.Drawing.Point(260, 68);
+      this.txtSkill.Name = "txtSkill";
+      this.txtSkill.ReadOnly = true;
+      this.txtSkill.Size = new System.Drawing.Size(156, 20);
+      this.txtSkill.TabIndex = 18;
+      this.txtSkill.Text = "";
+      this.txtSkill.Visible = false;
+      // 
+      // txtDelay
+      // 
+      this.txtDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtDelay.Location = new System.Drawing.Point(124, 68);
+      this.txtDelay.Name = "txtDelay";
+      this.txtDelay.ReadOnly = true;
+      this.txtDelay.Size = new System.Drawing.Size(60, 20);
+      this.txtDelay.TabIndex = 17;
+      this.txtDelay.Text = "";
+      this.txtDelay.Visible = false;
+      // 
+      // txtDamage
+      // 
+      this.txtDamage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtDamage.Location = new System.Drawing.Point(56, 68);
+      this.txtDamage.Name = "txtDamage";
+      this.txtDamage.ReadOnly = true;
+      this.txtDamage.Size = new System.Drawing.Size(28, 20);
+      this.txtDamage.TabIndex = 16;
+      this.txtDamage.Text = "";
+      this.txtDamage.Visible = false;
+      // 
+      // lblShieldSize
+      // 
+      this.lblShieldSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblShieldSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblShieldSize.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblShieldSize.Location = new System.Drawing.Point(8, 72);
+      this.lblShieldSize.Name = "lblShieldSize";
+      this.lblShieldSize.Size = new System.Drawing.Size(56, 16);
+      this.lblShieldSize.TabIndex = 30;
+      this.lblShieldSize.Text = "Shield Size:";
+      this.lblShieldSize.Visible = false;
+      // 
+      // txtShieldSize
+      // 
+      this.txtShieldSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.txtShieldSize.Location = new System.Drawing.Point(68, 68);
+      this.txtShieldSize.Name = "txtShieldSize";
+      this.txtShieldSize.ReadOnly = true;
+      this.txtShieldSize.Size = new System.Drawing.Size(32, 20);
+      this.txtShieldSize.TabIndex = 29;
+      this.txtShieldSize.Text = "";
+      this.txtShieldSize.Visible = false;
+      // 
+      // grpCommonInfo
+      // 
+      this.grpCommonInfo.Controls.Add(this.lblDescription);
+      this.grpCommonInfo.Controls.Add(this.lblPlural);
+      this.grpCommonInfo.Controls.Add(this.lblSingular);
+      this.grpCommonInfo.Controls.Add(this.lblJName);
+      this.grpCommonInfo.Controls.Add(this.lblEName);
+      this.grpCommonInfo.Controls.Add(this.txtPlural);
+      this.grpCommonInfo.Controls.Add(this.txtSingular);
+      this.grpCommonInfo.Controls.Add(this.txtJName);
+      this.grpCommonInfo.Controls.Add(this.txtEName);
+      this.grpCommonInfo.Controls.Add(this.txtDescription);
+      this.grpCommonInfo.Controls.Add(this.lblStackSize);
+      this.grpCommonInfo.Controls.Add(this.lblFlags);
+      this.grpCommonInfo.Controls.Add(this.lblType);
+      this.grpCommonInfo.Controls.Add(this.lblID);
+      this.grpCommonInfo.Controls.Add(this.txtStackSize);
+      this.grpCommonInfo.Controls.Add(this.txtFlags);
+      this.grpCommonInfo.Controls.Add(this.txtType);
+      this.grpCommonInfo.Controls.Add(this.txtID);
+      this.grpCommonInfo.Controls.Add(this.picIcon);
+      this.grpCommonInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpCommonInfo.Location = new System.Drawing.Point(0, 76);
+      this.grpCommonInfo.Name = "grpCommonInfo";
+      this.grpCommonInfo.Size = new System.Drawing.Size(424, 284);
+      this.grpCommonInfo.TabIndex = 5;
+      this.grpCommonInfo.TabStop = false;
+      this.grpCommonInfo.Text = "Common Information";
+      // 
+      // lblDescription
+      // 
+      this.lblDescription.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblDescription.Location = new System.Drawing.Point(8, 144);
+      this.lblDescription.Name = "lblDescription";
+      this.lblDescription.Size = new System.Drawing.Size(60, 16);
+      this.lblDescription.TabIndex = 0;
+      this.lblDescription.Text = "Description:";
+      // 
+      // lblPlural
+      // 
+      this.lblPlural.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblPlural.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblPlural.Location = new System.Drawing.Point(8, 120);
+      this.lblPlural.Name = "lblPlural";
+      this.lblPlural.Size = new System.Drawing.Size(100, 16);
+      this.lblPlural.TabIndex = 0;
+      this.lblPlural.Text = "Log Name (Multiple):";
+      // 
+      // lblSingular
+      // 
+      this.lblSingular.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblSingular.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblSingular.Location = new System.Drawing.Point(8, 96);
+      this.lblSingular.Name = "lblSingular";
+      this.lblSingular.Size = new System.Drawing.Size(100, 16);
+      this.lblSingular.TabIndex = 0;
+      this.lblSingular.Text = "Log Name (Single):";
+      // 
+      // lblJName
+      // 
+      this.lblJName.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblJName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblJName.Location = new System.Drawing.Point(80, 72);
+      this.lblJName.Name = "lblJName";
+      this.lblJName.Size = new System.Drawing.Size(80, 16);
+      this.lblJName.TabIndex = 0;
+      this.lblJName.Text = "Japanese Name:";
+      // 
+      // lblEName
+      // 
+      this.lblEName.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblEName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblEName.Location = new System.Drawing.Point(80, 48);
+      this.lblEName.Name = "lblEName";
+      this.lblEName.Size = new System.Drawing.Size(80, 16);
+      this.lblEName.TabIndex = 0;
+      this.lblEName.Text = "English Name:";
+      // 
+      // txtPlural
+      // 
+      this.txtPlural.Location = new System.Drawing.Point(112, 116);
+      this.txtPlural.Name = "txtPlural";
+      this.txtPlural.ReadOnly = true;
+      this.txtPlural.Size = new System.Drawing.Size(304, 20);
+      this.txtPlural.TabIndex = 6;
+      this.txtPlural.Text = "";
+      // 
+      // txtSingular
+      // 
+      this.txtSingular.Location = new System.Drawing.Point(112, 92);
+      this.txtSingular.Name = "txtSingular";
+      this.txtSingular.ReadOnly = true;
+      this.txtSingular.Size = new System.Drawing.Size(304, 20);
+      this.txtSingular.TabIndex = 5;
+      this.txtSingular.Text = "";
+      // 
+      // txtJName
+      // 
+      this.txtJName.Location = new System.Drawing.Point(164, 68);
+      this.txtJName.Name = "txtJName";
+      this.txtJName.ReadOnly = true;
+      this.txtJName.Size = new System.Drawing.Size(252, 20);
+      this.txtJName.TabIndex = 4;
+      this.txtJName.Text = "";
+      // 
+      // txtEName
+      // 
+      this.txtEName.Location = new System.Drawing.Point(164, 44);
+      this.txtEName.Name = "txtEName";
+      this.txtEName.ReadOnly = true;
+      this.txtEName.Size = new System.Drawing.Size(252, 20);
+      this.txtEName.TabIndex = 3;
+      this.txtEName.Text = "";
+      // 
+      // txtDescription
+      // 
+      this.txtDescription.Location = new System.Drawing.Point(68, 140);
+      this.txtDescription.Multiline = true;
+      this.txtDescription.Name = "txtDescription";
+      this.txtDescription.ReadOnly = true;
+      this.txtDescription.Size = new System.Drawing.Size(348, 112);
+      this.txtDescription.TabIndex = 7;
+      this.txtDescription.Text = "";
+      // 
+      // lblStackSize
+      // 
+      this.lblStackSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblStackSize.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblStackSize.Location = new System.Drawing.Point(324, 260);
+      this.lblStackSize.Name = "lblStackSize";
+      this.lblStackSize.Size = new System.Drawing.Size(56, 16);
+      this.lblStackSize.TabIndex = 0;
+      this.lblStackSize.Text = "Stack Size:";
+      // 
+      // lblFlags
+      // 
+      this.lblFlags.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblFlags.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFlags.Location = new System.Drawing.Point(8, 260);
+      this.lblFlags.Name = "lblFlags";
+      this.lblFlags.Size = new System.Drawing.Size(28, 16);
+      this.lblFlags.TabIndex = 0;
+      this.lblFlags.Text = "Flags:";
+      // 
+      // lblType
+      // 
+      this.lblType.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblType.Location = new System.Drawing.Point(196, 24);
+      this.lblType.Name = "lblType";
+      this.lblType.Size = new System.Drawing.Size(28, 16);
+      this.lblType.TabIndex = 0;
+      this.lblType.Text = "Type:";
+      // 
+      // lblID
+      // 
+      this.lblID.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblID.Location = new System.Drawing.Point(80, 24);
+      this.lblID.Name = "lblID";
+      this.lblID.Size = new System.Drawing.Size(20, 16);
+      this.lblID.TabIndex = 0;
+      this.lblID.Text = "ID:";
+      // 
+      // txtStackSize
+      // 
+      this.txtStackSize.Location = new System.Drawing.Point(384, 256);
+      this.txtStackSize.Name = "txtStackSize";
+      this.txtStackSize.ReadOnly = true;
+      this.txtStackSize.Size = new System.Drawing.Size(32, 20);
+      this.txtStackSize.TabIndex = 9;
+      this.txtStackSize.Text = "";
+      // 
+      // txtFlags
+      // 
+      this.txtFlags.Location = new System.Drawing.Point(40, 256);
+      this.txtFlags.Name = "txtFlags";
+      this.txtFlags.ReadOnly = true;
+      this.txtFlags.Size = new System.Drawing.Size(276, 20);
+      this.txtFlags.TabIndex = 8;
+      this.txtFlags.Text = "";
+      // 
+      // txtType
+      // 
+      this.txtType.Location = new System.Drawing.Point(228, 20);
+      this.txtType.Name = "txtType";
+      this.txtType.ReadOnly = true;
+      this.txtType.Size = new System.Drawing.Size(188, 20);
+      this.txtType.TabIndex = 2;
+      this.txtType.Text = "";
+      // 
+      // txtID
+      // 
+      this.txtID.Location = new System.Drawing.Point(100, 20);
+      this.txtID.Name = "txtID";
+      this.txtID.ReadOnly = true;
+      this.txtID.Size = new System.Drawing.Size(88, 20);
+      this.txtID.TabIndex = 1;
+      this.txtID.Text = "";
+      // 
+      // picIcon
+      // 
+      this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.picIcon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.picIcon.Location = new System.Drawing.Point(8, 20);
+      this.picIcon.Name = "picIcon";
+      this.picIcon.Size = new System.Drawing.Size(64, 64);
+      this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picIcon.TabIndex = 3;
+      this.picIcon.TabStop = false;
       // 
       // FFXIItemEditor
       // 
       this.BackColor = System.Drawing.SystemColors.Control;
-      this.Controls.Add(this.grpItemViewMode);
-      this.Controls.Add(this.grpSpecializedItemInfo);
-      this.Controls.Add(this.grpCommonItemInfo);
+      this.Controls.Add(this.grpViewMode);
+      this.Controls.Add(this.grpSpecializedInfo);
+      this.Controls.Add(this.grpCommonInfo);
       this.Name = "FFXIItemEditor";
       this.Size = new System.Drawing.Size(424, 486);
-      this.grpItemViewMode.ResumeLayout(false);
-      this.grpSpecializedItemInfo.ResumeLayout(false);
-      this.grpCommonItemInfo.ResumeLayout(false);
+      this.grpViewMode.ResumeLayout(false);
+      this.grpSpecializedInfo.ResumeLayout(false);
+      this.grpCommonInfo.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -1038,88 +1066,89 @@ namespace PlayOnline.FFXI {
 
     #region Events - View Mode
 
-    private void chkViewItem_Click(object sender, System.EventArgs e) {
-      this.chkViewItemAsEArmor.Checked  = sender.Equals(this.chkViewItemAsEArmor);
-      this.chkViewItemAsEObject.Checked = sender.Equals(this.chkViewItemAsEObject);
-      this.chkViewItemAsEWeapon.Checked = sender.Equals(this.chkViewItemAsEWeapon);
-      this.chkViewItemAsJArmor.Checked  = sender.Equals(this.chkViewItemAsJArmor);
-      this.chkViewItemAsJObject.Checked = sender.Equals(this.chkViewItemAsJObject);
-      this.chkViewItemAsJWeapon.Checked = sender.Equals(this.chkViewItemAsJWeapon);
+    private void chkView_Click(object sender, System.EventArgs e) {
+      this.chkViewAsEArmor.Checked  = sender.Equals(this.chkViewAsEArmor);
+      this.chkViewAsEObject.Checked = sender.Equals(this.chkViewAsEObject);
+      this.chkViewAsEWeapon.Checked = sender.Equals(this.chkViewAsEWeapon);
+      this.chkViewAsJArmor.Checked  = sender.Equals(this.chkViewAsJArmor);
+      this.chkViewAsJObject.Checked = sender.Equals(this.chkViewAsJObject);
+      this.chkViewAsJWeapon.Checked = sender.Equals(this.chkViewAsJWeapon);
     }
 
     private void FillCommonFields(FFXIItem.IItemInfo II) {
-      this.txtItemEName.Text       = II.GetFieldText(ItemField.EnglishName);
-      this.txtItemJName.Text       = II.GetFieldText(ItemField.JapaneseName);
-      this.txtItemSingular.Text    = II.GetFieldText(ItemField.LogNameSingular);
-      this.txtItemPlural.Text      = II.GetFieldText(ItemField.LogNamePlural);
-      this.txtItemDescription.Text = II.GetFieldText(ItemField.Description).Replace("\n", "\r\n");
+      this.txtEName.Text       = II.GetFieldText(ItemField.EnglishName);
+      this.txtJName.Text       = II.GetFieldText(ItemField.JapaneseName);
+      this.txtSingular.Text    = II.GetFieldText(ItemField.LogNameSingular);
+      this.txtPlural.Text      = II.GetFieldText(ItemField.LogNamePlural);
+      this.txtDescription.Text = II.GetFieldText(ItemField.Description).Replace("\n", "\r\n");
     }
 
     private void FillCommonExtraFields(FFXIItem.IItemInfo II) {
-      this.txtItemResourceID.Text = II.GetFieldText(ItemField.ResourceID);
-      this.txtItemLevel.Text      = II.GetFieldText(ItemField.Level);
-      this.txtItemSlots.Text      = II.GetFieldText(ItemField.Slots);
-      this.txtItemJobs.Text       = II.GetFieldText(ItemField.Jobs);
-      this.txtItemRaces.Text      = II.GetFieldText(ItemField.Races);
-      this.txtItemMaxCharges.Text = II.GetFieldText(ItemField.MaxCharges);
-      this.txtItemEquipDelay.Text = II.GetFieldText(ItemField.EquipDelay);
-      this.txtItemReuseTimer.Text = II.GetFieldText(ItemField.ReuseTimer);
+      this.txtResourceID.Text = II.GetFieldText(ItemField.ResourceID);
+      this.txtLevel.Text      = II.GetFieldText(ItemField.Level);
+      this.txtSlots.Text      = II.GetFieldText(ItemField.Slots);
+      this.txtJobs.Text       = II.GetFieldText(ItemField.Jobs);
+      this.txtRaces.Text      = II.GetFieldText(ItemField.Races);
+      this.txtMaxCharges.Text = II.GetFieldText(ItemField.MaxCharges);
+      this.txtCastTime.Text   = II.GetFieldText(ItemField.CastTime);
+      this.txtEquipDelay.Text = II.GetFieldText(ItemField.EquipDelay);
+      this.txtReuseTimer.Text = II.GetFieldText(ItemField.ReuseTimer);
     }
 
     private void FillObjectFields(FFXIItem.IItemInfo II) {
       this.FillCommonFields(II);
-      this.grpSpecializedItemInfo.Visible = false;
+      this.grpSpecializedInfo.Visible = false;
     }
 
     private void FillArmorFields(FFXIItem.IItemInfo II) {
       this.FillCommonFields(II);
-      this.grpSpecializedItemInfo.Visible = true;
-      this.lblItemDamage.Visible = this.lblItemDelay.Visible = this.lblItemSkill.Visible = false;
-      this.txtItemDamage.Visible = this.txtItemDelay.Visible = this.txtItemSkill.Visible = false;
-      this.lblItemShieldSize.Visible = this.txtItemShieldSize.Visible = true;
-      this.txtItemShieldSize.Text = II.GetFieldText(ItemField.ShieldSize);
+      this.grpSpecializedInfo.Visible = true;
+      this.lblDamage.Visible = this.lblDelay.Visible = this.lblSkill.Visible = false;
+      this.txtDamage.Visible = this.txtDelay.Visible = this.txtSkill.Visible = false;
+      this.lblShieldSize.Visible = this.txtShieldSize.Visible = true;
+      this.txtShieldSize.Text = II.GetFieldText(ItemField.ShieldSize);
       this.FillCommonExtraFields(II);
     }
 
     private void FillWeaponFields(FFXIItem.IItemInfo II) {
       this.FillCommonFields(II);
-      this.grpSpecializedItemInfo.Visible = true;
-      this.lblItemDamage.Visible = this.lblItemDelay.Visible = this.lblItemSkill.Visible = true;
-      this.txtItemDamage.Visible = this.txtItemDelay.Visible = this.txtItemSkill.Visible = true;
-      this.lblItemShieldSize.Visible = this.txtItemShieldSize.Visible = false;
-      this.txtItemDamage.Text = II.GetFieldText(ItemField.Damage);
-      this.txtItemDelay.Text  = II.GetFieldText(ItemField.Delay);
-      this.txtItemSkill.Text  = II.GetFieldText(ItemField.Skill);
+      this.grpSpecializedInfo.Visible = true;
+      this.lblDamage.Visible = this.lblDelay.Visible = this.lblSkill.Visible = true;
+      this.txtDamage.Visible = this.txtDelay.Visible = this.txtSkill.Visible = true;
+      this.lblShieldSize.Visible = this.txtShieldSize.Visible = false;
+      this.txtDamage.Text = II.GetFieldText(ItemField.Damage);
+      this.txtDelay.Text  = II.GetFieldText(ItemField.Delay);
+      this.txtSkill.Text  = II.GetFieldText(ItemField.Skill);
       this.FillCommonExtraFields(II);
     }
 
-    private void chkViewItemAsEArmor_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsEArmor.Checked)
+    private void chkViewAsEArmor_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsEArmor.Checked)
 	this.FillArmorFields(this.ItemToShow_.ENArmor);
     }
 
-    private void chkViewItemAsEObject_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsEObject.Checked)
+    private void chkViewAsEObject_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsEObject.Checked)
 	this.FillObjectFields(this.ItemToShow_.ENObject);
     }
 
-    private void chkViewItemAsEWeapon_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsEWeapon.Checked)
+    private void chkViewAsEWeapon_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsEWeapon.Checked)
 	this.FillWeaponFields(this.ItemToShow_.ENWeapon);
     }
 
-    private void chkViewItemAsJArmor_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsJArmor.Checked)
+    private void chkViewAsJArmor_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsJArmor.Checked)
 	this.FillArmorFields(this.ItemToShow_.JPArmor);
     }
 
-    private void chkViewItemAsJObject_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsJObject.Checked)
+    private void chkViewAsJObject_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsJObject.Checked)
 	this.FillObjectFields(this.ItemToShow_.JPObject);
     }
 
-    private void chkViewItemAsJWeapon_CheckedChanged(object sender, System.EventArgs e) {
-      if (this.ItemToShow_ != null && this.chkViewItemAsJWeapon.Checked)
+    private void chkViewAsJWeapon_CheckedChanged(object sender, System.EventArgs e) {
+      if (this.ItemToShow_ != null && this.chkViewAsJWeapon.Checked)
 	this.FillWeaponFields(this.ItemToShow_.JPWeapon);
     }
 
