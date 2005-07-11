@@ -130,7 +130,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuPCBackground;
     private System.Windows.Forms.MenuItem mnuPCSaveAs;
     private System.Windows.Forms.ContextMenu mnuStringTableContext;
-    private System.Windows.Forms.MenuItem mnuSTCCopy;
     private System.Windows.Forms.Panel pnlViewerArea;
     private System.Windows.Forms.MenuItem mnuWindows;
     private System.Windows.Forms.TabControl tabViewers;
@@ -151,6 +150,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuOFileTable;
     private System.Windows.Forms.MenuItem mnuOSettings;
     private PlayOnline.FFXI.FFXIItemEditor ieItemViewer;
+    private System.Windows.Forms.Button btnImageSaveAll;
+    private System.Windows.Forms.MenuItem mnuSTCCopyRow;
+    private System.Windows.Forms.MenuItem mnuSTCCopyField;
 
     private System.ComponentModel.IContainer components;
 
@@ -210,6 +212,93 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
+    private void btnImageSaveAll_Click(object sender, System.EventArgs e) {
+      MessageBox.Show(this, "Not implemented yet.");
+    }
+
+    #region Context Menu Events
+
+    private PictureBox GetSourcePicture(MenuItem SourceMenu) {
+      if (SourceMenu != null) {
+      ContextMenu CM = SourceMenu.GetContextMenu();
+	if (CM != null)
+	  return CM.SourceControl as PictureBox;
+      }
+      return null;
+    }
+
+    private void SetPictureSizeMode(PictureBox PB, PictureBoxSizeMode SizeMode) {
+      if (PB != null)
+	PB.SizeMode = SizeMode;
+    }
+
+    private void SetPictureBackground(PictureBox PB, Color BackColor) {
+      if (PB != null)
+	PB.BackColor = BackColor;
+    }
+
+    private void SavePicture(PictureBox PB) {
+      if (PB != null) {
+	this.dlgSavePicture.FileName = PB.Tag as string;
+	if (this.dlgSavePicture.ShowDialog() == DialogResult.OK) {
+	ImageFormat IF = ImageFormat.Bmp;
+	  switch (this.dlgSavePicture.FilterIndex) {
+	    case 1: IF = ImageFormat.Bmp; break;
+	    case 2: IF = ImageFormat.Png; break;
+	  }
+	  PB.Image.Save(this.dlgSavePicture.FileName, IF);
+	}
+      }
+    }
+
+    private void mnuPCModeNormal_Click(object sender, System.EventArgs e) {
+      this.mnuPCModeNormal.Checked    = true;
+      this.mnuPCModeCentered.Checked  = false;
+      this.mnuPCModeStretched.Checked = false;
+      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.Normal);
+    }
+
+    private void mnuPCModeCentered_Click(object sender, System.EventArgs e) {
+      this.mnuPCModeNormal.Checked    = false;
+      this.mnuPCModeCentered.Checked  = true;
+      this.mnuPCModeStretched.Checked = false;
+      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.CenterImage);
+    }
+
+    private void mnuPCModeStretched_Click(object sender, System.EventArgs e) {
+      this.mnuPCModeNormal.Checked    = false;
+      this.mnuPCModeCentered.Checked  = false;
+      this.mnuPCModeStretched.Checked = true;
+      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.StretchImage);
+    }
+
+    private void mnuPCBackgroundBlack_Click(object sender, System.EventArgs e) {
+      this.mnuPCBackgroundBlack.Checked       = true;
+      this.mnuPCBackgroundWhite.Checked       = false;
+      this.mnuPCBackgroundTransparent.Checked = false;
+      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.Black);
+    }
+
+    private void mnuPCBackgroundWhite_Click(object sender, System.EventArgs e) {
+      this.mnuPCBackgroundBlack.Checked       = false;
+      this.mnuPCBackgroundWhite.Checked       = true;
+      this.mnuPCBackgroundTransparent.Checked = false;
+      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.White);
+    }
+
+    private void mnuPCBackgroundTransparent_Click(object sender, System.EventArgs e) {
+      this.mnuPCBackgroundBlack.Checked       = false;
+      this.mnuPCBackgroundWhite.Checked       = false;
+      this.mnuPCBackgroundTransparent.Checked = true;
+      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.Transparent);
+    }
+
+    private void mnuPCSaveAs_Click(object sender, System.EventArgs e) {
+      this.SavePicture(this.GetSourcePicture(sender as MenuItem));
+    }
+
+    #endregion
+
     #endregion
 
     #region Item Data Viewer Events
@@ -254,6 +343,60 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region String Table Viewer Events
 
+    private void CopyStringTableRow() {
+    string FullText = String.Empty;
+      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+      string ItemText = String.Empty;
+	foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems) {
+	  if (ItemText != String.Empty)
+	    ItemText += '\t';
+	  ItemText += LVSI.Text;
+	}
+	if (FullText != String.Empty)
+	  FullText += '\n';
+	FullText += ItemText;
+      }
+      if (FullText != String.Empty)
+	Clipboard.SetDataObject(FullText);
+    }
+
+    private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+      // Support Ctrl-Ins in addition to the Ctrl-C supported by the context menu
+      if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Insert)
+	this.CopyStringTableRow();
+    }
+
+    #region Context Menu Events
+
+    private void mnuSTCCopyRow_Click(object sender, System.EventArgs e) {
+      this.CopyStringTableRow();
+    }
+
+    private void StringTableCopyFieldMenuItem_Click(object sender, System.EventArgs e) {
+    MenuItem MI = sender as MenuItem;
+    string CopyText = String.Empty;
+      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+	if (CopyText != "")
+	  CopyText += '\n';
+	CopyText += LVI.SubItems[MI.Index].Text;
+      }
+      Clipboard.SetDataObject(CopyText);
+    }
+
+
+    private void mnuStringTableContext_Popup(object sender, System.EventArgs e) {
+      if (this.lstEntries.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
+	this.mnuSTCCopyField.MenuItems.Clear();
+	foreach (ColumnHeader CH in this.lstEntries.Columns)
+	  this.mnuSTCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.StringTableCopyFieldMenuItem_Click)));
+	this.mnuSTCCopyField.Enabled = true;
+      }
+      else
+	this.mnuSTCCopyField.Enabled = false;
+    }
+
+    #endregion
+
     #endregion
 
     #region Windows Form Designer generated code
@@ -282,7 +425,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCSaveAs = new System.Windows.Forms.MenuItem();
       this.dlgSavePicture = new System.Windows.Forms.SaveFileDialog();
       this.mnuStringTableContext = new System.Windows.Forms.ContextMenu();
-      this.mnuSTCCopy = new System.Windows.Forms.MenuItem();
+      this.mnuSTCCopyRow = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu();
       this.mnuWindows = new System.Windows.Forms.MenuItem();
       this.mnuOFileTable = new System.Windows.Forms.MenuItem();
@@ -298,12 +441,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerImages = new System.Windows.Forms.TabPage();
       this.picImageViewer = new System.Windows.Forms.PictureBox();
       this.pnlImageChooser = new System.Windows.Forms.Panel();
-      this.lblImageChooser = new System.Windows.Forms.Label();
+      this.btnImageSaveAll = new System.Windows.Forms.Button();
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
+      this.lblImageChooser = new System.Windows.Forms.Label();
       this.tabViewerStringTable = new System.Windows.Forms.TabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
+      this.mnuSTCCopyField = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -439,7 +584,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // mnuPCBackgroundBlack
       // 
-      this.mnuPCBackgroundBlack.Checked = true;
       this.mnuPCBackgroundBlack.Enabled = ((bool)(resources.GetObject("mnuPCBackgroundBlack.Enabled")));
       this.mnuPCBackgroundBlack.Index = 0;
       this.mnuPCBackgroundBlack.RadioCheck = true;
@@ -462,6 +606,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // mnuPCBackgroundTransparent
       // 
+      this.mnuPCBackgroundTransparent.Checked = true;
       this.mnuPCBackgroundTransparent.Enabled = ((bool)(resources.GetObject("mnuPCBackgroundTransparent.Enabled")));
       this.mnuPCBackgroundTransparent.Index = 2;
       this.mnuPCBackgroundTransparent.RadioCheck = true;
@@ -489,18 +634,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // mnuStringTableContext
       // 
       this.mnuStringTableContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-											  this.mnuSTCCopy});
+											  this.mnuSTCCopyRow,
+											  this.mnuSTCCopyField});
       this.mnuStringTableContext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuStringTableContext.RightToLeft")));
+      this.mnuStringTableContext.Popup += new System.EventHandler(this.mnuStringTableContext_Popup);
       // 
-      // mnuSTCCopy
+      // mnuSTCCopyRow
       // 
-      this.mnuSTCCopy.Enabled = ((bool)(resources.GetObject("mnuSTCCopy.Enabled")));
-      this.mnuSTCCopy.Index = 0;
-      this.mnuSTCCopy.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuSTCCopy.Shortcut")));
-      this.mnuSTCCopy.ShowShortcut = ((bool)(resources.GetObject("mnuSTCCopy.ShowShortcut")));
-      this.mnuSTCCopy.Text = resources.GetString("mnuSTCCopy.Text");
-      this.mnuSTCCopy.Visible = ((bool)(resources.GetObject("mnuSTCCopy.Visible")));
-      this.mnuSTCCopy.Click += new System.EventHandler(this.mnuSTCCopy_Click);
+      this.mnuSTCCopyRow.Enabled = ((bool)(resources.GetObject("mnuSTCCopyRow.Enabled")));
+      this.mnuSTCCopyRow.Index = 0;
+      this.mnuSTCCopyRow.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuSTCCopyRow.Shortcut")));
+      this.mnuSTCCopyRow.ShowShortcut = ((bool)(resources.GetObject("mnuSTCCopyRow.ShowShortcut")));
+      this.mnuSTCCopyRow.Text = resources.GetString("mnuSTCCopyRow.Text");
+      this.mnuSTCCopyRow.Visible = ((bool)(resources.GetObject("mnuSTCCopyRow.Visible")));
+      this.mnuSTCCopyRow.Click += new System.EventHandler(this.mnuSTCCopyRow_Click);
       // 
       // mnuMain
       // 
@@ -762,7 +909,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.picImageViewer.AccessibleDescription = resources.GetString("picImageViewer.AccessibleDescription");
       this.picImageViewer.AccessibleName = resources.GetString("picImageViewer.AccessibleName");
       this.picImageViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("picImageViewer.Anchor")));
-      this.picImageViewer.BackColor = System.Drawing.Color.Black;
+      this.picImageViewer.BackColor = System.Drawing.Color.Transparent;
       this.picImageViewer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picImageViewer.BackgroundImage")));
       this.picImageViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.picImageViewer.ContextMenu = this.mnuPictureContext;
@@ -790,8 +937,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.pnlImageChooser.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("pnlImageChooser.AutoScrollMargin")));
       this.pnlImageChooser.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("pnlImageChooser.AutoScrollMinSize")));
       this.pnlImageChooser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlImageChooser.BackgroundImage")));
-      this.pnlImageChooser.Controls.Add(this.lblImageChooser);
+      this.pnlImageChooser.Controls.Add(this.btnImageSaveAll);
       this.pnlImageChooser.Controls.Add(this.cmbImageChooser);
+      this.pnlImageChooser.Controls.Add(this.lblImageChooser);
       this.pnlImageChooser.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("pnlImageChooser.Dock")));
       this.pnlImageChooser.Enabled = ((bool)(resources.GetObject("pnlImageChooser.Enabled")));
       this.pnlImageChooser.Font = ((System.Drawing.Font)(resources.GetObject("pnlImageChooser.Font")));
@@ -804,28 +952,29 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.pnlImageChooser.Text = resources.GetString("pnlImageChooser.Text");
       this.pnlImageChooser.Visible = ((bool)(resources.GetObject("pnlImageChooser.Visible")));
       // 
-      // lblImageChooser
+      // btnImageSaveAll
       // 
-      this.lblImageChooser.AccessibleDescription = resources.GetString("lblImageChooser.AccessibleDescription");
-      this.lblImageChooser.AccessibleName = resources.GetString("lblImageChooser.AccessibleName");
-      this.lblImageChooser.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblImageChooser.Anchor")));
-      this.lblImageChooser.AutoSize = ((bool)(resources.GetObject("lblImageChooser.AutoSize")));
-      this.lblImageChooser.BackColor = System.Drawing.Color.Transparent;
-      this.lblImageChooser.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblImageChooser.Dock")));
-      this.lblImageChooser.Enabled = ((bool)(resources.GetObject("lblImageChooser.Enabled")));
-      this.lblImageChooser.Font = ((System.Drawing.Font)(resources.GetObject("lblImageChooser.Font")));
-      this.lblImageChooser.Image = ((System.Drawing.Image)(resources.GetObject("lblImageChooser.Image")));
-      this.lblImageChooser.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblImageChooser.ImageAlign")));
-      this.lblImageChooser.ImageIndex = ((int)(resources.GetObject("lblImageChooser.ImageIndex")));
-      this.lblImageChooser.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblImageChooser.ImeMode")));
-      this.lblImageChooser.Location = ((System.Drawing.Point)(resources.GetObject("lblImageChooser.Location")));
-      this.lblImageChooser.Name = "lblImageChooser";
-      this.lblImageChooser.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblImageChooser.RightToLeft")));
-      this.lblImageChooser.Size = ((System.Drawing.Size)(resources.GetObject("lblImageChooser.Size")));
-      this.lblImageChooser.TabIndex = ((int)(resources.GetObject("lblImageChooser.TabIndex")));
-      this.lblImageChooser.Text = resources.GetString("lblImageChooser.Text");
-      this.lblImageChooser.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblImageChooser.TextAlign")));
-      this.lblImageChooser.Visible = ((bool)(resources.GetObject("lblImageChooser.Visible")));
+      this.btnImageSaveAll.AccessibleDescription = resources.GetString("btnImageSaveAll.AccessibleDescription");
+      this.btnImageSaveAll.AccessibleName = resources.GetString("btnImageSaveAll.AccessibleName");
+      this.btnImageSaveAll.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("btnImageSaveAll.Anchor")));
+      this.btnImageSaveAll.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnImageSaveAll.BackgroundImage")));
+      this.btnImageSaveAll.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("btnImageSaveAll.Dock")));
+      this.btnImageSaveAll.Enabled = ((bool)(resources.GetObject("btnImageSaveAll.Enabled")));
+      this.btnImageSaveAll.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("btnImageSaveAll.FlatStyle")));
+      this.btnImageSaveAll.Font = ((System.Drawing.Font)(resources.GetObject("btnImageSaveAll.Font")));
+      this.btnImageSaveAll.Image = ((System.Drawing.Image)(resources.GetObject("btnImageSaveAll.Image")));
+      this.btnImageSaveAll.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnImageSaveAll.ImageAlign")));
+      this.btnImageSaveAll.ImageIndex = ((int)(resources.GetObject("btnImageSaveAll.ImageIndex")));
+      this.btnImageSaveAll.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("btnImageSaveAll.ImeMode")));
+      this.btnImageSaveAll.Location = ((System.Drawing.Point)(resources.GetObject("btnImageSaveAll.Location")));
+      this.btnImageSaveAll.Name = "btnImageSaveAll";
+      this.btnImageSaveAll.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("btnImageSaveAll.RightToLeft")));
+      this.btnImageSaveAll.Size = ((System.Drawing.Size)(resources.GetObject("btnImageSaveAll.Size")));
+      this.btnImageSaveAll.TabIndex = ((int)(resources.GetObject("btnImageSaveAll.TabIndex")));
+      this.btnImageSaveAll.Text = resources.GetString("btnImageSaveAll.Text");
+      this.btnImageSaveAll.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("btnImageSaveAll.TextAlign")));
+      this.btnImageSaveAll.Visible = ((bool)(resources.GetObject("btnImageSaveAll.Visible")));
+      this.btnImageSaveAll.Click += new System.EventHandler(this.btnImageSaveAll_Click);
       // 
       // cmbImageChooser
       // 
@@ -850,6 +999,29 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.cmbImageChooser.Text = resources.GetString("cmbImageChooser.Text");
       this.cmbImageChooser.Visible = ((bool)(resources.GetObject("cmbImageChooser.Visible")));
       this.cmbImageChooser.SelectedIndexChanged += new System.EventHandler(this.cmbImageChooser_SelectedIndexChanged);
+      // 
+      // lblImageChooser
+      // 
+      this.lblImageChooser.AccessibleDescription = resources.GetString("lblImageChooser.AccessibleDescription");
+      this.lblImageChooser.AccessibleName = resources.GetString("lblImageChooser.AccessibleName");
+      this.lblImageChooser.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblImageChooser.Anchor")));
+      this.lblImageChooser.AutoSize = ((bool)(resources.GetObject("lblImageChooser.AutoSize")));
+      this.lblImageChooser.BackColor = System.Drawing.Color.Transparent;
+      this.lblImageChooser.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblImageChooser.Dock")));
+      this.lblImageChooser.Enabled = ((bool)(resources.GetObject("lblImageChooser.Enabled")));
+      this.lblImageChooser.Font = ((System.Drawing.Font)(resources.GetObject("lblImageChooser.Font")));
+      this.lblImageChooser.Image = ((System.Drawing.Image)(resources.GetObject("lblImageChooser.Image")));
+      this.lblImageChooser.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblImageChooser.ImageAlign")));
+      this.lblImageChooser.ImageIndex = ((int)(resources.GetObject("lblImageChooser.ImageIndex")));
+      this.lblImageChooser.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblImageChooser.ImeMode")));
+      this.lblImageChooser.Location = ((System.Drawing.Point)(resources.GetObject("lblImageChooser.Location")));
+      this.lblImageChooser.Name = "lblImageChooser";
+      this.lblImageChooser.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblImageChooser.RightToLeft")));
+      this.lblImageChooser.Size = ((System.Drawing.Size)(resources.GetObject("lblImageChooser.Size")));
+      this.lblImageChooser.TabIndex = ((int)(resources.GetObject("lblImageChooser.TabIndex")));
+      this.lblImageChooser.Text = resources.GetString("lblImageChooser.Text");
+      this.lblImageChooser.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblImageChooser.TextAlign")));
+      this.lblImageChooser.Visible = ((bool)(resources.GetObject("lblImageChooser.Visible")));
       // 
       // tabViewerStringTable
       // 
@@ -880,6 +1052,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.AccessibleDescription = resources.GetString("lstEntries.AccessibleDescription");
       this.lstEntries.AccessibleName = resources.GetString("lstEntries.AccessibleName");
       this.lstEntries.Alignment = ((System.Windows.Forms.ListViewAlignment)(resources.GetObject("lstEntries.Alignment")));
+      this.lstEntries.AllowColumnReorder = true;
       this.lstEntries.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lstEntries.Anchor")));
       this.lstEntries.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstEntries.BackgroundImage")));
       this.lstEntries.ContextMenu = this.mnuStringTableContext;
@@ -944,6 +1117,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lblNoViewers.Text = resources.GetString("lblNoViewers.Text");
       this.lblNoViewers.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblNoViewers.TextAlign")));
       this.lblNoViewers.Visible = ((bool)(resources.GetObject("lblNoViewers.Visible")));
+      // 
+      // mnuSTCCopyField
+      // 
+      this.mnuSTCCopyField.Enabled = ((bool)(resources.GetObject("mnuSTCCopyField.Enabled")));
+      this.mnuSTCCopyField.Index = 1;
+      this.mnuSTCCopyField.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuSTCCopyField.Shortcut")));
+      this.mnuSTCCopyField.ShowShortcut = ((bool)(resources.GetObject("mnuSTCCopyField.ShowShortcut")));
+      this.mnuSTCCopyField.Text = resources.GetString("mnuSTCCopyField.Text");
+      this.mnuSTCCopyField.Visible = ((bool)(resources.GetObject("mnuSTCCopyField.Visible")));
       // 
       // MainWindow
       // 
@@ -1084,119 +1266,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  }
 	}
       }
-    }
-
-    #endregion
-
-    #region Picture Context Menu Events
-
-    private PictureBox GetSourcePicture(MenuItem SourceMenu) {
-      if (SourceMenu != null) {
-      ContextMenu CM = SourceMenu.GetContextMenu();
-	if (CM != null)
-	  return CM.SourceControl as PictureBox;
-      }
-      return null;
-    }
-
-    private void SetPictureSizeMode(PictureBox PB, PictureBoxSizeMode SizeMode) {
-      if (PB != null)
-	PB.SizeMode = SizeMode;
-    }
-
-    private void SetPictureBackground(PictureBox PB, Color BackColor) {
-      if (PB != null)
-	PB.BackColor = BackColor;
-    }
-
-    private void SavePicture(PictureBox PB) {
-      if (PB != null) {
-	this.dlgSavePicture.FileName = PB.Tag as string;
-	if (this.dlgSavePicture.ShowDialog() == DialogResult.OK) {
-	ImageFormat IF = ImageFormat.Bmp;
-	  switch (this.dlgSavePicture.FilterIndex) {
-	    case 1: IF = ImageFormat.Bmp; break;
-	    case 2: IF = ImageFormat.Png; break;
-	  }
-	  PB.Image.Save(this.dlgSavePicture.FileName, IF);
-	}
-      }
-    }
-
-    private void mnuPCModeNormal_Click(object sender, System.EventArgs e) {
-      this.mnuPCModeNormal.Checked    = true;
-      this.mnuPCModeCentered.Checked  = false;
-      this.mnuPCModeStretched.Checked = false;
-      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.Normal);
-    }
-
-    private void mnuPCModeCentered_Click(object sender, System.EventArgs e) {
-      this.mnuPCModeNormal.Checked    = false;
-      this.mnuPCModeCentered.Checked  = true;
-      this.mnuPCModeStretched.Checked = false;
-      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.CenterImage);
-    }
-
-    private void mnuPCModeStretched_Click(object sender, System.EventArgs e) {
-      this.mnuPCModeNormal.Checked    = false;
-      this.mnuPCModeCentered.Checked  = false;
-      this.mnuPCModeStretched.Checked = true;
-      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.StretchImage);
-    }
-
-    private void mnuPCBackgroundBlack_Click(object sender, System.EventArgs e) {
-      this.mnuPCBackgroundBlack.Checked       = true;
-      this.mnuPCBackgroundWhite.Checked       = false;
-      this.mnuPCBackgroundTransparent.Checked = false;
-      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.Black);
-    }
-
-    private void mnuPCBackgroundWhite_Click(object sender, System.EventArgs e) {
-      this.mnuPCBackgroundBlack.Checked       = false;
-      this.mnuPCBackgroundWhite.Checked       = true;
-      this.mnuPCBackgroundTransparent.Checked = false;
-      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.White);
-    }
-
-    private void mnuPCBackgroundTransparent_Click(object sender, System.EventArgs e) {
-      this.mnuPCBackgroundBlack.Checked       = false;
-      this.mnuPCBackgroundWhite.Checked       = false;
-      this.mnuPCBackgroundTransparent.Checked = true;
-      this.SetPictureBackground(this.GetSourcePicture(sender as MenuItem), Color.Transparent);
-    }
-
-    private void mnuPCSaveAs_Click(object sender, System.EventArgs e) {
-      this.SavePicture(this.GetSourcePicture(sender as MenuItem));
-    }
-
-    #endregion
-
-    #region String Table Context Menu Events
-
-    private void CopyStringTableText() {
-    string FullText = String.Empty;
-      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
-      string ItemText = String.Empty;
-	foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems) {
-	  if (ItemText != String.Empty)
-	    ItemText += '\t';
-	  ItemText += LVSI.Text;
-	}
-	if (FullText != String.Empty)
-	  FullText += '\n';
-	FullText += ItemText;
-      }
-      if (FullText != String.Empty)
-	Clipboard.SetDataObject(FullText);
-    }
-
-    private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
-      if (e.Modifiers == Keys.Control && (e.KeyCode == Keys.C || e.KeyCode == Keys.Insert))
-	this.CopyStringTableText();
-    }
-
-    private void mnuSTCCopy_Click(object sender, System.EventArgs e) {
-      this.CopyStringTableText();
     }
 
     #endregion
