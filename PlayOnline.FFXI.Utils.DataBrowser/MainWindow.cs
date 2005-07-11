@@ -212,8 +212,41 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
+    private FolderBrowserDialog dlgBrowseFolder = null;
+
+    private void PrepareFolderBrowser(string Description) {
+      if (this.dlgBrowseFolder == null) {
+	this.dlgBrowseFolder = new FolderBrowserDialog();
+	this.dlgBrowseFolder.Description = Description;
+      string Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "POLUtils");
+	if (!Directory.Exists(Location))
+	  Directory.CreateDirectory(Location);
+	this.dlgBrowseFolder.SelectedPath = Location;
+      }
+    }
+
+    private void TSaveAllImages() {
+    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
+      try {
+	Application.DoEvents();
+	PWD.ShowDialog(this);
+      } catch { PWD.Close(); }
+    }
+
     private void btnImageSaveAll_Click(object sender, System.EventArgs e) {
-      MessageBox.Show(this, "Not implemented yet.");
+      this.PrepareFolderBrowser(I18N.GetText("Description:BrowseImageExportFolder"));
+      if (this.dlgBrowseFolder.ShowDialog() == DialogResult.OK) {
+      Thread T = new Thread(new ThreadStart(this.TSaveAllImages));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	Application.DoEvents();
+	foreach (FFXIGraphic G in this.cmbImageChooser.Items) {
+	  G.Bitmap.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
+	  Application.DoEvents();
+	}
+	T.Abort();
+	this.Activate();
+      }
     }
 
     #region Context Menu Events
@@ -426,6 +459,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgSavePicture = new System.Windows.Forms.SaveFileDialog();
       this.mnuStringTableContext = new System.Windows.Forms.ContextMenu();
       this.mnuSTCCopyRow = new System.Windows.Forms.MenuItem();
+      this.mnuSTCCopyField = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu();
       this.mnuWindows = new System.Windows.Forms.MenuItem();
       this.mnuOFileTable = new System.Windows.Forms.MenuItem();
@@ -448,7 +482,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
-      this.mnuSTCCopyField = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -648,6 +681,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuSTCCopyRow.Text = resources.GetString("mnuSTCCopyRow.Text");
       this.mnuSTCCopyRow.Visible = ((bool)(resources.GetObject("mnuSTCCopyRow.Visible")));
       this.mnuSTCCopyRow.Click += new System.EventHandler(this.mnuSTCCopyRow_Click);
+      // 
+      // mnuSTCCopyField
+      // 
+      this.mnuSTCCopyField.Enabled = ((bool)(resources.GetObject("mnuSTCCopyField.Enabled")));
+      this.mnuSTCCopyField.Index = 1;
+      this.mnuSTCCopyField.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuSTCCopyField.Shortcut")));
+      this.mnuSTCCopyField.ShowShortcut = ((bool)(resources.GetObject("mnuSTCCopyField.ShowShortcut")));
+      this.mnuSTCCopyField.Text = resources.GetString("mnuSTCCopyField.Text");
+      this.mnuSTCCopyField.Visible = ((bool)(resources.GetObject("mnuSTCCopyField.Visible")));
       // 
       // mnuMain
       // 
@@ -1117,15 +1159,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lblNoViewers.Text = resources.GetString("lblNoViewers.Text");
       this.lblNoViewers.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblNoViewers.TextAlign")));
       this.lblNoViewers.Visible = ((bool)(resources.GetObject("lblNoViewers.Visible")));
-      // 
-      // mnuSTCCopyField
-      // 
-      this.mnuSTCCopyField.Enabled = ((bool)(resources.GetObject("mnuSTCCopyField.Enabled")));
-      this.mnuSTCCopyField.Index = 1;
-      this.mnuSTCCopyField.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuSTCCopyField.Shortcut")));
-      this.mnuSTCCopyField.ShowShortcut = ((bool)(resources.GetObject("mnuSTCCopyField.ShowShortcut")));
-      this.mnuSTCCopyField.Text = resources.GetString("mnuSTCCopyField.Text");
-      this.mnuSTCCopyField.Visible = ((bool)(resources.GetObject("mnuSTCCopyField.Visible")));
       // 
       // MainWindow
       // 

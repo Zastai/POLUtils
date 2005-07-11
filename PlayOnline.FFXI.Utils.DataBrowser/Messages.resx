@@ -380,4 +380,12 @@ Correct the problem and try again.</value>
         <value>Exporting item data.
 This may take quite a while.</value>
     </data>
+    <data name="Dialog:SaveAllImages" type="System.String">
+        <value>Saving all images to disk.
+This may take quite a while.</value>
+    </data>
+    <data name="Description:BrowseImageExportFolder" type="System.String">
+        <value>Select the folder where the images should be saved.
+WARNING: Existing files with the same name will be overwritten without prompting.</value>
+    </data>
 </root>
