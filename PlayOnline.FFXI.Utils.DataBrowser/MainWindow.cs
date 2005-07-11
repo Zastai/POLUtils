@@ -1190,6 +1190,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    this.tabViewers.TabPages.Add(this.tabViewerStringTable);
 	    Application.DoEvents();
 	    this.lstEntries.Select();
+	    this.lstEntries.SmallImageList = null;
 	  int i = 0;
 	    foreach (Array A in FSD.StringTableEntries) {
 	      if (i == 0) {
@@ -1197,15 +1198,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 		this.lstEntries.Columns.Add(I18N.GetText("ColumnHeader:Entry"), 1, HorizontalAlignment.Center);
 		foreach (ColumnHeader CH in A)
 		  this.lstEntries.Columns.Add(CH);
-		++i;
 	      }
 	      else {
-	      ListViewItem LVI = this.lstEntries.Items.Add(String.Format("{0:00000000}", i++));
+	      ListViewItem LVI = this.lstEntries.Items.Add(String.Format("{0:00000000}", i), i - 1);
 		foreach (string S in A)
 		  LVI.SubItems.Add(S);
 	      }
-	      if ((i % 100) == 0)
+	      if ((++i % 100) == 0)
 		Application.DoEvents();
+	    }
+	    if (FSD.Images.Count == FSD.StringTableEntries.Count - 1) {
+	    ImageList EntryIcons = new ImageList();
+	      foreach (FFXIGraphic G in FSD.Images)
+		EntryIcons.Images.Add(G.Bitmap);
+	      this.lstEntries.SmallImageList = EntryIcons;
 	    }
 	    foreach (ColumnHeader CH in this.lstEntries.Columns) {
 	      CH.Width = -1;
