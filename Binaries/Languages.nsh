@@ -14,6 +14,7 @@
 ;;FunctionEnd
 
 LangString DESC_SECTION_DESKTOP_SHORTCUT ${LANG_ENGLISH} "A shortcut to POLUtils on the Desktop."
+LangString DESC_SECTION_ENGRISH_ONRY     ${LANG_ENGLISH} "A small utility to translate parts of JP FFXI into English (alpha release)."
 LangString DESC_SECTION_MAIN             ${LANG_ENGLISH} "POLUtils itself."
 LangString DESC_SECTION_TRANS            ${LANG_ENGLISH} "Translated resources for POLUtils (optional)."
 LangString DESC_SECTION_TR_JA            ${LANG_ENGLISH} "Japanese resources for POLUtils."
@@ -23,6 +24,7 @@ LangString LOG_DOTNET_FOUND              ${LANG_ENGLISH} "Found .NET framework $
 LangString LOG_MDX_FOUND                 ${LANG_ENGLISH} "Found Managed DirectX - audio playback will be available."
 LangString LOG_MDX_NOT_FOUND             ${LANG_ENGLISH} "WARNING: Managed DirectX not found - no audio playback possible until it is installed."
 LangString NAME_SECTION_DESKTOP_SHORTCUT ${LANG_ENGLISH} "Desktop Shortcut"
+LangString NAME_SECTION_ENGRISH_ONRY     ${LANG_ENGLISH} "$\"Engrish Onry$\""
 LangString NAME_SECTION_MAIN             ${LANG_ENGLISH} "Main Program"
 LangString NAME_SECTION_TRANS            ${LANG_ENGLISH} "Translations"
 LangString NAME_SECTION_TR_JA            ${LANG_ENGLISH} "Japanese"

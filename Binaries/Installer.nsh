@@ -151,6 +151,12 @@ Section $(NAME_SECTION_DESKTOP_SHORTCUT) SECTION_DESKTOP_SHORTCUT
   CreateShortCut "$DESKTOP\POLUtils.lnk" "$INSTDIR\POLUtils.exe" "" "shell32.dll" 165 SW_SHOWNORMAL "" $(DESC_SHORTCUT)
 SectionEnd
 
+Section $(NAME_SECTION_ENGRISH_ONRY) SECTION_ENGRISH_ONRY
+  SetOutPath "$INSTDIR"
+  File "${BUILDDIR}\EngrishOnry.exe"
+  File "${BUILDDIR}\EngrishOnry.exe.manifest"
+SectionEnd
+
 Section "-RegisterInstallationInfo"
   ;; Common Info
   WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Installer Language" $LANGUAGE
@@ -244,4 +250,5 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_DESKTOP_SHORTCUT} $(DESC_SECTION_DESKTOP_SHORTCUT)
+  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_ENGRISH_ONRY}     $(DESC_SECTION_ENGRISH_ONRY)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
