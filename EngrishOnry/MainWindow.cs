@@ -6,7 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+using System.Xml;
 
 using PlayOnline.Core;
 
@@ -22,6 +24,8 @@ namespace EngrishOnry {
     private System.Windows.Forms.Button btnRestoreItemData;
     private System.Windows.Forms.Button btnTranslateAutoTrans;
     private System.Windows.Forms.Button btnRestoreAutoTrans;
+    private System.Windows.Forms.Button btnRestoreDialogTables;
+    private System.Windows.Forms.Button btnTranslateDialogTables;
 
     private System.ComponentModel.Container components = null;
 
@@ -31,6 +35,8 @@ namespace EngrishOnry {
       InitializeComponent();
       this.Icon = Icons.POLViewer;
     }
+
+    #region General Support Routines
 
     private void AddLogEntry(string Text) {
       this.rtbActivityLog.Text += String.Format("[{0}] {1}\n", DateTime.Now.ToString(), Text);
@@ -95,6 +101,90 @@ namespace EngrishOnry {
       }
     }
 
+    #endregion
+
+    #region Dialog Table Translation
+
+    private XmlDocument XDialogTables = null;
+
+    private bool LoadDialogTableInfo() {
+      if (this.XDialogTables == null) {
+      Stream InfoData = Assembly.GetExecutingAssembly().GetManifestResourceStream("DialogTables.xml");
+	if (InfoData != null) {
+	XmlReader XR = new XmlTextReader(InfoData);
+	  try {
+	  XmlDocument XD = new XmlDocument();
+	    XD.Load(XR);
+	    this.XDialogTables = XD;
+	  } catch { }
+	  XR.Close();
+	  InfoData.Close();
+	}
+	if (this.XDialogTables == null)
+	  this.AddLogEntry("*** LoadDialogTableInfo() FAILED ***");
+      }
+      return (this.XDialogTables != null);
+    }
+
+    private string GetDialogTablePath(XmlNode DialogTable) {
+    short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
+    short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
+    short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
+      return this.GetROMPath(App, Dir, FileID);
+    }
+
+    private bool BackupDialogTableFile(XmlNode DialogTable) {
+    short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
+    short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
+    short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
+      return this.BackupFile(App, Dir, FileID);
+    }
+
+    private void ReplaceDialogTable(XmlNode Source, XmlNode Target) {
+      try {
+	if (!this.BackupDialogTableFile(Target))
+	  return;
+      string SourceFile = this.GetDialogTablePath(Source);
+      string TargetFile = this.GetDialogTablePath(Target);
+	this.AddLogEntry(String.Format("Replacing Japanese dialog table {0}", TargetFile));
+	this.AddLogEntry(String.Format("Source: English dialog table {0}", SourceFile));
+	File.Copy(SourceFile, TargetFile, true);
+      }
+      catch {
+	this.AddLogEntry("*** ReplaceDialogTable() FAILED ***");
+      }
+    }
+
+    private void RestoreDialogTable(XmlNode DialogTable) {
+      try {
+      short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
+      short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
+      short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
+	this.RestoreFile(App, Dir, FileID);
+      }
+      catch {
+	this.AddLogEntry("*** RestoreDialogTable() FAILED ***");
+      }
+    }
+
+    private void TranslateDialogTables() {
+      if (this.LoadDialogTableInfo()) {
+	foreach (XmlNode XN in this.XDialogTables.SelectNodes("/dialog-tables/dialog-table"))
+	  this.ReplaceDialogTable(XN.SelectSingleNode("./english"), XN.SelectSingleNode("./japanese"));
+      }
+    }
+
+    private void RestoreDialogTables() {
+      if (this.LoadDialogTableInfo()) {
+	foreach (XmlNode XN in this.XDialogTables.SelectNodes("/dialog-tables/dialog-table"))
+	  this.RestoreDialogTable(XN.SelectSingleNode("./japanese"));
+      }
+    }
+
+    #endregion
+
+    #region Item Data Translation
+
     private void TranslateItemFile(short JApp, short JDir, short JFileID, short EApp, short EDir, short EFileID, short Type) {
       if (!this.BackupFile(JApp, JDir, JFileID))
 	return;
@@ -143,12 +233,18 @@ namespace EngrishOnry {
       }
     }
 
+    #endregion
+
+    #region Auto-Translator Translation
+
     private void TranslateAutoTranslator() {
       if (!this.BackupFile(0, 76, 23))
 	return;
     FileStream ATStream = null;
       try {
-	ATStream = new FileStream(this.GetROMPath(0, 76, 23), FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+      string FileName = this.GetROMPath(0, 76, 23);
+	ATStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+	this.AddLogEntry(String.Format("Translating auto-translator file: {0}", FileName));
 	if (ATStream.Length < 1024 * 1024) {
 	byte[] ATData = new byte[ATStream.Length];
 	  ATStream.Read(ATData, 0, (int) ATStream.Length);
@@ -249,6 +345,8 @@ namespace EngrishOnry {
       }
     }
 
+    #endregion
+
     #region Windows Form Designer generated code
 
     protected override void Dispose(bool disposing) {
@@ -264,6 +362,8 @@ namespace EngrishOnry {
       this.btnRestoreItemData = new System.Windows.Forms.Button();
       this.btnTranslateAutoTrans = new System.Windows.Forms.Button();
       this.btnRestoreAutoTrans = new System.Windows.Forms.Button();
+      this.btnRestoreDialogTables = new System.Windows.Forms.Button();
+      this.btnTranslateDialogTables = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // rtbActivityLog
@@ -274,8 +374,8 @@ namespace EngrishOnry {
       this.rtbActivityLog.Location = new System.Drawing.Point(4, 100);
       this.rtbActivityLog.Name = "rtbActivityLog";
       this.rtbActivityLog.ReadOnly = true;
-      this.rtbActivityLog.Size = new System.Drawing.Size(612, 132);
-      this.rtbActivityLog.TabIndex = 0;
+      this.rtbActivityLog.Size = new System.Drawing.Size(560, 132);
+      this.rtbActivityLog.TabIndex = 101;
       this.rtbActivityLog.Text = "";
       // 
       // lblActivityLog
@@ -284,15 +384,15 @@ namespace EngrishOnry {
 	| System.Windows.Forms.AnchorStyles.Right)));
       this.lblActivityLog.Location = new System.Drawing.Point(4, 80);
       this.lblActivityLog.Name = "lblActivityLog";
-      this.lblActivityLog.Size = new System.Drawing.Size(612, 16);
-      this.lblActivityLog.TabIndex = 1;
+      this.lblActivityLog.Size = new System.Drawing.Size(560, 16);
+      this.lblActivityLog.TabIndex = 100;
       this.lblActivityLog.Text = "Activity Log:";
       // 
       // btnTranslateItemData
       // 
       this.btnTranslateItemData.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnTranslateItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateItemData.Location = new System.Drawing.Point(180, 8);
+      this.btnTranslateItemData.Location = new System.Drawing.Point(225, 8);
       this.btnTranslateItemData.Name = "btnTranslateItemData";
       this.btnTranslateItemData.Size = new System.Drawing.Size(112, 28);
       this.btnTranslateItemData.TabIndex = 2;
@@ -303,10 +403,10 @@ namespace EngrishOnry {
       // 
       this.btnRestoreItemData.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnRestoreItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreItemData.Location = new System.Drawing.Point(180, 40);
+      this.btnRestoreItemData.Location = new System.Drawing.Point(225, 40);
       this.btnRestoreItemData.Name = "btnRestoreItemData";
       this.btnRestoreItemData.Size = new System.Drawing.Size(112, 28);
-      this.btnRestoreItemData.TabIndex = 3;
+      this.btnRestoreItemData.TabIndex = 5;
       this.btnRestoreItemData.Text = "Restore Item Data";
       this.btnRestoreItemData.Click += new System.EventHandler(this.btnRestoreItemData_Click);
       // 
@@ -314,10 +414,10 @@ namespace EngrishOnry {
       // 
       this.btnTranslateAutoTrans.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnTranslateAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateAutoTrans.Location = new System.Drawing.Point(296, 8);
+      this.btnTranslateAutoTrans.Location = new System.Drawing.Point(341, 8);
       this.btnTranslateAutoTrans.Name = "btnTranslateAutoTrans";
-      this.btnTranslateAutoTrans.Size = new System.Drawing.Size(144, 28);
-      this.btnTranslateAutoTrans.TabIndex = 4;
+      this.btnTranslateAutoTrans.Size = new System.Drawing.Size(134, 28);
+      this.btnTranslateAutoTrans.TabIndex = 3;
       this.btnTranslateAutoTrans.Text = "Translate AutoTranslator";
       this.btnTranslateAutoTrans.Click += new System.EventHandler(this.btnTranslateAutoTrans_Click);
       // 
@@ -325,17 +425,41 @@ namespace EngrishOnry {
       // 
       this.btnRestoreAutoTrans.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnRestoreAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreAutoTrans.Location = new System.Drawing.Point(296, 40);
+      this.btnRestoreAutoTrans.Location = new System.Drawing.Point(341, 40);
       this.btnRestoreAutoTrans.Name = "btnRestoreAutoTrans";
-      this.btnRestoreAutoTrans.Size = new System.Drawing.Size(144, 28);
-      this.btnRestoreAutoTrans.TabIndex = 5;
+      this.btnRestoreAutoTrans.Size = new System.Drawing.Size(134, 28);
+      this.btnRestoreAutoTrans.TabIndex = 6;
       this.btnRestoreAutoTrans.Text = "Restore Auto-Translator";
       this.btnRestoreAutoTrans.Click += new System.EventHandler(this.btnRestoreAutoTrans_Click);
+      // 
+      // btnRestoreDialogTables
+      // 
+      this.btnRestoreDialogTables.Anchor = System.Windows.Forms.AnchorStyles.Top;
+      this.btnRestoreDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreDialogTables.Location = new System.Drawing.Point(93, 40);
+      this.btnRestoreDialogTables.Name = "btnRestoreDialogTables";
+      this.btnRestoreDialogTables.Size = new System.Drawing.Size(128, 28);
+      this.btnRestoreDialogTables.TabIndex = 4;
+      this.btnRestoreDialogTables.Text = "Restore Dialog Tables";
+      this.btnRestoreDialogTables.Click += new System.EventHandler(this.btnRestoreDialogTables_Click);
+      // 
+      // btnTranslateDialogTables
+      // 
+      this.btnTranslateDialogTables.Anchor = System.Windows.Forms.AnchorStyles.Top;
+      this.btnTranslateDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateDialogTables.Location = new System.Drawing.Point(93, 8);
+      this.btnTranslateDialogTables.Name = "btnTranslateDialogTables";
+      this.btnTranslateDialogTables.Size = new System.Drawing.Size(128, 28);
+      this.btnTranslateDialogTables.TabIndex = 1;
+      this.btnTranslateDialogTables.Text = "Translate Dialog Tables";
+      this.btnTranslateDialogTables.Click += new System.EventHandler(this.btnTranslateDialogTables_Click);
       // 
       // MainWindow
       // 
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-      this.ClientSize = new System.Drawing.Size(620, 238);
+      this.ClientSize = new System.Drawing.Size(568, 238);
+      this.Controls.Add(this.btnRestoreDialogTables);
+      this.Controls.Add(this.btnTranslateDialogTables);
       this.Controls.Add(this.btnRestoreAutoTrans);
       this.Controls.Add(this.btnTranslateAutoTrans);
       this.Controls.Add(this.btnRestoreItemData);
@@ -351,6 +475,16 @@ namespace EngrishOnry {
     #endregion
 
     #region Events
+
+    private void btnTranslateDialogTables_Click(object sender, System.EventArgs e) {
+      this.TranslateDialogTables();
+      this.AddLogEntry("=== Dialog Table Translation Completed ===");
+    }
+
+    private void btnRestoreDialogTables_Click(object sender, System.EventArgs e) {
+      this.RestoreDialogTables();
+      this.AddLogEntry("=== Dialog Table Restoration Completed ===");
+    }
 
     private void btnTranslateItemData_Click(object sender, System.EventArgs e) {
       this.TranslateItemFile(0, 0, 4, 0, 118, 106, 0);

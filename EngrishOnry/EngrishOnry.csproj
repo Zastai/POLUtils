@@ -104,6 +104,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "DialogTables.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "EngrishOnry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
