@@ -74,6 +74,14 @@
 	WinAmp SDK is, well, crap (I never realized how great the foobar APIs were until I saw the WinAmp SDK).
       </p>
     </para>
+    <para>
+      <h3>7. The menus in the Macro Editor only show little squares instead of symbols, but I do have East-Asian supprt installed. Help!</h3>
+      <p>
+	This probably means you're using an older (pre-XP) version of Windows.  POLUtils has no control over the
+	font of its menus; that's handled by the system.  Try setting the menu font (via the Appearance tab of
+	the Display properties in the Control Panel) to Tahoma, that should work.
+      </p>
+    </para>
   </section>
   <section name="Download Area" file="downloads.html" nedstat="ADNQdQo0vLkP4XweMb5W1npl0G7w">
     <para>Here you can download Pebbles&apos; programs.</para>
