@@ -42,6 +42,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Scanners
 
+    #region Main Scanning Functionality
+
     private void ScanFile() {
       if (FileName != null && File.Exists(FileName)) {
 	this.prbScanProgress.Value = 0;
@@ -141,6 +143,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       return true;
     }
 
+    #endregion
+
     #region Abilities
 
     private void ScanAbilityFile(BinaryReader BR) {
@@ -149,7 +153,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       BR.BaseStream.Seek(0, SeekOrigin.Begin);
       if ((BR.BaseStream.Length % 0x400) != 0)
 	return;
-    ColumnHeader[] InfoColumns = new ColumnHeader[5];
+    ColumnHeader[] InfoColumns = new ColumnHeader[6];
       InfoColumns[0]           = new ColumnHeader();
       InfoColumns[0].Text      = I18N.GetText("ColumnHeader:Name");
       InfoColumns[0].TextAlign = HorizontalAlignment.Left;
@@ -170,6 +174,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       InfoColumns[4].Text      = I18N.GetText("ColumnHeader:Description");
       InfoColumns[4].TextAlign = HorizontalAlignment.Left;
       InfoColumns[4].Width     = 120;
+      InfoColumns[5]           = new ColumnHeader();
+      InfoColumns[5].Text      = I18N.GetText("ColumnHeader:Unknown");
+      InfoColumns[5].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[5].Width     = 120;
       this.StringTableEntries.Add(InfoColumns);
     long EntryCount = BR.BaseStream.Length / 0x400;
     Encoding E = new FFXIEncoding();
@@ -179,8 +187,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 002-003 U16 Unknown
       // 004-005 U16 MP Cost
       // 006-007 U16 Cooldown
-      // 008-008 U8  Target (1 = Self, 5 = PT Member, 20 = Monster)
-      // 009-009 U8  Unknown (NUL?)
+      // 008-009 U16 Valid Targets
       // 00a-029 TXT Name
       // 02a-129 TXT Description (exact length unknown)
       // 12a-3fe U8  Padding (NULs)
@@ -195,6 +202,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Fields.Add(String.Format("{0}", new TimeSpan(0, 0, Bytes[0x06] + (Bytes[0x07] << 8))));
 	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[8]));
 	Fields.Add(E.GetString(Bytes, 42, 256).TrimEnd('\0'));
+	Fields.Add(String.Format("{0} ({0:X2})", Bytes[0x02] + (Bytes[0x03] << 8)));
 	this.StringTableEntries.Add(Fields.ToArray());
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("AbilityLoadProgress"), i + 1, EntryCount);
