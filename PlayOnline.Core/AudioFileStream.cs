@@ -29,7 +29,7 @@ namespace PlayOnline.Core.Audio {
       this.AddWAVHeader_ = AddWAVHeader;
       this.Codec_        = null;
       this.Position_     = 0;
-      if (this.Header_ != null && this.Header_.Raw == 0)
+      if (this.Header_.SampleFormat == SampleFormat.ADPCM)
 	this.Codec_ = new ADPCMCodec(this.Header_.Channels, this.Header_.BlockSize);
       this.File_ = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
       this.File_.Seek(0x30, SeekOrigin.Begin);
@@ -45,9 +45,8 @@ namespace PlayOnline.Core.Audio {
 	// Wave Format Data
 	BW.Write((short) 1); // PCM
 	BW.Write((short) this.Header_.Channels);
-      int SampleRate = this.Header_.SampleRateHigh + this.Header_.SampleRateLow;
-	BW.Write((int)   SampleRate);
-	BW.Write((int)   (2 * this.Header_.Channels * SampleRate)); // bytes per second
+	BW.Write((int)   this.Header_.SampleRate);
+	BW.Write((int)   (2 * this.Header_.Channels * this.Header_.SampleRate)); // bytes per second
 	BW.Write((short) (2 * this.Header_.Channels)); // bytes per sample
 	BW.Write((short) 16); // bits
 	// Wave Data Header
@@ -58,6 +57,16 @@ namespace PlayOnline.Core.Audio {
       this.Buffer_ = null;
       this.BufferPos_ = 0;
       this.BufferSize_ = 0;
+    }
+
+    public static bool IsFormatSupported(SampleFormat SF) {
+      switch (SF) {
+	case SampleFormat.ADPCM:
+	case SampleFormat.PCM:
+	  return true;
+	default:
+	  return false;
+      }
     }
 
     public override bool CanRead {
@@ -81,7 +90,7 @@ namespace PlayOnline.Core.Audio {
     public override long Length {
       get {
       long Bytes = this.Header_.SampleBlocks * this.Header_.BlockSize * this.Header_.Channels * 2;
-	if (this.Header_.Raw != 0)
+	if (this.Header_.SampleFormat == SampleFormat.PCM)
 	  Bytes = this.Header_.Size - 0x30;
 	if (this.AddWAVHeader_)
 	  Bytes += 0x2C;
@@ -97,7 +106,7 @@ namespace PlayOnline.Core.Audio {
 	if (this.AddWAVHeader_)
 	  RawPos -= 0x2C;
       long CookedPos = RawPos;
-	if (this.Header_.Raw == 0) {
+	if (this.Header_.SampleFormat == SampleFormat.ADPCM) {
 	double BlockPos = (double) RawPos / ((1 + this.Header_.BlockSize / 2));
 	  CookedPos = (long) Math.Floor(BlockPos * this.Header_.BlockSize * 2);
 	}
@@ -128,7 +137,7 @@ namespace PlayOnline.Core.Audio {
 	BytesRead += HeaderBytesToRead;
 	count -= HeaderBytesToRead;
       }
-      if (this.Header_.Raw == 1) {
+      if (this.Header_.SampleFormat == SampleFormat.PCM) {
       int RawBytesRead = this.File_.Read(buffer, offset + BytesRead, count);
 	BytesRead += RawBytesRead;
 	this.Position_ += RawBytesRead;
