@@ -93,6 +93,37 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.6.0 Released" author="Pebbles" date="July 31st, 2005">
+      <p>Today I'm releasing POLUtils 0.6.0, a collection of PlayOnline-related utilities.</p>
+      <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
+         (email is on main page).</p>
+      <p>I'm also interested in DAT file mappings - if you know what a particular DAT file contains, and it's
+         not yet linked to from the data browser menu, let me know.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  Includes EngrishOnry, a small utility that allows you to translate pieces of the Japanese interface,
+	  making use of the JP POL client more comfortable for native English speakers.  Because this utility
+	  modifies and/or swaps DAT files, it violates the TOS, so use at your own risk.  Note that it is merely
+	  installed alongside POLUtils (if selected in the installer) - no shortcuts for it are created.
+	</li><li>
+	  Includes an Item Comparison tool - this allows comparing XML exports of item data (useful after a patch
+	  to find new/changed items).
+	</li><li>
+	  Several more bits of info are show (such as improved ability &amp; status info, and spell info) - most of these
+	  are linked from the "String Tables" menu in the data browser.
+	</li><li>
+	  The casting time of enchanted items is now listed as well.
+	</li><li>
+	  List views now autosize themselves.
+	</li>
+      </ul></p>
+      <p><strong>Known Issues:</strong><br/><ul>
+	<li>Some of the dialog tables linked to from the menu aren't show (no viewers available). This is being looked into.</li>
+      </ul></p>
+    </news-item>
+    <news-item title="foo_pol 1.3 Released" author="Pebbles" date="July 31st, 2005">
+      <p>This release fixes the borked configuration page.</p>
+    </news-item>
     <news-item title="foo_pol 1.2 Released" author="Pebbles" date="July 22nd, 2005">
       <p>As of the July patch, S/E has been using ATRAC-3 for music and sound effects in FFXI.
          I updated foo_pol to recognize those files, but it's unable to play them (ATRAC-3 is a
@@ -304,6 +335,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.6.0-Release.exe">
+	Added an item data comparison tool, and bundled EngrishOnry.<br/>
+      </file>
       <file name="POLUtils-0.5.1-Release.exe">
 	Fixed loading of Managed DirectSound.<br/>
       </file>
@@ -336,6 +370,10 @@
       </file>
     </group>
     <group name="foo_pol">
+      <file name="foo_pol-1.3.zip">
+	Fixes the configuration page.<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
       <file name="foo_pol-1.2.zip">
 	Fixes playback of PCM sound effects.  Adds recognition for non-PCM, non-ADPCM files (playback of those is
 	NOT supported).<br/>
