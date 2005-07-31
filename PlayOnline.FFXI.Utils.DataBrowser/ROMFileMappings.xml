@@ -223,6 +223,8 @@
 	<separator/>
 	<rom-file app="2" dir="002" file="053">Diorama Abdhaljs-Ghelsba</rom-file>
 	<rom-file app="1" dir="017" file="116">The Last Stand</rom-file>
+	<separator/>
+	<rom-file app="1" dir="018" file="015">Cheat Menu</rom-file>
       </category>
       <category><name>Unknown</name>
 	<rom-file app="2" dir="002" file="043">???</rom-file>
@@ -235,6 +237,11 @@
 	<rom-file app="2" dir="002" file="051">???</rom-file>
 	<rom-file app="2" dir="002" file="052">???</rom-file>
 	<rom-file app="2" dir="002" file="054">???</rom-file>
+	<rom-file app="2" dir="002" file="056">???</rom-file>
+	<rom-file app="2" dir="002" file="078">???</rom-file>
+	<rom-file app="2" dir="002" file="079">???</rom-file>
+	<rom-file app="2" dir="002" file="090">???</rom-file>
+	<rom-file app="2" dir="002" file="097">???</rom-file>
       </category>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
@@ -458,6 +465,8 @@
 	<separator/>
 	<rom-file app="2" dir="001" file="081">Diorama Abdhaljs-Ghelsba</rom-file>
 	<rom-file app="0" dir="022" file="120">The Last Stand</rom-file>
+	<separator/>
+	<rom-file app="0" dir="023" file="019">Cheat Menu</rom-file>
       </category>
       <category><name>Unknown</name>
 	<rom-file app="2" dir="001" file="071">???</rom-file>
@@ -470,6 +479,11 @@
 	<rom-file app="2" dir="001" file="079">???</rom-file>
 	<rom-file app="2" dir="001" file="080">???</rom-file>
 	<rom-file app="2" dir="001" file="082">???</rom-file>
+	<rom-file app="2" dir="001" file="084">???</rom-file>
+	<rom-file app="2" dir="001" file="106">???</rom-file>
+	<rom-file app="2" dir="001" file="107">???</rom-file>
+	<rom-file app="2" dir="001" file="118">???</rom-file>
+	<rom-file app="2" dir="001" file="125">???</rom-file>
       </category>
     </category>
   </category>
