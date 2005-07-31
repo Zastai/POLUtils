@@ -201,12 +201,9 @@ SectionEnd
 Section "Uninstall"
   ;; Main Program
   Delete "$INSTDIR\PlayOnline.Core.dll"
+  Delete "$INSTDIR\PlayOnline.Utils.*.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.AudioManager.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIConfigEditor.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIDataBrowser.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.FFXIMacroManager.dll"
-  Delete "$INSTDIR\PlayOnline.Utils.TetraViewer.dll"
+  Delete "$INSTDIR\PlayOnline.FFXI.Utils.*.dll"
   Delete "$INSTDIR\POLUtils.exe"
   Delete "$INSTDIR\POLUtils.exe.manifest"
   ;; Translations
@@ -214,6 +211,9 @@ Section "Uninstall"
   RMDir "$INSTDIR\nl"
   Delete "$INSTDIR\ja\*.resources.dll"
   RMDir "$INSTDIR\ja"
+  ;; EngrishOnry
+  Delete "$INSTDIR\EngrishOnry.exe"
+  Delete "$INSTDIR\EngrishOnry.exe.manifest"
   ;; Desktop Shortcut
   Delete "$DESKTOP\POLUtils.lnk"
   ;; Start Menu Entries
