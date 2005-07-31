@@ -93,6 +93,16 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="foo_pol 1.2 Released" author="Pebbles" date="July 22nd, 2005">
+      <p>As of the July patch, S/E has been using ATRAC-3 for music and sound effects in FFXI.
+         I updated foo_pol to recognize those files, but it's unable to play them (ATRAC-3 is a
+         proprietary codec by Sony; why they use it is beyond me as it's worse than MP3 quality-wise - they
+         should have gone for Ogg Vorbis instead).  Unless some major bug is found, this will probably
+         be the last foo_pol release until foobar2000 0.9 comes out.</p>
+      <p>I also plan to move up the POLUtils 0.6.0.0 release - it won't have all the features I would
+         like, but should be nice nonetheless.  It will also include EngrishOnry, a small utility
+         to translate portions of a JP FFXI installation.</p>
+    </news-item>
     <news-item title="Still not dead" author="Pebbles" date="July 6th, 2005">
       <p>POLUtils still isn't dead, I've just been doing other stuff; there's not much to report
          at the moment.  0.6.0.0 will be done when it's done.</p>
@@ -326,6 +336,11 @@
       </file>
     </group>
     <group name="foo_pol">
+      <file name="foo_pol-1.2.zip">
+	Fixes playback of PCM sound effects.  Adds recognition for non-PCM, non-ADPCM files (playback of those is
+	NOT supported).<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
       <file name="foo_pol-1.1.zip">
 	Adds a "fade out" loop mode.<br/>
 	For use with version 0.8.3 (and compatible) of foobar2000.
@@ -341,5 +356,18 @@
   </downloads>
   <!-- Links -->
   <links>
+    <group name="Info Sites">
+      <link target="http://ffxi.somepage.com/" name="SomePage">Great resource repository, updated frequently.</link>
+      <link target="http://mysterytour.web.infoseek.co.jp/ffxi/us/" name="MysteryTour">One of the most comprehensive FFXI sites.</link>
+      <link target="http://ffxi-atlas.com/" name="Vana'diel Atlas">The only map site you'll ever need.</link>
+    </group>
+    <group name="Forum Sites">
+      <link target="http://ffxi.killvoid.com/" name="KillingIfrit">
+        One of the main FFXI forums; high moron and flame count, occasional nugget of useful info.
+      </link>
+      <link target="http://www.ffxionline.com/" name="FFXIOnline">
+        Like KillingIfrit, but with greatly reduced moron and flame count, and more useful info.
+      </link>
+    </group>
   </links>
 </website>
