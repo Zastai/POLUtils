@@ -126,6 +126,10 @@
                     DependentUpon = "MainWindow.cs"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "StringTables.xml"
+                    BuildAction = "EmbeddedResource"
+                />
             </Include>
         </Files>
     </CSHARP>
