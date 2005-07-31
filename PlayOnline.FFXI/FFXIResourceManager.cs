@@ -208,6 +208,12 @@ namespace PlayOnline.FFXI {
       return I18N.GetText("BadResID");
     }
 
+    public static bool IsValidResourceID(uint ResourceID) {
+      if (!FFXIResourceManager.Initialized)
+	FFXIResourceManager.Init();
+      return (FFXIResourceManager.Initialized && (FFXIResourceManager.ResourceStrings[ResourceID] as ResourceString) != null);
+    }
+
   }
 
 }
