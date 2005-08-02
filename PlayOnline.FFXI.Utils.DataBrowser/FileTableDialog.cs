@@ -44,6 +44,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
       string VTableFile = Path.Combine(DataDir, String.Format("VTABLE{0}.DAT", Suffix));
       string FTableFile = Path.Combine(DataDir, String.Format("FTABLE{0}.DAT", Suffix));
+	if (i == 0) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
+	  DataDir = Path.Combine(DataRoot, "Rom");
 	if (File.Exists(VTableFile) && File.Exists(FTableFile)) {
 	  try {
 	  BinaryReader VBR = new BinaryReader(new FileStream(VTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
@@ -169,8 +171,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
       this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-      this.Controls.Add(this.stbStatus);
       this.Controls.Add(this.lstFileTable);
+      this.Controls.Add(this.stbStatus);
       this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
       this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
