@@ -127,7 +127,7 @@ namespace EngrishOnry {
 	  try {
 	  XmlDocument XD = new XmlDocument();
 	    XD.Load(XR);
-	    this.SwappableFiles[Name] = XD;
+	    this.SwappableFiles[Category] = XD;
 	  } catch { }
 	  XR.Close();
 	  InfoData.Close();
