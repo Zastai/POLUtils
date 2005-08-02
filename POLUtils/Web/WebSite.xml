@@ -93,6 +93,10 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.6.1 Released" author="Pebbles" date="August 2nd, 2005">
+      <p>Just a quick bugfix release - fixes dialog and string table translation in EngrishOnry,
+         and corrects/extends the list of dialog tables in the data browser.</p>
+    </news-item>
     <news-item title="POLUtils 0.6.0 Released" author="Pebbles" date="July 31st, 2005">
       <p>Today I'm releasing POLUtils 0.6.0, a collection of PlayOnline-related utilities.</p>
       <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
@@ -118,7 +122,7 @@
 	</li>
       </ul></p>
       <p><strong>Known Issues:</strong><br/><ul>
-	<li>Some of the dialog tables linked to from the menu aren't show (no viewers available). This is being looked into.</li>
+	<li>Some of the dialog tables linked to from the menu aren't shown (no viewers available). This is being looked into.</li>
       </ul></p>
     </news-item>
     <news-item title="foo_pol 1.3 Released" author="Pebbles" date="July 31st, 2005">
@@ -335,6 +339,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.6.1-Release.exe">
+	Fixed EngrishOnry; adjusted dialog table lists in the data browser.<br/>
+      </file>
       <file name="POLUtils-0.6.0-Release.exe">
 	Added an item data comparison tool, and bundled EngrishOnry.<br/>
       </file>
