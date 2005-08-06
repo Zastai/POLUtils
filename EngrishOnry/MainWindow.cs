@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI;
 
 namespace EngrishOnry {
 
@@ -47,9 +48,8 @@ namespace EngrishOnry {
     private System.Windows.Forms.Button btnTranslateItemData;
     private System.Windows.Forms.MenuItem mnuTranslateItemNames;
     private System.Windows.Forms.MenuItem mnuTranslateItemDescriptions;
-    private System.Windows.Forms.MenuItem mnuKeepSecondaryATString;
-    private System.Windows.Forms.MenuItem mnuUseJapaneseSecondaryATString;
-    private System.Windows.Forms.MenuItem mnuClearSecondaryATString;
+    private System.Windows.Forms.MenuItem mnuPreserveJapaneseATCompletion;
+    private System.Windows.Forms.MenuItem mnuEnglishATCompletionOnly;
 
     private System.ComponentModel.Container components = null;
 
@@ -250,6 +250,7 @@ namespace EngrishOnry {
 	    }
 	  }
 	  ATStream.Seek(0, SeekOrigin.Begin);
+	FFXIEncoding E = null;
 	BinaryWriter BW = new BinaryWriter(ATStream);
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
 	  while (BR.BaseStream.Position != BR.BaseStream.Length) { // Scan through, recording the location of english messages
@@ -295,15 +296,29 @@ namespace EngrishOnry {
 		    ENText = BR.ReadBytes(BR.ReadInt32());
 		    BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
 		  }
-		byte[] JPPrimary   = BR.ReadBytes(BR.ReadInt32());
-		byte[] JPSecondary = BR.ReadBytes(BR.ReadInt32());
-		  // Write english text
+		  // Set the english text as primary
 		  BW.Write(ENText.Length); BW.Write(ENText);
-		  if (this.mnuUseJapaneseSecondaryATString.Checked) {
-		    BW.Write(JPPrimary.Length); BW.Write(JPPrimary);
-		  }
-		  else if (this.mnuKeepSecondaryATString.Checked) {
+		  if (this.mnuPreserveJapaneseATCompletion.Checked) {
+		  byte[] JPPrimary   = BR.ReadBytes(BR.ReadInt32());
+		  byte[] JPSecondary = BR.ReadBytes(BR.ReadInt32());
+		    if (JPSecondary.Length == 0)
+		      JPSecondary = JPPrimary;
 		    BW.Write(JPSecondary.Length); BW.Write(JPSecondary);
+		  }
+		  else if (this.mnuEnglishATCompletionOnly.Checked) {
+		    // Skip JP strings
+		    BR.BaseStream.Seek(BR.ReadInt32(), SeekOrigin.Current);
+		    BR.BaseStream.Seek(BR.ReadInt32(), SeekOrigin.Current);
+		    if (E == null)
+		      E = new FFXIEncoding();
+		  string NormalText = E.GetString(ENText);
+		  string LowerCaseText = NormalText.ToLower();
+		    if (LowerCaseText != NormalText) {
+		      ENText = E.GetBytes(LowerCaseText);
+		      BW.Write(ENText.Length); BW.Write(ENText);
+		    }
+		    else
+		      BW.Write((uint) 0);
 		  }
 		  else
 		    BW.Write((uint) 0);
@@ -437,9 +452,6 @@ namespace EngrishOnry {
       this.mnuTranslateItemNames = new System.Windows.Forms.MenuItem();
       this.mnuTranslateItemDescriptions = new System.Windows.Forms.MenuItem();
       this.mnuConfigAutoTrans = new System.Windows.Forms.ContextMenu();
-      this.mnuClearSecondaryATString = new System.Windows.Forms.MenuItem();
-      this.mnuKeepSecondaryATString = new System.Windows.Forms.MenuItem();
-      this.mnuUseJapaneseSecondaryATString = new System.Windows.Forms.MenuItem();
       this.pnlActions = new System.Windows.Forms.Panel();
       this.btnConfigAutoTrans = new System.Windows.Forms.Button();
       this.btnConfigItemData = new System.Windows.Forms.Button();
@@ -459,6 +471,8 @@ namespace EngrishOnry {
       this.btnTranslateAutoTrans = new System.Windows.Forms.Button();
       this.btnRestoreItemData = new System.Windows.Forms.Button();
       this.btnTranslateItemData = new System.Windows.Forms.Button();
+      this.mnuPreserveJapaneseATCompletion = new System.Windows.Forms.MenuItem();
+      this.mnuEnglishATCompletionOnly = new System.Windows.Forms.MenuItem();
       this.pnlLog.SuspendLayout();
       this.pnlActions.SuspendLayout();
       this.SuspendLayout();
@@ -538,28 +552,8 @@ namespace EngrishOnry {
       // mnuConfigAutoTrans
       // 
       this.mnuConfigAutoTrans.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-										       this.mnuClearSecondaryATString,
-										       this.mnuKeepSecondaryATString,
-										       this.mnuUseJapaneseSecondaryATString});
-      // 
-      // mnuClearSecondaryATString
-      // 
-      this.mnuClearSecondaryATString.Checked = true;
-      this.mnuClearSecondaryATString.Index = 0;
-      this.mnuClearSecondaryATString.Text = "&Clear Secondary Text";
-      this.mnuClearSecondaryATString.Click += new System.EventHandler(this.mnuClearSecondaryATString_Click);
-      // 
-      // mnuKeepSecondaryATString
-      // 
-      this.mnuKeepSecondaryATString.Index = 1;
-      this.mnuKeepSecondaryATString.Text = "&Keep Secondary Text (MAY BREAK GAME)";
-      this.mnuKeepSecondaryATString.Click += new System.EventHandler(this.mnuKeepSecondaryATString_Click);
-      // 
-      // mnuUseJapaneseSecondaryATString
-      // 
-      this.mnuUseJapaneseSecondaryATString.Index = 2;
-      this.mnuUseJapaneseSecondaryATString.Text = "&Use Japanese Text As Secondary (MAY BREAK GAME)";
-      this.mnuUseJapaneseSecondaryATString.Click += new System.EventHandler(this.mnuUseJapaneseSecondaryATString_Click);
+										       this.mnuPreserveJapaneseATCompletion,
+										       this.mnuEnglishATCompletionOnly});
       // 
       // pnlActions
       // 
@@ -767,6 +761,19 @@ namespace EngrishOnry {
       this.btnTranslateItemData.Text = "Translate";
       this.btnTranslateItemData.Click += new System.EventHandler(this.btnTranslateItemData_Click);
       // 
+      // mnuPreserveJapaneseATCompletion
+      // 
+      this.mnuPreserveJapaneseATCompletion.Checked = true;
+      this.mnuPreserveJapaneseATCompletion.Index = 0;
+      this.mnuPreserveJapaneseATCompletion.Text = "Preserve &Japanese Completion";
+      this.mnuPreserveJapaneseATCompletion.Click += new System.EventHandler(this.mnuPreserveJapaneseATCompletion_Click);
+      // 
+      // mnuEnglishATCompletionOnly
+      // 
+      this.mnuEnglishATCompletionOnly.Index = 1;
+      this.mnuEnglishATCompletionOnly.Text = "&English Completion Only";
+      this.mnuEnglishATCompletionOnly.Click += new System.EventHandler(this.mnuEnglishATCompletionOnly_Click);
+      // 
       // MainWindow
       // 
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -861,22 +868,14 @@ namespace EngrishOnry {
       this.mnuConfigAutoTrans.Show(this.btnConfigAutoTrans, new Point(0, this.btnConfigAutoTrans.Height));
     }
 
-    private void mnuClearSecondaryATString_Click(object sender, System.EventArgs e) {
-      this.mnuClearSecondaryATString.Checked       = true;
-      this.mnuKeepSecondaryATString.Checked        = false;
-      this.mnuUseJapaneseSecondaryATString.Checked = false;
+    private void mnuPreserveJapaneseATCompletion_Click(object sender, System.EventArgs e) {
+      this.mnuPreserveJapaneseATCompletion.Checked = true;
+      this.mnuEnglishATCompletionOnly.Checked = false;
     }
 
-    private void mnuKeepSecondaryATString_Click(object sender, System.EventArgs e) {
-      this.mnuClearSecondaryATString.Checked       = false;
-      this.mnuKeepSecondaryATString.Checked        = true;
-      this.mnuUseJapaneseSecondaryATString.Checked = false;
-    }
-
-    private void mnuUseJapaneseSecondaryATString_Click(object sender, System.EventArgs e) {
-      this.mnuClearSecondaryATString.Checked       = false;
-      this.mnuKeepSecondaryATString.Checked        = false;
-      this.mnuUseJapaneseSecondaryATString.Checked = true;
+    private void mnuEnglishATCompletionOnly_Click(object sender, System.EventArgs e) {
+      this.mnuEnglishATCompletionOnly.Checked = true;
+      this.mnuPreserveJapaneseATCompletion.Checked = false;
     }
 
     #endregion
