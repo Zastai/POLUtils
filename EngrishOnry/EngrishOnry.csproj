@@ -94,6 +94,11 @@
                     Project = "{84C42502-1564-4617-B80C-ACE781051CE8}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "PlayOnline.FFXI"
+                    Project = "{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
