@@ -79,19 +79,23 @@ namespace PlayOnline.FFXI {
 
       #region Private Data
 
-      protected uint      ID_;
-      protected ItemFlags Flags_;
-      protected ushort    StackSize_;
-      protected ItemType  Type_;
+      protected uint        ID_;
+      protected ItemFlags   Flags_;
+      protected ushort      StackSize_;
+      protected ItemType    Type_;
+      protected ushort      MysteryField_;
+      protected ValidTarget ValidTargets_;
 
       #endregion
 
       #region Public Properties
 
-      public uint      ID        { get { return this.ID_;        } }
-      public ItemFlags Flags     { get { return this.Flags_;     } }
-      public ushort    StackSize { get { return this.StackSize_; } }
-      public ItemType  Type      { get { return this.Type_;      } }
+      public uint        ID           { get { return this.ID_;           } }
+      public ItemFlags   Flags        { get { return this.Flags_;        } }
+      public ushort      StackSize    { get { return this.StackSize_;    } }
+      public ItemType    Type         { get { return this.Type_;         } }
+      public ushort      MysteryField { get { return this.MysteryField_; } }
+      public ValidTarget ValidTargets { get { return this.ValidTargets_; } }
 
       #endregion
 
@@ -102,35 +106,43 @@ namespace PlayOnline.FFXI {
 	  ItemField.ID,
 	  ItemField.Flags,
 	  ItemField.StackSize,
-	  ItemField.Type
+	  ItemField.Type,
+	  ItemField.MysteryField,
+	  ItemField.ValidTargets
 	};
       }
 
       public virtual string GetFieldText(ItemField F) {
 	switch (F) {
-	  case ItemField.ID:        return String.Format("{0:X8}",      this.ID_);
-	  case ItemField.Flags:     return String.Format("<{0:X}> {0}", this.Flags_);
-	  case ItemField.StackSize: return String.Format("{0}",         this.StackSize_);
-	  case ItemField.Type:      return String.Format("<{0:X}> {0}", this.Type_);
+	  case ItemField.ID:           return String.Format("{0:X8}",      this.ID_);
+	  case ItemField.Flags:        return String.Format("<{0:X}> {0}", this.Flags_);
+	  case ItemField.StackSize:    return String.Format("{0}",         this.StackSize_);
+	  case ItemField.Type:         return String.Format("<{0:X}> {0}", this.Type_);
+	  case ItemField.MysteryField: return String.Format("{0:X4}",      this.MysteryField_);
+	  case ItemField.ValidTargets: return String.Format("<{0:X}> {0}", this.ValidTargets_);
 	}
 	return null;
       }
 
       public virtual object GetFieldValue(ItemField F) {
 	switch (F) {
-	  case ItemField.ID:        return this.ID_;
-	  case ItemField.Flags:     return this.Flags_;
-	  case ItemField.StackSize: return this.StackSize_;
-	  case ItemField.Type:      return this.Type_;
+	  case ItemField.ID:           return this.ID_;
+	  case ItemField.Flags:        return this.Flags_;
+	  case ItemField.StackSize:    return this.StackSize_;
+	  case ItemField.Type:         return this.Type_;
+	  case ItemField.MysteryField: return this.MysteryField_;
+	  case ItemField.ValidTargets: return this.ValidTargets_;
 	}
 	return null;
       }
 
       protected void ReadBasicFields(BinaryReader BR) {
-	this.ID_        =             BR.ReadUInt32();
-	this.Flags_     = (ItemFlags) BR.ReadUInt16();
-	this.StackSize_ =             BR.ReadUInt16();
-	this.Type_      = (ItemType)  BR.ReadUInt16();
+	this.ID_           =               BR.ReadUInt32();
+	this.Flags_        = (ItemFlags)   BR.ReadUInt16();
+	this.StackSize_    =               BR.ReadUInt16();
+	this.Type_         = (ItemType)    BR.ReadUInt16();
+	this.MysteryField_ =               BR.ReadUInt16();
+	this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
       }
 
       #endregion
@@ -216,19 +228,43 @@ namespace PlayOnline.FFXI {
 
       #region Private Data
 
+      protected Element Element_;
+      protected ushort  Storage_;
+
       #endregion
 
       #region Public Properties
+
+      public Element Element { get { return this.Element_; } }
+      public ushort  Storage { get { return this.Storage_; } }
 
       #endregion
 
       #region Methods
 
+      public override ItemField[] GetFields() {
+      ArrayList Fields = new ArrayList();
+	Fields.AddRange(base.GetFields());
+	Fields.AddRange(new ItemField[] {
+	  ItemField.Element,
+	  ItemField.Storage
+	});
+	return (ItemField[]) Fields.ToArray(typeof(ItemField));
+      }
+
       public override string GetFieldText(ItemField F) {
+	switch (F) {
+	  case ItemField.Element: return String.Format("<{0:X}> {0}", this.Element_);
+	  case ItemField.Storage: return String.Format("{0}",         this.Storage_);
+	}
 	return base.GetFieldText(F);
       }
 
       public override object GetFieldValue(ItemField F) {
+	switch (F) {
+	  case ItemField.Element: return this.Element_;
+	  case ItemField.Storage: return this.Storage_;
+	}
 	return base.GetFieldValue(F);
       }
 
@@ -240,7 +276,6 @@ namespace PlayOnline.FFXI {
 
       #region Private Data
 
-      protected uint          ResourceID_;
       protected ushort        Level_;
       protected EquipmentSlot Slots_;
       protected Race          Races_;
@@ -254,7 +289,6 @@ namespace PlayOnline.FFXI {
 
       #region Public Properties
 
-      public uint          ResourceID { get { return this.ResourceID_; } }
       public ushort        Level      { get { return this.Level_;      } }
       public EquipmentSlot Slots      { get { return this.Slots_;      } }
       public Race          Races      { get { return this.Races_;      } }
@@ -271,7 +305,6 @@ namespace PlayOnline.FFXI {
       ArrayList Fields = new ArrayList();
 	Fields.AddRange(base.GetFields());
 	Fields.AddRange(new ItemField[] {
-	  ItemField.ResourceID,
 	  ItemField.Level,
 	  ItemField.Slots,
 	  ItemField.Races,
@@ -286,7 +319,6 @@ namespace PlayOnline.FFXI {
 
       public override string GetFieldText(ItemField F) {
 	switch (F) {
-	  case ItemField.ResourceID: return String.Format("{0:X8}",      this.ResourceID_);
 	  case ItemField.Level:      return String.Format("{0}",         this.Level_);
 	  case ItemField.Slots:      return String.Format("<{0:X}> {0}", this.Slots_);
 	  case ItemField.Races:      return String.Format("<{0:X}> {0}", this.Races_);
@@ -301,7 +333,6 @@ namespace PlayOnline.FFXI {
 
       public override object GetFieldValue(ItemField F) {
 	switch (F) {
-	  case ItemField.ResourceID: return this.ResourceID_;
 	  case ItemField.Level:      return this.Level_;
 	  case ItemField.Slots:      return this.Slots_;
 	  case ItemField.Races:      return this.Races_;
@@ -365,15 +396,19 @@ namespace PlayOnline.FFXI {
 
       protected ushort Damage_;
       protected ushort Delay_;
+      protected ushort DPS_;
       protected Skill  Skill_;
+      protected byte   JugSize_;
 
       #endregion
 
       #region Public Properties
 
-      public ushort Damage { get { return this.Damage_; } }
-      public ushort Delay  { get { return this.Delay_;  } }
-      public Skill  Skill  { get { return this.Skill_;  } }
+      public ushort Damage  { get { return this.Damage_;  } }
+      public ushort Delay   { get { return this.Delay_;   } }
+      public ushort DPS     { get { return this.DPS_;     } }
+      public Skill  Skill   { get { return this.Skill_;   } }
+      public byte   JugSize { get { return this.JugSize_; } }
 
       #endregion
 
@@ -385,25 +420,31 @@ namespace PlayOnline.FFXI {
 	Fields.AddRange(new ItemField[] {
 	  ItemField.Damage,
 	  ItemField.Delay,
-	  ItemField.Skill
+	  ItemField.DPS,
+	  ItemField.Skill,
+	  ItemField.JugSize
 	});
 	return (ItemField[]) Fields.ToArray(typeof(ItemField));
       }
 
       public override string GetFieldText(ItemField F) {
 	switch (F) {
-	  case ItemField.Damage: return String.Format("{0}",                   this.Damage_);
-	  case ItemField.Skill:  return String.Format("<{0:X}> {0}",           this.Skill_);
-	  case ItemField.Delay:  return String.Format("{0} ({1:+###0;-###0})", this.Delay_, this.Delay_ - 240);
+	  case ItemField.Damage:  return String.Format("{0}",                   this.Damage_);
+	  case ItemField.Delay:   return String.Format("{0} ({1:+###0;-###0})", this.Delay_, this.Delay_ - 240);
+	  case ItemField.DPS:     return String.Format("{0}",                   this.DPS_ / 100.0);
+	  case ItemField.Skill:   return String.Format("<{0:X}> {0}",           this.Skill_);
+	  case ItemField.JugSize: return String.Format("{0}",                   this.JugSize_);
 	}
 	return base.GetFieldText(F);
       }
 
       public override object GetFieldValue(ItemField F) {
 	switch (F) {
-	  case ItemField.Damage: return this.Damage_;
-	  case ItemField.Skill:  return this.Skill_;
-	  case ItemField.Delay:  return this.Delay_;
+	  case ItemField.Damage:  return this.Damage_;
+	  case ItemField.Delay:   return this.Delay_;
+	  case ItemField.DPS:     return this.DPS_;
+	  case ItemField.Skill:   return this.Skill_;
+	  case ItemField.JugSize: return this.JugSize_;
 	}
 	return base.GetFieldValue(F);
       }
@@ -439,11 +480,9 @@ namespace PlayOnline.FFXI {
       public LangSpecificObjectInfo(Stream S, ItemDataLanguage L) {
       BinaryReader BR = new BinaryReader(S);
 	this.ReadBasicFields(BR);
-	/* Unknown */ BR.ReadUInt16();
-	/* Unknown */ BR.ReadUInt16();
 	this.ReadTextFields(BR, L);
-	/* Unknown */ BR.ReadUInt16();
-	/* Unknown */ BR.ReadUInt16();
+	this.Element_ = (Element) BR.ReadUInt16();
+	this.Storage_ =           BR.ReadUInt16();
 	BR.Close();
 	this.L = L;
       }
@@ -472,7 +511,6 @@ namespace PlayOnline.FFXI {
       public LangSpecificArmorInfo(Stream S, ItemDataLanguage L) {
       BinaryReader BR = new BinaryReader(S);
 	this.ReadBasicFields(BR);
-	this.ResourceID_ =                 BR.ReadUInt32();
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
@@ -511,16 +549,15 @@ namespace PlayOnline.FFXI {
       public LangSpecificWeaponInfo(Stream S, ItemDataLanguage L) {
       BinaryReader BR = new BinaryReader(S);
 	this.ReadBasicFields(BR);
-	this.ResourceID_ =                 BR.ReadUInt32();
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
 	this.Jobs_       = (Job)           BR.ReadUInt16();
 	this.Damage_     =                 BR.ReadUInt16();
 	this.Delay_      =                 BR.ReadUInt16();
-	/* Unknown */                      BR.ReadUInt16();
+	this.DPS_        =                 BR.ReadUInt16();
 	this.Skill_      = (Skill)         BR.ReadByte();
-	/* Unknown */                      BR.ReadByte();
+	this.JugSize_    =                 BR.ReadByte();
 	this.ReadTextFields(BR, L);
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
@@ -554,6 +591,8 @@ namespace PlayOnline.FFXI {
 
     #region XML-Based
 
+    #region Common Property Handler
+
     private class DumpedItemInfo : BasicItemInfo {
 
       public DumpedItemInfo(XmlElement DumpedItem) {
@@ -576,6 +615,10 @@ namespace PlayOnline.FFXI {
       }
 
     }
+
+    #endregion
+
+    #region Object Property Handler
 
     private class DumpedObjectInfo : ObjectInfo {
 
@@ -620,6 +663,10 @@ namespace PlayOnline.FFXI {
 
     }
 
+    #endregion
+
+    #region Armor Property Handler
+
     private class DumpedArmorInfo : ArmorInfo {
 
       public DumpedArmorInfo(XmlElement DumpedItem) {
@@ -638,10 +685,6 @@ namespace PlayOnline.FFXI {
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
 	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ResourceID']");
-	  this.ResourceID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
 	} catch { }
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
@@ -703,6 +746,10 @@ namespace PlayOnline.FFXI {
 
     }
 
+    #endregion
+
+    #region Weapon Property Handler
+
     private class DumpedWeaponInfo : WeaponInfo {
 
       public DumpedWeaponInfo(XmlElement DumpedItem) {
@@ -721,10 +768,6 @@ namespace PlayOnline.FFXI {
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
 	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ResourceID']");
-	  this.ResourceID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
 	} catch { }
 	try {
 	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
@@ -793,6 +836,8 @@ namespace PlayOnline.FFXI {
       }
 
     }
+
+    #endregion
 
     #endregion
 
