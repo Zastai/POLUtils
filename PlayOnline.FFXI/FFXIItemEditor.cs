@@ -36,12 +36,8 @@ namespace PlayOnline.FFXI {
     private System.Windows.Forms.TextBox txtLevel;
     private System.Windows.Forms.GroupBox grpCommonInfo;
     private System.Windows.Forms.Label lblDescription;
-    private System.Windows.Forms.Label lblPlural;
-    private System.Windows.Forms.Label lblSingular;
     private System.Windows.Forms.Label lblJName;
     private System.Windows.Forms.Label lblEName;
-    private System.Windows.Forms.TextBox txtPlural;
-    private System.Windows.Forms.TextBox txtSingular;
     private System.Windows.Forms.TextBox txtJName;
     private System.Windows.Forms.TextBox txtEName;
     private System.Windows.Forms.TextBox txtDescription;
@@ -87,6 +83,11 @@ namespace PlayOnline.FFXI {
     private System.Windows.Forms.TextBox txtMaxCharges;
     private System.Windows.Forms.Label lblValidTargets;
     private System.Windows.Forms.TextBox txtValidTargets;
+    private System.Windows.Forms.GroupBox grpLogStrings;
+    private System.Windows.Forms.Label lblPlural;
+    private System.Windows.Forms.Label lblSingular;
+    private System.Windows.Forms.TextBox txtPlural;
+    private System.Windows.Forms.TextBox txtSingular;
     private System.ComponentModel.IContainer components;
 
     #endregion
@@ -163,6 +164,7 @@ namespace PlayOnline.FFXI {
 	case ItemField.LogNamePlural:   return this.txtPlural;
 	case ItemField.LogNameSingular: return this.txtSingular;
 	case ItemField.MaxCharges:      return this.txtMaxCharges;
+	case ItemField.MysteryField:    return this.txtID;
 	case ItemField.Races:           return this.txtRaces;
 	case ItemField.ReuseTimer:      return this.txtReuseTimer;
 	case ItemField.ShieldSize:      return this.txtShieldSize;
@@ -278,15 +280,12 @@ namespace PlayOnline.FFXI {
 
     private void DetectViewMode(FFXIItem I) {
     CheckBox SelectedMode = this.chkViewAsEObject;
-      if (I.Common.MysteryField >= 10000 && I.Common.MysteryField < 20000) { // Weapon
+      if (I.Common.MysteryField >= 10000 && I.Common.MysteryField < 20000) // Weapon
 	SelectedMode = this.DetectLanguage(I.ENWeapon, this.chkViewAsEWeapon, I.JPWeapon, this.chkViewAsJWeapon);
-      }
-      else if (I.Common.MysteryField >= 50000 && I.Common.MysteryField < 60000) { // Armor
+      else if (I.Common.MysteryField >= 50000 && I.Common.MysteryField < 60000) // Armor
 	SelectedMode = this.DetectLanguage(I.ENArmor, this.chkViewAsEArmor, I.JPArmor, this.chkViewAsJArmor);
-      }
-      else { // Other Items
+      else // Other Items
 	SelectedMode = this.DetectLanguage(I.ENObject, this.chkViewAsEObject, I.JPObject, this.chkViewAsJObject);
-      }
       SelectedMode.Checked = true;
     }
 
@@ -294,37 +293,42 @@ namespace PlayOnline.FFXI {
     FFXIItem I = this.ItemToShow_;
       this.chkViewAsEArmor.Checked = this.chkViewAsEObject.Checked = this.chkViewAsEWeapon.Checked = false;
       this.chkViewAsJArmor.Checked = this.chkViewAsJObject.Checked = this.chkViewAsJWeapon.Checked = false;
+      this.ResetInfoGroups();
+      this.picIcon.Image = null;
+      this.ttToolTip.SetToolTip(this.picIcon, null);
       if (I != null) {
-	this.picIcon.Image       = I.IconGraphic.Bitmap;
-	this.ttToolTip.SetToolTip(this.picIcon, I.IconGraphic.ToString());
+	if (I.IconGraphic != null) {
+	  this.picIcon.Image = I.IconGraphic.Bitmap;
+	  this.ttToolTip.SetToolTip(this.picIcon, I.IconGraphic.ToString());
+	}
 	if (this.LockedViewMode_ != null)
 	  this.LockedViewMode_.Checked = true;
 	else
 	  this.DetectViewMode(I);
       }
-      else { // Clear all fields
-	this.ResetInfoGroups();
-	this.picIcon.Image = null;
-	this.ttToolTip.SetToolTip(this.picIcon, null);
-	this.txtID.Text          = this.txtType.Text      = String.Empty;
-	this.txtEName.Text       = this.txtJName.Text     = String.Empty;
-	this.txtSingular.Text    = this.txtPlural.Text    = String.Empty;
-	this.txtFlags.Text       = this.txtStackSize.Text = String.Empty;
-	this.txtDescription.Text = String.Empty;
+      else {
+	this.txtID.Text           = this.txtType.Text      = String.Empty;
+	this.txtEName.Text        = this.txtJName.Text     = String.Empty;
+	this.txtFlags.Text        = this.txtStackSize.Text = String.Empty;
+	this.txtDescription.Text  = String.Empty;
+	this.txtValidTargets.Text = String.Empty;
       }
     }
 
     private void FillCommonFields(FFXIItem.IItemInfo II) {
-      this.txtID.Text           = II.GetFieldText(ItemField.ID);
+      this.txtID.Text           = II.GetFieldText(ItemField.ID) + " / " + II.GetFieldText(ItemField.MysteryField);
       this.txtType.Text         = II.GetFieldText(ItemField.Type);
       this.txtFlags.Text        = II.GetFieldText(ItemField.Flags);
       this.txtStackSize.Text    = II.GetFieldText(ItemField.StackSize);
       this.txtValidTargets.Text = II.GetFieldText(ItemField.ValidTargets);
       this.txtEName.Text        = II.GetFieldText(ItemField.EnglishName);
       this.txtJName.Text        = II.GetFieldText(ItemField.JapaneseName);
-      this.txtSingular.Text     = II.GetFieldText(ItemField.LogNameSingular);
-      this.txtPlural.Text       = II.GetFieldText(ItemField.LogNamePlural);
       this.txtDescription.Text  = II.GetFieldText(ItemField.Description).Replace("\n", "\r\n");
+      if (this.ChosenItemLanguage == ItemDataLanguage.English) {
+	this.txtSingular.Text   = II.GetFieldText(ItemField.LogNameSingular);
+	this.txtPlural.Text     = II.GetFieldText(ItemField.LogNamePlural);
+	this.ShowInfoGroup(this.grpLogStrings);
+      }
     }
 
     private void FillEquipmentFields(FFXIItem.IItemInfo II) {
@@ -342,8 +346,17 @@ namespace PlayOnline.FFXI {
       }
     }
 
+    private void FillEnchantmentFields(FFXIItem.IItemInfo II) {
+      if ((byte) II.GetFieldValue(ItemField.MaxCharges) > 0) {
+	this.txtMaxCharges.Text = II.GetFieldText(ItemField.MaxCharges);
+	this.txtCastTime.Text   = II.GetFieldText(ItemField.CastTime);
+	this.txtEquipDelay.Text = II.GetFieldText(ItemField.EquipDelay);
+	this.txtReuseTimer.Text = II.GetFieldText(ItemField.ReuseTimer);
+	this.ShowInfoGroup(this.grpEnchantmentInfo);
+      }
+    }
+
     private void FillObjectFields(FFXIItem.IItemInfo II) {
-      this.ResetInfoGroups();
       this.FillCommonFields(II);
     ItemType IT = (ItemType) II.GetFieldValue(ItemField.Type);
       if (IT == ItemType.Flowerpot || IT == ItemType.Furnishing || IT == ItemType.Mannequin) {
@@ -361,6 +374,7 @@ namespace PlayOnline.FFXI {
 	this.txtShieldSize.Text = II.GetFieldText(ItemField.ShieldSize);
 	this.ShowInfoGroup(this.grpShieldInfo);
       }
+      this.FillEnchantmentFields(II);
     }
 
     private void FillWeaponFields(FFXIItem.IItemInfo II) {
@@ -376,17 +390,19 @@ namespace PlayOnline.FFXI {
 	this.txtJugSize.Text = II.GetFieldText(ItemField.JugSize);
 	this.ShowInfoGroup(this.grpJugInfo);
       }
+      this.FillEnchantmentFields(II);
     }
 
     private void ResetInfoGroups() {
-      this.LogicalHeight = this.grpViewMode.Top + this.grpViewMode.Height + this.grpCommonInfo.Height;
-      this.Height = this.LogicalHeight;
       this.grpEnchantmentInfo.Visible = false;
       this.grpEquipmentInfo.Visible   = false;
       this.grpFurnitureInfo.Visible   = false;
       this.grpJugInfo.Visible         = false;
+      this.grpLogStrings.Visible      = false;
       this.grpShieldInfo.Visible      = false;
       this.grpWeaponInfo.Visible      = false;
+      this.LogicalHeight = this.grpViewMode.Top + this.grpViewMode.Height + this.grpCommonInfo.Height;
+      this.Height = this.LogicalHeight;
     }
 
     private void ShowInfoGroup(GroupBox GB) {
@@ -429,12 +445,8 @@ namespace PlayOnline.FFXI {
       this.lblValidTargets = new System.Windows.Forms.Label();
       this.txtValidTargets = new System.Windows.Forms.TextBox();
       this.lblDescription = new System.Windows.Forms.Label();
-      this.lblPlural = new System.Windows.Forms.Label();
-      this.lblSingular = new System.Windows.Forms.Label();
       this.lblJName = new System.Windows.Forms.Label();
       this.lblEName = new System.Windows.Forms.Label();
-      this.txtPlural = new System.Windows.Forms.TextBox();
-      this.txtSingular = new System.Windows.Forms.TextBox();
       this.txtJName = new System.Windows.Forms.TextBox();
       this.txtEName = new System.Windows.Forms.TextBox();
       this.txtDescription = new System.Windows.Forms.TextBox();
@@ -477,6 +489,11 @@ namespace PlayOnline.FFXI {
       this.txtReuseTimer = new System.Windows.Forms.TextBox();
       this.txtEquipDelay = new System.Windows.Forms.TextBox();
       this.txtMaxCharges = new System.Windows.Forms.TextBox();
+      this.grpLogStrings = new System.Windows.Forms.GroupBox();
+      this.lblPlural = new System.Windows.Forms.Label();
+      this.lblSingular = new System.Windows.Forms.Label();
+      this.txtPlural = new System.Windows.Forms.TextBox();
+      this.txtSingular = new System.Windows.Forms.TextBox();
       this.grpViewMode.SuspendLayout();
       this.grpEquipmentInfo.SuspendLayout();
       this.grpCommonInfo.SuspendLayout();
@@ -485,6 +502,7 @@ namespace PlayOnline.FFXI {
       this.grpShieldInfo.SuspendLayout();
       this.grpJugInfo.SuspendLayout();
       this.grpEnchantmentInfo.SuspendLayout();
+      this.grpLogStrings.SuspendLayout();
       this.SuspendLayout();
       // 
       // grpViewMode
@@ -930,12 +948,8 @@ namespace PlayOnline.FFXI {
       this.grpCommonInfo.Controls.Add(this.lblValidTargets);
       this.grpCommonInfo.Controls.Add(this.txtValidTargets);
       this.grpCommonInfo.Controls.Add(this.lblDescription);
-      this.grpCommonInfo.Controls.Add(this.lblPlural);
-      this.grpCommonInfo.Controls.Add(this.lblSingular);
       this.grpCommonInfo.Controls.Add(this.lblJName);
       this.grpCommonInfo.Controls.Add(this.lblEName);
-      this.grpCommonInfo.Controls.Add(this.txtPlural);
-      this.grpCommonInfo.Controls.Add(this.txtSingular);
       this.grpCommonInfo.Controls.Add(this.txtJName);
       this.grpCommonInfo.Controls.Add(this.txtEName);
       this.grpCommonInfo.Controls.Add(this.txtDescription);
@@ -1038,54 +1052,6 @@ namespace PlayOnline.FFXI {
       this.ttToolTip.SetToolTip(this.lblDescription, resources.GetString("lblDescription.ToolTip"));
       this.lblDescription.Visible = ((bool)(resources.GetObject("lblDescription.Visible")));
       // 
-      // lblPlural
-      // 
-      this.lblPlural.AccessibleDescription = resources.GetString("lblPlural.AccessibleDescription");
-      this.lblPlural.AccessibleName = resources.GetString("lblPlural.AccessibleName");
-      this.lblPlural.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblPlural.Anchor")));
-      this.lblPlural.AutoSize = ((bool)(resources.GetObject("lblPlural.AutoSize")));
-      this.lblPlural.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblPlural.Dock")));
-      this.lblPlural.Enabled = ((bool)(resources.GetObject("lblPlural.Enabled")));
-      this.lblPlural.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblPlural.Font = ((System.Drawing.Font)(resources.GetObject("lblPlural.Font")));
-      this.lblPlural.Image = ((System.Drawing.Image)(resources.GetObject("lblPlural.Image")));
-      this.lblPlural.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblPlural.ImageAlign")));
-      this.lblPlural.ImageIndex = ((int)(resources.GetObject("lblPlural.ImageIndex")));
-      this.lblPlural.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblPlural.ImeMode")));
-      this.lblPlural.Location = ((System.Drawing.Point)(resources.GetObject("lblPlural.Location")));
-      this.lblPlural.Name = "lblPlural";
-      this.lblPlural.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblPlural.RightToLeft")));
-      this.lblPlural.Size = ((System.Drawing.Size)(resources.GetObject("lblPlural.Size")));
-      this.lblPlural.TabIndex = ((int)(resources.GetObject("lblPlural.TabIndex")));
-      this.lblPlural.Text = resources.GetString("lblPlural.Text");
-      this.lblPlural.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblPlural.TextAlign")));
-      this.ttToolTip.SetToolTip(this.lblPlural, resources.GetString("lblPlural.ToolTip"));
-      this.lblPlural.Visible = ((bool)(resources.GetObject("lblPlural.Visible")));
-      // 
-      // lblSingular
-      // 
-      this.lblSingular.AccessibleDescription = resources.GetString("lblSingular.AccessibleDescription");
-      this.lblSingular.AccessibleName = resources.GetString("lblSingular.AccessibleName");
-      this.lblSingular.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblSingular.Anchor")));
-      this.lblSingular.AutoSize = ((bool)(resources.GetObject("lblSingular.AutoSize")));
-      this.lblSingular.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblSingular.Dock")));
-      this.lblSingular.Enabled = ((bool)(resources.GetObject("lblSingular.Enabled")));
-      this.lblSingular.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblSingular.Font = ((System.Drawing.Font)(resources.GetObject("lblSingular.Font")));
-      this.lblSingular.Image = ((System.Drawing.Image)(resources.GetObject("lblSingular.Image")));
-      this.lblSingular.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblSingular.ImageAlign")));
-      this.lblSingular.ImageIndex = ((int)(resources.GetObject("lblSingular.ImageIndex")));
-      this.lblSingular.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblSingular.ImeMode")));
-      this.lblSingular.Location = ((System.Drawing.Point)(resources.GetObject("lblSingular.Location")));
-      this.lblSingular.Name = "lblSingular";
-      this.lblSingular.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblSingular.RightToLeft")));
-      this.lblSingular.Size = ((System.Drawing.Size)(resources.GetObject("lblSingular.Size")));
-      this.lblSingular.TabIndex = ((int)(resources.GetObject("lblSingular.TabIndex")));
-      this.lblSingular.Text = resources.GetString("lblSingular.Text");
-      this.lblSingular.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblSingular.TextAlign")));
-      this.ttToolTip.SetToolTip(this.lblSingular, resources.GetString("lblSingular.ToolTip"));
-      this.lblSingular.Visible = ((bool)(resources.GetObject("lblSingular.Visible")));
-      // 
       // lblJName
       // 
       this.lblJName.AccessibleDescription = resources.GetString("lblJName.AccessibleDescription");
@@ -1133,60 +1099,6 @@ namespace PlayOnline.FFXI {
       this.lblEName.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblEName.TextAlign")));
       this.ttToolTip.SetToolTip(this.lblEName, resources.GetString("lblEName.ToolTip"));
       this.lblEName.Visible = ((bool)(resources.GetObject("lblEName.Visible")));
-      // 
-      // txtPlural
-      // 
-      this.txtPlural.AccessibleDescription = resources.GetString("txtPlural.AccessibleDescription");
-      this.txtPlural.AccessibleName = resources.GetString("txtPlural.AccessibleName");
-      this.txtPlural.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("txtPlural.Anchor")));
-      this.txtPlural.AutoSize = ((bool)(resources.GetObject("txtPlural.AutoSize")));
-      this.txtPlural.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("txtPlural.BackgroundImage")));
-      this.txtPlural.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("txtPlural.Dock")));
-      this.txtPlural.Enabled = ((bool)(resources.GetObject("txtPlural.Enabled")));
-      this.txtPlural.Font = ((System.Drawing.Font)(resources.GetObject("txtPlural.Font")));
-      this.txtPlural.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("txtPlural.ImeMode")));
-      this.txtPlural.Location = ((System.Drawing.Point)(resources.GetObject("txtPlural.Location")));
-      this.txtPlural.MaxLength = ((int)(resources.GetObject("txtPlural.MaxLength")));
-      this.txtPlural.Multiline = ((bool)(resources.GetObject("txtPlural.Multiline")));
-      this.txtPlural.Name = "txtPlural";
-      this.txtPlural.PasswordChar = ((char)(resources.GetObject("txtPlural.PasswordChar")));
-      this.txtPlural.ReadOnly = true;
-      this.txtPlural.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("txtPlural.RightToLeft")));
-      this.txtPlural.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("txtPlural.ScrollBars")));
-      this.txtPlural.Size = ((System.Drawing.Size)(resources.GetObject("txtPlural.Size")));
-      this.txtPlural.TabIndex = ((int)(resources.GetObject("txtPlural.TabIndex")));
-      this.txtPlural.Text = resources.GetString("txtPlural.Text");
-      this.txtPlural.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("txtPlural.TextAlign")));
-      this.ttToolTip.SetToolTip(this.txtPlural, resources.GetString("txtPlural.ToolTip"));
-      this.txtPlural.Visible = ((bool)(resources.GetObject("txtPlural.Visible")));
-      this.txtPlural.WordWrap = ((bool)(resources.GetObject("txtPlural.WordWrap")));
-      // 
-      // txtSingular
-      // 
-      this.txtSingular.AccessibleDescription = resources.GetString("txtSingular.AccessibleDescription");
-      this.txtSingular.AccessibleName = resources.GetString("txtSingular.AccessibleName");
-      this.txtSingular.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("txtSingular.Anchor")));
-      this.txtSingular.AutoSize = ((bool)(resources.GetObject("txtSingular.AutoSize")));
-      this.txtSingular.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("txtSingular.BackgroundImage")));
-      this.txtSingular.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("txtSingular.Dock")));
-      this.txtSingular.Enabled = ((bool)(resources.GetObject("txtSingular.Enabled")));
-      this.txtSingular.Font = ((System.Drawing.Font)(resources.GetObject("txtSingular.Font")));
-      this.txtSingular.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("txtSingular.ImeMode")));
-      this.txtSingular.Location = ((System.Drawing.Point)(resources.GetObject("txtSingular.Location")));
-      this.txtSingular.MaxLength = ((int)(resources.GetObject("txtSingular.MaxLength")));
-      this.txtSingular.Multiline = ((bool)(resources.GetObject("txtSingular.Multiline")));
-      this.txtSingular.Name = "txtSingular";
-      this.txtSingular.PasswordChar = ((char)(resources.GetObject("txtSingular.PasswordChar")));
-      this.txtSingular.ReadOnly = true;
-      this.txtSingular.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("txtSingular.RightToLeft")));
-      this.txtSingular.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("txtSingular.ScrollBars")));
-      this.txtSingular.Size = ((System.Drawing.Size)(resources.GetObject("txtSingular.Size")));
-      this.txtSingular.TabIndex = ((int)(resources.GetObject("txtSingular.TabIndex")));
-      this.txtSingular.Text = resources.GetString("txtSingular.Text");
-      this.txtSingular.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("txtSingular.TextAlign")));
-      this.ttToolTip.SetToolTip(this.txtSingular, resources.GetString("txtSingular.ToolTip"));
-      this.txtSingular.Visible = ((bool)(resources.GetObject("txtSingular.Visible")));
-      this.txtSingular.WordWrap = ((bool)(resources.GetObject("txtSingular.WordWrap")));
       // 
       // txtJName
       // 
@@ -2237,6 +2149,133 @@ namespace PlayOnline.FFXI {
       this.txtMaxCharges.Visible = ((bool)(resources.GetObject("txtMaxCharges.Visible")));
       this.txtMaxCharges.WordWrap = ((bool)(resources.GetObject("txtMaxCharges.WordWrap")));
       // 
+      // grpLogStrings
+      // 
+      this.grpLogStrings.AccessibleDescription = resources.GetString("grpLogStrings.AccessibleDescription");
+      this.grpLogStrings.AccessibleName = resources.GetString("grpLogStrings.AccessibleName");
+      this.grpLogStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("grpLogStrings.Anchor")));
+      this.grpLogStrings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("grpLogStrings.BackgroundImage")));
+      this.grpLogStrings.Controls.Add(this.lblPlural);
+      this.grpLogStrings.Controls.Add(this.lblSingular);
+      this.grpLogStrings.Controls.Add(this.txtPlural);
+      this.grpLogStrings.Controls.Add(this.txtSingular);
+      this.grpLogStrings.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("grpLogStrings.Dock")));
+      this.grpLogStrings.Enabled = ((bool)(resources.GetObject("grpLogStrings.Enabled")));
+      this.grpLogStrings.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpLogStrings.Font = ((System.Drawing.Font)(resources.GetObject("grpLogStrings.Font")));
+      this.grpLogStrings.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("grpLogStrings.ImeMode")));
+      this.grpLogStrings.Location = ((System.Drawing.Point)(resources.GetObject("grpLogStrings.Location")));
+      this.grpLogStrings.Name = "grpLogStrings";
+      this.grpLogStrings.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("grpLogStrings.RightToLeft")));
+      this.grpLogStrings.Size = ((System.Drawing.Size)(resources.GetObject("grpLogStrings.Size")));
+      this.grpLogStrings.TabIndex = ((int)(resources.GetObject("grpLogStrings.TabIndex")));
+      this.grpLogStrings.TabStop = false;
+      this.grpLogStrings.Text = resources.GetString("grpLogStrings.Text");
+      this.ttToolTip.SetToolTip(this.grpLogStrings, resources.GetString("grpLogStrings.ToolTip"));
+      this.grpLogStrings.Visible = ((bool)(resources.GetObject("grpLogStrings.Visible")));
+      // 
+      // lblPlural
+      // 
+      this.lblPlural.AccessibleDescription = resources.GetString("lblPlural.AccessibleDescription");
+      this.lblPlural.AccessibleName = resources.GetString("lblPlural.AccessibleName");
+      this.lblPlural.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblPlural.Anchor")));
+      this.lblPlural.AutoSize = ((bool)(resources.GetObject("lblPlural.AutoSize")));
+      this.lblPlural.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblPlural.Dock")));
+      this.lblPlural.Enabled = ((bool)(resources.GetObject("lblPlural.Enabled")));
+      this.lblPlural.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblPlural.Font = ((System.Drawing.Font)(resources.GetObject("lblPlural.Font")));
+      this.lblPlural.Image = ((System.Drawing.Image)(resources.GetObject("lblPlural.Image")));
+      this.lblPlural.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblPlural.ImageAlign")));
+      this.lblPlural.ImageIndex = ((int)(resources.GetObject("lblPlural.ImageIndex")));
+      this.lblPlural.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblPlural.ImeMode")));
+      this.lblPlural.Location = ((System.Drawing.Point)(resources.GetObject("lblPlural.Location")));
+      this.lblPlural.Name = "lblPlural";
+      this.lblPlural.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblPlural.RightToLeft")));
+      this.lblPlural.Size = ((System.Drawing.Size)(resources.GetObject("lblPlural.Size")));
+      this.lblPlural.TabIndex = ((int)(resources.GetObject("lblPlural.TabIndex")));
+      this.lblPlural.Text = resources.GetString("lblPlural.Text");
+      this.lblPlural.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblPlural.TextAlign")));
+      this.ttToolTip.SetToolTip(this.lblPlural, resources.GetString("lblPlural.ToolTip"));
+      this.lblPlural.Visible = ((bool)(resources.GetObject("lblPlural.Visible")));
+      // 
+      // lblSingular
+      // 
+      this.lblSingular.AccessibleDescription = resources.GetString("lblSingular.AccessibleDescription");
+      this.lblSingular.AccessibleName = resources.GetString("lblSingular.AccessibleName");
+      this.lblSingular.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblSingular.Anchor")));
+      this.lblSingular.AutoSize = ((bool)(resources.GetObject("lblSingular.AutoSize")));
+      this.lblSingular.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblSingular.Dock")));
+      this.lblSingular.Enabled = ((bool)(resources.GetObject("lblSingular.Enabled")));
+      this.lblSingular.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblSingular.Font = ((System.Drawing.Font)(resources.GetObject("lblSingular.Font")));
+      this.lblSingular.Image = ((System.Drawing.Image)(resources.GetObject("lblSingular.Image")));
+      this.lblSingular.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblSingular.ImageAlign")));
+      this.lblSingular.ImageIndex = ((int)(resources.GetObject("lblSingular.ImageIndex")));
+      this.lblSingular.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblSingular.ImeMode")));
+      this.lblSingular.Location = ((System.Drawing.Point)(resources.GetObject("lblSingular.Location")));
+      this.lblSingular.Name = "lblSingular";
+      this.lblSingular.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblSingular.RightToLeft")));
+      this.lblSingular.Size = ((System.Drawing.Size)(resources.GetObject("lblSingular.Size")));
+      this.lblSingular.TabIndex = ((int)(resources.GetObject("lblSingular.TabIndex")));
+      this.lblSingular.Text = resources.GetString("lblSingular.Text");
+      this.lblSingular.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblSingular.TextAlign")));
+      this.ttToolTip.SetToolTip(this.lblSingular, resources.GetString("lblSingular.ToolTip"));
+      this.lblSingular.Visible = ((bool)(resources.GetObject("lblSingular.Visible")));
+      // 
+      // txtPlural
+      // 
+      this.txtPlural.AccessibleDescription = resources.GetString("txtPlural.AccessibleDescription");
+      this.txtPlural.AccessibleName = resources.GetString("txtPlural.AccessibleName");
+      this.txtPlural.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("txtPlural.Anchor")));
+      this.txtPlural.AutoSize = ((bool)(resources.GetObject("txtPlural.AutoSize")));
+      this.txtPlural.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("txtPlural.BackgroundImage")));
+      this.txtPlural.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("txtPlural.Dock")));
+      this.txtPlural.Enabled = ((bool)(resources.GetObject("txtPlural.Enabled")));
+      this.txtPlural.Font = ((System.Drawing.Font)(resources.GetObject("txtPlural.Font")));
+      this.txtPlural.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("txtPlural.ImeMode")));
+      this.txtPlural.Location = ((System.Drawing.Point)(resources.GetObject("txtPlural.Location")));
+      this.txtPlural.MaxLength = ((int)(resources.GetObject("txtPlural.MaxLength")));
+      this.txtPlural.Multiline = ((bool)(resources.GetObject("txtPlural.Multiline")));
+      this.txtPlural.Name = "txtPlural";
+      this.txtPlural.PasswordChar = ((char)(resources.GetObject("txtPlural.PasswordChar")));
+      this.txtPlural.ReadOnly = true;
+      this.txtPlural.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("txtPlural.RightToLeft")));
+      this.txtPlural.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("txtPlural.ScrollBars")));
+      this.txtPlural.Size = ((System.Drawing.Size)(resources.GetObject("txtPlural.Size")));
+      this.txtPlural.TabIndex = ((int)(resources.GetObject("txtPlural.TabIndex")));
+      this.txtPlural.Text = resources.GetString("txtPlural.Text");
+      this.txtPlural.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("txtPlural.TextAlign")));
+      this.ttToolTip.SetToolTip(this.txtPlural, resources.GetString("txtPlural.ToolTip"));
+      this.txtPlural.Visible = ((bool)(resources.GetObject("txtPlural.Visible")));
+      this.txtPlural.WordWrap = ((bool)(resources.GetObject("txtPlural.WordWrap")));
+      // 
+      // txtSingular
+      // 
+      this.txtSingular.AccessibleDescription = resources.GetString("txtSingular.AccessibleDescription");
+      this.txtSingular.AccessibleName = resources.GetString("txtSingular.AccessibleName");
+      this.txtSingular.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("txtSingular.Anchor")));
+      this.txtSingular.AutoSize = ((bool)(resources.GetObject("txtSingular.AutoSize")));
+      this.txtSingular.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("txtSingular.BackgroundImage")));
+      this.txtSingular.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("txtSingular.Dock")));
+      this.txtSingular.Enabled = ((bool)(resources.GetObject("txtSingular.Enabled")));
+      this.txtSingular.Font = ((System.Drawing.Font)(resources.GetObject("txtSingular.Font")));
+      this.txtSingular.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("txtSingular.ImeMode")));
+      this.txtSingular.Location = ((System.Drawing.Point)(resources.GetObject("txtSingular.Location")));
+      this.txtSingular.MaxLength = ((int)(resources.GetObject("txtSingular.MaxLength")));
+      this.txtSingular.Multiline = ((bool)(resources.GetObject("txtSingular.Multiline")));
+      this.txtSingular.Name = "txtSingular";
+      this.txtSingular.PasswordChar = ((char)(resources.GetObject("txtSingular.PasswordChar")));
+      this.txtSingular.ReadOnly = true;
+      this.txtSingular.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("txtSingular.RightToLeft")));
+      this.txtSingular.ScrollBars = ((System.Windows.Forms.ScrollBars)(resources.GetObject("txtSingular.ScrollBars")));
+      this.txtSingular.Size = ((System.Drawing.Size)(resources.GetObject("txtSingular.Size")));
+      this.txtSingular.TabIndex = ((int)(resources.GetObject("txtSingular.TabIndex")));
+      this.txtSingular.Text = resources.GetString("txtSingular.Text");
+      this.txtSingular.TextAlign = ((System.Windows.Forms.HorizontalAlignment)(resources.GetObject("txtSingular.TextAlign")));
+      this.ttToolTip.SetToolTip(this.txtSingular, resources.GetString("txtSingular.ToolTip"));
+      this.txtSingular.Visible = ((bool)(resources.GetObject("txtSingular.Visible")));
+      this.txtSingular.WordWrap = ((bool)(resources.GetObject("txtSingular.WordWrap")));
+      // 
       // FFXIItemEditor
       // 
       this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
@@ -2246,6 +2285,7 @@ namespace PlayOnline.FFXI {
       this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
       this.BackColor = System.Drawing.SystemColors.Control;
       this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+      this.Controls.Add(this.grpLogStrings);
       this.Controls.Add(this.grpEquipmentInfo);
       this.Controls.Add(this.grpEnchantmentInfo);
       this.Controls.Add(this.grpJugInfo);
@@ -2270,6 +2310,7 @@ namespace PlayOnline.FFXI {
       this.grpShieldInfo.ResumeLayout(false);
       this.grpJugInfo.ResumeLayout(false);
       this.grpEnchantmentInfo.ResumeLayout(false);
+      this.grpLogStrings.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
