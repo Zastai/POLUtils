@@ -82,12 +82,12 @@
 	<rom-file app="1" dir="017" file="048">West Sarutabaruta</rom-file>
       </category>
       <category><name><ffxi-string id="0001000A"/></name>
+	<rom-file app="2" dir="002" file="014">Bibiki Bay</rom-file>
 	<rom-file app="1" dir="017" file="051">Buburimu Peninsula</rom-file>
 	<rom-file app="1" dir="018" file="018">Labyrinth Of Onzozo</rom-file>
 	<rom-file app="2" dir="002" file="013">Manaclipper</rom-file>
 	<rom-file app="1" dir="018" file="003">Maze Of Shakhrami</rom-file>
 	<rom-file app="1" dir="018" file="054">Mhaura</rom-file>
-	<rom-file app="2" dir="002" file="014">Bibiki Bay</rom-file>
 	<rom-file app="1" dir="017" file="050">Tahrongi Canyon</rom-file>
       </category>
       <category><name><ffxi-string id="0001000B"/></name>
@@ -323,12 +323,12 @@
 	<rom-file app="0" dir="022" file="052">West Sarutabaruta</rom-file>
       </category>
       <category><name><ffxi-string id="0001000A"/></name>
+	<rom-file app="2" dir="001" file="042">Bibiki Bay</rom-file>
 	<rom-file app="0" dir="022" file="055">Buburimu Peninsula</rom-file>
 	<rom-file app="1" dir="013" file="089">Labyrinth Of Onzozo</rom-file>
 	<rom-file app="2" dir="001" file="041">Manaclipper</rom-file>
 	<rom-file app="0" dir="023" file="007">Maze Of Shakhrami</rom-file>
 	<rom-file app="0" dir="023" file="058">Mhaura</rom-file>
-	<rom-file app="2" dir="001" file="042">Bibiki Bay</rom-file>
 	<rom-file app="0" dir="022" file="054">Tahrongi Canyon</rom-file>
       </category>
       <category><name><ffxi-string id="0001000B"/></name>
