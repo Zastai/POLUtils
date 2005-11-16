@@ -34,61 +34,34 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     public override void DoExport(FFXIItem[] Items) {
     XmlDocument XD = new XmlDocument();
-      XD.AppendChild(XD.CreateElement("ffxi-item-info"));
-      {
-      XmlElement XLanguage = XD.CreateElement("data-language");
-	XLanguage.InnerText = XMLItemExporter.dlgOptions.Language.ToString();
-	XD.DocumentElement.AppendChild(XLanguage);
-      }
-      {
-      XmlElement XType = XD.CreateElement("data-type");
-	XType.InnerText = XMLItemExporter.dlgOptions.Type.ToString();
-	XD.DocumentElement.AppendChild(XType);
-      }
+    XmlElement XRoot = XD.AppendChild(XD.CreateElement("ItemList")) as XmlElement;
+      XRoot.Attributes.Append(XD.CreateAttribute("Language")).InnerText = XMLItemExporter.dlgOptions.Language.ToString();
+      XRoot.Attributes.Append(XD.CreateAttribute("Type")).InnerText = XMLItemExporter.dlgOptions.Type.ToString();
       foreach (FFXIItem I in Items) {
-      XmlElement XItem = XD.CreateElement("item");
+      XmlElement XItem = XRoot.AppendChild(XD.CreateElement("Item")) as XmlElement;
       FFXIItem.IItemInfo II = I.GetInfo(XMLItemExporter.dlgOptions.Language, XMLItemExporter.dlgOptions.Type);
 	foreach (ItemField IF in II.GetFields()) {
-	XmlElement XField = XD.CreateElement("field");
+	XmlElement XField = XItem.AppendChild(XD.CreateElement(IF.ToString())) as XmlElement;
 	  {
-	  XmlAttribute XFieldName = XD.CreateAttribute("name");
-	    XFieldName.InnerText = IF.ToString();
-	    XField.Attributes.Append(XFieldName);
+	  object FieldValue = II.GetFieldValue(IF);
+	    if (FieldValue is Enum) // Store enums as hex numbers
+	      XField.InnerText = ((Enum) FieldValue).ToString("X");
+	    else
+	      XField.InnerText = FieldValue.ToString();
 	  }
-	  XField.InnerText = II.GetFieldValue(IF).ToString();
-	  XItem.AppendChild(XField);
 	}
-	if (XMLItemExporter.dlgOptions.IncludeIconData) { // Add the icon (raw bitmap data, in base64)
-	XmlElement XIcon = XD.CreateElement("icon");
-	  {
-	  XmlAttribute XCategory = XD.CreateAttribute("category");
-	    XCategory.InnerText = I.IconGraphic.Category;
-	    XIcon.Attributes.Append(XCategory);
-	  }
-	  {
-	  XmlAttribute XID = XD.CreateAttribute("id");
-	    XID.InnerText = I.IconGraphic.ID;
-	    XIcon.Attributes.Append(XID);
-	  }
-	  {
-	  XmlAttribute XFormat = XD.CreateAttribute("format");
-	    XFormat.InnerText = I.IconGraphic.Format;
-	    XIcon.Attributes.Append(XFormat);
-	  }
-	  {
-	  XmlAttribute XContentType = XD.CreateAttribute("content-type");
-	    XContentType.InnerText = "image/png+base64";
-	    XIcon.Attributes.Append(XContentType);
-	  }
+	{ // Add the icon (raw bitmap data, in base64)
+	XmlElement XIcon = XItem.AppendChild(XD.CreateElement("Icon")) as XmlElement;
+	  XIcon.Attributes.Append(XD.CreateAttribute("Category")).InnerText = I.IconGraphic.Category;
+	  XIcon.Attributes.Append(XD.CreateAttribute("ID")).InnerText       = I.IconGraphic.ID;
+	  XIcon.Attributes.Append(XD.CreateAttribute("Format")).InnerText   = I.IconGraphic.Format;
 	  {
 	  MemoryStream MS = new MemoryStream();
 	    I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
 	    XIcon.InnerText = Convert.ToBase64String(MS.GetBuffer());
 	    MS.Close();
 	  }
-	  XItem.AppendChild(XIcon);
 	}
-	XD.DocumentElement.AppendChild(XItem);
 	Application.DoEvents();
       }
     XmlTextWriter XW = new XmlTextWriter(XMLItemExporter.dlgOptions.FileName, Encoding.UTF8);
