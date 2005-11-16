@@ -26,7 +26,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     private ItemDataLanguage RLanguage;
     private ItemDataType     RType;
 
-    private int CurrentItem = -1;
+    private int CurrentItem   = -1;
+    private int StartupHeight = -1;
 
     #region Controls
 
@@ -45,6 +46,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     public MainWindow() {
       this.InitializeComponent();
+      this.StartupHeight = this.Height;
       this.Icon = Icons.FileSearch;
       this.EnableNavigation();
     }
@@ -234,6 +236,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieLeft.Size = ((System.Drawing.Size)(resources.GetObject("ieLeft.Size")));
       this.ieLeft.TabIndex = ((int)(resources.GetObject("ieLeft.TabIndex")));
       this.ieLeft.Visible = ((bool)(resources.GetObject("ieLeft.Visible")));
+      this.ieLeft.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // ieRight
       // 
@@ -256,6 +259,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieRight.Size = ((System.Drawing.Size)(resources.GetObject("ieRight.Size")));
       this.ieRight.TabIndex = ((int)(resources.GetObject("ieRight.TabIndex")));
       this.ieRight.Visible = ((bool)(resources.GetObject("ieRight.Visible")));
+      this.ieRight.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // btnLoadItemSet1
       // 
@@ -479,6 +483,10 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.CurrentItem = ((LIS.Count == 0) ? -1 : 0);
       this.EnableNavigation();
       this.MarkItemChanges();
+    }
+
+    private void ItemViewerSizeChanged(object sender, System.EventArgs e) {
+      this.Height = this.StartupHeight + Math.Max(this.ieLeft.Height, this.ieRight.Height) + 4;
     }
 
     #endregion
