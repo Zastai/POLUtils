@@ -46,30 +46,27 @@ namespace PlayOnline.FFXI {
 
     public static FFXIGraphic UnDump(XmlElement DumpedItem) {
     FFXIGraphic FG = null;
-    XmlElement XIcon = DumpedItem.SelectSingleNode("icon") as XmlElement;
+    XmlElement XIcon = DumpedItem.SelectSingleNode("Icon") as XmlElement;
       if (XIcon != null) {
 	FG = new FFXIGraphic();
-	FG.Category = XIcon.GetAttribute("category");
-	FG.ID       = XIcon.GetAttribute("id");
-	FG.Format   = XIcon.GetAttribute("format");
-      string ContentType = XIcon.GetAttribute("content-type");
-	if (ContentType == "image/png+base64") {
-	byte[] ImageData = Convert.FromBase64String(XIcon.InnerText);
-	  FG.Bitmap = new Bitmap(new MemoryStream(ImageData, false));
-	  // Fill everything else
-	  FG.Flag = 0x91;
-	  FG.BMHeaderSize    = 40;
-	  FG.Planes          = 1;
-	  FG.Compression     = 0;
-	  FG.BitCount        = 32;
-	  FG.UsedColors      = 0;
-	  FG.ImportantColors = 0;
-	  FG.ImageSize       = (uint) ImageData.Length;
-	  FG.Width                = FG.Bitmap.Width;
-	  FG.Height               = FG.Bitmap.Height;
-	  FG.HorizontalResolution = (uint) FG.Bitmap.HorizontalResolution;
-	  FG.VerticalResolution   = (uint) FG.Bitmap.VerticalResolution;
-	}
+	FG.Category = XIcon.GetAttribute("Category");
+	FG.ID       = XIcon.GetAttribute("ID");
+	FG.Format   = XIcon.GetAttribute("Format");
+      byte[] ImageData = Convert.FromBase64String(XIcon.InnerText);
+	FG.Bitmap = new Bitmap(new MemoryStream(ImageData, false));
+	// Fill everything else
+	FG.Flag = 0x91;
+	FG.BMHeaderSize    = 40;
+	FG.Planes          = 1;
+	FG.Compression     = 0;
+	FG.BitCount        = 32;
+	FG.UsedColors      = 0;
+	FG.ImportantColors = 0;
+	FG.ImageSize       = (uint) ImageData.Length;
+	FG.Width                = FG.Bitmap.Width;
+	FG.Height               = FG.Bitmap.Height;
+	FG.HorizontalResolution = (uint) FG.Bitmap.HorizontalResolution;
+	FG.VerticalResolution   = (uint) FG.Bitmap.VerticalResolution;
       }
       return FG;
     }

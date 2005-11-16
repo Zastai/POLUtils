@@ -65,6 +65,21 @@ namespace PlayOnline.FFXI {
       this.IconGraphic_ = FFXIGraphic.UnDump(DumpedItem);
     }
 
+    private static string UndumpStringField(XmlElement DumpedItem, ItemField IF) {
+      try   { return DumpedItem.SelectSingleNode(String.Format("./child::*[name(.) = '{0}']", IF)).InnerText; }
+      catch { return String.Empty; }
+    }
+
+    private static long UndumpIntegerField(XmlElement DumpedItem, ItemField IF) {
+      try   { return long.Parse(FFXIItem.UndumpStringField(DumpedItem, IF), NumberStyles.Integer); }
+      catch { return 0; }
+    }
+
+    private static uint UndumpEnumField(XmlElement DumpedItem, ItemField IF) {
+      try   { return uint.Parse(FFXIItem.UndumpStringField(DumpedItem, IF), NumberStyles.HexNumber); }
+      catch { return 0; }
+    }
+
     #region Property Base Classes
 
     public interface IItemInfo {
@@ -596,22 +611,12 @@ namespace PlayOnline.FFXI {
     private class DumpedItemInfo : BasicItemInfo {
 
       public DumpedItemInfo(XmlElement DumpedItem) {
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
-	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
-	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
-	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
-	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
+	this.Flags_        = (ItemFlags)   FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Flags);
+	this.ID_           = (uint)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ID);
+	this.StackSize_    = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.StackSize);
+	this.Type_         = (ItemType)    FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Type);
+	this.MysteryField_ = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MysteryField);
+	this.ValidTargets_ = (ValidTarget) FFXIItem.UndumpEnumField   (DumpedItem, ItemField.ValidTargets);
       }
 
     }
@@ -623,42 +628,19 @@ namespace PlayOnline.FFXI {
     private class DumpedObjectInfo : ObjectInfo {
 
       public DumpedObjectInfo(XmlElement DumpedItem) {
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
-	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
-	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
-	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
-	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
-	  this.EnglishName_ = XField.InnerText;
-	} catch { this.EnglishName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
-	  this.JapaneseName_ = XField.InnerText;
-	} catch { this.JapaneseName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
-	  this.LogNameSingular_ = XField.InnerText;
-	} catch { this.LogNameSingular_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
-	  this.LogNamePlural_ = XField.InnerText;
-	} catch { this.LogNamePlural_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
-	  this.Description_ = XField.InnerText;
-	} catch { this.Description_ = String.Empty; }
+	this.Flags_           = (ItemFlags)   FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Flags);
+	this.ID_              = (uint)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ID);
+	this.StackSize_       = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.StackSize);
+	this.Type_            = (ItemType)    FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Type);
+	this.MysteryField_    = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MysteryField);
+	this.ValidTargets_    = (ValidTarget) FFXIItem.UndumpEnumField   (DumpedItem, ItemField.ValidTargets);
+	this.EnglishName_     =               FFXIItem.UndumpStringField (DumpedItem, ItemField.EnglishName);
+	this.JapaneseName_    =               FFXIItem.UndumpStringField (DumpedItem, ItemField.JapaneseName);
+	this.LogNameSingular_ =               FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNameSingular);
+	this.LogNamePlural_   =               FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNamePlural);
+	this.Description_     =               FFXIItem.UndumpStringField (DumpedItem, ItemField.Description);
+	this.Element_         = (Element)     FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Element);
+	this.Storage_         = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Storage);
       }
 
     }
@@ -670,78 +652,26 @@ namespace PlayOnline.FFXI {
     private class DumpedArmorInfo : ArmorInfo {
 
       public DumpedArmorInfo(XmlElement DumpedItem) {
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
-	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
-	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
-	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
-	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
-	  this.Level_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Slots']");
-	  this.Slots_ = (EquipmentSlot) Enum.Parse(typeof(EquipmentSlot), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Races']");
-	  this.Races_ = (Race) Enum.Parse(typeof(Race), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Jobs']");
-	  this.Jobs_ = (Job) Enum.Parse(typeof(Job), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ShieldSize']");
-	  this.ShieldSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
-	  this.EnglishName_ = XField.InnerText;
-	} catch { this.EnglishName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
-	  this.JapaneseName_ = XField.InnerText;
-	} catch { this.JapaneseName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
-	  this.LogNameSingular_ = XField.InnerText;
-	} catch { this.LogNameSingular_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
-	  this.LogNamePlural_ = XField.InnerText;
-	} catch { this.LogNamePlural_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
-	  this.Description_ = XField.InnerText;
-	} catch { this.Description_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'MaxCharges']");
-	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'CastTime']");
-	  this.CastTime_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");
-	  this.EquipDelay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ReuseTimer']");
-	  this.ReuseTimer_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
+	this.Flags_           = (ItemFlags)     FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Flags);
+	this.ID_              = (uint)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ID);
+	this.StackSize_       = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.StackSize);
+	this.Type_            = (ItemType)      FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Type);
+	this.MysteryField_    = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MysteryField);
+	this.ValidTargets_    = (ValidTarget)   FFXIItem.UndumpEnumField   (DumpedItem, ItemField.ValidTargets);
+	this.Level_           = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Level);
+	this.Slots_           = (EquipmentSlot) FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Slots);
+	this.Races_           = (Race)          FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Races);
+	this.Jobs_            = (Job)           FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Jobs);
+	this.ShieldSize_      = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ShieldSize);
+	this.EnglishName_     =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.EnglishName);
+	this.JapaneseName_    =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.JapaneseName);
+	this.LogNameSingular_ =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNameSingular);
+	this.LogNamePlural_   =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNamePlural);
+	this.Description_     =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.Description);
+	this.MaxCharges_      = (byte)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MaxCharges);
+	this.CastTime_        = (byte)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.CastTime);
+	this.EquipDelay_      = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.EquipDelay);
+	this.ReuseTimer_      = (uint)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ReuseTimer);
       }
 
     }
@@ -753,86 +683,30 @@ namespace PlayOnline.FFXI {
     private class DumpedWeaponInfo : WeaponInfo {
 
       public DumpedWeaponInfo(XmlElement DumpedItem) {
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Flags']");
-	  this.Flags_ = (ItemFlags) Enum.Parse(typeof(ItemFlags), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ID']");
-	  this.ID_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'StackSize']");
-	  this.StackSize_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Type']");
-	  this.Type_ = (ItemType) Enum.Parse(typeof(ItemType), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Level']");
-	  this.Level_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Slots']");
-	  this.Slots_ = (EquipmentSlot) Enum.Parse(typeof(EquipmentSlot), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Races']");
-	  this.Races_ = (Race) Enum.Parse(typeof(Race), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Jobs']");
-	  this.Jobs_ = (Job) Enum.Parse(typeof(Job), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Damage']");
-	  this.Damage_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Delay']");
-	  this.Delay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Skill']");
-	  this.Skill_ = (Skill) Enum.Parse(typeof(Skill), XField.InnerText, false);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EnglishName']");
-	  this.EnglishName_ = XField.InnerText;
-	} catch { this.EnglishName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'JapaneseName']");
-	  this.JapaneseName_ = XField.InnerText;
-	} catch { this.JapaneseName_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNameSingular']");
-	  this.LogNameSingular_ = XField.InnerText;
-	} catch { this.LogNameSingular_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'LogNamePlural']");
-	  this.LogNamePlural_ = XField.InnerText;
-	} catch { this.LogNamePlural_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'Description']");
-	  this.Description_ = XField.InnerText;
-	} catch { this.Description_ = String.Empty; }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'MaxCharges']");
-	  this.MaxCharges_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'CastTime']");
-	  this.CastTime_ = byte.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'EquipDelay']");
-	  this.EquipDelay_ = ushort.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
-	try {
-	XmlNode XField = DumpedItem.SelectSingleNode("field[@name = 'ReuseTimer']");
-	  this.ReuseTimer_ = uint.Parse(XField.InnerText, NumberStyles.Integer);
-	} catch { }
+	this.Flags_           = (ItemFlags)     FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Flags);
+	this.ID_              = (uint)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ID);
+	this.StackSize_       = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.StackSize);
+	this.Type_            = (ItemType)      FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Type);
+	this.MysteryField_    = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MysteryField);
+	this.ValidTargets_    = (ValidTarget)   FFXIItem.UndumpEnumField   (DumpedItem, ItemField.ValidTargets);
+	this.Level_           = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Level);
+	this.Slots_           = (EquipmentSlot) FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Slots);
+	this.Races_           = (Race)          FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Races);
+	this.Jobs_            = (Job)           FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Jobs);
+	this.Damage_          = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Damage);
+	this.Delay_           = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Delay);
+	this.DPS_             = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.DPS);
+	this.Skill_           = (Skill)         FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Skill);
+	this.JugSize_         = (byte)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.JugSize);
+	this.EnglishName_     =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.EnglishName);
+	this.JapaneseName_    =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.JapaneseName);
+	this.LogNameSingular_ =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNameSingular);
+	this.LogNamePlural_   =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNamePlural);
+	this.Description_     =                 FFXIItem.UndumpStringField (DumpedItem, ItemField.Description);
+	this.MaxCharges_      = (byte)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.MaxCharges);
+	this.CastTime_        = (byte)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.CastTime);
+	this.EquipDelay_      = (ushort)        FFXIItem.UndumpIntegerField(DumpedItem, ItemField.EquipDelay);
+	this.ReuseTimer_      = (uint)          FFXIItem.UndumpIntegerField(DumpedItem, ItemField.ReuseTimer);
       }
 
     }
