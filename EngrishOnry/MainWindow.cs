@@ -50,6 +50,15 @@ namespace EngrishOnry {
     private System.Windows.Forms.MenuItem mnuTranslateItemDescriptions;
     private System.Windows.Forms.MenuItem mnuPreserveJapaneseATCompletion;
     private System.Windows.Forms.MenuItem mnuEnglishATCompletionOnly;
+    private System.Windows.Forms.Button btnConfigStringTables;
+    private System.Windows.Forms.Button btnConfigDialogTables;
+    private System.Windows.Forms.Button btnConfigAbilities;
+    private System.Windows.Forms.Label lblAbilities;
+    private System.Windows.Forms.Button btnRestoreAbilities;
+    private System.Windows.Forms.Button btnTranslateAbilities;
+    private System.Windows.Forms.ContextMenu mnuConfigAbilities;
+    private System.Windows.Forms.MenuItem mnuTranslateAbilityNames;
+    private System.Windows.Forms.MenuItem mnuTranslateAbilityDescriptions;
 
     private System.ComponentModel.Container components = null;
 
@@ -211,6 +220,49 @@ namespace EngrishOnry {
       }
       catch {
 	this.AddLogEntry("*** TranslateSpellFile() FAILED ***");
+      }
+    }
+
+    #endregion
+
+    #region Ability Data Translation
+
+    private void TranslateAbilityFile(short JApp, short JDir, short JFileID, short EApp, short EDir, short EFileID) {
+      if (!this.mnuTranslateAbilityNames.Checked && !this.mnuTranslateAbilityDescriptions.Checked)
+	return;
+      if (!this.BackupFile(JApp, JDir, JFileID))
+	return;
+      try {
+      string JFileName = this.GetROMPath(JApp, JDir, JFileID);
+      string EFileName = this.GetROMPath(EApp, EDir, EFileID);
+	this.AddLogEntry(String.Format("Translating abilities data file: {0}", JFileName));
+	this.AddLogEntry(String.Format("Using English data file: {0}", EFileName));
+      FileStream JFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+      FileStream EFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.Read);
+	if ((JFileStream.Length % 0x400) != 0 || (EFileStream.Length % 0x400) != 0) {
+	  this.AddLogEntry("*** File size suggests this isn't ability data - Translation Aborted ***");
+	  goto TranslationDone;
+	}
+	if (JFileStream.Length != EFileStream.Length) {
+	  this.AddLogEntry("*** File sizes of Japanese and English files do not match - Translation Aborted ***");
+	  goto TranslationDone;
+	}
+      long AbilityCount = JFileStream.Length / 0x400;
+      byte[] JTextBlock = new byte[0x120];
+      byte[] ETextBlock = new byte[0x120];
+	for (long i = 0; i < AbilityCount; ++i) {
+	  JFileStream.Seek(i * 0x400 + 0xa, SeekOrigin.Begin); JFileStream.Read (JTextBlock, 0, 0x120);
+	  EFileStream.Seek(i * 0x400 + 0xa, SeekOrigin.Begin); EFileStream.Read (ETextBlock, 0, 0x120);
+	  if (this.mnuTranslateAbilityNames.Checked)        Array.Copy(ETextBlock, 0x00, JTextBlock, 0x00, 0x020);
+	  if (this.mnuTranslateAbilityDescriptions.Checked) Array.Copy(ETextBlock, 0x20, JTextBlock, 0x20, 0x100);
+	  JFileStream.Seek(i * 0x400 + 0xa, SeekOrigin.Begin); JFileStream.Write(JTextBlock, 0, 0x120);
+	}
+      TranslationDone:
+	JFileStream.Close();
+	EFileStream.Close();
+      }
+      catch {
+	this.AddLogEntry("*** TranslateAbilityFile() FAILED ***");
       }
     }
 
@@ -452,7 +504,15 @@ namespace EngrishOnry {
       this.mnuTranslateItemNames = new System.Windows.Forms.MenuItem();
       this.mnuTranslateItemDescriptions = new System.Windows.Forms.MenuItem();
       this.mnuConfigAutoTrans = new System.Windows.Forms.ContextMenu();
+      this.mnuPreserveJapaneseATCompletion = new System.Windows.Forms.MenuItem();
+      this.mnuEnglishATCompletionOnly = new System.Windows.Forms.MenuItem();
       this.pnlActions = new System.Windows.Forms.Panel();
+      this.btnConfigAbilities = new System.Windows.Forms.Button();
+      this.lblAbilities = new System.Windows.Forms.Label();
+      this.btnRestoreAbilities = new System.Windows.Forms.Button();
+      this.btnTranslateAbilities = new System.Windows.Forms.Button();
+      this.btnConfigDialogTables = new System.Windows.Forms.Button();
+      this.btnConfigStringTables = new System.Windows.Forms.Button();
       this.btnConfigAutoTrans = new System.Windows.Forms.Button();
       this.btnConfigItemData = new System.Windows.Forms.Button();
       this.btnConfigSpellData = new System.Windows.Forms.Button();
@@ -471,8 +531,9 @@ namespace EngrishOnry {
       this.btnTranslateAutoTrans = new System.Windows.Forms.Button();
       this.btnRestoreItemData = new System.Windows.Forms.Button();
       this.btnTranslateItemData = new System.Windows.Forms.Button();
-      this.mnuPreserveJapaneseATCompletion = new System.Windows.Forms.MenuItem();
-      this.mnuEnglishATCompletionOnly = new System.Windows.Forms.MenuItem();
+      this.mnuConfigAbilities = new System.Windows.Forms.ContextMenu();
+      this.mnuTranslateAbilityNames = new System.Windows.Forms.MenuItem();
+      this.mnuTranslateAbilityDescriptions = new System.Windows.Forms.MenuItem();
       this.pnlLog.SuspendLayout();
       this.pnlActions.SuspendLayout();
       this.SuspendLayout();
@@ -482,9 +543,9 @@ namespace EngrishOnry {
       this.pnlLog.Controls.Add(this.lblActivityLog);
       this.pnlLog.Controls.Add(this.rtbActivityLog);
       this.pnlLog.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pnlLog.Location = new System.Drawing.Point(0, 76);
+      this.pnlLog.Location = new System.Drawing.Point(0, 72);
       this.pnlLog.Name = "pnlLog";
-      this.pnlLog.Size = new System.Drawing.Size(504, 178);
+      this.pnlLog.Size = new System.Drawing.Size(520, 150);
       this.pnlLog.TabIndex = 0;
       // 
       // lblActivityLog
@@ -493,7 +554,7 @@ namespace EngrishOnry {
 	| System.Windows.Forms.AnchorStyles.Right)));
       this.lblActivityLog.Location = new System.Drawing.Point(4, 4);
       this.lblActivityLog.Name = "lblActivityLog";
-      this.lblActivityLog.Size = new System.Drawing.Size(492, 16);
+      this.lblActivityLog.Size = new System.Drawing.Size(508, 16);
       this.lblActivityLog.TabIndex = 0;
       this.lblActivityLog.Text = "Activity Log:";
       // 
@@ -505,7 +566,7 @@ namespace EngrishOnry {
       this.rtbActivityLog.Location = new System.Drawing.Point(4, 20);
       this.rtbActivityLog.Name = "rtbActivityLog";
       this.rtbActivityLog.ReadOnly = true;
-      this.rtbActivityLog.Size = new System.Drawing.Size(496, 154);
+      this.rtbActivityLog.Size = new System.Drawing.Size(512, 126);
       this.rtbActivityLog.TabIndex = 500;
       this.rtbActivityLog.Text = "";
       // 
@@ -555,8 +616,27 @@ namespace EngrishOnry {
 										       this.mnuPreserveJapaneseATCompletion,
 										       this.mnuEnglishATCompletionOnly});
       // 
+      // mnuPreserveJapaneseATCompletion
+      // 
+      this.mnuPreserveJapaneseATCompletion.Checked = true;
+      this.mnuPreserveJapaneseATCompletion.Index = 0;
+      this.mnuPreserveJapaneseATCompletion.Text = "Preserve &Japanese Completion";
+      this.mnuPreserveJapaneseATCompletion.Click += new System.EventHandler(this.mnuPreserveJapaneseATCompletion_Click);
+      // 
+      // mnuEnglishATCompletionOnly
+      // 
+      this.mnuEnglishATCompletionOnly.Index = 1;
+      this.mnuEnglishATCompletionOnly.Text = "&English Completion Only";
+      this.mnuEnglishATCompletionOnly.Click += new System.EventHandler(this.mnuEnglishATCompletionOnly_Click);
+      // 
       // pnlActions
       // 
+      this.pnlActions.Controls.Add(this.btnConfigAbilities);
+      this.pnlActions.Controls.Add(this.lblAbilities);
+      this.pnlActions.Controls.Add(this.btnRestoreAbilities);
+      this.pnlActions.Controls.Add(this.btnTranslateAbilities);
+      this.pnlActions.Controls.Add(this.btnConfigDialogTables);
+      this.pnlActions.Controls.Add(this.btnConfigStringTables);
       this.pnlActions.Controls.Add(this.btnConfigAutoTrans);
       this.pnlActions.Controls.Add(this.btnConfigItemData);
       this.pnlActions.Controls.Add(this.btnConfigSpellData);
@@ -578,13 +658,73 @@ namespace EngrishOnry {
       this.pnlActions.Dock = System.Windows.Forms.DockStyle.Top;
       this.pnlActions.Location = new System.Drawing.Point(0, 0);
       this.pnlActions.Name = "pnlActions";
-      this.pnlActions.Size = new System.Drawing.Size(504, 76);
+      this.pnlActions.Size = new System.Drawing.Size(520, 72);
       this.pnlActions.TabIndex = 14;
+      // 
+      // btnConfigAbilities
+      // 
+      this.btnConfigAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigAbilities.Location = new System.Drawing.Point(188, 48);
+      this.btnConfigAbilities.Name = "btnConfigAbilities";
+      this.btnConfigAbilities.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigAbilities.TabIndex = 37;
+      this.btnConfigAbilities.Text = "Options";
+      this.btnConfigAbilities.Click += new System.EventHandler(this.btnConfigAbilities_Click);
+      // 
+      // lblAbilities
+      // 
+      this.lblAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblAbilities.Location = new System.Drawing.Point(8, 52);
+      this.lblAbilities.Name = "lblAbilities";
+      this.lblAbilities.Size = new System.Drawing.Size(60, 16);
+      this.lblAbilities.TabIndex = 34;
+      this.lblAbilities.Text = "Ability Data:";
+      this.lblAbilities.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // btnRestoreAbilities
+      // 
+      this.btnRestoreAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreAbilities.Location = new System.Drawing.Point(128, 48);
+      this.btnRestoreAbilities.Name = "btnRestoreAbilities";
+      this.btnRestoreAbilities.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreAbilities.TabIndex = 36;
+      this.btnRestoreAbilities.Text = "Restore";
+      this.btnRestoreAbilities.Click += new System.EventHandler(this.btnRestoreAbilities_Click);
+      // 
+      // btnTranslateAbilities
+      // 
+      this.btnTranslateAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateAbilities.Location = new System.Drawing.Point(72, 48);
+      this.btnTranslateAbilities.Name = "btnTranslateAbilities";
+      this.btnTranslateAbilities.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateAbilities.TabIndex = 35;
+      this.btnTranslateAbilities.Text = "Translate";
+      this.btnTranslateAbilities.Click += new System.EventHandler(this.btnTranslateAbilities_Click);
+      // 
+      // btnConfigDialogTables
+      // 
+      this.btnConfigDialogTables.Enabled = false;
+      this.btnConfigDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigDialogTables.Location = new System.Drawing.Point(464, 8);
+      this.btnConfigDialogTables.Name = "btnConfigDialogTables";
+      this.btnConfigDialogTables.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigDialogTables.TabIndex = 33;
+      this.btnConfigDialogTables.Text = "Options";
+      // 
+      // btnConfigStringTables
+      // 
+      this.btnConfigStringTables.Enabled = false;
+      this.btnConfigStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigStringTables.Location = new System.Drawing.Point(464, 28);
+      this.btnConfigStringTables.Name = "btnConfigStringTables";
+      this.btnConfigStringTables.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigStringTables.TabIndex = 32;
+      this.btnConfigStringTables.Text = "Options";
       // 
       // btnConfigAutoTrans
       // 
       this.btnConfigAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnConfigAutoTrans.Location = new System.Drawing.Point(214, 48);
+      this.btnConfigAutoTrans.Location = new System.Drawing.Point(464, 48);
       this.btnConfigAutoTrans.Name = "btnConfigAutoTrans";
       this.btnConfigAutoTrans.Size = new System.Drawing.Size(48, 20);
       this.btnConfigAutoTrans.TabIndex = 27;
@@ -594,7 +734,7 @@ namespace EngrishOnry {
       // btnConfigItemData
       // 
       this.btnConfigItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnConfigItemData.Location = new System.Drawing.Point(214, 28);
+      this.btnConfigItemData.Location = new System.Drawing.Point(188, 28);
       this.btnConfigItemData.Name = "btnConfigItemData";
       this.btnConfigItemData.Size = new System.Drawing.Size(48, 20);
       this.btnConfigItemData.TabIndex = 24;
@@ -604,7 +744,7 @@ namespace EngrishOnry {
       // btnConfigSpellData
       // 
       this.btnConfigSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnConfigSpellData.Location = new System.Drawing.Point(214, 8);
+      this.btnConfigSpellData.Location = new System.Drawing.Point(188, 8);
       this.btnConfigSpellData.Name = "btnConfigSpellData";
       this.btnConfigSpellData.Size = new System.Drawing.Size(48, 20);
       this.btnConfigSpellData.TabIndex = 21;
@@ -614,9 +754,9 @@ namespace EngrishOnry {
       // lblItemData
       // 
       this.lblItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemData.Location = new System.Drawing.Point(10, 32);
+      this.lblItemData.Location = new System.Drawing.Point(8, 32);
       this.lblItemData.Name = "lblItemData";
-      this.lblItemData.Size = new System.Drawing.Size(80, 16);
+      this.lblItemData.Size = new System.Drawing.Size(60, 16);
       this.lblItemData.TabIndex = 17;
       this.lblItemData.Text = "Item Data:";
       this.lblItemData.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -624,9 +764,9 @@ namespace EngrishOnry {
       // lblAutoTranslator
       // 
       this.lblAutoTranslator.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblAutoTranslator.Location = new System.Drawing.Point(10, 52);
+      this.lblAutoTranslator.Location = new System.Drawing.Point(260, 52);
       this.lblAutoTranslator.Name = "lblAutoTranslator";
-      this.lblAutoTranslator.Size = new System.Drawing.Size(80, 16);
+      this.lblAutoTranslator.Size = new System.Drawing.Size(82, 16);
       this.lblAutoTranslator.TabIndex = 14;
       this.lblAutoTranslator.Text = "Auto-Translator:";
       this.lblAutoTranslator.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -634,9 +774,9 @@ namespace EngrishOnry {
       // lblSpellData
       // 
       this.lblSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblSpellData.Location = new System.Drawing.Point(10, 12);
+      this.lblSpellData.Location = new System.Drawing.Point(8, 12);
       this.lblSpellData.Name = "lblSpellData";
-      this.lblSpellData.Size = new System.Drawing.Size(80, 16);
+      this.lblSpellData.Size = new System.Drawing.Size(60, 16);
       this.lblSpellData.TabIndex = 15;
       this.lblSpellData.Text = "Spell Data:";
       this.lblSpellData.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -644,7 +784,7 @@ namespace EngrishOnry {
       // lblStringTables
       // 
       this.lblStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblStringTables.Location = new System.Drawing.Point(270, 32);
+      this.lblStringTables.Location = new System.Drawing.Point(240, 32);
       this.lblStringTables.Name = "lblStringTables";
       this.lblStringTables.Size = new System.Drawing.Size(104, 16);
       this.lblStringTables.TabIndex = 16;
@@ -654,7 +794,7 @@ namespace EngrishOnry {
       // lblDialogTables
       // 
       this.lblDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblDialogTables.Location = new System.Drawing.Point(270, 12);
+      this.lblDialogTables.Location = new System.Drawing.Point(240, 12);
       this.lblDialogTables.Name = "lblDialogTables";
       this.lblDialogTables.Size = new System.Drawing.Size(104, 16);
       this.lblDialogTables.TabIndex = 18;
@@ -664,7 +804,7 @@ namespace EngrishOnry {
       // btnRestoreSpellData
       // 
       this.btnRestoreSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreSpellData.Location = new System.Drawing.Point(154, 8);
+      this.btnRestoreSpellData.Location = new System.Drawing.Point(128, 8);
       this.btnRestoreSpellData.Name = "btnRestoreSpellData";
       this.btnRestoreSpellData.Size = new System.Drawing.Size(60, 20);
       this.btnRestoreSpellData.TabIndex = 20;
@@ -674,7 +814,7 @@ namespace EngrishOnry {
       // btnTranslateSpellData
       // 
       this.btnTranslateSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateSpellData.Location = new System.Drawing.Point(98, 8);
+      this.btnTranslateSpellData.Location = new System.Drawing.Point(72, 8);
       this.btnTranslateSpellData.Name = "btnTranslateSpellData";
       this.btnTranslateSpellData.Size = new System.Drawing.Size(56, 20);
       this.btnTranslateSpellData.TabIndex = 19;
@@ -684,7 +824,7 @@ namespace EngrishOnry {
       // btnRestoreStringTables
       // 
       this.btnRestoreStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreStringTables.Location = new System.Drawing.Point(434, 28);
+      this.btnRestoreStringTables.Location = new System.Drawing.Point(404, 28);
       this.btnRestoreStringTables.Name = "btnRestoreStringTables";
       this.btnRestoreStringTables.Size = new System.Drawing.Size(60, 20);
       this.btnRestoreStringTables.TabIndex = 31;
@@ -694,7 +834,7 @@ namespace EngrishOnry {
       // btnTranslateStringTables
       // 
       this.btnTranslateStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateStringTables.Location = new System.Drawing.Point(378, 28);
+      this.btnTranslateStringTables.Location = new System.Drawing.Point(348, 28);
       this.btnTranslateStringTables.Name = "btnTranslateStringTables";
       this.btnTranslateStringTables.Size = new System.Drawing.Size(56, 20);
       this.btnTranslateStringTables.TabIndex = 30;
@@ -704,7 +844,7 @@ namespace EngrishOnry {
       // btnRestoreDialogTables
       // 
       this.btnRestoreDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreDialogTables.Location = new System.Drawing.Point(434, 8);
+      this.btnRestoreDialogTables.Location = new System.Drawing.Point(404, 8);
       this.btnRestoreDialogTables.Name = "btnRestoreDialogTables";
       this.btnRestoreDialogTables.Size = new System.Drawing.Size(60, 20);
       this.btnRestoreDialogTables.TabIndex = 29;
@@ -714,7 +854,7 @@ namespace EngrishOnry {
       // btnTranslateDialogTables
       // 
       this.btnTranslateDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateDialogTables.Location = new System.Drawing.Point(378, 8);
+      this.btnTranslateDialogTables.Location = new System.Drawing.Point(348, 8);
       this.btnTranslateDialogTables.Name = "btnTranslateDialogTables";
       this.btnTranslateDialogTables.Size = new System.Drawing.Size(56, 20);
       this.btnTranslateDialogTables.TabIndex = 28;
@@ -724,7 +864,7 @@ namespace EngrishOnry {
       // btnRestoreAutoTrans
       // 
       this.btnRestoreAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreAutoTrans.Location = new System.Drawing.Point(154, 48);
+      this.btnRestoreAutoTrans.Location = new System.Drawing.Point(404, 48);
       this.btnRestoreAutoTrans.Name = "btnRestoreAutoTrans";
       this.btnRestoreAutoTrans.Size = new System.Drawing.Size(60, 20);
       this.btnRestoreAutoTrans.TabIndex = 26;
@@ -734,7 +874,7 @@ namespace EngrishOnry {
       // btnTranslateAutoTrans
       // 
       this.btnTranslateAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateAutoTrans.Location = new System.Drawing.Point(98, 48);
+      this.btnTranslateAutoTrans.Location = new System.Drawing.Point(348, 48);
       this.btnTranslateAutoTrans.Name = "btnTranslateAutoTrans";
       this.btnTranslateAutoTrans.Size = new System.Drawing.Size(56, 20);
       this.btnTranslateAutoTrans.TabIndex = 25;
@@ -744,7 +884,7 @@ namespace EngrishOnry {
       // btnRestoreItemData
       // 
       this.btnRestoreItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnRestoreItemData.Location = new System.Drawing.Point(154, 28);
+      this.btnRestoreItemData.Location = new System.Drawing.Point(128, 28);
       this.btnRestoreItemData.Name = "btnRestoreItemData";
       this.btnRestoreItemData.Size = new System.Drawing.Size(60, 20);
       this.btnRestoreItemData.TabIndex = 23;
@@ -754,30 +894,35 @@ namespace EngrishOnry {
       // btnTranslateItemData
       // 
       this.btnTranslateItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.btnTranslateItemData.Location = new System.Drawing.Point(98, 28);
+      this.btnTranslateItemData.Location = new System.Drawing.Point(72, 28);
       this.btnTranslateItemData.Name = "btnTranslateItemData";
       this.btnTranslateItemData.Size = new System.Drawing.Size(56, 20);
       this.btnTranslateItemData.TabIndex = 22;
       this.btnTranslateItemData.Text = "Translate";
       this.btnTranslateItemData.Click += new System.EventHandler(this.btnTranslateItemData_Click);
       // 
-      // mnuPreserveJapaneseATCompletion
+      // mnuConfigAbilities
       // 
-      this.mnuPreserveJapaneseATCompletion.Checked = true;
-      this.mnuPreserveJapaneseATCompletion.Index = 0;
-      this.mnuPreserveJapaneseATCompletion.Text = "Preserve &Japanese Completion";
-      this.mnuPreserveJapaneseATCompletion.Click += new System.EventHandler(this.mnuPreserveJapaneseATCompletion_Click);
+      this.mnuConfigAbilities.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+										       this.mnuTranslateAbilityNames,
+										       this.mnuTranslateAbilityDescriptions});
       // 
-      // mnuEnglishATCompletionOnly
+      // mnuTranslateAbilityNames
       // 
-      this.mnuEnglishATCompletionOnly.Index = 1;
-      this.mnuEnglishATCompletionOnly.Text = "&English Completion Only";
-      this.mnuEnglishATCompletionOnly.Click += new System.EventHandler(this.mnuEnglishATCompletionOnly_Click);
+      this.mnuTranslateAbilityNames.Checked = true;
+      this.mnuTranslateAbilityNames.Index = 0;
+      this.mnuTranslateAbilityNames.Text = "Translate Ability &Names";
+      // 
+      // mnuTranslateAbilityDescriptions
+      // 
+      this.mnuTranslateAbilityDescriptions.Checked = true;
+      this.mnuTranslateAbilityDescriptions.Index = 1;
+      this.mnuTranslateAbilityDescriptions.Text = "Translate Ability &Descriptions";
       // 
       // MainWindow
       // 
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-      this.ClientSize = new System.Drawing.Size(504, 254);
+      this.ClientSize = new System.Drawing.Size(520, 222);
       this.Controls.Add(this.pnlLog);
       this.Controls.Add(this.pnlActions);
       this.Name = "MainWindow";
@@ -795,12 +940,14 @@ namespace EngrishOnry {
     #region Spell Data
 
     private void btnTranslateSpellData_Click(object sender, System.EventArgs e) {
-      this.TranslateSpellFile(0, 0, 11);
+      this.TranslateSpellFile(0,   0, 11);
+      this.TranslateSpellFile(0, 119, 56);
       this.AddLogEntry("=== Spell Data Translation Completed ===");
     }
 
     private void btnRestoreSpellData_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0, 0, 11);
+      this.RestoreFile(0,   0, 11);
+      this.RestoreFile(0, 119, 56);
       this.AddLogEntry("=== Spell Data Restoration Completed ===");
     }
 
@@ -852,30 +999,20 @@ namespace EngrishOnry {
 
     #endregion
 
-    #region Auto-Translator
+    #region Abilities
 
-    private void btnTranslateAutoTrans_Click(object sender, System.EventArgs e) {
-      this.TranslateAutoTranslatorFile(0, 76, 23);
-      this.AddLogEntry("=== Auto-Translator Translation Completed ===");
+    private void btnTranslateAbilities_Click(object sender, System.EventArgs e) {
+      this.TranslateAbilityFile(0, 0, 10, 0, 119, 55);
+      this.AddLogEntry("=== Ability Data Translation Completed ===");
     }
 
-    private void btnRestoreAutoTrans_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0, 76, 23);
-      this.AddLogEntry("=== Auto-Translator Restoration Completed ===");
+    private void btnRestoreAbilities_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(0, 0, 10);
+      this.AddLogEntry("=== Ability Data Restoration Completed ===");
     }
 
-    private void btnConfigAutoTrans_Click(object sender, System.EventArgs e) {
-      this.mnuConfigAutoTrans.Show(this.btnConfigAutoTrans, new Point(0, this.btnConfigAutoTrans.Height));
-    }
-
-    private void mnuPreserveJapaneseATCompletion_Click(object sender, System.EventArgs e) {
-      this.mnuPreserveJapaneseATCompletion.Checked = true;
-      this.mnuEnglishATCompletionOnly.Checked = false;
-    }
-
-    private void mnuEnglishATCompletionOnly_Click(object sender, System.EventArgs e) {
-      this.mnuEnglishATCompletionOnly.Checked = true;
-      this.mnuPreserveJapaneseATCompletion.Checked = false;
+    private void btnConfigAbilities_Click(object sender, System.EventArgs e) {
+      this.mnuConfigAbilities.Show(this.btnConfigAbilities, new Point(0, this.btnConfigAbilities.Height));
     }
 
     #endregion
@@ -904,6 +1041,34 @@ namespace EngrishOnry {
     private void btnRestoreStringTables_Click(object sender, System.EventArgs e) {
       this.RestoreSwappedFiles("StringTables");
       this.AddLogEntry("=== String Table Restoration Completed ===");
+    }
+
+    #endregion
+
+    #region Auto-Translator
+
+    private void btnTranslateAutoTrans_Click(object sender, System.EventArgs e) {
+      this.TranslateAutoTranslatorFile(0, 76, 23);
+      this.AddLogEntry("=== Auto-Translator Translation Completed ===");
+    }
+
+    private void btnRestoreAutoTrans_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(0, 76, 23);
+      this.AddLogEntry("=== Auto-Translator Restoration Completed ===");
+    }
+
+    private void btnConfigAutoTrans_Click(object sender, System.EventArgs e) {
+      this.mnuConfigAutoTrans.Show(this.btnConfigAutoTrans, new Point(0, this.btnConfigAutoTrans.Height));
+    }
+
+    private void mnuPreserveJapaneseATCompletion_Click(object sender, System.EventArgs e) {
+      this.mnuPreserveJapaneseATCompletion.Checked = true;
+      this.mnuEnglishATCompletionOnly.Checked = false;
+    }
+
+    private void mnuEnglishATCompletionOnly_Click(object sender, System.EventArgs e) {
+      this.mnuEnglishATCompletionOnly.Checked = true;
+      this.mnuPreserveJapaneseATCompletion.Checked = false;
     }
 
     #endregion

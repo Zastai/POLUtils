@@ -23,13 +23,17 @@ namespace PlayOnline.FFXI {
     Flags,
     StackSize,
     Type,
+    MysteryField, // Need a good name for this...
+    ValidTargets,
     EnglishName,
     JapaneseName,
     LogNameSingular,
     LogNamePlural,
     Description,
+    // Furniture
+    Element,
+    Storage,
     // Armor & Weapons
-    ResourceID,
     Level,
     Slots,
     Races,
@@ -42,8 +46,10 @@ namespace PlayOnline.FFXI {
     ShieldSize,
     // Weapon Only
     Damage,
+    DPS,
     Delay,
     Skill,
+    JugSize, // BST Jugs only; Not sure if this is the correct interpretation...
   }
 
   public enum Element : byte {
@@ -55,7 +61,8 @@ namespace PlayOnline.FFXI {
     Water,
     Light,
     Dark,
-    Special = 15 // this is the element set on the Meteor spell
+    Special   = 15, // this is the element set on the Meteor spell
+    Undecided = 255 // this is the element set on inactive furnishing items in the item data
   }
 
   [Flags]
@@ -97,12 +104,12 @@ namespace PlayOnline.FFXI {
     NoAuction   = 0x0040,
     Scroll      = 0x0080,
     Linkshell   = 0x0100,
-    Flag09      = 0x0200,
-    Flag10      = 0x0400,
+    CanUse      = 0x0200,
+    CanTradeNPC = 0x0400,
     CanEquip    = 0x0800,
     NoSale      = 0x1000,
     NoDelivery  = 0x2000,
-    NoTrade     = 0x4000,
+    NoTradePC   = 0x4000,
     Rare        = 0x8000,
     // Combined Flags
     Ex          = 0x6040, // NoAuction + NoDelivery + NoTrade
@@ -118,12 +125,13 @@ namespace PlayOnline.FFXI {
     Linkshell  = 0x0006,
     UsableItem = 0x0007,
     Crystal    = 0x0008,
-    Unknown    = 0x000C,
+    Unknown    = 0x0009,
     Furnishing = 0x000A,
     Plant      = 0x000B,
     Flowerpot  = 0x000C,
     Material   = 0x000D,
     Mannequin  = 0x000E,
+    Book       = 0x000F
   }
 
   [Flags]

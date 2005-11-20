@@ -825,6 +825,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.ieItemViewer.Size = ((System.Drawing.Size)(resources.GetObject("ieItemViewer.Size")));
       this.ieItemViewer.TabIndex = ((int)(resources.GetObject("ieItemViewer.TabIndex")));
       this.ieItemViewer.Visible = ((bool)(resources.GetObject("ieItemViewer.Visible")));
+      this.ieItemViewer.SizeChanged += new System.EventHandler(this.ieItemViewer_SizeChanged);
       // 
       // grpMainItemActions
       // 
@@ -1377,6 +1378,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     #endregion
+
+    private void ieItemViewer_SizeChanged(object sender, System.EventArgs e) {
+      if (this.Height < this.ieItemViewer.Height + 128)
+	this.Height = this.ieItemViewer.Height + 128;
+    }
 
   }
 

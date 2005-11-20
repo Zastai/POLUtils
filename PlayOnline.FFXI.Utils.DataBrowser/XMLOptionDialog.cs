@@ -81,12 +81,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
-    public bool IncludeIconData {
-      get {
-	return true;
-      }
-    }
-
     #endregion
 
     #region Windows Form Designer generated code

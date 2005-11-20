@@ -85,6 +85,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    goto Done;
   	  Application.DoEvents();
 	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
+	  this.ScanQuestData(BR);
+	  if (this.StringTableEntries.Count != 0)
+	    goto Done;
+  	  Application.DoEvents();
+	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
 	  this.ScanItemData(BR);
 	  if (this.Items.Count != 0)
 	    goto Done;
@@ -105,42 +110,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void SetProgress(long Current, long Max) {
       this.prbScanProgress.Value = (int) (Math.Min((decimal) Current / Max, 1.0M) * this.prbScanProgress.Maximum);
       Application.DoEvents();
-    }
-
-    private byte Rotate(byte B, int Bits) {
-      return (byte) ((B >> Bits) | (B << (8 - Bits)));
-    }
-
-    private int CountBits(byte B) {
-    int Count = 0;
-      while (B != 0) {
-       if ((B & 0x01) != 0)
-         ++Count;
-        B >>= 1;
-      }
-      return Count;
-    }
-
-    private bool DecodeInfoBlock(int Index, byte[] Bytes) {
-    byte ShiftSize = 0;
-      // This is the heuristic that ffxitool uses to determine the shift size - it makes absolutely no
-      // sense to me, but it works; I suppose the author of ffxitool reverse engineered what FFXI does.
-    int BitCount = this.CountBits(Bytes[2]) - this.CountBits(Bytes[11]) + this.CountBits(Bytes[12]);
-      switch (Math.Abs(BitCount) % 5) {
-	case 0: ShiftSize = 7; break;
-	case 1: ShiftSize = 1; break;
-	case 2: ShiftSize = 6; break;
-	case 3: ShiftSize = 2; break;
-	case 4: ShiftSize = 5; break;
-      }
-      if (ShiftSize < 1 || ShiftSize > 7)
-	return false;
-      // This is usually a good test, BUT two of the status info blocks have a "bad" index...
-      // if (Index != this.Rotate(Bytes[0], ShiftSize) + (this.Rotate(Bytes[1], ShiftSize) << 8))
-      //   return false;
-      for (int i = 0; i < Bytes.Length; ++i)
-       Bytes[i] = this.Rotate(Bytes[i], ShiftSize);
-      return true;
     }
 
     #endregion
@@ -194,7 +163,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !this.DecodeInfoBlock(i, Bytes))
+	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !FFXIEncryption.DecodeDataBlock(Bytes))
 	  goto BadFormat;
       ArrayList Fields = new ArrayList(5);
 	Fields.Add(E.GetString(Bytes, 0x0a, 32).TrimEnd('\0'));
@@ -382,8 +351,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lblScanProgress.Text = I18N.GetText("ItemLoad");
       for (long i = 0; i < ItemCount; ++i) {
       byte[] ItemData  = BR.ReadBytes(0xc00);
-	for (int j = 0; j < 0xc00; ++j)
-	  ItemData[j] = this.Rotate(ItemData[j], 5);
+	FFXIEncryption.Rotate(ItemData, 5);
       FFXIGraphic ItemIcon = null;
 	{
 	BinaryReader IconBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
@@ -407,6 +375,125 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     BadFormat:
       this.Items.Clear();
       this.Images.Clear();
+    }
+
+    #endregion
+
+    #region Quests / Missions / Key Items
+
+    private void ScanQuestData(BinaryReader BR) {
+      this.lblScanProgress.Text = I18N.GetText("ItemCheck");
+      this.SetProgress(0, 1);
+      if (Encoding.ASCII.GetString(BR.ReadBytes(4)) != "menu")
+	return;
+      if (BR.ReadInt32() != 0x101)
+	return;
+      if (BR.ReadInt64() != 0x000)
+	return;
+      if (BR.ReadInt64() != 0)
+	return;
+      if (BR.ReadInt64() != 0)
+	return;
+    string MenuNameStart = Encoding.ASCII.GetString(BR.ReadBytes(4));
+      BR.ReadUInt32(); // unknown
+      if (BR.ReadInt64() != 0)
+	return;
+      // Now we're ready to start reading menus
+    ColumnHeader[] InfoColumns = new ColumnHeader[03 + 12];
+      InfoColumns[00]           = new ColumnHeader();
+      InfoColumns[00].Text      = I18N.GetText("ColumnHeader:Section");
+      InfoColumns[00].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[00].Width     = 50;
+      InfoColumns[01]           = new ColumnHeader();
+      InfoColumns[01].Text      = I18N.GetText("ColumnHeader:Name");
+      InfoColumns[01].TextAlign = HorizontalAlignment.Left;
+      InfoColumns[01].Width     = 50;
+      InfoColumns[02]           = new ColumnHeader();
+      InfoColumns[02].Text      = String.Format(I18N.GetText("ColumnHeader:LineCount"), I18N.GetText("ColumnHeader:Text"));
+      InfoColumns[02].TextAlign = HorizontalAlignment.Right;
+      InfoColumns[02].Width     = 30;
+      for (int i = 0; i < 12; ++i) {
+	InfoColumns[03 + i]           = new ColumnHeader();
+	InfoColumns[03 + i].Text      = String.Format(I18N.GetText("ColumnHeader:LineNumber"), I18N.GetText("ColumnHeader:Text"), i + 1);
+	InfoColumns[03 + i].TextAlign = HorizontalAlignment.Left;
+	InfoColumns[03 + i].Width     = 100;
+      }
+      this.StringTableEntries.Add(InfoColumns);
+    uint MenuCount = 0;
+    FFXIEncoding E = new FFXIEncoding();
+      this.lblScanProgress.Text = I18N.GetText("QuestLoad");
+      while (BR.BaseStream.Position < BR.BaseStream.Length) {
+      string Marker = Encoding.ASCII.GetString(BR.ReadBytes(4));
+      string Filler = Encoding.ASCII.GetString(BR.ReadBytes(4));
+      string MenuName = Encoding.ASCII.GetString(BR.ReadBytes(8));
+	if (Marker.StartsWith("end"))
+	  break;
+	if (Marker != "menu" || Filler != "    ")
+	  continue;
+	if (MenuCount++ == 0 && MenuName.Substring(0, 4) != MenuNameStart)
+	  continue;
+	// TODO: verify the menu name; would not be future-proof tho.  Perhaps just check for _qs or _ms?
+	if (BR.ReadInt32() != 0) {
+	  BR.BaseStream.Seek(-4, SeekOrigin.Current);
+	  continue;
+	}
+      int EntryCount = BR.ReadInt32();
+      long MenuStart = BR.BaseStream.Position - 0x18;
+      long MaxMenuPos = MenuStart;
+	for (int i = 0; i < EntryCount; ++i) {
+	int  Index     = BR.ReadInt32();
+	long NameStart = MenuStart + BR.ReadInt32();
+	long NameEnd   = MenuStart + BR.ReadInt32();
+	long BodyStart = MenuStart + BR.ReadInt32();
+	long BodyEnd   = MenuStart + BR.ReadInt32();
+	  if (NameEnd > MaxMenuPos)
+	    MaxMenuPos = NameEnd;
+	ArrayList Fields = new ArrayList();
+	  Fields.Add(MenuName);
+	  {
+	  long CurPos = BR.BaseStream.Position;
+	    BR.BaseStream.Seek(NameStart, SeekOrigin.Begin);
+	    { // Read entry name
+	    string EntryName = FFXIEncryption.ReadEncodedString(BR, E);
+	      if (MenuName == "sc_item_") {
+		BR.BaseStream.Seek(NameEnd, SeekOrigin.Begin);
+	      string X = EntryName;
+		if (X != String.Empty && X != "X")
+		  EntryName = String.Format("({0}) ", X);
+		else
+		  EntryName = String.Empty;
+		EntryName += FFXIEncryption.ReadEncodedString(BR, E);
+	      }
+	      Fields.Add(EntryName);
+	    }
+	    BR.BaseStream.Seek(BodyStart, SeekOrigin.Begin);
+	    { // Read entry description lines
+	    int LineCount = BR.ReadInt32();
+	      Fields.Add(LineCount.ToString());
+	    long[] LineStart = new long[LineCount];
+	      for (int j = 0; j < LineCount; ++j) {
+		LineStart[j] = MenuStart + BR.ReadInt32();
+		if (LineStart[j] > MaxMenuPos)
+		  MaxMenuPos = LineStart[j];
+	      }
+	      for (int j = 0; j < LineCount; ++j) {
+		BR.BaseStream.Seek(LineStart[j], SeekOrigin.Begin);
+		Fields.Add(FFXIEncryption.ReadEncodedString(BR, E));
+	      }
+	    }
+	    BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
+	  }
+	  this.StringTableEntries.Add(Fields.ToArray());
+	  if (FileScanDialog.ShowProgressDetails)
+	    this.lblScanProgress.Text = String.Format(I18N.GetText("QuestLoadProgress"), MenuName, i + 1, EntryCount);
+	}
+	if ((MaxMenuPos % 16) != 0)
+	  MaxMenuPos += 16 - (MaxMenuPos % 16);
+	if (MaxMenuPos < BR.BaseStream.Length)
+	  BR.BaseStream.Seek(MaxMenuPos, SeekOrigin.Begin);
+	else
+	  break;
+      }
     }
 
     #endregion
@@ -493,7 +580,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       byte[] Bytes = BR.ReadBytes(0x400);
 	if (Bytes[0x3] != 0x00 || Bytes[0x5] != 0x00 || Bytes[0x7] != 0x00 || Bytes[0x9] != 0x00 || Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff)
 	  goto BadFormat;
-	if (!this.DecodeInfoBlock(i, Bytes))
+	if (!FFXIEncryption.DecodeDataBlock(Bytes))
 	  goto BadFormat;
       ArrayList Fields = new ArrayList(9);
 	Fields.Add(String.Format("{0}", (MagicType) Bytes[0x02]));
@@ -565,7 +652,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 202-bff IMG Icon (+ padding)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x200);
-	if (!this.DecodeInfoBlock(i, Bytes))
+	if (!FFXIEncryption.DecodeDataBlock(Bytes))
 	  goto BadFormat;
       byte[] IconBytes = BR.ReadBytes(0xa00);
 	if (IconBytes[0x9ff] != 0xff)
