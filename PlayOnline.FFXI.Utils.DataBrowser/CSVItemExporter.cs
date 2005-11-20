@@ -41,9 +41,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  foreach (ItemField IF in Fields) {
 	    if (IF == ItemField.Description) {
 	    string FieldName = new NamedEnum(IF).Name;
-	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:DescriptionLineCount"), FieldName));
+	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:LineCount"), FieldName));
 	      for (byte i = 0; i < 6; ++i) // Max 6 lines - should be plenty
-		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:DescriptionLine"), FieldName, i + 1));
+		CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, String.Format(I18N.GetText("ColumnHeader:LineNumber"), FieldName, i + 1));
 	    }
 	    else
 	      CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, new NamedEnum(IF).Name);
