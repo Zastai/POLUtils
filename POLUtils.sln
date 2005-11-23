@@ -86,6 +86,14 @@ Global
 		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release.ActiveCfg = Release|.NET
 		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release.Build.0 = Release|.NET
 	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		Binaries\DotNet.nsh = Binaries\DotNet.nsh
+		Binaries\Installer-PreRelease.nsi = Binaries\Installer-PreRelease.nsi
+		Binaries\Installer-Release.nsi = Binaries\Installer-Release.nsi
+		Binaries\Installer.nsh = Binaries\Installer.nsh
+		Binaries\Languages.nsh = Binaries\Languages.nsh
+		Binaries\Version.nsh = Binaries\Version.nsh
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityAddIns) = postSolution

@@ -119,22 +119,17 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "EncodingTestUI.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "EncodingTestUI.resx"
-                    DependentUpon = "EncodingTestUI.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Enums.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "FFXIEncoding.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIEncryption.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

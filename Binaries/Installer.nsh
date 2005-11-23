@@ -89,7 +89,7 @@ InstType "Full"
 Section "-DotNetCheck"
   Push "v1.1"
   Call CheckDotNet
-  StrCmp $DOTNET_VERSION "" 0 NoAbort
+  StrCmp $DOTNET_AVAILABLE "Y" 0 NoAbort
     MessageBox MB_OK|MB_ICONSTOP $(MB_DOTNET_NOT_FOUND)
     Abort
   NoAbort:

@@ -175,11 +175,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	string FieldName = new NamedEnum(IF).Name;
 	string[] DescriptionLines = II.GetFieldText(IF).Split('\n');
 	  if (AddColumns)
-	    this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:DescriptionLineCount"), FieldName), 120, HorizontalAlignment.Right);
+	    this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:LineCount"), FieldName), 120, HorizontalAlignment.Right);
 	  LVI.SubItems.Add(DescriptionLines.Length.ToString());
 	  for (int i = 0; i < 6; ++i) {
 	    if (AddColumns)
-	      this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:DescriptionLine"), FieldName, i + 1), 120, HorizontalAlignment.Left);
+	      this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:LineNumber"), FieldName, i + 1), 120, HorizontalAlignment.Left);
 	    LVI.SubItems.Add((i < DescriptionLines.Length) ? DescriptionLines[i] : "");
 	  }
 	}

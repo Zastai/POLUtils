@@ -1019,6 +1019,7 @@
       <rom-file app="0" dir="097" file="041"><i18n-string id="Menu:MenuItemText"/></rom-file>
       <rom-file app="0" dir="097" file="046"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file app="0" dir="097" file="036"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <rom-file app="0" dir="118" file="115"><i18n-string id="Menu:Quests"/></rom-file>
       <rom-file app="0" dir="097" file="048"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="119" file="056"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="119" file="057"><i18n-string id="Menu:Status"/></rom-file>
@@ -1043,6 +1044,7 @@
       <rom-file app="0" dir="097" file="023"><i18n-string id="Menu:MenuItemText"/></rom-file>
       <rom-file app="0" dir="097" file="028"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file app="0" dir="097" file="008"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <rom-file app="0" dir="118" file="113"><i18n-string id="Menu:Quests"/></rom-file>
       <rom-file app="0" dir="097" file="030"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="000" file="011"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="000" file="012"><i18n-string id="Menu:Status"/></rom-file>

@@ -26,7 +26,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     private ItemDataLanguage RLanguage;
     private ItemDataType     RType;
 
-    private int CurrentItem = -1;
+    private int CurrentItem   = -1;
+    private int StartupHeight = -1;
 
     #region Controls
 
@@ -45,7 +46,10 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     public MainWindow() {
       this.InitializeComponent();
+      this.StartupHeight = this.Height;
       this.Icon = Icons.FileSearch;
+      this.ieLeft.LockViewMode();
+      this.ieRight.LockViewMode();
       this.EnableNavigation();
     }
 
@@ -63,17 +67,13 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       XmlDocument XD = new XmlDocument();
 	XD.Load(FileName);
 	Application.DoEvents();
-	if (XD.DocumentElement.Name == "ffxi-item-info") {
+	if (XD.DocumentElement.Name == "ItemList") {
 	int Index = 0;
-	  {
-	  XmlNode XLang = XD.DocumentElement.SelectSingleNode("data-language");
-	    try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XLang.InnerText); } catch { }
-	  XmlNode XType = XD.DocumentElement.SelectSingleNode("data-type");
-	    try { LoadedType = (ItemDataType) Enum.Parse(typeof(ItemDataType), XType.InnerText); } catch { }
-	    IE.LockViewMode(LoadedLanguage, LoadedType);
-	  }
+	  try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XD.DocumentElement.Attributes["Language"].InnerText); } catch { }
+	  try { LoadedType     = (ItemDataType)     Enum.Parse(typeof(ItemDataType),     XD.DocumentElement.Attributes["Type"].InnerText);     } catch { }
+	  IE.LockViewMode(LoadedLanguage, LoadedType);
 	  foreach (XmlNode XN in XD.DocumentElement.ChildNodes) {
-	    if (XN is XmlElement && XN.Name == "item") {
+	    if (XN is XmlElement && XN.Name == "Item") {
 	      LoadedItems.Add(new FFXIItem(Index++, XN as XmlElement));
 	      Application.DoEvents();
 	    }
@@ -112,12 +112,15 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     #region Item Display
 
     private string GetIconString(FFXIItem I) {
-    string IconString = I.IconGraphic.ToString(); // general description
-      {
-      MemoryStream MS = new MemoryStream();
-	I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
-	IconString += Convert.ToBase64String(MS.GetBuffer());
-	MS.Close();
+    string IconString = "";
+      if (I.IconGraphic != null) {
+	IconString += I.IconGraphic.ToString(); // general description
+	if (I.IconGraphic.Bitmap != null) {
+	MemoryStream MS = new MemoryStream();
+	  I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
+	  IconString += Convert.ToBase64String(MS.GetBuffer());
+	  MS.Close();
+	}
       }
       return IconString;
     }
@@ -126,7 +129,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       if (this.ieLeft.Item != null && this.ieRight.Item != null) {
 	{ // Compare icon
 	bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
-	  this.ieLeft.MarkIcon(IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
+	  this.ieLeft.MarkIcon (IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
 	  this.ieRight.MarkIcon(IconChanged ? FFXIItemEditor.Mark.Changed : FFXIItemEditor.Mark.None);
 	}
 	// Compare fields
@@ -147,26 +150,32 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     FFXIItem RightItem = null;
       if (this.CurrentItem >= 0) {
 	if (this.LeftItemsShown != null) {
-	  LeftItem = this.LeftItemsShown[this.CurrentItem];
-	  if (this.CurrentItem < (this.LeftItemsShown.Length - 1))
+	  if (this.CurrentItem < this.LeftItemsShown.Length)
+	    LeftItem = this.LeftItemsShown[this.CurrentItem];
+	  if (this.CurrentItem < this.LeftItemsShown.Length - 1)
 	    this.btnNext.Enabled = true;
 	}
 	else if (this.LeftItems != null) {
-	  LeftItem = this.LeftItems[this.CurrentItem];
-	  if (this.CurrentItem < (this.LeftItems.Length - 1))
+	  if (this.CurrentItem < this.LeftItems.Length)
+	    LeftItem = this.LeftItems[this.CurrentItem];
+	  if (this.CurrentItem < this.LeftItems.Length - 1)
 	    this.btnNext.Enabled = true;
 	}
 	if (this.RightItemsShown != null) {
-	  RightItem = this.RightItemsShown[this.CurrentItem];
-	  if (this.CurrentItem < (this.RightItemsShown.Length - 1))
+	  if (this.CurrentItem < this.RightItemsShown.Length)
+	    RightItem = this.RightItemsShown[this.CurrentItem];
+	  if (this.CurrentItem < this.RightItemsShown.Length - 1)
 	    this.btnNext.Enabled = true;
 	}
 	else if (this.RightItems != null) {
-	  RightItem = this.RightItems[this.CurrentItem];
-	  if (this.CurrentItem < (this.RightItems.Length - 1))
+	  if (this.CurrentItem < this.RightItems.Length)
+	    RightItem = this.RightItems[this.CurrentItem];
+	  if (this.CurrentItem < this.RightItems.Length - 1)
 	    this.btnNext.Enabled = true;
 	}
       }
+      else
+	this.btnNext.Enabled = false;
       this.ieLeft.Item  = LeftItem;
       this.ieRight.Item = RightItem;
     }
@@ -234,6 +243,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieLeft.Size = ((System.Drawing.Size)(resources.GetObject("ieLeft.Size")));
       this.ieLeft.TabIndex = ((int)(resources.GetObject("ieLeft.TabIndex")));
       this.ieLeft.Visible = ((bool)(resources.GetObject("ieLeft.Visible")));
+      this.ieLeft.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // ieRight
       // 
@@ -256,6 +266,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieRight.Size = ((System.Drawing.Size)(resources.GetObject("ieRight.Size")));
       this.ieRight.TabIndex = ((int)(resources.GetObject("ieRight.TabIndex")));
       this.ieRight.Visible = ((bool)(resources.GetObject("ieRight.Visible")));
+      this.ieRight.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // btnLoadItemSet1
       // 
@@ -479,6 +490,12 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.CurrentItem = ((LIS.Count == 0) ? -1 : 0);
       this.EnableNavigation();
       this.MarkItemChanges();
+    }
+
+    private void ItemViewerSizeChanged(object sender, System.EventArgs e) {
+    int WantedHeight = this.StartupHeight + Math.Max(this.ieLeft.Height, this.ieRight.Height) + 4;
+      if (this.Height < WantedHeight)
+	this.Height = WantedHeight;
     }
 
     #endregion

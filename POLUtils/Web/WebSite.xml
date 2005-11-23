@@ -93,6 +93,24 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.6.2 Released" author="Pebbles" date="November 20th, 2005">
+      <p>After a looooooong delay (caused by ZoneAlarm-induced BSOD issues), I'm back with another minor update (0.6.2).</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>The autotranslator translation of EngrishOnry was fixed (it broke the game, making text input impossible).</li>
+      </ul></p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>EngrishOnry was made more configurable. For example, in the case of the autotranslator translation, you can choose to keep the
+	    Japanese abbreviations (e.g. "ari&lt;TAB&gt;" to get "(Thank you.)").</li>
+        <li>Thanks to some digging by Stephen Newby, several new fields were added to the item viewer (including element &amp; storage size on
+            furniture items).  One of the fields applies specifically to beastmaster "jugs"; it's currently marked as "jug size" (with a
+            value ranging from 1 to 5 much like shield size), but its exact meaning has not yet been determined.  For all I know it could be
+            a pet damage or summon time multiplier.  Any feedback from BSTs is appreciated.</li>
+        <li>The text for quests/missions/key items is now viewable (from the String Table menu), bringing POLUtils closer to matching ffxitool's
+         non-3D functionality.</li>
+      </ul></p>
+      <p><em>Note</em>: the XML output format has changed in this version (and will hopefully be fairly future-proof).  I may release a small
+         tool to "upgrade" existing exports, but it's not a priority for me at this time.</p>
+    </news-item>
     <news-item title="POLUtils 0.6.1 Released" author="Pebbles" date="August 2nd, 2005">
       <p>Just a quick bugfix release - fixes dialog and string table translation in EngrishOnry,
          and corrects/extends the list of dialog tables in the data browser.</p>
@@ -339,6 +357,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.6.2-Release.exe">
+	Fixed EngrishOnry and made it more configurable; added several new item fields, and added quest/mission/key item viewing.<br/>
+      </file>
       <file name="POLUtils-0.6.1-Release.exe">
 	Fixed EngrishOnry; adjusted dialog table lists in the data browser.<br/>
       </file>

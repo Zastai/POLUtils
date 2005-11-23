@@ -168,6 +168,9 @@
     <data name="Menu:POLMessages" type="System.String">
         <value>&amp;POL Messages</value>
     </data>
+    <data name="Menu:Quests" type="System.String">
+        <value>Quests / Missions / Key Items</value>
+    </data>
     <data name="Menu:RaceNames" type="System.String">
         <value>&amp;Race Names</value>
     </data>
@@ -234,6 +237,15 @@
     <data name="ItemLoadProgress" type="System.String">
         <value>Loading item information ({0}/{1}) - please wait...</value>
     </data>
+    <data name="QuestCheck" type="System.String">
+        <value>Checking whether the file contains quest/mission/key item information...</value>
+    </data>
+    <data name="QuestLoad" type="System.String">
+        <value>Loading quest/mission/key item information - please wait...</value>
+    </data>
+    <data name="QuestLoadProgress" type="System.String">
+        <value>Loading quest/mission/key item information (section '{0}', entry {1} of {2}) - please wait...</value>
+    </data>
     <data name="SpellCheck" type="System.String">
         <value>Checking whether the file contains spell information...</value>
     </data>
@@ -297,12 +309,6 @@
     <data name="ColumnHeader:Description" type="System.String">
         <value>Description</value>
     </data>
-    <data name="ColumnHeader:DescriptionLineCount" type="System.String">
-        <value>{0} (Line Count)</value>
-    </data>
-    <data name="ColumnHeader:DescriptionLine" type="System.String">
-        <value>{0} (Line {1})</value>
-    </data>
     <data name="ColumnHeader:Element" type="System.String">
         <value>Element</value>
     </data>
@@ -327,6 +333,12 @@
     <data name="ColumnHeader:Jobs" type="System.String">
         <value>Jobs</value>
     </data>
+    <data name="ColumnHeader:LineCount" type="System.String">
+        <value>{0} (Line Count)</value>
+    </data>
+    <data name="ColumnHeader:LineNumber" type="System.String">
+        <value>{0} (Line {1})</value>
+    </data>
     <data name="ColumnHeader:MPCost" type="System.String">
         <value>MP Cost</value>
     </data>
@@ -335,6 +347,9 @@
     </data>
     <data name="ColumnHeader:RecastTime" type="System.String">
         <value>Recast Time</value>
+    </data>
+    <data name="ColumnHeader:Section" type="System.String">
+        <value>Section</value>
     </data>
     <data name="ColumnHeader:Skill" type="System.String">
         <value>Skill</value>

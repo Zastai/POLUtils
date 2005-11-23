@@ -32,11 +32,13 @@
     <track id="126"><title>Mog House</title></track>
     <track id="127"><title>Anxiety</title></track>
     <track id="128"><title>Airship</title></track>
+    <track id="129"><title>Unknown</title></track>
     <track id="130"><title>[Character Creation] Tarutaru Female</title></track>
     <track id="131"><title>[Character Creation] Elvaan Female</title></track>
     <track id="132"><title>[Character Creation] Elvaan Male</title></track>
     <track id="133"><title>[Character Creation] Hume Male</title></track>
     <track id="136"><title>[Fishing] Fish On The Hook</title></track>
+    <track id="137"><title>Chains of Promathia - Final Boss Battle</title></track>
     <track id="151"><title>The Federation of Windurst</title></track>
     <track id="152"><title>The Republic of Bastok</title></track>
     <track id="153"><title>Crystal Prelude</title></track>
@@ -59,6 +61,7 @@
     <track id="170"><title>Buccaneers</title></track>
     <!-- ID 227 is bugged - the file has ID 256 set -->
     <track id="256" filename="music227.bgw"><title>Summerfest Theme</title></track>
+    <track id="900"><title>Chains of Promathia - End Theme (Vocal)</title></track>
   </application>
   <application id="0001" name="Final Fantasy XI - Rise of the Zilart">
     <data-path>sound2/win/music/data</data-path>

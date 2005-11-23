@@ -149,7 +149,7 @@
     <value>0</value>
   </data>
   <data name="tvDataFiles.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>324, 597</value>
+    <value>324, 457</value>
   </data>
   <data name="tvDataFiles.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>0</value>
@@ -230,7 +230,7 @@
     <value>Inherit</value>
   </data>
   <data name="splSplitter.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>4, 597</value>
+    <value>4, 457</value>
   </data>
   <data name="splSplitter.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
@@ -653,7 +653,7 @@
     <value>Inherit</value>
   </data>
   <data name="pnlViewerArea.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>440, 597</value>
+    <value>440, 457</value>
   </data>
   <data name="pnlViewerArea.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>10</value>
@@ -740,7 +740,7 @@
     <value>False</value>
   </data>
   <data name="tabViewers.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>440, 561</value>
+    <value>440, 421</value>
   </data>
   <data name="tabViewers.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>12</value>
@@ -824,7 +824,7 @@
     <value>Inherit</value>
   </data>
   <data name="tabViewerItems.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 535</value>
+    <value>432, 395</value>
   </data>
   <data name="tabViewerItems.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
@@ -899,7 +899,7 @@
     <value>Inherit</value>
   </data>
   <data name="ieItemViewer.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>424, 486</value>
+    <value>424, 384</value>
   </data>
   <data name="ieItemViewer.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>1</value>
@@ -911,7 +911,7 @@
     <value>ieItemViewer</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Type">
-    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.6.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.6.2.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Parent">
     <value>tabViewerItems</value>
@@ -1283,7 +1283,7 @@
     <value>Inherit</value>
   </data>
   <data name="tabViewerImages.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 535</value>
+    <value>432, 431</value>
   </data>
   <data name="tabViewerImages.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>2</value>
@@ -1352,7 +1352,7 @@
     <value>Inherit</value>
   </data>
   <data name="picImageViewer.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 499</value>
+    <value>432, 395</value>
   </data>
   <data name="picImageViewer.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Normal</value>
@@ -1748,7 +1748,7 @@
     <value>Inherit</value>
   </data>
   <data name="tabViewerStringTable.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 535</value>
+    <value>432, 431</value>
   </data>
   <data name="tabViewerStringTable.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>1</value>
@@ -1820,7 +1820,7 @@
     <value>Inherit</value>
   </data>
   <data name="lstEntries.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 535</value>
+    <value>432, 431</value>
   </data>
   <data name="lstEntries.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>3</value>
@@ -2023,11 +2023,11 @@
   <data name="$this.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="$this.Name">
-    <value>MainWindow</value>
-  </data>
   <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
+  </data>
+  <data name="$this.Name">
+    <value>MainWindow</value>
   </data>
   <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
@@ -2051,7 +2051,7 @@
     <value />
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>768, 597</value>
+    <value>768, 457</value>
   </data>
   <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2063,7 +2063,7 @@
     <value />
   </data>
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>NoControl</value>
+    <value>Inherit</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>

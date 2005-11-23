@@ -2,95 +2,34 @@
 
 ;; $Id$
 
-Var DOTNET_VERSION
-Var DOTNET_BUILD
-Var DOTNET_ROOT
-Var DOTNET_DLLVERSION
+Var DOTNET_AVAILABLE
 
-;; Checks for a version of the .NET framework.
-;; Push a specific version (e.g. "v1.0") to check for that specific version; push the empty string to check for the most recent
-;; version available.
-;; Upon return, 4 variables will be set:
-;;   DOTNET_VERSION    will hold the version of the framework (e.g. "v1.0" or "v1.1")
-;;   DOTNET_BUILD      will hold the build number of the framework (e.g. "3705" or "4322")
-;;   DOTNET_ROOT       will hold the root directory of the framework (e.g. "C:\Windows\Microsoft.NET\Framework\")
-;;   DOTNET_DLLVERSION will hold the DLL version of System.dll for the found .NET framework
-;; If no matching version was found, all three variables will be empty.
-;; Note that the actual location of the framework files is a combination of all three variables:
-;;   "$DOTNET_ROOT$DOTNET_VERSION.$DOTNET_BUILD\"
 Function CheckDotNet
-  Pop $DOTNET_VERSION
-  ReadRegStr $DOTNET_ROOT HKLM "Software\Microsoft\.NETFramework" "InstallRoot"
-  StrCmp "" $DOTNET_ROOT NoDotNet
-  StrCmp "" $DOTNET_VERSION CheckMostRecent CheckForSpecific
-CheckMostRecent:
-  Push $0
-  Push $1
-  Push $2
-  Push $3
-  Push $4
-  StrCpy $1 0
-  StrCpy $DOTNET_VERSION ""
-  StrCpy $DOTNET_BUILD   ""
-  ;; Don't chain to CheckForSpecific, so we can return v1.1.foo as valid even if there is a bogus v1.2.bar entry in the registry.
-  VersionCheckLoop:
-    EnumRegKey $0 HKLM "Software\Microsoft\.NETFramework\Policy" $1
-    IntOp $1 $1 + 1
-    StrCmp $0 "" VersionCheckDone
-    StrCpy $2 $0 1
-    StrCmp $2 "v" "" VersionCheckLoop
-    StrCpy $4 0
-    VersionBuildCheckLoop:
-      EnumRegValue $3 HKLM "Software\Microsoft\.NETFramework\Policy\$0" $4
-      IntOp $4 $4 + 4
-      StrCmp $3 "" VersionBuildCheckDone
-      IfFileExists "$DOTNET_ROOT$0.$3" StoreVersionBuildNo VersionBuildCheckLoop
-    StoreVersionBuildNo:
-      StrCpy $DOTNET_VERSION $0
-      StrCpy $DOTNET_BUILD   $3
-      GoTo VersionBuildCheckLoop
-    VersionBuildCheckDone:
-    GoTo VersionCheckLoop
-  VersionCheckDone:
-  Pop $4
-  Pop $3
-  Pop $2
-  Pop $1
-  Pop $0
-  StrCmp $DOTNET_VERSION "" NoDotNet
-  StrCmp $DOTNET_BUILD   "" NoDotNet
-  GoTo AlmostDone
-CheckForSpecific:
-  Push $0
-  Push $1
-  StrCpy $1 0
-  StrCpy $DOTNET_BUILD ""
-  BuildCheckLoop:
-    EnumRegValue $0 HKLM "Software\Microsoft\.NETFramework\Policy\$DOTNET_VERSION" $1
-    IntOp $1 $1 + 1
-    StrCmp $0 "" BuildCheckDone
-    IfFileExists "$DOTNET_ROOT$DOTNET_VERSION.$0" StoreBuildNo BuildCheckLoop
-  StoreBuildNo:
-    StrCpy $DOTNET_BUILD $0
-    GoTo BuildCheckLoop
-  BuildCheckDone:
-  Pop $1
-  Pop $0
-  StrCmp $DOTNET_BUILD "" NoDotNet
-  GoTo AlmostDone
-AlmostDone:
-  ClearErrors
-  GetDllVersion "$DOTNET_ROOT$DOTNET_VERSION.$DOTNET_BUILD\mscorlib.dll" $R0 $R1
+  Pop $R0
+  ;; Absolute Requirement: An installation root
+  ReadRegStr $R1 HKLM "Software\Microsoft\.NETFramework" "InstallRoot"
+  StrCmp "" $R1 NoDotNet
+  ;; While the generic chech will find most "normal" installations of the .NET Framework 1.1, some slip through
+  ;; the cracks, so check for 1.1 specially.
+  StrCmp "v1.1" $R0 Special11Check GenericCheck
+Special11Check:
+  ReadRegDWORD $R2 HKLM "Software\Microsoft\NET Framework Setup\NDP\v1.1.4322" "Install"
   IfErrors NoDotNet
-  IntOp $R2 $R0 / 0x00010000
-  IntOp $R3 $R0 & 0x0000FFFF
-  IntOp $R4 $R1 / 0x00010000
-  IntOp $R5 $R1 & 0x0000FFFF
-  StrCpy $DOTNET_DLLVERSION "$R2.$R3.$R4.$R5"
+  IntCmp $R2 1 GotDotNet NoDotNet
+GenericCheck:
+  StrCpy $R2 0
+  BuildCheckLoop:
+    EnumRegValue $R3 HKLM "Software\Microsoft\.NETFramework\Policy\$R0" $R2
+    IntOp $R2 $R2 + 1
+    StrCmp $R3 "" NoDotNet
+    IfFileExists "$R1$R0.$R3" GotDotNet BuildCheckLoop
+  GoTo NoDotNet
+GotDotNet:
+  ClearErrors
+  StrCpy $DOTNET_AVAILABLE "Y"
   GoTo TheEnd
 NoDotNet:
-  StrCpy $DOTNET_VERSION ""
-  StrCpy $DOTNET_BUILD   ""
-  StrCpy $DOTNET_ROOT    ""
+  ClearErrors
+  StrCpy $DOTNET_AVAILABLE "N"
 TheEnd:
 FunctionEnd

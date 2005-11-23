@@ -20,7 +20,7 @@ LangString DESC_SECTION_TRANS            ${LANG_ENGLISH} "Translated resources f
 LangString DESC_SECTION_TR_JA            ${LANG_ENGLISH} "Japanese resources for POLUtils."
 LangString DESC_SECTION_TR_NL            ${LANG_ENGLISH} "Dutch resources for POLUtils."
 LangString DESC_SHORTCUT                 ${LANG_ENGLISH} "A collection of PlayOnline-related utilities."
-LangString LOG_DOTNET_FOUND              ${LANG_ENGLISH} "Found .NET framework $DOTNET_VERSION (build $DOTNET_BUILD) (mscorlib.dll version $DOTNET_DLLVERSION)"
+LangString LOG_DOTNET_FOUND              ${LANG_ENGLISH} "Found .NET framework 1.1"
 LangString LOG_MDX_FOUND                 ${LANG_ENGLISH} "Found Managed DirectX - audio playback will be available."
 LangString LOG_MDX_NOT_FOUND             ${LANG_ENGLISH} "WARNING: Managed DirectX not found - no audio playback possible until it is installed."
 LangString NAME_SECTION_DESKTOP_SHORTCUT ${LANG_ENGLISH} "Desktop Shortcut"
