@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("PlayOnline.FFXI.Utils.DataBrowser")]
-[assembly: AssemblyDescription  ("Components for browsing Final Fantasy XI data files")]
+[assembly: AssemblyTitle        ("PlayOnline.Utils.AudioManager")]
+[assembly: AssemblyDescription  ("Components for browsing, playing and decoding PlayOnline audio files")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
@@ -16,7 +16,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture      ("")]		
 
 [assembly: AssemblyVersion      ("0.7.0.0")]
-
-[assembly: AssemblyDelaySign    (false)]
-[assembly: AssemblyKeyFile      (@"..\..\..\POLUtils.snk")]
-[assembly: AssemblyKeyName      ("")]

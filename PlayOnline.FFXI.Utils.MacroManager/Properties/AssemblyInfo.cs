@@ -16,7 +16,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture      ("")]		
 
 [assembly: AssemblyVersion      ("0.7.0.0")]
-
-[assembly: AssemblyDelaySign    (false)]
-[assembly: AssemblyKeyFile      (@"..\..\..\POLUtils.snk")]
-[assembly: AssemblyKeyName      ("")]

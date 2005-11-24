@@ -1,101 +1,83 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POLUtils", "POLUtils\POLUtils.csproj", "{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Core", "PlayOnline.Core\PlayOnline.Core.csproj", "{84C42502-1564-4617-B80C-ACE781051CE8}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI", "PlayOnline.FFXI\PlayOnline.FFXI.csproj", "{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.ConfigEditor", "PlayOnline.FFXI.Utils.ConfigEditor\PlayOnline.FFXI.Utils.ConfigEditor.csproj", "{BB3E6667-1B22-4465-98DA-821815A4BA93}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.DataBrowser", "PlayOnline.FFXI.Utils.DataBrowser\PlayOnline.FFXI.Utils.DataBrowser.csproj", "{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.ItemComparison", "PlayOnline.FFXI.Utils.ItemComparison\PlayOnline.FFXI.Utils.ItemComparison.csproj", "{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.MacroManager", "PlayOnline.FFXI.Utils.MacroManager\PlayOnline.FFXI.Utils.MacroManager.csproj", "{966ACE61-C745-4B5E-AFFA-31A50E24341B}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.AudioManager", "PlayOnline.Utils.AudioManager\PlayOnline.Utils.AudioManager.csproj", "{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.TetraViewer", "PlayOnline.Utils.TetraViewer\PlayOnline.Utils.TetraViewer.csproj", "{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngrishOnry", "EngrishOnry\EngrishOnry.csproj", "{CBB91A27-923B-4853-9C7F-46B1955D436A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
-Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
-	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Debug.ActiveCfg = Debug|.NET
-		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Debug.Build.0 = Debug|.NET
-		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Release.ActiveCfg = Release|.NET
-		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Release.Build.0 = Release|.NET
-		{84C42502-1564-4617-B80C-ACE781051CE8}.Debug.ActiveCfg = Debug|.NET
-		{84C42502-1564-4617-B80C-ACE781051CE8}.Debug.Build.0 = Debug|.NET
-		{84C42502-1564-4617-B80C-ACE781051CE8}.Release.ActiveCfg = Release|.NET
-		{84C42502-1564-4617-B80C-ACE781051CE8}.Release.Build.0 = Release|.NET
-		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Debug.ActiveCfg = Debug|.NET
-		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Debug.Build.0 = Debug|.NET
-		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Release.ActiveCfg = Release|.NET
-		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Release.Build.0 = Release|.NET
-		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug.ActiveCfg = Debug|.NET
-		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug.Build.0 = Debug|.NET
-		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.ActiveCfg = Release|.NET
-		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release.Build.0 = Release|.NET
-		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Debug.ActiveCfg = Debug|.NET
-		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Debug.Build.0 = Debug|.NET
-		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Release.ActiveCfg = Release|.NET
-		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Release.Build.0 = Release|.NET
-		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug.ActiveCfg = Debug|.NET
-		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug.Build.0 = Debug|.NET
-		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release.ActiveCfg = Release|.NET
-		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release.Build.0 = Release|.NET
-		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Debug.ActiveCfg = Debug|.NET
-		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Debug.Build.0 = Debug|.NET
-		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Release.ActiveCfg = Release|.NET
-		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Release.Build.0 = Release|.NET
-		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Debug.ActiveCfg = Debug|.NET
-		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Debug.Build.0 = Debug|.NET
-		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Release.ActiveCfg = Release|.NET
-		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Release.Build.0 = Release|.NET
-		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Debug.ActiveCfg = Debug|.NET
-		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Debug.Build.0 = Debug|.NET
-		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release.ActiveCfg = Release|.NET
-		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release.Build.0 = Release|.NET
-		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Debug.ActiveCfg = Debug|.NET
-		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Debug.Build.0 = Debug|.NET
-		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release.ActiveCfg = Release|.NET
-		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release.Build.0 = Release|.NET
-	EndGlobalSection
-	GlobalSection(SolutionItems) = postSolution
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A032E7DB-67AF-4ADF-9D15-085DBBCFA524}"
+	ProjectSection(SolutionItems) = postProject
 		Binaries\DotNet.nsh = Binaries\DotNet.nsh
 		Binaries\Installer-PreRelease.nsi = Binaries\Installer-PreRelease.nsi
 		Binaries\Installer-Release.nsi = Binaries\Installer-Release.nsi
 		Binaries\Installer.nsh = Binaries\Installer.nsh
 		Binaries\Languages.nsh = Binaries\Languages.nsh
 		Binaries\Version.nsh = Binaries\Version.nsh
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84C42502-1564-4617-B80C-ACE781051CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C42502-1564-4617-B80C-ACE781051CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84C42502-1564-4617-B80C-ACE781051CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84C42502-1564-4617-B80C-ACE781051CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3E6667-1B22-4465-98DA-821815A4BA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966ACE61-C745-4B5E-AFFA-31A50E24341B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75FF527-FF4A-4F2B-8F86-69AA30E33C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE19CFB-270A-4CFA-A89A-E2EDB57CDA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

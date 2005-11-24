@@ -6,30 +6,13 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
-//using System.Data;
-using System.Runtime.InteropServices;
 
 using PlayOnline.Core;
 
 namespace PlayOnline.Utils.TetraViewer {
 
-  public class MainWindow : System.Windows.Forms.Form {
-
-    private System.Windows.Forms.FolderBrowserDialog dlgBrowseFolder;
-    private System.Windows.Forms.TreeView tvDataFiles;
-    private System.Windows.Forms.StatusBar sbrStatus;
-    private System.Windows.Forms.ContextMenu mnuTreeContext;
-    private System.Windows.Forms.ContextMenu mnuPictureContext;
-    private System.Windows.Forms.MenuItem mnuStretchImage;
-    private System.Windows.Forms.MenuItem mnuExportAll;
-    private System.Windows.Forms.MenuItem mnuExport;
-    private System.Windows.Forms.PictureBox picViewer;
-    private System.Windows.Forms.MenuItem mnuNormalImage;
-    private System.Windows.Forms.MenuItem mnuTiledImage;
-
-    private System.ComponentModel.Container components = null;
+  public partial class MainWindow : Form {
 
     public MainWindow() {
       InitializeComponent();
@@ -45,12 +28,6 @@ namespace PlayOnline.Utils.TetraViewer {
 	this.ReadTOC(F, TN);
       }
       Root.Expand();
-    }
-
-    protected override void Dispose(bool disposing) {
-      if (disposing && components != null) 
-	components.Dispose();
-      base.Dispose(disposing);
     }
 
     private class TOCEntry {
@@ -70,7 +47,7 @@ namespace PlayOnline.Utils.TetraViewer {
 	  if (end >= 0)
 	    this.Name = this.Name.Substring(0, end);
 	}
-	foreach (char c in Path.InvalidPathChars)
+	foreach (char c in Path.GetInvalidFileNameChars())
 	  this.Name = this.Name.Replace(c, '_');
 	this.Offset = BaseOffset + BR.ReadInt32();
 	this.Size   = BR.ReadInt32();
@@ -141,7 +118,7 @@ namespace PlayOnline.Utils.TetraViewer {
 	  this.picViewer.BackgroundImage = I;
 	else
 	  this.picViewer.Image = I;
-      this.picViewer.SizeMode = (this.mnuStretchImage.Checked ? PictureBoxSizeMode.StretchImage : PictureBoxSizeMode.CenterImage);
+        this.picViewer.SizeMode = (this.mnuStretchImage.Checked ? PictureBoxSizeMode.StretchImage : PictureBoxSizeMode.CenterImage);
       int bitdepth = 0;
 	switch (I.PixelFormat) {
 	  case PixelFormat.Format1bppIndexed:
@@ -180,190 +157,6 @@ namespace PlayOnline.Utils.TetraViewer {
       }
       catch {}
     }
-
-    #region Windows Form Designer generated code
-
-    private void InitializeComponent() {
-System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainWindow));
-this.dlgBrowseFolder = new System.Windows.Forms.FolderBrowserDialog();
-this.tvDataFiles = new System.Windows.Forms.TreeView();
-this.mnuTreeContext = new System.Windows.Forms.ContextMenu();
-this.mnuExportAll = new System.Windows.Forms.MenuItem();
-this.mnuExport = new System.Windows.Forms.MenuItem();
-this.sbrStatus = new System.Windows.Forms.StatusBar();
-this.picViewer = new System.Windows.Forms.PictureBox();
-this.mnuPictureContext = new System.Windows.Forms.ContextMenu();
-this.mnuNormalImage = new System.Windows.Forms.MenuItem();
-this.mnuStretchImage = new System.Windows.Forms.MenuItem();
-this.mnuTiledImage = new System.Windows.Forms.MenuItem();
-this.SuspendLayout();
-// 
-// dlgBrowseFolder
-// 
-this.dlgBrowseFolder.Description = resources.GetString("dlgBrowseFolder.Description");
-this.dlgBrowseFolder.SelectedPath = resources.GetString("dlgBrowseFolder.SelectedPath");
-// 
-// tvDataFiles
-// 
-this.tvDataFiles.AccessibleDescription = resources.GetString("tvDataFiles.AccessibleDescription");
-this.tvDataFiles.AccessibleName = resources.GetString("tvDataFiles.AccessibleName");
-this.tvDataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("tvDataFiles.Anchor")));
-this.tvDataFiles.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tvDataFiles.BackgroundImage")));
-this.tvDataFiles.ContextMenu = this.mnuTreeContext;
-this.tvDataFiles.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("tvDataFiles.Dock")));
-this.tvDataFiles.Enabled = ((bool)(resources.GetObject("tvDataFiles.Enabled")));
-this.tvDataFiles.Font = ((System.Drawing.Font)(resources.GetObject("tvDataFiles.Font")));
-this.tvDataFiles.HideSelection = false;
-this.tvDataFiles.ImageIndex = ((int)(resources.GetObject("tvDataFiles.ImageIndex")));
-this.tvDataFiles.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("tvDataFiles.ImeMode")));
-this.tvDataFiles.Indent = ((int)(resources.GetObject("tvDataFiles.Indent")));
-this.tvDataFiles.ItemHeight = ((int)(resources.GetObject("tvDataFiles.ItemHeight")));
-this.tvDataFiles.Location = ((System.Drawing.Point)(resources.GetObject("tvDataFiles.Location")));
-this.tvDataFiles.Name = "tvDataFiles";
-this.tvDataFiles.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("tvDataFiles.RightToLeft")));
-this.tvDataFiles.SelectedImageIndex = ((int)(resources.GetObject("tvDataFiles.SelectedImageIndex")));
-this.tvDataFiles.Size = ((System.Drawing.Size)(resources.GetObject("tvDataFiles.Size")));
-this.tvDataFiles.TabIndex = ((int)(resources.GetObject("tvDataFiles.TabIndex")));
-this.tvDataFiles.Text = resources.GetString("tvDataFiles.Text");
-this.tvDataFiles.Visible = ((bool)(resources.GetObject("tvDataFiles.Visible")));
-this.tvDataFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterSelect);
-// 
-// mnuTreeContext
-// 
-this.mnuTreeContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuExportAll,
-            this.mnuExport});
-this.mnuTreeContext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuTreeContext.RightToLeft")));
-// 
-// mnuExportAll
-// 
-this.mnuExportAll.Enabled = ((bool)(resources.GetObject("mnuExportAll.Enabled")));
-this.mnuExportAll.Index = 0;
-this.mnuExportAll.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuExportAll.Shortcut")));
-this.mnuExportAll.ShowShortcut = ((bool)(resources.GetObject("mnuExportAll.ShowShortcut")));
-this.mnuExportAll.Text = resources.GetString("mnuExportAll.Text");
-this.mnuExportAll.Visible = ((bool)(resources.GetObject("mnuExportAll.Visible")));
-// 
-// mnuExport
-// 
-this.mnuExport.Enabled = ((bool)(resources.GetObject("mnuExport.Enabled")));
-this.mnuExport.Index = 1;
-this.mnuExport.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuExport.Shortcut")));
-this.mnuExport.ShowShortcut = ((bool)(resources.GetObject("mnuExport.ShowShortcut")));
-this.mnuExport.Text = resources.GetString("mnuExport.Text");
-this.mnuExport.Visible = ((bool)(resources.GetObject("mnuExport.Visible")));
-// 
-// sbrStatus
-// 
-this.sbrStatus.AccessibleDescription = resources.GetString("sbrStatus.AccessibleDescription");
-this.sbrStatus.AccessibleName = resources.GetString("sbrStatus.AccessibleName");
-this.sbrStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("sbrStatus.Anchor")));
-this.sbrStatus.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sbrStatus.BackgroundImage")));
-this.sbrStatus.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("sbrStatus.Dock")));
-this.sbrStatus.Enabled = ((bool)(resources.GetObject("sbrStatus.Enabled")));
-this.sbrStatus.Font = ((System.Drawing.Font)(resources.GetObject("sbrStatus.Font")));
-this.sbrStatus.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("sbrStatus.ImeMode")));
-this.sbrStatus.Location = ((System.Drawing.Point)(resources.GetObject("sbrStatus.Location")));
-this.sbrStatus.Name = "sbrStatus";
-this.sbrStatus.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("sbrStatus.RightToLeft")));
-this.sbrStatus.Size = ((System.Drawing.Size)(resources.GetObject("sbrStatus.Size")));
-this.sbrStatus.TabIndex = ((int)(resources.GetObject("sbrStatus.TabIndex")));
-this.sbrStatus.Text = resources.GetString("sbrStatus.Text");
-this.sbrStatus.Visible = ((bool)(resources.GetObject("sbrStatus.Visible")));
-// 
-// picViewer
-// 
-this.picViewer.AccessibleDescription = resources.GetString("picViewer.AccessibleDescription");
-this.picViewer.AccessibleName = resources.GetString("picViewer.AccessibleName");
-this.picViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("picViewer.Anchor")));
-this.picViewer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picViewer.BackgroundImage")));
-this.picViewer.ContextMenu = this.mnuPictureContext;
-this.picViewer.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("picViewer.Dock")));
-this.picViewer.Enabled = ((bool)(resources.GetObject("picViewer.Enabled")));
-this.picViewer.Font = ((System.Drawing.Font)(resources.GetObject("picViewer.Font")));
-this.picViewer.Image = ((System.Drawing.Image)(resources.GetObject("picViewer.Image")));
-this.picViewer.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("picViewer.ImeMode")));
-this.picViewer.Location = ((System.Drawing.Point)(resources.GetObject("picViewer.Location")));
-this.picViewer.Name = "picViewer";
-this.picViewer.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("picViewer.RightToLeft")));
-this.picViewer.Size = ((System.Drawing.Size)(resources.GetObject("picViewer.Size")));
-this.picViewer.SizeMode = ((System.Windows.Forms.PictureBoxSizeMode)(resources.GetObject("picViewer.SizeMode")));
-this.picViewer.TabIndex = ((int)(resources.GetObject("picViewer.TabIndex")));
-this.picViewer.TabStop = false;
-this.picViewer.Text = resources.GetString("picViewer.Text");
-this.picViewer.Visible = ((bool)(resources.GetObject("picViewer.Visible")));
-// 
-// mnuPictureContext
-// 
-this.mnuPictureContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuNormalImage,
-            this.mnuStretchImage,
-            this.mnuTiledImage});
-this.mnuPictureContext.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("mnuPictureContext.RightToLeft")));
-// 
-// mnuNormalImage
-// 
-this.mnuNormalImage.Checked = true;
-this.mnuNormalImage.Enabled = ((bool)(resources.GetObject("mnuNormalImage.Enabled")));
-this.mnuNormalImage.Index = 0;
-this.mnuNormalImage.RadioCheck = true;
-this.mnuNormalImage.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuNormalImage.Shortcut")));
-this.mnuNormalImage.ShowShortcut = ((bool)(resources.GetObject("mnuNormalImage.ShowShortcut")));
-this.mnuNormalImage.Text = resources.GetString("mnuNormalImage.Text");
-this.mnuNormalImage.Visible = ((bool)(resources.GetObject("mnuNormalImage.Visible")));
-this.mnuNormalImage.Click += new System.EventHandler(this.ImageOption_Click);
-// 
-// mnuStretchImage
-// 
-this.mnuStretchImage.Enabled = ((bool)(resources.GetObject("mnuStretchImage.Enabled")));
-this.mnuStretchImage.Index = 1;
-this.mnuStretchImage.RadioCheck = true;
-this.mnuStretchImage.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuStretchImage.Shortcut")));
-this.mnuStretchImage.ShowShortcut = ((bool)(resources.GetObject("mnuStretchImage.ShowShortcut")));
-this.mnuStretchImage.Text = resources.GetString("mnuStretchImage.Text");
-this.mnuStretchImage.Visible = ((bool)(resources.GetObject("mnuStretchImage.Visible")));
-this.mnuStretchImage.Click += new System.EventHandler(this.ImageOption_Click);
-// 
-// mnuTiledImage
-// 
-this.mnuTiledImage.Enabled = ((bool)(resources.GetObject("mnuTiledImage.Enabled")));
-this.mnuTiledImage.Index = 2;
-this.mnuTiledImage.RadioCheck = true;
-this.mnuTiledImage.Shortcut = ((System.Windows.Forms.Shortcut)(resources.GetObject("mnuTiledImage.Shortcut")));
-this.mnuTiledImage.ShowShortcut = ((bool)(resources.GetObject("mnuTiledImage.ShowShortcut")));
-this.mnuTiledImage.Text = resources.GetString("mnuTiledImage.Text");
-this.mnuTiledImage.Visible = ((bool)(resources.GetObject("mnuTiledImage.Visible")));
-this.mnuTiledImage.Click += new System.EventHandler(this.ImageOption_Click);
-// 
-// MainWindow
-// 
-this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-this.AccessibleName = resources.GetString("$this.AccessibleName");
-this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
-this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
-this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
-this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
-this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-this.Controls.Add(this.picViewer);
-this.Controls.Add(this.tvDataFiles);
-this.Controls.Add(this.sbrStatus);
-this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
-this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
-this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-this.MaximumSize = ((System.Drawing.Size)(resources.GetObject("$this.MaximumSize")));
-this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
-this.Name = "MainWindow";
-this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
-this.Text = resources.GetString("$this.Text");
-this.ResumeLayout(false);
-
-    }
-
-    #endregion
 
     private void tvDataFiles_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
       this.sbrStatus.Text = "";

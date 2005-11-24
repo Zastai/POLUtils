@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyTitle        ("POLUtils")]
-[assembly: AssemblyDescription  ("A collection of utilities related to PlayOnline")]
+[assembly: AssemblyTitle        ("PlayOnline.Utils.TetraViewer")]
+[assembly: AssemblyDescription  ("Utility for viewing the TetraMaster image data")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
@@ -16,7 +16,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture      ("")]		
 
 [assembly: AssemblyVersion      ("0.7.0.0")]
-
-[assembly: AssemblyDelaySign    (false)]
-[assembly: AssemblyKeyFile      (@"..\..\..\POLUtils.snk")]
-[assembly: AssemblyKeyName      ("")]

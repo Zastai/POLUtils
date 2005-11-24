@@ -13,7 +13,7 @@ using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
-  internal class FileScanDialog : System.Windows.Forms.Form {
+  internal partial class FileScanDialog : Form {
 
     private string FileName;
 
@@ -23,15 +23,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     public ArrayList StringTableEntries = new ArrayList();
     public ArrayList Images             = new ArrayList();
     public ArrayList Items              = new ArrayList();
-
-    #region Controls
-
-    private System.Windows.Forms.ProgressBar prbScanProgress;
-    private System.Windows.Forms.Label lblScanProgress;
-
-    private System.ComponentModel.Container components = null;
-
-    #endregion
 
     public FileScanDialog(string FileName) {
       InitializeComponent();
@@ -771,95 +762,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     #endregion
-
-    #endregion
-
-    #region Windows Form Designer generated code
-
-    protected override void Dispose(bool disposing) {
-      if (disposing && components != null)
-	components.Dispose();
-      base.Dispose(disposing);
-    }
-
-    private void InitializeComponent() {
-      System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(FileScanDialog));
-      this.prbScanProgress = new System.Windows.Forms.ProgressBar();
-      this.lblScanProgress = new System.Windows.Forms.Label();
-      this.SuspendLayout();
-      // 
-      // prbScanProgress
-      // 
-      this.prbScanProgress.AccessibleDescription = resources.GetString("prbScanProgress.AccessibleDescription");
-      this.prbScanProgress.AccessibleName = resources.GetString("prbScanProgress.AccessibleName");
-      this.prbScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("prbScanProgress.Anchor")));
-      this.prbScanProgress.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("prbScanProgress.BackgroundImage")));
-      this.prbScanProgress.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("prbScanProgress.Dock")));
-      this.prbScanProgress.Enabled = ((bool)(resources.GetObject("prbScanProgress.Enabled")));
-      this.prbScanProgress.Font = ((System.Drawing.Font)(resources.GetObject("prbScanProgress.Font")));
-      this.prbScanProgress.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("prbScanProgress.ImeMode")));
-      this.prbScanProgress.Location = ((System.Drawing.Point)(resources.GetObject("prbScanProgress.Location")));
-      this.prbScanProgress.Maximum = 1000;
-      this.prbScanProgress.Name = "prbScanProgress";
-      this.prbScanProgress.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("prbScanProgress.RightToLeft")));
-      this.prbScanProgress.Size = ((System.Drawing.Size)(resources.GetObject("prbScanProgress.Size")));
-      this.prbScanProgress.TabIndex = ((int)(resources.GetObject("prbScanProgress.TabIndex")));
-      this.prbScanProgress.Text = resources.GetString("prbScanProgress.Text");
-      this.prbScanProgress.Visible = ((bool)(resources.GetObject("prbScanProgress.Visible")));
-      // 
-      // lblScanProgress
-      // 
-      this.lblScanProgress.AccessibleDescription = resources.GetString("lblScanProgress.AccessibleDescription");
-      this.lblScanProgress.AccessibleName = resources.GetString("lblScanProgress.AccessibleName");
-      this.lblScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblScanProgress.Anchor")));
-      this.lblScanProgress.AutoSize = ((bool)(resources.GetObject("lblScanProgress.AutoSize")));
-      this.lblScanProgress.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblScanProgress.Dock")));
-      this.lblScanProgress.Enabled = ((bool)(resources.GetObject("lblScanProgress.Enabled")));
-      this.lblScanProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblScanProgress.Font = ((System.Drawing.Font)(resources.GetObject("lblScanProgress.Font")));
-      this.lblScanProgress.Image = ((System.Drawing.Image)(resources.GetObject("lblScanProgress.Image")));
-      this.lblScanProgress.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblScanProgress.ImageAlign")));
-      this.lblScanProgress.ImageIndex = ((int)(resources.GetObject("lblScanProgress.ImageIndex")));
-      this.lblScanProgress.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblScanProgress.ImeMode")));
-      this.lblScanProgress.Location = ((System.Drawing.Point)(resources.GetObject("lblScanProgress.Location")));
-      this.lblScanProgress.Name = "lblScanProgress";
-      this.lblScanProgress.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblScanProgress.RightToLeft")));
-      this.lblScanProgress.Size = ((System.Drawing.Size)(resources.GetObject("lblScanProgress.Size")));
-      this.lblScanProgress.TabIndex = ((int)(resources.GetObject("lblScanProgress.TabIndex")));
-      this.lblScanProgress.Text = resources.GetString("lblScanProgress.Text");
-      this.lblScanProgress.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblScanProgress.TextAlign")));
-      this.lblScanProgress.Visible = ((bool)(resources.GetObject("lblScanProgress.Visible")));
-      // 
-      // FileScanDialog
-      // 
-      this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-      this.AccessibleName = resources.GetString("$this.AccessibleName");
-      this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
-      this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
-      this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
-      this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
-      this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-      this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
-      this.Controls.Add(this.prbScanProgress);
-      this.Controls.Add(this.lblScanProgress);
-      this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
-      this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
-      this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
-      this.MaximumSize = ((System.Drawing.Size)(resources.GetObject("$this.MaximumSize")));
-      this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
-      this.Name = "FileScanDialog";
-      this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
-      this.ShowInTaskbar = false;
-      this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
-      this.Text = resources.GetString("$this.Text");
-      this.Closing += new System.ComponentModel.CancelEventHandler(this.FileScanDialog_Closing);
-      this.Activated += new System.EventHandler(this.FileScanDialog_Activated);
-      this.ResumeLayout(false);
-
-    }
 
     #endregion
 

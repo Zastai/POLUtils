@@ -87,7 +87,7 @@ InstType "Basic"
 InstType "Full"
 
 Section "-DotNetCheck"
-  Push "v1.1"
+  Push "v2.0"
   Call CheckDotNet
   StrCmp $DOTNET_AVAILABLE "Y" 0 NoAbort
     MessageBox MB_OK|MB_ICONSTOP $(MB_DOTNET_NOT_FOUND)
@@ -127,7 +127,6 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\PlayOnline.FFXI.dll"
   File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\POLUtils.exe"
-  File           "${BUILDDIR}\POLUtils.exe.manifest"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
@@ -154,7 +153,6 @@ SectionEnd
 Section $(NAME_SECTION_ENGRISH_ONRY) SECTION_ENGRISH_ONRY
   SetOutPath "$INSTDIR"
   File "${BUILDDIR}\EngrishOnry.exe"
-  File "${BUILDDIR}\EngrishOnry.exe.manifest"
 SectionEnd
 
 Section "-RegisterInstallationInfo"

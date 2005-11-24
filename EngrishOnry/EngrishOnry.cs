@@ -11,6 +11,7 @@ namespace EngrishOnry {
 
     [STAThread]
     static void Main() {
+      Application.EnableVisualStyles();
       if ((POL.AvailableRegions & POL.Region.Japan) == 0) {
 	MessageBox.Show(null, "This utility requires the JP version of the PlayOnline software to be installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 	return;
