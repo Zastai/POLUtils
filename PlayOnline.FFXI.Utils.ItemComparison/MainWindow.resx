@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -125,17 +128,17 @@
   <data name="ieLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ieLeft.Name">
-    <value xml:space="preserve">ieLeft</value>
+  <data name="&gt;&gt;ieLeft.Name" xml:space="preserve">
+    <value>ieLeft</value>
   </data>
-  <data name="&gt;&gt;ieLeft.Type">
-    <value xml:space="preserve">PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  <data name="&gt;&gt;ieLeft.Type" xml:space="preserve">
+    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
-  <data name="&gt;&gt;ieLeft.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;ieLeft.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;ieLeft.ZOrder">
-    <value xml:space="preserve">5</value>
+  <data name="&gt;&gt;ieLeft.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ieRight.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -150,17 +153,17 @@
   <data name="ieRight.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ieRight.Name">
-    <value xml:space="preserve">ieRight</value>
+  <data name="&gt;&gt;ieRight.Name" xml:space="preserve">
+    <value>ieRight</value>
   </data>
-  <data name="&gt;&gt;ieRight.Type">
-    <value xml:space="preserve">PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  <data name="&gt;&gt;ieRight.Type" xml:space="preserve">
+    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
-  <data name="&gt;&gt;ieRight.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;ieRight.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;ieRight.ZOrder">
-    <value xml:space="preserve">6</value>
+  <data name="&gt;&gt;ieRight.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="btnLoadItemSet1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -177,20 +180,20 @@
   <data name="btnLoadItemSet1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="btnLoadItemSet1.Text">
-    <value xml:space="preserve">Load Item Set &amp;1...</value>
+  <data name="btnLoadItemSet1.Text" xml:space="preserve">
+    <value>Load Item Set &amp;1...</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Name">
-    <value xml:space="preserve">btnLoadItemSet1</value>
+  <data name="&gt;&gt;btnLoadItemSet1.Name" xml:space="preserve">
+    <value>btnLoadItemSet1</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnLoadItemSet1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;btnLoadItemSet1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet1.ZOrder">
-    <value xml:space="preserve">4</value>
+  <data name="&gt;&gt;btnLoadItemSet1.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnLoadItemSet2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -207,29 +210,29 @@
   <data name="btnLoadItemSet2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="btnLoadItemSet2.Text">
-    <value xml:space="preserve">Load Item Set &amp;2...</value>
+  <data name="btnLoadItemSet2.Text" xml:space="preserve">
+    <value>Load Item Set &amp;2...</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Name">
-    <value xml:space="preserve">btnLoadItemSet2</value>
+  <data name="&gt;&gt;btnLoadItemSet2.Name" xml:space="preserve">
+    <value>btnLoadItemSet2</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnLoadItemSet2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;btnLoadItemSet2.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLoadItemSet2.ZOrder">
-    <value xml:space="preserve">3</value>
+  <data name="&gt;&gt;btnLoadItemSet2.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <metadata name="dlgLoadItems.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="dlgLoadItems.Filter">
-    <value xml:space="preserve">XML Files (*.xml)|*.xml|All Files (*.*)|*.*</value>
+  <data name="dlgLoadItems.Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml|All Files (*.*)|*.*</value>
   </data>
-  <data name="dlgLoadItems.Title">
-    <value xml:space="preserve">Select a file to load...</value>
+  <data name="dlgLoadItems.Title" xml:space="preserve">
+    <value>Select a file to load...</value>
   </data>
   <data name="btnPrevious.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -249,20 +252,20 @@
   <data name="btnPrevious.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnPrevious.Text">
-    <value xml:space="preserve">&lt; &amp;Previous</value>
+  <data name="btnPrevious.Text" xml:space="preserve">
+    <value>&lt; &amp;Previous</value>
   </data>
-  <data name="&gt;&gt;btnPrevious.Name">
-    <value xml:space="preserve">btnPrevious</value>
+  <data name="&gt;&gt;btnPrevious.Name" xml:space="preserve">
+    <value>btnPrevious</value>
   </data>
-  <data name="&gt;&gt;btnPrevious.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnPrevious.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnPrevious.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;btnPrevious.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnPrevious.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;btnPrevious.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnNext.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -282,20 +285,20 @@
   <data name="btnNext.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="btnNext.Text">
-    <value xml:space="preserve">&amp;Next &gt;</value>
+  <data name="btnNext.Text" xml:space="preserve">
+    <value>&amp;Next &gt;</value>
   </data>
-  <data name="&gt;&gt;btnNext.Name">
-    <value xml:space="preserve">btnNext</value>
+  <data name="&gt;&gt;btnNext.Name" xml:space="preserve">
+    <value>btnNext</value>
   </data>
-  <data name="&gt;&gt;btnNext.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnNext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnNext.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;btnNext.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnNext.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;btnNext.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnRemoveUnchanged.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -315,40 +318,40 @@
   <data name="btnRemoveUnchanged.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="btnRemoveUnchanged.Text">
-    <value xml:space="preserve">&amp;Remove Unchanged Items</value>
+  <data name="btnRemoveUnchanged.Text" xml:space="preserve">
+    <value>&amp;Remove Unchanged Items</value>
   </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Name">
-    <value xml:space="preserve">btnRemoveUnchanged</value>
+  <data name="&gt;&gt;btnRemoveUnchanged.Name" xml:space="preserve">
+    <value>btnRemoveUnchanged</value>
   </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnRemoveUnchanged.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;btnRemoveUnchanged.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;btnRemoveUnchanged.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>866, 32</value>
+    <value>866, 31</value>
   </data>
-  <data name="$this.Text">
-    <value xml:space="preserve">FFXI Item Data Comparison</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FFXI Item Data Comparison</value>
   </data>
-  <data name="&gt;&gt;dlgLoadItems.Name">
-    <value xml:space="preserve">dlgLoadItems</value>
+  <data name="&gt;&gt;dlgLoadItems.Name" xml:space="preserve">
+    <value>dlgLoadItems</value>
   </data>
-  <data name="&gt;&gt;dlgLoadItems.Type">
-    <value xml:space="preserve">System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;dlgLoadItems.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">MainWindow</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainWindow</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

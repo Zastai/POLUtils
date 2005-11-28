@@ -39,7 +39,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       // 
       // ieLeft
       // 
-      this.ieLeft.BackColor = System.Drawing.SystemColors.Control;
+      this.ieLeft.BackColor = System.Drawing.Color.Transparent;
       this.ieLeft.Item = null;
       resources.ApplyResources(this.ieLeft, "ieLeft");
       this.ieLeft.Name = "ieLeft";
@@ -48,7 +48,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       // ieRight
       // 
       resources.ApplyResources(this.ieRight, "ieRight");
-      this.ieRight.BackColor = System.Drawing.SystemColors.Control;
+      this.ieRight.BackColor = System.Drawing.Color.Transparent;
       this.ieRight.Item = null;
       this.ieRight.Name = "ieRight";
       this.ieRight.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
@@ -89,7 +89,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       // 
       // MainWindow
       // 
-      this.BackColor = System.Drawing.SystemColors.Control;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.btnRemoveUnchanged);
       this.Controls.Add(this.btnNext);
