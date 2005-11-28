@@ -244,14 +244,14 @@ namespace PlayOnline.FFXI {
       #region Private Data
 
       protected Element Element_;
-      protected ushort  Storage_;
+      protected short   Storage_;
 
       #endregion
 
       #region Public Properties
 
       public Element Element { get { return this.Element_; } }
-      public ushort  Storage { get { return this.Storage_; } }
+      public short   Storage { get { return this.Storage_; } }
 
       #endregion
 
@@ -497,7 +497,7 @@ namespace PlayOnline.FFXI {
 	this.ReadBasicFields(BR);
 	this.ReadTextFields(BR, L);
 	this.Element_ = (Element) BR.ReadUInt16();
-	this.Storage_ =           BR.ReadUInt16();
+	this.Storage_ =           BR.ReadInt16();
 	BR.Close();
 	this.L = L;
       }
@@ -640,7 +640,7 @@ namespace PlayOnline.FFXI {
 	this.LogNamePlural_   =               FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNamePlural);
 	this.Description_     =               FFXIItem.UndumpStringField (DumpedItem, ItemField.Description);
 	this.Element_         = (Element)     FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Element);
-	this.Storage_         = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Storage);
+	this.Storage_         = (short)       FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Storage);
       }
 
     }
