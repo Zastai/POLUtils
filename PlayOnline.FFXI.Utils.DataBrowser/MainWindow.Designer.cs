@@ -114,12 +114,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.tvDataFiles, "tvDataFiles");
       this.tvDataFiles.HideSelection = false;
       this.tvDataFiles.ImageList = this.ilBrowserIcons;
+      this.tvDataFiles.ItemHeight = 16;
       this.tvDataFiles.Name = "tvDataFiles";
       this.tvDataFiles.PathSeparator = "/";
-      this.tvDataFiles.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterExpand);
+      this.tvDataFiles.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterCollapse);
       this.tvDataFiles.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvDataFiles_BeforeExpand);
       this.tvDataFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterSelect);
-      this.tvDataFiles.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterCollapse);
+      this.tvDataFiles.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterExpand);
       // 
       // ilBrowserIcons
       // 
@@ -277,10 +278,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerItems.Controls.Add(this.grpMainItemActions);
       resources.ApplyResources(this.tabViewerItems, "tabViewerItems");
       this.tabViewerItems.Name = "tabViewerItems";
+      this.tabViewerItems.UseVisualStyleBackColor = true;
       // 
       // ieItemViewer
       // 
-      this.ieItemViewer.BackColor = System.Drawing.SystemColors.Control;
+      this.ieItemViewer.BackColor = System.Drawing.Color.Transparent;
       this.ieItemViewer.Item = null;
       resources.ApplyResources(this.ieItemViewer, "ieItemViewer");
       this.ieItemViewer.Name = "ieItemViewer";
@@ -291,7 +293,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.grpMainItemActions.Controls.Add(this.cmbItems);
       this.grpMainItemActions.Controls.Add(this.btnFindItems);
       this.grpMainItemActions.Controls.Add(this.btnExportItems);
-      this.grpMainItemActions.FlatStyle = System.Windows.Forms.FlatStyle.System;
       resources.ApplyResources(this.grpMainItemActions, "grpMainItemActions");
       this.grpMainItemActions.Name = "grpMainItemActions";
       this.grpMainItemActions.TabStop = false;
@@ -322,6 +323,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerImages.Controls.Add(this.pnlImageChooser);
       resources.ApplyResources(this.tabViewerImages, "tabViewerImages");
       this.tabViewerImages.Name = "tabViewerImages";
+      this.tabViewerImages.UseVisualStyleBackColor = true;
       // 
       // picImageViewer
       // 
@@ -365,6 +367,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerStringTable.Controls.Add(this.lstEntries);
       resources.ApplyResources(this.tabViewerStringTable, "tabViewerStringTable");
       this.tabViewerStringTable.Name = "tabViewerStringTable";
+      this.tabViewerStringTable.UseVisualStyleBackColor = true;
       // 
       // lstEntries
       // 
@@ -374,6 +377,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.FullRowSelect = true;
       this.lstEntries.GridLines = true;
       this.lstEntries.Name = "lstEntries";
+      this.lstEntries.UseCompatibleStateImageBehavior = false;
       this.lstEntries.View = System.Windows.Forms.View.Details;
       this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
       // 
