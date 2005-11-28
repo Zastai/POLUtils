@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Xml;
 
 using PlayOnline.Core;
@@ -36,6 +37,16 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.ieLeft.LockViewMode();
       this.ieRight.LockViewMode();
       this.EnableNavigation();
+    }
+
+    // If possible, ive the window that nice gradient look
+    protected override void OnPaintBackground(PaintEventArgs e) {
+      if (VisualStyleRenderer.IsSupported) {
+      VisualStyleRenderer VSR = new VisualStyleRenderer(VisualStyleElement.Tab.Body.Normal);
+	VSR.DrawBackground(e.Graphics, this.ClientRectangle, e.ClipRectangle);
+      }
+      else
+	base.OnPaintBackground(e);
     }
 
     #region Item Loading
