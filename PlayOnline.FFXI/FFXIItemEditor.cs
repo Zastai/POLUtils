@@ -341,6 +341,7 @@ namespace PlayOnline.FFXI {
     #region Events - View Mode
 
     private void chkView_Click(object sender, System.EventArgs e) {
+      this.ResetInfoGroups();
       this.chkViewAsEArmor.Checked  = sender.Equals(this.chkViewAsEArmor);
       this.chkViewAsEObject.Checked = sender.Equals(this.chkViewAsEObject);
       this.chkViewAsEWeapon.Checked = sender.Equals(this.chkViewAsEWeapon);
