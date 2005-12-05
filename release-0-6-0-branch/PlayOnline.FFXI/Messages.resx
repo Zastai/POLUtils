@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="ResMimeType">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="Version">
+        <value>1.0.0.0</value>
+    </resheader>
+    <resheader name="Reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="Writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="GraphicTypeBitmap" type="System.String">
+        <value>{0}-bit Bitmap</value>
+    </data>
+    <data name="GraphicTypeDXT" type="System.String">
+        <value>DirectX Texture ({0})</value>
+    </data>
+    <data name="MacroBarLabel" type="System.String">
+        <value>Macro Bar #{0}</value>
+    </data>
+    <data name="E:ItemDataLanguage.English" type="System.String">
+        <value>English Data</value>
+    </data>
+    <data name="E:ItemDataLanguage.Japanese" type="System.String">
+        <value>Japanese Data</value>
+    </data>
+    <data name="E:ItemDataType.Armor" type="System.String">
+        <value>Armor</value>
+    </data>
+    <data name="E:ItemDataType.Weapon" type="System.String">
+        <value>Weapon</value>
+    </data>
+    <data name="E:ItemDataType.Object" type="System.String">
+        <value>Object</value>
+    </data>
+    <data name="E:ItemField.ID" type="System.String">
+        <value>Item ID</value>
+    </data>
+    <data name="E:ItemField.Flags" type="System.String">
+        <value>Flags</value>
+    </data>
+    <data name="E:ItemField.StackSize" type="System.String">
+        <value>Stack Size</value>
+    </data>
+    <data name="E:ItemField.Type" type="System.String">
+        <value>Type</value>
+    </data>
+    <data name="E:ItemField.EnglishName" type="System.String">
+        <value>English Name</value>
+    </data>
+    <data name="E:ItemField.JapaneseName" type="System.String">
+        <value>Japanese Name</value>
+    </data>
+    <data name="E:ItemField.LogNameSingular" type="System.String">
+        <value>Log Name (Singular)</value>
+    </data>
+    <data name="E:ItemField.LogNamePlural" type="System.String">
+        <value>Log Name (Plural)</value>
+    </data>
+    <data name="E:ItemField.Description" type="System.String">
+        <value>Description</value>
+    </data>
+    <data name="E:ItemField.ResourceID" type="System.String">
+        <value>Resource ID</value>
+    </data>
+    <data name="E:ItemField.Level" type="System.String">
+        <value>Level</value>
+    </data>
+    <data name="E:ItemField.Slots" type="System.String">
+        <value>Slots</value>
+    </data>
+    <data name="E:ItemField.Races" type="System.String">
+        <value>Races</value>
+    </data>
+    <data name="E:ItemField.Jobs" type="System.String">
+        <value>Jobs</value>
+    </data>
+    <data name="E:ItemField.MaxCharges" type="System.String">
+        <value>Max. Charges</value>
+    </data>
+    <data name="E:ItemField.CastTime" type="System.String">
+        <value>Casting Time</value>
+    </data>
+    <data name="E:ItemField.EquipDelay" type="System.String">
+        <value>Equip Delay</value>
+    </data>
+    <data name="E:ItemField.ReuseTimer" type="System.String">
+        <value>Reuse Timer</value>
+    </data>
+    <data name="E:ItemField.ShieldSize" type="System.String">
+        <value>Shield Size</value>
+    </data>
+    <data name="E:ItemField.Damage" type="System.String">
+        <value>Damage</value>
+    </data>
+    <data name="E:ItemField.Delay" type="System.String">
+        <value>Delay</value>
+    </data>
+    <data name="E:ItemField.Skill" type="System.String">
+        <value>Skill</value>
+    </data>
+    <data name="E:ItemField.Any" type="System.String">
+        <value>Any Field</value>
+    </data>
+    <data name="E:ItemField.All" type="System.String">
+        <value>Every Field</value>
+    </data>
+    <data name="PWD:StringResources" type="System.String">
+        <value>Loading string resources (auto-translator, item names) from the various DAT files...
+This may take a while, depending on the speed of your machine.</value>
+    </data>
+    <data name="BadResID" type="System.String">
+        <value>Unknown String Resource</value>
+    </data>
+</root>
