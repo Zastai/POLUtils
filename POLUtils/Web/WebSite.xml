@@ -93,6 +93,13 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="Refreshed 0.6.2 Installer" author="Pebbles" date="December 5th, 2005">
+      I uploaded a fresh installer, which returns to the "old-style" .NET detection, and allows installation to continue if the
+      detection fails.  This should resolve the problems people reported.<br/>
+      In other news, I may release 0.7.0 soon - this will simply be 0.6.2 but built for version 2.0 of the .NET framework. It may
+      end up being one of the last releases, because I am seriously considering quitting the game (I haven't played in over a month);
+      let's hope the holidays + december patch can draw me back in.
+    </news-item>
     <news-item title="POLUtils 0.6.2 Released" author="Pebbles" date="November 20th, 2005">
       <p>After a looooooong delay (caused by ZoneAlarm-induced BSOD issues), I'm back with another minor update (0.6.2).</p>
       <p><strong>Fixes:</strong><br/><ul>
