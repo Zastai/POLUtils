@@ -12,6 +12,8 @@ CRCCheck on
 
 Name "POLUtils"
 
+!define REQUIRED_DOTNET_VERSION 2.0
+
 !define SITE_URL "http://users.telenet.be/pebbles/"
 
 !include "Version.nsh"
@@ -87,13 +89,18 @@ InstType "Basic"
 InstType "Full"
 
 Section "-DotNetCheck"
-  Push "v2.0"
+  Push "v${REQUIRED_DOTNET_VERSION}"
   Call CheckDotNet
-  StrCmp $DOTNET_AVAILABLE "Y" 0 NoAbort
-    MessageBox MB_OK|MB_ICONSTOP $(MB_DOTNET_NOT_FOUND)
-    Abort
-  NoAbort:
+  StrCmp $DOTNET_VERSION "" 0 NETFound
+    MessageBox MB_YESNO|MB_DEFBUTTON2|MB_ICONEXCLAMATION $(MB_DOTNET_NOT_FOUND) /SD IDYES IDYES NoAbort
+      DetailPrint $(LOG_DOTNET_NOT_FOUND_ABORT)
+      Abort
+    NoAbort:
+      DetailPrint $(LOG_DOTNET_NOT_FOUND_CONTINUE)
+      GoTo NETTestDone
+  NETFound:
   DetailPrint $(LOG_DOTNET_FOUND)
+  NETTestDone:
 SectionEnd
 
 Section "-ManagedDirectXCheck"
