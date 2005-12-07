@@ -2,54 +2,9 @@ namespace EngrishOnry {
 
   internal partial class MainWindow {
 
-    #region Controls
-
-    private System.Windows.Forms.Label lblActivityLog;
-    private System.Windows.Forms.RichTextBox rtbActivityLog;
-    private System.Windows.Forms.ContextMenu mnuConfigSpellData;
-    private System.Windows.Forms.ContextMenu mnuConfigItemData;
-    private System.Windows.Forms.MenuItem mnuTranslateSpellNames;
-    private System.Windows.Forms.MenuItem mnuTranslateSpellDescriptions;
-    private System.Windows.Forms.ContextMenu mnuConfigAutoTrans;
-    private System.Windows.Forms.Panel pnlLog;
-    private System.Windows.Forms.Panel pnlActions;
-    private System.Windows.Forms.Button btnConfigAutoTrans;
-    private System.Windows.Forms.Button btnConfigItemData;
-    private System.Windows.Forms.Button btnConfigSpellData;
-    private System.Windows.Forms.Label lblItemData;
-    private System.Windows.Forms.Label lblAutoTranslator;
-    private System.Windows.Forms.Label lblSpellData;
-    private System.Windows.Forms.Label lblStringTables;
-    private System.Windows.Forms.Label lblDialogTables;
-    private System.Windows.Forms.Button btnRestoreSpellData;
-    private System.Windows.Forms.Button btnTranslateSpellData;
-    private System.Windows.Forms.Button btnRestoreStringTables;
-    private System.Windows.Forms.Button btnTranslateStringTables;
-    private System.Windows.Forms.Button btnRestoreDialogTables;
-    private System.Windows.Forms.Button btnTranslateDialogTables;
-    private System.Windows.Forms.Button btnRestoreAutoTrans;
-    private System.Windows.Forms.Button btnTranslateAutoTrans;
-    private System.Windows.Forms.Button btnRestoreItemData;
-    private System.Windows.Forms.Button btnTranslateItemData;
-    private System.Windows.Forms.MenuItem mnuTranslateItemNames;
-    private System.Windows.Forms.MenuItem mnuTranslateItemDescriptions;
-    private System.Windows.Forms.MenuItem mnuPreserveJapaneseATCompletion;
-    private System.Windows.Forms.MenuItem mnuEnglishATCompletionOnly;
-    private System.Windows.Forms.Button btnConfigStringTables;
-    private System.Windows.Forms.Button btnConfigDialogTables;
-    private System.Windows.Forms.Button btnConfigAbilities;
-    private System.Windows.Forms.Label lblAbilities;
-    private System.Windows.Forms.Button btnRestoreAbilities;
-    private System.Windows.Forms.Button btnTranslateAbilities;
-    private System.Windows.Forms.ContextMenu mnuConfigAbilities;
-    private System.Windows.Forms.MenuItem mnuTranslateAbilityNames;
-    private System.Windows.Forms.MenuItem mnuTranslateAbilityDescriptions;
+    #region Windows Form Designer generated code
 
     private System.ComponentModel.Container components = null;
-
-    #endregion
-
-    #region Windows Form Designer generated code
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
@@ -382,6 +337,48 @@ namespace EngrishOnry {
     }
 
     #endregion
+
+    // Controls
+    private System.Windows.Forms.Label lblActivityLog;
+    private System.Windows.Forms.RichTextBox rtbActivityLog;
+    private System.Windows.Forms.ContextMenu mnuConfigSpellData;
+    private System.Windows.Forms.ContextMenu mnuConfigItemData;
+    private System.Windows.Forms.MenuItem mnuTranslateSpellNames;
+    private System.Windows.Forms.MenuItem mnuTranslateSpellDescriptions;
+    private System.Windows.Forms.ContextMenu mnuConfigAutoTrans;
+    private System.Windows.Forms.Panel pnlLog;
+    private System.Windows.Forms.Panel pnlActions;
+    private System.Windows.Forms.Button btnConfigAutoTrans;
+    private System.Windows.Forms.Button btnConfigItemData;
+    private System.Windows.Forms.Button btnConfigSpellData;
+    private System.Windows.Forms.Label lblItemData;
+    private System.Windows.Forms.Label lblAutoTranslator;
+    private System.Windows.Forms.Label lblSpellData;
+    private System.Windows.Forms.Label lblStringTables;
+    private System.Windows.Forms.Label lblDialogTables;
+    private System.Windows.Forms.Button btnRestoreSpellData;
+    private System.Windows.Forms.Button btnTranslateSpellData;
+    private System.Windows.Forms.Button btnRestoreStringTables;
+    private System.Windows.Forms.Button btnTranslateStringTables;
+    private System.Windows.Forms.Button btnRestoreDialogTables;
+    private System.Windows.Forms.Button btnTranslateDialogTables;
+    private System.Windows.Forms.Button btnRestoreAutoTrans;
+    private System.Windows.Forms.Button btnTranslateAutoTrans;
+    private System.Windows.Forms.Button btnRestoreItemData;
+    private System.Windows.Forms.Button btnTranslateItemData;
+    private System.Windows.Forms.MenuItem mnuTranslateItemNames;
+    private System.Windows.Forms.MenuItem mnuTranslateItemDescriptions;
+    private System.Windows.Forms.MenuItem mnuPreserveJapaneseATCompletion;
+    private System.Windows.Forms.MenuItem mnuEnglishATCompletionOnly;
+    private System.Windows.Forms.Button btnConfigStringTables;
+    private System.Windows.Forms.Button btnConfigDialogTables;
+    private System.Windows.Forms.Button btnConfigAbilities;
+    private System.Windows.Forms.Label lblAbilities;
+    private System.Windows.Forms.Button btnRestoreAbilities;
+    private System.Windows.Forms.Button btnTranslateAbilities;
+    private System.Windows.Forms.ContextMenu mnuConfigAbilities;
+    private System.Windows.Forms.MenuItem mnuTranslateAbilityNames;
+    private System.Windows.Forms.MenuItem mnuTranslateAbilityDescriptions;
 
   }
 

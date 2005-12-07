@@ -34,17 +34,21 @@ namespace EngrishOnry {
       return Path.Combine(Path.Combine(POL.GetApplicationPath(AppID.FFXI), ROMDir), Path.Combine(String.Format("{0}", Dir), String.Format("{0}.DAT", FileID)));
     }
 
+    private void LogFailure(string Action) {
+      this.AddLogEntry(String.Format(I18N.GetText("ActionFailed"), Action));
+    }
+
     private string MakeBackupFolder(bool CreateIfNeeded) {
       try {
       string BackupFolder = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "EngrishFFXI-Backup");
 	if (CreateIfNeeded && !Directory.Exists(BackupFolder)) {
-	  this.AddLogEntry(String.Format("Creating backup folder: {0}", BackupFolder));
+	  this.AddLogEntry(String.Format(I18N.GetText("CreateBackupDir"), BackupFolder));
 	  Directory.CreateDirectory(BackupFolder);
 	}
 	return BackupFolder;
       }
       catch {
-	this.AddLogEntry("*** MakeBackupFolder() FAILED ***");
+	this.LogFailure("MakeBackupFolder");
 	return null;
       }
     }
@@ -58,13 +62,13 @@ namespace EngrishOnry {
       string BackupName = Path.Combine(this.MakeBackupFolder(), String.Format("{0}-{1}-{2}.dat", App, Dir, FileID));
 	if (!File.Exists(BackupName)) {
 	string OriginalName = this.GetROMPath(App, Dir, FileID);
-	  this.AddLogEntry(String.Format("Backing up: {0}", OriginalName));
+	  this.AddLogEntry(String.Format(I18N.GetText("BackingUp"), OriginalName));
 	  File.Copy(OriginalName, BackupName);
 	}
 	return true;
       }
       catch {
-	this.AddLogEntry("*** BackupFile() FAILED ***");
+	this.LogFailure("BackupFile");
 	return false;
       }
     }
@@ -74,13 +78,13 @@ namespace EngrishOnry {
       string BackupName = Path.Combine(this.MakeBackupFolder(false), String.Format("{0}-{1}-{2}.dat", App, Dir, FileID));
 	if (File.Exists(BackupName)) {
 	string OriginalName = this.GetROMPath(App, Dir, FileID);
-	  this.AddLogEntry(String.Format("Restoring: {0}", OriginalName));
+	  this.AddLogEntry(String.Format(I18N.GetText("Restoring"), OriginalName));
 	  File.Copy(BackupName, OriginalName, true);
 	}
 	return true;
       }
       catch {
-	this.AddLogEntry("*** RestoreFile() FAILED ***");
+	this.LogFailure("RestoreFile");
 	return false;
       }
     }
@@ -97,15 +101,15 @@ namespace EngrishOnry {
       try {
       string JFileName = this.GetROMPath(JApp, JDir, JFileID);
       string EFileName = this.GetROMPath(EApp, EDir, EFileID);
-	this.AddLogEntry(String.Format("Translating item data file: {0}", JFileName));
+	this.AddLogEntry(String.Format(I18N.GetText("TranslatingItems"), JFileName));
       FileStream JStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
       FileStream EStream = new FileStream(EFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 	if ((JStream.Length % 0xc00) != 0) {
-	  this.AddLogEntry("File size suggests this isn't item data - Translation Aborted");
+	  this.AddLogEntry(I18N.GetText("ItemFileSizeBad"));
 	  goto TranslationDone;
 	}
 	if (JStream.Length != EStream.Length) {
-	  this.AddLogEntry("File Size (JP vs EN) does not match - Translation Aborted");
+	  this.AddLogEntry(I18N.GetText("FileSizeMismatch"));
 	  goto TranslationDone;
 	}
       long ItemCount = JStream.Length / 0xc00;
@@ -135,7 +139,7 @@ namespace EngrishOnry {
 	EStream.Close();
       }
       catch {
-	this.AddLogEntry("*** TranslateItemFile() FAILED ***");
+	this.LogFailure("TranslateItemFile");
       }
     }
 
@@ -150,10 +154,10 @@ namespace EngrishOnry {
 	return;
       try {
       string FileName = this.GetROMPath(App, Dir, FileID);
-	this.AddLogEntry(String.Format("Translating spell data file: {0}", FileName));
+	this.AddLogEntry(String.Format(I18N.GetText("TranslatingSpells"), FileName));
       FileStream SpellStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 	if ((SpellStream.Length % 0x400) != 0) {
-	  this.AddLogEntry("*** File size suggests this isn't spell data - Translation Aborted ***");
+	  this.AddLogEntry(I18N.GetText("SpellFileSizeBad"));
 	  goto TranslationDone;
 	}
       long SpellCount = SpellStream.Length / 0x400;
@@ -170,7 +174,7 @@ namespace EngrishOnry {
 	SpellStream.Close();
       }
       catch {
-	this.AddLogEntry("*** TranslateSpellFile() FAILED ***");
+	this.LogFailure("TranslateSpellFile");
       }
     }
 
@@ -186,16 +190,16 @@ namespace EngrishOnry {
       try {
       string JFileName = this.GetROMPath(JApp, JDir, JFileID);
       string EFileName = this.GetROMPath(EApp, EDir, EFileID);
-	this.AddLogEntry(String.Format("Translating abilities data file: {0}", JFileName));
-	this.AddLogEntry(String.Format("Using English data file: {0}", EFileName));
+	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAbilities"), JFileName));
+	this.AddLogEntry(String.Format(I18N.GetText("UsingEnglishFile"), EFileName));
       FileStream JFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-      FileStream EFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.Read);
+      FileStream EFileStream = new FileStream(EFileName, FileMode.Open, FileAccess.Read);
 	if ((JFileStream.Length % 0x400) != 0 || (EFileStream.Length % 0x400) != 0) {
-	  this.AddLogEntry("*** File size suggests this isn't ability data - Translation Aborted ***");
+	  this.AddLogEntry(I18N.GetText("AbilityFileSizeBad"));
 	  goto TranslationDone;
 	}
 	if (JFileStream.Length != EFileStream.Length) {
-	  this.AddLogEntry("*** File sizes of Japanese and English files do not match - Translation Aborted ***");
+	  this.AddLogEntry(I18N.GetText("FileSizeMismatch"));
 	  goto TranslationDone;
 	}
       long AbilityCount = JFileStream.Length / 0x400;
@@ -213,7 +217,7 @@ namespace EngrishOnry {
 	EFileStream.Close();
       }
       catch {
-	this.AddLogEntry("*** TranslateAbilityFile() FAILED ***");
+	this.LogFailure("TranslateAbilityFile");
       }
     }
 
@@ -228,7 +232,7 @@ namespace EngrishOnry {
       try {
       string FileName = this.GetROMPath(App, Dir, FileID);
 	ATStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-	this.AddLogEntry(String.Format("Translating auto-translator file: {0}", FileName));
+	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAutoTrans"), FileName));
 	if (ATStream.Length < 1024 * 1024) {
 	byte[] ATData = new byte[ATStream.Length];
 	  ATStream.Read(ATData, 0, (int) ATStream.Length);
@@ -338,16 +342,13 @@ namespace EngrishOnry {
 	  BR.Close();
 	}
 	else
-	  this.AddLogEntry("*** AutoTranslator file seems too large - translation aborted ***");
+	  this.AddLogEntry(I18N.GetText("AutoTransTooLarge"));
       }
-      catch (Exception E) {
-	this.AddLogEntry("*** TranslateAutoTranslator() FAILED ***");
-	this.AddLogEntry(E.ToString());
+      catch {
+	this.LogFailure("TranslateAutoTranslator");
       }
-      finally {
-	if (ATStream != null)
-	  ATStream.Close();
-      }
+      if (ATStream != null)
+	ATStream.Close();
     }
 
     #endregion
@@ -372,7 +373,7 @@ namespace EngrishOnry {
 	  InfoData.Close();
 	}
 	if (this.SwappableFiles[Category] == null)
-	  this.AddLogEntry("*** LoadSwappableFileInfo() FAILED ***");
+	  this.LogFailure("LoadSwappableFileInfo");
       }
       return this.SwappableFiles[Category] as XmlDocument;
     }
@@ -397,12 +398,12 @@ namespace EngrishOnry {
 	  return;
       string SourceFile = this.GetSwappableFilePath(Source);
       string TargetFile = this.GetSwappableFilePath(Target);
-	this.AddLogEntry(String.Format("Replacing Japanese ROM file {0}", TargetFile));
-	this.AddLogEntry(String.Format("Source: English ROM file {0}", SourceFile));
+	this.AddLogEntry(String.Format(I18N.GetText("ReplaceJPROM"), TargetFile));
+	this.AddLogEntry(String.Format(I18N.GetText("SourceENROM"), SourceFile));
 	File.Copy(SourceFile, TargetFile, true);
       }
       catch {
-	this.AddLogEntry("*** SwapFile() FAILED ***");
+	this.LogFailure("SwapFile");
       }
     }
 
@@ -414,7 +415,7 @@ namespace EngrishOnry {
 	this.RestoreFile(App, Dir, FileID);
       }
       catch {
-	this.AddLogEntry("*** RestoreDialogTable() FAILED ***");
+	this.LogFailure("RestoreDialogTable");
       }
     }
 
@@ -443,13 +444,13 @@ namespace EngrishOnry {
     private void btnTranslateSpellData_Click(object sender, System.EventArgs e) {
       this.TranslateSpellFile(0,   0, 11);
       this.TranslateSpellFile(0, 119, 56);
-      this.AddLogEntry("=== Spell Data Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("SpellTranslateDone"));
     }
 
     private void btnRestoreSpellData_Click(object sender, System.EventArgs e) {
       this.RestoreFile(0,   0, 11);
       this.RestoreFile(0, 119, 56);
-      this.AddLogEntry("=== Spell Data Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("SpellRestoreDone"));
     }
 
     private void btnConfigSpellData_Click(object sender, System.EventArgs e) {
@@ -474,7 +475,7 @@ namespace EngrishOnry {
       this.TranslateItemFile(0, 0, 6, 0, 118, 108, 1);
       this.TranslateItemFile(0, 0, 7, 0, 118, 109, 2);
       this.TranslateItemFile(0, 0, 8, 0, 118, 110, 0);
-      this.AddLogEntry("=== Item Data Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("ItemTranslateDone"));
     }
 
     private void btnRestoreItemData_Click(object sender, System.EventArgs e) {
@@ -483,7 +484,7 @@ namespace EngrishOnry {
       this.RestoreFile(0, 0, 6);
       this.RestoreFile(0, 0, 7);
       this.RestoreFile(0, 0, 8);
-      this.AddLogEntry("=== Item Data Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("ItemRestoreDone"));
     }
 
     private void btnConfigItemData_Click(object sender, System.EventArgs e) {
@@ -504,12 +505,12 @@ namespace EngrishOnry {
 
     private void btnTranslateAbilities_Click(object sender, System.EventArgs e) {
       this.TranslateAbilityFile(0, 0, 10, 0, 119, 55);
-      this.AddLogEntry("=== Ability Data Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("AbilityTranslateDone"));
     }
 
     private void btnRestoreAbilities_Click(object sender, System.EventArgs e) {
       this.RestoreFile(0, 0, 10);
-      this.AddLogEntry("=== Ability Data Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("AbilityRestoreDone"));
     }
 
     private void btnConfigAbilities_Click(object sender, System.EventArgs e) {
@@ -522,12 +523,12 @@ namespace EngrishOnry {
 
     private void btnTranslateDialogTables_Click(object sender, System.EventArgs e) {
       this.SwapFiles("DialogTables");
-      this.AddLogEntry("=== Dialog Table Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("DialogTableTranslateDone"));
     }
 
     private void btnRestoreDialogTables_Click(object sender, System.EventArgs e) {
       this.RestoreSwappedFiles("DialogTables");
-      this.AddLogEntry("=== Dialog Table Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("DialogTableRestoreDone"));
     }
 
     #endregion
@@ -536,12 +537,12 @@ namespace EngrishOnry {
 
     private void btnTranslateStringTables_Click(object sender, System.EventArgs e) {
       this.SwapFiles("StringTables");
-      this.AddLogEntry("=== String Table Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("StringTableTranslateDone"));
     }
 
     private void btnRestoreStringTables_Click(object sender, System.EventArgs e) {
       this.RestoreSwappedFiles("StringTables");
-      this.AddLogEntry("=== String Table Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("StringTableRestoreDone"));
     }
 
     #endregion
@@ -550,12 +551,12 @@ namespace EngrishOnry {
 
     private void btnTranslateAutoTrans_Click(object sender, System.EventArgs e) {
       this.TranslateAutoTranslatorFile(0, 76, 23);
-      this.AddLogEntry("=== Auto-Translator Translation Completed ===");
+      this.AddLogEntry(I18N.GetText("AutoTransTranslateDone"));
     }
 
     private void btnRestoreAutoTrans_Click(object sender, System.EventArgs e) {
       this.RestoreFile(0, 76, 23);
-      this.AddLogEntry("=== Auto-Translator Restoration Completed ===");
+      this.AddLogEntry(I18N.GetText("AutoTransRestoreDone"));
     }
 
     private void btnConfigAutoTrans_Click(object sender, System.EventArgs e) {
