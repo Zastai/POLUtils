@@ -144,10 +144,6 @@
     <EmbeddedResource Include="POLUtilsUI.resx">
       <DependentUpon>POLUtilsUI.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Web\Makefile" />
-    <Content Include="Web\pebbles.css" />
-    <Content Include="Web\WebSite.xml" />
-    <Content Include="Web\WebSite.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
