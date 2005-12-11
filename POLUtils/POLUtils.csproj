@@ -97,6 +97,10 @@
       <Project>{0E5DF1A6-9060-4E56-BCFC-6928AC4DB179}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\PlayOnline.FFXI.Utils.EngrishOnry\PlayOnline.FFXI.Utils.EngrishOnry.csproj">
+      <Project>{CBB91A27-923B-4853-9C7F-46B1955D436A}</Project>
+      <Name>PlayOnline.FFXI.Utils.EngrishOnry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayOnline.FFXI.Utils.ItemComparison\PlayOnline.FFXI.Utils.ItemComparison.csproj">
       <Name>PlayOnline.FFXI.Utils.ItemComparison</Name>
       <Project>{CA57295D-4CF1-4FE9-AB40-A2A1F8432BCA}</Project>

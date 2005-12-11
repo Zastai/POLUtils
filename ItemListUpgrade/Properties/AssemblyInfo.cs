@@ -1,4 +1,4 @@
-﻿// $Id: AssemblyInfo.cs 461 2005-11-24 22:28:06Z Tim $
+﻿// $Id$
 
 using System.Reflection;
 using System.Runtime.CompilerServices;

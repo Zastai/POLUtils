@@ -138,12 +138,6 @@
   <data name="ItemFileSizeBad" xml:space="preserve">
     <value>*** File size suggests this isn't item data - Translation Aborted ***</value>
   </data>
-  <data name="NeedJPFFXI" xml:space="preserve">
-    <value>This utility requires the JP version of Final Fantasy XI to be installed.</value>
-  </data>
-  <data name="NeedJPPOL" xml:space="preserve">
-    <value>This utility requires the JP version of the PlayOnline software to be installed.</value>
-  </data>
   <data name="ReplaceJPROM" xml:space="preserve">
     <value>Replacing Japanese ROM file {0}</value>
   </data>

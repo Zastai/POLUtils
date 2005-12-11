@@ -126,7 +126,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOldFile.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnOldFile.Text" xml:space="preserve">
     <value>...</value>
@@ -154,7 +154,7 @@
     <value>25, 23</value>
   </data>
   <data name="btnNewFile.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="btnNewFile.Text" xml:space="preserve">
     <value>...</value>
@@ -181,7 +181,7 @@
     <value>101, 23</value>
   </data>
   <data name="btnPerformUpgrade.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="btnPerformUpgrade.Text" xml:space="preserve">
     <value>Perform &amp;Upgrade</value>
@@ -208,7 +208,7 @@
     <value>396, 20</value>
   </data>
   <data name="txtOldFile.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtOldFile.Name" xml:space="preserve">
     <value>txtOldFile</value>
@@ -232,7 +232,7 @@
     <value>396, 20</value>
   </data>
   <data name="txtNewFile.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;txtNewFile.Name" xml:space="preserve">
     <value>txtNewFile</value>
@@ -256,7 +256,7 @@
     <value>113, 13</value>
   </data>
   <data name="lblOldFile.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="lblOldFile.Text" xml:space="preserve">
     <value>Old Exported Item List:</value>
@@ -283,7 +283,7 @@
     <value>98, 13</value>
   </data>
   <data name="lblNewFile.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>0</value>
   </data>
   <data name="lblNewFile.Text" xml:space="preserve">
     <value>Result Of Upgrade:</value>

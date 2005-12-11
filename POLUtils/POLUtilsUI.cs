@@ -29,6 +29,11 @@ namespace POLUtils {
 	this.cmbCultures.Enabled = false;
       this.Show();
       this.UpdateSelectedRegion();
+      // "Engrish Onry" is only of use if
+      //  1) a JP POL client is installed, and
+      //  2) the JP version of FFXI is installed.
+      if ((POL.AvailableRegions & POL.Region.Japan) == 0 || !POL.IsAppInstalled(AppID.FFXI, POL.Region.Japan))
+	this.btnFFXIEngrishOnry.Enabled = false;
     }
 
     private void UpdateSelectedRegion() {
@@ -82,6 +87,14 @@ namespace POLUtils {
     private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow())
+	Utility.ShowDialog(this);
+      this.Show();
+      this.Activate();
+    }
+
+    private void btnFFXIEngrishOnry_Click(object sender, EventArgs e) {
+      this.Hide();
+      using (Form Utility = new PlayOnline.FFXI.Utils.EngrishOnry.MainWindow())
 	Utility.ShowDialog(this);
       this.Show();
       this.Activate();

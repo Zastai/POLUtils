@@ -11,9 +11,9 @@ using System.Xml;
 using PlayOnline.Core;
 using PlayOnline.FFXI;
 
-namespace EngrishOnry {
+namespace PlayOnline.FFXI.Utils.EngrishOnry {
 
-  internal partial class MainWindow : System.Windows.Forms.Form {
+  public partial class MainWindow : System.Windows.Forms.Form {
 
     public MainWindow() {
       InitializeComponent();

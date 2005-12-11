@@ -2,27 +2,9 @@ namespace POLUtils {
 
   public partial class POLUtilsUI {
 
-    #region Controls
-
-    private System.Windows.Forms.GroupBox grpRegion;
-    private System.Windows.Forms.Label lblSelectedRegion;
-    private System.Windows.Forms.TextBox txtSelectedRegion;
-    private System.Windows.Forms.Button btnChooseRegion;
-    private System.Windows.Forms.ComboBox cmbCultures;
-
-    private System.Windows.Forms.Button btnAudioManager;
-    private System.Windows.Forms.Button btnFFXIMacroManager;
-    private System.Windows.Forms.Button btnFFXIDataBrowser;
-    private System.Windows.Forms.Button btnTetraViewer;
-    private System.Windows.Forms.Label lblToolLanguage;
-    private System.Windows.Forms.Button btnFFXIConfigEditor;
-    private System.Windows.Forms.Button btnFFXIItemComparison;
+    #region Windows Form Designer generated code
 
     private System.ComponentModel.Container components = null;
-
-    #endregion
-
-    #region Windows Form Designer generated code
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
@@ -44,6 +26,7 @@ namespace POLUtils {
       this.btnFFXIDataBrowser = new System.Windows.Forms.Button();
       this.btnFFXIConfigEditor = new System.Windows.Forms.Button();
       this.btnFFXIItemComparison = new System.Windows.Forms.Button();
+      this.btnFFXIEngrishOnry = new System.Windows.Forms.Button();
       this.grpRegion.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -129,9 +112,16 @@ namespace POLUtils {
       this.btnFFXIItemComparison.Name = "btnFFXIItemComparison";
       this.btnFFXIItemComparison.Click += new System.EventHandler(this.btnFFXIItemComparison_Click);
       // 
+      // btnFFXIEngrishOnry
+      // 
+      resources.ApplyResources(this.btnFFXIEngrishOnry, "btnFFXIEngrishOnry");
+      this.btnFFXIEngrishOnry.Name = "btnFFXIEngrishOnry";
+      this.btnFFXIEngrishOnry.Click += new System.EventHandler(this.btnFFXIEngrishOnry_Click);
+      // 
       // POLUtilsUI
       // 
       resources.ApplyResources(this, "$this");
+      this.Controls.Add(this.btnFFXIEngrishOnry);
       this.Controls.Add(this.btnFFXIItemComparison);
       this.Controls.Add(this.btnFFXIConfigEditor);
       this.Controls.Add(this.btnFFXIDataBrowser);
@@ -149,6 +139,21 @@ namespace POLUtils {
     }
 
     #endregion
+
+    // Controls
+    private System.Windows.Forms.GroupBox grpRegion;
+    private System.Windows.Forms.Label lblSelectedRegion;
+    private System.Windows.Forms.TextBox txtSelectedRegion;
+    private System.Windows.Forms.Button btnChooseRegion;
+    private System.Windows.Forms.ComboBox cmbCultures;
+    private System.Windows.Forms.Button btnAudioManager;
+    private System.Windows.Forms.Button btnFFXIMacroManager;
+    private System.Windows.Forms.Button btnFFXIDataBrowser;
+    private System.Windows.Forms.Button btnTetraViewer;
+    private System.Windows.Forms.Label lblToolLanguage;
+    private System.Windows.Forms.Button btnFFXIConfigEditor;
+    private System.Windows.Forms.Button btnFFXIItemComparison;
+    private System.Windows.Forms.Button btnFFXIEngrishOnry;
 
   }
 

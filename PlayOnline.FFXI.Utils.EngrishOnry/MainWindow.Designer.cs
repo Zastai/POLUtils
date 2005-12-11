@@ -1,6 +1,6 @@
-namespace EngrishOnry {
+namespace PlayOnline.FFXI.Utils.EngrishOnry {
 
-  internal partial class MainWindow {
+  public partial class MainWindow {
 
     #region Windows Form Designer generated code
 
