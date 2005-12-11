@@ -39,7 +39,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.EnableNavigation();
     }
 
-    // If possible, ive the window that nice gradient look
+    // If possible, give the window that nice gradient look
     protected override void OnPaintBackground(PaintEventArgs e) {
       if (VisualStyleRenderer.IsSupported) {
       VisualStyleRenderer VSR = new VisualStyleRenderer(VisualStyleElement.Tab.Body.Normal);
