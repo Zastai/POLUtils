@@ -193,16 +193,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ItemPredicate.resx">
       <DependentUpon>ItemPredicate.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.ja.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messages.ja.resx" />
-    <EmbeddedResource Include="Messages.nl.resx" />
-    <EmbeddedResource Include="Messages.resx" />
+    <EmbeddedResource Include="Messages.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ROMFileMappings.xml" />
     <EmbeddedResource Include="SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
