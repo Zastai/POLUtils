@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Site", "Web Site", "{D2
 		POLUtils\Web\WebSite.xslt = POLUtils\Web\WebSite.xslt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemListUpgrade", "ItemListUpgrade\ItemListUpgrade.csproj", "{C80C8B59-0A38-4A7B-9C73-00603123B006}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBB91A27-923B-4853-9C7F-46B1955D436A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
