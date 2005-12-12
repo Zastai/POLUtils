@@ -12,13 +12,13 @@ exec 5>"$OUTDIR/POLUtils-Localization.csproj"
 cat project.top >&5
 
 # Locate designer sources
+echo "scanning source tree..."
 for FILE in $(find .. -type f -name '*.Designer.cs' -o -name '*.resx'); do
   dir=$(dirname $FILE)
   project=$(dirname $FILE | cut -d/ -f2)
   file=$(basename $FILE)
   echo "adding $file from $project"
   test -d "$OUTDIR/$project" || mkdir "$OUTDIR/$project"
-  cp -p "$FILE" "$OUTDIR/$project/"
   case $file in
     *.resx)
       base=$(printf %q "$file" | sed -e 's/\([.][a-z][a-z]\(_[A-Z][A-Z]\|\)\|\)[.]resx$//')
@@ -27,13 +27,14 @@ for FILE in $(find .. -type f -name '*.Designer.cs' -o -name '*.resx'); do
         echo "      <DependentUpon>$base.cs</DependentUpon>" >&5
       fi
       echo "    </EmbeddedResource>" >&5
+      cp -p "$FILE" "$OUTDIR/$project/"
       ;;
     *.Designer.cs)
       base=$(printf %q "$file" | sed -e 's/[.]Designer[.]cs$//')
       if test -f "$dir/$base.cs"; then
         if test ! -f "$OUTDIR/$project/$base.cs"; then
           echo "    <Compile Include=\"$project\\$base.cs\" />" >&5
-          awk -fextract_base.awk < "$dir/$base.cs" > $OUTDIR/$project/$base.cs
+          gawk -f extract_base.awk < "$dir/$base.cs" > $OUTDIR/$project/$base.cs
         fi
       fi
       echo "    <Compile Include=\"$project\\$file\">" >&5
@@ -41,6 +42,7 @@ for FILE in $(find .. -type f -name '*.Designer.cs' -o -name '*.resx'); do
         echo "      <DependentUpon>$base.cs</DependentUpon>" >&5
       fi
       echo "    </Compile>" >&5
+      gawk -f fixup_source.awk < "$FILE" > "$OUTDIR/$project/$file"
       ;;
   esac
 done
