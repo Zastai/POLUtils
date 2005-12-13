@@ -13,7 +13,7 @@ using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
-  internal partial class FileScanDialog : Form {
+  internal class FileScanDialog : System.Windows.Forms.Form {
 
     private string FileName;
 
@@ -23,6 +23,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     public ArrayList StringTableEntries = new ArrayList();
     public ArrayList Images             = new ArrayList();
     public ArrayList Items              = new ArrayList();
+
+    #region Controls
+
+    private System.Windows.Forms.ProgressBar prbScanProgress;
+    private System.Windows.Forms.Label lblScanProgress;
+
+    private System.ComponentModel.Container components = null;
+
+    #endregion
 
     public FileScanDialog(string FileName) {
       InitializeComponent();
@@ -36,12 +45,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Main Scanning Functionality
 
     private void ScanFile() {
-      if (this.FileName != null && File.Exists(this.FileName)) {
+      if (FileName != null && File.Exists(FileName)) {
 	this.prbScanProgress.Value = 0;
 	this.prbScanProgress.Visible = true;
       BinaryReader BR = null;
 	try {
-          BR = new BinaryReader(new FileStream(this.FileName, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII);
+	  BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII);
 	} catch { }
 	if (BR != null && BR.BaseStream.CanSeek) {
   	  Application.DoEvents();
@@ -560,12 +569,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 00a-00b U16 MP Cost
       // 00c-00c U8  Cast Time (1/4 second)
       // 00d-00d U8  Recast Time (1/4 second)
-      // 00f-01e U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff)
-      // 01f-032 TXT Japanese Name
-      // 033-046 TXT English Name
-      // 047-0C6 TXT Japanese Description
-      // 0C7-146 TXT English Description
-      // 147-3fe U8  Padding (NULs)
+      // 00f-026 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
+      // 027-028 U16 Unknown (Merit Required?)
+      // 029-03c TXT Japanese Name
+      // 03d-050 TXT English Name
+      // 051-0D0 TXT Japanese Description
+      // 0D1-150 TXT English Description
+      // 151-3fe U8  Padding (NULs)
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
@@ -575,13 +585,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  goto BadFormat;
       ArrayList Fields = new ArrayList(9);
 	Fields.Add(String.Format("{0}", (MagicType) Bytes[0x02]));
-	Fields.Add(E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
-	Fields.Add(E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x3d, 20).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x29, 20).TrimEnd('\0'));
 	Fields.Add(String.Format("{0}", (Skill) Bytes[0x08]));
 	Fields.Add(String.Format("{0}", (Element) Bytes[0x04]));
-	{ // Minimum Required Job Level (x16)
+	{ // Minimum Required Job Level (x24)
 	string JobInfo = String.Empty;
-	  for (int j = 1; j < 16; ++j) {
+	  for (int j = 1; j < 24; ++j) {
 	    if (Bytes[0x00e + j] != 0xFF) {
 	      if (JobInfo != String.Empty) JobInfo += ", ";
 	      JobInfo += Bytes[0x00e + j].ToString();
@@ -594,8 +604,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Fields.Add(String.Format("{0}s", Bytes[0x0c] / 4.0));
 	Fields.Add(String.Format("{0}s", Bytes[0x0d] / 4.0));
 	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[0x06]));
-	Fields.Add(E.GetString(Bytes, 0xc7, 128).TrimEnd('\0'));
-	Fields.Add(E.GetString(Bytes, 0x47, 128).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0xd1, 128).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x51, 128).TrimEnd('\0'));
 	this.StringTableEntries.Add(Fields.ToArray());
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);
@@ -762,6 +772,95 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     #endregion
+
+    #endregion
+
+    #region Windows Form Designer generated code
+
+    protected override void Dispose(bool disposing) {
+      if (disposing && components != null)
+	components.Dispose();
+      base.Dispose(disposing);
+    }
+
+    private void InitializeComponent() {
+      System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(FileScanDialog));
+      this.prbScanProgress = new System.Windows.Forms.ProgressBar();
+      this.lblScanProgress = new System.Windows.Forms.Label();
+      this.SuspendLayout();
+      // 
+      // prbScanProgress
+      // 
+      this.prbScanProgress.AccessibleDescription = resources.GetString("prbScanProgress.AccessibleDescription");
+      this.prbScanProgress.AccessibleName = resources.GetString("prbScanProgress.AccessibleName");
+      this.prbScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("prbScanProgress.Anchor")));
+      this.prbScanProgress.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("prbScanProgress.BackgroundImage")));
+      this.prbScanProgress.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("prbScanProgress.Dock")));
+      this.prbScanProgress.Enabled = ((bool)(resources.GetObject("prbScanProgress.Enabled")));
+      this.prbScanProgress.Font = ((System.Drawing.Font)(resources.GetObject("prbScanProgress.Font")));
+      this.prbScanProgress.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("prbScanProgress.ImeMode")));
+      this.prbScanProgress.Location = ((System.Drawing.Point)(resources.GetObject("prbScanProgress.Location")));
+      this.prbScanProgress.Maximum = 1000;
+      this.prbScanProgress.Name = "prbScanProgress";
+      this.prbScanProgress.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("prbScanProgress.RightToLeft")));
+      this.prbScanProgress.Size = ((System.Drawing.Size)(resources.GetObject("prbScanProgress.Size")));
+      this.prbScanProgress.TabIndex = ((int)(resources.GetObject("prbScanProgress.TabIndex")));
+      this.prbScanProgress.Text = resources.GetString("prbScanProgress.Text");
+      this.prbScanProgress.Visible = ((bool)(resources.GetObject("prbScanProgress.Visible")));
+      // 
+      // lblScanProgress
+      // 
+      this.lblScanProgress.AccessibleDescription = resources.GetString("lblScanProgress.AccessibleDescription");
+      this.lblScanProgress.AccessibleName = resources.GetString("lblScanProgress.AccessibleName");
+      this.lblScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("lblScanProgress.Anchor")));
+      this.lblScanProgress.AutoSize = ((bool)(resources.GetObject("lblScanProgress.AutoSize")));
+      this.lblScanProgress.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("lblScanProgress.Dock")));
+      this.lblScanProgress.Enabled = ((bool)(resources.GetObject("lblScanProgress.Enabled")));
+      this.lblScanProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblScanProgress.Font = ((System.Drawing.Font)(resources.GetObject("lblScanProgress.Font")));
+      this.lblScanProgress.Image = ((System.Drawing.Image)(resources.GetObject("lblScanProgress.Image")));
+      this.lblScanProgress.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblScanProgress.ImageAlign")));
+      this.lblScanProgress.ImageIndex = ((int)(resources.GetObject("lblScanProgress.ImageIndex")));
+      this.lblScanProgress.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("lblScanProgress.ImeMode")));
+      this.lblScanProgress.Location = ((System.Drawing.Point)(resources.GetObject("lblScanProgress.Location")));
+      this.lblScanProgress.Name = "lblScanProgress";
+      this.lblScanProgress.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("lblScanProgress.RightToLeft")));
+      this.lblScanProgress.Size = ((System.Drawing.Size)(resources.GetObject("lblScanProgress.Size")));
+      this.lblScanProgress.TabIndex = ((int)(resources.GetObject("lblScanProgress.TabIndex")));
+      this.lblScanProgress.Text = resources.GetString("lblScanProgress.Text");
+      this.lblScanProgress.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("lblScanProgress.TextAlign")));
+      this.lblScanProgress.Visible = ((bool)(resources.GetObject("lblScanProgress.Visible")));
+      // 
+      // FileScanDialog
+      // 
+      this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
+      this.AccessibleName = resources.GetString("$this.AccessibleName");
+      this.AutoScaleBaseSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScaleBaseSize")));
+      this.AutoScroll = ((bool)(resources.GetObject("$this.AutoScroll")));
+      this.AutoScrollMargin = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMargin")));
+      this.AutoScrollMinSize = ((System.Drawing.Size)(resources.GetObject("$this.AutoScrollMinSize")));
+      this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+      this.ClientSize = ((System.Drawing.Size)(resources.GetObject("$this.ClientSize")));
+      this.Controls.Add(this.prbScanProgress);
+      this.Controls.Add(this.lblScanProgress);
+      this.Enabled = ((bool)(resources.GetObject("$this.Enabled")));
+      this.Font = ((System.Drawing.Font)(resources.GetObject("$this.Font")));
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("$this.ImeMode")));
+      this.Location = ((System.Drawing.Point)(resources.GetObject("$this.Location")));
+      this.MaximumSize = ((System.Drawing.Size)(resources.GetObject("$this.MaximumSize")));
+      this.MinimumSize = ((System.Drawing.Size)(resources.GetObject("$this.MinimumSize")));
+      this.Name = "FileScanDialog";
+      this.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("$this.RightToLeft")));
+      this.ShowInTaskbar = false;
+      this.StartPosition = ((System.Windows.Forms.FormStartPosition)(resources.GetObject("$this.StartPosition")));
+      this.Text = resources.GetString("$this.Text");
+      this.Closing += new System.ComponentModel.CancelEventHandler(this.FileScanDialog_Closing);
+      this.Activated += new System.EventHandler(this.FileScanDialog_Activated);
+      this.ResumeLayout(false);
+
+    }
 
     #endregion
 

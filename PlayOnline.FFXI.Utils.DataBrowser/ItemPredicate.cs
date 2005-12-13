@@ -12,7 +12,7 @@ using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
-  internal partial class ItemPredicate : UserControl {
+  internal class ItemPredicate : System.Windows.Forms.UserControl {
 
     private enum Test {
       Contains,
@@ -23,6 +23,17 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       MatchesRegexp,
       DoesntMatchRegexp
     }
+
+    #region Controls
+
+    private System.Windows.Forms.ComboBox cmbTest;
+    private System.Windows.Forms.Button   btnChooseField;
+    private System.Windows.Forms.TextBox  txtTestParameter;
+    private System.Windows.Forms.TextBox  txtField;
+
+    private System.ComponentModel.Container components = null;
+
+    #endregion
 
     public ItemPredicate() {
       InitializeComponent();
@@ -141,6 +152,77 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
       }
       return false;
+    }
+
+    #endregion
+
+    #region Component Designer generated code
+
+    protected override void Dispose(bool disposing) {
+      if (disposing && components != null)
+	components.Dispose();
+      base.Dispose(disposing);
+    }
+
+    private void InitializeComponent() {
+      this.cmbTest = new System.Windows.Forms.ComboBox();
+      this.btnChooseField = new System.Windows.Forms.Button();
+      this.txtTestParameter = new System.Windows.Forms.TextBox();
+      this.txtField = new System.Windows.Forms.TextBox();
+      this.SuspendLayout();
+      // 
+      // cmbTest
+      // 
+      this.cmbTest.DisplayMember = "Name";
+      this.cmbTest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbTest.ItemHeight = 13;
+      this.cmbTest.Location = new System.Drawing.Point(228, 0);
+      this.cmbTest.Name = "cmbTest";
+      this.cmbTest.Size = new System.Drawing.Size(136, 21);
+      this.cmbTest.TabIndex = 3;
+      // 
+      // btnChooseField
+      // 
+      this.btnChooseField.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnChooseField.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnChooseField.Location = new System.Drawing.Point(204, 0);
+      this.btnChooseField.Name = "btnChooseField";
+      this.btnChooseField.Size = new System.Drawing.Size(24, 20);
+      this.btnChooseField.TabIndex = 2;
+      this.btnChooseField.Text = "...";
+      this.btnChooseField.Click += new System.EventHandler(this.btnChooseField_Click);
+      // 
+      // txtTestParameter
+      // 
+      this.txtTestParameter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+	| System.Windows.Forms.AnchorStyles.Left) 
+	| System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTestParameter.Location = new System.Drawing.Point(364, 0);
+      this.txtTestParameter.Name = "txtTestParameter";
+      this.txtTestParameter.Size = new System.Drawing.Size(348, 20);
+      this.txtTestParameter.TabIndex = 4;
+      this.txtTestParameter.Text = "";
+      // 
+      // txtField
+      // 
+      this.txtField.Location = new System.Drawing.Point(0, 0);
+      this.txtField.Name = "txtField";
+      this.txtField.ReadOnly = true;
+      this.txtField.Size = new System.Drawing.Size(204, 20);
+      this.txtField.TabIndex = 1;
+      this.txtField.Text = "";
+      // 
+      // ItemPredicate
+      // 
+      this.BackColor = System.Drawing.SystemColors.Control;
+      this.Controls.Add(this.cmbTest);
+      this.Controls.Add(this.btnChooseField);
+      this.Controls.Add(this.txtTestParameter);
+      this.Controls.Add(this.txtField);
+      this.Name = "ItemPredicate";
+      this.Size = new System.Drawing.Size(712, 20);
+      this.ResumeLayout(false);
+
     }
 
     #endregion

@@ -12,7 +12,7 @@ CRCCheck on
 
 Name "POLUtils"
 
-!define REQUIRED_DOTNET_VERSION 2.0
+!define REQUIRED_DOTNET_VERSION 1.1
 
 !define SITE_URL "http://users.telenet.be/pebbles/"
 
@@ -134,6 +134,7 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\PlayOnline.FFXI.dll"
   File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\POLUtils.exe"
+  File           "${BUILDDIR}\POLUtils.exe.manifest"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
@@ -160,6 +161,7 @@ SectionEnd
 Section $(NAME_SECTION_ENGRISH_ONRY) SECTION_ENGRISH_ONRY
   SetOutPath "$INSTDIR"
   File "${BUILDDIR}\EngrishOnry.exe"
+  File "${BUILDDIR}\EngrishOnry.exe.manifest"
 SectionEnd
 
 Section "-RegisterInstallationInfo"

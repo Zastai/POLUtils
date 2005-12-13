@@ -60,7 +60,6 @@ namespace POLUtils {
     [STAThread]
     public static int Main(string[] Arguments) {
       AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(POLUtils.KaBOOM);
-      Application.EnableVisualStyles();
       if (POL.AvailableRegions == POL.Region.None)
 	MessageBox.Show(I18N.GetText("Text:NoPOL"), I18N.GetText("Caption:NoPOL"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
       else {

@@ -1,236 +1,456 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>
-    </ApplicationIcon>
-    <AssemblyName>PlayOnline.FFXI</AssemblyName>
-    <AssemblyOriginatorKeyFile>..\POLUtils.snk</AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>295212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
-    <Optimize>false</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>295212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
-    <Optimize>true</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-    <ProjectReference Include="..\PlayOnline.Core\PlayOnline.Core.csproj">
-      <Name>PlayOnline.Core</Name>
-      <Project>{84C42502-1564-4617-B80C-ACE781051CE8}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="FFXIItemEditor.Designer.cs">
-      <DependentUpon>FFXIItemEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PleaseWaitDialog.Designer.cs">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AutoTranslator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Character.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Collections.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Enums.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FFXIEncoding.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FFXIEncryption.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FFXIGraphic.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FFXIItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FFXIItemEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FFXIResourceManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Game.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Macro.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MacroFolder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PleaseWaitDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <EmbeddedResource Include="ConversionTables\00xx.dat" />
-    <EmbeddedResource Include="ConversionTables\81xx.dat" />
-    <EmbeddedResource Include="ConversionTables\82xx.dat" />
-    <EmbeddedResource Include="ConversionTables\83xx.dat" />
-    <EmbeddedResource Include="ConversionTables\84xx.dat" />
-    <EmbeddedResource Include="ConversionTables\85xx.dat" />
-    <EmbeddedResource Include="ConversionTables\86xx.dat" />
-    <EmbeddedResource Include="ConversionTables\87xx.dat" />
-    <EmbeddedResource Include="ConversionTables\88xx.dat" />
-    <EmbeddedResource Include="ConversionTables\89xx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Axx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Bxx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Cxx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Dxx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Exx.dat" />
-    <EmbeddedResource Include="ConversionTables\8Fxx.dat" />
-    <EmbeddedResource Include="ConversionTables\90xx.dat" />
-    <EmbeddedResource Include="ConversionTables\91xx.dat" />
-    <EmbeddedResource Include="ConversionTables\92xx.dat" />
-    <EmbeddedResource Include="ConversionTables\93xx.dat" />
-    <EmbeddedResource Include="ConversionTables\94xx.dat" />
-    <EmbeddedResource Include="ConversionTables\95xx.dat" />
-    <EmbeddedResource Include="ConversionTables\96xx.dat" />
-    <EmbeddedResource Include="ConversionTables\97xx.dat" />
-    <EmbeddedResource Include="ConversionTables\98xx.dat" />
-    <EmbeddedResource Include="ConversionTables\99xx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Axx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Bxx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Cxx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Dxx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Exx.dat" />
-    <EmbeddedResource Include="ConversionTables\9Fxx.dat" />
-    <EmbeddedResource Include="ConversionTables\E0xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E1xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E2xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E3xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E4xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E5xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E6xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E7xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E8xx.dat" />
-    <EmbeddedResource Include="ConversionTables\E9xx.dat" />
-    <EmbeddedResource Include="ConversionTables\EAxx.dat" />
-    <EmbeddedResource Include="ConversionTables\EBxx.dat" />
-    <EmbeddedResource Include="ConversionTables\ECxx.dat" />
-    <EmbeddedResource Include="ConversionTables\EDxx.dat" />
-    <EmbeddedResource Include="ConversionTables\EExx.dat" />
-    <EmbeddedResource Include="ConversionTables\EFxx.dat" />
-    <EmbeddedResource Include="ConversionTables\F0xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F1xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F2xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F3xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F4xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F5xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F6xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F7xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F8xx.dat" />
-    <EmbeddedResource Include="ConversionTables\F9xx.dat" />
-    <EmbeddedResource Include="ConversionTables\FAxx.dat" />
-    <EmbeddedResource Include="ConversionTables\FBxx.dat" />
-    <EmbeddedResource Include="ConversionTables\FCxx.dat" />
-    <EmbeddedResource Include="FFXIItemEditor.resx">
-      <DependentUpon>FFXIItemEditor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.ja.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.nl.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PleaseWaitDialog.ja.resx">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PleaseWaitDialog.nl.resx">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PleaseWaitDialog.resx">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-</Project>
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Local"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "PlayOnline.FFXI"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = ""
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "295212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "true"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "295212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "PlayOnline.Core"
+                    Project = "{84C42502-1564-4617-B80C-ACE781051CE8}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AutoTranslator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Character.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Collections.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIEncoding.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIEncryption.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIGraphic.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIItemEditor.cs"
+                    SubType = "UserControl"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FFXIItemEditor.resx"
+                    DependentUpon = "FFXIItemEditor.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "FFXIResourceManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Game.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Macro.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MacroFolder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Messages.ja.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Messages.nl.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Messages.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.ja.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.nl.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PleaseWaitDialog.resx"
+                    DependentUpon = "PleaseWaitDialog.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\00xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\81xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\82xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\83xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\84xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\85xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\86xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\87xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\88xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\89xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Axx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Bxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Cxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Dxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Exx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\8Fxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\90xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\91xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\92xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\93xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\94xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\95xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\96xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\97xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\98xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\99xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Axx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Bxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Cxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Dxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Exx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\9Fxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E0xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E1xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E2xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E3xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E4xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E5xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E6xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E7xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E8xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\E9xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EAxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EBxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\ECxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EDxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EExx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\EFxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F0xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F1xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F2xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F3xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F4xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F5xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F6xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F7xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F8xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\F9xx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FAxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FBxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ConversionTables\FCxx.dat"
+                    BuildAction = "EmbeddedResource"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+

@@ -67,8 +67,12 @@ namespace PlayOnline.FFXI {
 
   [Flags]
   public enum EquipmentSlot : ushort {
-    // Specific Slots
+    // Slot Groups
     None   = 0x0000,
+    Ears   = 0x3000,
+    Rings  = 0x6000,
+    All    = 0xFFFF,
+    // Specific Slots
     Main   = 0x0001,
     Sub    = 0x0002,
     Range  = 0x0004,
@@ -85,15 +89,11 @@ namespace PlayOnline.FFXI {
     LRing  = 0x2000,
     RRing  = 0x4000,
     Back   = 0x8000,
-    // Slot Groups
-    Ears   = 0x1800,
-    Rings  = 0x6000,
-    All    = 0xFFFF,
   }
 
   [Flags]
   public enum ItemFlags : ushort {
-    None        = 0x0000,
+    None       = 0x0000,
     // Simple Flags - mostly assumed meanings
     Flag00      = 0x0001,
     Flag01      = 0x0002,
@@ -135,7 +135,7 @@ namespace PlayOnline.FFXI {
   }
 
   [Flags]
-  public enum Job : ushort {
+  public enum Job : uint {
     None = 0x0000,
     All  = 0xFFFE,
     // Specific

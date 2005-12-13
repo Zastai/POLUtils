@@ -111,12 +111,10 @@ namespace PlayOnline.Core {
     }
 
     public static string GetApplicationPath(string ID) {
-      return POL.GetApplicationPath(ID, POL.SelectedRegion_);
-    }
-
-    public static string GetApplicationPath(string ID, Region Region) {
+      if (POL.SelectedRegion_ == Region.None)
+	return null;
     RegistryKey POLKey = null;
-      switch (Region) {
+      switch (POL.SelectedRegion_) {
 	case Region.Japan:
 	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnline\InstallFolder");
 	  break;
@@ -126,8 +124,6 @@ namespace PlayOnline.Core {
 	case Region.Europe: // Assumption
 	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder");
 	  break;
-	default:
-	  return null;
       }
       if (POLKey == null)
 	return null;
@@ -137,20 +133,14 @@ namespace PlayOnline.Core {
     }
 
     public static bool IsAppInstalled(string ID) {
-      return POL.IsAppInstalled(ID, POL.SelectedRegion_);
-    }
-
-    public static bool IsAppInstalled(string ID, Region Region) {
-      return (POL.GetApplicationPath(ID, Region) != null);
+      return (POL.GetApplicationPath(ID) != null);
     }
 
     public static RegistryKey OpenAppConfigKey(string ID) {
-      return POL.OpenAppConfigKey(ID, POL.SelectedRegion_);
-    }
-
-    public static RegistryKey OpenAppConfigKey(string ID, Region Region) {
+      if (POL.SelectedRegion_ == Region.None)
+	return null;
     string BaseKey;
-      switch (Region) {
+      switch (POL.SelectedRegion_) {
 	case Region.Europe:       BaseKey = @"Software\PlayOnlineEU\SquareEnix"; break;
 	case Region.Japan:        BaseKey = @"Software\PlayOnline\SQUARE";       break;
 	case Region.NorthAmerica: BaseKey = @"Software\PlayOnlineUS\SquareEnix"; break;

@@ -244,14 +244,14 @@ namespace PlayOnline.FFXI {
       #region Private Data
 
       protected Element Element_;
-      protected short   Storage_;
+      protected ushort  Storage_;
 
       #endregion
 
       #region Public Properties
 
       public Element Element { get { return this.Element_; } }
-      public short   Storage { get { return this.Storage_; } }
+      public ushort  Storage { get { return this.Storage_; } }
 
       #endregion
 
@@ -497,7 +497,7 @@ namespace PlayOnline.FFXI {
 	this.ReadBasicFields(BR);
 	this.ReadTextFields(BR, L);
 	this.Element_ = (Element) BR.ReadUInt16();
-	this.Storage_ =           BR.ReadInt16();
+	this.Storage_ =           BR.ReadUInt16();
 	BR.Close();
 	this.L = L;
       }
@@ -529,9 +529,10 @@ namespace PlayOnline.FFXI {
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
-	this.Jobs_       = (Job)           BR.ReadUInt16();
+	this.Jobs_       = (Job)           BR.ReadUInt32();
 	this.ShieldSize_ =                 BR.ReadUInt16();
 	this.ReadTextFields(BR, L);
+	/* Unknown */                      BR.ReadUInt16(); // Added 20051212
 	this.MaxCharges_ =                 BR.ReadByte();
 	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
@@ -567,7 +568,7 @@ namespace PlayOnline.FFXI {
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
-	this.Jobs_       = (Job)           BR.ReadUInt16();
+	this.Jobs_       = (Job)           BR.ReadUInt32();
 	this.Damage_     =                 BR.ReadUInt16();
 	this.Delay_      =                 BR.ReadUInt16();
 	this.DPS_        =                 BR.ReadUInt16();
@@ -577,6 +578,7 @@ namespace PlayOnline.FFXI {
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
+	/* Unknown */                      BR.ReadUInt16(); // Added 20051212
 	this.MaxCharges_ =                 BR.ReadByte();
 	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
@@ -640,7 +642,7 @@ namespace PlayOnline.FFXI {
 	this.LogNamePlural_   =               FFXIItem.UndumpStringField (DumpedItem, ItemField.LogNamePlural);
 	this.Description_     =               FFXIItem.UndumpStringField (DumpedItem, ItemField.Description);
 	this.Element_         = (Element)     FFXIItem.UndumpEnumField   (DumpedItem, ItemField.Element);
-	this.Storage_         = (short)       FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Storage);
+	this.Storage_         = (ushort)      FFXIItem.UndumpIntegerField(DumpedItem, ItemField.Storage);
       }
 
     }
