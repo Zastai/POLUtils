@@ -12,7 +12,7 @@ namespace PlayOnline.Core {
   public class Icons {
 
     [DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
-    private static extern IntPtr LoadLibraryEx(string FileName, IntPtr hFile, ulong Flags);
+    private static extern IntPtr LoadLibraryEx(string FileName, IntPtr hFile, uint Flags);
 
     private static IntPtr LoadLibrary(string FileName) {
       return Icons.LoadLibraryEx(FileName, IntPtr.Zero, 0x2 /* 0x2 = LOAD_LIBRARY_AS_DATAFILE */);
