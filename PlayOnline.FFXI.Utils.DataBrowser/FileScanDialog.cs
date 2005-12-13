@@ -569,12 +569,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 00a-00b U16 MP Cost
       // 00c-00c U8  Cast Time (1/4 second)
       // 00d-00d U8  Recast Time (1/4 second)
-      // 00f-01e U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff)
-      // 01f-032 TXT Japanese Name
-      // 033-046 TXT English Name
-      // 047-0C6 TXT Japanese Description
-      // 0C7-146 TXT English Description
-      // 147-3fe U8  Padding (NULs)
+      // 00f-026 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
+      // 027-028 U16 Unknown (Merit Required?)
+      // 029-03c TXT Japanese Name
+      // 03d-050 TXT English Name
+      // 051-0D0 TXT Japanese Description
+      // 0D1-150 TXT English Description
+      // 151-3fe U8  Padding (NULs)
       // 3ff-3ff U8  End marker (0xff)
       for (int i = 0; i < EntryCount; ++i) {
       byte[] Bytes = BR.ReadBytes(0x400);
@@ -584,13 +585,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  goto BadFormat;
       ArrayList Fields = new ArrayList(9);
 	Fields.Add(String.Format("{0}", (MagicType) Bytes[0x02]));
-	Fields.Add(E.GetString(Bytes, 0x33, 20).TrimEnd('\0'));
-	Fields.Add(E.GetString(Bytes, 0x1f, 20).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x3d, 20).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x29, 20).TrimEnd('\0'));
 	Fields.Add(String.Format("{0}", (Skill) Bytes[0x08]));
 	Fields.Add(String.Format("{0}", (Element) Bytes[0x04]));
-	{ // Minimum Required Job Level (x16)
+	{ // Minimum Required Job Level (x24)
 	string JobInfo = String.Empty;
-	  for (int j = 1; j < 16; ++j) {
+	  for (int j = 1; j < 24; ++j) {
 	    if (Bytes[0x00e + j] != 0xFF) {
 	      if (JobInfo != String.Empty) JobInfo += ", ";
 	      JobInfo += Bytes[0x00e + j].ToString();
@@ -603,8 +604,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Fields.Add(String.Format("{0}s", Bytes[0x0c] / 4.0));
 	Fields.Add(String.Format("{0}s", Bytes[0x0d] / 4.0));
 	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[0x06]));
-	Fields.Add(E.GetString(Bytes, 0xc7, 128).TrimEnd('\0'));
-	Fields.Add(E.GetString(Bytes, 0x47, 128).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0xd1, 128).TrimEnd('\0'));
+	Fields.Add(E.GetString(Bytes, 0x51, 128).TrimEnd('\0'));
 	this.StringTableEntries.Add(Fields.ToArray());
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("SpellLoadProgress"), i + 1, EntryCount);

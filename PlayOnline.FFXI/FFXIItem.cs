@@ -529,9 +529,10 @@ namespace PlayOnline.FFXI {
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
-	this.Jobs_       = (Job)           BR.ReadUInt16();
+	this.Jobs_       = (Job)           BR.ReadUInt32();
 	this.ShieldSize_ =                 BR.ReadUInt16();
 	this.ReadTextFields(BR, L);
+	/* Unknown */                      BR.ReadUInt16(); // Added 20051212
 	this.MaxCharges_ =                 BR.ReadByte();
 	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
@@ -567,7 +568,7 @@ namespace PlayOnline.FFXI {
 	this.Level_      =                 BR.ReadUInt16();
 	this.Slots_      = (EquipmentSlot) BR.ReadUInt16();
 	this.Races_      = (Race)          BR.ReadUInt16();
-	this.Jobs_       = (Job)           BR.ReadUInt16();
+	this.Jobs_       = (Job)           BR.ReadUInt32();
 	this.Damage_     =                 BR.ReadUInt16();
 	this.Delay_      =                 BR.ReadUInt16();
 	this.DPS_        =                 BR.ReadUInt16();
@@ -577,6 +578,7 @@ namespace PlayOnline.FFXI {
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
 	/* Unknown */                      BR.ReadUInt16();
+	/* Unknown */                      BR.ReadUInt16(); // Added 20051212
 	this.MaxCharges_ =                 BR.ReadByte();
 	this.CastTime_   =                 BR.ReadByte();
 	this.EquipDelay_ =                 BR.ReadUInt16();
