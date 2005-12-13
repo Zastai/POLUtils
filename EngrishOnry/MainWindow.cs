@@ -166,15 +166,15 @@ namespace EngrishOnry {
 	  if (this.mnuTranslateItemNames.Checked) {
 	    switch (Type) {
 	      case 0: Array.Copy(EData, 0x24, JData, 0x0E, 0x16); break; // Item
-	      case 1: Array.Copy(EData, 0x34, JData, 0x1E, 0x16); break; // Weapon
-	      case 2: Array.Copy(EData, 0x2E, JData, 0x18, 0x16); break; // Armor
+	      case 1: Array.Copy(EData, 0x36, JData, 0x20, 0x16); break; // Weapon
+	      case 2: Array.Copy(EData, 0x30, JData, 0x1A, 0x16); break; // Armor
 	    }
 	  }
 	  if (this.mnuTranslateItemDescriptions.Checked) {
 	    switch (Type) {
 	      case 0: Array.Copy(EData, 0xC6, JData, 0x3A, 0xBC); break; // Item
-	      case 1: Array.Copy(EData, 0xD6, JData, 0x4A, 0xBC); break; // Weapon
-	      case 2: Array.Copy(EData, 0xD0, JData, 0x44, 0xBC); break; // Armor
+	      case 1: Array.Copy(EData, 0xD8, JData, 0x4C, 0xBC); break; // Weapon
+	      case 2: Array.Copy(EData, 0xD2, JData, 0x46, 0xBC); break; // Armor
 	    }
 	  }
 	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Write(JData, 0, 0x200);
@@ -208,12 +208,12 @@ namespace EngrishOnry {
       long SpellCount = SpellStream.Length / 0x400;
       byte[] TextBlock = new byte[0x128];
 	for (long i = 0; i < SpellCount; ++i) {
-	  SpellStream.Seek(i * 0x400 + 0x1f, SeekOrigin.Begin); SpellStream.Read (TextBlock, 0, 0x128);
+	  SpellStream.Seek(i * 0x400 + 0x27, SeekOrigin.Begin); SpellStream.Read (TextBlock, 0, 0x128);
 	  if (this.mnuTranslateSpellNames.Checked)
 	    Array.Copy(TextBlock, 0x14, TextBlock, 0x00, 0x14); // Copy english name
 	  if (this.mnuTranslateSpellDescriptions.Checked)
 	    Array.Copy(TextBlock, 0xa8, TextBlock, 0x28, 0x80); // Copy english description
-	  SpellStream.Seek(i * 0x400 + 0x1f, SeekOrigin.Begin); SpellStream.Write(TextBlock, 0, 0x128);
+	  SpellStream.Seek(i * 0x400 + 0x27, SeekOrigin.Begin); SpellStream.Write(TextBlock, 0, 0x128);
 	}
       TranslationDone:
 	SpellStream.Close();
