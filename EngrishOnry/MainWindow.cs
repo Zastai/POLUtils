@@ -238,7 +238,7 @@ namespace EngrishOnry {
 	this.AddLogEntry(String.Format("Translating abilities data file: {0}", JFileName));
 	this.AddLogEntry(String.Format("Using English data file: {0}", EFileName));
       FileStream JFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-      FileStream EFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.Read);
+      FileStream EFileStream = new FileStream(EFileName, FileMode.Open, FileAccess.Read);
 	if ((JFileStream.Length % 0x400) != 0 || (EFileStream.Length % 0x400) != 0) {
 	  this.AddLogEntry("*** File size suggests this isn't ability data - Translation Aborted ***");
 	  goto TranslationDone;
