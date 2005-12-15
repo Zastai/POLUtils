@@ -45,12 +45,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Main Scanning Functionality
 
     private void ScanFile() {
-      if (FileName != null && File.Exists(FileName)) {
+      if (this.FileName != null && File.Exists(this.FileName)) {
 	this.prbScanProgress.Value = 0;
 	this.prbScanProgress.Visible = true;
       BinaryReader BR = null;
 	try {
-	  BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII);
+          BR = new BinaryReader(new FileStream(this.FileName, FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.ASCII);
 	} catch { }
 	if (BR != null && BR.BaseStream.CanSeek) {
   	  Application.DoEvents();
@@ -600,7 +600,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  }
 	  Fields.Add(JobInfo);
 	}
-	Fields.Add(String.Format("{0}", Bytes[0x0a] + (Bytes[0x0b] << 8)));
+	Fields.Add(String.Format("{0}",  Bytes[0x0a] + (Bytes[0x0b] << 8)));
 	Fields.Add(String.Format("{0}s", Bytes[0x0c] / 4.0));
 	Fields.Add(String.Format("{0}s", Bytes[0x0d] / 4.0));
 	Fields.Add(String.Format("{0}", (ValidTarget) Bytes[0x06]));

@@ -208,12 +208,12 @@ namespace EngrishOnry {
       long SpellCount = SpellStream.Length / 0x400;
       byte[] TextBlock = new byte[0x128];
 	for (long i = 0; i < SpellCount; ++i) {
-	  SpellStream.Seek(i * 0x400 + 0x27, SeekOrigin.Begin); SpellStream.Read (TextBlock, 0, 0x128);
+	  SpellStream.Seek(i * 0x400 + 0x29, SeekOrigin.Begin); SpellStream.Read (TextBlock, 0, 0x128);
 	  if (this.mnuTranslateSpellNames.Checked)
 	    Array.Copy(TextBlock, 0x14, TextBlock, 0x00, 0x14); // Copy english name
 	  if (this.mnuTranslateSpellDescriptions.Checked)
 	    Array.Copy(TextBlock, 0xa8, TextBlock, 0x28, 0x80); // Copy english description
-	  SpellStream.Seek(i * 0x400 + 0x27, SeekOrigin.Begin); SpellStream.Write(TextBlock, 0, 0x128);
+	  SpellStream.Seek(i * 0x400 + 0x29, SeekOrigin.Begin); SpellStream.Write(TextBlock, 0, 0x128);
 	}
       TranslationDone:
 	SpellStream.Close();
@@ -293,7 +293,7 @@ namespace EngrishOnry {
 	      for (uint i = 0; i < MessageCount; ++i) {
 	      uint MessageID = BR.ReadUInt32();
 		EnglishMessages[(MessageID >> 16) & 0xffff] = BR.BaseStream.Position;
-		BR.BaseStream.Seek(BR.ReadUInt32(), SeekOrigin.Current);
+		BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
 	      }
 	    }
 	    else { // Skip the group header and data
@@ -335,45 +335,44 @@ namespace EngrishOnry {
 		if (EnglishMessages.ContainsKey((MessageID >> 16) & 0xffff))
 		  ENMessagePos =  (long) EnglishMessages[(MessageID >> 16) & 0xffff];
 		if (ENMessagePos == 0) { // Simply copy
-		byte[] Text = BR.ReadBytes(BR.ReadInt32());
-		  BW.Write(Text.Length); BW.Write(Text);
-		  Text = BR.ReadBytes(BR.ReadInt32());
-		  BW.Write(Text.Length); BW.Write(Text);
+		byte[] Text;
+		  Text = BR.ReadBytes(BR.ReadByte()); BW.Write((byte) Text.Length); BW.Write(Text);
+		  Text = BR.ReadBytes(BR.ReadByte()); BW.Write((byte) Text.Length); BW.Write(Text);
 		}
 		else {
 		byte[] ENText = null;
 		  { // Skip back and grab english text
 		  long CurPos = BR.BaseStream.Position;
 		    BR.BaseStream.Seek(ENMessagePos, SeekOrigin.Begin);
-		    ENText = BR.ReadBytes(BR.ReadInt32());
+		    ENText = BR.ReadBytes(BR.ReadByte());
 		    BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
 		  }
 		  // Set the english text as primary
-		  BW.Write(ENText.Length); BW.Write(ENText);
+		  BW.Write((byte) ENText.Length); BW.Write(ENText);
 		  if (this.mnuPreserveJapaneseATCompletion.Checked) {
-		  byte[] JPPrimary   = BR.ReadBytes(BR.ReadInt32());
-		  byte[] JPSecondary = BR.ReadBytes(BR.ReadInt32());
+		  byte[] JPPrimary   = BR.ReadBytes(BR.ReadByte());
+		  byte[] JPSecondary = BR.ReadBytes(BR.ReadByte());
 		    if (JPSecondary.Length == 0)
 		      JPSecondary = JPPrimary;
-		    BW.Write(JPSecondary.Length); BW.Write(JPSecondary);
+		    BW.Write((byte) JPSecondary.Length); BW.Write(JPSecondary);
 		  }
 		  else if (this.mnuEnglishATCompletionOnly.Checked) {
 		    // Skip JP strings
-		    BR.BaseStream.Seek(BR.ReadInt32(), SeekOrigin.Current);
-		    BR.BaseStream.Seek(BR.ReadInt32(), SeekOrigin.Current);
+		    BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
+		    BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
 		    if (E == null)
 		      E = new FFXIEncoding();
 		  string NormalText = E.GetString(ENText);
 		  string LowerCaseText = NormalText.ToLower();
 		    if (LowerCaseText != NormalText) {
 		      ENText = E.GetBytes(LowerCaseText);
-		      BW.Write(ENText.Length); BW.Write(ENText);
+		      BW.Write((byte) ENText.Length); BW.Write(ENText);
 		    }
 		    else
-		      BW.Write((uint) 0);
+		      BW.Write((byte) 0);
 		  }
 		  else
-		    BW.Write((uint) 0);
+		    BW.Write((byte) 0);
 		}
 	      }
 	      // Update group size

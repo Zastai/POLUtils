@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="us-ascii" ?>
 <!-- $Id$ -->
 <rom-files>
   <rom-file><english app="0" dir="119" file="055"/><japanese app="0" dir="000" file="010"/></rom-file>
-  <rom-file><english app="0" dir="097" file="057"/><japanese app="0" dir="097" file="056"/></rom-file>
+  <rom-file><english app="0" dir="097" file="053"/><japanese app="0" dir="097" file="056"/></rom-file>
   <rom-file><english app="0" dir="097" file="039"/><japanese app="0" dir="097" file="021"/></rom-file>
   <rom-file><english app="0" dir="097" file="045"/><japanese app="0" dir="097" file="027"/></rom-file>
   <rom-file><english app="0" dir="097" file="043"/><japanese app="0" dir="097" file="025"/></rom-file>
