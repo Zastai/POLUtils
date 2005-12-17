@@ -57,7 +57,11 @@ namespace ItemListUpgrade {
       this.PrepareTransform();
       if (this.UpgradeTransform != null) {
 	try {
-	  this.UpgradeTransform.Transform(OldListFile, NewListFile);
+	XmlDocument XD = new XmlDocument();
+	  XD.Load(OldListFile);
+	XmlWriter XW = XmlTextWriter.Create(NewListFile, this.UpgradeTransform.OutputSettings);
+	  this.UpgradeTransform.Transform(XD, XW);
+	  XW.Close();
 	} catch (Exception E) {
 	  MessageBox.Show(this, String.Format("Applying the upgrade failed: {0}", E.Message), "Upgrade Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 	}
