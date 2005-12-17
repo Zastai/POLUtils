@@ -47,12 +47,11 @@
 	  <tr class="bottom-area"><td>
 	    Optimized to look good in <a href="http://www.mozilla.org/products/firefox/">Firefox</a>; other browsers may render this
 	    page incorrectly.<br/>
-	    Copyright (c) 2004,2005 Tim Van Holder.
-	    <xsl:if test="@nedstat">
-	      <a target="_blank" href="http://www.nedstatbasic.net/stats?{@nedstat}">
-	        <img src="http://m1.nedstatbasic.net/n?id={@nedstat}" border="0" width="18" height="18"
-		     alt="Nedstat Basic - Free Web Statistics"/>
-	      </a>
+	    Copyright © 2004,2005 Tim Van Holder.
+	    <xsl:if test="@webstats4u">
+              <a target="_blank" href="http://www.webstats4u.com/stats?{@webstats4u}">
+                <img src="http://m1.webstats4u.com/n?id={@webstats4u}" border="0" width="18" height="18" alt="Webstats4U - Free web site statistics" />
+              </a>
 	    </xsl:if>
 	  </td></tr>
 	</table>

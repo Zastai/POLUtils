@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <website name="Pebbles&apos; Program Page" home="index.html">
   <!-- Site Sections -->
-  <section name="Home" file="index.html" nedstat="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
+  <section name="Home" file="index.html" webstats4u="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
     <para>Welcome to Pebbles&apos; Program Page.</para>
     <para>
       Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
@@ -82,8 +82,28 @@
 	the Display properties in the Control Panel) to Tahoma, that should work.
       </p>
     </para>
+    <para>
+      <h3>8. What is that EngrishOnry thing?</h3>
+      <p>
+	EngrishOnry is a utility to help out those people playing the JP version of FFXI who would like most
+	of the game to be in English.  It will translate many of the game's assets to make that happen.
+      </p>
+    </para>
+    <para>
+      <h3>9. There's a game patch coming up!  How will this affect my use of EngrishOnry?</h3>
+      <p>
+	Good question.  If there is a patch, you must take two steps to avoid your game becoming corrupted:
+	1) Restore all translations BEFORE applying the patch, and 2) Delete EngrishOnry's backup folder
+	([FFXI Install Dir]\EngrishFFXI-Backup).  If you fail to do the first step the patch may fail, and
+	you may be forced to reinstall the game.  If you fail to do the second, EngrishOnry will be unable to
+	Restore the original file (it will restore the file from BEFORE the patch) - again, possibly forcing
+	you to reinstall.<br/>
+	Note: in some cases you may be able to force a full file check + redownload of corrupted files by
+	deleting the "patch.ver" in the FFXI installation directory.  But this is by no means guaranteed.
+      </p>
+    </para>
   </section>
-  <section name="Download Area" file="downloads.html" nedstat="ADNQdQo0vLkP4XweMb5W1npl0G7w">
+  <section name="Download Area" file="downloads.html" webstats4u="ADNQdQo0vLkP4XweMb5W1npl0G7w">
     <para>Here you can download Pebbles&apos; programs.</para>
     <downloads/>
   </section>
@@ -93,6 +113,20 @@
   </section>
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.6.4 Released" author="Pebbles" date="December 15th, 2005">
+      <p>Another emergency release - turns out S/E also changed the autotranslator file's structure, breaking
+         EngrishOnry's autotrans translation as well as the Macro Editor component of POLUtils.</p>
+    </news-item>
+    <news-item title="POLUtils 0.6.3 Released" author="Pebbles" date="December 13th, 2005">
+      <p>An emergency release due to the data changes for items and spells of yesterday's patch.
+         Note that the spell data now has 24 slots for job level, up 8 from the previous layout, so it seems like
+         S/E is keeping its options open for possible future expansions (although they've said in the past that
+         they probably wouldn't do more than 3 expansions).</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>EngrishOnry had non-functional ability translation; this is now fixed.</li>
+	<li>The item viewer control had some broken behaviour (layout issues), this is now fixed.</li>
+      </ul></p>
+    </news-item>
     <news-item title="Refreshed 0.6.2 Installer" author="Pebbles" date="December 5th, 2005">
       I uploaded a fresh installer, which returns to the "old-style" .NET detection, and allows installation to continue if the
       detection fails.  This should resolve the problems people reported.<br/>
@@ -364,6 +398,12 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.6.4-Release.exe">
+	Updated for the changed autotranslator file structure of the 20051212 patch.<br/>
+      </file>
+      <file name="POLUtils-0.6.3-Release.exe">
+	Another EngrishOnry fix + updated for the data changes of the 20051212 patch.<br/>
+      </file>
       <file name="POLUtils-0.6.2-Release.exe">
 	Fixed EngrishOnry and made it more configurable; added several new item fields, and added quest/mission/key item viewing.<br/>
       </file>
