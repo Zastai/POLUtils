@@ -261,13 +261,6 @@ namespace PlayOnline.FFXI {
       this.txtSlots.Text      = II.GetFieldText(ItemField.Slots);
       this.txtRaces.Text      = II.GetFieldText(ItemField.Races);
       this.ShowInfoGroup(this.grpEquipmentInfo);
-      if ((byte) II.GetFieldValue(ItemField.MaxCharges) > 0) {
-	this.txtMaxCharges.Text = II.GetFieldText(ItemField.MaxCharges);
-	this.txtCastTime.Text   = II.GetFieldText(ItemField.CastTime);
-	this.txtEquipDelay.Text = II.GetFieldText(ItemField.EquipDelay);
-	this.txtReuseTimer.Text = II.GetFieldText(ItemField.ReuseTimer);
-	this.ShowInfoGroup(this.grpEnchantmentInfo);
-      }
     }
 
     private void FillEnchantmentFields(FFXIItem.IItemInfo II) {
@@ -281,6 +274,7 @@ namespace PlayOnline.FFXI {
     }
 
     private void FillObjectFields(FFXIItem.IItemInfo II) {
+      this.ResetInfoGroups();
       this.FillCommonFields(II);
     ItemType IT = (ItemType) II.GetFieldValue(ItemField.Type);
       if (IT == ItemType.Flowerpot || IT == ItemType.Furnishing || IT == ItemType.Mannequin) {

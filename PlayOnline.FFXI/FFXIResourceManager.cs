@@ -70,24 +70,10 @@ namespace PlayOnline.FFXI {
       foreach (AutoTranslator.MessageGroup MG in AutoTranslator.Data) {
 	foreach (AutoTranslator.Message M in MG.Messages) {
 	uint ResID = (uint) ((M.ParentGroup << 8) + M.ID);
-	  {
-	  ResourceString RS = FFXIResourceManager.ResourceStrings[0x2020000 + ResID] as ResourceString;
-	    if (RS == null)
-	      FFXIResourceManager.ResourceStrings.Add(0x2020000 + ResID, new ResourceString(0x2020000 + ResID, M.Text, M.Text));
-	    else if (M.Category == 0x0202)
-	      RS.English = M.Text;
-	    else
-	      RS.Japanese = M.Text;
-	  }
-	  {
-	  ResourceString RS = FFXIResourceManager.ResourceStrings[0x1040000 + ResID] as ResourceString;
-	    if (RS == null)
-	      FFXIResourceManager.ResourceStrings.Add(0x1040000 + ResID, new ResourceString(0x1040000 + ResID, M.Text, M.Text));
-	    else if (M.Category == 0x0202)
-	      RS.English = M.Text;
-	    else
-	      RS.Japanese = M.Text;
-	  }
+	  if (M.Category == 0x0202)
+	    FFXIResourceManager.ResourceStrings.Add(0x2020000 + ResID, new ResourceString(0x2020000 + ResID, M.Text, M.Text));
+	  else
+	    FFXIResourceManager.ResourceStrings.Add(0x1040000 + ResID, new ResourceString(0x1040000 + ResID, M.Text, M.Text));
 	}
       }
     }

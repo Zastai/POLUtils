@@ -135,7 +135,7 @@ namespace PlayOnline.FFXI {
   }
 
   [Flags]
-  public enum Job : ushort {
+  public enum Job : uint {
     None = 0x0000,
     All  = 0xFFFE,
     // Specific

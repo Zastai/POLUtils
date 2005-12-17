@@ -95,6 +95,7 @@
     <Compile Include="FFXIItemEditor.Designer.cs">
       <DependentUpon>FFXIItemEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="IThing.cs" />
     <Compile Include="PleaseWaitDialog.Designer.cs">
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
     </Compile>

@@ -1006,8 +1006,8 @@
   <category><name><i18n-string id="Menu:String Tables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file app="0" dir="119" file="055"><i18n-string id="Menu:Abilities"/></rom-file>
-      <rom-file app="0" dir="097" file="057"><i18n-string id="Menu:AreaNames"/></rom-file>
-      <rom-file app="0" dir="097" file="053"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
+      <rom-file app="0" dir="097" file="053"><i18n-string id="Menu:AreaNames"/></rom-file>
+      <rom-file app="0" dir="097" file="057"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
       <rom-file app="0" dir="097" file="039"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
       <rom-file app="0" dir="097" file="045"><i18n-string id="Menu:DayNames"/></rom-file>
       <rom-file app="0" dir="097" file="043"><i18n-string id="Menu:Directions"/></rom-file>

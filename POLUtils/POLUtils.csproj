@@ -138,7 +138,9 @@
     <Compile Include="POLUtilsUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="Messages.resx" />
+    <EmbeddedResource Include="Messages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="POLUtilsUI.ja.resx">
       <DependentUpon>POLUtilsUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +149,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POLUtilsUI.resx">
       <DependentUpon>POLUtilsUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
