@@ -22,8 +22,11 @@ OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
 
 !define INSTALLER_REG_KEY Software\Pebbles\Installation\POLUtils
 
-;; This should be a NSIS builtin...
-!define LOCALAPPDATA "$PROFILE\Local Settings\Application Data"
+!define MUI_LANGDLL_REGISTRY_ROOT      HKLM
+!define MUI_LANGDLL_REGISTRY_KEY       "${INSTALLER_REG_KEY}"
+!define MUI_LANGDLL_REGISTRY_VALUENAME "Install Language"
+
+!insertmacro MUI_RESERVEFILE_LANGDLL
 
 InstallDir       "$PROGRAMFILES\Pebbles\POLUtils"
 InstallDirRegKey HKLM "${INSTALLER_REG_KEY}" "Install Location"
@@ -53,8 +56,8 @@ Var START_MENU_FOLDER
 !define MUI_STARTMENUPAGE_REGISTRY_KEY       "${INSTALLER_REG_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
+Page Custom PagePreInstallCheck PagePreInstallCheckDone
 !insertmacro MUI_PAGE_WELCOME
-Page Custom PageUninstallPre050 PageLeaveUninstallPre050
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_STARTMENU "StartMenu" $START_MENU_FOLDER
@@ -67,26 +70,29 @@ Page Custom PageUninstallPre050 PageLeaveUninstallPre050
 !include "Languages.nsh"
 
 Function .oninit
+  !insertmacro MUI_LANGDLL_DISPLAY
+FunctionEnd
+
+Function un.onInit
+  !insertmacro MUI_UNGETLANGUAGE
+FunctionEnd
+
+!include "DotNet.nsh"
+
+Function PagePreInstallCheck
   MessageBox MB_OK|MB_ICONINFORMATION $(MB_ENSURE_TRUSTED_SOURCE)
   StrCmp "${BUILD}" "Release" ReleaseBuild
     MessageBox MB_OK|MB_ICONINFORMATION $(MB_SPECIAL_BUILD)
   ReleaseBuild:
 FunctionEnd
 
-!include "DotNet.nsh"
-
-Function PageUninstallPre050
-  ;; TODO: Check for old installer info, and if present, show custom page explaining that it needs to be uninstalled first
-FunctionEnd
-
-Function PageLeaveUninstallPre050
-  ;; TODO: If uninstall requested: run uninstaller
+Function PagePreInstallCheckDone
 FunctionEnd
 
 ;; --- Sections ---
 
-InstType "Basic"
-InstType "Full"
+InstType $(INSTTYPE_BASIC)
+InstType $(INSTTYPE_FULL)
 
 Section "-DotNetCheck"
   Push "v${REQUIRED_DOTNET_VERSION}"
@@ -114,18 +120,6 @@ Section "-ManagedDirectXCheck"
   MDXTestDone:
 SectionEnd
 
-Section "-UpdateMacroLibrary"
-  IfFileExists "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml" LibUpdateComplete
-  IfFileExists "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml" +1 LibUpdateComplete
-    CreateDirectory "${LOCALAPPDATA}\Pebbles\POLUtils\"
-    CopyFiles "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml" "${LOCALAPPDATA}\Pebbles\POLUtils\"
-    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_MACROLIB_V4) IDNO LibUpdateComplete
-    Delete "${LOCALAPPDATA}\ZastaiSoft\POLUtils\macro-library.xml"
-    RMDir "${LOCALAPPDATA}\ZastaiSoft\POLUtils"
-    RMDir "${LOCALAPPDATA}\ZastaiSoft"
-  LibUpdateComplete:
-SectionEnd
-
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
   SectionIn 1 2 RO
   SetOutPath "$INSTDIR"
@@ -134,6 +128,7 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\PlayOnline.FFXI.dll"
   File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\POLUtils.exe"
+  File           "${BUILDDIR}\ItemListUpgrade.exe"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
@@ -157,16 +152,12 @@ Section $(NAME_SECTION_DESKTOP_SHORTCUT) SECTION_DESKTOP_SHORTCUT
   CreateShortCut "$DESKTOP\POLUtils.lnk" "$INSTDIR\POLUtils.exe" "" "shell32.dll" 165 SW_SHOWNORMAL "" $(DESC_SHORTCUT)
 SectionEnd
 
-Section $(NAME_SECTION_ENGRISH_ONRY) SECTION_ENGRISH_ONRY
-  SetOutPath "$INSTDIR"
-  File "${BUILDDIR}\EngrishOnry.exe"
-SectionEnd
-
 Section "-RegisterInstallationInfo"
   ;; Common Info
   WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Installer Language" $LANGUAGE
   WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Install Location" $INSTDIR
   ;; Components
+  DeleteRegKey HKLM "${INSTALLER_REG_KEY}\Components"
   goto s00_check ;; so that the blocks below can stay nearly identical and s00_check isn't unused
   s00_check: !insertmacro SectionFlagIsSet ${SECTION_MAIN} ${SF_SELECTED} s00_yes s00_no
   s00_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) 1
@@ -210,15 +201,12 @@ Section "Uninstall"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.Utils.*.dll"
   Delete "$INSTDIR\POLUtils.exe"
-  Delete "$INSTDIR\POLUtils.exe.manifest"
+  Delete "$INSTDIR\ItemListUpgrade.exe"
   ;; Translations
   Delete "$INSTDIR\nl\*.resources.dll"
   RMDir "$INSTDIR\nl"
   Delete "$INSTDIR\ja\*.resources.dll"
   RMDir "$INSTDIR\ja"
-  ;; EngrishOnry
-  Delete "$INSTDIR\EngrishOnry.exe"
-  Delete "$INSTDIR\EngrishOnry.exe.manifest"
   ;; Desktop Shortcut
   Delete "$DESKTOP\POLUtils.lnk"
   ;; Start Menu Entries
@@ -234,12 +222,12 @@ Section "Uninstall"
     Delete "$SMPROGRAMS\$(SITE_NAME).url"
   EndSMClean:
   ;; Macro Library
-  IfFileExists "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml" +1 LibRemovalComplete
+  IfFileExists "$LOCALAPPDATA\Pebbles\POLUtils\macro-library.xml" +1 LibRemovalComplete
     MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_CURRENT_MACROLIB) IDNO LibRemovalComplete
-    Delete "${LOCALAPPDATA}\Pebbles\POLUtils\macro-library.xml"
-    RMDir "${LOCALAPPDATA}\Pebbles\POLUtils"
-    RMDir "${LOCALAPPDATA}\Pebbles"
+    Delete "$LOCALAPPDATA\Pebbles\POLUtils\macro-library.xml"
   LibRemovalComplete:
+  RMDir "$LOCALAPPDATA\Pebbles\POLUtils"
+  RMDir "$LOCALAPPDATA\Pebbles"
   ;; The uninstaller itself
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
@@ -255,5 +243,4 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_DESKTOP_SHORTCUT} $(DESC_SECTION_DESKTOP_SHORTCUT)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_ENGRISH_ONRY}     $(DESC_SECTION_ENGRISH_ONRY)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
