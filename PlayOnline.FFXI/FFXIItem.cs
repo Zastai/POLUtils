@@ -66,17 +66,32 @@ namespace PlayOnline.FFXI {
     }
 
     private static string UndumpStringField(XmlElement DumpedItem, ItemField IF) {
-      try   { return DumpedItem.SelectSingleNode(String.Format("./child::*[name(.) = '{0}']", IF)).InnerText; }
+      try {
+      XmlNode XN = DumpedItem.SelectSingleNode(String.Format("./child::*[name(.) = '{0}']", IF));
+	if (XN == null)
+	  return String.Empty;
+	return XN.InnerText;
+      }
       catch { return String.Empty; }
     }
 
     private static long UndumpIntegerField(XmlElement DumpedItem, ItemField IF) {
-      try   { return long.Parse(FFXIItem.UndumpStringField(DumpedItem, IF), NumberStyles.Integer); }
+      try {
+      string Text = FFXIItem.UndumpStringField(DumpedItem, IF);
+	if (Text == String.Empty)
+	  return 0;
+	return long.Parse(Text, NumberStyles.Integer);
+      }
       catch { return 0; }
     }
 
     private static uint UndumpEnumField(XmlElement DumpedItem, ItemField IF) {
-      try   { return uint.Parse(FFXIItem.UndumpStringField(DumpedItem, IF), NumberStyles.HexNumber); }
+      try {
+      string Text = FFXIItem.UndumpStringField(DumpedItem, IF);
+	if (Text == String.Empty)
+	  return 0;
+	return uint.Parse(Text, NumberStyles.HexNumber);
+      }
       catch { return 0; }
     }
 
