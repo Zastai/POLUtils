@@ -179,27 +179,24 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
-    private void TSaveAllImages() {
-    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
-      try {
-	Application.DoEvents();
-	PWD.ShowDialog(this);
-      } catch { PWD.Close(); }
-    }
-
     private void btnImageSaveAll_Click(object sender, System.EventArgs e) {
       this.PrepareFolderBrowser(I18N.GetText("Description:BrowseImageExportFolder"));
       if (this.dlgBrowseFolder.ShowDialog() == DialogResult.OK) {
-      Thread T = new Thread(new ThreadStart(this.TSaveAllImages));
+      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
+      Thread T = new Thread(new ThreadStart(delegate () {
+	  Application.DoEvents();
+	  foreach (FFXIGraphic G in this.cmbImageChooser.Items) {
+	    G.Bitmap.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
+	    Application.DoEvents();
+	  }
+	  PWD.Close();
+	}));
 	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	T.Start();
-	Application.DoEvents();
-	foreach (FFXIGraphic G in this.cmbImageChooser.Items) {
-	  G.Bitmap.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
-	  Application.DoEvents();
-	}
-	T.Abort();
+	PWD.ShowDialog(this);
 	this.Activate();
+	PWD.Dispose();
+	PWD = null; 
       }
     }
 
@@ -290,26 +287,24 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Item Data Viewer Events
 
-    private void TExportItems() {
-    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
-      try {
-	Application.DoEvents();
-	PWD.ShowDialog(this);
-      } catch { PWD.Close(); }
-    }
-
     private FFXIItem[] LoadedItems_ = null;
 
     private void btnExportItems_Click(object sender, System.EventArgs e) {
     ItemExporter IE = new ItemExporter(this.ieItemViewer.ChosenItemLanguage, this.ieItemViewer.ChosenItemType);
       if (IE.PrepareExport()) {
-      Thread T = new Thread(new ThreadStart(this.TExportItems));
+      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+      Thread T = new Thread(new ThreadStart(delegate () {
+	  Application.DoEvents();
+	  IE.DoExport(this.LoadedItems_);
+	  Application.DoEvents();
+	  PWD.Close();
+	}));
 	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	T.Start();
-	Application.DoEvents();
-	IE.DoExport(this.LoadedItems_);
-	T.Abort();
+	PWD.ShowDialog(this);
 	this.Activate();
+	PWD.Dispose();
+	PWD = null; 
       }
     }
 

@@ -49,15 +49,16 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	base.OnPaintBackground(e);
     }
 
-    #region Item Loading
+    private PleaseWaitDialog PWD = null;
 
-    private void LoadItems(string FileName, FFXIItemEditor IE) {
+    private delegate void AnonymousMethod();
+
+    #region Item Loading & Duplicate Removal
+
+    private void LoadItemsWorker(string FileName, FFXIItemEditor IE) {
     ArrayList LoadedItems = new ArrayList();
     ItemDataLanguage LoadedLanguage = ItemDataLanguage.English;
     ItemDataType LoadedType = ItemDataType.Object;
-    Thread T = new Thread(new ThreadStart(this.TLoadItems));
-      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-      T.Start();
       Application.DoEvents();
       try {
       XmlDocument XD = new XmlDocument();
@@ -67,7 +68,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	int Index = 0;
 	  try { LoadedLanguage = (ItemDataLanguage) Enum.Parse(typeof(ItemDataLanguage), XD.DocumentElement.Attributes["Language"].InnerText); } catch { }
 	  try { LoadedType     = (ItemDataType)     Enum.Parse(typeof(ItemDataType),     XD.DocumentElement.Attributes["Type"].InnerText);     } catch { }
-	  IE.LockViewMode(LoadedLanguage, LoadedType);
+	  IE.Invoke(new AnonymousMethod(delegate() { IE.LockViewMode(LoadedLanguage, LoadedType); }));
 	  foreach (XmlNode XN in XD.DocumentElement.ChildNodes) {
 	    if (XN is XmlElement && XN.Name == "Item") {
 	      LoadedItems.Add(new FFXIItem(Index++, XN as XmlElement));
@@ -96,9 +97,88 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       else
 	this.CurrentItem = 0;
       if (this.RightItems != null && this.LeftItems != null)
-	this.btnRemoveUnchanged.Enabled = true;
-      T.Abort();
+	this.btnRemoveUnchanged.Invoke(new AnonymousMethod(delegate () { this.btnRemoveUnchanged.Enabled = true; }));
+      this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
+    }
+
+    private void LoadItems(string FileName, FFXIItemEditor IE) {
+      this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:LoadItems"));
+    Thread T = new Thread(new ThreadStart(delegate() { this.LoadItemsWorker(FileName, IE); }));
+      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+      T.Start();
+      PWD.ShowDialog(this);
       this.Activate();
+      this.PWD.Dispose();
+      this.PWD = null;
+      this.EnableNavigation();
+      this.MarkItemChanges();
+    }
+
+    private void RemoveUnchangedItemsWorker() {
+      Application.DoEvents();
+      this.LeftItemsShown  = null;
+      this.RightItemsShown = null;
+    ArrayList LIS = new ArrayList();
+    ArrayList RIS = new ArrayList();
+      for (int i = 0; i < this.LeftItems.Length && i < this.RightItems.Length; ++i) {
+      bool DifferenceSeen = false;
+	if (this.GetIconString(this.LeftItems[i]) != this.GetIconString(this.RightItems[i]))
+	  DifferenceSeen = true;
+	else {
+	FFXIItem.IItemInfo LItem = this.LeftItems[i].GetInfo(this.LLanguage, this.LType);
+	FFXIItem.IItemInfo RItem = this.RightItems[i].GetInfo(this.RLanguage, this.RType);
+	  foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
+	    if (LItem.GetFieldText(IF) != RItem.GetFieldText(IF)) {
+	      DifferenceSeen = true;
+	      break;
+	    }
+	  }
+	}
+	if (DifferenceSeen) {
+	  LIS.Add(this.LeftItems[i]);
+	  RIS.Add(this.RightItems[i]);
+	}
+	Application.DoEvents();
+      }
+      // All non-dummy overflow items are "changed"
+      if (this.LeftItems.Length < this.RightItems.Length) {
+	Console.WriteLine("Right Hand Side Has {0} More Items", this.RightItems.Length - this.LeftItems.Length);
+      int OverflowPos = this.LeftItems.Length;
+	while (OverflowPos < this.RightItems.Length) {
+	FFXIItem I = this.RightItems[OverflowPos++];
+	FFXIItem.IItemInfo II = I.GetInfo(this.RLanguage, this.RType);
+	  if (II.GetFieldText(ItemField.EnglishName) == String.Empty || II.GetFieldText(ItemField.EnglishName) == ".")
+	    continue;
+	  RIS.Add(I);
+	}
+      }
+      else if (this.LeftItems.Length > this.RightItems.Length) {
+	Console.WriteLine("Left Hand Side Has {0} More Items", this.LeftItems.Length - this.RightItems.Length);
+      int OverflowPos = this.RightItems.Length;
+	while (OverflowPos < this.LeftItems.Length) {
+	FFXIItem I = this.LeftItems[OverflowPos++];
+	FFXIItem.IItemInfo II = I.GetInfo(this.LLanguage, this.LType);
+	  if (II.GetFieldText(ItemField.EnglishName) == String.Empty || II.GetFieldText(ItemField.EnglishName) == ".")
+	    continue;
+	  LIS.Add(I);
+	}
+      }
+      this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
+      this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
+      this.CurrentItem     = ((LIS.Count == 0) ? -1 : 0);
+      this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
+    }
+
+    private void RemoveUnchangedItems() {
+      this.btnRemoveUnchanged.Enabled = false;
+      this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:RemoveUnchanged"));
+    Thread T = new Thread(new ThreadStart(delegate() { this.RemoveUnchangedItemsWorker(); }));
+      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+      T.Start();
+      PWD.ShowDialog(this);
+      this.Activate();
+      this.PWD.Dispose();
+      this.PWD = null;
       this.EnableNavigation();
       this.MarkItemChanges();
     }
@@ -178,26 +258,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     #endregion
 
-    #region "Please Wait" Threads
-
-    private void TLoadItems() {
-    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:LoadItems"));
-      try {
-	Application.DoEvents();
-	PWD.ShowDialog(this);
-      } catch { PWD.Close(); }
-    }
-
-    private void TRemoveUnchanged() {
-    PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:RemoveUnchanged"));
-      try {
-	Application.DoEvents();
-	PWD.ShowDialog(this);
-      } catch { PWD.Close(); }
-    }
-
-    #endregion
-
     #region Event Handlers
 
     private void btnLoadItemSet1_Click(object sender, System.EventArgs e) {
@@ -223,41 +283,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     }
 
     private void btnRemoveUnchanged_Click(object sender, System.EventArgs e) {
-      this.btnRemoveUnchanged.Enabled = false;
-    Thread T = new Thread(new ThreadStart(this.TRemoveUnchanged));
-      T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-      T.Start();
-      Application.DoEvents();
-      this.LeftItemsShown  = null;
-      this.RightItemsShown = null;
-    ArrayList LIS = new ArrayList();
-    ArrayList RIS = new ArrayList();
-      for (int i = 0; i < this.LeftItems.Length && i < this.RightItems.Length; ++i) {
-      bool DifferenceSeen = false;
-	if (this.GetIconString(this.LeftItems[i]) != this.GetIconString(this.RightItems[i]))
-	  DifferenceSeen = true;
-	else {
-	  foreach (ItemField IF in Enum.GetValues(typeof(ItemField))) {
-	    if (this.LeftItems[i].GetInfo(this.LLanguage, this.LType).GetFieldText(IF)
-		!= this.RightItems[i].GetInfo(this.RLanguage, this.RType).GetFieldText(IF)) {
-	      DifferenceSeen = true;
-	      break;
-	    }
-	  }
-	}
-	if (DifferenceSeen) {
-	  LIS.Add(this.LeftItems[i]);
-	  RIS.Add(this.RightItems[i]);
-	}
-	Application.DoEvents();
-      }
-      T.Abort();
-      this.Activate();
-      this.LeftItemsShown  = (FFXIItem[]) LIS.ToArray(typeof(FFXIItem));
-      this.RightItemsShown = (FFXIItem[]) RIS.ToArray(typeof(FFXIItem));
-      this.CurrentItem = ((LIS.Count == 0) ? -1 : 0);
-      this.EnableNavigation();
-      this.MarkItemChanges();
+      this.RemoveUnchangedItems();
     }
 
     private void ItemViewerSizeChanged(object sender, System.EventArgs e) {
