@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace />
     <AssemblyName>ItemListUpgrade</AssemblyName>
-    <StartupObject>ItemListUpgrade.MainWindow</StartupObject>
+    <StartupObject>ItemListUpgrade.Program</StartupObject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\POLUtils.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -24,7 +24,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Binaries\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -41,21 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainWindow.Designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
+    <Compile Include="Program.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ItemListUpgrade.xslt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="Messages.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
