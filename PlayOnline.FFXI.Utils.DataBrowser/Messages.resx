@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,368 +117,371 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FileTableDialog:StatusFormat">
-    <value xml:space="preserve">{0} - {1} file(s) assigned</value>
+  <data name="FileTableDialog:StatusFormat" xml:space="preserve">
+    <value>{0} - {1} file(s) assigned</value>
   </data>
-  <data name="FileTableDialog:StatusSorting">
-    <value xml:space="preserve">Sorting...</value>
+  <data name="FileTableDialog:StatusSorting" xml:space="preserve">
+    <value>Sorting...</value>
   </data>
-  <data name="FFXI1">
-    <value xml:space="preserve">Final Fantasy XI</value>
+  <data name="FFXI1" xml:space="preserve">
+    <value>Final Fantasy XI</value>
   </data>
-  <data name="FFXI2">
-    <value xml:space="preserve">Rise of the Zilart</value>
+  <data name="FFXI2" xml:space="preserve">
+    <value>Rise of the Zilart</value>
   </data>
-  <data name="FFXI3">
-    <value xml:space="preserve">Chains of Promathia</value>
+  <data name="FFXI3" xml:space="preserve">
+    <value>Chains of Promathia</value>
   </data>
-  <data name="InvalidEntry">
-    <value xml:space="preserve">&lt;invalid entry&gt;</value>
+  <data name="InvalidEntry" xml:space="preserve">
+    <value>&lt;invalid entry&gt;</value>
   </data>
-  <data name="Menu:Dialog Tables">
-    <value xml:space="preserve">&amp;Dialog Tables</value>
+  <data name="Menu:Dialog Tables" xml:space="preserve">
+    <value>&amp;Dialog Tables</value>
   </data>
-  <data name="Menu:English">
-    <value xml:space="preserve">&amp;English</value>
+  <data name="Menu:English" xml:space="preserve">
+    <value>&amp;English</value>
   </data>
-  <data name="Menu:Japanese">
-    <value xml:space="preserve">&amp;Japanese</value>
+  <data name="Menu:Japanese" xml:space="preserve">
+    <value>&amp;Japanese</value>
   </data>
-  <data name="Menu:Images">
-    <value xml:space="preserve">&amp;Images</value>
+  <data name="Menu:Images" xml:space="preserve">
+    <value>&amp;Images</value>
   </data>
-  <data name="Menu:Maps">
-    <value xml:space="preserve">&amp;Maps</value>
+  <data name="Menu:Maps" xml:space="preserve">
+    <value>&amp;Maps</value>
   </data>
-  <data name="Menu:MapN">
-    <value xml:space="preserve">Map &amp;{0}</value>
+  <data name="Menu:MapN" xml:space="preserve">
+    <value>Map &amp;{0}</value>
   </data>
-  <data name="Menu:Other">
-    <value xml:space="preserve">&amp;Other</value>
+  <data name="Menu:Other" xml:space="preserve">
+    <value>&amp;Other</value>
   </data>
-  <data name="Menu:Fonts+Menus">
-    <value xml:space="preserve">&amp;Fonts &amp;&amp; Menus</value>
+  <data name="Menu:Fonts+Menus" xml:space="preserve">
+    <value>&amp;Fonts &amp;&amp; Menus</value>
   </data>
-  <data name="Menu:Rank (Bastok)">
-    <value xml:space="preserve">&amp;Rank (Bastok)</value>
+  <data name="Menu:Rank (Bastok)" xml:space="preserve">
+    <value>&amp;Rank (Bastok)</value>
   </data>
-  <data name="Menu:Rank (Windurst)">
-    <value xml:space="preserve">&amp;Rank (Windurst)</value>
+  <data name="Menu:Rank (Windurst)" xml:space="preserve">
+    <value>&amp;Rank (Windurst)</value>
   </data>
-  <data name="Menu:Rank (San d'Oria)">
-    <value xml:space="preserve">&amp;Rank (San d'Oria)</value>
+  <data name="Menu:Rank (San d'Oria)" xml:space="preserve">
+    <value>&amp;Rank (San d'Oria)</value>
   </data>
-  <data name="Menu:UI Windows">
-    <value xml:space="preserve">&amp;UI Windows</value>
+  <data name="Menu:UI Windows" xml:space="preserve">
+    <value>&amp;UI Windows</value>
   </data>
-  <data name="Menu:StyleN">
-    <value xml:space="preserve">Style &amp;</value>
+  <data name="Menu:StyleN" xml:space="preserve">
+    <value>Style &amp;</value>
   </data>
-  <data name="Menu:Item Data">
-    <value xml:space="preserve">I&amp;tem Data</value>
+  <data name="Menu:Item Data" xml:space="preserve">
+    <value>I&amp;tem Data</value>
   </data>
-  <data name="Menu:Items1">
-    <value xml:space="preserve">Items (Part &amp;1)</value>
+  <data name="Menu:Items1" xml:space="preserve">
+    <value>Items (Part &amp;1)</value>
   </data>
-  <data name="Menu:Items2">
-    <value xml:space="preserve">Items (Part &amp;2)</value>
+  <data name="Menu:Items2" xml:space="preserve">
+    <value>Items (Part &amp;2)</value>
   </data>
-  <data name="Menu:Unused">
-    <value xml:space="preserve">Unused</value>
+  <data name="Menu:Unused" xml:space="preserve">
+    <value>Unused</value>
   </data>
-  <data name="Menu:Armor">
-    <value xml:space="preserve">Armor</value>
+  <data name="Menu:Armor" xml:space="preserve">
+    <value>Armor</value>
   </data>
-  <data name="Menu:Weapons">
-    <value xml:space="preserve">Weapons</value>
+  <data name="Menu:Weapons" xml:space="preserve">
+    <value>Weapons</value>
   </data>
-  <data name="Menu:String Tables">
-    <value xml:space="preserve">&amp;String Tables</value>
+  <data name="Menu:String Tables" xml:space="preserve">
+    <value>&amp;String Tables</value>
   </data>
-  <data name="Menu:Common">
-    <value xml:space="preserve">&amp;Common</value>
+  <data name="Menu:Common" xml:space="preserve">
+    <value>&amp;Common</value>
   </data>
-  <data name="Menu:Abilities">
-    <value xml:space="preserve">&amp;Abilities</value>
+  <data name="Menu:Abilities" xml:space="preserve">
+    <value>&amp;Abilities</value>
   </data>
-  <data name="Menu:AreaNames">
-    <value xml:space="preserve">&amp;Area Names</value>
+  <data name="Menu:AreaNames" xml:space="preserve">
+    <value>&amp;Area Names</value>
   </data>
-  <data name="Menu:AreaNamesAlt">
-    <value xml:space="preserve">&amp;Area Names (Alternate)</value>
+  <data name="Menu:AreaNamesAlt" xml:space="preserve">
+    <value>&amp;Area Names (Alternate)</value>
   </data>
-  <data name="Menu:AreaNamesShort">
-    <value xml:space="preserve">&amp;Area Names (Search)</value>
+  <data name="Menu:AreaNamesShort" xml:space="preserve">
+    <value>&amp;Area Names (Search)</value>
   </data>
-  <data name="Menu:ChatFilterTypes">
-    <value xml:space="preserve">&amp;Chat Filter Types</value>
+  <data name="Menu:ChatFilterTypes" xml:space="preserve">
+    <value>&amp;Chat Filter Types</value>
   </data>
-  <data name="Menu:DayNames">
-    <value xml:space="preserve">&amp;Day Names</value>
+  <data name="Menu:DayNames" xml:space="preserve">
+    <value>&amp;Day Names</value>
   </data>
-  <data name="Menu:Directions">
-    <value xml:space="preserve">&amp;Directions</value>
+  <data name="Menu:Directions" xml:space="preserve">
+    <value>&amp;Directions</value>
   </data>
-  <data name="Menu:ErrorMessages">
-    <value xml:space="preserve">&amp;Error Messages</value>
+  <data name="Menu:ErrorMessages" xml:space="preserve">
+    <value>&amp;Error Messages</value>
   </data>
-  <data name="Menu:InGameMessages1">
-    <value xml:space="preserve">&amp;In-Game Messages (1)</value>
+  <data name="Menu:InGameMessages1" xml:space="preserve">
+    <value>&amp;In-Game Messages (1)</value>
   </data>
-  <data name="Menu:InGameMessages2">
-    <value xml:space="preserve">&amp;In-Game Messages (2)</value>
+  <data name="Menu:InGameMessages2" xml:space="preserve">
+    <value>&amp;In-Game Messages (2)</value>
   </data>
-  <data name="Menu:JobNames">
-    <value xml:space="preserve">&amp;Job Names</value>
+  <data name="Menu:JobNames" xml:space="preserve">
+    <value>&amp;Job Names</value>
   </data>
-  <data name="Menu:JobNamesShort">
-    <value xml:space="preserve">&amp;Job Names (Short)</value>
+  <data name="Menu:JobNamesShort" xml:space="preserve">
+    <value>&amp;Job Names (Short)</value>
   </data>
-  <data name="Menu:MenuItemDesc">
-    <value xml:space="preserve">&amp;Menu Item Descriptions</value>
+  <data name="Menu:MenuItemDesc" xml:space="preserve">
+    <value>&amp;Menu Item Descriptions</value>
   </data>
-  <data name="Menu:MenuItemText">
-    <value xml:space="preserve">&amp;Menu Item Text</value>
+  <data name="Menu:MenuItemText" xml:space="preserve">
+    <value>&amp;Menu Item Text</value>
   </data>
-  <data name="Menu:MoonPhases">
-    <value xml:space="preserve">&amp;Moon Phases</value>
+  <data name="Menu:MoonPhases" xml:space="preserve">
+    <value>&amp;Moon Phases</value>
   </data>
-  <data name="Menu:POLMessages">
-    <value xml:space="preserve">&amp;POL Messages</value>
+  <data name="Menu:POLMessages" xml:space="preserve">
+    <value>&amp;POL Messages</value>
   </data>
-  <data name="Menu:Quests">
-    <value xml:space="preserve">Quests / Missions / Key Items</value>
+  <data name="Menu:Quests" xml:space="preserve">
+    <value>Quests / Missions / Key Items</value>
   </data>
-  <data name="Menu:RaceNames">
-    <value xml:space="preserve">&amp;Race Names</value>
+  <data name="Menu:RaceNames" xml:space="preserve">
+    <value>&amp;Race Names</value>
   </data>
-  <data name="Menu:RegionNames">
-    <value xml:space="preserve">&amp;Region Names</value>
+  <data name="Menu:RegionNames" xml:space="preserve">
+    <value>&amp;Region Names</value>
   </data>
-  <data name="Menu:Spells">
-    <value xml:space="preserve">&amp;Spells</value>
+  <data name="Menu:Spells" xml:space="preserve">
+    <value>&amp;Spells</value>
   </data>
-  <data name="Menu:Status">
-    <value xml:space="preserve">&amp;Status</value>
+  <data name="Menu:Status" xml:space="preserve">
+    <value>&amp;Status</value>
   </data>
-  <data name="Menu:Time+Pronouns">
-    <value xml:space="preserve">&amp;Time-Related Terms + Pronouns</value>
+  <data name="Menu:Time+Pronouns" xml:space="preserve">
+    <value>&amp;Time-Related Terms + Pronouns</value>
   </data>
-  <data name="Menu:Titles">
-    <value xml:space="preserve">&amp;Titles</value>
+  <data name="Menu:Titles" xml:space="preserve">
+    <value>&amp;Titles</value>
   </data>
-  <data name="Menu:TransportRoutes">
-    <value xml:space="preserve">&amp;Transport Routes</value>
+  <data name="Menu:TransportRoutes" xml:space="preserve">
+    <value>&amp;Transport Routes</value>
   </data>
-  <data name="Menu:Various1">
-    <value xml:space="preserve">&amp;Various (1)</value>
+  <data name="Menu:Various1" xml:space="preserve">
+    <value>&amp;Various (1)</value>
   </data>
-  <data name="Menu:Various2">
-    <value xml:space="preserve">&amp;Various (2)</value>
+  <data name="Menu:Various2" xml:space="preserve">
+    <value>&amp;Various (2)</value>
   </data>
-  <data name="Menu:Various3">
-    <value xml:space="preserve">&amp;Various (3)</value>
+  <data name="Menu:Various3" xml:space="preserve">
+    <value>&amp;Various (3)</value>
   </data>
-  <data name="Menu:WeatherTypes">
-    <value xml:space="preserve">&amp;Weather Types</value>
+  <data name="Menu:WeatherTypes" xml:space="preserve">
+    <value>&amp;Weather Types</value>
   </data>
-  <data name="AbilityCheck">
-    <value xml:space="preserve">Checking whether the file contains ability information...</value>
+  <data name="AbilityCheck" xml:space="preserve">
+    <value>Checking whether the file contains ability information...</value>
   </data>
-  <data name="AbilityLoad">
-    <value xml:space="preserve">Loading ability information - please wait...</value>
+  <data name="AbilityLoad" xml:space="preserve">
+    <value>Loading ability information - please wait...</value>
   </data>
-  <data name="AbilityLoadProgress">
-    <value xml:space="preserve">Loading ability information ({0}/{1}) - please wait...</value>
+  <data name="AbilityLoadProgress" xml:space="preserve">
+    <value>Loading ability information ({0}/{1}) - please wait...</value>
   </data>
-  <data name="DialogCheck">
-    <value xml:space="preserve">Checking whether the file contains dialog strings...</value>
+  <data name="DialogCheck" xml:space="preserve">
+    <value>Checking whether the file contains dialog strings...</value>
   </data>
-  <data name="DialogLoad">
-    <value xml:space="preserve">Loading dialog strings - please wait...</value>
+  <data name="DialogLoad" xml:space="preserve">
+    <value>Loading dialog strings - please wait...</value>
   </data>
-  <data name="DialogLoadProgress">
-    <value xml:space="preserve">Loading dialog strings ({0}/{1}) - please wait...</value>
+  <data name="DialogLoadProgress" xml:space="preserve">
+    <value>Loading dialog strings ({0}/{1}) - please wait...</value>
   </data>
-  <data name="ImageScan">
-    <value xml:space="preserve">Scanning file for images - please wait...</value>
+  <data name="ImageScan" xml:space="preserve">
+    <value>Scanning file for images - please wait...</value>
   </data>
-  <data name="ImageScanProgress">
-    <value xml:space="preserve">Scanning file for images ({0} found so far) - please wait...</value>
+  <data name="ImageScanProgress" xml:space="preserve">
+    <value>Scanning file for images ({0} found so far) - please wait...</value>
   </data>
-  <data name="ItemCheck">
-    <value xml:space="preserve">Checking whether the file contains item data...</value>
+  <data name="ItemCheck" xml:space="preserve">
+    <value>Checking whether the file contains item data...</value>
   </data>
-  <data name="ItemLoad">
-    <value xml:space="preserve">Loading item information - please wait...</value>
+  <data name="ItemLoad" xml:space="preserve">
+    <value>Loading item information - please wait...</value>
   </data>
-  <data name="ItemLoadProgress">
-    <value xml:space="preserve">Loading item information ({0}/{1}) - please wait...</value>
+  <data name="ItemLoadProgress" xml:space="preserve">
+    <value>Loading item information ({0}/{1}) - please wait...</value>
   </data>
-  <data name="QuestCheck">
-    <value xml:space="preserve">Checking whether the file contains quest/mission/key item information...</value>
+  <data name="QuestCheck" xml:space="preserve">
+    <value>Checking whether the file contains quest/mission/key item information...</value>
   </data>
-  <data name="QuestLoad">
-    <value xml:space="preserve">Loading quest/mission/key item information - please wait...</value>
+  <data name="QuestLoad" xml:space="preserve">
+    <value>Loading quest/mission/key item information - please wait...</value>
   </data>
-  <data name="QuestLoadProgress">
-    <value xml:space="preserve">Loading quest/mission/key item information (section '{0}', entry {1} of {2}) - please wait...</value>
+  <data name="QuestLoadProgress" xml:space="preserve">
+    <value>Loading quest/mission/key item information (section '{0}', entry {1} of {2}) - please wait...</value>
   </data>
-  <data name="SpellCheck">
-    <value xml:space="preserve">Checking whether the file contains spell information...</value>
+  <data name="SpellCheck" xml:space="preserve">
+    <value>Checking whether the file contains spell information...</value>
   </data>
-  <data name="SpellLoad">
-    <value xml:space="preserve">Loading spell information - please wait...</value>
+  <data name="SpellLoad" xml:space="preserve">
+    <value>Loading spell information - please wait...</value>
   </data>
-  <data name="SpellLoadProgress">
-    <value xml:space="preserve">Loading spell information ({0}/{1}) - please wait...</value>
+  <data name="SpellLoadProgress" xml:space="preserve">
+    <value>Loading spell information ({0}/{1}) - please wait...</value>
   </data>
-  <data name="StatusCheck">
-    <value xml:space="preserve">Checking whether the file contains status information...</value>
+  <data name="StatusCheck" xml:space="preserve">
+    <value>Checking whether the file contains status information...</value>
   </data>
-  <data name="StatusLoad">
-    <value xml:space="preserve">Loading status information - please wait...</value>
+  <data name="StatusLoad" xml:space="preserve">
+    <value>Loading status information - please wait...</value>
   </data>
-  <data name="StatusLoadProgress">
-    <value xml:space="preserve">Loading status information ({0}/{1}) - please wait...</value>
+  <data name="StatusLoadProgress" xml:space="preserve">
+    <value>Loading status information ({0}/{1}) - please wait...</value>
   </data>
-  <data name="StringCheck">
-    <value xml:space="preserve">Checking whether the file contains a string table...</value>
+  <data name="StringCheck" xml:space="preserve">
+    <value>Checking whether the file contains a string table...</value>
   </data>
-  <data name="StringLoad">
-    <value xml:space="preserve">Loading string table entries - please wait...</value>
+  <data name="StringLoad" xml:space="preserve">
+    <value>Loading string table entries - please wait...</value>
   </data>
-  <data name="StringLoadProgress">
-    <value xml:space="preserve">Loading string table entries ({0}/{1}) - please wait...</value>
+  <data name="StringLoadProgress" xml:space="preserve">
+    <value>Loading string table entries ({0}/{1}) - please wait...</value>
   </data>
-  <data name="Status:ItemSearch">
-    <value xml:space="preserve">Searching... ({0} match(es) found so far)</value>
+  <data name="Status:ItemSearch" xml:space="preserve">
+    <value>Searching... ({0} match(es) found so far)</value>
   </data>
-  <data name="Status:ItemSearchDone">
-    <value xml:space="preserve">Found {0} matching item(s) (out of {1})</value>
+  <data name="Status:ItemSearchDone" xml:space="preserve">
+    <value>Found {0} matching item(s) (out of {1})</value>
   </data>
-  <data name="E:Test.Contains">
-    <value xml:space="preserve">contains</value>
+  <data name="E:Test.Contains" xml:space="preserve">
+    <value>contains</value>
   </data>
-  <data name="E:Test.DoesntContain">
-    <value xml:space="preserve">doesn't contain</value>
+  <data name="E:Test.DoesntContain" xml:space="preserve">
+    <value>doesn't contain</value>
   </data>
-  <data name="E:Test.Equals">
-    <value xml:space="preserve">exactly matches</value>
+  <data name="E:Test.Equals" xml:space="preserve">
+    <value>exactly matches</value>
   </data>
-  <data name="E:Test.StartsWith">
-    <value xml:space="preserve">starts with</value>
+  <data name="E:Test.StartsWith" xml:space="preserve">
+    <value>starts with</value>
   </data>
-  <data name="E:Test.EndsWith">
-    <value xml:space="preserve">ends with</value>
+  <data name="E:Test.EndsWith" xml:space="preserve">
+    <value>ends with</value>
   </data>
-  <data name="E:Test.MatchesRegexp">
-    <value xml:space="preserve">matches regexp</value>
+  <data name="E:Test.MatchesRegexp" xml:space="preserve">
+    <value>matches regexp</value>
   </data>
-  <data name="E:Test.DoesntMatchRegexp">
-    <value xml:space="preserve">doesn't match regexp</value>
+  <data name="E:Test.DoesntMatchRegexp" xml:space="preserve">
+    <value>doesn't match regexp</value>
   </data>
-  <data name="ColumnHeader:CastTime">
-    <value xml:space="preserve">Casting Time</value>
+  <data name="ColumnHeader:CastTime" xml:space="preserve">
+    <value>Casting Time</value>
   </data>
-  <data name="ColumnHeader:CoolDown">
-    <value xml:space="preserve">Cool-Down Time</value>
+  <data name="ColumnHeader:CoolDown" xml:space="preserve">
+    <value>Cool-Down Time</value>
   </data>
-  <data name="ColumnHeader:Description">
-    <value xml:space="preserve">Description</value>
+  <data name="ColumnHeader:Description" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="ColumnHeader:Element">
-    <value xml:space="preserve">Element</value>
+  <data name="ColumnHeader:Element" xml:space="preserve">
+    <value>Element</value>
   </data>
-  <data name="ColumnHeader:EnglishDescription">
-    <value xml:space="preserve">Description (English)</value>
+  <data name="ColumnHeader:EnglishDescription" xml:space="preserve">
+    <value>Description (English)</value>
   </data>
-  <data name="ColumnHeader:EnglishName">
-    <value xml:space="preserve">Name (English)</value>
+  <data name="ColumnHeader:EnglishName" xml:space="preserve">
+    <value>Name (English)</value>
   </data>
-  <data name="ColumnHeader:Entry">
-    <value xml:space="preserve">Entry</value>
+  <data name="ColumnHeader:Entry" xml:space="preserve">
+    <value>Entry</value>
   </data>
-  <data name="ColumnHeader:Index">
-    <value xml:space="preserve">Index</value>
+  <data name="ColumnHeader:Index" xml:space="preserve">
+    <value>Index</value>
   </data>
-  <data name="ColumnHeader:JapaneseDescription">
-    <value xml:space="preserve">Description (Japanese)</value>
+  <data name="ColumnHeader:JapaneseDescription" xml:space="preserve">
+    <value>Description (Japanese)</value>
   </data>
-  <data name="ColumnHeader:JapaneseName">
-    <value xml:space="preserve">Name (Japanese)</value>
+  <data name="ColumnHeader:JapaneseName" xml:space="preserve">
+    <value>Name (Japanese)</value>
   </data>
-  <data name="ColumnHeader:Jobs">
-    <value xml:space="preserve">Jobs</value>
+  <data name="ColumnHeader:Jobs" xml:space="preserve">
+    <value>Jobs</value>
   </data>
-  <data name="ColumnHeader:LineCount">
-    <value xml:space="preserve">{0} (Line Count)</value>
+  <data name="ColumnHeader:LineCount" xml:space="preserve">
+    <value>{0} (Line Count)</value>
   </data>
-  <data name="ColumnHeader:LineNumber">
-    <value xml:space="preserve">{0} (Line {1})</value>
+  <data name="ColumnHeader:LineNumber" xml:space="preserve">
+    <value>{0} (Line {1})</value>
   </data>
-  <data name="ColumnHeader:MPCost">
-    <value xml:space="preserve">MP Cost</value>
+  <data name="ColumnHeader:MPCost" xml:space="preserve">
+    <value>MP Cost</value>
   </data>
-  <data name="ColumnHeader:Name">
-    <value xml:space="preserve">Name</value>
+  <data name="ColumnHeader:Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="ColumnHeader:RecastTime">
-    <value xml:space="preserve">Recast Time</value>
+  <data name="ColumnHeader:RecastTime" xml:space="preserve">
+    <value>Recast Time</value>
   </data>
-  <data name="ColumnHeader:Section">
-    <value xml:space="preserve">Section</value>
+  <data name="ColumnHeader:Section" xml:space="preserve">
+    <value>Section</value>
   </data>
-  <data name="ColumnHeader:Skill">
-    <value xml:space="preserve">Skill</value>
+  <data name="ColumnHeader:Skill" xml:space="preserve">
+    <value>Skill</value>
   </data>
-  <data name="ColumnHeader:Status">
-    <value xml:space="preserve">Status</value>
+  <data name="ColumnHeader:Status" xml:space="preserve">
+    <value>Status</value>
   </data>
-  <data name="ColumnHeader:Text">
-    <value xml:space="preserve">Text</value>
+  <data name="ColumnHeader:Text" xml:space="preserve">
+    <value>Text</value>
   </data>
-  <data name="ColumnHeader:Type">
-    <value xml:space="preserve">Type</value>
+  <data name="ColumnHeader:Type" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="ColumnHeader:Unknown">
-    <value xml:space="preserve">Unknown</value>
+  <data name="ColumnHeader:Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
-  <data name="ColumnHeader:ValidTargets">
-    <value xml:space="preserve">Valid Target(s)</value>
+  <data name="ColumnHeader:ValidTargets" xml:space="preserve">
+    <value>Valid Target(s)</value>
   </data>
-  <data name="Export:DirDialogDesc">
-    <value xml:space="preserve">Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
+  <data name="Export:DirDialogDesc" xml:space="preserve">
+    <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
   </data>
-  <data name="Title:InvalidQuery">
-    <value xml:space="preserve">Invalid Query</value>
+  <data name="Title:InvalidQuery" xml:space="preserve">
+    <value>Invalid Query</value>
   </data>
-  <data name="Message:InvalidQuery">
-    <value xml:space="preserve">Query component #{0} is not valid: {1}
+  <data name="Message:InvalidQuery" xml:space="preserve">
+    <value>Query component #{0} is not valid: {1}
 Correct the problem and try again.</value>
   </data>
-  <data name="Query:NoEmptyString">
-    <value xml:space="preserve">Cannot run this test using an empty string.</value>
+  <data name="Query:NoEmptyString" xml:space="preserve">
+    <value>Cannot run this test using an empty string.</value>
   </data>
-  <data name="Query:BadRegexp">
-    <value xml:space="preserve">Invalid regular expression.</value>
+  <data name="Query:BadRegexp" xml:space="preserve">
+    <value>Invalid regular expression.</value>
   </data>
-  <data name="Query:NoQueryType">
-    <value xml:space="preserve">No (valid) query method selected.</value>
+  <data name="Query:NoQueryType" xml:space="preserve">
+    <value>No (valid) query method selected.</value>
   </data>
-  <data name="Query:BadQueryType">
-    <value xml:space="preserve">Unknown or unhandled query type.</value>
+  <data name="Query:BadQueryType" xml:space="preserve">
+    <value>Unknown or unhandled query type.</value>
   </data>
-  <data name="Dialog:ExportItems">
-    <value xml:space="preserve">Exporting item data.
+  <data name="Dialog:ExportItems" xml:space="preserve">
+    <value>Exporting item data.
 This may take quite a while.</value>
   </data>
-  <data name="Dialog:SaveAllImages">
-    <value xml:space="preserve">Saving all images to disk.
+  <data name="Dialog:SaveAllImages" xml:space="preserve">
+    <value>Saving all images to disk.
 This may take quite a while.</value>
   </data>
-  <data name="Description:BrowseImageExportFolder">
-    <value xml:space="preserve">Select the folder where the images should be saved.
+  <data name="Description:BrowseImageExportFolder" xml:space="preserve">
+    <value>Select the folder where the images should be saved.
 WARNING: Existing files with the same name will be overwritten without prompting.</value>
+  </data>
+  <data name="ColumnHeader:IconInfo" xml:space="preserve">
+    <value>Icon Info</value>
   </data>
 </root>

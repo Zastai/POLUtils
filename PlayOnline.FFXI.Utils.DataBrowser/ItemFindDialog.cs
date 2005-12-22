@@ -168,7 +168,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
       }
       if (AddColumns)
-	this.lstItems.Columns.Add("Icon Info", 80, HorizontalAlignment.Left);
+	this.lstItems.Columns.Add(I18N.GetText("ColumnHeader:IconInfo"), 80, HorizontalAlignment.Left);
       LVI.SubItems.Add(Item.IconGraphic.ToString());
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.lstItems.Items.Count);
       Application.DoEvents();

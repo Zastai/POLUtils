@@ -41,12 +41,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  CSVFile.Write("{0}{1}{0}", TextQuote, I18N.GetText("ColumnHeader:Index"));
 	  foreach (ItemField IF in Fields)
 	    CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, new NamedEnum(IF).Name);
+	  CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, I18N.GetText("ColumnHeader:IconInfo"));
 	  CSVFile.WriteLine();
 	  Application.DoEvents();
 	}
 	CSVFile.Write(++Index);
 	foreach (ItemField IF in Fields)
 	  CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, II.GetFieldText(IF).Replace(TextQuote, DoubleTextQuote).Replace("\r", "").Replace("\n", CSVFile.NewLine));
+	CSVFile.Write("{0}{1}{2}{1}", CultureInfo.CurrentCulture.TextInfo.ListSeparator, TextQuote, I.IconGraphic.ToString(), TextQuote);
 	CSVFile.WriteLine();
 	Application.DoEvents();
       }
