@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- $Id -->
+<?xml version="1.0" encoding="utf-8"?> <!-- $Id$ -->
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
