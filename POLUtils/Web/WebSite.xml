@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- $Id -->
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
     <news-item title="POLUtils 0.7.0 Released" author="Pebbles" date="December 24th, 2005">
       <p>This is the next baseline release; it's not much more than a .NET 2.0 build of POLUtils 0.6.4.</p>
       <p><strong>New Features:</strong><br/><ul>
-	<li>Built using .NET 2.0; some UI tweaks have been made to match this switch (bothing major yet).</li>
+	<li>Built using .NET 2.0; some UI tweaks have been made to match this switch (nothing major yet).</li>
 	<li>Integrated EngrishOnry into POLUtils.</li>
         <li>Added ItemListUpgrade, a simple utility that converts an "old" item list XML dump to the current format.</li>
         <li>CSV Item Export now puts in Description as a single multiline field (tested import with Excel and Access), and will always include

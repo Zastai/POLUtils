@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><!--*- sgml -*-->
+<?xml version="1.0" encoding="utf-8"?> <!-- $Id -->
 
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns:exsl="http://exslt.org/common" xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl str"
-  xmlns="http://www.w3.org/1999/xhtml">
+  >
 
 <xsl:output method="text" encoding="utf-8"/>
 
 <xsl:param name="output-uri" select="'Output'"/>
-
-<xsl:variable name="newline" select="'&#10;'"/>
 
 <xsl:template match="/website">
   <!-- Startup Checks -->
@@ -56,15 +54,12 @@
 <xsl:template match="/website/section">
   <xsl:message>Creating page (<xsl:value-of select="@name"/>)...</xsl:message>
   <exsl:document href="{concat($output-uri, '/', @file)}" method="xml" version="1.0" encoding="utf-8" omit-xml-declaration="no"
-		 media-type="text/xhtml" indent="yes"
+		 media-type="text/xhtml" indent="yes" xmlns="http://www.w3.org/1999/xhtml"
 		 doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" xsl:space="preserve">
+    <html>
       <xsl:message>  Page Header &amp; Navigation</xsl:message>
       <xsl:call-template name="emit-header"/>
-      <xsl:if test="/website/@news-feed and (.//news or .//news-headlines)">
-	<link rel="alternate" type="application/rss+xml" title="RSS" href="{concat(/website/@url, /website/@news-feed)}" />
-      </xsl:if>
       <body>
 	<table height="100%" width="100%">
 	  <tr class="top-area"><td>
@@ -92,14 +87,14 @@
   </exsl:document>
 </xsl:template>
 
-<xsl:template match="/website/section/para">
+<xsl:template match="/website/section/para" xmlns="http://www.w3.org/1999/xhtml">
   <p>
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="copy-source-tree"/>
   </p>
 </xsl:template>
 
-<xsl:template match="/website/section/news-headlines">
+<xsl:template match="/website/section/news-headlines" xmlns="http://www.w3.org/1999/xhtml">
   <xsl:message>    News Headlines</xsl:message>
   <p>
     <h4>Recent News:</h4>
@@ -108,7 +103,7 @@
   </p>
 </xsl:template>
 
-<xsl:template match="/website/news/news-item" mode="news-headline">
+<xsl:template match="/website/news/news-item" mode="news-headline" xmlns="http://www.w3.org/1999/xhtml">
   <em><xsl:value-of select="@date"/></em>
   <xsl:text> - </xsl:text>
   <a>
@@ -120,7 +115,7 @@
   <br/>
 </xsl:template>
 
-<xsl:template match="/website/section/news">
+<xsl:template match="/website/section/news" xmlns="http://www.w3.org/1999/xhtml">
   <xsl:message>    News Items</xsl:message>
   <span>
     <xsl:if test="not(/website/news/news-item)"><p><em>No News</em></p></xsl:if>
@@ -128,7 +123,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="/website/news/news-item">
+<xsl:template match="/website/news/news-item" xmlns="http://www.w3.org/1999/xhtml">
   <p>
     <a>
       <xsl:attribute name="name"><xsl:value-of select="1 + count(preceding-sibling::news-item)"/></xsl:attribute>
@@ -147,7 +142,7 @@
   </p>
 </xsl:template>
 
-<xsl:template match="/website/section/downloads">
+<xsl:template match="/website/section/downloads" xmlns="http://www.w3.org/1999/xhtml">
   <xsl:message>    Download Links</xsl:message>
   <p>
     <xsl:if test="not(/website/downloads/group)"><em>No Downloads</em></xsl:if>
@@ -155,7 +150,7 @@
   </p>
 </xsl:template>
 
-<xsl:template match="/website/downloads/group">
+<xsl:template match="/website/downloads/group" xmlns="http://www.w3.org/1999/xhtml">
   <h4><xsl:value-of select="@name"/></h4>
   <xsl:apply-templates select="description"/>
   <ul>
@@ -164,11 +159,11 @@
   </ul>
 </xsl:template>
 
-<xsl:template match="/website/downloads/group/description">
+<xsl:template match="/website/downloads/group/description" xmlns="http://www.w3.org/1999/xhtml">
    <xsl:apply-templates mode="copy-source-tree"/>
 </xsl:template>
   
-<xsl:template match="/website/downloads/group/file">
+<xsl:template match="/website/downloads/group/file" xmlns="http://www.w3.org/1999/xhtml">
   <li>
     <a>
       <xsl:attribute name="href"><xsl:value-of select="@name"/></xsl:attribute>
@@ -181,7 +176,7 @@
   </li>
 </xsl:template>
 
-<xsl:template match="/website/section/links">
+<xsl:template match="/website/section/links" xmlns="http://www.w3.org/1999/xhtml">
   <xsl:message>    Web Links</xsl:message>
   <p>
     <xsl:if test="not(/website/links/group)"><em>No Links</em></xsl:if>
@@ -189,7 +184,7 @@
   </p>
 </xsl:template>
 
-<xsl:template match="/website/links/group">
+<xsl:template match="/website/links/group" xmlns="http://www.w3.org/1999/xhtml">
   <h4><xsl:value-of select="@name"/></h4>
   <ul>
     <xsl:if test="not(link)"><li><em>No Links</em></li></xsl:if>
@@ -197,7 +192,7 @@
   </ul>
 </xsl:template>
 
-<xsl:template match="/website/links/group/link">
+<xsl:template match="/website/links/group/link" xmlns="http://www.w3.org/1999/xhtml">
   <li>
     <a>
       <xsl:attribute name="href"><xsl:value-of select="@target"/></xsl:attribute>
@@ -233,7 +228,7 @@
 <!-- "Functions" -->
 <!--+++++++++++++-->
 
-<xsl:template name="emit-header">
+<xsl:template name="emit-header" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>
       <xsl:value-of select="/website/@name"/>
@@ -241,8 +236,11 @@
       <xsl:value-of select="@name"/>
     </title>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=iso-8859-1" />
-    <!-- Global Navigation -->
     <link rel="stylesheet" href="site.css" media="screen"/>
+    <xsl:if test="/website/@news-feed and (.//news or .//news-headlines)">
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="{concat(/website/@url, /website/@news-feed)}" />
+    </xsl:if>
+    <!-- Global Navigation -->
     <link rel="contents">
       <xsl:attribute name="href"><xsl:value-of select="/website/section[0]/@file"/></xsl:attribute>
     </link>
@@ -279,7 +277,7 @@
 </xsl:template>
 
 <!-- This is currently emitted on a single output line, for an as-yet undetermined reason. -->
-<xsl:template name="emit-sidebar">
+<xsl:template name="emit-sidebar" xmlns="http://www.w3.org/1999/xhtml">
   <div class="sidebar">
     <table>
       <th>Pages</th>
