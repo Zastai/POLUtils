@@ -1,118 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<website name="Pebbles&apos; Program Page" home="index.html">
-  <!-- Site Sections -->
-  <section name="Home" file="index.html" webstats4u="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
-    <para>Welcome to Pebbles&apos; Program Page.</para>
-    <para>
-      Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
-      <acronym title="Final Fantasy XI">FFXI</acronym> Online, or to <acronym title="PlayOnline">POL</acronym> in general.
-    </para>
-    <news-headlines/>
-    <para><span class="link-description">Pebbles can be contacted via email (pebbles DOT pandemonium AT telenet DOT be).</span></para>
-  </section>
-  <section name="News" file="news.html">
-    <news/>
-  </section>
-  <section name="FAQ" file="faq.html">
-    <para>
-      <h3>1. What is POLUtils anyway?</h3>
-      <p>
-        POLUtils is a collection of utilities related to PlayOnline, Square/Enix' online gaming framework.<br/>
-        It currently contains:<br/>
-        <ul>
-	  <li>an audio manager (with POL, TetraMaster and FFXI support - would add FMO support if I could get
-	      someone to give me the info)</li>
-	  <li>data browsers for Tetra Master and FFXI</li>
-	  <li>an offline macro editor for FFXI</li>
-	  <li>a configuration editor for FFXI</li>
-	</ul>
-      </p>
-    </para>
-    <para>
-      <h3>2. What are the system requirements?</h3>
-      <p>
-        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
-        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
-        rather essential element of that particular tool).  Unfortunately, Managed DirectX is not automatically
-        installed along with DirectX - you can find a suitable installer for it on the downloads page.<br/>
-        As for Windows version, any version of windows that can install those two dependencies should do (which
-        basically means Windows 98 or later).  Future versions of POLUtils may use the 2.0 framework, which will
-        probably require Win2K or later.
-      </p>
-    </para>
-    <para>
-      <h3>3. I get an exception saying Invalid Codepage - why is that?</h3>
-      <p>
-        FFXI uses a text encoding based on shift-jis, and it seems the .NET framework relies on a Windows code
-        page to process shift-jis.  However, the shift-jis codepage isn't installed by default.  You can easily
-        install it in one of two ways: either you enable support for East-Asian languages (Control Panel\Regional
-        and Language Options\Languages), but that requires 230MB of disk space, or you can just make sure
-        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.<br/>
-        As of version 0.5.0, POLUtils uses a handwritten encoding handler for FFXI, so no additional codepages
-        should be needed.
-      </p>
-    </para>
-    <para>
-      <h3>4. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
-      <p>
-	Easy - noone has volunteered to help with the translation yet.  If you want to provide the translation,
-	let me know; all help is appreciated.
-      </p>
-    </para>
-    <para>
-      <h3>5. Is POLUtils going to steal my passwords or destroy my PC?</h3>
-      <p>
-	I sure hope not ^^.  POLUtils currently never ever connects to the internet, so your passwords
-	are safe.  As for destroying your PC, that's unlikely as well (of course, the .Net framework is
-	Microsoft technology, so you never know).
-      </p>
-    </para>
-    <para>
-      <h3>6. Will you make a WinAmp plugin for .bgw/.spw files?</h3>
-      <p>
-	No.  I considered doing so, but decided against it since a) there already is such a plugin, and b) the
-	WinAmp SDK is, well, crap (I never realized how great the foobar APIs were until I saw the WinAmp SDK).
-      </p>
-    </para>
-    <para>
-      <h3>7. The menus in the Macro Editor only show little squares instead of symbols, but I do have East-Asian supprt installed. Help!</h3>
-      <p>
-	This probably means you're using an older (pre-XP) version of Windows.  POLUtils has no control over the
-	font of its menus; that's handled by the system.  Try setting the menu font (via the Appearance tab of
-	the Display properties in the Control Panel) to Tahoma, that should work.
-      </p>
-    </para>
-    <para>
-      <h3>8. What is that EngrishOnry thing?</h3>
-      <p>
-	EngrishOnry is a utility to help out those people playing the JP version of FFXI who would like most
-	of the game to be in English.  It will translate many of the game's assets to make that happen.
-      </p>
-    </para>
-    <para>
-      <h3>9. There's a game patch coming up!  How will this affect my use of EngrishOnry?</h3>
-      <p>
-	Good question.  If there is a patch, you must take two steps to avoid your game becoming corrupted:
-	1) Restore all translations BEFORE applying the patch, and 2) Delete EngrishOnry's backup folder
-	([FFXI Install Dir]\EngrishFFXI-Backup).  If you fail to do the first step the patch may fail, and
-	you may be forced to reinstall the game.  If you fail to do the second, EngrishOnry will be unable to
-	Restore the original file (it will restore the file from BEFORE the patch) - again, possibly forcing
-	you to reinstall.<br/>
-	Note: in some cases you may be able to force a full file check + redownload of corrupted files by
-	deleting the "patch.ver" in the FFXI installation directory.  But this is by no means guaranteed.
-      </p>
-    </para>
-  </section>
-  <section name="Download Area" file="downloads.html" webstats4u="ADNQdQo0vLkP4XweMb5W1npl0G7w">
-    <para>Here you can download Pebbles&apos; programs.</para>
-    <downloads/>
-  </section>
-  <section name="Links" file="links.html">
-    <para>This page contains various links you may (or may not) find useful.</para>
-    <links/>
-  </section>
+<website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.7.0 Released" author="Pebbles" date="December 24th, 2005">
+      <p>This is the next baseline release; it's not much more than a .NET 2.0 build of POLUtils 0.6.4.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>Built using .NET 2.0; some UI tweaks have been made to match this switch (bothing major yet).</li>
+	<li>Integrated EngrishOnry into POLUtils.</li>
+        <li>Added ItemListUpgrade, a simple utility that converts an "old" item list XML dump to the current format.</li>
+        <li>CSV Item Export now puts in Description as a single multiline field (tested import with Excel and Access), and will always include
+	    the item's icon info.</li>
+	<li>If anyone's interested in providing translations for POLUtils, a kit is now available (in the
+	    downloads section). Note that translating anything except the installer requires Visual Studio 2005
+	    (might work with Visual C# 2005 Express too, but that is untested).<br/>
+	    Do let me know before you start working on this (to avoid duplicate efforts).</li>
+      </ul></p>
+    </news-item>
+    <news-item title="RSS Feed Added" author="Pebbles" date="December 24th, 2005">
+      Added an RSS feed for the news items; this allows you to add live bookmarks or to put the news items on
+      your Google home page.
+    </news-item>
     <news-item title="POLUtils 0.6.4 Released" author="Pebbles" date="December 15th, 2005">
       <p>Another emergency release - turns out S/E also changed the autotranslator file's structure, breaking
          EngrishOnry's autotrans translation as well as the Macro Editor component of POLUtils.</p>
@@ -398,6 +305,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.7.0-Release.exe">
+	Built for .NET 2.0.  Integrated EngrishOnry + minor cosmetic changes.<br/>
+      </file>
       <file name="POLUtils-0.6.4-Release.exe">
 	Updated for the changed autotranslator file structure of the 20051212 patch.<br/>
       </file>
@@ -431,6 +341,15 @@
       <file name="POLUtils-0.2.0-Release.zip">
 	The first real release of the POL Utils.<br/>
       </file>
+    </group>
+    <group name="POLUtils - Translator's Kit">
+      <description>
+	These kits can be used to provide me with localized resources for POLUtils (i.e. translations for the
+	installer and GUI).<br/>
+	Note that these require Visual Studio 2005 (or possibly Visual C# 2005 Express), except for the
+	installer translation.
+      </description>
+      <file name="POLUtils-Localization-0.7.0.zip">Localization kit for POLUtils 0.7.0.</file>
     </group>
     <group name="POLUtils - Support Files">
       <file name="mdxredist.msi">
@@ -483,4 +402,115 @@
       </link>
     </group>
   </links>
+  <!-- Site Sections -->
+  <section name="Home" file="index.html" webstats4u="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
+    <para>Welcome to Pebbles&apos; Program Page.</para>
+    <para>
+      Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
+      <acronym title="Final Fantasy XI">FFXI</acronym> Online, or to <acronym title="PlayOnline">POL</acronym> in general.
+    </para>
+    <news-headlines/>
+    <para><span class="link-description">Pebbles can be contacted via email (pebbles DOT pandemonium AT telenet DOT be).</span></para>
+  </section>
+  <section name="News" file="news.html">
+    <news/>
+  </section>
+  <section name="FAQ" file="faq.html">
+    <para>
+      <h3>1. What is POLUtils anyway?</h3>
+      <p>
+        POLUtils is a collection of utilities related to PlayOnline, Square/Enix' online gaming framework.<br/>
+        It currently contains:<br/>
+        <ul>
+	  <li>an audio manager (with POL, TetraMaster and FFXI support - would add FMO support if I could get
+	      someone to give me the info)</li>
+	  <li>data browsers for Tetra Master and FFXI</li>
+	  <li>an offline macro editor for FFXI</li>
+	  <li>a configuration editor for FFXI</li>
+	</ul>
+      </p>
+    </para>
+    <para>
+      <h3>2. What are the system requirements?</h3>
+      <p>
+        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
+        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
+        rather essential element of that particular tool).  Unfortunately, Managed DirectX is not automatically
+        installed along with DirectX - you can find a suitable installer for it on the downloads page.<br/>
+        As for Windows version, any version of windows that can install those two dependencies should do (which
+        basically means Windows 98 or later).  Future versions of POLUtils may use the 2.0 framework, which will
+        probably require Win2K or later.
+      </p>
+    </para>
+    <para>
+      <h3>3. I get an exception saying Invalid Codepage - why is that?</h3>
+      <p>
+        FFXI uses a text encoding based on shift-jis, and it seems the .NET framework relies on a Windows code
+        page to process shift-jis.  However, the shift-jis codepage isn't installed by default.  You can easily
+        install it in one of two ways: either you enable support for East-Asian languages (Control Panel\Regional
+        and Language Options\Languages), but that requires 230MB of disk space, or you can just make sure
+        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.<br/>
+        As of version 0.5.0, POLUtils uses a handwritten encoding handler for FFXI, so no additional codepages
+        should be needed.
+      </p>
+    </para>
+    <para>
+      <h3>4. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
+      <p>
+	Easy - noone has volunteered to help with the translation yet.  If you want to provide the translation,
+	let me know; all help is appreciated.
+      </p>
+    </para>
+    <para>
+      <h3>5. Is POLUtils going to steal my passwords or destroy my PC?</h3>
+      <p>
+	I sure hope not ^^.  POLUtils currently never ever connects to the internet, so your passwords
+	are safe.  As for destroying your PC, that's unlikely as well (of course, the .Net framework is
+	Microsoft technology, so you never know).
+      </p>
+    </para>
+    <para>
+      <h3>6. Will you make a WinAmp plugin for .bgw/.spw files?</h3>
+      <p>
+	No.  I considered doing so, but decided against it since a) there already is such a plugin, and b) the
+	WinAmp SDK is, well, crap (I never realized how great the foobar APIs were until I saw the WinAmp SDK).
+      </p>
+    </para>
+    <para>
+      <h3>7. The menus in the Macro Editor only show little squares instead of symbols, but I do have East-Asian supprt installed. Help!</h3>
+      <p>
+	This probably means you're using an older (pre-XP) version of Windows.  POLUtils has no control over the
+	font of its menus; that's handled by the system.  Try setting the menu font (via the Appearance tab of
+	the Display properties in the Control Panel) to Tahoma, that should work.
+      </p>
+    </para>
+    <para>
+      <h3>8. What is that EngrishOnry thing?</h3>
+      <p>
+	EngrishOnry is a utility to help out those people playing the JP version of FFXI who would like most
+	of the game to be in English.  It will translate many of the game's assets to make that happen.
+      </p>
+    </para>
+    <para>
+      <h3>9. There's a game patch coming up!  How will this affect my use of EngrishOnry?</h3>
+      <p>
+	Good question.  If there is a patch, you must take two steps to avoid your game becoming corrupted:
+	1) Restore all translations BEFORE applying the patch, and 2) Delete EngrishOnry's backup folder
+	([FFXI Install Dir]\EngrishFFXI-Backup).  If you fail to do the first step the patch may fail, and
+	you may be forced to reinstall the game.  If you fail to do the second, EngrishOnry will be unable to
+	Restore the original file (it will restore the file from BEFORE the patch) - again, possibly forcing
+	you to reinstall.<br/>
+	Note: in some cases you may be able to force a full file check + redownload of corrupted files by
+	deleting the "patch.ver" in the FFXI installation directory.  But this is by no means guaranteed.
+      </p>
+    </para>
+  </section>
+  <section name="Download Area" file="downloads.html" webstats4u="ADNQdQo0vLkP4XweMb5W1npl0G7w">
+    <para>Here you can download Pebbles&apos; programs.</para>
+    <downloads/>
+  </section>
+  <section name="Links" file="links.html">
+    <para>This page contains various links you may (or may not) find useful.</para>
+    <links/>
+  </section>
 </website>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><!--*- sgml -*-->
 
-<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-	       xmlns="http://www.w3.org/1999/xhtml"
-	       xmlns:exsl="http://exslt.org/common"
-	       xmlns:str="http://exslt.org/strings"
-	       extension-element-prefixes="exsl str">
+<xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+  xmlns:exsl="http://exslt.org/common" xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl str"
+  xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:output method="text" encoding="utf-8"/>
 
@@ -15,24 +14,57 @@
 <xsl:template match="/website">
   <!-- Startup Checks -->
   <xsl:if test="/website/news">
+    <xsl:if test="not(/website/news/@file)">
+      <xsl:message terminate="yes">*** FATAL: News block has no filename specified.</xsl:message>
+    </xsl:if>
     <xsl:if test="not(/website/section[@file = /website/news/@file])">
-      <xsl:message>*** WARNING: News items will link to <xsl:value-of select="/website/news/@file"/>, but there is no section with that file name.</xsl:message>
+      <xsl:message>*** WARNING: RSS and news headlines will link to <xsl:value-of select="/website/news/@file"/>, but there is no section with that file name.</xsl:message>
     </xsl:if>
   </xsl:if>
-  <!-- Start Output -->
+  <!-- Create the RSS feed(s). -->
+  <xsl:if test="/website/@news-feed">
+    <xsl:if test="not(/website/@url)">
+      <xsl:message terminate="yes">*** FATAL: RSS feed creation requested but no website URL set.</xsl:message>
+    </xsl:if>
+    <xsl:apply-templates select="/website/news" mode="rss"/>
+  </xsl:if>
+  <!-- Start HTML Output -->
   <xsl:apply-templates select="section"/>
+</xsl:template>
+
+<xsl:template match="/website/news" mode="rss">
+  <xsl:message>Creating RSS feed (News)...</xsl:message>
+  <exsl:document href="{concat($output-uri, '/', /website/@news-feed)}" method="xml" version="1.0" encoding="utf-8" omit-xml-declaration="no" media-type="application/rss+xml" indent="yes">
+    <rss version="2.0">
+      <channel>
+	<title><xsl:value-of select="/website/@name"/></title>
+	<link><xsl:value-of select="/website/@url"/></link>
+	<description>Latest news items for <xsl:value-of select="/website/@name"/>.</description>
+	<language>en</language>
+	<xsl:for-each select="news-item">
+	  <item>
+	    <title><xsl:value-of select="@title"/></title>
+	    <link><xsl:value-of select="concat(/website/@url, /website/news/@file, '#', position())"/></link>
+	    <pubDate><xsl:value-of select="@date"/></pubDate>
+	  </item>
+	</xsl:for-each>
+      </channel>
+    </rss>
+  </exsl:document>
 </xsl:template>
 
 <xsl:template match="/website/section">
   <xsl:message>Creating page (<xsl:value-of select="@name"/>)...</xsl:message>
-  <xsl:variable name="uri" select="concat($output-uri, '/', @file)"/>
-  <exsl:document href="{$uri}" method="xml" version="1.0" encoding="iso-8859-1" omit-xml-declaration="no"
+  <exsl:document href="{concat($output-uri, '/', @file)}" method="xml" version="1.0" encoding="utf-8" omit-xml-declaration="no"
 		 media-type="text/xhtml" indent="yes"
 		 doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		 doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xsl:space="preserve">
       <xsl:message>  Page Header &amp; Navigation</xsl:message>
       <xsl:call-template name="emit-header"/>
+      <xsl:if test="/website/@news-feed and (.//news or .//news-headlines)">
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="{concat(/website/@url, /website/@news-feed)}" />
+      </xsl:if>
       <body>
 	<table height="100%" width="100%">
 	  <tr class="top-area"><td>
@@ -72,7 +104,7 @@
   <p>
     <h4>Recent News:</h4>
     <xsl:if test="not(/website/news/news-item)"><em>No News</em></xsl:if>
-    <xsl:apply-templates select="/website/news/news-item" mode="news-headline"/>
+    <xsl:apply-templates select="/website/news/news-item[position() &lt; 6]" mode="news-headline"/>
   </p>
 </xsl:template>
 
@@ -80,7 +112,9 @@
   <em><xsl:value-of select="@date"/></em>
   <xsl:text> - </xsl:text>
   <a>
-    <xsl:attribute name="href"><xsl:value-of select="concat(/website/news/@file, '#', 1 + count(preceding-sibling::news-item))"/></xsl:attribute>
+    <xsl:if test="/website/news/@file">
+      <xsl:attribute name="href"><xsl:value-of select="concat(/website/news/@file, '#', position())"/></xsl:attribute>
+    </xsl:if>
     <xsl:value-of select="@title"/>
   </a>
   <br/>
@@ -123,12 +157,17 @@
 
 <xsl:template match="/website/downloads/group">
   <h4><xsl:value-of select="@name"/></h4>
+  <xsl:apply-templates select="description"/>
   <ul>
     <xsl:if test="not(file)"><li><em>No Files</em></li></xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="file"/>
   </ul>
 </xsl:template>
 
+<xsl:template match="/website/downloads/group/description">
+   <xsl:apply-templates mode="copy-source-tree"/>
+</xsl:template>
+  
 <xsl:template match="/website/downloads/group/file">
   <li>
     <a>
@@ -154,7 +193,7 @@
   <h4><xsl:value-of select="@name"/></h4>
   <ul>
     <xsl:if test="not(link)"><li><em>No Links</em></li></xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="link"/>
   </ul>
 </xsl:template>
 
@@ -184,7 +223,7 @@
 </xsl:template>
 
 <xsl:template mode="copy-source-tree" match="node()">
-  <xsl:element name="{name(.)}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="copy-source-tree"/>
   </xsl:element>
@@ -251,6 +290,10 @@
 	    <xsl:attribute name="href"><xsl:value-of select="@file"/></xsl:attribute>
 	    <xsl:value-of select="@name"/>
 	  </a>
+	  <xsl:if test="/website/@news-feed and .//news">
+	    <xsl:text> </xsl:text>
+	    <a href="{concat(/website/@url, /website/@news-feed)}"><img border="0" alt="RSS Feed" src="rss.png"/></a>
+	  </xsl:if>
 	</xsl:for-each>
       </td></tr>
     </table>
@@ -258,4 +301,4 @@
   </div>
 </xsl:template>
 
-</xsl:transform>
+</xsl:stylesheet>
