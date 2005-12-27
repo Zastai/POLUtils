@@ -114,6 +114,9 @@
     <Compile Include="POL.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ThemedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="ChooseRegionDialog.ja.resx">
       <DependentUpon>ChooseRegionDialog.cs</DependentUpon>
     </EmbeddedResource>

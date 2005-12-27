@@ -2,51 +2,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   public partial class MainWindow {
 
-    #region Controls
-
-    private System.Windows.Forms.TreeView tvDataFiles;
-    private System.Windows.Forms.ImageList ilBrowserIcons;
-    private System.Windows.Forms.Splitter splSplitter;
-    private System.Windows.Forms.ContextMenu mnuPictureContext;
-    private System.Windows.Forms.MenuItem mnuPCBackgroundBlack;
-    private System.Windows.Forms.MenuItem mnuPCBackgroundWhite;
-    private System.Windows.Forms.MenuItem mnuPCBackgroundTransparent;
-    private System.Windows.Forms.SaveFileDialog dlgSavePicture;
-    private System.Windows.Forms.MainMenu mnuMain;
-    private System.Windows.Forms.MenuItem mnuPCMode;
-    private System.Windows.Forms.MenuItem mnuPCModeNormal;
-    private System.Windows.Forms.MenuItem mnuPCModeCentered;
-    private System.Windows.Forms.MenuItem mnuPCModeStretched;
-    private System.Windows.Forms.MenuItem mnuPCBackground;
-    private System.Windows.Forms.MenuItem mnuPCSaveAs;
-    private System.Windows.Forms.ContextMenu mnuStringTableContext;
-    private System.Windows.Forms.Panel pnlViewerArea;
-    private System.Windows.Forms.MenuItem mnuWindows;
-    private System.Windows.Forms.TabControl tabViewers;
-    private System.Windows.Forms.ListView lstEntries;
-    private System.Windows.Forms.TabPage tabViewerImages;
-    private System.Windows.Forms.PictureBox picImageViewer;
-    private System.Windows.Forms.Panel pnlImageChooser;
-    private System.Windows.Forms.Label lblImageChooser;
-    private System.Windows.Forms.ComboBox cmbImageChooser;
-    private System.Windows.Forms.Panel pnlNoViewers;
-    private System.Windows.Forms.Label lblNoViewers;
-    private System.Windows.Forms.TabPage tabViewerItems;
-    private System.Windows.Forms.TabPage tabViewerStringTable;
-    private System.Windows.Forms.Button btnExportItems;
-    private System.Windows.Forms.Button btnFindItems;
-    private System.Windows.Forms.GroupBox grpMainItemActions;
-    private System.Windows.Forms.ComboBox cmbItems;
-    private System.Windows.Forms.MenuItem mnuOFileTable;
-    private System.Windows.Forms.MenuItem mnuOSettings;
-    private PlayOnline.FFXI.FFXIItemEditor ieItemViewer;
-    private System.Windows.Forms.Button btnImageSaveAll;
-    private System.Windows.Forms.MenuItem mnuSTCCopyRow;
-    private System.Windows.Forms.MenuItem mnuSTCCopyField;
-
     private System.ComponentModel.IContainer components;
-
-    #endregion
 
     #region Windows Form Designer generated code
 
@@ -82,19 +38,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuOSettings = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea = new System.Windows.Forms.Panel();
       this.tabViewers = new System.Windows.Forms.TabControl();
-      this.tabViewerItems = new System.Windows.Forms.TabPage();
+      this.tabViewerItems = new System.Windows.Forms.ThemedTabPage();
       this.ieItemViewer = new PlayOnline.FFXI.FFXIItemEditor();
       this.grpMainItemActions = new System.Windows.Forms.GroupBox();
       this.cmbItems = new System.Windows.Forms.ComboBox();
       this.btnFindItems = new System.Windows.Forms.Button();
       this.btnExportItems = new System.Windows.Forms.Button();
-      this.tabViewerImages = new System.Windows.Forms.TabPage();
+      this.tabViewerImages = new System.Windows.Forms.ThemedTabPage();
       this.picImageViewer = new System.Windows.Forms.PictureBox();
       this.pnlImageChooser = new System.Windows.Forms.Panel();
       this.btnImageSaveAll = new System.Windows.Forms.Button();
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
       this.lblImageChooser = new System.Windows.Forms.Label();
-      this.tabViewerStringTable = new System.Windows.Forms.TabPage();
+      this.tabViewerStringTable = new System.Windows.Forms.ThemedTabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
@@ -415,6 +371,47 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     #endregion
+
+    // Controls
+    private System.Windows.Forms.TreeView tvDataFiles;
+    private System.Windows.Forms.ImageList ilBrowserIcons;
+    private System.Windows.Forms.Splitter splSplitter;
+    private System.Windows.Forms.ContextMenu mnuPictureContext;
+    private System.Windows.Forms.MenuItem mnuPCBackgroundBlack;
+    private System.Windows.Forms.MenuItem mnuPCBackgroundWhite;
+    private System.Windows.Forms.MenuItem mnuPCBackgroundTransparent;
+    private System.Windows.Forms.SaveFileDialog dlgSavePicture;
+    private System.Windows.Forms.MainMenu mnuMain;
+    private System.Windows.Forms.MenuItem mnuPCMode;
+    private System.Windows.Forms.MenuItem mnuPCModeNormal;
+    private System.Windows.Forms.MenuItem mnuPCModeCentered;
+    private System.Windows.Forms.MenuItem mnuPCModeStretched;
+    private System.Windows.Forms.MenuItem mnuPCBackground;
+    private System.Windows.Forms.MenuItem mnuPCSaveAs;
+    private System.Windows.Forms.ContextMenu mnuStringTableContext;
+    private System.Windows.Forms.Panel pnlViewerArea;
+    private System.Windows.Forms.MenuItem mnuWindows;
+    private System.Windows.Forms.TabControl tabViewers;
+    private System.Windows.Forms.ListView lstEntries;
+    private System.Windows.Forms.TabPage tabViewerImages;
+    private System.Windows.Forms.PictureBox picImageViewer;
+    private System.Windows.Forms.Panel pnlImageChooser;
+    private System.Windows.Forms.Label lblImageChooser;
+    private System.Windows.Forms.ComboBox cmbImageChooser;
+    private System.Windows.Forms.Panel pnlNoViewers;
+    private System.Windows.Forms.Label lblNoViewers;
+    private System.Windows.Forms.TabPage tabViewerItems;
+    private System.Windows.Forms.TabPage tabViewerStringTable;
+    private System.Windows.Forms.Button btnExportItems;
+    private System.Windows.Forms.Button btnFindItems;
+    private System.Windows.Forms.GroupBox grpMainItemActions;
+    private System.Windows.Forms.ComboBox cmbItems;
+    private System.Windows.Forms.MenuItem mnuOFileTable;
+    private System.Windows.Forms.MenuItem mnuOSettings;
+    private PlayOnline.FFXI.FFXIItemEditor ieItemViewer;
+    private System.Windows.Forms.Button btnImageSaveAll;
+    private System.Windows.Forms.MenuItem mnuSTCCopyRow;
+    private System.Windows.Forms.MenuItem mnuSTCCopyField;
 
   }
 
