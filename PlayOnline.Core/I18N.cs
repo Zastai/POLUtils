@@ -14,14 +14,15 @@ namespace PlayOnline.Core {
     }
 
     public static string GetText(string Name, Assembly A) {
-    ResourceManager Resources = new ResourceManager("Messages", A);
-    string ResourceString = Resources.GetObject(Name, CultureInfo.CurrentUICulture) as string;
-      if (ResourceString == null)
-	ResourceString = Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
-      if (ResourceString == null)
-	return Name;
-      else
-	return ResourceString;
+      try {
+      ResourceManager Resources = new ResourceManager("Messages", A);
+      string ResourceString = Resources.GetObject(Name, CultureInfo.CurrentUICulture) as string;
+	if (ResourceString == null)
+	  ResourceString = Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
+	if (ResourceString != null)
+	  return ResourceString;
+      } catch { }
+      return Name;
     }
 
   }

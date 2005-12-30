@@ -15,9 +15,10 @@ namespace PlayOnline.Core {
 
     public NamedEnum(object EnumValue) {
       this.EnumValue_ = EnumValue;
-      // TODO: Maybe use FullName?
     string MessageName = String.Format("E:{0}.{1}", EnumValue.GetType().Name, EnumValue);
       this.EnumValueName_ = I18N.GetText(MessageName, EnumValue.GetType().Assembly);
+      if (this.EnumValueName_ == MessageName)
+	this.EnumValueName_ = I18N.GetText(MessageName, Assembly.GetCallingAssembly());
       if (this.EnumValueName_ == MessageName)
 	this.EnumValueName_ = EnumValue.ToString();
     }
