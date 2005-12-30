@@ -311,10 +311,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScan"), ImageCount);
       this.SetProgress(0, 1);
       BR.BaseStream.Seek(Pos, SeekOrigin.Begin);
+    Graphic G = new Graphic();
       while (Pos < MaxPos) {
-      FFXIGraphic FG = FFXIGraphic.Read(BR);
-	if (FG != null) {
-	  this.Images.Add(FG);
+	if (G.Read(BR)) {
+	  this.Images.Add(G);
+	  G = new Graphic();
 	  Pos = BR.BaseStream.Position;
 	  this.SetProgress(Pos + 1, MaxPos);
 	  if (FileScanDialog.ShowProgressDetails)
@@ -326,6 +327,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    this.SetProgress(Pos + 1, MaxPos);
 	}
       }
+      G = null;
     }
 
     #endregion
@@ -343,19 +345,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       for (long i = 0; i < ItemCount; ++i) {
       byte[] ItemData  = BR.ReadBytes(0xc00);
 	FFXIEncryption.Rotate(ItemData, 5);
-      FFXIGraphic ItemIcon = null;
+      Graphic ItemIcon = new Graphic();
 	{
 	BinaryReader IconBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
 	int IconSize = IconBR.ReadInt32();
 	  if (IconSize > 0 && IconSize <= 0x9fc) {
-	    ItemIcon = FFXIGraphic.Read(IconBR);
-	    if (IconBR.BaseStream.Position != 4 + IconSize)
+	    if (!ItemIcon.Read(IconBR) || IconBR.BaseStream.Position != 4 + IconSize)
 	      goto BadFormat;
 	  }
 	  IconBR.Close();
 	}
-	if (ItemIcon == null)
-	  goto BadFormat;
 	this.Items.Add(new FFXIItem(i + 1, ItemData, ItemIcon));
 	this.Images.Add(ItemIcon);
 	if (FileScanDialog.ShowProgressDetails)
@@ -650,12 +649,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	if (IconBytes[0x9ff] != 0xff)
 	  goto BadFormat;
 	{ // Verify that the icon info is valid
-	FFXIGraphic StatusIcon = null;
+	Graphic StatusIcon = new Graphic();
 	BinaryReader IconBR = new BinaryReader(new MemoryStream(IconBytes, 0, 0xa00, false));
 	int IconSize = IconBR.ReadInt32();
 	  if (IconSize > 0 && IconSize <= 0x9fb) {
-	    StatusIcon = FFXIGraphic.Read(IconBR);
-	    if (IconBR.BaseStream.Position != 4 + IconSize)
+	    if (!StatusIcon.Read(IconBR) || IconBR.BaseStream.Position != 4 + IconSize)
 	      goto BadFormat;
 	  }
 	  IconBR.Close();

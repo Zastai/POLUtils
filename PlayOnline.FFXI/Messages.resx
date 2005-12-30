@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,107 +117,131 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GraphicTypeBitmap">
-    <value xml:space="preserve">{0}-bit Bitmap</value>
+  <data name="GraphicTypeBitmap" xml:space="preserve">
+    <value>{0}-bit Bitmap</value>
   </data>
-  <data name="GraphicTypeDXT">
-    <value xml:space="preserve">DirectX Texture ({0})</value>
+  <data name="GraphicTypeDXT" xml:space="preserve">
+    <value>DirectX Texture ({0})</value>
   </data>
-  <data name="MacroBarLabel">
-    <value xml:space="preserve">Macro Bar #{0}</value>
+  <data name="MacroBarLabel" xml:space="preserve">
+    <value>Macro Bar #{0}</value>
   </data>
-  <data name="E:ItemDataLanguage.English">
-    <value xml:space="preserve">English Data</value>
+  <data name="E:ItemDataLanguage.English" xml:space="preserve">
+    <value>English Data</value>
   </data>
-  <data name="E:ItemDataLanguage.Japanese">
-    <value xml:space="preserve">Japanese Data</value>
+  <data name="E:ItemDataLanguage.Japanese" xml:space="preserve">
+    <value>Japanese Data</value>
   </data>
-  <data name="E:ItemDataType.Armor">
-    <value xml:space="preserve">Armor</value>
+  <data name="E:ItemDataType.Armor" xml:space="preserve">
+    <value>Armor</value>
   </data>
-  <data name="E:ItemDataType.Weapon">
-    <value xml:space="preserve">Weapon</value>
+  <data name="E:ItemDataType.Weapon" xml:space="preserve">
+    <value>Weapon</value>
   </data>
-  <data name="E:ItemDataType.Object">
-    <value xml:space="preserve">Object</value>
+  <data name="E:ItemDataType.Object" xml:space="preserve">
+    <value>Object</value>
   </data>
-  <data name="E:ItemField.ID">
-    <value xml:space="preserve">Item ID</value>
+  <data name="E:ItemField.ID" xml:space="preserve">
+    <value>Item ID</value>
   </data>
-  <data name="E:ItemField.Flags">
-    <value xml:space="preserve">Flags</value>
+  <data name="E:ItemField.Flags" xml:space="preserve">
+    <value>Flags</value>
   </data>
-  <data name="E:ItemField.StackSize">
-    <value xml:space="preserve">Stack Size</value>
+  <data name="E:ItemField.StackSize" xml:space="preserve">
+    <value>Stack Size</value>
   </data>
-  <data name="E:ItemField.Type">
-    <value xml:space="preserve">Type</value>
+  <data name="E:ItemField.Type" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="E:ItemField.EnglishName">
-    <value xml:space="preserve">English Name</value>
+  <data name="E:ItemField.EnglishName" xml:space="preserve">
+    <value>English Name</value>
   </data>
-  <data name="E:ItemField.JapaneseName">
-    <value xml:space="preserve">Japanese Name</value>
+  <data name="E:ItemField.JapaneseName" xml:space="preserve">
+    <value>Japanese Name</value>
   </data>
-  <data name="E:ItemField.LogNameSingular">
-    <value xml:space="preserve">Log Name (Singular)</value>
+  <data name="E:ItemField.LogNameSingular" xml:space="preserve">
+    <value>Log Name (Singular)</value>
   </data>
-  <data name="E:ItemField.LogNamePlural">
-    <value xml:space="preserve">Log Name (Plural)</value>
+  <data name="E:ItemField.LogNamePlural" xml:space="preserve">
+    <value>Log Name (Plural)</value>
   </data>
-  <data name="E:ItemField.Description">
-    <value xml:space="preserve">Description</value>
+  <data name="E:ItemField.Description" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="E:ItemField.ResourceID">
-    <value xml:space="preserve">Resource ID</value>
+  <data name="E:ItemField.ResourceID" xml:space="preserve">
+    <value>Resource ID</value>
   </data>
-  <data name="E:ItemField.Level">
-    <value xml:space="preserve">Level</value>
+  <data name="E:ItemField.Level" xml:space="preserve">
+    <value>Level</value>
   </data>
-  <data name="E:ItemField.Slots">
-    <value xml:space="preserve">Slots</value>
+  <data name="E:ItemField.Slots" xml:space="preserve">
+    <value>Slots</value>
   </data>
-  <data name="E:ItemField.Races">
-    <value xml:space="preserve">Races</value>
+  <data name="E:ItemField.Races" xml:space="preserve">
+    <value>Races</value>
   </data>
-  <data name="E:ItemField.Jobs">
-    <value xml:space="preserve">Jobs</value>
+  <data name="E:ItemField.Jobs" xml:space="preserve">
+    <value>Jobs</value>
   </data>
-  <data name="E:ItemField.MaxCharges">
-    <value xml:space="preserve">Max. Charges</value>
+  <data name="E:ItemField.MaxCharges" xml:space="preserve">
+    <value>Max. Charges</value>
   </data>
-  <data name="E:ItemField.CastTime">
-    <value xml:space="preserve">Casting Time</value>
+  <data name="E:ItemField.CastTime" xml:space="preserve">
+    <value>Casting Time</value>
   </data>
-  <data name="E:ItemField.EquipDelay">
-    <value xml:space="preserve">Equip Delay</value>
+  <data name="E:ItemField.EquipDelay" xml:space="preserve">
+    <value>Equip Delay</value>
   </data>
-  <data name="E:ItemField.ReuseTimer">
-    <value xml:space="preserve">Reuse Timer</value>
+  <data name="E:ItemField.ReuseTimer" xml:space="preserve">
+    <value>Reuse Timer</value>
   </data>
-  <data name="E:ItemField.ShieldSize">
-    <value xml:space="preserve">Shield Size</value>
+  <data name="E:ItemField.ShieldSize" xml:space="preserve">
+    <value>Shield Size</value>
   </data>
-  <data name="E:ItemField.Damage">
-    <value xml:space="preserve">Damage</value>
+  <data name="E:ItemField.Damage" xml:space="preserve">
+    <value>Damage</value>
   </data>
-  <data name="E:ItemField.Delay">
-    <value xml:space="preserve">Delay</value>
+  <data name="E:ItemField.Delay" xml:space="preserve">
+    <value>Delay</value>
   </data>
-  <data name="E:ItemField.Skill">
-    <value xml:space="preserve">Skill</value>
+  <data name="E:ItemField.Skill" xml:space="preserve">
+    <value>Skill</value>
   </data>
-  <data name="E:ItemField.Any">
-    <value xml:space="preserve">Any Field</value>
+  <data name="E:ItemField.Any" xml:space="preserve">
+    <value>Any Field</value>
   </data>
-  <data name="E:ItemField.All">
-    <value xml:space="preserve">Every Field</value>
+  <data name="E:ItemField.All" xml:space="preserve">
+    <value>Every Field</value>
   </data>
-  <data name="PWD:StringResources">
-    <value xml:space="preserve">Loading string resources (auto-translator, item names) from the various DAT files...
+  <data name="PWD:StringResources" xml:space="preserve">
+    <value>Loading string resources (auto-translator, item names) from the various DAT files...
 This may take a while, depending on the speed of your machine.</value>
   </data>
-  <data name="BadResID">
-    <value xml:space="preserve">Unknown String Resource</value>
+  <data name="BadResID" xml:space="preserve">
+    <value>Unknown String Resource</value>
+  </data>
+  <data name="ImageText" xml:space="preserve">
+    <value>&lt;image&gt;</value>
+  </data>
+  <data name="InvalidThingToLoad" xml:space="preserve">
+    <value>Attempt to load a {0} from an invalid XML element.</value>
+  </data>
+  <data name="WrongThingToLoad" xml:space="preserve">
+    <value>Attempt to load a {0} from an XML element that contains a {0}.</value>
+  </data>
+  <data name="E:PictureBoxSizeMode.StretchImage" xml:space="preserve">
+    <value>Stretched</value>
+  </data>
+  <data name="E:PictureBoxSizeMode.Zoom" xml:space="preserve">
+    <value>Zoomed (Stretched Preserving Aspect Ratio)</value>
+  </data>
+  <data name="E:PictureBoxSizeMode.CenterImage" xml:space="preserve">
+    <value>Centered (Actual Size)</value>
+  </data>
+  <data name="E:PictureBoxSizeMode.Normal" xml:space="preserve">
+    <value>Normal (Actual Size, Top Left Corner)</value>
+  </data>
+  <data name="InvalidThingField" xml:space="preserve">
+    <value>Invalid {0} field - could not find root element.</value>
   </data>
 </root>

@@ -191,9 +191,9 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     string IconString = "";
       if (I.IconGraphic != null) {
 	IconString += I.IconGraphic.ToString(); // general description
-	if (I.IconGraphic.Bitmap != null) {
+	if (I.IconGraphic.GetIcon() != null) {
 	MemoryStream MS = new MemoryStream();
-	  I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
+	  I.IconGraphic.GetIcon().Save(MS, ImageFormat.Png);
 	  IconString += Convert.ToBase64String(MS.GetBuffer());
 	  MS.Close();
 	}

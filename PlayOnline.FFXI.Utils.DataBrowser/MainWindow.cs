@@ -159,10 +159,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Image Viewer Events
 
     private void cmbImageChooser_SelectedIndexChanged(object sender, System.EventArgs e) {
-    FFXIGraphic FG = this.cmbImageChooser.SelectedItem as FFXIGraphic;
-      if (FG != null) {
-	this.picImageViewer.Image = FG.Bitmap;
-	this.picImageViewer.Tag = FG.ToString();
+    Graphic G = this.cmbImageChooser.SelectedItem as Graphic;
+      if (G != null) {
+	this.picImageViewer.Image = G.GetIcon();
+	this.picImageViewer.Tag   = G.ToString();
       }
     }
 
@@ -185,8 +185,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
       Thread T = new Thread(new ThreadStart(delegate () {
 	  Application.DoEvents();
-	  foreach (FFXIGraphic G in this.cmbImageChooser.Items) {
-	    G.Bitmap.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
+	  foreach (Graphic G in this.cmbImageChooser.Items) {
+	    G.GetIcon().Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
 	    Application.DoEvents();
 	  }
 	  PWD.Close();
@@ -424,8 +424,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    }
 	    if (FSD.Images.Count == FSD.StringTableEntries.Count - 1) {
 	    ImageList EntryIcons = new ImageList();
-	      foreach (FFXIGraphic G in FSD.Images)
-		EntryIcons.Images.Add(G.Bitmap);
+	      foreach (Graphic G in FSD.Images)
+		EntryIcons.Images.Add(G.GetIcon());
 	      this.lstEntries.SmallImageList = EntryIcons;
 	    }
 	    foreach (ColumnHeader CH in this.lstEntries.Columns) {

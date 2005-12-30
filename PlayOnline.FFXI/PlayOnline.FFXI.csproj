@@ -96,6 +96,8 @@
     <Compile Include="FFXIItemEditor.Designer.cs">
       <DependentUpon>FFXIItemEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Graphic.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="IThing.cs" />
     <Compile Include="PleaseWaitDialog.Designer.cs">
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
@@ -119,9 +121,6 @@
     <Compile Include="FFXIEncryption.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FFXIGraphic.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="FFXIItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -142,6 +141,31 @@
     </Compile>
     <Compile Include="PleaseWaitDialog.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPages\Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertyPages\Item.Designer.cs">
+      <DependentUpon>Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyPages\Thing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertyPages\Thing.Designer.cs">
+      <DependentUpon>Thing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyPages\Graphic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertyPages\Graphic.Designer.cs">
+      <DependentUpon>Graphic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thing.cs" />
+    <Compile Include="ThingPropertyPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThingPropertyPages.Designer.cs">
+      <DependentUpon>ThingPropertyPages.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ConversionTables\00xx.dat" />
     <EmbeddedResource Include="ConversionTables\81xx.dat" />
@@ -226,6 +250,22 @@
     <EmbeddedResource Include="PleaseWaitDialog.resx">
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPages\Item.resx">
+      <DependentUpon>Item.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPages\Thing.resx">
+      <DependentUpon>Thing.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPages\Graphic.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Graphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThingPropertyPages.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ThingPropertyPages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -16,11 +16,11 @@ namespace PlayOnline.FFXI {
 
   public class FFXIItem {
 
-    private long        Index_;
-    private byte[]      Data_;
-    private FFXIGraphic IconGraphic_;
+    private long    Index_;
+    private byte[]  Data_;
+    private Graphic IconGraphic_;
 
-    public FFXIItem(long Index, byte[] Data, FFXIGraphic IconGraphic) {
+    public FFXIItem(long Index, byte[] Data, Graphic IconGraphic) {
       this.Index_       = Index;
       this.Data_        = new byte[0x200];
       Array.Copy(Data, 0, this.Data_, 0, 0x200);
@@ -44,7 +44,7 @@ namespace PlayOnline.FFXI {
       }
     }
 
-    public FFXIGraphic IconGraphic {
+    public Graphic IconGraphic {
       get {
 	return this.IconGraphic_;
       }
@@ -62,12 +62,18 @@ namespace PlayOnline.FFXI {
       this.JPArmor_  = this.ENArmor_;
       this.ENWeapon_ = new DumpedWeaponInfo(DumpedItem);
       this.JPWeapon_ = this.ENWeapon_;
-      this.IconGraphic_ = FFXIGraphic.UnDump(DumpedItem);
+      try {
+	this.IconGraphic_ = new Graphic();
+      XmlElement DumpedIcon = DumpedItem.SelectSingleNode("./child::Icon/child::thing") as XmlElement;
+	if (DumpedIcon != null)
+	  this.IconGraphic_.Load(DumpedIcon);
+      }
+      catch { this.IconGraphic_ = null; }
     }
 
     private static string UndumpStringField(XmlElement DumpedItem, ItemField IF) {
       try {
-      XmlNode XN = DumpedItem.SelectSingleNode(String.Format("./child::*[name(.) = '{0}']", IF));
+      XmlNode XN = DumpedItem.SelectSingleNode(String.Format("./child::{0}", IF));
 	if (XN == null)
 	  return String.Empty;
 	return XN.InnerText;

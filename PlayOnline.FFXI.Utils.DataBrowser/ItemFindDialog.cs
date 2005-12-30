@@ -141,7 +141,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void AddResult(FFXIItem Item, ItemDataLanguage Language, ItemDataType Type) {
-      this.ilItemIcons.Images.Add(Item.IconGraphic.Bitmap);
+      this.ilItemIcons.Images.Add(Item.IconGraphic.GetIcon());
     bool AddColumns = (this.lstItems.Columns.Count == 0);
       if (AddColumns)
 	this.lstItems.Columns.Add("Index", 80, HorizontalAlignment.Left);

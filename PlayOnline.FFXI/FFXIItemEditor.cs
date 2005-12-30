@@ -222,7 +222,7 @@ namespace PlayOnline.FFXI {
       this.ttToolTip.SetToolTip(this.picIcon, null);
       if (I != null) {
 	if (I.IconGraphic != null) {
-	  this.picIcon.Image = I.IconGraphic.Bitmap;
+	  this.picIcon.Image = I.IconGraphic.GetIcon();
 	  this.ttToolTip.SetToolTip(this.picIcon, I.IconGraphic.ToString());
 	}
 	if (this.LockedViewMode_ != null)
@@ -375,6 +375,11 @@ namespace PlayOnline.FFXI {
     }
 
     #endregion
+
+    private void picIcon_DoubleClick(object sender, EventArgs e) {
+    ThingPropertyPages TPP = new ThingPropertyPages(this.ItemToShow_.IconGraphic);
+      TPP.Show();
+    }
 
   }
 

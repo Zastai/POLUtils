@@ -44,16 +44,9 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
     BinaryReader BR = new BinaryReader(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.Read));
       if (BR != null) {
 	BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
-	this.Colors_ = new Color[23] {
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32),
-	  FFXIGraphic.ReadColor(BR, 32), FFXIGraphic.ReadColor(BR, 32)
-	};
+	this.Colors_ = new Color[23];
+	for (int i = 0; i < 32; ++i)
+	  this.Colors_[i] = Graphic.ReadColor(BR, 32);
 	BR.Close();
       }
     }

@@ -52,15 +52,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
 	{ // Add the icon (raw bitmap data, in base64)
 	XmlElement XIcon = XItem.AppendChild(XD.CreateElement("Icon")) as XmlElement;
-	  XIcon.Attributes.Append(XD.CreateAttribute("Category")).InnerText = I.IconGraphic.Category;
-	  XIcon.Attributes.Append(XD.CreateAttribute("ID")).InnerText       = I.IconGraphic.ID;
-	  XIcon.Attributes.Append(XD.CreateAttribute("Format")).InnerText   = I.IconGraphic.Format;
-	  {
-	  MemoryStream MS = new MemoryStream();
-	    I.IconGraphic.Bitmap.Save(MS, ImageFormat.Png);
-	    XIcon.InnerText = Convert.ToBase64String(MS.GetBuffer());
-	    MS.Close();
-	  }
+	  XIcon.AppendChild(I.IconGraphic.Save(XD));
 	}
 	Application.DoEvents();
       }
