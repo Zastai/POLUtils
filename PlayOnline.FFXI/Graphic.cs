@@ -106,127 +106,115 @@ namespace PlayOnline.FFXI {
       return String.Format("[{0}] {1} ({2}, {3}x{4})", this.Category_, this.ID_, this.Format_, this.Width_.GetValueOrDefault(0), this.Height_.GetValueOrDefault(0));
     }
 
-    public override List<string> GetFields() {
-    List<String> Fields = new List<string>();
-      if (this.Format_                != null) Fields.Add("format");
-      if (this.Flag_.HasValue                ) Fields.Add("flag");
-      if (this.Category_              != null) Fields.Add("category");
-      if (this.ID_                    != null) Fields.Add("id");
-      if (this.Width_.HasValue               ) Fields.Add("width");
-      if (this.Height_.HasValue              ) Fields.Add("height");
-      if (this.Planes_.HasValue              ) Fields.Add("planes");
-      if (this.BitCount_.HasValue            ) Fields.Add("bits");
-      if (this.Compression_.HasValue         ) Fields.Add("compression");
-      if (this.ImageSize_.HasValue           ) Fields.Add("size");
-      if (this.HorizontalResolution_.HasValue) Fields.Add("horizontal-resolution");
-      if (this.VerticalResolution_.HasValue  ) Fields.Add("vertical-resolution");
-      if (this.UsedColors_.HasValue          ) Fields.Add("used-colors");
-      if (this.ImportantColors_.HasValue     ) Fields.Add("important-colors");
-      if (this.Image_                 != null) Fields.Add("image");
-      return Fields;
-    }
-
     public override bool HasField(string Field) {
       switch (Field) {
-	case "format":                return (this.Format_ != null);
-	case "flag":                  return this.Flag_.HasValue;
+	// Objects
 	case "category":              return (this.Category_ != null);
-	case "id":                    return (this.ID_ != null);
-	case "width":                 return this.Width_.HasValue;
-	case "height":                return this.Height_.HasValue;
-	case "planes":                return this.Planes_.HasValue;
+	case "format":                return (this.Format_   != null);
+	case "id":                    return (this.ID_       != null);
+	case "image":                 return (this.Image_    != null);
+	// Nullables
 	case "bits":                  return this.BitCount_.HasValue;
 	case "compression":           return this.Compression_.HasValue;
-	case "size":                  return this.ImageSize_.HasValue;
+	case "flag":                  return this.Flag_.HasValue;
+	case "height":                return this.Height_.HasValue;
 	case "horizontal-resolution": return this.HorizontalResolution_.HasValue;
-	case "vertical-resolution":   return this.VerticalResolution_.HasValue;
-	case "used-colors":           return this.UsedColors_.HasValue;
 	case "important-colors":      return this.ImportantColors_.HasValue;
-	case "image":                 return (this.Image_ != null);
+	case "planes":                return this.Planes_.HasValue;
+	case "size":                  return this.ImageSize_.HasValue;
+	case "used-colors":           return this.UsedColors_.HasValue;
+	case "vertical-resolution":   return this.VerticalResolution_.HasValue;
+	case "width":                 return this.Width_.HasValue;
 	default:                      return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	case "flag":                  return (this.Flag_.HasValue                 ? String.Format("{0:X2}", this.Flag_.Value)   : null);
-	case "width":                 return (this.Width_.HasValue                ? this.Width_.Value.ToString()                : null);
-	case "height":                return (this.Height_.HasValue               ? this.Height_.Value.ToString()               : null);
-	case "planes":                return (this.Planes_.HasValue               ? this.Planes_.Value.ToString()               : null);
-	case "bits":                  return (this.BitCount_.HasValue             ? this.BitCount_.Value.ToString()             : null);
-	case "compression":           return (this.Compression_.HasValue          ? this.Compression_.Value.ToString()          : null);
-	case "size":                  return (this.ImageSize_.HasValue            ? this.ImageSize_.Value.ToString()            : null);
-	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? this.HorizontalResolution_.Value.ToString() : null);
-	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? this.VerticalResolution_.Value.ToString()   : null);
-	case "used-colors":           return (this.UsedColors_.HasValue           ? this.UsedColors_.Value.ToString()           : null);
-	case "important-colors":      return (this.ImportantColors_.HasValue      ? this.ImportantColors_.Value.ToString()      : null);
-	case "format":                return this.Format_;
+	// Objects
 	case "category":              return this.Category_;
+	case "format":                return this.Format_;
 	case "id":                    return this.ID_;
 	case "image":                 return I18N.GetText("ImageText");
+	// Nullables
+	case "bits":                  return (this.BitCount_.HasValue             ? this.BitCount_.Value.ToString()             : null);
+	case "compression":           return (this.Compression_.HasValue          ? this.Compression_.Value.ToString()          : null);
+	case "flag":                  return (this.Flag_.HasValue                 ? String.Format("{0:X2}", this.Flag_.Value)   : null);
+	case "height":                return (this.Height_.HasValue               ? this.Height_.Value.ToString()               : null);
+	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? this.HorizontalResolution_.Value.ToString() : null);
+	case "important-colors":      return (this.ImportantColors_.HasValue      ? this.ImportantColors_.Value.ToString()      : null);
+	case "planes":                return (this.Planes_.HasValue               ? this.Planes_.Value.ToString()               : null);
+	case "size":                  return (this.ImageSize_.HasValue            ? this.ImageSize_.Value.ToString()            : null);
+	case "used-colors":           return (this.UsedColors_.HasValue           ? this.UsedColors_.Value.ToString()           : null);
+	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? this.VerticalResolution_.Value.ToString()   : null);
+	case "width":                 return (this.Width_.HasValue                ? this.Width_.Value.ToString()                : null);
 	default:                      return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
-	case "flag":                  return (this.Flag_.HasValue                 ? (object) this.Flag_.Value                 : null);
-	case "width":                 return (this.Width_.HasValue                ? (object) this.Width_.Value                : null);
-	case "height":                return (this.Height_.HasValue               ? (object) this.Height_.Value               : null);
-	case "planes":                return (this.Planes_.HasValue               ? (object) this.Planes_.Value               : null);
-	case "bits":                  return (this.BitCount_.HasValue             ? (object) this.BitCount_.Value             : null);
-	case "compression":           return (this.Compression_.HasValue          ? (object) this.Compression_.Value          : null);
-	case "size":                  return (this.ImageSize_.HasValue            ? (object) this.ImageSize_.Value            : null);
-	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? (object) this.HorizontalResolution_.Value : null);
-	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? (object) this.VerticalResolution_.Value   : null);
-	case "used-colors":           return (this.UsedColors_.HasValue           ? (object) this.UsedColors_.Value           : null);
-	case "important-colors":      return (this.ImportantColors_.HasValue      ? (object) this.ImportantColors_.Value      : null);
-	case "format":                return this.Format_;
+	// Objects
 	case "category":              return this.Category_;
+	case "format":                return this.Format_;
 	case "id":                    return this.ID_;
 	case "image":                 return this.Image_;
+	// Nullables
+	case "bits":                  return (this.BitCount_.HasValue             ? (object) this.BitCount_.Value             : null);
+	case "compression":           return (this.Compression_.HasValue          ? (object) this.Compression_.Value          : null);
+	case "flag":                  return (this.Flag_.HasValue                 ? (object) this.Flag_.Value                 : null);
+	case "height":                return (this.Height_.HasValue               ? (object) this.Height_.Value               : null);
+	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? (object) this.HorizontalResolution_.Value : null);
+	case "important-colors":      return (this.ImportantColors_.HasValue      ? (object) this.ImportantColors_.Value      : null);
+	case "planes":                return (this.Planes_.HasValue               ? (object) this.Planes_.Value               : null);
+	case "size":                  return (this.ImageSize_.HasValue            ? (object) this.ImageSize_.Value            : null);
+	case "used-colors":           return (this.UsedColors_.HasValue           ? (object) this.UsedColors_.Value           : null);
+	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? (object) this.VerticalResolution_.Value   : null);
+	case "width":                 return (this.Width_.HasValue                ? (object) this.Width_.Value                : null);
 	default:                      return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	case "format":                this.Format_               =          this.LoadTextField(Node);            break;
-	case "flag":                  this.Flag_                 = (byte)   this.LoadHexField(Node);             break;
-	case "category":              this.Category_             =          this.LoadTextField(Node);            break;
-	case "id":                    this.ID_                   =          this.LoadTextField(Node);            break;
-	case "width":                 this.Width_                = (int)    this.LoadSignedIntegerField  (Node); break;
-	case "height":                this.Height_               = (int)    this.LoadSignedIntegerField  (Node); break;
-	case "planes":                this.Planes_               = (ushort) this.LoadUnsignedIntegerField(Node); break;
 	case "bits":                  this.BitCount_             = (ushort) this.LoadUnsignedIntegerField(Node); break;
+	case "category":              this.Category_             =          this.LoadTextField           (Node); break;
 	case "compression":           this.Compression_          = (uint)   this.LoadUnsignedIntegerField(Node); break;
-	case "size":                  this.ImageSize_            = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "flag":                  this.Flag_                 = (byte)   this.LoadUnsignedIntegerField(Node); break;
+	case "format":                this.Format_               =          this.LoadTextField           (Node); break;
+	case "height":                this.Height_               = (int)    this.LoadSignedIntegerField  (Node); break;
 	case "horizontal-resolution": this.HorizontalResolution_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
-	case "vertical-resolution":   this.VerticalResolution_   = (uint)   this.LoadUnsignedIntegerField(Node); break;
-	case "used-colors":           this.UsedColors_           = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "id":                    this.ID_                   =          this.LoadTextField           (Node); break;
+	case "image":                 this.Image_                =          this.LoadImageField          (Node); break;
 	case "important-colors":      this.ImportantColors_      = (uint)   this.LoadUnsignedIntegerField(Node); break;
-	case "image":                 this.Image_                =          this.LoadImageField(Node);           break;
+	case "planes":                this.Planes_               = (ushort) this.LoadUnsignedIntegerField(Node); break;
+	case "size":                  this.ImageSize_            = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "used-colors":           this.UsedColors_           = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "vertical-resolution":   this.VerticalResolution_   = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "width":                 this.Width_                = (int)    this.LoadSignedIntegerField  (Node); break;
       }
     }
 
     public override void Clear() {
-      this.Format_               = null;
-      this.Flag_                 = null;
-      this.Category_             = null;
-      this.ID_                   = null;
-      this.Width_                = null;
-      this.Height_               = null;
-      this.Planes_               = null;
-      this.BitCount_             = null;
-      this.Compression_          = null;
-      this.ImageSize_            = null;
-      this.HorizontalResolution_ = null;
-      this.VerticalResolution_   = null;
-      this.UsedColors_           = null;
-      this.ImportantColors_      = null;
+      // Dispose of the fields if needed
       if (this.Image_ != null)
 	this.Image_.Dispose();
-      this.Image_ = null;
+      // Null them
+      this.BitCount_             = null;
+      this.Category_             = null;
+      this.Compression_          = null;
+      this.Flag_                 = null;
+      this.Format_               = null;
+      this.Height_               = null;
+      this.HorizontalResolution_ = null;
+      this.ID_                   = null;
+      this.ImageSize_            = null;
+      this.Image_                = null;
+      this.ImportantColors_      = null;
+      this.Planes_               = null;
+      this.UsedColors_           = null;
+      this.VerticalResolution_   = null;
+      this.Width_                = null;
     }
 
     public override List<TabPage> GetPropertyPages() {

@@ -18,12 +18,10 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.picIcon.Image = T.GetIcon();
       this.lblText.Text = T.ToString();
       this.lblTypeName.Text = T.TypeName;
-    List<String> Fields = T.GetFields();
     List<String> AllFields = T.GetAllFields();
-      AllFields.Sort();
       foreach (string FieldName in AllFields) {
       ListViewItem LVI = this.lstFields.Items.Add(FieldName);
-	if (Fields.Contains(FieldName))
+	if (T.HasField(FieldName))
 	  LVI.SubItems.Add(T.GetFieldText(FieldName));
 	else
 	  LVI.ForeColor = SystemColors.GrayText;

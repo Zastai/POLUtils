@@ -44,11 +44,12 @@ namespace PlayOnline.FFXI {
     }
 
     public virtual List<string> GetFields() {
-      return this.GetAllFields(); // Assume all fields are always present
-    }
-
-    public virtual bool HasField(string Field) {
-      return this.GetFields().Contains(Field);
+      List<String> Fields = new List<string>();
+      foreach (string Field in this.GetAllFields()) {
+	if (this.HasField(Field))
+	  Fields.Add(Field);
+      }
+      return Fields;
     }
 
     public virtual List<TabPage> GetPropertyPages() {
@@ -167,7 +168,7 @@ namespace PlayOnline.FFXI {
 	else if (Value is Enum) // Store enums as hex numbers
 	  Element.InnerText = ((Enum) Value).ToString("X");
 	else
-	  Element.InnerText = this.GetFieldText(Field);
+	  Element.InnerText = Value.ToString();
       }
     }
 
@@ -177,11 +178,13 @@ namespace PlayOnline.FFXI {
 
     public abstract string TypeName { get; }
 
+    public abstract bool   HasField     (string Field);
     public abstract string GetFieldText (string Field);
     public abstract object GetFieldValue(string Field);
     public abstract void   Clear();
 
     #endregion
+
   }
 
 }
