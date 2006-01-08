@@ -39,7 +39,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.pnlViewerArea = new System.Windows.Forms.Panel();
       this.tabViewers = new System.Windows.Forms.TabControl();
       this.tabViewerItems = new System.Windows.Forms.ThemedTabPage();
-      this.ieItemViewer = new PlayOnline.FFXI.FFXIItemEditor();
+      this.ieItemViewer = new PlayOnline.FFXI.ItemEditor();
       this.grpMainItemActions = new System.Windows.Forms.GroupBox();
       this.cmbItems = new System.Windows.Forms.ComboBox();
       this.btnFindItems = new System.Windows.Forms.Button();
@@ -54,6 +54,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
+      this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
+      this.mnuPCModeZoomed = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -103,7 +105,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCMode.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuPCModeNormal,
             this.mnuPCModeCentered,
-            this.mnuPCModeStretched});
+            this.mnuPCModeStretched,
+            this.mnuPCModeZoomed});
       resources.ApplyResources(this.mnuPCMode, "mnuPCMode");
       // 
       // mnuPCModeNormal
@@ -349,6 +352,17 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lblNoViewers.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.lblNoViewers.Name = "lblNoViewers";
       // 
+      // dlgExportFile
+      // 
+      this.dlgExportFile.DefaultExt = "xml";
+      resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
+      // 
+      // mnuPCModeZoomed
+      // 
+      this.mnuPCModeZoomed.Index = 3;
+      resources.ApplyResources(this.mnuPCModeZoomed, "mnuPCModeZoomed");
+      this.mnuPCModeZoomed.Click += new System.EventHandler(this.mnuPCModeZoomed_Click);
+      // 
       // MainWindow
       // 
       resources.ApplyResources(this, "$this");
@@ -372,7 +386,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #endregion
 
-    // Controls
     private System.Windows.Forms.TreeView tvDataFiles;
     private System.Windows.Forms.ImageList ilBrowserIcons;
     private System.Windows.Forms.Splitter splSplitter;
@@ -393,25 +406,27 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuWindows;
     private System.Windows.Forms.TabControl tabViewers;
     private System.Windows.Forms.ListView lstEntries;
-    private System.Windows.Forms.TabPage tabViewerImages;
     private System.Windows.Forms.PictureBox picImageViewer;
     private System.Windows.Forms.Panel pnlImageChooser;
     private System.Windows.Forms.Label lblImageChooser;
     private System.Windows.Forms.ComboBox cmbImageChooser;
     private System.Windows.Forms.Panel pnlNoViewers;
     private System.Windows.Forms.Label lblNoViewers;
-    private System.Windows.Forms.TabPage tabViewerItems;
-    private System.Windows.Forms.TabPage tabViewerStringTable;
     private System.Windows.Forms.Button btnExportItems;
     private System.Windows.Forms.Button btnFindItems;
     private System.Windows.Forms.GroupBox grpMainItemActions;
     private System.Windows.Forms.ComboBox cmbItems;
     private System.Windows.Forms.MenuItem mnuOFileTable;
     private System.Windows.Forms.MenuItem mnuOSettings;
-    private PlayOnline.FFXI.FFXIItemEditor ieItemViewer;
+    private PlayOnline.FFXI.ItemEditor ieItemViewer;
     private System.Windows.Forms.Button btnImageSaveAll;
     private System.Windows.Forms.MenuItem mnuSTCCopyRow;
     private System.Windows.Forms.MenuItem mnuSTCCopyField;
+    private System.Windows.Forms.SaveFileDialog dlgExportFile;
+    private System.Windows.Forms.ThemedTabPage tabViewerImages;
+    private System.Windows.Forms.ThemedTabPage tabViewerItems;
+    private System.Windows.Forms.ThemedTabPage tabViewerStringTable;
+    private System.Windows.Forms.MenuItem mnuPCModeZoomed;
 
   }
 

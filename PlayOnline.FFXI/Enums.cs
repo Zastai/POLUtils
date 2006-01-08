@@ -4,54 +4,6 @@ using System;
 
 namespace PlayOnline.FFXI {
 
-  public enum ItemDataType {
-    Armor,
-    Object,
-    Weapon
-  }
-
-  public enum ItemDataLanguage {
-    English,
-    Japanese
-  }
-
-  public enum ItemField {
-    Any,
-    All,
-    // Common
-    ID,
-    Flags,
-    StackSize,
-    Type,
-    MysteryField, // Need a good name for this...
-    ValidTargets,
-    EnglishName,
-    JapaneseName,
-    LogNameSingular,
-    LogNamePlural,
-    Description,
-    // Furniture
-    Element,
-    Storage,
-    // Armor & Weapons
-    Level,
-    Slots,
-    Races,
-    Jobs,
-    MaxCharges,
-    CastTime,
-    EquipDelay,
-    ReuseTimer,
-    // Armor Only
-    ShieldSize,
-    // Weapon Only
-    Damage,
-    DPS,
-    Delay,
-    Skill,
-    JugSize, // BST Jugs only; Not sure if this is the correct interpretation...
-  }
-
   public enum Element : byte {
     Fire,
     Ice,
@@ -216,6 +168,7 @@ namespace PlayOnline.FFXI {
     StringInstrument = 0x29,
     WindInstrument   = 0x2a,
     Fishing          = 0x30,
+    Special          = 0xff // Set on pet food
   }
 
   [Flags]

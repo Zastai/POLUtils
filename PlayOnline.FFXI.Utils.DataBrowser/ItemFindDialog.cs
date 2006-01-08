@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -16,77 +17,57 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal partial class ItemFindDialog : Form {
 
-    public ItemFindDialog(FFXIItem[] Items) {
+    private ThingList<Item> Items_;
+    private Item            SelectedItem_;
+
+    public Item SelectedItem {
+      get { return this.SelectedItem_; }
+    }
+
+    public ItemFindDialog(ThingList<Item> Items) {
       InitializeComponent();
-      this.Icon   = Icons.Search;
-      this.Items_ = Items;
+      this.Icon          = Icons.Search;
+      this.Items_        = Items;
       this.SelectedItem_ = null;
-      this.Predicates_ = new ArrayList(1);
-      this.cmbLanguage.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataLanguage)));
-      this.cmbLanguage.SelectedIndex = 0;
-      this.cmbItemType.Items.AddRange(NamedEnum.GetAll(typeof(ItemDataType)));
-      this.cmbItemType.SelectedIndex = 1;
+      this.lstItems.Columns.Add(I18N.GetText("ColumnHeader:Index"), 40, HorizontalAlignment.Left);
+      { // Add all item fields as columns for the result, and as entries on the "Copy" context menu
+      Item I = new Item();
+      int Index = 0;
+	foreach (string Field in I.GetAllFields()) {
+	  this.lstItems.Columns.Add(I.GetFieldName(Field), 100, HorizontalAlignment.Left);
+	  this.cmiILCopy.DropDownItems.Add(I.GetFieldName(Field), null, this.CopyContextMenu_Click).Tag = ++Index;
+	}
+      }
       this.lstItems.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
       this.AddPredicate();
     }
 
-    private FFXIItem[] Items_;
-    private FFXIItem   SelectedItem_;
-
-    public FFXIItem SelectedItem {
-      get { return this.SelectedItem_; }
-    }
-
-    public ItemDataType Type {
-      get {
-	return (ItemDataType) (this.cmbItemType.SelectedItem as NamedEnum).Value;
-      }
-      set {
-	foreach (NamedEnum NE in this.cmbItemType.Items) {
-	  if ((ItemDataType) NE.Value == value) {
-	    this.cmbItemType.SelectedItem = NE;
-	    break;
-	  }
-	}
-      }
-    }
-
-    public ItemDataLanguage Language {
-      get {
-	return (ItemDataLanguage) (this.cmbLanguage.SelectedItem as NamedEnum).Value;
-      }
-      set {
-	foreach (NamedEnum NE in this.cmbLanguage.Items) {
-	  if ((ItemDataLanguage) NE.Value == value) {
-	    this.cmbLanguage.SelectedItem = NE;
-	    break;
-	  }
-	}
-      }
-    }
-
     #region Predicate Handling
 
-    private ArrayList Predicates_;
+    private List<ItemPredicate> Predicates_ = new List<ItemPredicate>(1);
 
     private void AddPredicate() {
     ItemPredicate IP = new ItemPredicate();
-      this.pnlSearchOptions.Height += IP.Height + 4;
-      IP.Left     = this.grpDisplayMode.Left;
-      IP.Top      = this.pnlSearchOptions.Height - IP.Height - 4;
-      IP.Width    = this.pnlSearchOptions.Width - 2 * IP.Left;
+      IP.Width    = this.pnlSearchOptions.Width;
+      IP.Left     = 0;
+      if (this.Predicates_.Count > 0) {
+      ItemPredicate LastIP = this.Predicates_[this.Predicates_.Count - 1];
+	IP.Top    = LastIP.Top + LastIP.Height;
+      }
+      else
+	IP.Top    = this.btnClose.Top;
       IP.Anchor   = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-      IP.Language = this.Language;
-      IP.Type     = this.Type;
+      this.pnlSearchOptions.Height += IP.Height;
       this.pnlSearchOptions.Controls.Add(IP);
     Button B = new Button(); // Add or Remove button
       B.Tag       = IP;
+      IP.Tag      = B;
       B.FlatStyle = FlatStyle.System;
       B.Width     = 20;
-      B.Height    = IP.Height;
-      IP.Width   -= 4 + B.Width;
+      B.Height    = 20;
+      IP.Width   -= 3 + B.Width;
       B.Top       = IP.Top;
-      B.Left      = IP.Left + IP.Width + 4;
+      B.Left      = IP.Left + IP.Width;
       B.Anchor    = AnchorStyles.Right | AnchorStyles.Top;
       if (this.Predicates_.Count == 0) {
 	B.Text    = "+";
@@ -113,16 +94,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       int idx = this.Predicates_.IndexOf(IP);
 	this.pnlSearchOptions.Controls.Remove(IP);
 	this.pnlSearchOptions.Controls.Remove(B);
-	this.Predicates_.Remove(B.Width);
+	this.Predicates_.Remove(IP);
 	for (int i = idx; i < this.Predicates_.Count; ++i) {
-	ItemPredicate LowerIP = this.Predicates_[i] as ItemPredicate;
+	ItemPredicate LowerIP = this.Predicates_[i];
 	  LowerIP.Top -= 4 + IP.Height;
-	  foreach (Control C in this.pnlSearchOptions.Controls) {
-	    if (C is Button && C.Tag != null && C.Tag.Equals(LowerIP)) {
-	      C.Top -= 4 + IP.Height;
-	      break;
-	    }
-	  }
+	Button LowerButton = LowerIP.Tag as Button;
+	  if (LowerButton != null)
+	    LowerButton.Top -= 4 + IP.Height;
 	}
 	this.pnlSearchOptions.Height -= 4 + IP.Height;
       }
@@ -130,85 +108,54 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #endregion
 
-    private void InitializeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
+    private ThingList<Item> SearchResults_ = new ThingList<Item>();
+
+    private void InitializeResultsPane() {
       this.lstItems.Items.Clear();
-      this.lstItems.Columns.Clear();
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Nonclickable;
       this.ilItemIcons.Images.Clear();
+      this.SearchResults_.Clear();
       this.stbStatus.Visible = true;
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.lstItems.Items.Count);
       Application.DoEvents();
     }
 
-    private void AddResult(FFXIItem Item, ItemDataLanguage Language, ItemDataType Type) {
-      this.ilItemIcons.Images.Add(Item.IconGraphic.GetIcon());
-    bool AddColumns = (this.lstItems.Columns.Count == 0);
-      if (AddColumns)
-	this.lstItems.Columns.Add("Index", 80, HorizontalAlignment.Left);
-    ListViewItem LVI = this.lstItems.Items.Add(String.Format("{0}", Item.Index), this.ilItemIcons.Images.Count - 1);
-      LVI.Tag  = Item;
-    FFXIItem.IItemInfo II = Item.GetInfo(Language, Type);
-      foreach (ItemField IF in II.GetFields()) {
-	if (IF == ItemField.Description) {
-	string FieldName = new NamedEnum(IF).Name;
-	string[] DescriptionLines = II.GetFieldText(IF).Split('\n');
-	  if (AddColumns)
-	    this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:LineCount"), FieldName), 120, HorizontalAlignment.Right);
-	  LVI.SubItems.Add(DescriptionLines.Length.ToString());
-	  for (int i = 0; i < 6; ++i) {
-	    if (AddColumns)
-	      this.lstItems.Columns.Add(String.Format(I18N.GetText("ColumnHeader:LineNumber"), FieldName, i + 1), 120, HorizontalAlignment.Left);
-	    LVI.SubItems.Add((i < DescriptionLines.Length) ? DescriptionLines[i] : "");
-	  }
-	}
-	else {
-	  if (AddColumns)
-	    this.lstItems.Columns.Add(new NamedEnum(IF).Name, 100, HorizontalAlignment.Left);
-	  LVI.SubItems.Add(II.GetFieldText(IF));
-	}
-      }
-      if (AddColumns)
-	this.lstItems.Columns.Add(I18N.GetText("ColumnHeader:IconInfo"), 80, HorizontalAlignment.Left);
-      LVI.SubItems.Add(Item.IconGraphic.ToString());
-      this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.lstItems.Items.Count);
-      Application.DoEvents();
-    }
-
-    private void FinalizeResultsPane(ItemDataLanguage Language, ItemDataType Type) {
+    private void FinalizeResultsPane() {
       foreach (ColumnHeader CH in this.lstItems.Columns) {
 	CH.Width = -1;
 	CH.Width += 2;
       }
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
-      this.mnuILCEResults.Enabled = (this.lstItems.Items.Count > 0);
-      this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Length);
+      this.cmiILEResults.Enabled = (this.lstItems.Items.Count > 0);
+      this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Count);
     }
 
-    private bool CheckQuery(FFXIItem Item) {
+    private bool CheckQuery(Item I) {
       // Assume AND between predicates for now
       foreach (ItemPredicate IP in this.Predicates_) {
-	if (!IP.IsMatch(Item))
+	if (!IP.IsMatch(I))
 	  return false;
       }
       return true;
     }
 
-    private void DoExport(FFXIItem[] Items) {
-    IItemExporter IE = new ItemExporter(this.Language, this.Type);
-      if (IE.PrepareExport()) {
-      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+    private PleaseWaitDialog PWD = null;
+
+    private void DoExport(ThingList<Item> Items) {
+      if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
+	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
       Thread T = new Thread(new ThreadStart(delegate () {
 	  Application.DoEvents();
-	  IE.DoExport(Items);
+	  Items.Save(this.dlgExportFile.FileName);
 	  Application.DoEvents();
-	  PWD.Close();
+	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
 	}));
 	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	T.Start();
-	PWD.ShowDialog(this);
+	this.PWD.ShowDialog(this);
 	this.Activate();
-	PWD.Dispose();
-	PWD = null; 
+	this.PWD.Dispose();
+	this.PWD = null;
       }
     }
 
@@ -217,7 +164,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void btnRunQuery_Click(object sender, System.EventArgs e) {
       // Ensure the query is valid
       for (int i = 0; i < this.Predicates_.Count; ++i) {
-      ItemPredicate IP = this.Predicates_[i] as ItemPredicate;
+      ItemPredicate IP = this.Predicates_[i];
 	if (IP == null)
 	  continue;
       string ValidationError = IP.ValidateQuery();
@@ -227,27 +174,28 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
       }
       // Clear the results
-      this.InitializeResultsPane(this.Language, this.Type);
+      this.InitializeResultsPane();
       // And add all items that match
-      foreach (FFXIItem FI in this.Items_) {
-	if (this.CheckQuery(FI))
-	  this.AddResult(FI, this.Language, this.Type);
+      foreach (Item I in this.Items_) {
+	if (this.CheckQuery(I)) {
+	  this.SearchResults_.Add(I);
+	  this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.SearchResults_.Count);
+	  Application.DoEvents();
+	}
       }
-      this.FinalizeResultsPane(this.Language, this.Type);
+      foreach (Item I in this.SearchResults_) {
+	this.ilItemIcons.Images.Add(I.GetIcon());
+      ListViewItem LVI = this.lstItems.Items.Add("", this.ilItemIcons.Images.Count - 1);
+	LVI.Tag = I;
+	LVI.Text = this.lstItems.Items.Count.ToString();
+	foreach (string Field in I.GetAllFields())
+	  LVI.SubItems.Add(I.GetFieldText(Field));
+      }
+      this.FinalizeResultsPane();
     }
 
-    private void cmbLanguage_SelectedIndexChanged(object sender, System.EventArgs e) {
-      if (this.cmbLanguage.SelectedItem == null)
-	return;
-      foreach (ItemPredicate IP in this.Predicates_)
-	IP.Language = this.Language;
-    }
-
-    private void cmbItemType_SelectedIndexChanged(object sender, System.EventArgs e) {
-      if (this.cmbItemType.SelectedItem == null)
-	return;
-      foreach (ItemPredicate IP in this.Predicates_)
-	IP.Type = this.Type;
+    private void btnClose_Click(object sender, EventArgs e) {
+      this.Close();
     }
 
     private void chkShowIcons_CheckedChanged(object sender, System.EventArgs e) {
@@ -255,52 +203,42 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void lstItems_SelectedIndexChanged(object sender, System.EventArgs e) {
-      this.mnuILCESelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
+      this.cmiILESelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
     }
 
     private void lstItems_DoubleClick(object sender, System.EventArgs e) {
-      this.SelectedItem_ = this.lstItems.SelectedItems[0].Tag as FFXIItem;
+      this.SelectedItem_ = this.lstItems.SelectedItems[0].Tag as Item;
       this.DialogResult = DialogResult.OK;
       this.Close();
     }
 
     private void CopyContextMenu_Click(object sender, System.EventArgs e) {
-    MenuItem MI = sender as MenuItem;
-      if (MI != null && this.lstItems.SelectedItems.Count > 0) {
+    int ColumnNumber = (int) (sender as ToolStripDropDownItem).Tag;
+      if (this.lstItems.SelectedItems.Count > 0) {
       string CopyText = String.Empty;
 	foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
 	  if (CopyText != "")
 	    CopyText += '\n';
-	  CopyText += LVI.SubItems[MI.Index].Text;
+	  CopyText += LVI.SubItems[ColumnNumber].Text;
 	}
 	Clipboard.SetDataObject(CopyText);
       }
     }
 
-    private void mnuItemListContext_Popup(object sender, System.EventArgs e) {
-      // Set Copy sub-menu up with all available columns
-      this.mnuILCCopy.MenuItems.Clear();
-      foreach (ColumnHeader CH in this.lstItems.Columns)
-	this.mnuILCCopy.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyContextMenu_Click)));
+    private void cmiILEAll_Click(object sender, EventArgs e) {
+      this.DoExport(this.Items_);
     }
 
-    private void mnuILCECAll_Click(object sender, System.EventArgs e) {
-    IItemExporter IE = new ItemExporter(this.Language, this.Type);
-      IE.DoExport(this.Items_);
+    private void cmiILEResults_Click(object sender, EventArgs e) {
+      this.DoExport(this.SearchResults_);
     }
 
-    private void mnuILCECResults_Click(object sender, System.EventArgs e) {
-    ArrayList Items = new ArrayList();
-      foreach (ListViewItem LVI in this.lstItems.Items)
-	Items.Add(LVI.Tag);
-      this.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
-    }
-
-    private void mnuILCECSelected_Click(object sender, System.EventArgs e) {
-    ArrayList Items = new ArrayList();
+    private void cmiILESelected_Click(object sender, EventArgs e) {
+    ThingList<Item> Items = new ThingList<Item>();
       foreach (ListViewItem LVI in this.lstItems.SelectedItems)
-	Items.Add(LVI.Tag);
-      this.DoExport((FFXIItem[]) Items.ToArray(typeof(FFXIItem)));
+	Items.Add(LVI.Tag as Item);
+      this.DoExport(Items);
+      Items.Clear();
     }
 
     #endregion

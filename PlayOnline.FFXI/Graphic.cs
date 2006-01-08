@@ -17,26 +17,35 @@ namespace PlayOnline.FFXI {
 
     public Graphic() {
       // Fill Thing helpers
-      this.AllFields_ = new List<string>(new string[] {
-	"format",
-	"flag",
-	"category",
-	"id",
-	"width",
-	"height",
-	"planes",
-	"bits",
-	"compression",
-	"size",
-	"horizontal-resolution",
-	"vertical-resolution",
-	"used-colors",
-	"important-colors",
-	"image",
-      });
       this.IconField_ = "image";
       // Clear fields
       this.Clear();
+    }
+
+    public static List<string> Fields {
+      get {
+	return new List<string>(new string[] {
+	  "format",
+	  "flag",
+	  "category",
+	  "id",
+	  "width",
+	  "height",
+	  "planes",
+	  "bits",
+	  "compression",
+	  "size",
+	  "horizontal-resolution",
+	  "vertical-resolution",
+	  "used-colors",
+	  "important-colors",
+	  "image",
+	});
+      }
+    }
+
+    public override List<string> GetAllFields() {
+      return Graphic.Fields;
     }
 
     public bool Read(BinaryReader BR) {
@@ -185,13 +194,25 @@ namespace PlayOnline.FFXI {
 	case "height":                this.Height_               = (int)    this.LoadSignedIntegerField  (Node); break;
 	case "horizontal-resolution": this.HorizontalResolution_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "id":                    this.ID_                   =          this.LoadTextField           (Node); break;
-	case "image":                 this.Image_                =          this.LoadImageField          (Node); break;
 	case "important-colors":      this.ImportantColors_      = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "planes":                this.Planes_               = (ushort) this.LoadUnsignedIntegerField(Node); break;
 	case "size":                  this.ImageSize_            = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "used-colors":           this.UsedColors_           = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "vertical-resolution":   this.VerticalResolution_   = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "width":                 this.Width_                = (int)    this.LoadSignedIntegerField  (Node); break;
+	case "image":
+	  this.Image_ = this.LoadImageField(Node);
+	  if (this.Image_ != null) { // Fill in a few other fields if needed
+	    if (!this.Width_.HasValue)
+	      this.Width_ = this.Image_.Width;
+	    if (!this.Height_.HasValue)
+	      this.Height_ = this.Image_.Height;
+	    if (!this.VerticalResolution_.HasValue)
+	      this.VerticalResolution_ = (uint) this.Image_.VerticalResolution;
+	    if (!this.HorizontalResolution_.HasValue)
+	      this.HorizontalResolution_ = (uint) this.Image_.HorizontalResolution;
+	  }
+	  break;
       }
     }
 

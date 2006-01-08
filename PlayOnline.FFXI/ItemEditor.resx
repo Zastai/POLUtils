@@ -117,437 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;chkViewAsJWeapon.Name" xml:space="preserve">
-    <value>chkViewAsJWeapon</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Name" xml:space="preserve">
-    <value>chkViewAsJObject</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Name" xml:space="preserve">
-    <value>chkViewAsJArmor</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Name" xml:space="preserve">
-    <value>chkViewAsEWeapon</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Name" xml:space="preserve">
-    <value>chkViewAsEObject</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Name" xml:space="preserve">
-    <value>chkViewAsEArmor</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="grpViewMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="grpViewMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 76</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="grpViewMode.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="grpViewMode.Text" xml:space="preserve">
-    <value>View Item Info As</value>
-  </data>
-  <data name="&gt;&gt;grpViewMode.Name" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;grpViewMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpViewMode.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpViewMode.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkViewAsJWeapon.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsJWeapon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsJWeapon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 44</value>
-  </data>
-  <data name="chkViewAsJWeapon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 24</value>
-  </data>
-  <data name="chkViewAsJWeapon.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="chkViewAsJWeapon.Text" xml:space="preserve">
-    <value>Weapon Information - JP</value>
-  </data>
-  <data name="chkViewAsJWeapon.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.Name" xml:space="preserve">
-    <value>chkViewAsJWeapon</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJWeapon.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="chkViewAsJObject.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsJObject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsJObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 44</value>
-  </data>
-  <data name="chkViewAsJObject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 24</value>
-  </data>
-  <data name="chkViewAsJObject.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="chkViewAsJObject.Text" xml:space="preserve">
-    <value>Object Information - JP</value>
-  </data>
-  <data name="chkViewAsJObject.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Name" xml:space="preserve">
-    <value>chkViewAsJObject</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJObject.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="chkViewAsJArmor.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsJArmor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsJArmor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 44</value>
-  </data>
-  <data name="chkViewAsJArmor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 24</value>
-  </data>
-  <data name="chkViewAsJArmor.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="chkViewAsJArmor.Text" xml:space="preserve">
-    <value>Armor Information - JP</value>
-  </data>
-  <data name="chkViewAsJArmor.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Name" xml:space="preserve">
-    <value>chkViewAsJArmor</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsJArmor.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="chkViewAsEWeapon.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsEWeapon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsEWeapon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 16</value>
-  </data>
-  <data name="chkViewAsEWeapon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 24</value>
-  </data>
-  <data name="chkViewAsEWeapon.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="chkViewAsEWeapon.Text" xml:space="preserve">
-    <value>Weapon Information - EN</value>
-  </data>
-  <data name="chkViewAsEWeapon.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Name" xml:space="preserve">
-    <value>chkViewAsEWeapon</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEWeapon.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="chkViewAsEObject.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsEObject.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsEObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 16</value>
-  </data>
-  <data name="chkViewAsEObject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 24</value>
-  </data>
-  <data name="chkViewAsEObject.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="chkViewAsEObject.Text" xml:space="preserve">
-    <value>Object Information - EN</value>
-  </data>
-  <data name="chkViewAsEObject.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Name" xml:space="preserve">
-    <value>chkViewAsEObject</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEObject.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="chkViewAsEArmor.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="chkViewAsEArmor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkViewAsEArmor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="chkViewAsEArmor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 24</value>
-  </data>
-  <data name="chkViewAsEArmor.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="chkViewAsEArmor.Text" xml:space="preserve">
-    <value>Armor Information - EN</value>
-  </data>
-  <data name="chkViewAsEArmor.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Name" xml:space="preserve">
-    <value>chkViewAsEArmor</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.Parent" xml:space="preserve">
-    <value>grpViewMode</value>
-  </data>
-  <data name="&gt;&gt;chkViewAsEArmor.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;txtRaces.Name" xml:space="preserve">
-    <value>txtRaces</value>
-  </data>
-  <data name="&gt;&gt;txtRaces.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRaces.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtRaces.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtSlots.Name" xml:space="preserve">
-    <value>txtSlots</value>
-  </data>
-  <data name="&gt;&gt;txtSlots.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSlots.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtSlots.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtJobs.Name" xml:space="preserve">
-    <value>txtJobs</value>
-  </data>
-  <data name="&gt;&gt;txtJobs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtJobs.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtJobs.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtLevel.Name" xml:space="preserve">
-    <value>txtLevel</value>
-  </data>
-  <data name="&gt;&gt;txtLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLevel.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtLevel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblRaces.Name" xml:space="preserve">
-    <value>lblRaces</value>
-  </data>
-  <data name="&gt;&gt;lblRaces.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRaces.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblRaces.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblSlots.Name" xml:space="preserve">
-    <value>lblSlots</value>
-  </data>
-  <data name="&gt;&gt;lblSlots.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSlots.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblSlots.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblJobs.Name" xml:space="preserve">
-    <value>lblJobs</value>
-  </data>
-  <data name="&gt;&gt;lblJobs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblJobs.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblJobs.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lblLevel.Name" xml:space="preserve">
-    <value>lblLevel</value>
-  </data>
-  <data name="&gt;&gt;lblLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLevel.Parent" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblLevel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="grpEquipmentInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 408</value>
-  </data>
-  <data name="grpEquipmentInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 72</value>
-  </data>
-  <data name="grpEquipmentInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="grpEquipmentInfo.Text" xml:space="preserve">
-    <value>Equipment Information</value>
-  </data>
-  <data name="grpEquipmentInfo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;grpEquipmentInfo.Name" xml:space="preserve">
-    <value>grpEquipmentInfo</value>
-  </data>
-  <data name="&gt;&gt;grpEquipmentInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpEquipmentInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpEquipmentInfo.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="txtRaces.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="txtRaces.Location" type="System.Drawing.Point, System.Drawing">
     <value>253, 44</value>
   </data>
   <data name="txtRaces.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 20</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtRaces.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>303</value>
   </data>
   <data name="&gt;&gt;txtRaces.Name" xml:space="preserve">
     <value>txtRaces</value>
@@ -571,7 +154,7 @@
     <value>152, 20</value>
   </data>
   <data name="txtSlots.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>302</value>
   </data>
   <data name="&gt;&gt;txtSlots.Name" xml:space="preserve">
     <value>txtSlots</value>
@@ -595,7 +178,7 @@
     <value>300, 20</value>
   </data>
   <data name="txtJobs.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>301</value>
   </data>
   <data name="&gt;&gt;txtJobs.Name" xml:space="preserve">
     <value>txtJobs</value>
@@ -619,7 +202,7 @@
     <value>24, 20</value>
   </data>
   <data name="txtLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>300</value>
   </data>
   <data name="&gt;&gt;txtLevel.Name" xml:space="preserve">
     <value>txtLevel</value>
@@ -646,7 +229,7 @@
     <value>41, 13</value>
   </data>
   <data name="lblRaces.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>0</value>
   </data>
   <data name="lblRaces.Text" xml:space="preserve">
     <value>Races:</value>
@@ -676,7 +259,7 @@
     <value>33, 13</value>
   </data>
   <data name="lblSlots.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>0</value>
   </data>
   <data name="lblSlots.Text" xml:space="preserve">
     <value>Slots:</value>
@@ -706,7 +289,7 @@
     <value>32, 13</value>
   </data>
   <data name="lblJobs.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>0</value>
   </data>
   <data name="lblJobs.Text" xml:space="preserve">
     <value>Jobs:</value>
@@ -736,7 +319,7 @@
     <value>36, 13</value>
   </data>
   <data name="lblLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>0</value>
   </data>
   <data name="lblLevel.Text" xml:space="preserve">
     <value>Level:</value>
@@ -753,6 +336,33 @@
   <data name="&gt;&gt;lblLevel.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="grpEquipmentInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 334</value>
+  </data>
+  <data name="grpEquipmentInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 72</value>
+  </data>
+  <data name="grpEquipmentInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grpEquipmentInfo.Text" xml:space="preserve">
+    <value>Equipment Information</value>
+  </data>
+  <data name="grpEquipmentInfo.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;grpEquipmentInfo.Name" xml:space="preserve">
+    <value>grpEquipmentInfo</value>
+  </data>
+  <data name="&gt;&gt;grpEquipmentInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpEquipmentInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpEquipmentInfo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="txtValidTargets.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -763,7 +373,7 @@
     <value>331, 20</value>
   </data>
   <data name="txtValidTargets.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>107</value>
   </data>
   <data name="&gt;&gt;txtValidTargets.Name" xml:space="preserve">
     <value>txtValidTargets</value>
@@ -787,7 +397,7 @@
     <value>247, 20</value>
   </data>
   <data name="txtJName.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>103</value>
   </data>
   <data name="&gt;&gt;txtJName.Name" xml:space="preserve">
     <value>txtJName</value>
@@ -811,7 +421,7 @@
     <value>247, 20</value>
   </data>
   <data name="txtEName.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>102</value>
   </data>
   <data name="&gt;&gt;txtEName.Name" xml:space="preserve">
     <value>txtEName</value>
@@ -838,7 +448,7 @@
     <value>341, 112</value>
   </data>
   <data name="txtDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>104</value>
   </data>
   <data name="&gt;&gt;txtDescription.Name" xml:space="preserve">
     <value>txtDescription</value>
@@ -862,7 +472,7 @@
     <value>27, 20</value>
   </data>
   <data name="txtStackSize.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>106</value>
   </data>
   <data name="&gt;&gt;txtStackSize.Name" xml:space="preserve">
     <value>txtStackSize</value>
@@ -886,7 +496,7 @@
     <value>269, 20</value>
   </data>
   <data name="txtFlags.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>105</value>
   </data>
   <data name="&gt;&gt;txtFlags.Name" xml:space="preserve">
     <value>txtFlags</value>
@@ -910,7 +520,7 @@
     <value>170, 20</value>
   </data>
   <data name="txtType.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>101</value>
   </data>
   <data name="&gt;&gt;txtType.Name" xml:space="preserve">
     <value>txtType</value>
@@ -934,7 +544,7 @@
     <value>97, 20</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>100</value>
   </data>
   <data name="&gt;&gt;txtID.Name" xml:space="preserve">
     <value>txtID</value>
@@ -955,10 +565,10 @@
     <value>6, 19</value>
   </data>
   <data name="picIcon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 60</value>
+    <value>64, 64</value>
   </data>
   <data name="picIcon.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
+    <value>Zoom</value>
   </data>
   <data name="picIcon.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -988,7 +598,7 @@
     <value>72, 13</value>
   </data>
   <data name="lblValidTargets.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>0</value>
   </data>
   <data name="lblValidTargets.Text" xml:space="preserve">
     <value>Valid Targets:</value>
@@ -1216,13 +826,13 @@
     <value>16</value>
   </data>
   <data name="grpCommonInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 76</value>
+    <value>0, 0</value>
   </data>
   <data name="grpCommonInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 260</value>
   </data>
   <data name="grpCommonInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="grpCommonInfo.Text" xml:space="preserve">
     <value>Common Information</value>
@@ -1237,11 +847,77 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpCommonInfo.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <metadata name="ttToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2, 0</value>
   </metadata>
+  <data name="txtJugSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtJugSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 44</value>
+  </data>
+  <data name="txtJugSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 20</value>
+  </data>
+  <data name="txtJugSize.TabIndex" type="System.Int32, mscorlib">
+    <value>604</value>
+  </data>
+  <data name="&gt;&gt;txtJugSize.Name" xml:space="preserve">
+    <value>txtJugSize</value>
+  </data>
+  <data name="&gt;&gt;txtJugSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtJugSize.Parent" xml:space="preserve">
+    <value>grpWeaponInfo</value>
+  </data>
+  <data name="&gt;&gt;txtJugSize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblJugSize.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblJugSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblJugSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 47</value>
+  </data>
+  <data name="lblJugSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="lblJugSize.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblJugSize.Text" xml:space="preserve">
+    <value>Jug Size:</value>
+  </data>
+  <data name="&gt;&gt;lblJugSize.Name" xml:space="preserve">
+    <value>lblJugSize</value>
+  </data>
+  <data name="&gt;&gt;lblJugSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblJugSize.Parent" xml:space="preserve">
+    <value>grpWeaponInfo</value>
+  </data>
+  <data name="&gt;&gt;lblJugSize.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtDPS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtDPS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 19</value>
+  </data>
+  <data name="txtDPS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="txtDPS.TabIndex" type="System.Int32, mscorlib">
+    <value>602</value>
+  </data>
   <data name="&gt;&gt;txtDPS.Name" xml:space="preserve">
     <value>txtDPS</value>
   </data>
@@ -1252,7 +928,19 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;txtDPS.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
+  </data>
+  <data name="txtDelay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>139, 19</value>
+  </data>
+  <data name="txtDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="txtDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>601</value>
   </data>
   <data name="&gt;&gt;txtDelay.Name" xml:space="preserve">
     <value>txtDelay</value>
@@ -1264,7 +952,19 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;txtDelay.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
+  </data>
+  <data name="txtDamage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtDamage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 19</value>
+  </data>
+  <data name="txtDamage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 20</value>
+  </data>
+  <data name="txtDamage.TabIndex" type="System.Int32, mscorlib">
+    <value>600</value>
   </data>
   <data name="&gt;&gt;txtDamage.Name" xml:space="preserve">
     <value>txtDamage</value>
@@ -1276,7 +976,19 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;txtDamage.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
+  </data>
+  <data name="txtSkill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtSkill.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 44</value>
+  </data>
+  <data name="txtSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 20</value>
+  </data>
+  <data name="txtSkill.TabIndex" type="System.Int32, mscorlib">
+    <value>603</value>
   </data>
   <data name="&gt;&gt;txtSkill.Name" xml:space="preserve">
     <value>txtSkill</value>
@@ -1288,7 +1000,25 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;txtSkill.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
+  </data>
+  <data name="lblDPS.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDPS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDPS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 22</value>
+  </data>
+  <data name="lblDPS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 13</value>
+  </data>
+  <data name="lblDPS.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDPS.Text" xml:space="preserve">
+    <value>Damage Per Second:</value>
   </data>
   <data name="&gt;&gt;lblDPS.Name" xml:space="preserve">
     <value>lblDPS</value>
@@ -1300,7 +1030,25 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;lblDPS.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
+  </data>
+  <data name="lblDelay.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDelay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 22</value>
+  </data>
+  <data name="lblDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="lblDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDelay.Text" xml:space="preserve">
+    <value>Delay:</value>
   </data>
   <data name="&gt;&gt;lblDelay.Name" xml:space="preserve">
     <value>lblDelay</value>
@@ -1312,7 +1060,25 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;lblDelay.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
+  </data>
+  <data name="lblDamage.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDamage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDamage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="lblDamage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="lblDamage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDamage.Text" xml:space="preserve">
+    <value>Damage:</value>
   </data>
   <data name="&gt;&gt;lblDamage.Name" xml:space="preserve">
     <value>lblDamage</value>
@@ -1324,7 +1090,25 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;lblDamage.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
+  </data>
+  <data name="lblSkill.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSkill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSkill.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 47</value>
+  </data>
+  <data name="lblSkill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="lblSkill.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblSkill.Text" xml:space="preserve">
+    <value>Weapon Skill:</value>
   </data>
   <data name="&gt;&gt;lblSkill.Name" xml:space="preserve">
     <value>lblSkill</value>
@@ -1336,16 +1120,16 @@
     <value>grpWeaponInfo</value>
   </data>
   <data name="&gt;&gt;lblSkill.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="grpWeaponInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 576</value>
+    <value>0, 505</value>
   </data>
   <data name="grpWeaponInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 72</value>
   </data>
   <data name="grpWeaponInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>6</value>
   </data>
   <data name="grpWeaponInfo.Text" xml:space="preserve">
     <value>Weapon Information</value>
@@ -1362,297 +1146,6 @@
   <data name="&gt;&gt;grpWeaponInfo.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="txtDPS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtDPS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>320, 19</value>
-  </data>
-  <data name="txtDPS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="txtDPS.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="&gt;&gt;txtDPS.Name" xml:space="preserve">
-    <value>txtDPS</value>
-  </data>
-  <data name="&gt;&gt;txtDPS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDPS.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;txtDPS.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtDelay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtDelay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 19</value>
-  </data>
-  <data name="txtDelay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="txtDelay.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;txtDelay.Name" xml:space="preserve">
-    <value>txtDelay</value>
-  </data>
-  <data name="&gt;&gt;txtDelay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDelay.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;txtDelay.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtDamage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtDamage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 19</value>
-  </data>
-  <data name="txtDamage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 20</value>
-  </data>
-  <data name="txtDamage.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="&gt;&gt;txtDamage.Name" xml:space="preserve">
-    <value>txtDamage</value>
-  </data>
-  <data name="&gt;&gt;txtDamage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDamage.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;txtDamage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtSkill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtSkill.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 44</value>
-  </data>
-  <data name="txtSkill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 20</value>
-  </data>
-  <data name="txtSkill.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="&gt;&gt;txtSkill.Name" xml:space="preserve">
-    <value>txtSkill</value>
-  </data>
-  <data name="&gt;&gt;txtSkill.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSkill.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;txtSkill.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblDPS.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDPS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDPS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 22</value>
-  </data>
-  <data name="lblDPS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 13</value>
-  </data>
-  <data name="lblDPS.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="lblDPS.Text" xml:space="preserve">
-    <value>Damage Per Second:</value>
-  </data>
-  <data name="&gt;&gt;lblDPS.Name" xml:space="preserve">
-    <value>lblDPS</value>
-  </data>
-  <data name="&gt;&gt;lblDPS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDPS.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDPS.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblDelay.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDelay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDelay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 22</value>
-  </data>
-  <data name="lblDelay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="lblDelay.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="lblDelay.Text" xml:space="preserve">
-    <value>Delay:</value>
-  </data>
-  <data name="&gt;&gt;lblDelay.Name" xml:space="preserve">
-    <value>lblDelay</value>
-  </data>
-  <data name="&gt;&gt;lblDelay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDelay.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDelay.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblDamage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDamage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDamage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 22</value>
-  </data>
-  <data name="lblDamage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="lblDamage.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="lblDamage.Text" xml:space="preserve">
-    <value>Damage:</value>
-  </data>
-  <data name="&gt;&gt;lblDamage.Name" xml:space="preserve">
-    <value>lblDamage</value>
-  </data>
-  <data name="&gt;&gt;lblDamage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDamage.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;lblDamage.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lblSkill.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblSkill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblSkill.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
-  </data>
-  <data name="lblSkill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="lblSkill.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="lblSkill.Text" xml:space="preserve">
-    <value>Weapon Skill:</value>
-  </data>
-  <data name="&gt;&gt;lblSkill.Name" xml:space="preserve">
-    <value>lblSkill</value>
-  </data>
-  <data name="&gt;&gt;lblSkill.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSkill.Parent" xml:space="preserve">
-    <value>grpWeaponInfo</value>
-  </data>
-  <data name="&gt;&gt;lblSkill.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtStorage.Name" xml:space="preserve">
-    <value>txtStorage</value>
-  </data>
-  <data name="&gt;&gt;txtStorage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtStorage.Parent" xml:space="preserve">
-    <value>grpFurnitureInfo</value>
-  </data>
-  <data name="&gt;&gt;txtStorage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtElement.Name" xml:space="preserve">
-    <value>txtElement</value>
-  </data>
-  <data name="&gt;&gt;txtElement.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtElement.Parent" xml:space="preserve">
-    <value>grpFurnitureInfo</value>
-  </data>
-  <data name="&gt;&gt;txtElement.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblStorage.Name" xml:space="preserve">
-    <value>lblStorage</value>
-  </data>
-  <data name="&gt;&gt;lblStorage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStorage.Parent" xml:space="preserve">
-    <value>grpFurnitureInfo</value>
-  </data>
-  <data name="&gt;&gt;lblStorage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblElement.Name" xml:space="preserve">
-    <value>lblElement</value>
-  </data>
-  <data name="&gt;&gt;lblElement.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblElement.Parent" xml:space="preserve">
-    <value>grpFurnitureInfo</value>
-  </data>
-  <data name="&gt;&gt;lblElement.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="grpFurnitureInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 648</value>
-  </data>
-  <data name="grpFurnitureInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 48</value>
-  </data>
-  <data name="grpFurnitureInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="grpFurnitureInfo.Text" xml:space="preserve">
-    <value>Furniture Info</value>
-  </data>
-  <data name="grpFurnitureInfo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;grpFurnitureInfo.Name" xml:space="preserve">
-    <value>grpFurnitureInfo</value>
-  </data>
-  <data name="&gt;&gt;grpFurnitureInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpFurnitureInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpFurnitureInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="txtStorage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1663,7 +1156,7 @@
     <value>56, 20</value>
   </data>
   <data name="txtStorage.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>701</value>
   </data>
   <data name="&gt;&gt;txtStorage.Name" xml:space="preserve">
     <value>txtStorage</value>
@@ -1687,7 +1180,7 @@
     <value>92, 20</value>
   </data>
   <data name="txtElement.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>700</value>
   </data>
   <data name="&gt;&gt;txtElement.Name" xml:space="preserve">
     <value>txtElement</value>
@@ -1714,7 +1207,7 @@
     <value>73, 13</value>
   </data>
   <data name="lblStorage.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>0</value>
   </data>
   <data name="lblStorage.Text" xml:space="preserve">
     <value>Storage Slots:</value>
@@ -1744,7 +1237,7 @@
     <value>48, 13</value>
   </data>
   <data name="lblElement.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>0</value>
   </data>
   <data name="lblElement.Text" xml:space="preserve">
     <value>Element:</value>
@@ -1761,56 +1254,32 @@
   <data name="&gt;&gt;lblElement.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;txtShieldSize.Name" xml:space="preserve">
-    <value>txtShieldSize</value>
+  <data name="grpFurnitureInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 578</value>
   </data>
-  <data name="&gt;&gt;txtShieldSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtShieldSize.Parent" xml:space="preserve">
-    <value>grpShieldInfo</value>
-  </data>
-  <data name="&gt;&gt;txtShieldSize.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblShieldSize.Name" xml:space="preserve">
-    <value>lblShieldSize</value>
-  </data>
-  <data name="&gt;&gt;lblShieldSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblShieldSize.Parent" xml:space="preserve">
-    <value>grpShieldInfo</value>
-  </data>
-  <data name="&gt;&gt;lblShieldSize.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpShieldInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 528</value>
-  </data>
-  <data name="grpShieldInfo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="grpFurnitureInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 48</value>
   </data>
-  <data name="grpShieldInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+  <data name="grpFurnitureInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="grpShieldInfo.Text" xml:space="preserve">
-    <value>Shield Information</value>
+  <data name="grpFurnitureInfo.Text" xml:space="preserve">
+    <value>Furniture Information</value>
   </data>
-  <data name="grpShieldInfo.Visible" type="System.Boolean, mscorlib">
+  <data name="grpFurnitureInfo.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;grpShieldInfo.Name" xml:space="preserve">
-    <value>grpShieldInfo</value>
+  <data name="&gt;&gt;grpFurnitureInfo.Name" xml:space="preserve">
+    <value>grpFurnitureInfo</value>
   </data>
-  <data name="&gt;&gt;grpShieldInfo.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpFurnitureInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpShieldInfo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpFurnitureInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;grpShieldInfo.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;grpFurnitureInfo.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="txtShieldSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1822,7 +1291,7 @@
     <value>26, 20</value>
   </data>
   <data name="txtShieldSize.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>500</value>
   </data>
   <data name="&gt;&gt;txtShieldSize.Name" xml:space="preserve">
     <value>txtShieldSize</value>
@@ -1849,7 +1318,7 @@
     <value>62, 13</value>
   </data>
   <data name="lblShieldSize.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>0</value>
   </data>
   <data name="lblShieldSize.Text" xml:space="preserve">
     <value>Shield Size:</value>
@@ -1866,233 +1335,32 @@
   <data name="&gt;&gt;lblShieldSize.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;txtJugSize.Name" xml:space="preserve">
-    <value>txtJugSize</value>
+  <data name="grpShieldInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 456</value>
   </data>
-  <data name="&gt;&gt;txtJugSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.Parent" xml:space="preserve">
-    <value>grpJugInfo</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Name" xml:space="preserve">
-    <value>lblJugSize</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Parent" xml:space="preserve">
-    <value>grpJugInfo</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpJugInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 696</value>
-  </data>
-  <data name="grpJugInfo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="grpShieldInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 48</value>
   </data>
-  <data name="grpJugInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="grpJugInfo.Text" xml:space="preserve">
-    <value>Beastmaster Jug Information</value>
-  </data>
-  <data name="grpJugInfo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;grpJugInfo.Name" xml:space="preserve">
-    <value>grpJugInfo</value>
-  </data>
-  <data name="&gt;&gt;grpJugInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpJugInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpJugInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtJugSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtJugSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 19</value>
-  </data>
-  <data name="txtJugSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 20</value>
-  </data>
-  <data name="txtJugSize.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.Name" xml:space="preserve">
-    <value>txtJugSize</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.Parent" xml:space="preserve">
-    <value>grpJugInfo</value>
-  </data>
-  <data name="&gt;&gt;txtJugSize.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblJugSize.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblJugSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblJugSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 22</value>
-  </data>
-  <data name="lblJugSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="lblJugSize.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="lblJugSize.Text" xml:space="preserve">
-    <value>Jug Size:</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Name" xml:space="preserve">
-    <value>lblJugSize</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.Parent" xml:space="preserve">
-    <value>grpJugInfo</value>
-  </data>
-  <data name="&gt;&gt;lblJugSize.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtCastTime.Name" xml:space="preserve">
-    <value>txtCastTime</value>
-  </data>
-  <data name="&gt;&gt;txtCastTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCastTime.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtCastTime.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtReuseTimer.Name" xml:space="preserve">
-    <value>txtReuseTimer</value>
-  </data>
-  <data name="&gt;&gt;txtReuseTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtReuseTimer.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtReuseTimer.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtEquipDelay.Name" xml:space="preserve">
-    <value>txtEquipDelay</value>
-  </data>
-  <data name="&gt;&gt;txtEquipDelay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtEquipDelay.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtEquipDelay.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtMaxCharges.Name" xml:space="preserve">
-    <value>txtMaxCharges</value>
-  </data>
-  <data name="&gt;&gt;txtMaxCharges.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtMaxCharges.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;txtMaxCharges.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblCastTime.Name" xml:space="preserve">
-    <value>lblCastTime</value>
-  </data>
-  <data name="&gt;&gt;lblCastTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCastTime.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblCastTime.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblEquipDelay.Name" xml:space="preserve">
-    <value>lblEquipDelay</value>
-  </data>
-  <data name="&gt;&gt;lblEquipDelay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblEquipDelay.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblEquipDelay.ZOrder" xml:space="preserve">
+  <data name="grpShieldInfo.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;lblReuseTimer.Name" xml:space="preserve">
-    <value>lblReuseTimer</value>
+  <data name="grpShieldInfo.Text" xml:space="preserve">
+    <value>Shield Information</value>
   </data>
-  <data name="&gt;&gt;lblReuseTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblReuseTimer.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblReuseTimer.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lblMaxCharges.Name" xml:space="preserve">
-    <value>lblMaxCharges</value>
-  </data>
-  <data name="&gt;&gt;lblMaxCharges.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMaxCharges.Parent" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
-  </data>
-  <data name="&gt;&gt;lblMaxCharges.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="grpEnchantmentInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 480</value>
-  </data>
-  <data name="grpEnchantmentInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 48</value>
-  </data>
-  <data name="grpEnchantmentInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="grpEnchantmentInfo.Text" xml:space="preserve">
-    <value>Enchantment Info</value>
-  </data>
-  <data name="grpEnchantmentInfo.Visible" type="System.Boolean, mscorlib">
+  <data name="grpShieldInfo.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;grpEnchantmentInfo.Name" xml:space="preserve">
-    <value>grpEnchantmentInfo</value>
+  <data name="&gt;&gt;grpShieldInfo.Name" xml:space="preserve">
+    <value>grpShieldInfo</value>
   </data>
-  <data name="&gt;&gt;grpEnchantmentInfo.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpShieldInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpEnchantmentInfo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpShieldInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;grpEnchantmentInfo.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;grpShieldInfo.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="txtCastTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2104,7 +1372,7 @@
     <value>26, 20</value>
   </data>
   <data name="txtCastTime.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>401</value>
   </data>
   <data name="&gt;&gt;txtCastTime.Name" xml:space="preserve">
     <value>txtCastTime</value>
@@ -2128,7 +1396,7 @@
     <value>60, 20</value>
   </data>
   <data name="txtReuseTimer.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>403</value>
   </data>
   <data name="&gt;&gt;txtReuseTimer.Name" xml:space="preserve">
     <value>txtReuseTimer</value>
@@ -2152,7 +1420,7 @@
     <value>35, 20</value>
   </data>
   <data name="txtEquipDelay.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>402</value>
   </data>
   <data name="&gt;&gt;txtEquipDelay.Name" xml:space="preserve">
     <value>txtEquipDelay</value>
@@ -2176,7 +1444,7 @@
     <value>19, 20</value>
   </data>
   <data name="txtMaxCharges.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>400</value>
   </data>
   <data name="&gt;&gt;txtMaxCharges.Name" xml:space="preserve">
     <value>txtMaxCharges</value>
@@ -2203,7 +1471,7 @@
     <value>71, 13</value>
   </data>
   <data name="lblCastTime.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>0</value>
   </data>
   <data name="lblCastTime.Text" xml:space="preserve">
     <value>Casting Time:</value>
@@ -2233,7 +1501,7 @@
     <value>67, 13</value>
   </data>
   <data name="lblEquipDelay.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>0</value>
   </data>
   <data name="lblEquipDelay.Text" xml:space="preserve">
     <value>Equip Delay:</value>
@@ -2263,7 +1531,7 @@
     <value>46, 13</value>
   </data>
   <data name="lblReuseTimer.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>0</value>
   </data>
   <data name="lblReuseTimer.Text" xml:space="preserve">
     <value>Re-Use:</value>
@@ -2293,7 +1561,7 @@
     <value>49, 13</value>
   </data>
   <data name="lblMaxCharges.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>0</value>
   </data>
   <data name="lblMaxCharges.Text" xml:space="preserve">
     <value>Charges:</value>
@@ -2310,80 +1578,32 @@
   <data name="&gt;&gt;lblMaxCharges.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;txtPlural.Name" xml:space="preserve">
-    <value>txtPlural</value>
+  <data name="grpEnchantmentInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 407</value>
   </data>
-  <data name="&gt;&gt;txtPlural.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="grpEnchantmentInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 48</value>
   </data>
-  <data name="&gt;&gt;txtPlural.Parent" xml:space="preserve">
-    <value>grpLogStrings</value>
+  <data name="grpEnchantmentInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;txtPlural.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="grpEnchantmentInfo.Text" xml:space="preserve">
+    <value>Enchantment Information</value>
   </data>
-  <data name="&gt;&gt;txtSingular.Name" xml:space="preserve">
-    <value>txtSingular</value>
-  </data>
-  <data name="&gt;&gt;txtSingular.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSingular.Parent" xml:space="preserve">
-    <value>grpLogStrings</value>
-  </data>
-  <data name="&gt;&gt;txtSingular.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblPlural.Name" xml:space="preserve">
-    <value>lblPlural</value>
-  </data>
-  <data name="&gt;&gt;lblPlural.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblPlural.Parent" xml:space="preserve">
-    <value>grpLogStrings</value>
-  </data>
-  <data name="&gt;&gt;lblPlural.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblSingular.Name" xml:space="preserve">
-    <value>lblSingular</value>
-  </data>
-  <data name="&gt;&gt;lblSingular.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSingular.Parent" xml:space="preserve">
-    <value>grpLogStrings</value>
-  </data>
-  <data name="&gt;&gt;lblSingular.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="grpLogStrings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 336</value>
-  </data>
-  <data name="grpLogStrings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 72</value>
-  </data>
-  <data name="grpLogStrings.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="grpLogStrings.Text" xml:space="preserve">
-    <value>English Log Strings</value>
-  </data>
-  <data name="grpLogStrings.Visible" type="System.Boolean, mscorlib">
+  <data name="grpEnchantmentInfo.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;grpLogStrings.Name" xml:space="preserve">
-    <value>grpLogStrings</value>
+  <data name="&gt;&gt;grpEnchantmentInfo.Name" xml:space="preserve">
+    <value>grpEnchantmentInfo</value>
   </data>
-  <data name="&gt;&gt;grpLogStrings.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpEnchantmentInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpLogStrings.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpEnchantmentInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;grpLogStrings.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;grpEnchantmentInfo.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="txtPlural.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2395,7 +1615,7 @@
     <value>300, 20</value>
   </data>
   <data name="txtPlural.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>201</value>
   </data>
   <data name="&gt;&gt;txtPlural.Name" xml:space="preserve">
     <value>txtPlural</value>
@@ -2419,7 +1639,7 @@
     <value>300, 20</value>
   </data>
   <data name="txtSingular.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>200</value>
   </data>
   <data name="&gt;&gt;txtSingular.Name" xml:space="preserve">
     <value>txtSingular</value>
@@ -2446,7 +1666,7 @@
     <value>104, 13</value>
   </data>
   <data name="lblPlural.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="lblPlural.Text" xml:space="preserve">
     <value>Log Name (Multiple):</value>
@@ -2476,7 +1696,7 @@
     <value>97, 13</value>
   </data>
   <data name="lblSingular.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>0</value>
   </data>
   <data name="lblSingular.Text" xml:space="preserve">
     <value>Log Name (Single):</value>
@@ -2493,6 +1713,114 @@
   <data name="&gt;&gt;lblSingular.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="grpLogStrings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 261</value>
+  </data>
+  <data name="grpLogStrings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 72</value>
+  </data>
+  <data name="grpLogStrings.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="grpLogStrings.Text" xml:space="preserve">
+    <value>English Log Strings</value>
+  </data>
+  <data name="grpLogStrings.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;grpLogStrings.Name" xml:space="preserve">
+    <value>grpLogStrings</value>
+  </data>
+  <data name="&gt;&gt;grpLogStrings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpLogStrings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpLogStrings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtActivationTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtActivationTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 19</value>
+  </data>
+  <data name="txtActivationTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="txtActivationTime.TabIndex" type="System.Int32, mscorlib">
+    <value>800</value>
+  </data>
+  <data name="&gt;&gt;txtActivationTime.Name" xml:space="preserve">
+    <value>txtActivationTime</value>
+  </data>
+  <data name="&gt;&gt;txtActivationTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtActivationTime.Parent" xml:space="preserve">
+    <value>grpUsableItemInfo</value>
+  </data>
+  <data name="&gt;&gt;txtActivationTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblActivationTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblActivationTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblActivationTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="lblActivationTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 13</value>
+  </data>
+  <data name="lblActivationTime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblActivationTime.Text" xml:space="preserve">
+    <value>Effect Activation Time:</value>
+  </data>
+  <data name="&gt;&gt;lblActivationTime.Name" xml:space="preserve">
+    <value>lblActivationTime</value>
+  </data>
+  <data name="&gt;&gt;lblActivationTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblActivationTime.Parent" xml:space="preserve">
+    <value>grpUsableItemInfo</value>
+  </data>
+  <data name="&gt;&gt;lblActivationTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpUsableItemInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 627</value>
+  </data>
+  <data name="grpUsableItemInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 48</value>
+  </data>
+  <data name="grpUsableItemInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="grpUsableItemInfo.Text" xml:space="preserve">
+    <value>Item Effect Information</value>
+  </data>
+  <data name="grpUsableItemInfo.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;grpUsableItemInfo.Name" xml:space="preserve">
+    <value>grpUsableItemInfo</value>
+  </data>
+  <data name="&gt;&gt;grpUsableItemInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpUsableItemInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpUsableItemInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
@@ -2500,7 +1828,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 752</value>
+    <value>424, 684</value>
   </data>
   <data name="&gt;&gt;ttToolTip.Name" xml:space="preserve">
     <value>ttToolTip</value>
@@ -2509,7 +1837,7 @@
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FFXIItemEditor</value>
+    <value>ItemEditor</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

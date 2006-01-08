@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,92 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mnuItemListContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="cmsItemList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
   </metadata>
-  <data name="mnuILCCopy.Text">
-    <value xml:space="preserve">&amp;Copy</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cmiILCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 22</value>
   </data>
-  <data name="mnuILCEAll.Text">
-    <value xml:space="preserve">&amp;All Items...</value>
+  <data name="cmiILCopy.Text" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
+  <data name="cmiILEAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="cmiILEAll.Text" xml:space="preserve">
+    <value>&amp;All Items...</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mnuILCEResults.Enabled" type="System.Boolean, mscorlib">
+  <data name="cmiILEResults.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="mnuILCEResults.Text">
-    <value xml:space="preserve">Search &amp;Results...</value>
+  <data name="cmiILEResults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
   </data>
-  <data name="mnuILCESelected.Enabled" type="System.Boolean, mscorlib">
+  <data name="cmiILEResults.Text" xml:space="preserve">
+    <value>Search &amp;Results...</value>
+  </data>
+  <data name="cmiILESelected.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="mnuILCESelected.Text">
-    <value xml:space="preserve">&amp;Selected Items...</value>
+  <data name="cmiILESelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
   </data>
-  <data name="mnuILCExport.Text">
-    <value xml:space="preserve">&amp;Export</value>
+  <data name="cmiILESelected.Text" xml:space="preserve">
+    <value>&amp;Selected Item(s)...</value>
+  </data>
+  <data name="cmiILExport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 22</value>
+  </data>
+  <data name="cmiILExport.Text" xml:space="preserve">
+    <value>&amp;Export</value>
+  </data>
+  <data name="cmsItemList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 48</value>
+  </data>
+  <data name="&gt;&gt;cmsItemList.Name" xml:space="preserve">
+    <value>cmsItemList</value>
+  </data>
+  <data name="&gt;&gt;cmsItemList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lstItems.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lstItems.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 48</value>
+    <value>0, 28</value>
   </data>
   <data name="lstItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>640, 390</value>
+    <value>640, 410</value>
   </data>
   <data name="lstItems.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;lstItems.Name">
-    <value xml:space="preserve">lstItems</value>
+  <data name="&gt;&gt;lstItems.Name" xml:space="preserve">
+    <value>lstItems</value>
   </data>
-  <data name="&gt;&gt;lstItems.Type">
-    <value xml:space="preserve">System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lstItems.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lstItems.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;lstItems.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;lstItems.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;lstItems.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="ilItemIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>169, 17</value>
+    <value>17, 17</value>
   </metadata>
   <data name="ilItemIcons.ImageSize" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
   </data>
-  <data name="btnClose.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnClose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 24</value>
-  </data>
-  <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
-  </data>
-  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="btnClose.Text">
-    <value xml:space="preserve">&amp;Close</value>
-  </data>
-  <data name="&gt;&gt;btnClose.Name">
-    <value xml:space="preserve">btnClose</value>
-  </data>
-  <data name="&gt;&gt;btnClose.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnClose.Parent">
-    <value xml:space="preserve">pnlSearchOptions</value>
-  </data>
-  <data name="&gt;&gt;btnClose.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="chkShowIcons.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="chkShowIcons.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -208,100 +208,64 @@
     <value>NoControl</value>
   </data>
   <data name="chkShowIcons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 20</value>
+    <value>388, 6</value>
   </data>
   <data name="chkShowIcons.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 16</value>
   </data>
   <data name="chkShowIcons.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>17</value>
   </data>
-  <data name="chkShowIcons.Text">
-    <value xml:space="preserve">&amp;Show Icons</value>
+  <data name="chkShowIcons.Text" xml:space="preserve">
+    <value>&amp;Show Icons</value>
   </data>
-  <data name="&gt;&gt;chkShowIcons.Name">
-    <value xml:space="preserve">chkShowIcons</value>
+  <data name="&gt;&gt;chkShowIcons.Name" xml:space="preserve">
+    <value>chkShowIcons</value>
   </data>
-  <data name="&gt;&gt;chkShowIcons.Type">
-    <value xml:space="preserve">System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;chkShowIcons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;chkShowIcons.Parent">
-    <value xml:space="preserve">grpDisplayMode</value>
+  <data name="&gt;&gt;chkShowIcons.Parent" xml:space="preserve">
+    <value>pnlSearchOptions</value>
   </data>
-  <data name="&gt;&gt;chkShowIcons.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;chkShowIcons.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="cmbItemType.ItemHeight" type="System.Int32, mscorlib">
+  <data name="btnClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnClose.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnClose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>561, 3</value>
+  </data>
+  <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="cmbItemType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 16</value>
+  <data name="btnClose.Text" xml:space="preserve">
+    <value>&amp;Close</value>
   </data>
-  <data name="cmbItemType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 21</value>
+  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
+    <value>btnClose</value>
   </data>
-  <data name="cmbItemType.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;btnClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbItemType.Name">
-    <value xml:space="preserve">cmbItemType</value>
+  <data name="&gt;&gt;btnClose.Parent" xml:space="preserve">
+    <value>pnlSearchOptions</value>
   </data>
-  <data name="&gt;&gt;cmbItemType.Type">
-    <value xml:space="preserve">System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;cmbItemType.Parent">
-    <value xml:space="preserve">grpDisplayMode</value>
-  </data>
-  <data name="&gt;&gt;cmbItemType.ZOrder">
-    <value xml:space="preserve">1</value>
-  </data>
-  <data name="cmbLanguage.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 21</value>
-  </data>
-  <data name="cmbLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Name">
-    <value xml:space="preserve">cmbLanguage</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Type">
-    <value xml:space="preserve">System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Parent">
-    <value xml:space="preserve">grpDisplayMode</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.ZOrder">
-    <value xml:space="preserve">2</value>
-  </data>
-  <data name="grpDisplayMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 0</value>
-  </data>
-  <data name="grpDisplayMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 44</value>
-  </data>
-  <data name="grpDisplayMode.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="grpDisplayMode.Text">
-    <value xml:space="preserve">Interpret Item Data As</value>
-  </data>
-  <data name="&gt;&gt;grpDisplayMode.Name">
-    <value xml:space="preserve">grpDisplayMode</value>
-  </data>
-  <data name="&gt;&gt;grpDisplayMode.Type">
-    <value xml:space="preserve">System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpDisplayMode.Parent">
-    <value xml:space="preserve">pnlSearchOptions</value>
-  </data>
-  <data name="&gt;&gt;grpDisplayMode.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="btnRunQuery.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="btnRunQuery.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -310,7 +274,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnRunQuery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 4</value>
+    <value>479, 3</value>
   </data>
   <data name="btnRunQuery.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 20</value>
@@ -318,20 +282,20 @@
   <data name="btnRunQuery.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="btnRunQuery.Text">
-    <value xml:space="preserve">&amp;Run Query</value>
+  <data name="btnRunQuery.Text" xml:space="preserve">
+    <value>&amp;Run Query</value>
   </data>
-  <data name="&gt;&gt;btnRunQuery.Name">
-    <value xml:space="preserve">btnRunQuery</value>
+  <data name="&gt;&gt;btnRunQuery.Name" xml:space="preserve">
+    <value>btnRunQuery</value>
   </data>
-  <data name="&gt;&gt;btnRunQuery.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnRunQuery.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnRunQuery.Parent">
-    <value xml:space="preserve">pnlSearchOptions</value>
+  <data name="&gt;&gt;btnRunQuery.Parent" xml:space="preserve">
+    <value>pnlSearchOptions</value>
   </data>
-  <data name="&gt;&gt;btnRunQuery.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;btnRunQuery.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="pnlSearchOptions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -340,22 +304,22 @@
     <value>0, 0</value>
   </data>
   <data name="pnlSearchOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>640, 48</value>
+    <value>640, 28</value>
   </data>
   <data name="pnlSearchOptions.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;pnlSearchOptions.Name">
-    <value xml:space="preserve">pnlSearchOptions</value>
+  <data name="&gt;&gt;pnlSearchOptions.Name" xml:space="preserve">
+    <value>pnlSearchOptions</value>
   </data>
-  <data name="&gt;&gt;pnlSearchOptions.Type">
-    <value xml:space="preserve">System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pnlSearchOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlSearchOptions.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;pnlSearchOptions.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlSearchOptions.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;pnlSearchOptions.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="stbStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -372,20 +336,32 @@
   <data name="stbStatus.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;stbStatus.Name">
-    <value xml:space="preserve">stbStatus</value>
+  <data name="&gt;&gt;stbStatus.Name" xml:space="preserve">
+    <value>stbStatus</value>
   </data>
-  <data name="&gt;&gt;stbStatus.Type">
-    <value xml:space="preserve">System.Windows.Forms.StatusBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;stbStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;stbStatus.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;stbStatus.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;stbStatus.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;stbStatus.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="dlgExportFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>236, 17</value>
+  </metadata>
+  <data name="dlgExportFile.Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml|All Files|*.*</value>
+  </data>
+  <data name="dlgExportFile.Title" xml:space="preserve">
+    <value>Select File To Export To</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>47</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>640, 438</value>
@@ -393,55 +369,55 @@
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
-  <data name="$this.Text">
-    <value xml:space="preserve">Find Item(s)</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Find Item(s)</value>
   </data>
-  <data name="&gt;&gt;mnuItemListContext.Name">
-    <value xml:space="preserve">mnuItemListContext</value>
+  <data name="&gt;&gt;cmiILCopy.Name" xml:space="preserve">
+    <value>cmiILCopy</value>
   </data>
-  <data name="&gt;&gt;mnuItemListContext.Type">
-    <value xml:space="preserve">System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmiILCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuILCCopy.Name">
-    <value xml:space="preserve">mnuILCCopy</value>
+  <data name="&gt;&gt;cmiILExport.Name" xml:space="preserve">
+    <value>cmiILExport</value>
   </data>
-  <data name="&gt;&gt;mnuILCCopy.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmiILExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuILCExport.Name">
-    <value xml:space="preserve">mnuILCExport</value>
+  <data name="&gt;&gt;cmiILEAll.Name" xml:space="preserve">
+    <value>cmiILEAll</value>
   </data>
-  <data name="&gt;&gt;mnuILCExport.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmiILEAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuILCEAll.Name">
-    <value xml:space="preserve">mnuILCEAll</value>
+  <data name="&gt;&gt;cmiILEResults.Name" xml:space="preserve">
+    <value>cmiILEResults</value>
   </data>
-  <data name="&gt;&gt;mnuILCEAll.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmiILEResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuILCEResults.Name">
-    <value xml:space="preserve">mnuILCEResults</value>
+  <data name="&gt;&gt;cmiILESelected.Name" xml:space="preserve">
+    <value>cmiILESelected</value>
   </data>
-  <data name="&gt;&gt;mnuILCEResults.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmiILESelected.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuILCESelected.Name">
-    <value xml:space="preserve">mnuILCESelected</value>
+  <data name="&gt;&gt;ilItemIcons.Name" xml:space="preserve">
+    <value>ilItemIcons</value>
   </data>
-  <data name="&gt;&gt;mnuILCESelected.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ilItemIcons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ilItemIcons.Name">
-    <value xml:space="preserve">ilItemIcons</value>
+  <data name="&gt;&gt;dlgExportFile.Name" xml:space="preserve">
+    <value>dlgExportFile</value>
   </data>
-  <data name="&gt;&gt;ilItemIcons.Type">
-    <value xml:space="preserve">System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;dlgExportFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">ItemFindDialog</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ItemFindDialog</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

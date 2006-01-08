@@ -12,16 +12,8 @@ namespace PlayOnline.FFXI {
 
     public ThingPropertyPages(IThing T) {
       InitializeComponent();
-      foreach (TabPage P in T.GetPropertyPages()) {
-	if (P.Width > this.tabDummy.Width)
-	  this.Width += (P.Width - this.tabDummy.Width);
-	if (P.Height > this.tabDummy.Height)
-	  this.Height += (P.Height - this.tabDummy.Height);
+      foreach (TabPage P in T.GetPropertyPages())
 	this.tabPages.TabPages.Add(P);
-      }
-      this.tabPages.TabPages.Remove(this.tabDummy);
-      this.tabDummy.Dispose();
-      this.tabDummy = null;
     }
 
     private void btnClose_Click(object sender, EventArgs e) {

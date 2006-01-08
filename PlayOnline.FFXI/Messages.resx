@@ -126,92 +126,74 @@
   <data name="MacroBarLabel" xml:space="preserve">
     <value>Macro Bar #{0}</value>
   </data>
-  <data name="E:ItemDataLanguage.English" xml:space="preserve">
-    <value>English Data</value>
-  </data>
-  <data name="E:ItemDataLanguage.Japanese" xml:space="preserve">
-    <value>Japanese Data</value>
-  </data>
-  <data name="E:ItemDataType.Armor" xml:space="preserve">
-    <value>Armor</value>
-  </data>
-  <data name="E:ItemDataType.Weapon" xml:space="preserve">
-    <value>Weapon</value>
-  </data>
-  <data name="E:ItemDataType.Object" xml:space="preserve">
-    <value>Object</value>
-  </data>
-  <data name="E:ItemField.ID" xml:space="preserve">
+  <data name="F:Item:id" xml:space="preserve">
     <value>Item ID</value>
   </data>
-  <data name="E:ItemField.Flags" xml:space="preserve">
+  <data name="F:Item:flags" xml:space="preserve">
     <value>Flags</value>
   </data>
-  <data name="E:ItemField.StackSize" xml:space="preserve">
+  <data name="F:Item:stack-size" xml:space="preserve">
     <value>Stack Size</value>
   </data>
-  <data name="E:ItemField.Type" xml:space="preserve">
+  <data name="F:Item:type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="E:ItemField.EnglishName" xml:space="preserve">
+  <data name="F:Item:english-name" xml:space="preserve">
     <value>English Name</value>
   </data>
-  <data name="E:ItemField.JapaneseName" xml:space="preserve">
+  <data name="F:Item:japanese-name" xml:space="preserve">
     <value>Japanese Name</value>
   </data>
-  <data name="E:ItemField.LogNameSingular" xml:space="preserve">
+  <data name="F:Item:log-name-singular" xml:space="preserve">
     <value>Log Name (Singular)</value>
   </data>
-  <data name="E:ItemField.LogNamePlural" xml:space="preserve">
+  <data name="F:Item:log-name-plural" xml:space="preserve">
     <value>Log Name (Plural)</value>
   </data>
-  <data name="E:ItemField.Description" xml:space="preserve">
+  <data name="F:Item:description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="E:ItemField.ResourceID" xml:space="preserve">
+  <data name="F:Item:resource-id" xml:space="preserve">
     <value>Resource ID</value>
   </data>
-  <data name="E:ItemField.Level" xml:space="preserve">
+  <data name="F:Item:level" xml:space="preserve">
     <value>Level</value>
   </data>
-  <data name="E:ItemField.Slots" xml:space="preserve">
+  <data name="F:Item:slots" xml:space="preserve">
     <value>Slots</value>
   </data>
-  <data name="E:ItemField.Races" xml:space="preserve">
+  <data name="F:Item:races" xml:space="preserve">
     <value>Races</value>
   </data>
-  <data name="E:ItemField.Jobs" xml:space="preserve">
+  <data name="F:Item:jobs" xml:space="preserve">
     <value>Jobs</value>
   </data>
-  <data name="E:ItemField.MaxCharges" xml:space="preserve">
+  <data name="F:Item:max-charges" xml:space="preserve">
     <value>Max. Charges</value>
   </data>
-  <data name="E:ItemField.CastTime" xml:space="preserve">
+  <data name="F:Item:activation-time" xml:space="preserve">
+    <value>Activation Time</value>
+  </data>
+  <data name="F:Item:casting-time" xml:space="preserve">
     <value>Casting Time</value>
   </data>
-  <data name="E:ItemField.EquipDelay" xml:space="preserve">
-    <value>Equip Delay</value>
+  <data name="F:Item:use-delay" xml:space="preserve">
+    <value>Use Delay</value>
   </data>
-  <data name="E:ItemField.ReuseTimer" xml:space="preserve">
-    <value>Reuse Timer</value>
+  <data name="F:Item:reuse-delay" xml:space="preserve">
+    <value>Reuse Delay</value>
   </data>
-  <data name="E:ItemField.ShieldSize" xml:space="preserve">
+  <data name="F:Item:shield-size" xml:space="preserve">
     <value>Shield Size</value>
   </data>
-  <data name="E:ItemField.Damage" xml:space="preserve">
+  <data name="F:Item:damage" xml:space="preserve">
     <value>Damage</value>
   </data>
-  <data name="E:ItemField.Delay" xml:space="preserve">
+  <data name="F:Item:delay" xml:space="preserve">
     <value>Delay</value>
   </data>
-  <data name="E:ItemField.Skill" xml:space="preserve">
+  <data name="F:Item:skill" xml:space="preserve">
     <value>Skill</value>
-  </data>
-  <data name="E:ItemField.Any" xml:space="preserve">
-    <value>Any Field</value>
-  </data>
-  <data name="E:ItemField.All" xml:space="preserve">
-    <value>Every Field</value>
   </data>
   <data name="PWD:StringResources" xml:space="preserve">
     <value>Loading string resources (auto-translator, item names) from the various DAT files...
@@ -243,5 +225,38 @@ This may take a while, depending on the speed of your machine.</value>
   </data>
   <data name="InvalidThingField" xml:space="preserve">
     <value>Invalid {0} field - could not find root element.</value>
+  </data>
+  <data name="F:Item:dps" xml:space="preserve">
+    <value>Damage Per Second</value>
+  </data>
+  <data name="F:Item:element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="F:Item:jug-size" xml:space="preserve">
+    <value>Jug Size</value>
+  </data>
+  <data name="F:Item:storage-slots" xml:space="preserve">
+    <value>Storage Slots</value>
+  </data>
+  <data name="F:Item:unknown-short-1" xml:space="preserve">
+    <value>Unknown Value #1</value>
+  </data>
+  <data name="F:Item:unknown-short-2" xml:space="preserve">
+    <value>Unknown Value #2</value>
+  </data>
+  <data name="F:Item:unknown-short-3" xml:space="preserve">
+    <value>Unknown Value #3</value>
+  </data>
+  <data name="F:Item:unknown-short-4" xml:space="preserve">
+    <value>Unknown Value #4</value>
+  </data>
+  <data name="F:Item:unknown-short-5" xml:space="preserve">
+    <value>Unknown Value #5</value>
+  </data>
+  <data name="F:Item:icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="F:Item:valid-targets" xml:space="preserve">
+    <value>Valid Target(s)</value>
   </data>
 </root>

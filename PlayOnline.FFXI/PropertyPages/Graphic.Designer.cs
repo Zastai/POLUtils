@@ -89,6 +89,7 @@ namespace PlayOnline.FFXI.PropertyPages {
       // picImage
       // 
       resources.ApplyResources(this.picImage, "picImage");
+      this.picImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.picImage.Name = "picImage";
       this.picImage.TabStop = false;
       // 

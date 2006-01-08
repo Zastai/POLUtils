@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -20,9 +21,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     public static bool AllowAbort = false;
     public static bool ShowProgressDetails = false;
 
-    public ArrayList StringTableEntries = new ArrayList();
-    public ArrayList Images             = new ArrayList();
-    public ArrayList Items              = new ArrayList();
+    public ArrayList          StringTableEntries = new ArrayList();
+    public ThingList<Graphic> Images             = new ThingList<Graphic>();
+    public ThingList<Item>    Items              = new ThingList<Item>();
 
     public FileScanDialog(string FileName) {
       InitializeComponent();
@@ -303,28 +304,23 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Images
 
     private void ScanImages(BinaryReader BR) {
-      if (BR.BaseStream.Length < 421) // one image header
-	return;
-    long MaxPos = BR.BaseStream.Length - 421;
-    long Pos = 0;
     int ImageCount = 0;
       this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScan"), ImageCount);
       this.SetProgress(0, 1);
-      BR.BaseStream.Seek(Pos, SeekOrigin.Begin);
     Graphic G = new Graphic();
-      while (Pos < MaxPos) {
+      while (BR.BaseStream.Position < BR.BaseStream.Length) {
+      long Pos = BR.BaseStream.Position; // Save Position (G.Read() will advance it an unknown amount
 	if (G.Read(BR)) {
 	  this.Images.Add(G);
 	  G = new Graphic();
-	  Pos = BR.BaseStream.Position;
-	  this.SetProgress(Pos + 1, MaxPos);
+	  this.SetProgress(BR.BaseStream.Position, BR.BaseStream.Length);
 	  if (FileScanDialog.ShowProgressDetails)
 	    this.lblScanProgress.Text = String.Format(I18N.GetText("ImageScanProgress"), ++ImageCount);
 	}
 	else {
-	  BR.BaseStream.Seek(++Pos, SeekOrigin.Begin);
-	  if (Pos == MaxPos || (Pos % 0x100) == 0)
-	    this.SetProgress(Pos + 1, MaxPos);
+	  BR.BaseStream.Seek(Pos + 1, SeekOrigin.Begin);
+	  if (BR.BaseStream.Position == BR.BaseStream.Length || (BR.BaseStream.Position % 1024) == 0)
+	    this.SetProgress(BR.BaseStream.Position, BR.BaseStream.Length);
 	}
       }
       G = null;
@@ -337,26 +333,23 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void ScanItemData(BinaryReader BR) {
       this.lblScanProgress.Text = I18N.GetText("ItemCheck");
       this.SetProgress(0, 1);
-      if (BR.BaseStream.Length < 0xc00 || (BR.BaseStream.Length % 0xc00) != 0)
-	return;
-      BR.BaseStream.Seek(0, SeekOrigin.Begin);
+      if (BR == null || BR.BaseStream == null)
+	goto BadFormat;
+      if ((BR.BaseStream.Length % 0xC00) != 0)
+	goto BadFormat;
+      // First deduce the type of item data is in the file.
+    Item.Language L;
+    Item.Type T;
+      Item.DeduceLanguageAndType(BR, out L, out T);
+      // Now read the items
     long ItemCount = BR.BaseStream.Length / 0xc00;
       this.lblScanProgress.Text = I18N.GetText("ItemLoad");
       for (long i = 0; i < ItemCount; ++i) {
-      byte[] ItemData  = BR.ReadBytes(0xc00);
-	FFXIEncryption.Rotate(ItemData, 5);
-      Graphic ItemIcon = new Graphic();
-	{
-	BinaryReader IconBR = new BinaryReader(new MemoryStream(ItemData, 0x200, 0xa00, false, false));
-	int IconSize = IconBR.ReadInt32();
-	  if (IconSize > 0 && IconSize <= 0x9fc) {
-	    if (!ItemIcon.Read(IconBR) || IconBR.BaseStream.Position != 4 + IconSize)
-	      goto BadFormat;
-	  }
-	  IconBR.Close();
-	}
-	this.Items.Add(new FFXIItem(i + 1, ItemData, ItemIcon));
-	this.Images.Add(ItemIcon);
+      Item I = new Item();
+	if (!I.Read(BR, L, T))
+	  goto BadFormat;
+	this.Items.Add(I);
+	this.Images.Add(I.GetFieldValue("icon") as Graphic);
 	if (FileScanDialog.ShowProgressDetails)
 	  this.lblScanProgress.Text = String.Format(I18N.GetText("ItemLoadProgress"), i + 1, ItemCount);
 	this.SetProgress(i + 1, ItemCount);

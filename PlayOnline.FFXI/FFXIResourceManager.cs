@@ -48,15 +48,15 @@ namespace PlayOnline.FFXI {
       Application.DoEvents();
       FFXIResourceManager.LoadAutoTranslatorMessages();
       Application.DoEvents();
-      FFXIResourceManager.LoadItemNames("ROM/118/109.DAT", ItemDataLanguage.English, ItemDataType.Armor);
+      FFXIResourceManager.LoadItemNames("ROM/118/109.DAT");
       Application.DoEvents();
-      FFXIResourceManager.LoadItemNames("ROM/118/106.DAT", ItemDataLanguage.English, ItemDataType.Object);
+      FFXIResourceManager.LoadItemNames("ROM/118/106.DAT");
       Application.DoEvents();
-      FFXIResourceManager.LoadItemNames("ROM/118/107.DAT", ItemDataLanguage.English, ItemDataType.Object);
+      FFXIResourceManager.LoadItemNames("ROM/118/107.DAT");
       Application.DoEvents();
-      FFXIResourceManager.LoadItemNames("ROM/118/110.DAT", ItemDataLanguage.English, ItemDataType.Object);
+      FFXIResourceManager.LoadItemNames("ROM/118/110.DAT");
       Application.DoEvents();
-      FFXIResourceManager.LoadItemNames("ROM/118/108.DAT", ItemDataLanguage.English, ItemDataType.Weapon);
+      FFXIResourceManager.LoadItemNames("ROM/118/108.DAT");
       Application.DoEvents();
       // These aren't "real" resource strings as such, but it's convenient to access them this way
       FFXIResourceManager.LoadStringTable("ROM/97/48.DAT", "ROM/97/30.DAT", 0x0001); // Region Names
@@ -78,18 +78,20 @@ namespace PlayOnline.FFXI {
       }
     }
 
-    private static void LoadItemNames(string File, ItemDataLanguage L, ItemDataType T) {
+    private static void LoadItemNames(string File) {
     BinaryReader BR = new BinaryReader(new FileStream(Path.Combine(POL.GetApplicationPath(AppID.FFXI), File), FileMode.Open, FileAccess.Read));
+    Item.Language L;
+    Item.Type T;
+      Item.DeduceLanguageAndType(BR, out L, out T);
       while (BR.BaseStream.Position < BR.BaseStream.Length) {
       byte[] ItemData = BR.ReadBytes(0x200);
-	for (int i = 0; i < 0x200; ++i)
-	  ItemData[i] = (byte) ((ItemData[i] << 3) | (ItemData[i] >> 5));
+	FFXIEncryption.Rotate(ItemData, 5);
       BinaryReader IBR = new BinaryReader(new MemoryStream(ItemData, false));
       uint ResID = 0x07020000U + IBR.ReadUInt32();
 	switch (T) {
-	  case ItemDataType.Armor:  IBR.BaseStream.Seek(0x14, SeekOrigin.Current); break;
-	  case ItemDataType.Object: IBR.BaseStream.Seek(0x0A, SeekOrigin.Current); break;
-	  case ItemDataType.Weapon: IBR.BaseStream.Seek(0x1A, SeekOrigin.Current); break;
+	  case Item.Type.Armor:  IBR.BaseStream.Seek(0x16, SeekOrigin.Current); break;
+	  case Item.Type.Object: IBR.BaseStream.Seek(0x0A, SeekOrigin.Current); break;
+	  case Item.Type.Weapon: IBR.BaseStream.Seek(0x1C, SeekOrigin.Current); break;
 	}
       string JP = E.GetString(IBR.ReadBytes(22)).TrimEnd('\0');
       string EN = E.GetString(IBR.ReadBytes(22)).TrimEnd('\0');

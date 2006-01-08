@@ -34,6 +34,13 @@ namespace PlayOnline.FFXI {
     bool HasField(string Field);
 
     /// <summary>
+    /// Returns a descriptive name for the given field (suitable for use as label, for example).
+    /// </summary>
+    /// <param name="Field">The (internal) name of the field.</param>
+    /// <returns>The field's descriptive name.</returns>
+    string GetFieldName(string Field);
+
+    /// <summary>
     /// Returns the value of the given field in text form.
     /// </summary>
     /// <param name="Field">The name of the field.</param>

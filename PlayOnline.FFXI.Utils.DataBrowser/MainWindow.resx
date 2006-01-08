@@ -195,6 +195,9 @@
   <data name="mnuPCModeStretched.Text" xml:space="preserve">
     <value>&amp;Stretched</value>
   </data>
+  <data name="mnuPCModeZoomed.Text" xml:space="preserve">
+    <value>&amp;Zoomed</value>
+  </data>
   <data name="mnuPCMode.Text" xml:space="preserve">
     <value>&amp;Mode</value>
   </data>
@@ -259,7 +262,7 @@
     <value>ieItemViewer</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Parent" xml:space="preserve">
     <value>tabViewerItems</value>
@@ -400,7 +403,7 @@
     <value>tabViewerItems</value>
   </data>
   <data name="&gt;&gt;tabViewerItems.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;tabViewerItems.Parent" xml:space="preserve">
     <value>tabViewers</value>
@@ -568,7 +571,7 @@
     <value>tabViewerImages</value>
   </data>
   <data name="&gt;&gt;tabViewerImages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;tabViewerImages.Parent" xml:space="preserve">
     <value>tabViewers</value>
@@ -616,7 +619,7 @@
     <value>tabViewerStringTable</value>
   </data>
   <data name="&gt;&gt;tabViewerStringTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;tabViewerStringTable.Parent" xml:space="preserve">
     <value>tabViewers</value>
@@ -731,6 +734,15 @@
   </data>
   <data name="&gt;&gt;pnlViewerArea.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <metadata name="dlgExportFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>676, 17</value>
+  </metadata>
+  <data name="dlgExportFile.Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml|All Files|*.*</value>
+  </data>
+  <data name="dlgExportFile.Title" xml:space="preserve">
+    <value>Select File To Export To</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -856,6 +868,18 @@
     <value>mnuOSettings</value>
   </data>
   <data name="&gt;&gt;mnuOSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dlgExportFile.Name" xml:space="preserve">
+    <value>dlgExportFile</value>
+  </data>
+  <data name="&gt;&gt;dlgExportFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuPCModeZoomed.Name" xml:space="preserve">
+    <value>mnuPCModeZoomed</value>
+  </data>
+  <data name="&gt;&gt;mnuPCModeZoomed.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

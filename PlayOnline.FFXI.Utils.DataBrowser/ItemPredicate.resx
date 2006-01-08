@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -126,106 +129,79 @@
     <value>136, 21</value>
   </data>
   <data name="cmbTest.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;cmbTest.Name">
-    <value xml:space="preserve">cmbTest</value>
-  </data>
-  <data name="&gt;&gt;cmbTest.Type">
-    <value xml:space="preserve">System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbTest.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;cmbTest.ZOrder">
-    <value xml:space="preserve">0</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnChooseField.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnChooseField.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnChooseField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 0</value>
-  </data>
-  <data name="btnChooseField.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 20</value>
-  </data>
-  <data name="btnChooseField.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnChooseField.Text">
-    <value xml:space="preserve">...</value>
+  <data name="&gt;&gt;cmbTest.Name" xml:space="preserve">
+    <value>cmbTest</value>
   </data>
-  <data name="&gt;&gt;btnChooseField.Name">
-    <value xml:space="preserve">btnChooseField</value>
+  <data name="&gt;&gt;cmbTest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnChooseField.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmbTest.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnChooseField.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;cmbTest.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;btnChooseField.ZOrder">
-    <value xml:space="preserve">1</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtTestParameter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="txtTestParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 0</value>
+    <value>370, 0</value>
   </data>
   <data name="txtTestParameter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 20</value>
+    <value>339, 20</value>
   </data>
   <data name="txtTestParameter.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;txtTestParameter.Name">
-    <value xml:space="preserve">txtTestParameter</value>
+  <data name="&gt;&gt;txtTestParameter.Name" xml:space="preserve">
+    <value>txtTestParameter</value>
   </data>
-  <data name="&gt;&gt;txtTestParameter.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtTestParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtTestParameter.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;txtTestParameter.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtTestParameter.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;txtTestParameter.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="txtField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="cmbField.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="txtField.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 20</value>
+  <data name="cmbField.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
   </data>
-  <data name="txtField.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbField.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 21</value>
+  </data>
+  <data name="cmbField.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;txtField.Name">
-    <value xml:space="preserve">txtField</value>
+  <data name="&gt;&gt;cmbField.Name" xml:space="preserve">
+    <value>cmbField</value>
   </data>
-  <data name="&gt;&gt;txtField.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cmbField.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtField.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;cmbField.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtField.ZOrder">
-    <value xml:space="preserve">3</value>
+  <data name="&gt;&gt;cmbField.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>712, 20</value>
+    <value>712, 25</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">ItemPredicate</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ItemPredicate</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

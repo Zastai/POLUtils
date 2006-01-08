@@ -26,7 +26,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       if (LVI1 == null || LVI2 == null || LVI1.SubItems.Count <= this.Column || LVI2.SubItems.Count <= this.Column)
 	return 0;
     int result = 0;
-      if (this.Numeric) { // File ID -> compare as numbers
+      if (this.Numeric) {
 	try {
 	double L1 = double.Parse(LVI1.SubItems[Column].Text);
 	double L2 = double.Parse(LVI2.SubItems[Column].Text);
@@ -40,7 +40,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       return result;
     }
 
-    public static void ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e) {
+    public static void ListView_ColumnClick(object sender, ColumnClickEventArgs e) {
     ListView LV = sender as ListView;
       if (LV == null)
 	return;

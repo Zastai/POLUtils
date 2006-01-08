@@ -239,6 +239,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCModeNormal.Checked    = true;
       this.mnuPCModeCentered.Checked  = false;
       this.mnuPCModeStretched.Checked = false;
+      this.mnuPCModeZoomed.Checked    = false;
       this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.Normal);
     }
 
@@ -246,6 +247,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCModeNormal.Checked    = false;
       this.mnuPCModeCentered.Checked  = true;
       this.mnuPCModeStretched.Checked = false;
+      this.mnuPCModeZoomed.Checked    = false;
       this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.CenterImage);
     }
 
@@ -253,7 +255,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCModeNormal.Checked    = false;
       this.mnuPCModeCentered.Checked  = false;
       this.mnuPCModeStretched.Checked = true;
+      this.mnuPCModeZoomed.Checked    = false;
       this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.StretchImage);
+    }
+
+    private void mnuPCModeZoomed_Click(object sender, EventArgs e) {
+      this.mnuPCModeNormal.Checked    = false;
+      this.mnuPCModeCentered.Checked  = false;
+      this.mnuPCModeStretched.Checked = false;
+      this.mnuPCModeZoomed.Checked    = false;
+      this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.Zoom);
     }
 
     private void mnuPCBackgroundBlack_Click(object sender, System.EventArgs e) {
@@ -287,38 +298,41 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Item Data Viewer Events
 
-    private FFXIItem[] LoadedItems_ = null;
+    private ThingList<Item>  LoadedItems_ = null;
+    private PleaseWaitDialog PWD = null;
 
     private void btnExportItems_Click(object sender, System.EventArgs e) {
-    ItemExporter IE = new ItemExporter(this.ieItemViewer.ChosenItemLanguage, this.ieItemViewer.ChosenItemType);
-      if (IE.PrepareExport()) {
-      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+      if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
+	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
       Thread T = new Thread(new ThreadStart(delegate () {
 	  Application.DoEvents();
-	  IE.DoExport(this.LoadedItems_);
+	  this.LoadedItems_.Save(this.dlgExportFile.FileName);
 	  Application.DoEvents();
-	  PWD.Close();
+	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
 	}));
 	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	T.Start();
-	PWD.ShowDialog(this);
+	this.PWD.ShowDialog(this);
 	this.Activate();
-	PWD.Dispose();
-	PWD = null; 
+	this.PWD.Dispose();
+	this.PWD = null;
       }
     }
 
     private void btnFindItems_Click(object sender, System.EventArgs e) {
       using (ItemFindDialog IFD = new ItemFindDialog(this.LoadedItems_)) {
-	IFD.Language = this.ieItemViewer.ChosenItemLanguage;
-	IFD.Type     = this.ieItemViewer.ChosenItemType;
 	if (IFD.ShowDialog(this) == DialogResult.OK && IFD.SelectedItem != null)
 	  this.cmbItems.SelectedItem = IFD.SelectedItem;
       }
     }
 
+    private void ieItemViewer_SizeChanged(object sender, System.EventArgs e) {
+      if (this.Height < this.ieItemViewer.Height + 128)
+	this.Height = this.ieItemViewer.Height + 128;
+    }
+
     private void cmbItems_SelectedIndexChanged(object sender, System.EventArgs e) {
-      this.ieItemViewer.Item = this.cmbItems.SelectedItem as FFXIItem;
+      this.ieItemViewer.Item = this.cmbItems.SelectedItem as Item;
     }
 
     #endregion
@@ -437,10 +451,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  if (FSD.Items.Count > 0) {
 	    this.tabViewers.Visible = true;
 	    this.tabViewers.TabPages.Add(this.tabViewerItems);
-	    this.LoadedItems_ = FSD.Items.ToArray(typeof(FFXIItem)) as FFXIItem[];
+	    this.LoadedItems_ = FSD.Items;
 	    this.cmbItems.Select();
 	    this.cmbItems.SelectedItem = null;
-	    this.cmbItems.Items.AddRange(this.LoadedItems_);
+	    this.cmbItems.Items.AddRange(FSD.Items.ToArray());
 	    this.cmbItems.SelectedIndex = 0;
 	    Application.DoEvents();
 	  }
@@ -559,11 +573,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     #endregion
-
-    private void ieItemViewer_SizeChanged(object sender, System.EventArgs e) {
-      if (this.Height < this.ieItemViewer.Height + 128)
-	this.Height = this.ieItemViewer.Height + 128;
-    }
 
   }
 

@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="colFieldName.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="colFieldName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="colFieldName.Width" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <metadata name="colFieldValue.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="colFieldValue.Text" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="colFieldValue.Width" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
   <metadata name="tabGeneralInfo.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -174,11 +156,29 @@
   <data name="lstFields.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <metadata name="colFieldName.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="colFieldName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="colFieldName.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <metadata name="colFieldValue.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="colFieldValue.Text" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="colFieldValue.Width" type="System.Int32, mscorlib">
+    <value>196</value>
+  </data>
   <data name="lstFields.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 71</value>
+    <value>6, 63</value>
   </data>
   <data name="lstFields.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 317</value>
+    <value>340, 325</value>
   </data>
   <data name="lstFields.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -202,7 +202,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblFields.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 55</value>
+    <value>3, 47</value>
   </data>
   <data name="lblFields.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -258,6 +258,9 @@
   <data name="lblType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblType.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 24</value>
   </data>
@@ -281,6 +284,9 @@
   </data>
   <data name="&gt;&gt;lblType.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="picIcon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="picIcon.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -322,7 +328,7 @@
     <value>tabGeneralInfo</value>
   </data>
   <data name="&gt;&gt;tabGeneralInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;tabGeneralInfo.Parent" xml:space="preserve">
     <value>tabPages</value>

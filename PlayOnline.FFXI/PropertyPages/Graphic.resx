@@ -304,7 +304,7 @@
     <value>6, 6</value>
   </data>
   <data name="picImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 329</value>
+    <value>525, 329</value>
   </data>
   <data name="picImage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -328,7 +328,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabGraphicInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 394</value>
+    <value>537, 394</value>
   </data>
   <data name="tabGraphicInfo.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -340,7 +340,7 @@
     <value>tabGraphicInfo</value>
   </data>
   <data name="&gt;&gt;tabGraphicInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;tabGraphicInfo.Parent" xml:space="preserve">
     <value>tabPages</value>
@@ -355,7 +355,7 @@
     <value>0, 0</value>
   </data>
   <data name="tabPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 420</value>
+    <value>545, 420</value>
   </data>
   <data name="tabPages.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -379,7 +379,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 420</value>
+    <value>545, 420</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Graphic</value>

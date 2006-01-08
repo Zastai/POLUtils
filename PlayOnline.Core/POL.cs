@@ -7,6 +7,9 @@ using Microsoft.Win32;
 
 namespace PlayOnline.Core {
 
+  // This probably should have a more fitting location.
+  public delegate void AnonymousMethod();
+
   public struct AppID {
     public const string POLViewer   = "1000";
     public const string FFXI        = "0001";

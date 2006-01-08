@@ -304,8 +304,25 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       }
     }
 
-    private void AddFacesMenuItems(MenuItem ParentMenu) {
-      ParentMenu.Enabled = false;
+    private void AddFacesMenuItems(MenuItem FaceMenu) {
+      FaceMenu.MenuItems.Add("＼(^_^ ) ( ^_^)／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("＼(・_・ )( ・_・)／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("( ^_^)／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("＼（＾ｏ＾）／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("＼(＾ｏ＾)／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("＼(^_^ ) ( ^_^)／", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("m(_ _)m", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("_(._.)_", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("＜(。_。)＞", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("(シ_ _)シ", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("ヘ(-_-ヘ", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("へ（＾＾へ）））））", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("（（（（（ノ＾＾）ノ", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("Ψ('-'*)", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("♪♪ｖ(⌒ｏ⌒)ｖ♪♪", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("┗|・o・|┛", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("┗|⌒O⌒|┛", new EventHandler(this.InsertMenuItem_Click));
+      FaceMenu.MenuItems.Add("(TωT)/~~~　BYE　BYE", new EventHandler(this.InsertMenuItem_Click));
     }
 
     private void AddAlphabetMenuItems(MenuItem ParentMenu) {
@@ -558,13 +575,13 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       }
       { // Unit Indicators
       MenuItem MI = ParentMenu.MenuItems.Add("&Unit Indicators");
-	MI.MenuItems.Add("\x2103", new EventHandler(this.InsertMenuItem_Click)); // �C
+	MI.MenuItems.Add("\x2103", new EventHandler(this.InsertMenuItem_Click)); // °C
 	MI.MenuItems.Add("\x338E", new EventHandler(this.InsertMenuItem_Click)); // mg
 	MI.MenuItems.Add("\x338F", new EventHandler(this.InsertMenuItem_Click)); // kg
 	MI.MenuItems.Add("\x339C", new EventHandler(this.InsertMenuItem_Click)); // mm
 	MI.MenuItems.Add("\x339D", new EventHandler(this.InsertMenuItem_Click)); // cm
 	MI.MenuItems.Add("\x339E", new EventHandler(this.InsertMenuItem_Click)); // km
-	MI.MenuItems.Add("\x33A1", new EventHandler(this.InsertMenuItem_Click)); // m�
+	MI.MenuItems.Add("\x33A1", new EventHandler(this.InsertMenuItem_Click)); // m²
 	MI.MenuItems.Add("\x33C4", new EventHandler(this.InsertMenuItem_Click)); // cc
 	MI.MenuItems.Add("\x33CD", new EventHandler(this.InsertMenuItem_Click)); // KK
       }

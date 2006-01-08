@@ -17,6 +17,17 @@ namespace PlayOnline.FFXI {
 
     #region Implemented IThing Members
 
+    public string GetFieldName(string Field) {
+    string MessageID = String.Format("F:{0}:{1}", this.GetType().Name, Field);
+    string Name;
+      try {
+	Name = I18N.GetText(MessageID, this.GetType().Assembly);
+      } catch {
+	Name = Field;
+      }
+      return Name;
+    }
+
     /// <summary>
     /// Helper field; if set, it will be used by GetIcon to find and return an icon image.
     /// </summary>
@@ -31,16 +42,6 @@ namespace PlayOnline.FFXI {
       else if (IconValue is IThing)
 	return ((IThing) IconValue).GetIcon();
       return null;
-    }
-
-    /// <summary>
-    /// Helper field.  Because GetAllFields() is expected to return the same list on every invocation,
-    /// it makes sense to cache this return value.
-    /// </summary>
-    protected List<String> AllFields_;
-
-    public virtual List<string> GetAllFields() {
-      return this.AllFields_;
     }
 
     public virtual List<string> GetFields() {
@@ -123,7 +124,7 @@ namespace PlayOnline.FFXI {
     }
 
     protected void LoadThingField(XmlElement Node, IThing T) {
-    XmlElement ThingRoot = Node.SelectSingleNode(String.Format("./child::thing[type = '{0}']", T.TypeName)) as XmlElement;
+    XmlElement ThingRoot = Node.SelectSingleNode(String.Format("./child::thing[@type = '{0}']", T.TypeName)) as XmlElement;
       if (ThingRoot != null)
 	T.Load(ThingRoot);
       else
@@ -178,10 +179,24 @@ namespace PlayOnline.FFXI {
 
     public abstract string TypeName { get; }
 
-    public abstract bool   HasField     (string Field);
-    public abstract string GetFieldText (string Field);
-    public abstract object GetFieldValue(string Field);
-    public abstract void   Clear();
+    public abstract bool         HasField     (string Field);
+    public abstract List<string> GetAllFields();
+    public abstract string       GetFieldText (string Field);
+    public abstract object       GetFieldValue(string Field);
+    public abstract void         Clear();
+
+    #endregion
+
+    #region Thing Instantiation
+
+    public static IThing Create(string TypeName) {
+      // FIXME: It would be nicer if this was handled differently, i.e. without harcoding type names here.
+      switch (TypeName) {
+	case "FFXI Graphic": return new Graphic();
+	case "FFXI Item":    return new Item();
+	default:             return null;
+      }
+    }
 
     #endregion
 

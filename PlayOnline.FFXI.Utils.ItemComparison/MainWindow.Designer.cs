@@ -4,8 +4,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     #region Controls
 
-    private PlayOnline.FFXI.FFXIItemEditor ieLeft;
-    private PlayOnline.FFXI.FFXIItemEditor ieRight;
+    private PlayOnline.FFXI.ItemEditor ieLeft;
+    private PlayOnline.FFXI.ItemEditor ieRight;
     private System.Windows.Forms.Button btnLoadItemSet1;
     private System.Windows.Forms.Button btnLoadItemSet2;
     private System.Windows.Forms.OpenFileDialog dlgLoadItems;
@@ -27,8 +27,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-      this.ieLeft = new PlayOnline.FFXI.FFXIItemEditor();
-      this.ieRight = new PlayOnline.FFXI.FFXIItemEditor();
+      this.ieLeft = new PlayOnline.FFXI.ItemEditor();
+      this.ieRight = new PlayOnline.FFXI.ItemEditor();
       this.btnLoadItemSet1 = new System.Windows.Forms.Button();
       this.btnLoadItemSet2 = new System.Windows.Forms.Button();
       this.dlgLoadItems = new System.Windows.Forms.OpenFileDialog();

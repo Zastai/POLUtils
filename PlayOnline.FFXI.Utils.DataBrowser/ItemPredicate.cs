@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
@@ -24,47 +25,44 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       DoesntMatchRegexp
     }
 
+    private class ItemField {
+
+      public string Field {
+	get {
+	  return this.Field_;
+	}
+      }
+      private string Field_;
+
+      public string Name {
+	get {
+	  return this.Name_;
+	}
+      }
+      private string Name_;
+
+      public ItemField(string Field, string Name) {
+	this.Field_ = Field;
+	this.Name_  = Name;
+      }
+
+    }
+
     public ItemPredicate() {
-      InitializeComponent();
+      this.InitializeComponent();
+      { // Add all item fields
+      List<ItemField> ItemFields = new List<ItemField>();
+	ItemFields.Add(new ItemField(null, I18N.GetText("ItemField:Any")));
+	{
+	Item I = new Item();
+	  foreach (string Field in I.GetAllFields())
+	    ItemFields.Add(new ItemField(Field, I.GetFieldName(Field)));
+	}
+	this.cmbField.DataSource = ItemFields;
+      }
+      this.cmbField.SelectedIndex = 0; // Any Field
       this.cmbTest.Items.AddRange(NamedEnum.GetAll(typeof(Test)));
       this.cmbTest.SelectedIndex = 0; // Contains
-      this.L = ItemDataLanguage.English;
-      this.T = ItemDataType.Object;
-      this.Fields = new ArrayList();
-      this.Fields.Add(ItemField.Any);
-      this.SetFieldText();
-    }
-
-    private ItemDataLanguage L;
-    private ItemDataType     T;
-    private ArrayList        Fields;
-
-    public ItemDataLanguage Language {
-      get {
-	return this.L;
-      }
-      set {
-	if (value != this.L) {
-	  this.L = value;
-	  this.Fields.Clear();
-	  this.Fields.Add(ItemField.Any);
-	  this.SetFieldText();
-	}
-      }
-    }
-
-    public ItemDataType Type {
-      get {
-	return this.T;
-      }
-      set {
-	if (value != this.T) {
-	  this.T = value;
-	  this.Fields.Clear();
-	  this.Fields.Add(ItemField.Any);
-	  this.SetFieldText();
-	}
-      }
     }
 
     public string ValidateQuery() {
@@ -115,55 +113,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       return false;
     }
 
-    public bool IsMatch(FFXIItem I) {
-    FFXIItem.IItemInfo II = I.GetInfo(this.L, this.T);
-      if (II != null) {
-	// Any => OR of test on all fields
-	if (this.Fields.Contains(ItemField.Any)) {
-	  foreach (ItemField IF in II.GetFields()) {
-	    if (this.MatchString(II.GetFieldText(IF)))
-	      return true;
-	  }
-	  return false;
-	}
-	// All => AND of test on all fields
-	if (this.Fields.Contains(ItemField.All)) {
-	  foreach (ItemField IF in II.GetFields()) {
-	    if (!this.MatchString(II.GetFieldText(IF)))
-	      return false;
-	  }
-	  return true;
-	}
-	// Otherwise: OR of all selected fields
-	foreach (ItemField IF in this.Fields) {
-	  if (this.MatchString(II.GetFieldText(IF)))
+    public bool IsMatch(Item I) {
+      if (this.cmbField.SelectedValue == null) { // Any Field
+	foreach (string Field in I.GetFields()) {
+	  if (this.MatchString(I.GetFieldText(Field)))
 	    return true;
 	}
+	return false;
       }
-      return false;
+      else
+	return this.MatchString(I.GetFieldText(this.cmbField.SelectedValue as string));
     }
 
     #endregion
-
-    private void SetFieldText() {
-      this.txtField.Text = String.Format("{0}\u2192{1}\u2192", new NamedEnum(this.L).Name, new NamedEnum(this.T).Name);
-    bool FieldAdded = false;
-      foreach (ItemField IF in this.Fields) {
-	if (FieldAdded)
-	  this.txtField.Text += ", ";
-	this.txtField.Text += new NamedEnum(IF).Name;
-	FieldAdded = true;
-      }
-    }
-
-    private void btnChooseField_Click(object sender, System.EventArgs e) {
-      using (ItemFieldChooser IFC = new ItemFieldChooser(this.Language, this.Type, true, (ItemField[]) this.Fields.ToArray(typeof(ItemField)))) {
-	if (IFC.ShowDialog(this) == DialogResult.OK) {
-	  this.Fields = IFC.Fields;
-	  this.SetFieldText();
-	}
-      }
-    }
 
   }
 
