@@ -4,6 +4,12 @@ namespace System.Windows.Forms {
 
   public class ThemedTabPage : TabPage {
 
+    public ThemedTabPage() : base() {
+    }
+
+    public ThemedTabPage(string text) : base(text) {
+    }
+
     // The UseVisualStyleBackColor only uses a plain background color, not the background rendering for
     // the current visual style.  This corrects that error.
     protected override void OnPaintBackground(PaintEventArgs e) {
