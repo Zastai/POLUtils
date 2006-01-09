@@ -117,23 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="tabGraphicInfo.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSelectColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="btnSelectColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnSelectColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 365</value>
+    <value>253, 356</value>
   </data>
   <data name="btnSelectColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSelectColor.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>8</value>
   </data>
   <data name="btnSelectColor.Text" xml:space="preserve">
     <value>Select...</value>
@@ -145,7 +145,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSelectColor.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSelectColor.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -156,14 +156,17 @@
   <data name="radSolid.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radSolid.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radSolid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 368</value>
+    <value>172, 359</value>
   </data>
   <data name="radSolid.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 17</value>
   </data>
   <data name="radSolid.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>12</value>
   </data>
   <data name="radSolid.Text" xml:space="preserve">
     <value>&amp;Solid Color</value>
@@ -175,7 +178,7 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radSolid.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;radSolid.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -186,14 +189,17 @@
   <data name="radTransparent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radTransparent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radTransparent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 368</value>
+    <value>84, 359</value>
   </data>
   <data name="radTransparent.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 17</value>
   </data>
   <data name="radTransparent.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>11</value>
   </data>
   <data name="radTransparent.Text" xml:space="preserve">
     <value>&amp;Transparent</value>
@@ -205,7 +211,7 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radTransparent.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;radTransparent.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -216,17 +222,20 @@
   <data name="lblBackColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblBackColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblBackColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 370</value>
+    <value>3, 361</value>
   </data>
   <data name="lblBackColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 13</value>
+    <value>68, 13</value>
   </data>
   <data name="lblBackColor.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>10</value>
   </data>
   <data name="lblBackColor.Text" xml:space="preserve">
-    <value>Background Color:</value>
+    <value>Background:</value>
   </data>
   <data name="&gt;&gt;lblBackColor.Name" xml:space="preserve">
     <value>lblBackColor</value>
@@ -235,7 +244,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblBackColor.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblBackColor.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -244,13 +253,13 @@
     <value>Bottom, Left</value>
   </data>
   <data name="cmbViewMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 341</value>
+    <value>72, 329</value>
   </data>
   <data name="cmbViewMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 21</value>
+    <value>251, 21</value>
   </data>
   <data name="cmbViewMode.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;cmbViewMode.Name" xml:space="preserve">
     <value>cmbViewMode</value>
@@ -259,7 +268,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cmbViewMode.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbViewMode.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -270,14 +279,17 @@
   <data name="lblViewMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblViewMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblViewMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 344</value>
+    <value>3, 332</value>
   </data>
   <data name="lblViewMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 13</value>
   </data>
   <data name="lblViewMode.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>6</value>
   </data>
   <data name="lblViewMode.Text" xml:space="preserve">
     <value>View Mode:</value>
@@ -289,7 +301,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblViewMode.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblViewMode.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -301,13 +313,13 @@
     <value>NoControl</value>
   </data>
   <data name="picImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
+    <value>3, 3</value>
   </data>
   <data name="picImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 329</value>
+    <value>320, 320</value>
   </data>
   <data name="picImage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;picImage.Name" xml:space="preserve">
     <value>picImage</value>
@@ -316,62 +328,14 @@
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;picImage.Parent" xml:space="preserve">
-    <value>tabGraphicInfo</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;picImage.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="tabGraphicInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabGraphicInfo.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabGraphicInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>537, 394</value>
-  </data>
-  <data name="tabGraphicInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabGraphicInfo.Text" xml:space="preserve">
-    <value>Graphic</value>
-  </data>
-  <data name="&gt;&gt;tabGraphicInfo.Name" xml:space="preserve">
-    <value>tabGraphicInfo</value>
-  </data>
-  <data name="&gt;&gt;tabGraphicInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;tabGraphicInfo.Parent" xml:space="preserve">
-    <value>tabPages</value>
-  </data>
-  <data name="&gt;&gt;tabGraphicInfo.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabPages.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tabPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tabPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>545, 420</value>
-  </data>
-  <data name="tabPages.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPages.Name" xml:space="preserve">
-    <value>tabPages</value>
-  </data>
-  <data name="&gt;&gt;tabPages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPages.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabPages.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
+  <metadata name="dlgChooseColor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -379,12 +343,18 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>545, 420</value>
+    <value>326, 382</value>
+  </data>
+  <data name="&gt;&gt;dlgChooseColor.Name" xml:space="preserve">
+    <value>dlgChooseColor</value>
+  </data>
+  <data name="&gt;&gt;dlgChooseColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Graphic</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>PlayOnline.FFXI.PropertyPages.IThing, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
 </root>

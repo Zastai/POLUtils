@@ -12,7 +12,7 @@ using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.PropertyPages {
 
-  public partial class Graphic : UserControl {
+  public partial class Graphic : IThing {
 
     public Graphic(FFXI.Graphic G) {
       InitializeComponent();
@@ -24,16 +24,6 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.cmbViewMode.SelectedIndex = 0;
     }
 
-    public static List<TabPage> GetPages(FFXI.Graphic G) {
-    List<TabPage> Pages = new List<TabPage>();
-    Graphic PageControl = new Graphic(G);
-      while (PageControl.tabPages.TabPages.Count > 0) {
-	Pages.Add(PageControl.tabPages.TabPages[0]);
-	PageControl.tabPages.TabPages.RemoveAt(0);
-      }
-      return Pages;
-    }
-
     private Color SolidColor_ = Color.White;
 
     private void cmbViewMode_SelectedIndexChanged(object sender, EventArgs e) {
@@ -42,10 +32,10 @@ namespace PlayOnline.FFXI.PropertyPages {
     }
 
     private void btnSelectColor_Click(object sender, EventArgs e) {
-    ColorDialog CD = new ColorDialog();
-      CD.Color = this.SolidColor_;
-      if (CD.ShowDialog(this) == DialogResult.OK) {
-	this.SolidColor_ = CD.Color;
+      this.dlgChooseColor.Color = this.SolidColor_;
+      if (this.dlgChooseColor.ShowDialog(this) == DialogResult.OK) {
+	this.SolidColor_ = this.dlgChooseColor.Color;
+	// FIXME: Persist custom colors?
 	if (this.radSolid.Checked)
 	  this.picImage.BackColor = this.SolidColor_;
       }

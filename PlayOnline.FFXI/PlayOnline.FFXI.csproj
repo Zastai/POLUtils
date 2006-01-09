@@ -100,6 +100,12 @@
     <Compile Include="Graphic.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="FileTypes\ItemData.cs" />
+    <Compile Include="PropertyPages\IThing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertyPages\IThing.Designer.cs">
+      <DependentUpon>IThing.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThingList.cs" />
     <Compile Include="IThing.cs" />
     <Compile Include="PleaseWaitDialog.Designer.cs">
@@ -250,6 +256,10 @@
     <EmbeddedResource Include="PleaseWaitDialog.resx">
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPages\IThing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IThing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropertyPages\Item.resx">
       <DependentUpon>Item.cs</DependentUpon>

@@ -15,18 +15,28 @@ namespace PlayOnline.FFXI {
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThingPropertyPages));
       this.tabPages = new System.Windows.Forms.TabControl();
+      this.tabDummy = new System.Windows.Forms.TabPage();
       this.pnlButtons = new System.Windows.Forms.Panel();
       this.btnClose = new System.Windows.Forms.Button();
+      this.tabPages.SuspendLayout();
       this.pnlButtons.SuspendLayout();
       this.SuspendLayout();
       // 
       // tabPages
       // 
+      this.tabPages.Controls.Add(this.tabDummy);
       resources.ApplyResources(this.tabPages, "tabPages");
       this.tabPages.HotTrack = true;
       this.tabPages.Multiline = true;
       this.tabPages.Name = "tabPages";
       this.tabPages.SelectedIndex = 0;
+      this.tabPages.SelectedIndexChanged += new System.EventHandler(this.tabPages_SelectedIndexChanged);
+      // 
+      // tabDummy
+      // 
+      resources.ApplyResources(this.tabDummy, "tabDummy");
+      this.tabDummy.Name = "tabDummy";
+      this.tabDummy.UseVisualStyleBackColor = true;
       // 
       // pnlButtons
       // 
@@ -48,7 +58,6 @@ namespace PlayOnline.FFXI {
       this.AcceptButton = this.btnClose;
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ControlBox = false;
       this.Controls.Add(this.tabPages);
       this.Controls.Add(this.pnlButtons);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -57,6 +66,7 @@ namespace PlayOnline.FFXI {
       this.Name = "ThingPropertyPages";
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
+      this.tabPages.ResumeLayout(false);
       this.pnlButtons.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -67,6 +77,7 @@ namespace PlayOnline.FFXI {
     private System.Windows.Forms.TabControl tabPages;
     private System.Windows.Forms.Panel pnlButtons;
     private System.Windows.Forms.Button btnClose;
+    private System.Windows.Forms.TabPage tabDummy;
 
   }
 

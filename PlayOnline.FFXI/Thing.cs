@@ -15,6 +15,11 @@ namespace PlayOnline.FFXI {
 
   public abstract class Thing : IThing {
 
+    /// <summary>
+    /// Helper field; if set, it will be used by GetIcon to find and return an icon image.
+    /// </summary>
+    protected string IconField_;
+
     #region Implemented IThing Members
 
     public string GetFieldName(string Field) {
@@ -27,11 +32,6 @@ namespace PlayOnline.FFXI {
       }
       return Name;
     }
-
-    /// <summary>
-    /// Helper field; if set, it will be used by GetIcon to find and return an icon image.
-    /// </summary>
-    protected string IconField_;
 
     public virtual Image GetIcon() {
       if (this.IconField_ == null)
@@ -53,9 +53,9 @@ namespace PlayOnline.FFXI {
       return Fields;
     }
 
-    public virtual List<TabPage> GetPropertyPages() {
-    List<TabPage> Pages = new List<TabPage>();
-      Pages.AddRange(PropertyPages.Thing.GetPages(this));
+    public virtual List<PropertyPages.IThing> GetPropertyPages() {
+    List<PropertyPages.IThing> Pages = new List<PropertyPages.IThing>();
+      Pages.Add(new PropertyPages.Thing(this));
       return Pages;
     }
 

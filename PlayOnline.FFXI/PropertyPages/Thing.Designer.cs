@@ -15,43 +15,27 @@ namespace PlayOnline.FFXI.PropertyPages {
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.Windows.Forms.ThemedTabPage tabGeneralInfo;
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Thing));
       System.Windows.Forms.ColumnHeader colFieldName;
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Thing));
       System.Windows.Forms.ColumnHeader colFieldValue;
-      this.tabPages = new System.Windows.Forms.TabControl();
       this.lblText = new System.Windows.Forms.Label();
       this.lstFields = new System.Windows.Forms.ListView();
       this.lblFields = new System.Windows.Forms.Label();
       this.lblTypeName = new System.Windows.Forms.Label();
       this.lblType = new System.Windows.Forms.Label();
       this.picIcon = new System.Windows.Forms.PictureBox();
-      tabGeneralInfo = new System.Windows.Forms.ThemedTabPage();
       colFieldName = new System.Windows.Forms.ColumnHeader();
       colFieldValue = new System.Windows.Forms.ColumnHeader();
-      this.tabPages.SuspendLayout();
-      tabGeneralInfo.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize) (this.picIcon)).BeginInit();
       this.SuspendLayout();
       // 
-      // tabPages
+      // colFieldName
       // 
-      this.tabPages.Controls.Add(tabGeneralInfo);
-      resources.ApplyResources(this.tabPages, "tabPages");
-      this.tabPages.Name = "tabPages";
-      this.tabPages.SelectedIndex = 0;
+      resources.ApplyResources(colFieldName, "colFieldName");
       // 
-      // tabGeneralInfo
+      // colFieldValue
       // 
-      tabGeneralInfo.Controls.Add(this.lblText);
-      tabGeneralInfo.Controls.Add(this.lstFields);
-      tabGeneralInfo.Controls.Add(this.lblFields);
-      tabGeneralInfo.Controls.Add(this.lblTypeName);
-      tabGeneralInfo.Controls.Add(this.lblType);
-      tabGeneralInfo.Controls.Add(this.picIcon);
-      resources.ApplyResources(tabGeneralInfo, "tabGeneralInfo");
-      tabGeneralInfo.Name = "tabGeneralInfo";
-      tabGeneralInfo.UseVisualStyleBackColor = true;
+      resources.ApplyResources(colFieldValue, "colFieldValue");
       // 
       // lblText
       // 
@@ -69,14 +53,6 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.lstFields.UseCompatibleStateImageBehavior = false;
       this.lstFields.View = System.Windows.Forms.View.Details;
       this.lstFields.ItemActivate += new System.EventHandler(this.lstFields_ItemActivate);
-      // 
-      // colFieldName
-      // 
-      resources.ApplyResources(colFieldName, "colFieldName");
-      // 
-      // colFieldValue
-      // 
-      resources.ApplyResources(colFieldValue, "colFieldValue");
       // 
       // lblFields
       // 
@@ -103,25 +79,29 @@ namespace PlayOnline.FFXI.PropertyPages {
       // 
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.tabPages);
+      this.Controls.Add(this.lblText);
+      this.Controls.Add(this.lstFields);
+      this.Controls.Add(this.lblFields);
+      this.Controls.Add(this.lblTypeName);
+      this.Controls.Add(this.lblType);
+      this.Controls.Add(this.picIcon);
       this.Name = "Thing";
-      this.tabPages.ResumeLayout(false);
-      tabGeneralInfo.ResumeLayout(false);
-      tabGeneralInfo.PerformLayout();
+      this.TabName = "General";
       ((System.ComponentModel.ISupportInitialize) (this.picIcon)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
 
-    private System.Windows.Forms.TabControl tabPages;
-    private System.Windows.Forms.Label lblType;
-    private System.Windows.Forms.PictureBox picIcon;
+    private System.Windows.Forms.Label lblText;
     private System.Windows.Forms.ListView lstFields;
     private System.Windows.Forms.Label lblFields;
     private System.Windows.Forms.Label lblTypeName;
-    private System.Windows.Forms.Label lblText;
+    private System.Windows.Forms.Label lblType;
+    private System.Windows.Forms.PictureBox picIcon;
+
 
   }
 

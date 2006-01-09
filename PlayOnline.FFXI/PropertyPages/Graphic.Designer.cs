@@ -15,7 +15,6 @@ namespace PlayOnline.FFXI.PropertyPages {
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.Windows.Forms.ThemedTabPage tabGraphicInfo;
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Graphic));
       this.btnSelectColor = new System.Windows.Forms.Button();
       this.radSolid = new System.Windows.Forms.RadioButton();
@@ -24,25 +23,9 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.cmbViewMode = new System.Windows.Forms.ComboBox();
       this.lblViewMode = new System.Windows.Forms.Label();
       this.picImage = new System.Windows.Forms.PictureBox();
-      this.tabPages = new System.Windows.Forms.TabControl();
-      tabGraphicInfo = new System.Windows.Forms.ThemedTabPage();
-      tabGraphicInfo.SuspendLayout();
+      this.dlgChooseColor = new System.Windows.Forms.ColorDialog();
       ((System.ComponentModel.ISupportInitialize) (this.picImage)).BeginInit();
-      this.tabPages.SuspendLayout();
       this.SuspendLayout();
-      // 
-      // tabGraphicInfo
-      // 
-      tabGraphicInfo.Controls.Add(this.btnSelectColor);
-      tabGraphicInfo.Controls.Add(this.radSolid);
-      tabGraphicInfo.Controls.Add(this.radTransparent);
-      tabGraphicInfo.Controls.Add(this.lblBackColor);
-      tabGraphicInfo.Controls.Add(this.cmbViewMode);
-      tabGraphicInfo.Controls.Add(this.lblViewMode);
-      tabGraphicInfo.Controls.Add(this.picImage);
-      resources.ApplyResources(tabGraphicInfo, "tabGraphicInfo");
-      tabGraphicInfo.Name = "tabGraphicInfo";
-      tabGraphicInfo.UseVisualStyleBackColor = true;
       // 
       // btnSelectColor
       // 
@@ -93,37 +76,41 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.picImage.Name = "picImage";
       this.picImage.TabStop = false;
       // 
-      // tabPages
+      // dlgChooseColor
       // 
-      this.tabPages.Controls.Add(tabGraphicInfo);
-      resources.ApplyResources(this.tabPages, "tabPages");
-      this.tabPages.Name = "tabPages";
-      this.tabPages.SelectedIndex = 0;
+      this.dlgChooseColor.AnyColor = true;
+      this.dlgChooseColor.FullOpen = true;
       // 
       // Graphic
       // 
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.tabPages);
+      this.Controls.Add(this.btnSelectColor);
+      this.Controls.Add(this.radSolid);
+      this.Controls.Add(this.radTransparent);
+      this.Controls.Add(this.lblBackColor);
+      this.Controls.Add(this.cmbViewMode);
+      this.Controls.Add(this.lblViewMode);
+      this.Controls.Add(this.picImage);
       this.Name = "Graphic";
-      tabGraphicInfo.ResumeLayout(false);
-      tabGraphicInfo.PerformLayout();
+      this.TabName = "Graphic";
       ((System.ComponentModel.ISupportInitialize) (this.picImage)).EndInit();
-      this.tabPages.ResumeLayout(false);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
 
-    private System.Windows.Forms.TabControl tabPages;
-    private System.Windows.Forms.PictureBox picImage;
-    private System.Windows.Forms.ComboBox cmbViewMode;
-    private System.Windows.Forms.Label lblViewMode;
     private System.Windows.Forms.Button btnSelectColor;
     private System.Windows.Forms.RadioButton radSolid;
     private System.Windows.Forms.RadioButton radTransparent;
     private System.Windows.Forms.Label lblBackColor;
+    private System.Windows.Forms.ComboBox cmbViewMode;
+    private System.Windows.Forms.Label lblViewMode;
+    private System.Windows.Forms.PictureBox picImage;
+    private System.Windows.Forms.ColorDialog dlgChooseColor;
+
 
   }
 

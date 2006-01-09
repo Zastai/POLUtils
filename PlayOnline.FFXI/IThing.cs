@@ -69,7 +69,7 @@ namespace PlayOnline.FFXI {
     /// Returns a list of "property pages" for this IThing; can go from generic to very specialized.
     /// </summary>
     /// <returns>A list of tab pages that can be seen as "property pages" for this IThing.</returns>
-    List<TabPage> GetPropertyPages();
+    List<PropertyPages.IThing> GetPropertyPages();
 
     /// <summary>
     /// Fills this IThing based on the given XML representation.

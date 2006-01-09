@@ -238,9 +238,9 @@ namespace PlayOnline.FFXI {
       this.Width_                = null;
     }
 
-    public override List<TabPage> GetPropertyPages() {
-    List<TabPage> Pages = base.GetPropertyPages();
-      Pages.AddRange(PropertyPages.Graphic.GetPages(this));
+    public override List<PropertyPages.IThing> GetPropertyPages() {
+    List<PropertyPages.IThing> Pages = base.GetPropertyPages();
+      Pages.Add(new PropertyPages.Graphic(this));
       return Pages;
     }
 
