@@ -10,6 +10,10 @@ namespace PlayOnline.FFXI.PropertyPages {
 
   public partial class IThing : UserControl {
 
+    public IThing() {
+      this.InitializeComponent();
+    }
+
     [Browsable(true), Category("Appearance"), DefaultValue("")]
     public string TabName {
       get {
@@ -21,9 +25,16 @@ namespace PlayOnline.FFXI.PropertyPages {
     }
     private string TabName_ = String.Empty;
 
-    public IThing() {
-      InitializeComponent();
+    [Browsable(true), Category("Appearance"), DefaultValue(false)]
+    public bool IsFixedSize {
+      get {
+	return this.IsFixedSize_;
+      }
+      set {
+	this.IsFixedSize_ = value;
+      }
     }
+    private bool IsFixedSize_ = false;
 
   }
 

@@ -212,6 +212,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.Close();
     }
 
+    private void cmiILProperties_Click(object sender, EventArgs e) {
+      foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
+      ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as Item);
+	TPP.Show(this);
+      }
+    }
+
     private void CopyContextMenu_Click(object sender, System.EventArgs e) {
     int ColumnNumber = (int) (sender as ToolStripDropDownItem).Tag;
       if (this.lstItems.SelectedItems.Count > 0) {

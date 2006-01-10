@@ -14,6 +14,10 @@ namespace PlayOnline.FFXI.PropertyPages {
 
     public Item(FFXI.Item I) {
       this.InitializeComponent();
+      this.ieEditor.Item = I;
+      this.Size = this.ieEditor.Size;
+      ++this.Height;
+      this.IsFixedSize = true;
     }
 
   }

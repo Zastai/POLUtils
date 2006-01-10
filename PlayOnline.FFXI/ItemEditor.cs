@@ -216,13 +216,6 @@ namespace PlayOnline.FFXI {
 
     #endregion
 
-    private void picIcon_DoubleClick(object sender, EventArgs e) {
-      if (this.ItemToShow_ != null) {
-	using (ThingPropertyPages TPP = new ThingPropertyPages(this.ItemToShow_)) 
-	  TPP.ShowDialog(this.ParentForm);
-      }
-    }
-
   }
 
 }

@@ -126,7 +126,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="tabDummy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 267</value>
+    <value>336, 336</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tabDummy.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +154,7 @@
     <value>0, 0</value>
   </data>
   <data name="tabPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 293</value>
+    <value>344, 362</value>
   </data>
   <data name="tabPages.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -175,7 +175,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 3</value>
+    <value>286, 3</value>
   </data>
   <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 25</value>
@@ -202,10 +202,10 @@
     <value>Bottom</value>
   </data>
   <data name="pnlButtons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 293</value>
+    <value>0, 362</value>
   </data>
   <data name="pnlButtons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 31</value>
+    <value>344, 31</value>
   </data>
   <data name="pnlButtons.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -229,7 +229,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>283, 324</value>
+    <value>344, 393</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

@@ -125,7 +125,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="colFieldName.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+    <value>100</value>
   </data>
   <metadata name="colFieldValue.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -134,7 +134,7 @@
     <value>Value</value>
   </data>
   <data name="colFieldValue.Width" type="System.Int32, mscorlib">
-    <value>196</value>
+    <value>195</value>
   </data>
   <data name="lblText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -175,7 +175,7 @@
     <value>3, 60</value>
   </data>
   <data name="lstFields.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 325</value>
+    <value>320, 319</value>
   </data>
   <data name="lstFields.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -313,7 +313,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 388</value>
+    <value>326, 382</value>
   </data>
   <data name="&gt;&gt;colFieldName.Name" xml:space="preserve">
     <value>colFieldName</value>

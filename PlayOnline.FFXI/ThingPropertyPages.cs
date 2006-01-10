@@ -25,6 +25,12 @@ namespace PlayOnline.FFXI {
       foreach (PropertyPages.IThing P in T.GetPropertyPages()) {
 	P.Left = 0;
 	P.Top  = 0;
+	if (this.tabPages.TabPages.Count == 0) { // Resize to match the first page (even if not fixed-size)
+	  this.Width  = P.Width  + this.DeltaW;
+	  this.Height = P.Height + this.DeltaH;
+	}
+	if (!P.IsFixedSize)
+	  P.Dock = DockStyle.Fill;
       TabPage TP = new ThemedTabPage(P.TabName);
 	TP.UseVisualStyleBackColor = true;
 	TP.Controls.Add(P);
@@ -37,8 +43,11 @@ namespace PlayOnline.FFXI {
     private void AdjustSize() {
       if (this.tabPages.SelectedTab == null)
 	return;
-      this.Width  = ((Control) this.tabPages.SelectedTab.Tag).Width  + this.DeltaW;
-      this.Height = ((Control) this.tabPages.SelectedTab.Tag).Height + this.DeltaH;
+    PropertyPages.IThing PP = this.tabPages.SelectedTab.Tag as PropertyPages.IThing;
+      if (PP.IsFixedSize) { // Size change required
+	this.Width  = PP.Width  + this.DeltaW;
+	this.Height = PP.Height + this.DeltaH;
+      }
     }
 
     private void btnClose_Click(object sender, EventArgs e) {

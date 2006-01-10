@@ -29,6 +29,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.btnRunQuery = new System.Windows.Forms.Button();
       this.stbStatus = new System.Windows.Forms.StatusBar();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
+      this.cmiILProperties = new System.Windows.Forms.ToolStripMenuItem();
       this.cmsItemList.SuspendLayout();
       this.pnlSearchOptions.SuspendLayout();
       this.SuspendLayout();
@@ -51,6 +52,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // cmsItemList
       // 
       this.cmsItemList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmiILProperties,
             this.cmiILCopy,
             this.cmiILExport});
       this.cmsItemList.Name = "cmsItemList";
@@ -132,6 +134,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
+      // cmiILProperties
+      // 
+      this.cmiILProperties.Name = "cmiILProperties";
+      resources.ApplyResources(this.cmiILProperties, "cmiILProperties");
+      this.cmiILProperties.Click += new System.EventHandler(this.cmiILProperties_Click);
+      // 
       // ItemFindDialog
       // 
       this.AcceptButton = this.btnRunQuery;
@@ -164,6 +172,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.ToolStripMenuItem cmiILEAll;
     private System.Windows.Forms.ToolStripMenuItem cmiILEResults;
     private System.Windows.Forms.ToolStripMenuItem cmiILESelected;
+    private System.Windows.Forms.ToolStripMenuItem cmiILProperties;
 
   }
 

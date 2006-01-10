@@ -229,7 +229,6 @@ namespace PlayOnline.FFXI {
       resources.ApplyResources(this.picIcon, "picIcon");
       this.picIcon.Name = "picIcon";
       this.picIcon.TabStop = false;
-      this.picIcon.DoubleClick += new System.EventHandler(this.picIcon_DoubleClick);
       // 
       // lblValidTargets
       // 

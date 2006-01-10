@@ -117,20 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ieEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ieEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 260</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ieEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ieEditor.Name" xml:space="preserve">
+    <value>ieEditor</value>
+  </data>
+  <data name="&gt;&gt;ieEditor.Type" xml:space="preserve">
+    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  </data>
+  <data name="&gt;&gt;ieEditor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ieEditor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 434</value>
+    <value>424, 260</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Item</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.PropertyPages.Base, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>PlayOnline.FFXI.PropertyPages.IThing, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
 </root>
