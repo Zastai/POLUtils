@@ -32,10 +32,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstItems.Columns.Add(I18N.GetText("ColumnHeader:Index"), 40, HorizontalAlignment.Left);
       { // Add all item fields as columns for the result, and as entries on the "Copy" context menu
       Item I = new Item();
-      int Index = 0;
 	foreach (string Field in I.GetAllFields()) {
 	  this.lstItems.Columns.Add(I.GetFieldName(Field), 100, HorizontalAlignment.Left);
-	  this.cmiILCopy.DropDownItems.Add(I.GetFieldName(Field), null, this.CopyContextMenu_Click).Tag = ++Index;
+	  this.mnuILCCopy.MenuItems.Add(new MenuItem(I.GetFieldName(Field), new EventHandler(this.CopyContextMenu_Click)));
 	}
       }
       this.lstItems.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
@@ -126,7 +125,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	CH.Width += 2;
       }
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
-      this.cmiILEResults.Enabled = (this.lstItems.Items.Count > 0);
+      this.mnuILCEResults.Enabled = (this.lstItems.Items.Count > 0);
       this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearchDone"), this.lstItems.Items.Count, this.Items_.Count);
     }
 
@@ -203,7 +202,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void lstItems_SelectedIndexChanged(object sender, System.EventArgs e) {
-      this.cmiILESelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
+      this.mnuILCESelected.Enabled = (this.lstItems.SelectedItems.Count > 0);
     }
 
     private void lstItems_DoubleClick(object sender, System.EventArgs e) {
@@ -212,7 +211,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.Close();
     }
 
-    private void cmiILProperties_Click(object sender, EventArgs e) {
+    private void mnuILCProperties_Click(object sender, EventArgs e) {
       foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
       ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as Item);
 	TPP.Show(this);
@@ -220,27 +219,27 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void CopyContextMenu_Click(object sender, System.EventArgs e) {
-    int ColumnNumber = (int) (sender as ToolStripDropDownItem).Tag;
-      if (this.lstItems.SelectedItems.Count > 0) {
+    MenuItem MI = sender as MenuItem;
+      if (MI != null && this.lstItems.SelectedItems.Count > 0) {
       string CopyText = String.Empty;
 	foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
 	  if (CopyText != "")
 	    CopyText += '\n';
-	  CopyText += LVI.SubItems[ColumnNumber].Text;
+	  CopyText += LVI.SubItems[MI.Index + 1].Text;
 	}
 	Clipboard.SetDataObject(CopyText);
       }
     }
 
-    private void cmiILEAll_Click(object sender, EventArgs e) {
+    private void mnuILCECAll_Click(object sender, System.EventArgs e) {
       this.DoExport(this.Items_);
     }
 
-    private void cmiILEResults_Click(object sender, EventArgs e) {
+    private void mnuILCEResults_Click(object sender, EventArgs e) {
       this.DoExport(this.SearchResults_);
     }
 
-    private void cmiILESelected_Click(object sender, EventArgs e) {
+    private void mnuILCESelected_Click(object sender, EventArgs e) {
     ThingList<Item> Items = new ThingList<Item>();
       foreach (ListViewItem LVI in this.lstItems.SelectedItems)
 	Items.Add(LVI.Tag as Item);

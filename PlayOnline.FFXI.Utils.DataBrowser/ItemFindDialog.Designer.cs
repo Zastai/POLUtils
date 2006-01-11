@@ -16,12 +16,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemFindDialog));
       this.lstItems = new System.Windows.Forms.ListView();
-      this.cmsItemList = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.cmiILCopy = new System.Windows.Forms.ToolStripMenuItem();
-      this.cmiILExport = new System.Windows.Forms.ToolStripMenuItem();
-      this.cmiILEAll = new System.Windows.Forms.ToolStripMenuItem();
-      this.cmiILEResults = new System.Windows.Forms.ToolStripMenuItem();
-      this.cmiILESelected = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuItemListContext = new System.Windows.Forms.ContextMenu();
+      this.mnuILCProperties = new System.Windows.Forms.MenuItem();
+      this.mnuILCCopy = new System.Windows.Forms.MenuItem();
+      this.mnuILCExport = new System.Windows.Forms.MenuItem();
+      this.mnuILCEAll = new System.Windows.Forms.MenuItem();
+      this.mnuILCEResults = new System.Windows.Forms.MenuItem();
+      this.mnuILCESelected = new System.Windows.Forms.MenuItem();
       this.ilItemIcons = new System.Windows.Forms.ImageList(this.components);
       this.pnlSearchOptions = new System.Windows.Forms.Panel();
       this.chkShowIcons = new System.Windows.Forms.CheckBox();
@@ -29,15 +30,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.btnRunQuery = new System.Windows.Forms.Button();
       this.stbStatus = new System.Windows.Forms.StatusBar();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
-      this.cmiILProperties = new System.Windows.Forms.ToolStripMenuItem();
-      this.cmsItemList.SuspendLayout();
       this.pnlSearchOptions.SuspendLayout();
       this.SuspendLayout();
       // 
       // lstItems
       // 
       this.lstItems.AllowColumnReorder = true;
-      this.lstItems.ContextMenuStrip = this.cmsItemList;
+      this.lstItems.ContextMenu = this.mnuItemListContext;
       resources.ApplyResources(this.lstItems, "lstItems");
       this.lstItems.FullRowSelect = true;
       this.lstItems.GridLines = true;
@@ -49,47 +48,48 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstItems.DoubleClick += new System.EventHandler(this.lstItems_DoubleClick);
       this.lstItems.SelectedIndexChanged += new System.EventHandler(this.lstItems_SelectedIndexChanged);
       // 
-      // cmsItemList
+      // mnuItemListContext
       // 
-      this.cmsItemList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmiILProperties,
-            this.cmiILCopy,
-            this.cmiILExport});
-      this.cmsItemList.Name = "cmsItemList";
-      this.cmsItemList.ShowItemToolTips = false;
-      resources.ApplyResources(this.cmsItemList, "cmsItemList");
+      this.mnuItemListContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuILCProperties,
+            this.mnuILCCopy,
+            this.mnuILCExport});
       // 
-      // cmiILCopy
+      // mnuILCProperties
       // 
-      this.cmiILCopy.Name = "cmiILCopy";
-      resources.ApplyResources(this.cmiILCopy, "cmiILCopy");
+      this.mnuILCProperties.Index = 0;
+      resources.ApplyResources(this.mnuILCProperties, "mnuILCProperties");
+      this.mnuILCProperties.Click += new System.EventHandler(this.mnuILCProperties_Click);
       // 
-      // cmiILExport
+      // mnuILCCopy
       // 
-      this.cmiILExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmiILEAll,
-            this.cmiILEResults,
-            this.cmiILESelected});
-      this.cmiILExport.Name = "cmiILExport";
-      resources.ApplyResources(this.cmiILExport, "cmiILExport");
+      this.mnuILCCopy.Index = 1;
+      resources.ApplyResources(this.mnuILCCopy, "mnuILCCopy");
       // 
-      // cmiILEAll
+      // mnuILCExport
       // 
-      this.cmiILEAll.Name = "cmiILEAll";
-      resources.ApplyResources(this.cmiILEAll, "cmiILEAll");
-      this.cmiILEAll.Click += new System.EventHandler(this.cmiILEAll_Click);
+      this.mnuILCExport.Index = 2;
+      this.mnuILCExport.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuILCEAll,
+            this.mnuILCEResults,
+            this.mnuILCESelected});
+      resources.ApplyResources(this.mnuILCExport, "mnuILCExport");
       // 
-      // cmiILEResults
+      // mnuILCEAll
       // 
-      resources.ApplyResources(this.cmiILEResults, "cmiILEResults");
-      this.cmiILEResults.Name = "cmiILEResults";
-      this.cmiILEResults.Click += new System.EventHandler(this.cmiILEResults_Click);
+      this.mnuILCEAll.Index = 0;
+      resources.ApplyResources(this.mnuILCEAll, "mnuILCEAll");
+      this.mnuILCEAll.Click += new System.EventHandler(this.mnuILCECAll_Click);
       // 
-      // cmiILESelected
+      // mnuILCEResults
       // 
-      resources.ApplyResources(this.cmiILESelected, "cmiILESelected");
-      this.cmiILESelected.Name = "cmiILESelected";
-      this.cmiILESelected.Click += new System.EventHandler(this.cmiILESelected_Click);
+      resources.ApplyResources(this.mnuILCEResults, "mnuILCEResults");
+      this.mnuILCEResults.Index = 1;
+      // 
+      // mnuILCESelected
+      // 
+      resources.ApplyResources(this.mnuILCESelected, "mnuILCESelected");
+      this.mnuILCESelected.Index = 2;
       // 
       // ilItemIcons
       // 
@@ -134,12 +134,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
-      // cmiILProperties
-      // 
-      this.cmiILProperties.Name = "cmiILProperties";
-      resources.ApplyResources(this.cmiILProperties, "cmiILProperties");
-      this.cmiILProperties.Click += new System.EventHandler(this.cmiILProperties_Click);
-      // 
       // ItemFindDialog
       // 
       this.AcceptButton = this.btnRunQuery;
@@ -150,7 +144,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.Controls.Add(this.pnlSearchOptions);
       this.Name = "ItemFindDialog";
       this.ShowInTaskbar = false;
-      this.cmsItemList.ResumeLayout(false);
       this.pnlSearchOptions.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -165,15 +158,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.Button btnClose;
     private System.Windows.Forms.StatusBar stbStatus;
     private System.Windows.Forms.CheckBox chkShowIcons;
-    private System.Windows.Forms.ContextMenuStrip cmsItemList;
     private System.Windows.Forms.SaveFileDialog dlgExportFile;
-    private System.Windows.Forms.ToolStripMenuItem cmiILCopy;
-    private System.Windows.Forms.ToolStripMenuItem cmiILExport;
-    private System.Windows.Forms.ToolStripMenuItem cmiILEAll;
-    private System.Windows.Forms.ToolStripMenuItem cmiILEResults;
-    private System.Windows.Forms.ToolStripMenuItem cmiILESelected;
-    private System.Windows.Forms.ToolStripMenuItem cmiILProperties;
-
+    private System.Windows.Forms.ContextMenu mnuItemListContext;
+    private System.Windows.Forms.MenuItem mnuILCProperties;
+    private System.Windows.Forms.MenuItem mnuILCCopy;
+    private System.Windows.Forms.MenuItem mnuILCExport;
+    private System.Windows.Forms.MenuItem mnuILCEAll;
+    private System.Windows.Forms.MenuItem mnuILCEResults;
+    private System.Windows.Forms.MenuItem mnuILCESelected;
+ 
   }
 
 }

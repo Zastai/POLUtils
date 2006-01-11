@@ -117,66 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="cmsItemList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mnuItemListContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>124, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmiILProperties.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="cmiILProperties.Text" xml:space="preserve">
+  <data name="mnuILCProperties.Text" xml:space="preserve">
     <value>&amp;Properties...</value>
   </data>
-  <data name="cmiILCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="cmiILCopy.Text" xml:space="preserve">
+  <data name="mnuILCCopy.Text" xml:space="preserve">
     <value>&amp;Copy</value>
   </data>
-  <data name="cmiILEAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="cmiILEAll.Text" xml:space="preserve">
+  <data name="mnuILCEAll.Text" xml:space="preserve">
     <value>&amp;All Items...</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cmiILEResults.Enabled" type="System.Boolean, mscorlib">
+  <data name="mnuILCEResults.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="cmiILEResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="cmiILEResults.Text" xml:space="preserve">
+  <data name="mnuILCEResults.Text" xml:space="preserve">
     <value>Search &amp;Results...</value>
   </data>
-  <data name="cmiILESelected.Enabled" type="System.Boolean, mscorlib">
+  <data name="mnuILCESelected.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="cmiILESelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="cmiILESelected.Text" xml:space="preserve">
+  <data name="mnuILCESelected.Text" xml:space="preserve">
     <value>&amp;Selected Item(s)...</value>
   </data>
-  <data name="cmiILExport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="cmiILExport.Text" xml:space="preserve">
+  <data name="mnuILCExport.Text" xml:space="preserve">
     <value>&amp;Export</value>
-  </data>
-  <data name="cmsItemList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 92</value>
-  </data>
-  <data name="&gt;&gt;cmsItemList.Name" xml:space="preserve">
-    <value>cmsItemList</value>
-  </data>
-  <data name="&gt;&gt;cmsItemList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lstItems.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lstItems.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 28</value>
   </data>
@@ -196,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lstItems.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="ilItemIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -325,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlSearchOptions.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="stbStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -352,10 +325,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;stbStatus.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="dlgExportFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>236, 17</value>
+    <value>276, 17</value>
   </metadata>
   <data name="dlgExportFile.Filter" xml:space="preserve">
     <value>XML Files (*.xml)|*.xml|All Files|*.*</value>
@@ -378,35 +351,47 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Find Item(s)</value>
   </data>
-  <data name="&gt;&gt;cmiILCopy.Name" xml:space="preserve">
-    <value>cmiILCopy</value>
+  <data name="&gt;&gt;mnuItemListContext.Name" xml:space="preserve">
+    <value>mnuItemListContext</value>
   </data>
-  <data name="&gt;&gt;cmiILCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuItemListContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmiILExport.Name" xml:space="preserve">
-    <value>cmiILExport</value>
+  <data name="&gt;&gt;mnuILCProperties.Name" xml:space="preserve">
+    <value>mnuILCProperties</value>
   </data>
-  <data name="&gt;&gt;cmiILExport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuILCProperties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmiILEAll.Name" xml:space="preserve">
-    <value>cmiILEAll</value>
+  <data name="&gt;&gt;mnuILCCopy.Name" xml:space="preserve">
+    <value>mnuILCCopy</value>
   </data>
-  <data name="&gt;&gt;cmiILEAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuILCCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmiILEResults.Name" xml:space="preserve">
-    <value>cmiILEResults</value>
+  <data name="&gt;&gt;mnuILCExport.Name" xml:space="preserve">
+    <value>mnuILCExport</value>
   </data>
-  <data name="&gt;&gt;cmiILEResults.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuILCExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmiILESelected.Name" xml:space="preserve">
-    <value>cmiILESelected</value>
+  <data name="&gt;&gt;mnuILCEAll.Name" xml:space="preserve">
+    <value>mnuILCEAll</value>
   </data>
-  <data name="&gt;&gt;cmiILESelected.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuILCEAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuILCEResults.Name" xml:space="preserve">
+    <value>mnuILCEResults</value>
+  </data>
+  <data name="&gt;&gt;mnuILCEResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuILCESelected.Name" xml:space="preserve">
+    <value>mnuILCESelected</value>
+  </data>
+  <data name="&gt;&gt;mnuILCESelected.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ilItemIcons.Name" xml:space="preserve">
     <value>ilItemIcons</value>
@@ -419,12 +404,6 @@
   </data>
   <data name="&gt;&gt;dlgExportFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmiILProperties.Name" xml:space="preserve">
-    <value>cmiILProperties</value>
-  </data>
-  <data name="&gt;&gt;cmiILProperties.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ItemFindDialog</value>
