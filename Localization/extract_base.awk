@@ -9,7 +9,7 @@ partial_seen == 0 && /^[ \t]*namespace +[^[:space:]]+ *{/ {
   ++namespacecount;
 }
 
-partial_seen == 0 && /^[ \t]*((public|private|internal) +)?partial +class +[^[:space:]]+ *: *(System[.]Windows[.]Forms[.])?(Form|UserControl){?/ {
+partial_seen == 0 && /^[ \t]*((public|private|internal) +)?partial +class +[^[:space:]]+ *: .*/ {
   print $0;
   print "}";
   partial_seen = 1;
