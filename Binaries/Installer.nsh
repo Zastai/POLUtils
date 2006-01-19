@@ -133,16 +133,22 @@ SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
 
-  Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
+  Section $(NAME_SECTION_TR_DE) SECTION_TR_DE
     SectionIn 2
-    SetOutPath "$INSTDIR\nl"
-    File "${BUILDDIR}\nl\*.resources.dll"
+    SetOutPath "$INSTDIR\de"
+    File /nonfatal "${BUILDDIR}\de\*.resources.dll"
   SectionEnd
 
   Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
     SectionIn 2
     SetOutPath "$INSTDIR\ja"
-    File "${BUILDDIR}\ja\*.resources.dll"
+    File /nonfatal "${BUILDDIR}\ja\*.resources.dll"
+  SectionEnd
+
+  Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
+    SectionIn 2
+    SetOutPath "$INSTDIR\nl"
+    File /nonfatal "${BUILDDIR}\nl\*.resources.dll"
   SectionEnd
 
 SubSectionEnd
@@ -156,26 +162,28 @@ Section "-RegisterInstallationInfo"
   ;; Common Info
   WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Installer Language" $LANGUAGE
   WriteRegStr HKLM "${INSTALLER_REG_KEY}" "Install Location" $INSTDIR
-  ;; Components
+  ;; Component Info
   DeleteRegKey HKLM "${INSTALLER_REG_KEY}\Components"
-  goto s00_check ;; so that the blocks below can stay nearly identical and s00_check isn't unused
-  s00_check: !insertmacro SectionFlagIsSet ${SECTION_MAIN} ${SF_SELECTED} s00_yes s00_no
-  s00_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) 1
-             goto s01_check
-  s00_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) 0
-  s01_check: !insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} s01_yes s01_no
-  s01_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_NL)" 1
-             goto s02_check
-  s01_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_NL)" 0
-  s02_check: !insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} s02_yes s02_no
-  s02_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_JA)" 1
-             goto s03_check
-  s02_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" "$(NAME_SECTION_TRANS): $(NAME_SECTION_TR_JA)" 0
-  s03_check: !insertmacro SectionFlagIsSet ${SECTION_DESKTOP_SHORTCUT} ${SF_SELECTED} s03_yes s03_no
-  s03_yes:   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_DESKTOP_SHORTCUT) 1
-             goto s04_check
-  s03_no:    WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_DESKTOP_SHORTCUT) 0
-  s04_check: ;; done
+  IntOp $R0 0 + 0
+  !insertmacro SectionFlagIsSet ${SECTION_MAIN} ${SF_SELECTED} +1 +2
+  IntOp $R0 0 + 1
+  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) $R0
+  IntOp $R0 0 + 0
+  !insertmacro SectionFlagIsSet ${SECTION_TR_DE} ${SF_SELECTED} +1 +2
+  IntOp $R0 0 + 1
+  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_DE) $R0
+  IntOp $R0 0 + 0
+  !insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} +1 +2
+  IntOp $R0 0 + 1
+  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_JA) $R0
+  IntOp $R0 0 + 0
+  !insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} +1 +2
+  IntOp $R0 0 + 1
+  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_NL) $R0
+  IntOp $R0 0 + 0
+  !insertmacro SectionFlagIsSet ${SECTION_DESKTOP_SHORTCUT} ${SF_SELECTED} +1 +2
+  IntOp $R0 0 + 1
+  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_DESKTOP_SHORTCUT) $R0
 SectionEnd
 
 Section "-FinishUp"
@@ -203,10 +211,12 @@ Section "Uninstall"
   Delete "$INSTDIR\POLUtils.exe"
   Delete "$INSTDIR\ItemListUpgrade.exe"
   ;; Translations
-  Delete "$INSTDIR\nl\*.resources.dll"
-  RMDir "$INSTDIR\nl"
+  Delete "$INSTDIR\de\*.resources.dll"
+  RMDir "$INSTDIR\de"
   Delete "$INSTDIR\ja\*.resources.dll"
   RMDir "$INSTDIR\ja"
+  Delete "$INSTDIR\nl\*.resources.dll"
+  RMDir "$INSTDIR\nl"
   ;; Desktop Shortcut
   Delete "$DESKTOP\POLUtils.lnk"
   ;; Start Menu Entries
@@ -240,6 +250,7 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_MAIN}             $(DESC_SECTION_MAIN)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TRANS}            $(DESC_SECTION_TRANS)
+  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_DE}            $(DESC_SECTION_TR_DE)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_DESKTOP_SHORTCUT} $(DESC_SECTION_DESKTOP_SHORTCUT)
