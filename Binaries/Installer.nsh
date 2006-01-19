@@ -128,6 +128,7 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\PlayOnline.FFXI.dll"
   File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\POLUtils.exe"
+  File           "${BUILDDIR}\Translators.txt"
   File           "${BUILDDIR}\ItemListUpgrade.exe"
 SectionEnd
 
@@ -209,6 +210,7 @@ Section "Uninstall"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.Utils.*.dll"
   Delete "$INSTDIR\POLUtils.exe"
+  Delete "$INSTDIR\Translators.txt"
   Delete "$INSTDIR\ItemListUpgrade.exe"
   ;; Translations
   Delete "$INSTDIR\de\*.resources.dll"
