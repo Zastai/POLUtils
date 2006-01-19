@@ -373,6 +373,10 @@ namespace PlayOnline.FFXI {
       }
       return DecodedColors;
     }
+
+    #endregion
+
+    #region Reading/Writing Color Values
     
     public static Color ReadColor(BinaryReader BR, int BitDepth) {
       switch (BitDepth) {
@@ -403,6 +407,32 @@ namespace PlayOnline.FFXI {
     short G = (short) ((C & 0x07e0) >> 3);
     short B = (short) ((C & 0x001f) << 3);
       return Color.FromArgb(R, G, B);
+    }
+
+    public static void WriteColor(BinaryWriter BW, Color C, int BitDepth) {
+      switch (BitDepth) {
+	case 32: case 24:
+	  BW.Write(C.B);
+	  BW.Write(C.G);
+	  BW.Write(C.R);
+	  if (BitDepth == 32)
+	    BW.Write((byte) (((int) C.A + 1) / 2));
+	  break;
+	case 16:
+	  BW.Write(Graphic.EncodeRGB565(C));
+	  break;
+	case 8:
+	  BW.Write((byte) ((C.R + C.G + C.B) / 3));
+	  break;
+      }
+    }
+
+    private static ushort EncodeRGB565(Color C) {
+    ushort ColorValue = 0;
+      ColorValue |= (ushort) ((C.R >> 3) & 0x1f); ColorValue <<= 6;
+      ColorValue |= (ushort) ((C.G >> 2) & 0x3f); ColorValue <<= 5;
+      ColorValue |= (ushort) ((C.B >> 3) & 0x1f);
+      return ColorValue;
     }
 
     #endregion
