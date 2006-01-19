@@ -2,62 +2,15 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
   public partial class MainWindow {
 
-    #region Controls
-
-    private System.Windows.Forms.GroupBox grpGlobalConfig;
-    private System.Windows.Forms.Label lblGUIResolution;
-    private System.Windows.Forms.TextBox txtGUIWidth;
-    private System.Windows.Forms.Label lblGUIX;
-    private System.Windows.Forms.TextBox txtGUIHeight;
-    private System.Windows.Forms.Label lbl3DResolution;
-    private System.Windows.Forms.TextBox txt3DWidth;
-    private System.Windows.Forms.Label lbl3DX;
-    private System.Windows.Forms.TextBox txt3DHeight;
-    private System.Windows.Forms.PictureBox picWarning;
-    private System.Windows.Forms.Label lblWarning;
-    private System.Windows.Forms.GroupBox grpCharConfig;
-    private System.Windows.Forms.ComboBox cmbCharacters;
-    private System.Windows.Forms.Button btnClose;
-    private System.Windows.Forms.Button btnCancel;
-    private System.Windows.Forms.Button btnApply;
-    private System.Windows.Forms.Label lblColor1;
-    private System.Windows.Forms.Label lblColor2;
-    private System.Windows.Forms.Label lblColor3;
-    private System.Windows.Forms.Label lblColor6;
-    private System.Windows.Forms.Label lblColor5;
-    private System.Windows.Forms.Label lblColor4;
-    private System.Windows.Forms.Label lblColor20;
-    private System.Windows.Forms.Label lblColor21;
-    private System.Windows.Forms.Label lblColor22;
-    private System.Windows.Forms.Label lblColor19;
-    private System.Windows.Forms.Label lblColor18;
-    private System.Windows.Forms.Label lblColor17;
-    private System.Windows.Forms.Label lblColor12;
-    private System.Windows.Forms.Label lblColor13;
-    private System.Windows.Forms.Label lblColor14;
-    private System.Windows.Forms.Label lblColor11;
-    private System.Windows.Forms.Label lblColor10;
-    private System.Windows.Forms.Label lblColor9;
-    private System.Windows.Forms.Label lblColor15;
-    private System.Windows.Forms.Label lblColor23;
-    private System.Windows.Forms.Label lblColor7;
-    private System.Windows.Forms.Label lblColor16;
-    private System.Windows.Forms.Label lblColor8;
-    private System.Windows.Forms.ColorDialog dlgChooseColor;
-    private System.Windows.Forms.TextBox txtSoundEffects;
-    private System.Windows.Forms.Label lblSoundEffects;
-
     private System.ComponentModel.Container components = null;
-
-    #endregion
-
-    #region Windows Form Designer generated code
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
         components.Dispose();
       base.Dispose(disposing);
     }
+
+    #region Windows Form Designer generated code
 
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
@@ -75,6 +28,7 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.lblWarning = new System.Windows.Forms.Label();
       this.picWarning = new System.Windows.Forms.PictureBox();
       this.grpCharConfig = new System.Windows.Forms.GroupBox();
+      this.txtSample = new System.Windows.Forms.Label();
       this.lblColor16 = new System.Windows.Forms.Label();
       this.lblColor8 = new System.Windows.Forms.Label();
       this.lblColor15 = new System.Windows.Forms.Label();
@@ -196,6 +150,7 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // grpCharConfig
       // 
       resources.ApplyResources(this.grpCharConfig, "grpCharConfig");
+      this.grpCharConfig.Controls.Add(this.txtSample);
       this.grpCharConfig.Controls.Add(this.lblColor16);
       this.grpCharConfig.Controls.Add(this.lblColor8);
       this.grpCharConfig.Controls.Add(this.lblColor15);
@@ -224,12 +179,21 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.grpCharConfig.Name = "grpCharConfig";
       this.grpCharConfig.TabStop = false;
       // 
+      // txtSample
+      // 
+      resources.ApplyResources(this.txtSample, "txtSample");
+      this.txtSample.BackColor = System.Drawing.Color.Black;
+      this.txtSample.ForeColor = System.Drawing.Color.White;
+      this.txtSample.Name = "txtSample";
+      // 
       // lblColor16
       // 
       this.lblColor16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       resources.ApplyResources(this.lblColor16, "lblColor16");
       this.lblColor16.Name = "lblColor16";
       this.lblColor16.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor16.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor16.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor8
       // 
@@ -237,6 +201,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor8, "lblColor8");
       this.lblColor8.Name = "lblColor8";
       this.lblColor8.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor8.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor8.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor15
       // 
@@ -244,6 +210,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor15, "lblColor15");
       this.lblColor15.Name = "lblColor15";
       this.lblColor15.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor15.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor15.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor23
       // 
@@ -251,6 +219,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor23, "lblColor23");
       this.lblColor23.Name = "lblColor23";
       this.lblColor23.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor23.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor23.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor7
       // 
@@ -258,6 +228,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor7, "lblColor7");
       this.lblColor7.Name = "lblColor7";
       this.lblColor7.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor7.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor7.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor12
       // 
@@ -265,6 +237,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor12, "lblColor12");
       this.lblColor12.Name = "lblColor12";
       this.lblColor12.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor12.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor12.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor13
       // 
@@ -272,6 +246,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor13, "lblColor13");
       this.lblColor13.Name = "lblColor13";
       this.lblColor13.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor13.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor13.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor14
       // 
@@ -279,6 +255,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor14, "lblColor14");
       this.lblColor14.Name = "lblColor14";
       this.lblColor14.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor14.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor14.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor11
       // 
@@ -286,6 +264,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor11, "lblColor11");
       this.lblColor11.Name = "lblColor11";
       this.lblColor11.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor11.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor11.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor10
       // 
@@ -293,6 +273,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor10, "lblColor10");
       this.lblColor10.Name = "lblColor10";
       this.lblColor10.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor10.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor10.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor9
       // 
@@ -300,6 +282,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor9, "lblColor9");
       this.lblColor9.Name = "lblColor9";
       this.lblColor9.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor9.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor9.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor20
       // 
@@ -307,6 +291,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor20, "lblColor20");
       this.lblColor20.Name = "lblColor20";
       this.lblColor20.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor20.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor20.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor21
       // 
@@ -314,6 +300,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor21, "lblColor21");
       this.lblColor21.Name = "lblColor21";
       this.lblColor21.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor21.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor21.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor22
       // 
@@ -321,6 +309,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor22, "lblColor22");
       this.lblColor22.Name = "lblColor22";
       this.lblColor22.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor22.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor22.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor19
       // 
@@ -328,6 +318,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor19, "lblColor19");
       this.lblColor19.Name = "lblColor19";
       this.lblColor19.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor19.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor19.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor18
       // 
@@ -335,6 +327,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor18, "lblColor18");
       this.lblColor18.Name = "lblColor18";
       this.lblColor18.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor18.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor18.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor17
       // 
@@ -342,6 +336,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor17, "lblColor17");
       this.lblColor17.Name = "lblColor17";
       this.lblColor17.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor17.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor17.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor4
       // 
@@ -349,6 +345,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor4, "lblColor4");
       this.lblColor4.Name = "lblColor4";
       this.lblColor4.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor4.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor4.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor5
       // 
@@ -356,6 +354,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor5, "lblColor5");
       this.lblColor5.Name = "lblColor5";
       this.lblColor5.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor5.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor5.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor6
       // 
@@ -363,6 +363,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor6, "lblColor6");
       this.lblColor6.Name = "lblColor6";
       this.lblColor6.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor6.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor6.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor3
       // 
@@ -370,6 +372,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor3, "lblColor3");
       this.lblColor3.Name = "lblColor3";
       this.lblColor3.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor3.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor3.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor2
       // 
@@ -377,6 +381,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor2, "lblColor2");
       this.lblColor2.Name = "lblColor2";
       this.lblColor2.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor2.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor2.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // lblColor1
       // 
@@ -384,6 +390,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       resources.ApplyResources(this.lblColor1, "lblColor1");
       this.lblColor1.Name = "lblColor1";
       this.lblColor1.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
+      this.lblColor1.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
+      this.lblColor1.MouseEnter += new System.EventHandler(this.ColorLabel_MouseEnter);
       // 
       // cmbCharacters
       // 
@@ -420,8 +428,6 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // MainWindow
       // 
-      this.AcceptButton = this.btnClose;
-      this.CancelButton = this.btnCancel;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.btnApply);
       this.Controls.Add(this.btnCancel);
@@ -440,6 +446,50 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
     }
 
     #endregion
+
+    private System.Windows.Forms.GroupBox grpGlobalConfig;
+    private System.Windows.Forms.Label lblGUIResolution;
+    private System.Windows.Forms.TextBox txtGUIWidth;
+    private System.Windows.Forms.Label lblGUIX;
+    private System.Windows.Forms.TextBox txtGUIHeight;
+    private System.Windows.Forms.Label lbl3DResolution;
+    private System.Windows.Forms.TextBox txt3DWidth;
+    private System.Windows.Forms.Label lbl3DX;
+    private System.Windows.Forms.TextBox txt3DHeight;
+    private System.Windows.Forms.PictureBox picWarning;
+    private System.Windows.Forms.Label lblWarning;
+    private System.Windows.Forms.GroupBox grpCharConfig;
+    private System.Windows.Forms.ComboBox cmbCharacters;
+    private System.Windows.Forms.Button btnClose;
+    private System.Windows.Forms.Button btnCancel;
+    private System.Windows.Forms.Button btnApply;
+    private System.Windows.Forms.Label lblColor1;
+    private System.Windows.Forms.Label lblColor2;
+    private System.Windows.Forms.Label lblColor3;
+    private System.Windows.Forms.Label lblColor6;
+    private System.Windows.Forms.Label lblColor5;
+    private System.Windows.Forms.Label lblColor4;
+    private System.Windows.Forms.Label lblColor20;
+    private System.Windows.Forms.Label lblColor21;
+    private System.Windows.Forms.Label lblColor22;
+    private System.Windows.Forms.Label lblColor19;
+    private System.Windows.Forms.Label lblColor18;
+    private System.Windows.Forms.Label lblColor17;
+    private System.Windows.Forms.Label lblColor12;
+    private System.Windows.Forms.Label lblColor13;
+    private System.Windows.Forms.Label lblColor14;
+    private System.Windows.Forms.Label lblColor11;
+    private System.Windows.Forms.Label lblColor10;
+    private System.Windows.Forms.Label lblColor9;
+    private System.Windows.Forms.Label lblColor15;
+    private System.Windows.Forms.Label lblColor23;
+    private System.Windows.Forms.Label lblColor7;
+    private System.Windows.Forms.Label lblColor16;
+    private System.Windows.Forms.Label lblColor8;
+    private System.Windows.Forms.ColorDialog dlgChooseColor;
+    private System.Windows.Forms.TextBox txtSoundEffects;
+    private System.Windows.Forms.Label lblSoundEffects;
+    private System.Windows.Forms.Label txtSample;
 
   }
 

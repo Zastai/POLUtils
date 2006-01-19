@@ -45,9 +45,21 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       if (BR != null) {
 	BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
 	this.Colors_ = new Color[23];
-	for (int i = 0; i < 32; ++i)
+	for (int i = 0; i < 23; ++i)
 	  this.Colors_[i] = Graphic.ReadColor(BR, 32);
 	BR.Close();
+      }
+    }
+
+    public void Save() {
+      if (this.Character_ == null)
+	return;
+    BinaryWriter BW = new BinaryWriter(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.ReadWrite));
+      if (BW != null) {
+	BW.BaseStream.Seek(0x50, SeekOrigin.Begin);
+	for (int i = 0; i < 23; ++i)
+	  Graphic.WriteColor(BW, this.Colors_[i], 32);
+	BW.Close();
       }
     }
 
