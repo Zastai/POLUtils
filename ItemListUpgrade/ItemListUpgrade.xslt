@@ -238,7 +238,7 @@
   <xsl:template mode="format-2" match="/ItemList">
     <thing-list>
       <xsl:for-each select="Item">
-	<thing type="FFXI Item">
+	<thing type="Item">
 	  <xsl:for-each select="./child::*">
 	    <field>
 	      <xsl:attribute name="name">
@@ -248,7 +248,7 @@
 	      </xsl:attribute>
 	      <xsl:choose><!-- No fields need reformatting except for Icon -->
 		<xsl:when test="name() = 'Icon'">
-		  <thing type="FFXI Graphic">
+		  <thing type="Graphic">
 		    <xsl:if test="@Category"><field name="category"><xsl:value-of select="@Category"/></field></xsl:if>
 		    <xsl:if test="@ID"><field name="id"><xsl:value-of select="@ID"/></field></xsl:if>
 		    <xsl:if test="@Format"><field name="format"><xsl:value-of select="@Format"/></field></xsl:if>

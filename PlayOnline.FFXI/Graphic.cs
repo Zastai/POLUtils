@@ -22,7 +22,11 @@ namespace PlayOnline.FFXI {
       this.Clear();
     }
 
-    public static List<string> Fields {
+    public override string ToString() {
+      return String.Format("[{0}] {1} ({2}, {3}x{4})", this.Category_, this.ID_, this.Format_, this.Width_.GetValueOrDefault(0), this.Height_.GetValueOrDefault(0));
+    }
+
+    public static List<string> AllFields {
       get {
 	return new List<string>(new string[] {
 	  "format",
@@ -45,7 +49,7 @@ namespace PlayOnline.FFXI {
     }
 
     public override List<string> GetAllFields() {
-      return Graphic.Fields;
+      return Graphic.AllFields;
     }
 
     public bool Read(BinaryReader BR) {
@@ -108,12 +112,6 @@ namespace PlayOnline.FFXI {
     #endregion
 
     #region Thing Members
-
-    public override string TypeName { get { return "FFXI Graphic"; } }
-
-    public override string ToString() {
-      return String.Format("[{0}] {1} ({2}, {3}x{4})", this.Category_, this.ID_, this.Format_, this.Width_.GetValueOrDefault(0), this.Height_.GetValueOrDefault(0));
-    }
 
     public override bool HasField(string Field) {
       switch (Field) {

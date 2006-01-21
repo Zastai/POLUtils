@@ -20,29 +20,19 @@ namespace PlayOnline.FFXI {
       this.Clear();
     }
 
-    public override string TypeName { get { return "FFXI Item"; } }
-
     public override string ToString() {
       return String.Format("[{0:X4}] {1} / {2}", this.ID_, this.EnglishName_, this.JapaneseName_);
-    }
-
-    public override void Clear() {
-      if (this.Icon_ != null)
-	this.Icon_.Clear();
-      this.Icon_ = null;
     }
 
     public override List<PropertyPages.IThing> GetPropertyPages() {
     List<PropertyPages.IThing> Pages = base.GetPropertyPages();
       Pages.Add(new PropertyPages.Item(this));
-#if false
       if (this.Icon_ != null) {
       List<PropertyPages.IThing> SubPages = this.Icon_.GetPropertyPages();
 	foreach (PropertyPages.IThing PP in SubPages)
 	  PP.TabName = String.Format("{0} - {1}", this.GetFieldName("icon"), PP.TabName);
 	Pages.AddRange(SubPages);
       }
-#endif
       return Pages;
     }
 
@@ -149,6 +139,45 @@ namespace PlayOnline.FFXI {
     private Nullable<ushort>        UnknownShort5_;
     
     #endregion
+
+    public override void Clear() {
+      if (this.Icon_ != null)
+	this.Icon_.Clear();
+      this.ID_              = null;
+      this.Flags_           = null;
+      this.StackSize_       = null;
+      this.Type_            = null;
+      this.ResourceID_      = null;
+      this.ValidTargets_    = null;
+      this.EnglishName_     = null;
+      this.JapaneseName_    = null;
+      this.Description_     = null;
+      this.LogNameSingular_ = null;
+      this.LogNamePlural_   = null;
+      this.Element_         = null;
+      this.StorageSlots_    = null;
+      this.ActivationTime_  = null;
+      this.Level_           = null;
+      this.Slots_           = null;
+      this.Races_           = null;
+      this.Jobs_            = null;
+      this.ShieldSize_      = null;
+      this.Damage_          = null;
+      this.Delay_           = null;
+      this.DPS_             = null;
+      this.Skill_           = null;
+      this.JugSize_         = null;
+      this.MaxCharges_      = null;
+      this.CastingTime_     = null;
+      this.UseDelay_        = null;
+      this.ReuseDelay_      = null;
+      this.Icon_            = null;
+      this.UnknownShort1_   = null;
+      this.UnknownShort2_   = null;
+      this.UnknownShort3_   = null;
+      this.UnknownShort4_   = null;
+      this.UnknownShort5_   = null;
+    }
 
     #endregion
 

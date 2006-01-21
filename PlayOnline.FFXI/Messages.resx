@@ -206,10 +206,10 @@ This may take a while, depending on the speed of your machine.</value>
     <value>&lt;image&gt;</value>
   </data>
   <data name="InvalidThingToLoad" xml:space="preserve">
-    <value>Attempt to load a {0} from an invalid XML element.</value>
+    <value>Attempt to load "{0}" data from an invalid XML element.</value>
   </data>
   <data name="WrongThingToLoad" xml:space="preserve">
-    <value>Attempt to load a {0} from an XML element that contains a {0}.</value>
+    <value>Attempt to load "{0}" data from an XML element that contains a different kind of data.</value>
   </data>
   <data name="E:PictureBoxSizeMode.StretchImage" xml:space="preserve">
     <value>Stretched</value>
@@ -224,7 +224,7 @@ This may take a while, depending on the speed of your machine.</value>
     <value>Normal (Actual Size, Top Left Corner)</value>
   </data>
   <data name="InvalidThingField" xml:space="preserve">
-    <value>Invalid {0} field - could not find root element.</value>
+    <value>Invalid "{0}" field - could not find root element.</value>
   </data>
   <data name="F:Item:dps" xml:space="preserve">
     <value>Damage Per Second</value>
@@ -258,5 +258,11 @@ This may take a while, depending on the speed of your machine.</value>
   </data>
   <data name="F:Item:valid-targets" xml:space="preserve">
     <value>Valid Target(s)</value>
+  </data>
+  <data name="T:Graphic" xml:space="preserve">
+    <value>FFXI Image</value>
+  </data>
+  <data name="T:Item" xml:space="preserve">
+    <value>FFXI Item</value>
   </data>
 </root>

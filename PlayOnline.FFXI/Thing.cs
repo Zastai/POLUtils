@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -22,14 +23,27 @@ namespace PlayOnline.FFXI {
 
     #region Implemented IThing Members
 
+    public virtual string TypeName {
+      get {
+      string MessageID = String.Format("T:{0}", this.GetType().Name);
+      string Result = MessageID;
+	try {
+	  Result = I18N.GetText(MessageID, this.GetType().Assembly);
+	} catch { }
+	if (Result == MessageID)
+	  Result = this.GetType().Name;
+	return Result;
+      }
+    }
+
     public string GetFieldName(string Field) {
     string MessageID = String.Format("F:{0}:{1}", this.GetType().Name, Field);
-    string Name;
+    string Name = MessageID;
       try {
 	Name = I18N.GetText(MessageID, this.GetType().Assembly);
-      } catch {
+      } catch { }
+      if (Name == MessageID)
 	Name = Field;
-      }
       return Name;
     }
 
@@ -63,10 +77,10 @@ namespace PlayOnline.FFXI {
       this.Clear();
       if (Element == null)
 	throw new ArgumentNullException();
-      if (Element.Name != "thing" || !Element.HasAttribute("type") || Element.GetAttribute("type") != this.TypeName)
+      if (Element.Name != "thing" || !Element.HasAttribute("type"))
 	throw new ArgumentException(String.Format(I18N.GetText("InvalidThingToLoad"), this.TypeName));
-      if (Element.GetAttribute("type") != this.TypeName)
-	throw new ArgumentException(String.Format(I18N.GetText("WrongThingToLoad"), this.TypeName, Element.GetAttribute("type")));
+      if (Element.GetAttribute("type") != this.GetType().Name)
+	throw new ArgumentException(String.Format(I18N.GetText("WrongThingToLoad"), this.TypeName));
       foreach (string FieldName in this.GetAllFields()) {
 	try {
 	XmlElement FieldElement = Element.SelectSingleNode(String.Format("./child::field[@name = '{0}']", FieldName)) as XmlElement;
@@ -80,7 +94,7 @@ namespace PlayOnline.FFXI {
     XmlElement E = Document.CreateElement("thing");
       {
       XmlAttribute A = Document.CreateAttribute("type");
-	A.InnerText = this.TypeName;
+	A.InnerText = this.GetType().Name;
 	E.Attributes.Append(A);
       }
       foreach (string FieldName in this.GetFields()) {
@@ -124,7 +138,7 @@ namespace PlayOnline.FFXI {
     }
 
     protected void LoadThingField(XmlElement Node, IThing T) {
-    XmlElement ThingRoot = Node.SelectSingleNode(String.Format("./child::thing[@type = '{0}']", T.TypeName)) as XmlElement;
+    XmlElement ThingRoot = Node.SelectSingleNode(String.Format("./child::thing[@type = '{0}']", T.GetType().Name)) as XmlElement;
       if (ThingRoot != null)
 	T.Load(ThingRoot);
       else
@@ -177,25 +191,22 @@ namespace PlayOnline.FFXI {
 
     #region Abstract IThing Members
 
-    public abstract string TypeName { get; }
-
+    public abstract void         Clear        ();
     public abstract bool         HasField     (string Field);
-    public abstract List<string> GetAllFields();
+    public abstract List<string> GetAllFields ();
     public abstract string       GetFieldText (string Field);
     public abstract object       GetFieldValue(string Field);
-    public abstract void         Clear();
 
     #endregion
 
     #region Thing Instantiation
 
     public static IThing Create(string TypeName) {
-      // FIXME: It would be nicer if this was handled differently, i.e. without harcoding type names here.
-      switch (TypeName) {
-	case "FFXI Graphic": return new Graphic();
-	case "FFXI Item":    return new Item();
-	default:             return null;
-      }
+      try {
+      string FullName = typeof(Thing).Namespace + "." + TypeName;
+	return Assembly.GetExecutingAssembly().CreateInstance(FullName, false) as IThing;
+      } catch { }
+      return null;
     }
 
     #endregion
