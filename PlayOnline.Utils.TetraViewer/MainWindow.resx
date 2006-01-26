@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -117,28 +120,31 @@
   <metadata name="dlgBrowseFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="dlgBrowseFolder.Description">
-    <value xml:space="preserve">Select the directory where the exported files should be stored:</value>
+  <data name="dlgBrowseFolder.Description" xml:space="preserve">
+    <value>Select the directory where the exported files should be stored:</value>
   </data>
   <metadata name="mnuTreeContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>151, 17</value>
   </metadata>
-  <data name="mnuExportAll.Text">
-    <value xml:space="preserve">&amp;Export All...</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mnuExportAll.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="mnuExport.Text">
-    <value xml:space="preserve">&amp;Export...</value>
+  <data name="mnuExportAll.Text" xml:space="preserve">
+    <value>&amp;Export All...</value>
+  </data>
+  <data name="mnuExport.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="mnuExport.Text" xml:space="preserve">
+    <value>&amp;Export...</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tvDataFiles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tvDataFiles.Indent" type="System.Int32, mscorlib">
     <value>19</value>
-  </data>
-  <data name="tvDataFiles.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tvDataFiles.Location" type="System.Drawing.Point, System.Drawing">
@@ -150,17 +156,17 @@
   <data name="tvDataFiles.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tvDataFiles.Name">
-    <value xml:space="preserve">tvDataFiles</value>
+  <data name="&gt;&gt;tvDataFiles.Name" xml:space="preserve">
+    <value>tvDataFiles</value>
   </data>
-  <data name="&gt;&gt;tvDataFiles.Type">
-    <value xml:space="preserve">System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tvDataFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tvDataFiles.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;tvDataFiles.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;tvDataFiles.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;tvDataFiles.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="sbrStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -174,32 +180,32 @@
   <data name="sbrStatus.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;sbrStatus.Name">
-    <value xml:space="preserve">sbrStatus</value>
+  <data name="&gt;&gt;sbrStatus.Name" xml:space="preserve">
+    <value>sbrStatus</value>
   </data>
-  <data name="&gt;&gt;sbrStatus.Type">
-    <value xml:space="preserve">System.Windows.Forms.StatusBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;sbrStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;sbrStatus.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;sbrStatus.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;sbrStatus.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;sbrStatus.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="mnuPictureContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 17</value>
   </metadata>
-  <data name="mnuNormalImage.Text">
-    <value xml:space="preserve">&amp;Normal</value>
+  <data name="mnuNormalImage.Text" xml:space="preserve">
+    <value>&amp;Normal</value>
   </data>
-  <data name="mnuStretchImage.Text">
-    <value xml:space="preserve">&amp;Strech</value>
+  <data name="mnuStretchImage.Text" xml:space="preserve">
+    <value>&amp;Strech</value>
   </data>
   <data name="mnuTiledImage.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="mnuTiledImage.Text">
-    <value xml:space="preserve">&amp;Tiled</value>
+  <data name="mnuTiledImage.Text" xml:space="preserve">
+    <value>&amp;Tiled</value>
   </data>
   <data name="picViewer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -219,17 +225,17 @@
   <data name="picViewer.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;picViewer.Name">
-    <value xml:space="preserve">picViewer</value>
+  <data name="&gt;&gt;picViewer.Name" xml:space="preserve">
+    <value>picViewer</value>
   </data>
-  <data name="&gt;&gt;picViewer.Type">
-    <value xml:space="preserve">System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;picViewer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;picViewer.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;picViewer.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;picViewer.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;picViewer.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -265,61 +271,61 @@
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
-  <data name="$this.Text">
-    <value xml:space="preserve">Tetra Viewer</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Tetra Viewer</value>
   </data>
-  <data name="&gt;&gt;dlgBrowseFolder.Name">
-    <value xml:space="preserve">dlgBrowseFolder</value>
+  <data name="&gt;&gt;dlgBrowseFolder.Name" xml:space="preserve">
+    <value>dlgBrowseFolder</value>
   </data>
-  <data name="&gt;&gt;dlgBrowseFolder.Type">
-    <value xml:space="preserve">System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;dlgBrowseFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuTreeContext.Name">
-    <value xml:space="preserve">mnuTreeContext</value>
+  <data name="&gt;&gt;mnuTreeContext.Name" xml:space="preserve">
+    <value>mnuTreeContext</value>
   </data>
-  <data name="&gt;&gt;mnuTreeContext.Type">
-    <value xml:space="preserve">System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuTreeContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuExportAll.Name">
-    <value xml:space="preserve">mnuExportAll</value>
+  <data name="&gt;&gt;mnuExportAll.Name" xml:space="preserve">
+    <value>mnuExportAll</value>
   </data>
-  <data name="&gt;&gt;mnuExportAll.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuExportAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuExport.Name">
-    <value xml:space="preserve">mnuExport</value>
+  <data name="&gt;&gt;mnuExport.Name" xml:space="preserve">
+    <value>mnuExport</value>
   </data>
-  <data name="&gt;&gt;mnuExport.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuPictureContext.Name">
-    <value xml:space="preserve">mnuPictureContext</value>
+  <data name="&gt;&gt;mnuPictureContext.Name" xml:space="preserve">
+    <value>mnuPictureContext</value>
   </data>
-  <data name="&gt;&gt;mnuPictureContext.Type">
-    <value xml:space="preserve">System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuPictureContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuNormalImage.Name">
-    <value xml:space="preserve">mnuNormalImage</value>
+  <data name="&gt;&gt;mnuNormalImage.Name" xml:space="preserve">
+    <value>mnuNormalImage</value>
   </data>
-  <data name="&gt;&gt;mnuNormalImage.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuNormalImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuStretchImage.Name">
-    <value xml:space="preserve">mnuStretchImage</value>
+  <data name="&gt;&gt;mnuStretchImage.Name" xml:space="preserve">
+    <value>mnuStretchImage</value>
   </data>
-  <data name="&gt;&gt;mnuStretchImage.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuStretchImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuTiledImage.Name">
-    <value xml:space="preserve">mnuTiledImage</value>
+  <data name="&gt;&gt;mnuTiledImage.Name" xml:space="preserve">
+    <value>mnuTiledImage</value>
   </data>
-  <data name="&gt;&gt;mnuTiledImage.Type">
-    <value xml:space="preserve">System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnuTiledImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">MainWindow</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainWindow</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

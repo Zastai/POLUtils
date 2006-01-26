@@ -53,6 +53,7 @@ namespace PlayOnline.Utils.TetraViewer {
       this.tvDataFiles.ContextMenu = this.mnuTreeContext;
       resources.ApplyResources(this.tvDataFiles, "tvDataFiles");
       this.tvDataFiles.HideSelection = false;
+      this.tvDataFiles.ItemHeight = 16;
       this.tvDataFiles.Name = "tvDataFiles";
       this.tvDataFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterSelect);
       // 
@@ -64,13 +65,13 @@ namespace PlayOnline.Utils.TetraViewer {
       // 
       // mnuExportAll
       // 
-      this.mnuExportAll.Index = 0;
       resources.ApplyResources(this.mnuExportAll, "mnuExportAll");
+      this.mnuExportAll.Index = 0;
       // 
       // mnuExport
       // 
-      this.mnuExport.Index = 1;
       resources.ApplyResources(this.mnuExport, "mnuExport");
+      this.mnuExport.Index = 1;
       // 
       // sbrStatus
       // 

@@ -117,203 +117,182 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ieLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 32</value>
-  </data>
-  <data name="ieLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 0</value>
+  <data name="&gt;&gt;ieLeft.Type" xml:space="preserve">
+    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ieLeft.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ieLeft.Name" xml:space="preserve">
-    <value>ieLeft</value>
-  </data>
-  <data name="&gt;&gt;ieLeft.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;ieLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ieLeft.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="btnNext.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ieRight.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="ieRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>436, 32</value>
-  </data>
-  <data name="ieRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 0</value>
-  </data>
-  <data name="ieRight.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ieRight.Name" xml:space="preserve">
-    <value>ieRight</value>
-  </data>
-  <data name="&gt;&gt;ieRight.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.FFXIItemEditor, PlayOnline.FFXI, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;ieRight.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ieRight.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnLoadItemSet1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnLoadItemSet1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnLoadItemSet1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="btnLoadItemSet1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 24</value>
-  </data>
-  <data name="btnLoadItemSet1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnLoadItemSet1.Text" xml:space="preserve">
-    <value>Load Item Set &amp;1...</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Name" xml:space="preserve">
-    <value>btnLoadItemSet1</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnPrevious.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 4</value>
   </data>
   <data name="&gt;&gt;btnLoadItemSet1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="btnLoadItemSet2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="btnLoadItemSet1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
   </data>
-  <data name="btnLoadItemSet2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnLoadItemSet2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>756, 4</value>
-  </data>
-  <data name="btnLoadItemSet2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 24</value>
+  <data name="&gt;&gt;ieRight.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnLoadItemSet2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="btnLoadItemSet2.Text" xml:space="preserve">
-    <value>Load Item Set &amp;2...</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Name" xml:space="preserve">
-    <value>btnLoadItemSet2</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnLoadItemSet2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="dlgLoadItems.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="dlgLoadItems.Filter" xml:space="preserve">
-    <value>XML Files (*.xml)|*.xml|All Files (*.*)|*.*</value>
-  </data>
-  <data name="dlgLoadItems.Title" xml:space="preserve">
-    <value>Select a file to load...</value>
-  </data>
-  <data name="btnPrevious.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnPrevious.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnPrevious.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnPrevious.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 4</value>
-  </data>
-  <data name="btnPrevious.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 24</value>
-  </data>
-  <data name="btnPrevious.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnPrevious.Text" xml:space="preserve">
-    <value>&lt; &amp;Previous</value>
-  </data>
-  <data name="&gt;&gt;btnPrevious.Name" xml:space="preserve">
-    <value>btnPrevious</value>
-  </data>
-  <data name="&gt;&gt;btnPrevious.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPrevious.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnPrevious.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnNext.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnNext.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnNext.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 4</value>
-  </data>
-  <data name="btnNext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 24</value>
-  </data>
-  <data name="btnNext.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="ieRight.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="btnNext.Text" xml:space="preserve">
     <value>&amp;Next &gt;</value>
   </data>
-  <data name="&gt;&gt;btnNext.Name" xml:space="preserve">
-    <value>btnNext</value>
+  <data name="ieRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 260</value>
   </data>
-  <data name="&gt;&gt;btnNext.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnLoadItemSet1.Name" xml:space="preserve">
+    <value>btnLoadItemSet1</value>
+  </data>
+  <data name="btnLoadItemSet1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;ieRight.Name" xml:space="preserve">
+    <value>ieRight</value>
+  </data>
+  <data name="btnRemoveUnchanged.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 24</value>
+  </data>
+  <data name="&gt;&gt;btnLoadItemSet1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ieLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnLoadItemSet1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FFXI Item Data Comparison</value>
+  </data>
+  <data name="btnLoadItemSet2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="btnNext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 4</value>
+  </data>
+  <data name="&gt;&gt;btnRemoveUnchanged.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dlgLoadItems.Title" xml:space="preserve">
+    <value>Select a file to load...</value>
   </data>
   <data name="&gt;&gt;btnNext.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnNext.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnRemoveUnchanged.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnRemoveUnchanged.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="ieLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 0</value>
   </data>
   <data name="btnRemoveUnchanged.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="&gt;&gt;ieRight.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnLoadItemSet2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnNext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 24</value>
+  </data>
+  <data name="&gt;&gt;btnNext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ieLeft.Name" xml:space="preserve">
+    <value>ieLeft</value>
+  </data>
+  <data name="btnLoadItemSet1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="dlgLoadItems.Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml|All Files (*.*)|*.*</value>
+  </data>
+  <data name="ieRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>436, 32</value>
+  </data>
+  <data name="&gt;&gt;ieRight.Type" xml:space="preserve">
+    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  </data>
+  <data name="&gt;&gt;btnRemoveUnchanged.Name" xml:space="preserve">
+    <value>btnRemoveUnchanged</value>
+  </data>
+  <data name="&gt;&gt;btnLoadItemSet2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dlgLoadItems.Name" xml:space="preserve">
+    <value>dlgLoadItems</value>
+  </data>
+  <data name="btnNext.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLoadItemSet2.Text" xml:space="preserve">
+    <value>Load Item Set &amp;2...</value>
+  </data>
+  <data name="&gt;&gt;btnNext.Name" xml:space="preserve">
+    <value>btnNext</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>866, 31</value>
+  </data>
+  <data name="&gt;&gt;btnNext.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnRemoveUnchanged.Location" type="System.Drawing.Point, System.Drawing">
     <value>365, 4</value>
   </data>
-  <data name="btnRemoveUnchanged.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 24</value>
+  <data name="&gt;&gt;btnRemoveUnchanged.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnLoadItemSet2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnRemoveUnchanged.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnPrevious.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnPrevious.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnLoadItemSet2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ieLeft.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnPrevious.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 24</value>
+  </data>
+  <data name="btnLoadItemSet1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnLoadItemSet2.Name" xml:space="preserve">
+    <value>btnLoadItemSet2</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRemoveUnchanged.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPrevious.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnRemoveUnchanged.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -321,37 +300,58 @@
   <data name="btnRemoveUnchanged.Text" xml:space="preserve">
     <value>&amp;Remove Unchanged Items</value>
   </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Name" xml:space="preserve">
-    <value>btnRemoveUnchanged</value>
-  </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnRemoveUnchanged.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>866, 31</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>FFXI Item Data Comparison</value>
-  </data>
-  <data name="&gt;&gt;dlgLoadItems.Name" xml:space="preserve">
-    <value>dlgLoadItems</value>
-  </data>
   <data name="&gt;&gt;dlgLoadItems.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnPrevious.Text" xml:space="preserve">
+    <value>&lt; &amp;Previous</value>
+  </data>
+  <data name="&gt;&gt;btnLoadItemSet1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnNext.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnPrevious.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnNext.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnRemoveUnchanged.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnLoadItemSet1.Text" xml:space="preserve">
+    <value>Load Item Set &amp;1...</value>
+  </data>
+  <data name="ieLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 32</value>
+  </data>
+  <data name="btnLoadItemSet2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>756, 4</value>
+  </data>
+  <data name="&gt;&gt;btnPrevious.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnPrevious.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
+  <data name="&gt;&gt;btnLoadItemSet2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnPrevious.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnPrevious.Name" xml:space="preserve">
+    <value>btnPrevious</value>
+  </data>
+  <metadata name="dlgLoadItems.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

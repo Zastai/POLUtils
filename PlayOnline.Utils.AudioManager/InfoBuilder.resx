@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,250 +117,250 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="prbApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="prbApplication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 12</value>
-  </data>
-  <data name="prbApplication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 20</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="prbApplication.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;prbApplication.Name">
-    <value xml:space="preserve">prbApplication</value>
-  </data>
-  <data name="&gt;&gt;prbApplication.Type">
-    <value xml:space="preserve">System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;prbApplication.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;prbApplication.ZOrder">
-    <value xml:space="preserve">8</value>
-  </data>
-  <data name="lblApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblApplication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="lblApplication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
-  </data>
-  <data name="lblApplication.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblApplication.Text">
-    <value xml:space="preserve">Application:</value>
-  </data>
-  <data name="&gt;&gt;lblApplication.Name">
-    <value xml:space="preserve">lblApplication</value>
-  </data>
-  <data name="&gt;&gt;lblApplication.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblApplication.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;lblApplication.ZOrder">
-    <value xml:space="preserve">7</value>
-  </data>
-  <data name="txtApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtApplication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 12</value>
-  </data>
-  <data name="txtApplication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 20</value>
-  </data>
-  <data name="txtApplication.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtApplication.Name">
-    <value xml:space="preserve">txtApplication</value>
-  </data>
-  <data name="&gt;&gt;txtApplication.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtApplication.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;txtApplication.ZOrder">
-    <value xml:space="preserve">2</value>
-  </data>
-  <data name="txtDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 40</value>
-  </data>
-  <data name="txtDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 20</value>
+  <data name="lblFile.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="txtDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;txtDirectory.Name">
-    <value xml:space="preserve">txtDirectory</value>
+  <data name="&gt;&gt;prbDirectory.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;txtDirectory.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDirectory.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;txtDirectory.ZOrder">
-    <value xml:space="preserve">1</value>
-  </data>
-  <data name="lblDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="prbApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 44</value>
+  <data name="&gt;&gt;lblDirectory.Name" xml:space="preserve">
+    <value>lblDirectory</value>
   </data>
-  <data name="lblDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
+  <data name="&gt;&gt;prbDirectory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtFile.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="lblDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="lblDirectory.Text">
-    <value xml:space="preserve">Directory:</value>
+  <data name="&gt;&gt;prbFile.Name" xml:space="preserve">
+    <value>prbFile</value>
   </data>
-  <data name="&gt;&gt;lblDirectory.Name">
-    <value xml:space="preserve">lblDirectory</value>
+  <data name="&gt;&gt;txtDirectory.Name" xml:space="preserve">
+    <value>txtDirectory</value>
   </data>
-  <data name="&gt;&gt;lblDirectory.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDirectory.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;lblDirectory.ZOrder">
-    <value xml:space="preserve">5</value>
-  </data>
-  <data name="prbDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="prbDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 40</value>
-  </data>
-  <data name="prbDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 20</value>
-  </data>
-  <data name="prbDirectory.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;prbDirectory.Name">
-    <value xml:space="preserve">prbDirectory</value>
-  </data>
-  <data name="&gt;&gt;prbDirectory.Type">
-    <value xml:space="preserve">System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;prbDirectory.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;prbDirectory.ZOrder">
-    <value xml:space="preserve">6</value>
+  <data name="&gt;&gt;lblFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="txtFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="txtFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 68</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
   </data>
-  <data name="txtFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 20</value>
+  <data name="&gt;&gt;txtDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtFile.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>518, 96</value>
   </data>
-  <data name="&gt;&gt;txtFile.Name">
-    <value xml:space="preserve">txtFile</value>
+  <data name="txtApplication.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;txtFile.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtFile.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;txtFile.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="prbDirectory.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;txtFile.ZOrder">
-    <value xml:space="preserve">0</value>
-  </data>
-  <data name="lblFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 72</value>
-  </data>
-  <data name="lblFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
-  </data>
-  <data name="lblFile.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="lblFile.Text">
-    <value xml:space="preserve">File:</value>
-  </data>
-  <data name="&gt;&gt;lblFile.Name">
-    <value xml:space="preserve">lblFile</value>
-  </data>
-  <data name="&gt;&gt;lblFile.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFile.Parent">
-    <value xml:space="preserve">$this</value>
-  </data>
-  <data name="&gt;&gt;lblFile.ZOrder">
-    <value xml:space="preserve">3</value>
-  </data>
-  <data name="prbFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="prbFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 68</value>
-  </data>
-  <data name="prbFile.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="prbApplication.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 20</value>
   </data>
   <data name="prbFile.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;prbFile.Name">
-    <value xml:space="preserve">prbFile</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Gathering Information...</value>
   </data>
-  <data name="&gt;&gt;prbFile.Type">
-    <value xml:space="preserve">System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;prbApplication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;prbFile.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;prbApplication.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;prbFile.ZOrder">
-    <value xml:space="preserve">4</value>
+  <data name="lblDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 44</value>
+  </data>
+  <data name="txtFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 68</value>
+  </data>
+  <data name="&gt;&gt;lblApplication.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lblApplication.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;prbDirectory.Name" xml:space="preserve">
+    <value>prbDirectory</value>
+  </data>
+  <data name="&gt;&gt;lblDirectory.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 72</value>
+  </data>
+  <data name="&gt;&gt;lblApplication.Name" xml:space="preserve">
+    <value>lblApplication</value>
+  </data>
+  <data name="txtApplication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 12</value>
+  </data>
+  <data name="lblDirectory.Text" xml:space="preserve">
+    <value>Directory:</value>
+  </data>
+  <data name="&gt;&gt;txtApplication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblApplication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="&gt;&gt;txtFile.Name" xml:space="preserve">
+    <value>txtFile</value>
+  </data>
+  <data name="lblFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 20</value>
+  </data>
+  <data name="prbDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="prbApplication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 12</value>
+  </data>
+  <data name="txtApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>InfoBuilder</value>
+  </data>
+  <data name="&gt;&gt;prbApplication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblApplication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="txtApplication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 20</value>
+  </data>
+  <data name="&gt;&gt;lblFile.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="prbFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 20</value>
+  </data>
+  <data name="lblApplication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtApplication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="lblFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="txtFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 20</value>
+  </data>
+  <data name="&gt;&gt;txtApplication.Name" xml:space="preserve">
+    <value>txtApplication</value>
+  </data>
+  <data name="prbDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 40</value>
+  </data>
+  <data name="&gt;&gt;lblFile.Name" xml:space="preserve">
+    <value>lblFile</value>
+  </data>
+  <data name="&gt;&gt;prbFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDirectory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblFile.Text" xml:space="preserve">
+    <value>File:</value>
+  </data>
+  <data name="&gt;&gt;txtDirectory.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblDirectory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="prbFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;lblFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;prbFile.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 40</value>
+  </data>
+  <data name="&gt;&gt;prbDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblApplication.Text" xml:space="preserve">
+    <value>Application:</value>
+  </data>
+  <data name="prbFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 68</value>
+  </data>
+  <data name="&gt;&gt;lblDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;prbFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;prbApplication.Name" xml:space="preserve">
+    <value>prbApplication</value>
+  </data>
+  <data name="&gt;&gt;txtFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblApplication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtFile.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="prbDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 20</value>
+  </data>
+  <data name="prbApplication.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblApplication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtApplication.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>518, 96</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
-  </data>
-  <data name="$this.Text">
-    <value xml:space="preserve">Gathering Information...</value>
-  </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">InfoBuilder</value>
-  </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

@@ -40,58 +40,94 @@ namespace PlayOnline.Utils.AudioManager {
       // 
       // prbApplication
       // 
+      this.prbApplication.AccessibleDescription = null;
+      this.prbApplication.AccessibleName = null;
       resources.ApplyResources(this.prbApplication, "prbApplication");
+      this.prbApplication.BackgroundImage = null;
+      this.prbApplication.Font = null;
       this.prbApplication.Name = "prbApplication";
       // 
       // lblApplication
       // 
-      this.lblApplication.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblApplication.AccessibleDescription = null;
+      this.lblApplication.AccessibleName = null;
       resources.ApplyResources(this.lblApplication, "lblApplication");
+      this.lblApplication.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblApplication.Font = null;
       this.lblApplication.Name = "lblApplication";
       // 
       // txtApplication
       // 
+      this.txtApplication.AccessibleDescription = null;
+      this.txtApplication.AccessibleName = null;
       resources.ApplyResources(this.txtApplication, "txtApplication");
+      this.txtApplication.BackgroundImage = null;
+      this.txtApplication.Font = null;
       this.txtApplication.Name = "txtApplication";
       this.txtApplication.ReadOnly = true;
       // 
       // txtDirectory
       // 
+      this.txtDirectory.AccessibleDescription = null;
+      this.txtDirectory.AccessibleName = null;
       resources.ApplyResources(this.txtDirectory, "txtDirectory");
+      this.txtDirectory.BackgroundImage = null;
+      this.txtDirectory.Font = null;
       this.txtDirectory.Name = "txtDirectory";
       this.txtDirectory.ReadOnly = true;
       // 
       // lblDirectory
       // 
-      this.lblDirectory.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblDirectory.AccessibleDescription = null;
+      this.lblDirectory.AccessibleName = null;
       resources.ApplyResources(this.lblDirectory, "lblDirectory");
+      this.lblDirectory.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblDirectory.Font = null;
       this.lblDirectory.Name = "lblDirectory";
       // 
       // prbDirectory
       // 
+      this.prbDirectory.AccessibleDescription = null;
+      this.prbDirectory.AccessibleName = null;
       resources.ApplyResources(this.prbDirectory, "prbDirectory");
+      this.prbDirectory.BackgroundImage = null;
+      this.prbDirectory.Font = null;
       this.prbDirectory.Name = "prbDirectory";
       // 
       // txtFile
       // 
+      this.txtFile.AccessibleDescription = null;
+      this.txtFile.AccessibleName = null;
       resources.ApplyResources(this.txtFile, "txtFile");
+      this.txtFile.BackgroundImage = null;
+      this.txtFile.Font = null;
       this.txtFile.Name = "txtFile";
       this.txtFile.ReadOnly = true;
       // 
       // lblFile
       // 
-      this.lblFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblFile.AccessibleDescription = null;
+      this.lblFile.AccessibleName = null;
       resources.ApplyResources(this.lblFile, "lblFile");
+      this.lblFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblFile.Font = null;
       this.lblFile.Name = "lblFile";
       // 
       // prbFile
       // 
+      this.prbFile.AccessibleDescription = null;
+      this.prbFile.AccessibleName = null;
       resources.ApplyResources(this.prbFile, "prbFile");
+      this.prbFile.BackgroundImage = null;
+      this.prbFile.Font = null;
       this.prbFile.Name = "prbFile";
       // 
       // InfoBuilder
       // 
+      this.AccessibleDescription = null;
+      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
+      this.BackgroundImage = null;
       this.ControlBox = false;
       this.Controls.Add(this.txtFile);
       this.Controls.Add(this.txtDirectory);
@@ -102,7 +138,9 @@ namespace PlayOnline.Utils.AudioManager {
       this.Controls.Add(this.prbDirectory);
       this.Controls.Add(this.lblApplication);
       this.Controls.Add(this.prbApplication);
+      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.Icon = null;
       this.Name = "InfoBuilder";
       this.ShowInTaskbar = false;
       this.VisibleChanged += new System.EventHandler(this.InfoBuilder_VisibleChanged);
