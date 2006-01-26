@@ -33,76 +33,70 @@ namespace PlayOnline.Core {
       // 
       // lblExplanation
       // 
-      this.lblExplanation.AccessibleDescription = resources.GetString("lblExplanation.AccessibleDescription");
-      this.lblExplanation.AccessibleName = resources.GetString("lblExplanation.AccessibleName");
+      this.lblExplanation.AccessibleDescription = null;
+      this.lblExplanation.AccessibleName = null;
       resources.ApplyResources(this.lblExplanation, "lblExplanation");
       this.lblExplanation.BackColor = System.Drawing.SystemColors.Control;
       this.lblExplanation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblExplanation.Font = ((System.Drawing.Font) (resources.GetObject("lblExplanation.Font")));
+      this.lblExplanation.Font = null;
       this.lblExplanation.Name = "lblExplanation";
-      this.lblExplanation.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("lblExplanation.RightToLeft")));
       // 
       // radJapan
       // 
-      this.radJapan.AccessibleDescription = resources.GetString("radJapan.AccessibleDescription");
-      this.radJapan.AccessibleName = resources.GetString("radJapan.AccessibleName");
+      this.radJapan.AccessibleDescription = null;
+      this.radJapan.AccessibleName = null;
       resources.ApplyResources(this.radJapan, "radJapan");
-      this.radJapan.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("radJapan.BackgroundImage")));
-      this.radJapan.Font = ((System.Drawing.Font) (resources.GetObject("radJapan.Font")));
+      this.radJapan.BackgroundImage = null;
+      this.radJapan.Font = null;
       this.radJapan.Name = "radJapan";
-      this.radJapan.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("radJapan.RightToLeft")));
       // 
       // radNorthAmerica
       // 
-      this.radNorthAmerica.AccessibleDescription = resources.GetString("radNorthAmerica.AccessibleDescription");
-      this.radNorthAmerica.AccessibleName = resources.GetString("radNorthAmerica.AccessibleName");
+      this.radNorthAmerica.AccessibleDescription = null;
+      this.radNorthAmerica.AccessibleName = null;
       resources.ApplyResources(this.radNorthAmerica, "radNorthAmerica");
-      this.radNorthAmerica.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("radNorthAmerica.BackgroundImage")));
-      this.radNorthAmerica.Font = ((System.Drawing.Font) (resources.GetObject("radNorthAmerica.Font")));
+      this.radNorthAmerica.BackgroundImage = null;
+      this.radNorthAmerica.Font = null;
       this.radNorthAmerica.Name = "radNorthAmerica";
-      this.radNorthAmerica.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("radNorthAmerica.RightToLeft")));
       // 
       // radEurope
       // 
-      this.radEurope.AccessibleDescription = resources.GetString("radEurope.AccessibleDescription");
-      this.radEurope.AccessibleName = resources.GetString("radEurope.AccessibleName");
+      this.radEurope.AccessibleDescription = null;
+      this.radEurope.AccessibleName = null;
       resources.ApplyResources(this.radEurope, "radEurope");
-      this.radEurope.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("radEurope.BackgroundImage")));
-      this.radEurope.Font = ((System.Drawing.Font) (resources.GetObject("radEurope.Font")));
+      this.radEurope.BackgroundImage = null;
+      this.radEurope.Font = null;
       this.radEurope.Name = "radEurope";
-      this.radEurope.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("radEurope.RightToLeft")));
       // 
       // btnOK
       // 
-      this.btnOK.AccessibleDescription = resources.GetString("btnOK.AccessibleDescription");
-      this.btnOK.AccessibleName = resources.GetString("btnOK.AccessibleName");
+      this.btnOK.AccessibleDescription = null;
+      this.btnOK.AccessibleName = null;
       resources.ApplyResources(this.btnOK, "btnOK");
-      this.btnOK.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("btnOK.BackgroundImage")));
+      this.btnOK.BackgroundImage = null;
       this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.btnOK.Font = ((System.Drawing.Font) (resources.GetObject("btnOK.Font")));
+      this.btnOK.Font = null;
       this.btnOK.Name = "btnOK";
-      this.btnOK.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("btnOK.RightToLeft")));
       this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
       // 
       // ChooseRegionDialog
       // 
-      this.AcceptButton = this.btnOK;
-      this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-      this.AccessibleName = resources.GetString("$this.AccessibleName");
+      this.AccessibleDescription = null;
+      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
-      this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
+      this.BackgroundImage = null;
       this.ControlBox = false;
       this.Controls.Add(this.btnOK);
       this.Controls.Add(this.radEurope);
       this.Controls.Add(this.radNorthAmerica);
       this.Controls.Add(this.radJapan);
       this.Controls.Add(this.lblExplanation);
-      this.Font = ((System.Drawing.Font) (resources.GetObject("$this.Font")));
+      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+      this.Icon = null;
       this.Name = "ChooseRegionDialog";
-      this.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("$this.RightToLeft")));
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
