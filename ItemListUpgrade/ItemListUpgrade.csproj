@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ItemListUpgrade.xslt" />
+    <EmbeddedResource Include="Messages.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Messages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
