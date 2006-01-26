@@ -38,7 +38,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
       this.mnuWindows = new System.Windows.Forms.MenuItem();
       this.mnuOFileTable = new System.Windows.Forms.MenuItem();
-      this.mnuOSettings = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea = new System.Windows.Forms.Panel();
       this.tabViewers = new System.Windows.Forms.TabControl();
       this.tabViewerItems = new System.Windows.Forms.ThemedTabPage();
@@ -220,8 +219,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       this.mnuWindows.Index = 0;
       this.mnuWindows.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuOFileTable,
-            this.mnuOSettings});
+            this.mnuOFileTable});
       resources.ApplyResources(this.mnuWindows, "mnuWindows");
       // 
       // mnuOFileTable
@@ -229,12 +227,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuOFileTable.Index = 0;
       resources.ApplyResources(this.mnuOFileTable, "mnuOFileTable");
       this.mnuOFileTable.Click += new System.EventHandler(this.mnuOFileTable_Click);
-      // 
-      // mnuOSettings
-      // 
-      this.mnuOSettings.Index = 1;
-      resources.ApplyResources(this.mnuOSettings, "mnuOSettings");
-      this.mnuOSettings.Click += new System.EventHandler(this.mnuOSettings_Click);
       // 
       // pnlViewerArea
       // 
@@ -433,7 +425,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.GroupBox grpMainItemActions;
     private System.Windows.Forms.ComboBox cmbItems;
     private System.Windows.Forms.MenuItem mnuOFileTable;
-    private System.Windows.Forms.MenuItem mnuOSettings;
     private PlayOnline.FFXI.ItemEditor ieItemViewer;
     private System.Windows.Forms.Button btnImageSaveAll;
     private System.Windows.Forms.MenuItem mnuELCCopyRow;

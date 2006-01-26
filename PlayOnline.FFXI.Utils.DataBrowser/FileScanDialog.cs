@@ -18,14 +18,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private string FileName;
 
-    public static bool AllowAbort          = false;
-    public static bool ShowProgressDetails = false;
-
     public FileScanDialog(string FileName) {
       InitializeComponent();
       this.FileName = FileName;
       this.DialogResult = DialogResult.None;
-      this.ControlBox = FileScanDialog.AllowAbort;
     }
 
     public ThingList FileContents = new ThingList();
@@ -59,17 +55,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	if (this.Scanning)
 	  return;
 	this.Scanning = true;
-	if (FileScanDialog.AllowAbort) {
-	  this.ScanThread = new Thread(new ThreadStart(this.ScanFile));
-	  this.ScanThread.Start();
-	}
-	else
-	  this.ScanFile();
+        this.ScanThread = new Thread(new ThreadStart(this.ScanFile));
+	this.ScanThread.Start();
       }
     }
 
     private void FileScanDialog_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-      if (FileScanDialog.AllowAbort && this.ScanThread != null) {
+      if (this.ScanThread != null) {
 	this.ScanThread.Abort();
 	this.ScanThread = null;
 	this.FileContents.Clear();

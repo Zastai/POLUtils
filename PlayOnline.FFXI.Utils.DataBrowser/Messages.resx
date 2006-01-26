@@ -378,74 +378,8 @@
   <data name="E:Test.DoesntMatchRegexp" xml:space="preserve">
     <value>doesn't match regexp</value>
   </data>
-  <data name="ColumnHeader:CastTime" xml:space="preserve">
-    <value>Casting Time</value>
-  </data>
-  <data name="ColumnHeader:CoolDown" xml:space="preserve">
-    <value>Cool-Down Time</value>
-  </data>
-  <data name="ColumnHeader:Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="ColumnHeader:Element" xml:space="preserve">
-    <value>Element</value>
-  </data>
-  <data name="ColumnHeader:EnglishDescription" xml:space="preserve">
-    <value>Description (English)</value>
-  </data>
-  <data name="ColumnHeader:EnglishName" xml:space="preserve">
-    <value>Name (English)</value>
-  </data>
-  <data name="ColumnHeader:Entry" xml:space="preserve">
-    <value>Entry</value>
-  </data>
   <data name="ColumnHeader:Index" xml:space="preserve">
     <value>Index</value>
-  </data>
-  <data name="ColumnHeader:JapaneseDescription" xml:space="preserve">
-    <value>Description (Japanese)</value>
-  </data>
-  <data name="ColumnHeader:JapaneseName" xml:space="preserve">
-    <value>Name (Japanese)</value>
-  </data>
-  <data name="ColumnHeader:Jobs" xml:space="preserve">
-    <value>Jobs</value>
-  </data>
-  <data name="ColumnHeader:LineCount" xml:space="preserve">
-    <value>{0} (Line Count)</value>
-  </data>
-  <data name="ColumnHeader:LineNumber" xml:space="preserve">
-    <value>{0} (Line {1})</value>
-  </data>
-  <data name="ColumnHeader:MPCost" xml:space="preserve">
-    <value>MP Cost</value>
-  </data>
-  <data name="ColumnHeader:Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ColumnHeader:RecastTime" xml:space="preserve">
-    <value>Recast Time</value>
-  </data>
-  <data name="ColumnHeader:Section" xml:space="preserve">
-    <value>Section</value>
-  </data>
-  <data name="ColumnHeader:Skill" xml:space="preserve">
-    <value>Skill</value>
-  </data>
-  <data name="ColumnHeader:Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="ColumnHeader:Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="ColumnHeader:Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="ColumnHeader:Unknown" xml:space="preserve">
-    <value>Unknown</value>
-  </data>
-  <data name="ColumnHeader:ValidTargets" xml:space="preserve">
-    <value>Valid Target(s)</value>
   </data>
   <data name="Export:DirDialogDesc" xml:space="preserve">
     <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
@@ -480,9 +414,6 @@ This may take quite a while.</value>
   <data name="Description:BrowseImageExportFolder" xml:space="preserve">
     <value>Select the folder where the images should be saved.
 WARNING: Existing files with the same name will be overwritten without prompting.</value>
-  </data>
-  <data name="ColumnHeader:IconInfo" xml:space="preserve">
-    <value>Icon Info</value>
   </data>
   <data name="ItemField:Any" xml:space="preserve">
     <value>Any Field</value>

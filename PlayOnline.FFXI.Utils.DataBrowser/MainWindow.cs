@@ -596,12 +596,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.Activate();
     }
 
-    private void mnuOSettings_Click(object sender, System.EventArgs e) {
-      using (SettingsDialog SD = new SettingsDialog())
-	SD.ShowDialog(this);
-      this.Activate();
-    }
-
     #endregion
 
   }

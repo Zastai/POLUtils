@@ -249,9 +249,6 @@
   <data name="mnuOFileTable.Text" xml:space="preserve">
     <value>&amp;File Table...</value>
   </data>
-  <data name="mnuOSettings.Text" xml:space="preserve">
-    <value>&amp;Settings...</value>
-  </data>
   <data name="mnuWindows.Text" xml:space="preserve">
     <value>&amp;Other</value>
   </data>
@@ -259,7 +256,7 @@
     <value>4, 44</value>
   </data>
   <data name="ieItemViewer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 343</value>
+    <value>424, 260</value>
   </data>
   <data name="ieItemViewer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -886,12 +883,6 @@
     <value>mnuOFileTable</value>
   </data>
   <data name="&gt;&gt;mnuOFileTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnuOSettings.Name" xml:space="preserve">
-    <value>mnuOSettings</value>
-  </data>
-  <data name="&gt;&gt;mnuOSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dlgExportFile.Name" xml:space="preserve">

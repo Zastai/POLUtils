@@ -35,9 +35,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // lstItems
       // 
-      this.lstItems.AllowColumnReorder = true;
-      this.lstItems.ContextMenu = this.mnuItemListContext;
+      this.lstItems.AccessibleDescription = null;
+      this.lstItems.AccessibleName = null;
       resources.ApplyResources(this.lstItems, "lstItems");
+      this.lstItems.AllowColumnReorder = true;
+      this.lstItems.BackgroundImage = null;
+      this.lstItems.ContextMenu = this.mnuItemListContext;
+      this.lstItems.Font = null;
       this.lstItems.FullRowSelect = true;
       this.lstItems.GridLines = true;
       this.lstItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -54,31 +58,32 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
             this.mnuILCProperties,
             this.mnuILCCopy,
             this.mnuILCExport});
+      resources.ApplyResources(this.mnuItemListContext, "mnuItemListContext");
       // 
       // mnuILCProperties
       // 
-      this.mnuILCProperties.Index = 0;
       resources.ApplyResources(this.mnuILCProperties, "mnuILCProperties");
+      this.mnuILCProperties.Index = 0;
       this.mnuILCProperties.Click += new System.EventHandler(this.mnuILCProperties_Click);
       // 
       // mnuILCCopy
       // 
-      this.mnuILCCopy.Index = 1;
       resources.ApplyResources(this.mnuILCCopy, "mnuILCCopy");
+      this.mnuILCCopy.Index = 1;
       // 
       // mnuILCExport
       // 
+      resources.ApplyResources(this.mnuILCExport, "mnuILCExport");
       this.mnuILCExport.Index = 2;
       this.mnuILCExport.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuILCEAll,
             this.mnuILCEResults,
             this.mnuILCESelected});
-      resources.ApplyResources(this.mnuILCExport, "mnuILCExport");
       // 
       // mnuILCEAll
       // 
-      this.mnuILCEAll.Index = 0;
       resources.ApplyResources(this.mnuILCEAll, "mnuILCEAll");
+      this.mnuILCEAll.Index = 0;
       this.mnuILCEAll.Click += new System.EventHandler(this.mnuILCECAll_Click);
       // 
       // mnuILCEResults
@@ -99,34 +104,54 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // pnlSearchOptions
       // 
+      this.pnlSearchOptions.AccessibleDescription = null;
+      this.pnlSearchOptions.AccessibleName = null;
+      resources.ApplyResources(this.pnlSearchOptions, "pnlSearchOptions");
+      this.pnlSearchOptions.BackgroundImage = null;
       this.pnlSearchOptions.Controls.Add(this.chkShowIcons);
       this.pnlSearchOptions.Controls.Add(this.btnClose);
       this.pnlSearchOptions.Controls.Add(this.btnRunQuery);
-      resources.ApplyResources(this.pnlSearchOptions, "pnlSearchOptions");
+      this.pnlSearchOptions.Font = null;
       this.pnlSearchOptions.Name = "pnlSearchOptions";
       // 
       // chkShowIcons
       // 
+      this.chkShowIcons.AccessibleDescription = null;
+      this.chkShowIcons.AccessibleName = null;
       resources.ApplyResources(this.chkShowIcons, "chkShowIcons");
+      this.chkShowIcons.BackgroundImage = null;
+      this.chkShowIcons.Font = null;
       this.chkShowIcons.Name = "chkShowIcons";
       this.chkShowIcons.CheckedChanged += new System.EventHandler(this.chkShowIcons_CheckedChanged);
       // 
       // btnClose
       // 
+      this.btnClose.AccessibleDescription = null;
+      this.btnClose.AccessibleName = null;
       resources.ApplyResources(this.btnClose, "btnClose");
+      this.btnClose.BackgroundImage = null;
       this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.btnClose.Font = null;
       this.btnClose.Name = "btnClose";
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
       // btnRunQuery
       // 
+      this.btnRunQuery.AccessibleDescription = null;
+      this.btnRunQuery.AccessibleName = null;
       resources.ApplyResources(this.btnRunQuery, "btnRunQuery");
+      this.btnRunQuery.BackgroundImage = null;
+      this.btnRunQuery.Font = null;
       this.btnRunQuery.Name = "btnRunQuery";
       this.btnRunQuery.Click += new System.EventHandler(this.btnRunQuery_Click);
       // 
       // stbStatus
       // 
+      this.stbStatus.AccessibleDescription = null;
+      this.stbStatus.AccessibleName = null;
       resources.ApplyResources(this.stbStatus, "stbStatus");
+      this.stbStatus.BackgroundImage = null;
+      this.stbStatus.Font = null;
       this.stbStatus.Name = "stbStatus";
       // 
       // dlgExportFile
@@ -137,11 +162,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // ItemFindDialog
       // 
       this.AcceptButton = this.btnRunQuery;
-      this.CancelButton = this.btnClose;
+      this.AccessibleDescription = null;
+      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
+      this.BackgroundImage = null;
+      this.CancelButton = this.btnClose;
       this.Controls.Add(this.stbStatus);
       this.Controls.Add(this.lstItems);
       this.Controls.Add(this.pnlSearchOptions);
+      this.Font = null;
+      this.Icon = null;
       this.Name = "ItemFindDialog";
       this.ShowInTaskbar = false;
       this.pnlSearchOptions.ResumeLayout(false);
