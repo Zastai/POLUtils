@@ -143,12 +143,6 @@
     <EmbeddedResource Include="Messages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="POLUtilsUI.ja.resx">
-      <DependentUpon>POLUtilsUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="POLUtilsUI.nl.resx">
-      <DependentUpon>POLUtilsUI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="POLUtilsUI.resx">
       <DependentUpon>POLUtilsUI.cs</DependentUpon>
       <SubType>Designer</SubType>

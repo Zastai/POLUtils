@@ -117,17 +117,9 @@
     <Compile Include="ThemedTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="ChooseRegionDialog.ja.resx">
-      <DependentUpon>ChooseRegionDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChooseRegionDialog.nl.resx">
-      <DependentUpon>ChooseRegionDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChooseRegionDialog.resx">
       <DependentUpon>ChooseRegionDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messages.ja.resx" />
-    <EmbeddedResource Include="Messages.nl.resx" />
     <EmbeddedResource Include="Messages.resx">
     </EmbeddedResource>
   </ItemGroup>
