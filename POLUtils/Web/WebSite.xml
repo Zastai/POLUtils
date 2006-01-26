@@ -2,6 +2,15 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="German Translation In Progress" author="Pebbles" date="January 18th, 2005">
+      A volunteer has stepped forward to provide a German translation of POLUtils - the installer has
+      been covered already, with the full UI to follow soon.  A round of applause for Andy Müller
+      (Missingno on Fairy) please!<br/>
+      As always, volunteers for translations are most welcome (French and Spanish already have a candidate,
+      but that leaves many languages to choose from).  In fact, I'd especially like people to do a Japanese
+      translation - I'll probably remove my partial bits of Japanese and Dutch translation from the next
+      release.
+    </news-item>
     <news-item title="POLUtils 0.7.0 Released" author="Pebbles" date="December 24th, 2005">
       <p>This is the next baseline release; it's not much more than a .NET 2.0 build of POLUtils 0.6.4.</p>
       <p><strong>New Features:</strong><br/><ul>

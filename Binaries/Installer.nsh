@@ -140,17 +140,17 @@ SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
     File /nonfatal "${BUILDDIR}\de\*.resources.dll"
   SectionEnd
 
-  Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
-    SectionIn 2
-    SetOutPath "$INSTDIR\ja"
-    File /nonfatal "${BUILDDIR}\ja\*.resources.dll"
-  SectionEnd
+  ;Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
+  ;  SectionIn 2
+  ;  SetOutPath "$INSTDIR\ja"
+  ;  File /nonfatal "${BUILDDIR}\ja\*.resources.dll"
+  ;SectionEnd
 
-  Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
-    SectionIn 2
-    SetOutPath "$INSTDIR\nl"
-    File /nonfatal "${BUILDDIR}\nl\*.resources.dll"
-  SectionEnd
+  ;Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
+  ;  SectionIn 2
+  ;  SetOutPath "$INSTDIR\nl"
+  ;  File /nonfatal "${BUILDDIR}\nl\*.resources.dll"
+  ;SectionEnd
 
 SubSectionEnd
 
@@ -173,14 +173,14 @@ Section "-RegisterInstallationInfo"
   !insertmacro SectionFlagIsSet ${SECTION_TR_DE} ${SF_SELECTED} +1 +2
   IntOp $R0 0 + 1
   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_DE) $R0
-  IntOp $R0 0 + 0
-  !insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} +1 +2
-  IntOp $R0 0 + 1
-  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_JA) $R0
-  IntOp $R0 0 + 0
-  !insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} +1 +2
-  IntOp $R0 0 + 1
-  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_NL) $R0
+  ;IntOp $R0 0 + 0
+  ;!insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} +1 +2
+  ;IntOp $R0 0 + 1
+  ;WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_JA) $R0
+  ;IntOp $R0 0 + 0
+  ;!insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} +1 +2
+  ;IntOp $R0 0 + 1
+  ;WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_NL) $R0
   IntOp $R0 0 + 0
   !insertmacro SectionFlagIsSet ${SECTION_DESKTOP_SHORTCUT} ${SF_SELECTED} +1 +2
   IntOp $R0 0 + 1
@@ -253,7 +253,7 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_MAIN}             $(DESC_SECTION_MAIN)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TRANS}            $(DESC_SECTION_TRANS)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_DE}            $(DESC_SECTION_TR_DE)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
+  ;!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
+  ;!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_DESKTOP_SHORTCUT} $(DESC_SECTION_DESKTOP_SHORTCUT)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END

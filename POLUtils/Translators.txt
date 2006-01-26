@@ -2,6 +2,5 @@ The various translations of POLUtils are provided by the following people:
 
 Language   State                     Translator
 ---------- ------------------------- -------------------------------------
-Dutch      Installer, Incomplete UI  Pebbles
-Japanese   Very Incomplete           Pebbles
-German     Installer Only            Andy Müller
+Dutch      Installer Only            Pebbles
+German     Installer Only            Andy Müller (Missingno on Fairy)
