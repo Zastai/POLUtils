@@ -13,7 +13,7 @@ cat project.top >&5
 
 # Locate designer sources
 echo "scanning source tree..."
-for FILE in $(find .. -type f -name '*.Designer.cs' -o -name '*.resx'); do
+for FILE in $(find .. -type f '-(' -name '*.Designer.cs' -o -name '*.resx' '-)' -a -! -path '../Localization/*'); do
   dir=$(dirname "$FILE")
   dosdir=$(dirname "$FILE" | cut -d/ -f2- | tr '/' '\\')
   project=$(dirname "$FILE" | cut -d/ -f2)
