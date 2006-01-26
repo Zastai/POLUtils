@@ -64,7 +64,10 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // grpGlobalConfig
       // 
+      this.grpGlobalConfig.AccessibleDescription = null;
+      this.grpGlobalConfig.AccessibleName = null;
       resources.ApplyResources(this.grpGlobalConfig, "grpGlobalConfig");
+      this.grpGlobalConfig.BackgroundImage = null;
       this.grpGlobalConfig.Controls.Add(this.txtSoundEffects);
       this.grpGlobalConfig.Controls.Add(this.lblSoundEffects);
       this.grpGlobalConfig.Controls.Add(this.txt3DHeight);
@@ -78,78 +81,125 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.grpGlobalConfig.Controls.Add(this.lblWarning);
       this.grpGlobalConfig.Controls.Add(this.picWarning);
       this.grpGlobalConfig.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpGlobalConfig.Font = null;
       this.grpGlobalConfig.Name = "grpGlobalConfig";
       this.grpGlobalConfig.TabStop = false;
       // 
       // txtSoundEffects
       // 
+      this.txtSoundEffects.AccessibleDescription = null;
+      this.txtSoundEffects.AccessibleName = null;
       resources.ApplyResources(this.txtSoundEffects, "txtSoundEffects");
+      this.txtSoundEffects.BackgroundImage = null;
+      this.txtSoundEffects.Font = null;
       this.txtSoundEffects.Name = "txtSoundEffects";
       this.txtSoundEffects.TextChanged += new System.EventHandler(this.Something_Changed);
       // 
       // lblSoundEffects
       // 
+      this.lblSoundEffects.AccessibleDescription = null;
+      this.lblSoundEffects.AccessibleName = null;
       resources.ApplyResources(this.lblSoundEffects, "lblSoundEffects");
+      this.lblSoundEffects.Font = null;
       this.lblSoundEffects.Name = "lblSoundEffects";
       // 
       // txt3DHeight
       // 
+      this.txt3DHeight.AccessibleDescription = null;
+      this.txt3DHeight.AccessibleName = null;
       resources.ApplyResources(this.txt3DHeight, "txt3DHeight");
+      this.txt3DHeight.BackgroundImage = null;
+      this.txt3DHeight.Font = null;
       this.txt3DHeight.Name = "txt3DHeight";
       this.txt3DHeight.TextChanged += new System.EventHandler(this.Something_Changed);
       // 
       // txt3DWidth
       // 
+      this.txt3DWidth.AccessibleDescription = null;
+      this.txt3DWidth.AccessibleName = null;
       resources.ApplyResources(this.txt3DWidth, "txt3DWidth");
+      this.txt3DWidth.BackgroundImage = null;
+      this.txt3DWidth.Font = null;
       this.txt3DWidth.Name = "txt3DWidth";
       this.txt3DWidth.TextChanged += new System.EventHandler(this.Something_Changed);
       // 
       // txtGUIHeight
       // 
+      this.txtGUIHeight.AccessibleDescription = null;
+      this.txtGUIHeight.AccessibleName = null;
       resources.ApplyResources(this.txtGUIHeight, "txtGUIHeight");
+      this.txtGUIHeight.BackgroundImage = null;
+      this.txtGUIHeight.Font = null;
       this.txtGUIHeight.Name = "txtGUIHeight";
       this.txtGUIHeight.TextChanged += new System.EventHandler(this.Something_Changed);
       // 
       // txtGUIWidth
       // 
+      this.txtGUIWidth.AccessibleDescription = null;
+      this.txtGUIWidth.AccessibleName = null;
       resources.ApplyResources(this.txtGUIWidth, "txtGUIWidth");
+      this.txtGUIWidth.BackgroundImage = null;
+      this.txtGUIWidth.Font = null;
       this.txtGUIWidth.Name = "txtGUIWidth";
       this.txtGUIWidth.TextChanged += new System.EventHandler(this.Something_Changed);
       // 
       // lbl3DX
       // 
+      this.lbl3DX.AccessibleDescription = null;
+      this.lbl3DX.AccessibleName = null;
       resources.ApplyResources(this.lbl3DX, "lbl3DX");
+      this.lbl3DX.Font = null;
       this.lbl3DX.Name = "lbl3DX";
       // 
       // lblGUIX
       // 
+      this.lblGUIX.AccessibleDescription = null;
+      this.lblGUIX.AccessibleName = null;
       resources.ApplyResources(this.lblGUIX, "lblGUIX");
+      this.lblGUIX.Font = null;
       this.lblGUIX.Name = "lblGUIX";
       // 
       // lbl3DResolution
       // 
+      this.lbl3DResolution.AccessibleDescription = null;
+      this.lbl3DResolution.AccessibleName = null;
       resources.ApplyResources(this.lbl3DResolution, "lbl3DResolution");
+      this.lbl3DResolution.Font = null;
       this.lbl3DResolution.Name = "lbl3DResolution";
       // 
       // lblGUIResolution
       // 
+      this.lblGUIResolution.AccessibleDescription = null;
+      this.lblGUIResolution.AccessibleName = null;
       resources.ApplyResources(this.lblGUIResolution, "lblGUIResolution");
+      this.lblGUIResolution.Font = null;
       this.lblGUIResolution.Name = "lblGUIResolution";
       // 
       // lblWarning
       // 
+      this.lblWarning.AccessibleDescription = null;
+      this.lblWarning.AccessibleName = null;
       resources.ApplyResources(this.lblWarning, "lblWarning");
+      this.lblWarning.Font = null;
       this.lblWarning.Name = "lblWarning";
       // 
       // picWarning
       // 
+      this.picWarning.AccessibleDescription = null;
+      this.picWarning.AccessibleName = null;
       resources.ApplyResources(this.picWarning, "picWarning");
+      this.picWarning.BackgroundImage = null;
+      this.picWarning.Font = null;
+      this.picWarning.ImageLocation = null;
       this.picWarning.Name = "picWarning";
       this.picWarning.TabStop = false;
       // 
       // grpCharConfig
       // 
+      this.grpCharConfig.AccessibleDescription = null;
+      this.grpCharConfig.AccessibleName = null;
       resources.ApplyResources(this.grpCharConfig, "grpCharConfig");
+      this.grpCharConfig.BackgroundImage = null;
       this.grpCharConfig.Controls.Add(this.txtSample);
       this.grpCharConfig.Controls.Add(this.lblColor16);
       this.grpCharConfig.Controls.Add(this.lblColor8);
@@ -176,11 +226,14 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.grpCharConfig.Controls.Add(this.lblColor1);
       this.grpCharConfig.Controls.Add(this.cmbCharacters);
       this.grpCharConfig.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpCharConfig.Font = null;
       this.grpCharConfig.Name = "grpCharConfig";
       this.grpCharConfig.TabStop = false;
       // 
       // txtSample
       // 
+      this.txtSample.AccessibleDescription = null;
+      this.txtSample.AccessibleName = null;
       resources.ApplyResources(this.txtSample, "txtSample");
       this.txtSample.BackColor = System.Drawing.Color.Black;
       this.txtSample.ForeColor = System.Drawing.Color.White;
@@ -188,8 +241,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor16
       // 
-      this.lblColor16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor16.AccessibleDescription = null;
+      this.lblColor16.AccessibleName = null;
       resources.ApplyResources(this.lblColor16, "lblColor16");
+      this.lblColor16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor16.Font = null;
       this.lblColor16.Name = "lblColor16";
       this.lblColor16.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor16.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -197,8 +253,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor8
       // 
-      this.lblColor8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor8.AccessibleDescription = null;
+      this.lblColor8.AccessibleName = null;
       resources.ApplyResources(this.lblColor8, "lblColor8");
+      this.lblColor8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor8.Font = null;
       this.lblColor8.Name = "lblColor8";
       this.lblColor8.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor8.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -206,8 +265,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor15
       // 
-      this.lblColor15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor15.AccessibleDescription = null;
+      this.lblColor15.AccessibleName = null;
       resources.ApplyResources(this.lblColor15, "lblColor15");
+      this.lblColor15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor15.Font = null;
       this.lblColor15.Name = "lblColor15";
       this.lblColor15.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor15.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -215,8 +277,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor23
       // 
-      this.lblColor23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor23.AccessibleDescription = null;
+      this.lblColor23.AccessibleName = null;
       resources.ApplyResources(this.lblColor23, "lblColor23");
+      this.lblColor23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor23.Font = null;
       this.lblColor23.Name = "lblColor23";
       this.lblColor23.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor23.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -224,8 +289,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor7
       // 
-      this.lblColor7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor7.AccessibleDescription = null;
+      this.lblColor7.AccessibleName = null;
       resources.ApplyResources(this.lblColor7, "lblColor7");
+      this.lblColor7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor7.Font = null;
       this.lblColor7.Name = "lblColor7";
       this.lblColor7.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor7.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -233,8 +301,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor12
       // 
-      this.lblColor12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor12.AccessibleDescription = null;
+      this.lblColor12.AccessibleName = null;
       resources.ApplyResources(this.lblColor12, "lblColor12");
+      this.lblColor12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor12.Font = null;
       this.lblColor12.Name = "lblColor12";
       this.lblColor12.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor12.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -242,8 +313,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor13
       // 
-      this.lblColor13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor13.AccessibleDescription = null;
+      this.lblColor13.AccessibleName = null;
       resources.ApplyResources(this.lblColor13, "lblColor13");
+      this.lblColor13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor13.Font = null;
       this.lblColor13.Name = "lblColor13";
       this.lblColor13.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor13.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -251,8 +325,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor14
       // 
-      this.lblColor14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor14.AccessibleDescription = null;
+      this.lblColor14.AccessibleName = null;
       resources.ApplyResources(this.lblColor14, "lblColor14");
+      this.lblColor14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor14.Font = null;
       this.lblColor14.Name = "lblColor14";
       this.lblColor14.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor14.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -260,8 +337,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor11
       // 
-      this.lblColor11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor11.AccessibleDescription = null;
+      this.lblColor11.AccessibleName = null;
       resources.ApplyResources(this.lblColor11, "lblColor11");
+      this.lblColor11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor11.Font = null;
       this.lblColor11.Name = "lblColor11";
       this.lblColor11.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor11.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -269,8 +349,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor10
       // 
-      this.lblColor10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor10.AccessibleDescription = null;
+      this.lblColor10.AccessibleName = null;
       resources.ApplyResources(this.lblColor10, "lblColor10");
+      this.lblColor10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor10.Font = null;
       this.lblColor10.Name = "lblColor10";
       this.lblColor10.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor10.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -278,8 +361,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor9
       // 
-      this.lblColor9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor9.AccessibleDescription = null;
+      this.lblColor9.AccessibleName = null;
       resources.ApplyResources(this.lblColor9, "lblColor9");
+      this.lblColor9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor9.Font = null;
       this.lblColor9.Name = "lblColor9";
       this.lblColor9.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor9.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -287,8 +373,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor20
       // 
-      this.lblColor20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor20.AccessibleDescription = null;
+      this.lblColor20.AccessibleName = null;
       resources.ApplyResources(this.lblColor20, "lblColor20");
+      this.lblColor20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor20.Font = null;
       this.lblColor20.Name = "lblColor20";
       this.lblColor20.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor20.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -296,8 +385,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor21
       // 
-      this.lblColor21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor21.AccessibleDescription = null;
+      this.lblColor21.AccessibleName = null;
       resources.ApplyResources(this.lblColor21, "lblColor21");
+      this.lblColor21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor21.Font = null;
       this.lblColor21.Name = "lblColor21";
       this.lblColor21.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor21.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -305,8 +397,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor22
       // 
-      this.lblColor22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor22.AccessibleDescription = null;
+      this.lblColor22.AccessibleName = null;
       resources.ApplyResources(this.lblColor22, "lblColor22");
+      this.lblColor22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor22.Font = null;
       this.lblColor22.Name = "lblColor22";
       this.lblColor22.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor22.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -314,8 +409,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor19
       // 
-      this.lblColor19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor19.AccessibleDescription = null;
+      this.lblColor19.AccessibleName = null;
       resources.ApplyResources(this.lblColor19, "lblColor19");
+      this.lblColor19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor19.Font = null;
       this.lblColor19.Name = "lblColor19";
       this.lblColor19.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor19.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -323,8 +421,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor18
       // 
-      this.lblColor18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor18.AccessibleDescription = null;
+      this.lblColor18.AccessibleName = null;
       resources.ApplyResources(this.lblColor18, "lblColor18");
+      this.lblColor18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor18.Font = null;
       this.lblColor18.Name = "lblColor18";
       this.lblColor18.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor18.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -332,8 +433,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor17
       // 
-      this.lblColor17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor17.AccessibleDescription = null;
+      this.lblColor17.AccessibleName = null;
       resources.ApplyResources(this.lblColor17, "lblColor17");
+      this.lblColor17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor17.Font = null;
       this.lblColor17.Name = "lblColor17";
       this.lblColor17.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor17.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -341,8 +445,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor4
       // 
-      this.lblColor4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor4.AccessibleDescription = null;
+      this.lblColor4.AccessibleName = null;
       resources.ApplyResources(this.lblColor4, "lblColor4");
+      this.lblColor4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor4.Font = null;
       this.lblColor4.Name = "lblColor4";
       this.lblColor4.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor4.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -350,8 +457,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor5
       // 
-      this.lblColor5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor5.AccessibleDescription = null;
+      this.lblColor5.AccessibleName = null;
       resources.ApplyResources(this.lblColor5, "lblColor5");
+      this.lblColor5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor5.Font = null;
       this.lblColor5.Name = "lblColor5";
       this.lblColor5.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor5.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -359,8 +469,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor6
       // 
-      this.lblColor6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor6.AccessibleDescription = null;
+      this.lblColor6.AccessibleName = null;
       resources.ApplyResources(this.lblColor6, "lblColor6");
+      this.lblColor6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor6.Font = null;
       this.lblColor6.Name = "lblColor6";
       this.lblColor6.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor6.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -368,8 +481,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor3
       // 
-      this.lblColor3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor3.AccessibleDescription = null;
+      this.lblColor3.AccessibleName = null;
       resources.ApplyResources(this.lblColor3, "lblColor3");
+      this.lblColor3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor3.Font = null;
       this.lblColor3.Name = "lblColor3";
       this.lblColor3.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor3.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -377,8 +493,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor2
       // 
-      this.lblColor2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor2.AccessibleDescription = null;
+      this.lblColor2.AccessibleName = null;
       resources.ApplyResources(this.lblColor2, "lblColor2");
+      this.lblColor2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor2.Font = null;
       this.lblColor2.Name = "lblColor2";
       this.lblColor2.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor2.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -386,8 +505,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // lblColor1
       // 
-      this.lblColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor1.AccessibleDescription = null;
+      this.lblColor1.AccessibleName = null;
       resources.ApplyResources(this.lblColor1, "lblColor1");
+      this.lblColor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.lblColor1.Font = null;
       this.lblColor1.Name = "lblColor1";
       this.lblColor1.DoubleClick += new System.EventHandler(this.ColorLabel_DoubleClick);
       this.lblColor1.MouseLeave += new System.EventHandler(this.ColorLabel_MouseLeave);
@@ -395,29 +517,45 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // cmbCharacters
       // 
+      this.cmbCharacters.AccessibleDescription = null;
+      this.cmbCharacters.AccessibleName = null;
+      resources.ApplyResources(this.cmbCharacters, "cmbCharacters");
+      this.cmbCharacters.BackgroundImage = null;
       this.cmbCharacters.DisplayMember = "CharacterName";
       this.cmbCharacters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbCharacters.Font = null;
       this.cmbCharacters.FormattingEnabled = true;
-      resources.ApplyResources(this.cmbCharacters, "cmbCharacters");
       this.cmbCharacters.Name = "cmbCharacters";
       this.cmbCharacters.SelectedIndexChanged += new System.EventHandler(this.cmbCharacters_SelectedIndexChanged);
       // 
       // btnClose
       // 
+      this.btnClose.AccessibleDescription = null;
+      this.btnClose.AccessibleName = null;
       resources.ApplyResources(this.btnClose, "btnClose");
+      this.btnClose.BackgroundImage = null;
+      this.btnClose.Font = null;
       this.btnClose.Name = "btnClose";
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
       // btnCancel
       // 
+      this.btnCancel.AccessibleDescription = null;
+      this.btnCancel.AccessibleName = null;
       resources.ApplyResources(this.btnCancel, "btnCancel");
+      this.btnCancel.BackgroundImage = null;
       this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.btnCancel.Font = null;
       this.btnCancel.Name = "btnCancel";
       this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
       // 
       // btnApply
       // 
+      this.btnApply.AccessibleDescription = null;
+      this.btnApply.AccessibleName = null;
       resources.ApplyResources(this.btnApply, "btnApply");
+      this.btnApply.BackgroundImage = null;
+      this.btnApply.Font = null;
       this.btnApply.Name = "btnApply";
       this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
       // 
@@ -428,13 +566,18 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       // 
       // MainWindow
       // 
+      this.AccessibleDescription = null;
+      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
+      this.BackgroundImage = null;
       this.Controls.Add(this.btnApply);
       this.Controls.Add(this.btnCancel);
       this.Controls.Add(this.btnClose);
       this.Controls.Add(this.grpCharConfig);
       this.Controls.Add(this.grpGlobalConfig);
+      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+      this.Icon = null;
       this.MaximizeBox = false;
       this.Name = "MainWindow";
       this.grpGlobalConfig.ResumeLayout(false);
