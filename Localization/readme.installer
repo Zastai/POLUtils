@@ -15,3 +15,11 @@ Details is used in the installer).
 The NAME_* strings are the names used for the install components.
 The MB_* strings are used in message boxes.
 The other strings should have self-explanatory names.
+
+
+NOTE: You may also want to check
+      http://cvs.sourceforge.net/viewcvs.py/nsis/NSIS/Contrib/Language%20files/
+      to make sure than the common parts of the installer are available in
+      the language you're translating to.
+      If not, there's not much point in translating the POLUtils installer
+      messages.

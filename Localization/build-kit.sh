@@ -56,6 +56,8 @@ cp "../Binaries/Languages.nsh" "$OUTDIR/Installer/"
 echo "    <Content Include=\"Installer\\Languages.nsh\" />" >&5
 cp "readme.installer" "$OUTDIR/Installer/readme.txt"
 echo "    <Content Include=\"Installer\\readme.txt\" />" >&5
+cp "readme.vs" "$OUTDIR/readme.txt"
+echo "    <Content Include=\"readme.txt\" />" >&5
 
 # Finish up
 cat project.bottom >&5
