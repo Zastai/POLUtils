@@ -136,10 +136,10 @@
   <data name="colFieldValue.Width" type="System.Int32, mscorlib">
     <value>195</value>
   </data>
-  <data name="lblText.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="lblText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -148,7 +148,7 @@
     <value>41, 4</value>
   </data>
   <data name="lblText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 13</value>
+    <value>285, 13</value>
   </data>
   <data name="lblText.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -222,8 +222,8 @@
   <data name="&gt;&gt;lblFields.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lblTypeName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lblTypeName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="lblTypeName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -232,7 +232,7 @@
     <value>81, 21</value>
   </data>
   <data name="lblTypeName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>242, 13</value>
   </data>
   <data name="lblTypeName.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -290,6 +290,9 @@
   </data>
   <data name="picIcon.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 32</value>
+  </data>
+  <data name="picIcon.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="picIcon.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

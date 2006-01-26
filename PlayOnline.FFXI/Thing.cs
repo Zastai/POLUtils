@@ -1,6 +1,7 @@
 // $Id$
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -42,8 +43,15 @@ namespace PlayOnline.FFXI {
       try {
 	Name = I18N.GetText(MessageID, this.GetType().Assembly);
       } catch { }
-      if (Name == MessageID)
-	Name = Field;
+      if (Name == MessageID) {
+	MessageID = String.Format("F::{0}", Field);
+	Name = MessageID;
+	try {
+	  Name = I18N.GetText(MessageID, this.GetType().Assembly);
+	} catch { }
+	if (Name == MessageID)
+	  Name = Field;
+      }
       return Name;
     }
 
@@ -112,9 +120,73 @@ namespace PlayOnline.FFXI {
 
     #endregion
 
+    #region Helper Routines
+
+    protected string FormatTime(double time) {
+    double seconds = time % 60;
+    long minutes = (long) (time - seconds) / 60;
+    long hours = minutes / 60;
+      minutes %= 60;
+    long days = hours / 24;
+      hours %= 24;
+    string Result = String.Empty;
+      if (days > 0)
+	Result += String.Format("{0}d", days);
+      if (hours > 0)
+	Result += String.Format("{0}h", hours);
+      if (minutes > 0)
+	Result += String.Format("{0}m", minutes);
+      if (seconds > 0 || Result == String.Empty)
+	Result += String.Format("{0}s", seconds);
+      return Result;
+    }
+
+    #endregion
+
     #region Load()/Save() Subroutines
 
     protected abstract void LoadField(string Field, XmlElement Element);
+
+    // Generics don't allow specifying value types as constraints, nor does it allow casting to
+    // an unbounded type parameter.  As a result, a separate function is needed for each array type.
+
+    protected byte[] LoadByteArray(XmlElement Node) {
+    int ArraySize = 0;
+      try {
+	ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
+      } catch { return null; }
+      if (ArraySize < 0)
+	return null;
+    byte[] Result = new byte[ArraySize];
+      for (int i = 0; i < ArraySize; ++i) {
+	try {
+	XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
+	  if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
+	    Result[i] = (byte) ulong.Parse(ElementNode.InnerText, NumberStyles.Integer);
+	  }
+	} catch { return null; }
+      }
+      return Result;
+    }
+
+    protected string[] LoadTextArray(XmlElement Node) {
+    int ArraySize = 0;
+      try {
+	ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
+      } catch { return null; }
+      if (ArraySize < 0)
+	return null;
+    string[] Result = new string[ArraySize];
+      for (int i = 0; i < ArraySize; ++i) {
+	try {
+	XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
+	  if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
+	    Result[i] = ElementNode.InnerText;
+	  }
+	} catch { return null; }
+      }
+      return Result;
+    }
 
     protected Nullable<UInt64> LoadHexField(XmlElement Node) {
       try { return ulong.Parse(Node.InnerText, NumberStyles.HexNumber); } catch { return null; }
@@ -153,16 +225,34 @@ namespace PlayOnline.FFXI {
       try { return ulong.Parse(Node.InnerText, NumberStyles.Integer); } catch { return null; }
     }
 
-    protected virtual void SaveField(string Field, XmlDocument Document, XmlElement Element) {
+    protected virtual void SaveField(object Value, XmlDocument Document, XmlElement Element) {
       // Default Implementation:
+      // - Array           -> recurse
       // - IThing          -> Save()
       // - Image           -> save as PNG/base64
       // - Enum            -> save as hex number
-      // - Everything Else -> GetFieldText()
-    object Value = this.GetFieldValue(Field);
+      // - Everything Else -> Value.ToString()
       if (Value != null) {
 	if (Value is IThing)
 	  Element.AppendChild(((IThing) Value).Save(Document));
+	else if (Value is Array) {
+	Array Values = Value as Array;
+	  {
+	  XmlAttribute A = Document.CreateAttribute("array-size");
+	    A.InnerText = Values.Length.ToString();
+	    Element.Attributes.Append(A);
+	  }
+	  for (int i = 0; i < Values.Length; ++i) {
+	  XmlElement E = Document.CreateElement("element");
+	    {
+	    XmlAttribute A = Document.CreateAttribute("index");
+	      A.InnerText = i.ToString();
+	      E.Attributes.Append(A);
+	    }
+	    this.SaveField(Values.GetValue(i), Document, E);
+	    Element.AppendChild(E);
+	  }
+	}
 	else if (Value is Image) {
 	  {
 	  XmlAttribute A = Document.CreateAttribute("format");
@@ -185,6 +275,10 @@ namespace PlayOnline.FFXI {
 	else
 	  Element.InnerText = Value.ToString();
       }
+    }
+
+    protected virtual void SaveField(string Field, XmlDocument Document, XmlElement Element) {
+      this.SaveField(this.GetFieldValue(Field), Document, Element);
     }
 
     #endregion

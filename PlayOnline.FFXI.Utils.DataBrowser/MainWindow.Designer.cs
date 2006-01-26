@@ -23,15 +23,18 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCModeNormal = new System.Windows.Forms.MenuItem();
       this.mnuPCModeCentered = new System.Windows.Forms.MenuItem();
       this.mnuPCModeStretched = new System.Windows.Forms.MenuItem();
+      this.mnuPCModeZoomed = new System.Windows.Forms.MenuItem();
       this.mnuPCBackground = new System.Windows.Forms.MenuItem();
       this.mnuPCBackgroundBlack = new System.Windows.Forms.MenuItem();
       this.mnuPCBackgroundWhite = new System.Windows.Forms.MenuItem();
       this.mnuPCBackgroundTransparent = new System.Windows.Forms.MenuItem();
       this.mnuPCSaveAs = new System.Windows.Forms.MenuItem();
       this.dlgSavePicture = new System.Windows.Forms.SaveFileDialog();
-      this.mnuStringTableContext = new System.Windows.Forms.ContextMenu();
-      this.mnuSTCCopyRow = new System.Windows.Forms.MenuItem();
-      this.mnuSTCCopyField = new System.Windows.Forms.MenuItem();
+      this.mnuEntryListContext = new System.Windows.Forms.ContextMenu();
+      this.mnuELCProperties = new System.Windows.Forms.MenuItem();
+      this.mnuELCSep = new System.Windows.Forms.MenuItem();
+      this.mnuELCCopyRow = new System.Windows.Forms.MenuItem();
+      this.mnuELCCopyField = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
       this.mnuWindows = new System.Windows.Forms.MenuItem();
       this.mnuOFileTable = new System.Windows.Forms.MenuItem();
@@ -50,12 +53,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.btnImageSaveAll = new System.Windows.Forms.Button();
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
       this.lblImageChooser = new System.Windows.Forms.Label();
-      this.tabViewerStringTable = new System.Windows.Forms.ThemedTabPage();
+      this.tabViewerGeneral = new System.Windows.Forms.ThemedTabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
-      this.mnuPCModeZoomed = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -63,7 +65,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerImages.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize) (this.picImageViewer)).BeginInit();
       this.pnlImageChooser.SuspendLayout();
-      this.tabViewerStringTable.SuspendLayout();
+      this.tabViewerGeneral.SuspendLayout();
       this.pnlNoViewers.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -131,6 +133,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.mnuPCModeStretched, "mnuPCModeStretched");
       this.mnuPCModeStretched.Click += new System.EventHandler(this.mnuPCModeStretched_Click);
       // 
+      // mnuPCModeZoomed
+      // 
+      this.mnuPCModeZoomed.Index = 3;
+      resources.ApplyResources(this.mnuPCModeZoomed, "mnuPCModeZoomed");
+      this.mnuPCModeZoomed.Click += new System.EventHandler(this.mnuPCModeZoomed_Click);
+      // 
       // mnuPCBackground
       // 
       this.mnuPCBackground.Index = 1;
@@ -172,23 +180,36 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       resources.ApplyResources(this.dlgSavePicture, "dlgSavePicture");
       // 
-      // mnuStringTableContext
+      // mnuEntryListContext
       // 
-      this.mnuStringTableContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuSTCCopyRow,
-            this.mnuSTCCopyField});
-      this.mnuStringTableContext.Popup += new System.EventHandler(this.mnuStringTableContext_Popup);
+      this.mnuEntryListContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuELCProperties,
+            this.mnuELCSep,
+            this.mnuELCCopyRow,
+            this.mnuELCCopyField});
+      this.mnuEntryListContext.Popup += new System.EventHandler(this.mnuStringTableContext_Popup);
       // 
-      // mnuSTCCopyRow
+      // mnuELCProperties
       // 
-      this.mnuSTCCopyRow.Index = 0;
-      resources.ApplyResources(this.mnuSTCCopyRow, "mnuSTCCopyRow");
-      this.mnuSTCCopyRow.Click += new System.EventHandler(this.mnuSTCCopyRow_Click);
+      this.mnuELCProperties.Index = 0;
+      resources.ApplyResources(this.mnuELCProperties, "mnuELCProperties");
+      this.mnuELCProperties.Click += new System.EventHandler(this.mnuSTCProperties_Click);
       // 
-      // mnuSTCCopyField
+      // mnuELCSep
       // 
-      this.mnuSTCCopyField.Index = 1;
-      resources.ApplyResources(this.mnuSTCCopyField, "mnuSTCCopyField");
+      this.mnuELCSep.Index = 1;
+      resources.ApplyResources(this.mnuELCSep, "mnuELCSep");
+      // 
+      // mnuELCCopyRow
+      // 
+      this.mnuELCCopyRow.Index = 2;
+      resources.ApplyResources(this.mnuELCCopyRow, "mnuELCCopyRow");
+      this.mnuELCCopyRow.Click += new System.EventHandler(this.mnuSTCCopyRow_Click);
+      // 
+      // mnuELCCopyField
+      // 
+      this.mnuELCCopyField.Index = 3;
+      resources.ApplyResources(this.mnuELCCopyField, "mnuELCCopyField");
       // 
       // mnuMain
       // 
@@ -226,7 +247,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       this.tabViewers.Controls.Add(this.tabViewerItems);
       this.tabViewers.Controls.Add(this.tabViewerImages);
-      this.tabViewers.Controls.Add(this.tabViewerStringTable);
+      this.tabViewers.Controls.Add(this.tabViewerGeneral);
       resources.ApplyResources(this.tabViewers, "tabViewers");
       this.tabViewers.Name = "tabViewers";
       this.tabViewers.SelectedIndex = 0;
@@ -321,23 +342,24 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.lblImageChooser, "lblImageChooser");
       this.lblImageChooser.Name = "lblImageChooser";
       // 
-      // tabViewerStringTable
+      // tabViewerGeneral
       // 
-      this.tabViewerStringTable.Controls.Add(this.lstEntries);
-      resources.ApplyResources(this.tabViewerStringTable, "tabViewerStringTable");
-      this.tabViewerStringTable.Name = "tabViewerStringTable";
-      this.tabViewerStringTable.UseVisualStyleBackColor = true;
+      this.tabViewerGeneral.Controls.Add(this.lstEntries);
+      resources.ApplyResources(this.tabViewerGeneral, "tabViewerGeneral");
+      this.tabViewerGeneral.Name = "tabViewerGeneral";
+      this.tabViewerGeneral.UseVisualStyleBackColor = true;
       // 
       // lstEntries
       // 
       this.lstEntries.AllowColumnReorder = true;
-      this.lstEntries.ContextMenu = this.mnuStringTableContext;
+      this.lstEntries.ContextMenu = this.mnuEntryListContext;
       resources.ApplyResources(this.lstEntries, "lstEntries");
       this.lstEntries.FullRowSelect = true;
       this.lstEntries.GridLines = true;
       this.lstEntries.Name = "lstEntries";
       this.lstEntries.UseCompatibleStateImageBehavior = false;
       this.lstEntries.View = System.Windows.Forms.View.Details;
+      this.lstEntries.DoubleClick += new System.EventHandler(this.lstEntries_DoubleClick);
       this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
       // 
       // pnlNoViewers
@@ -357,12 +379,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
-      // mnuPCModeZoomed
-      // 
-      this.mnuPCModeZoomed.Index = 3;
-      resources.ApplyResources(this.mnuPCModeZoomed, "mnuPCModeZoomed");
-      this.mnuPCModeZoomed.Click += new System.EventHandler(this.mnuPCModeZoomed_Click);
-      // 
       // MainWindow
       // 
       resources.ApplyResources(this, "$this");
@@ -378,7 +394,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerImages.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize) (this.picImageViewer)).EndInit();
       this.pnlImageChooser.ResumeLayout(false);
-      this.tabViewerStringTable.ResumeLayout(false);
+      this.tabViewerGeneral.ResumeLayout(false);
       this.pnlNoViewers.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -401,7 +417,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuPCModeStretched;
     private System.Windows.Forms.MenuItem mnuPCBackground;
     private System.Windows.Forms.MenuItem mnuPCSaveAs;
-    private System.Windows.Forms.ContextMenu mnuStringTableContext;
+    private System.Windows.Forms.ContextMenu mnuEntryListContext;
     private System.Windows.Forms.Panel pnlViewerArea;
     private System.Windows.Forms.MenuItem mnuWindows;
     private System.Windows.Forms.TabControl tabViewers;
@@ -420,13 +436,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuOSettings;
     private PlayOnline.FFXI.ItemEditor ieItemViewer;
     private System.Windows.Forms.Button btnImageSaveAll;
-    private System.Windows.Forms.MenuItem mnuSTCCopyRow;
-    private System.Windows.Forms.MenuItem mnuSTCCopyField;
+    private System.Windows.Forms.MenuItem mnuELCCopyRow;
+    private System.Windows.Forms.MenuItem mnuELCCopyField;
     private System.Windows.Forms.SaveFileDialog dlgExportFile;
     private System.Windows.Forms.ThemedTabPage tabViewerImages;
     private System.Windows.Forms.ThemedTabPage tabViewerItems;
-    private System.Windows.Forms.ThemedTabPage tabViewerStringTable;
+    private System.Windows.Forms.ThemedTabPage tabViewerGeneral;
     private System.Windows.Forms.MenuItem mnuPCModeZoomed;
+    private System.Windows.Forms.MenuItem mnuELCProperties;
+    private System.Windows.Forms.MenuItem mnuELCSep;
 
   }
 

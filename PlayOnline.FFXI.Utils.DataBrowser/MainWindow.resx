@@ -225,16 +225,22 @@
   <data name="dlgSavePicture.Title" xml:space="preserve">
     <value>Save Picture As...</value>
   </data>
-  <metadata name="mnuStringTableContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mnuEntryListContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>411, 17</value>
   </metadata>
-  <data name="mnuSTCCopyRow.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms">
+  <data name="mnuELCProperties.Text" xml:space="preserve">
+    <value>&amp;Properties...</value>
+  </data>
+  <data name="mnuELCSep.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="mnuELCCopyRow.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms">
     <value>CtrlC</value>
   </data>
-  <data name="mnuSTCCopyRow.Text" xml:space="preserve">
+  <data name="mnuELCCopyRow.Text" xml:space="preserve">
     <value>Copy &amp;Row</value>
   </data>
-  <data name="mnuSTCCopyField.Text" xml:space="preserve">
+  <data name="mnuELCCopyField.Text" xml:space="preserve">
     <value>Copy &amp;Field</value>
   </data>
   <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -598,33 +604,33 @@
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lstEntries.Parent" xml:space="preserve">
-    <value>tabViewerStringTable</value>
+    <value>tabViewerGeneral</value>
   </data>
   <data name="&gt;&gt;lstEntries.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabViewerStringTable.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabViewerGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabViewerStringTable.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabViewerGeneral.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 395</value>
   </data>
-  <data name="tabViewerStringTable.TabIndex" type="System.Int32, mscorlib">
+  <data name="tabViewerGeneral.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tabViewerStringTable.Text" xml:space="preserve">
-    <value>String Table</value>
+  <data name="tabViewerGeneral.Text" xml:space="preserve">
+    <value>General Contents</value>
   </data>
-  <data name="&gt;&gt;tabViewerStringTable.Name" xml:space="preserve">
-    <value>tabViewerStringTable</value>
+  <data name="&gt;&gt;tabViewerGeneral.Name" xml:space="preserve">
+    <value>tabViewerGeneral</value>
   </data>
-  <data name="&gt;&gt;tabViewerStringTable.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabViewerGeneral.Type" xml:space="preserve">
     <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
-  <data name="&gt;&gt;tabViewerStringTable.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabViewerGeneral.Parent" xml:space="preserve">
     <value>tabViewers</value>
   </data>
-  <data name="&gt;&gt;tabViewerStringTable.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tabViewerGeneral.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="tabViewers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -792,6 +798,12 @@
   <data name="&gt;&gt;mnuPCModeStretched.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mnuPCModeZoomed.Name" xml:space="preserve">
+    <value>mnuPCModeZoomed</value>
+  </data>
+  <data name="&gt;&gt;mnuPCModeZoomed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mnuPCBackground.Name" xml:space="preserve">
     <value>mnuPCBackground</value>
   </data>
@@ -828,22 +840,34 @@
   <data name="&gt;&gt;dlgSavePicture.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuStringTableContext.Name" xml:space="preserve">
-    <value>mnuStringTableContext</value>
+  <data name="&gt;&gt;mnuEntryListContext.Name" xml:space="preserve">
+    <value>mnuEntryListContext</value>
   </data>
-  <data name="&gt;&gt;mnuStringTableContext.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnuEntryListContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuSTCCopyRow.Name" xml:space="preserve">
-    <value>mnuSTCCopyRow</value>
+  <data name="&gt;&gt;mnuELCProperties.Name" xml:space="preserve">
+    <value>mnuELCProperties</value>
   </data>
-  <data name="&gt;&gt;mnuSTCCopyRow.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnuELCProperties.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnuSTCCopyField.Name" xml:space="preserve">
-    <value>mnuSTCCopyField</value>
+  <data name="&gt;&gt;mnuELCSep.Name" xml:space="preserve">
+    <value>mnuELCSep</value>
   </data>
-  <data name="&gt;&gt;mnuSTCCopyField.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnuELCSep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCCopyRow.Name" xml:space="preserve">
+    <value>mnuELCCopyRow</value>
+  </data>
+  <data name="&gt;&gt;mnuELCCopyRow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCCopyField.Name" xml:space="preserve">
+    <value>mnuELCCopyField</value>
+  </data>
+  <data name="&gt;&gt;mnuELCCopyField.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
@@ -875,12 +899,6 @@
   </data>
   <data name="&gt;&gt;dlgExportFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnuPCModeZoomed.Name" xml:space="preserve">
-    <value>mnuPCModeZoomed</value>
-  </data>
-  <data name="&gt;&gt;mnuPCModeZoomed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>

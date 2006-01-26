@@ -7,7 +7,8 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
+using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.PropertyPages {
 
@@ -16,6 +17,8 @@ namespace PlayOnline.FFXI.PropertyPages {
     public Thing(FFXI.IThing T) {
       InitializeComponent();
       this.picIcon.Image = T.GetIcon();
+      if (this.picIcon.Image == null)
+	this.picIcon.Image = Icons.POLViewer.ToBitmap();
       this.lblText.Text = T.ToString();
       this.lblTypeName.Text = T.TypeName;
       this.AddFieldEntries(T);

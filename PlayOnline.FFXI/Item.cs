@@ -27,12 +27,6 @@ namespace PlayOnline.FFXI {
     public override List<PropertyPages.IThing> GetPropertyPages() {
     List<PropertyPages.IThing> Pages = base.GetPropertyPages();
       Pages.Add(new PropertyPages.Item(this));
-      if (this.Icon_ != null) {
-      List<PropertyPages.IThing> SubPages = this.Icon_.GetPropertyPages();
-	foreach (PropertyPages.IThing PP in SubPages)
-	  PP.TabName = String.Format("{0} - {1}", this.GetFieldName("icon"), PP.TabName);
-	Pages.AddRange(SubPages);
-      }
       return Pages;
     }
 
@@ -79,11 +73,11 @@ namespace PlayOnline.FFXI {
 	  "reuse-delay",
 	  // Special Stuff
 	  "icon",
-	  "unknown-short-1",
-	  "unknown-short-2",
-	  "unknown-short-3",
-	  "unknown-short-4",
-	  "unknown-short-5",
+	  "unknown-1",
+	  "unknown-2",
+	  "unknown-3",
+	  "unknown-4",
+	  "unknown-5",
 	});
       }
     }
@@ -132,11 +126,11 @@ namespace PlayOnline.FFXI {
     private Nullable<uint>          ReuseDelay_;
     // Special
     private Graphic                 Icon_;
-    private Nullable<ushort>        UnknownShort1_;
-    private Nullable<ushort>        UnknownShort2_;
-    private Nullable<ushort>        UnknownShort3_;
-    private Nullable<ushort>        UnknownShort4_;
-    private Nullable<ushort>        UnknownShort5_;
+    private Nullable<ushort>        Unknown1_;
+    private Nullable<ushort>        Unknown2_;
+    private Nullable<ushort>        Unknown3_;
+    private Nullable<ushort>        Unknown4_;
+    private Nullable<ushort>        Unknown5_;
     
     #endregion
 
@@ -172,11 +166,11 @@ namespace PlayOnline.FFXI {
       this.UseDelay_        = null;
       this.ReuseDelay_      = null;
       this.Icon_            = null;
-      this.UnknownShort1_   = null;
-      this.UnknownShort2_   = null;
-      this.UnknownShort3_   = null;
-      this.UnknownShort4_   = null;
-      this.UnknownShort5_   = null;
+      this.Unknown1_        = null;
+      this.Unknown2_        = null;
+      this.Unknown3_        = null;
+      this.Unknown4_        = null;
+      this.Unknown5_        = null;
     }
 
     #endregion
@@ -214,34 +208,15 @@ namespace PlayOnline.FFXI {
 	case "stack-size":        return this.StackSize_.HasValue;
 	case "storage-slots":     return this.StorageSlots_.HasValue;
 	case "type":              return this.Type_.HasValue;
-	case "unknown-short-1":   return this.UnknownShort1_.HasValue;
-	case "unknown-short-2":   return this.UnknownShort2_.HasValue;
-	case "unknown-short-3":   return this.UnknownShort3_.HasValue;
-	case "unknown-short-4":   return this.UnknownShort4_.HasValue;
-	case "unknown-short-5":   return this.UnknownShort5_.HasValue;
+	case "unknown-1":         return this.Unknown1_.HasValue;
+	case "unknown-2":         return this.Unknown2_.HasValue;
+	case "unknown-3":         return this.Unknown3_.HasValue;
+	case "unknown-4":         return this.Unknown4_.HasValue;
+	case "unknown-5":         return this.Unknown5_.HasValue;
 	case "use-delay":         return this.UseDelay_.HasValue;
 	case "valid-targets":     return this.ValidTargets_.HasValue;
 	default:                  return false;
       }
-    }
-
-    private string FormatTime(double time) {
-    double seconds = time % 60;
-    long minutes = (long) (time - seconds) / 60;
-    long hours = minutes / 60;
-      minutes %= 60;
-    long days = hours / 24;
-      hours %= 24;
-    string Result = String.Empty;
-      if (days > 0)
-	Result += String.Format("{0}d", days);
-      if (hours > 0)
-	Result += String.Format("{0}h", hours);
-      if (minutes > 0)
-	Result += String.Format("{0}m", minutes);
-      if (seconds > 0 || Result == String.Empty)
-	Result += String.Format("{0}s", seconds);
-      return Result;
     }
 
     public override string GetFieldText(string Field) {
@@ -273,11 +248,11 @@ namespace PlayOnline.FFXI {
 	// Nullables - Hex Values
 	case "id":                return (!this.ID_.HasValue             ? String.Empty : String.Format("{0:X8}", this.ID_.Value));
 	case "resource-id":       return (!this.ResourceID_.HasValue     ? String.Empty : String.Format("{0:X4}", this.ResourceID_.Value));
-	case "unknown-short-1":   return (!this.UnknownShort1_.HasValue  ? String.Empty : String.Format("{0:X4} ({0})", this.UnknownShort1_.Value));
-	case "unknown-short-2":   return (!this.UnknownShort2_.HasValue  ? String.Empty : String.Format("{0:X4} ({0})", this.UnknownShort2_.Value));
-	case "unknown-short-3":   return (!this.UnknownShort3_.HasValue  ? String.Empty : String.Format("{0:X4} ({0})", this.UnknownShort3_.Value));
-	case "unknown-short-4":   return (!this.UnknownShort4_.HasValue  ? String.Empty : String.Format("{0:X4} ({0})", this.UnknownShort4_.Value));
-	case "unknown-short-5":   return (!this.UnknownShort5_.HasValue  ? String.Empty : String.Format("{0:X4} ({0})", this.UnknownShort5_.Value));
+	case "unknown-1":         return (!this.Unknown1_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
+	case "unknown-2":         return (!this.Unknown2_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown2_.Value));
+	case "unknown-3":         return (!this.Unknown3_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown3_.Value));
+	case "unknown-4":         return (!this.Unknown4_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown4_.Value));
+	case "unknown-5":         return (!this.Unknown5_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown5_.Value));
 	// Nullables - Time Values
 	case "activation-time":   return (!this.ActivationTime_.HasValue ? String.Empty : this.FormatTime(this.ActivationTime_.Value / 4.0));
 	case "casting-time":      return (!this.CastingTime_.HasValue    ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
@@ -299,34 +274,34 @@ namespace PlayOnline.FFXI {
 	case "log-name-plural":   return this.LogNamePlural_;
 	case "log-name-singular": return this.LogNameSingular_;
 	// Nullables
-	case "activation-time":   return (this.ActivationTime_.HasValue ? (object) this.ActivationTime_.Value   : null);
-	case "casting-time":      return (this.CastingTime_.HasValue    ? (object) this.CastingTime_.Value   : null);
-	case "damage":            return (this.Damage_.HasValue         ? (object) this.Damage_.Value        : null);
-	case "delay":             return (this.Delay_.HasValue          ? (object) this.Delay_.Value         : null);
-	case "dps":               return (this.DPS_.HasValue            ? (object) this.DPS_.Value           : null);
-	case "element":           return (this.Element_.HasValue        ? (object) this.Element_.Value       : null);
-	case "flags":             return (this.Flags_.HasValue          ? (object) this.Flags_.Value         : null);
-	case "id":                return (this.ID_.HasValue             ? (object) this.ID_.Value            : null);
-	case "jobs":              return (this.Jobs_.HasValue           ? (object) this.Jobs_.Value          : null);
-	case "jug-size":          return (this.JugSize_.HasValue        ? (object) this.JugSize_.Value       : null);
-	case "level":             return (this.Level_.HasValue          ? (object) this.Level_.Value         : null);
-	case "max-charges":       return (this.MaxCharges_.HasValue     ? (object) this.MaxCharges_.Value    : null);
-	case "races":             return (this.Races_.HasValue          ? (object) this.Races_.Value         : null);
-	case "resource-id":       return (this.ResourceID_.HasValue     ? (object) this.ResourceID_.Value    : null);
-	case "reuse-delay":       return (this.ReuseDelay_.HasValue     ? (object) this.ReuseDelay_.Value    : null);
-	case "shield-size":       return (this.ShieldSize_.HasValue     ? (object) this.ShieldSize_.Value    : null);
-	case "skill":             return (this.Skill_.HasValue          ? (object) this.Skill_.Value         : null);
-	case "slots":             return (this.Slots_.HasValue          ? (object) this.Slots_.Value         : null);
-	case "stack-size":        return (this.StackSize_.HasValue      ? (object) this.StackSize_.Value     : null);
-	case "storage-slots":     return (this.StorageSlots_.HasValue   ? (object) this.StorageSlots_.Value  : null);
-	case "type":              return (this.Type_.HasValue           ? (object) this.Type_.Value          : null);
-	case "unknown-short-1":   return (this.UnknownShort1_.HasValue  ? (object) this.UnknownShort1_.Value : null);
-	case "unknown-short-2":   return (this.UnknownShort2_.HasValue  ? (object) this.UnknownShort2_.Value : null);
-	case "unknown-short-3":   return (this.UnknownShort3_.HasValue  ? (object) this.UnknownShort3_.Value : null);
-	case "unknown-short-4":   return (this.UnknownShort4_.HasValue  ? (object) this.UnknownShort4_.Value : null);
-	case "unknown-short-5":   return (this.UnknownShort5_.HasValue  ? (object) this.UnknownShort5_.Value : null);
-	case "use-delay":         return (this.UseDelay_.HasValue       ? (object) this.UseDelay_.Value      : null);
-	case "valid-targets":     return (this.ValidTargets_.HasValue   ? (object) this.ValidTargets_.Value  : null);
+	case "activation-time":   return (!this.ActivationTime_.HasValue ? null : (object) this.ActivationTime_.Value);
+	case "casting-time":      return (!this.CastingTime_.HasValue    ? null : (object) this.CastingTime_.Value);
+	case "damage":            return (!this.Damage_.HasValue         ? null : (object) this.Damage_.Value);
+	case "delay":             return (!this.Delay_.HasValue          ? null : (object) this.Delay_.Value);
+	case "dps":               return (!this.DPS_.HasValue            ? null : (object) this.DPS_.Value);
+	case "element":           return (!this.Element_.HasValue        ? null : (object) this.Element_.Value);
+	case "flags":             return (!this.Flags_.HasValue          ? null : (object) this.Flags_.Value);
+	case "id":                return (!this.ID_.HasValue             ? null : (object) this.ID_.Value);
+	case "jobs":              return (!this.Jobs_.HasValue           ? null : (object) this.Jobs_.Value);
+	case "jug-size":          return (!this.JugSize_.HasValue        ? null : (object) this.JugSize_.Value);
+	case "level":             return (!this.Level_.HasValue          ? null : (object) this.Level_.Value);
+	case "max-charges":       return (!this.MaxCharges_.HasValue     ? null : (object) this.MaxCharges_.Value);
+	case "races":             return (!this.Races_.HasValue          ? null : (object) this.Races_.Value);
+	case "resource-id":       return (!this.ResourceID_.HasValue     ? null : (object) this.ResourceID_.Value);
+	case "reuse-delay":       return (!this.ReuseDelay_.HasValue     ? null : (object) this.ReuseDelay_.Value);
+	case "shield-size":       return (!this.ShieldSize_.HasValue     ? null : (object) this.ShieldSize_.Value);
+	case "skill":             return (!this.Skill_.HasValue          ? null : (object) this.Skill_.Value);
+	case "slots":             return (!this.Slots_.HasValue          ? null : (object) this.Slots_.Value);
+	case "stack-size":        return (!this.StackSize_.HasValue      ? null : (object) this.StackSize_.Value);
+	case "storage-slots":     return (!this.StorageSlots_.HasValue   ? null : (object) this.StorageSlots_.Value);
+	case "type":              return (!this.Type_.HasValue           ? null : (object) this.Type_.Value);
+	case "unknown-1":         return (!this.Unknown1_.HasValue       ? null : (object) this.Unknown1_.Value);
+	case "unknown-2":         return (!this.Unknown2_.HasValue       ? null : (object) this.Unknown2_.Value);
+	case "unknown-3":         return (!this.Unknown3_.HasValue       ? null : (object) this.Unknown3_.Value);
+	case "unknown-4":         return (!this.Unknown4_.HasValue       ? null : (object) this.Unknown4_.Value);
+	case "unknown-5":         return (!this.Unknown5_.HasValue       ? null : (object) this.Unknown5_.Value);
+	case "use-delay":         return (!this.UseDelay_.HasValue       ? null : (object) this.UseDelay_.Value);
+	case "valid-targets":     return (!this.ValidTargets_.HasValue   ? null : (object) this.ValidTargets_.Value);
 	default:                  return null;
       }
     }
@@ -360,11 +335,11 @@ namespace PlayOnline.FFXI {
 	case "stack-size":        this.StackSize_       = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
 	case "storage-slots":     this.StorageSlots_    = (short)         this.LoadSignedIntegerField  (Node);             break;
 	case "type":              this.Type_            = (ItemType)      this.LoadHexField            (Node);             break;
-	case "unknown-short-1":   this.UnknownShort1_   = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-short-2":   this.UnknownShort2_   = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-short-3":   this.UnknownShort3_   = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-short-4":   this.UnknownShort4_   = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-short-5":   this.UnknownShort5_   = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
+	case "unknown-1":         this.Unknown1_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
+	case "unknown-2":         this.Unknown2_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
+	case "unknown-3":         this.Unknown3_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
+	case "unknown-4":         this.Unknown4_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
+	case "unknown-5":         this.Unknown5_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
 	case "use-delay":         this.UseDelay_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
 	case "valid-targets":     this.ValidTargets_    = (ValidTarget)   this.LoadHexField            (Node);             break;
 	// Sub-Things
@@ -459,7 +434,7 @@ namespace PlayOnline.FFXI {
 	this.EnglishName_  = E.GetString(BR.ReadBytes(22)).TrimEnd('\0');
 	if (L == Language.English) {
 	  BR.BaseStream.Seek(10, SeekOrigin.Current); // 10 NULs
-	  this.UnknownShort1_   = BR.ReadUInt16();
+	  this.Unknown1_        = BR.ReadUInt16();
 	  this.LogNameSingular_ = E.GetString(BR.ReadBytes(64)).TrimEnd('\0');
 	  this.LogNamePlural_   = E.GetString(BR.ReadBytes(64)).TrimEnd('\0');
 	}
@@ -468,15 +443,15 @@ namespace PlayOnline.FFXI {
       // Extra Fields
       if (T == Type.Armor || T == Type.Weapon) {
 	if (T == Type.Weapon) {
-	  this.UnknownShort2_ = BR.ReadUInt16();
-	  this.UnknownShort3_ = BR.ReadUInt16();
-	  this.UnknownShort4_ = BR.ReadUInt16();
+	  this.Unknown2_ = BR.ReadUInt16();
+	  this.Unknown3_ = BR.ReadUInt16();
+	  this.Unknown4_ = BR.ReadUInt16();
 	}
-	this.UnknownShort5_ = BR.ReadUInt16();
-	this.MaxCharges_    = BR.ReadByte();
-	this.CastingTime_   = BR.ReadByte();
-	this.UseDelay_      = BR.ReadUInt16();
-	this.ReuseDelay_    = BR.ReadUInt32();
+	this.Unknown5_    = BR.ReadUInt16();
+	this.MaxCharges_  = BR.ReadByte();
+	this.CastingTime_ = BR.ReadByte();
+	this.UseDelay_    = BR.ReadUInt16();
+	this.ReuseDelay_  = BR.ReadUInt32();
       }
       else {
 	switch (this.Type_.Value) { // "Furniture" has extra fields

@@ -70,12 +70,12 @@ namespace PlayOnline.FFXI {
 	case "type":              return this.txtType;
 	case "use-delay":         return this.txtEquipDelay;
 	case "valid-targets":     return this.txtValidTargets;
-	//case "unknown-short-1": return this.txtUnknown1;
-	//case "unknown-short-2": return this.txtUnknown2;
-	//case "unknown-short-3": return this.txtUnknown3;
-	//case "unknown-short-4": return this.txtUnknown4;
-	//case "unknown-short-5": return this.txtUnknown5;
-	//case "unknown-short-6": return this.txtUnknown5;
+	//case "unknown-1":       return this.txtUnknown1;
+	//case "unknown-2":       return this.txtUnknown2;
+	//case "unknown-3":       return this.txtUnknown3;
+	//case "unknown-4":       return this.txtUnknown4;
+	//case "unknown-5":       return this.txtUnknown5;
+	//case "unknown-6":       return this.txtUnknown5;
       }
       return null;
     }

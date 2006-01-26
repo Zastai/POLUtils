@@ -94,19 +94,19 @@ namespace PlayOnline.FFXI {
     #region Data Fields
 
     private String           Format_;
-    private Nullable<Byte>   Flag_;
+    private Nullable<byte>   Flag_;
     private String           Category_;
     private String           ID_;
-    private Nullable<Int32>  Width_;
-    private Nullable<Int32>  Height_;
-    private Nullable<UInt16> Planes_;
-    private Nullable<UInt16> BitCount_;
-    private Nullable<UInt32> Compression_;
-    private Nullable<UInt32> ImageSize_;
-    private Nullable<UInt32> HorizontalResolution_;
-    private Nullable<UInt32> VerticalResolution_;
-    private Nullable<UInt32> UsedColors_;
-    private Nullable<UInt32> ImportantColors_;
+    private Nullable<int>    Width_;
+    private Nullable<int>    Height_;
+    private Nullable<ushort> Planes_;
+    private Nullable<ushort> BitCount_;
+    private Nullable<uint>   Compression_;
+    private Nullable<uint>   ImageSize_;
+    private Nullable<uint>   HorizontalResolution_;
+    private Nullable<uint>   VerticalResolution_;
+    private Nullable<uint>   UsedColors_;
+    private Nullable<uint>   ImportantColors_;
     private Image            Image_;
     
     #endregion
@@ -144,17 +144,17 @@ namespace PlayOnline.FFXI {
 	case "id":                    return this.ID_;
 	case "image":                 return I18N.GetText("ImageText");
 	// Nullables
-	case "bits":                  return (this.BitCount_.HasValue             ? this.BitCount_.Value.ToString()             : null);
-	case "compression":           return (this.Compression_.HasValue          ? this.Compression_.Value.ToString()          : null);
-	case "flag":                  return (this.Flag_.HasValue                 ? String.Format("{0:X2}", this.Flag_.Value)   : null);
-	case "height":                return (this.Height_.HasValue               ? this.Height_.Value.ToString()               : null);
-	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? this.HorizontalResolution_.Value.ToString() : null);
-	case "important-colors":      return (this.ImportantColors_.HasValue      ? this.ImportantColors_.Value.ToString()      : null);
-	case "planes":                return (this.Planes_.HasValue               ? this.Planes_.Value.ToString()               : null);
-	case "size":                  return (this.ImageSize_.HasValue            ? this.ImageSize_.Value.ToString()            : null);
-	case "used-colors":           return (this.UsedColors_.HasValue           ? this.UsedColors_.Value.ToString()           : null);
-	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? this.VerticalResolution_.Value.ToString()   : null);
-	case "width":                 return (this.Width_.HasValue                ? this.Width_.Value.ToString()                : null);
+	case "bits":                  return (!this.BitCount_.HasValue             ? String.Empty : this.BitCount_.Value.ToString());
+	case "compression":           return (!this.Compression_.HasValue          ? String.Empty : this.Compression_.Value.ToString());
+	case "flag":                  return (!this.Flag_.HasValue                 ? String.Empty : String.Format("{0:X2}", this.Flag_.Value));
+	case "height":                return (!this.Height_.HasValue               ? String.Empty : this.Height_.Value.ToString());
+	case "horizontal-resolution": return (!this.HorizontalResolution_.HasValue ? String.Empty : this.HorizontalResolution_.Value.ToString());
+	case "important-colors":      return (!this.ImportantColors_.HasValue      ? String.Empty : this.ImportantColors_.Value.ToString());
+	case "planes":                return (!this.Planes_.HasValue               ? String.Empty : this.Planes_.Value.ToString());
+	case "size":                  return (!this.ImageSize_.HasValue            ? String.Empty : this.ImageSize_.Value.ToString());
+	case "used-colors":           return (!this.UsedColors_.HasValue           ? String.Empty : this.UsedColors_.Value.ToString());
+	case "vertical-resolution":   return (!this.VerticalResolution_.HasValue   ? String.Empty : this.VerticalResolution_.Value.ToString());
+	case "width":                 return (!this.Width_.HasValue                ? String.Empty : this.Width_.Value.ToString());
 	default:                      return null;
       }
     }
@@ -167,17 +167,17 @@ namespace PlayOnline.FFXI {
 	case "id":                    return this.ID_;
 	case "image":                 return this.Image_;
 	// Nullables
-	case "bits":                  return (this.BitCount_.HasValue             ? (object) this.BitCount_.Value             : null);
-	case "compression":           return (this.Compression_.HasValue          ? (object) this.Compression_.Value          : null);
-	case "flag":                  return (this.Flag_.HasValue                 ? (object) this.Flag_.Value                 : null);
-	case "height":                return (this.Height_.HasValue               ? (object) this.Height_.Value               : null);
-	case "horizontal-resolution": return (this.HorizontalResolution_.HasValue ? (object) this.HorizontalResolution_.Value : null);
-	case "important-colors":      return (this.ImportantColors_.HasValue      ? (object) this.ImportantColors_.Value      : null);
-	case "planes":                return (this.Planes_.HasValue               ? (object) this.Planes_.Value               : null);
-	case "size":                  return (this.ImageSize_.HasValue            ? (object) this.ImageSize_.Value            : null);
-	case "used-colors":           return (this.UsedColors_.HasValue           ? (object) this.UsedColors_.Value           : null);
-	case "vertical-resolution":   return (this.VerticalResolution_.HasValue   ? (object) this.VerticalResolution_.Value   : null);
-	case "width":                 return (this.Width_.HasValue                ? (object) this.Width_.Value                : null);
+	case "bits":                  return (!this.BitCount_.HasValue             ? null : (object) this.BitCount_.Value);
+	case "compression":           return (!this.Compression_.HasValue          ? null : (object) this.Compression_.Value);
+	case "flag":                  return (!this.Flag_.HasValue                 ? null : (object) this.Flag_.Value);
+	case "height":                return (!this.Height_.HasValue               ? null : (object) this.Height_.Value);
+	case "horizontal-resolution": return (!this.HorizontalResolution_.HasValue ? null : (object) this.HorizontalResolution_.Value);
+	case "important-colors":      return (!this.ImportantColors_.HasValue      ? null : (object) this.ImportantColors_.Value);
+	case "planes":                return (!this.Planes_.HasValue               ? null : (object) this.Planes_.Value);
+	case "size":                  return (!this.ImageSize_.HasValue            ? null : (object) this.ImageSize_.Value);
+	case "used-colors":           return (!this.UsedColors_.HasValue           ? null : (object) this.UsedColors_.Value);
+	case "vertical-resolution":   return (!this.VerticalResolution_.HasValue   ? null : (object) this.VerticalResolution_.Value);
+	case "width":                 return (!this.Width_.HasValue                ? null : (object) this.Width_.Value);
 	default:                      return null;
       }
     }

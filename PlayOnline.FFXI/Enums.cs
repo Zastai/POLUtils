@@ -4,17 +4,26 @@ using System;
 
 namespace PlayOnline.FFXI {
 
+  public enum AbilityType : byte {
+    General   = 0x00,
+    Job       = 0x01,
+    Beast     = 0x02,
+    Weapon    = 0x03,
+    Trait     = 0x04,
+    BloodPact = 0x06,
+  }
+
   public enum Element : byte {
-    Fire,
-    Ice,
-    Wind,
-    Earth,
-    Thunder,
-    Water,
-    Light,
-    Dark,
-    Special   = 15, // this is the element set on the Meteor spell
-    Undecided = 255 // this is the element set on inactive furnishing items in the item data
+    Fire      = 0x00,
+    Ice       = 0x01,
+    Wind      = 0x02,
+    Earth     = 0x03,
+    Thunder   = 0x04,
+    Water     = 0x05,
+    Light     = 0x06,
+    Dark      = 0x07,
+    Special   = 0x0f, // this is the element set on the Meteor spell
+    Undecided = 0xff // this is the element set on inactive furnishing items in the item data
   }
 
   [Flags]
@@ -88,33 +97,49 @@ namespace PlayOnline.FFXI {
 
   [Flags]
   public enum Job : uint {
-    None = 0x0000,
-    All  = 0xFFFE,
+    None  = 0x00000000,
+    All   = 0x0000FFFE, // Masks valid jobs
     // Specific
-    WAR  = 0x0002,
-    MNK  = 0x0004,
-    WHM  = 0x0008,
-    BLM  = 0x0010,
-    RDM  = 0x0020,
-    THF  = 0x0040,
-    PLD  = 0x0080,
-    DRK  = 0x0100,
-    BST  = 0x0200,
-    BRD  = 0x0400,
-    RNG  = 0x0800,
-    SAM  = 0x1000,
-    NIN  = 0x2000,
-    DRG  = 0x4000,
-    SMN  = 0x8000,
+    WAR   = 0x00000002,
+    MNK   = 0x00000004,
+    WHM   = 0x00000008,
+    BLM   = 0x00000010,
+    RDM   = 0x00000020,
+    THF   = 0x00000040,
+    PLD   = 0x00000080,
+    DRK   = 0x00000100,
+    BST   = 0x00000200,
+    BRD   = 0x00000400,
+    RNG   = 0x00000800,
+    SAM   = 0x00001000,
+    NIN   = 0x00002000,
+    DRG   = 0x00004000,
+    SMN   = 0x00008000,
+    JOB16 = 0x00010000,
+    JOB17 = 0x00020000,
+    JOB18 = 0x00040000,
+    JOB19 = 0x00080000,
+    JOB20 = 0x00100000,
+    JOB21 = 0x00200000,
+    JOB22 = 0x00400000,
+    JOB23 = 0x00800000,
+    JOB24 = 0x01000000,
+    JOB25 = 0x02000000,
+    JOB26 = 0x04000000,
+    JOB27 = 0x08000000,
+    JOB28 = 0x10000000,
+    JOB29 = 0x20000000,
+    JOB30 = 0x40000000,
+    JOB31 = 0x80000000,
   }
 
   public enum MagicType : byte {
-    None,
-    WhiteMagic,
-    BlackMagic,
-    SummonerPact,
-    Ninjutsu,
-    BardSong
+    None          = 0x00,
+    WhiteMagic    = 0x01,
+    BlackMagic    = 0x02,
+    SummonerPact  = 0x03,
+    Ninjutsu      = 0x04,
+    BardSong      = 0x05
   }
 
   [Flags]
@@ -180,9 +205,9 @@ namespace PlayOnline.FFXI {
     Ally        = 0x08,
     NPC         = 0x10,
     Enemy       = 0x20,
-    Flag40      = 0x40,
-    Flag80      = 0x80,
-    Corpse      = 0x9D
+    Unknown     = 0x40,
+    CorpseOnly  = 0x80,
+    Corpse      = 0x9D // CorpseOnly + NPC + Ally + Partymember + Self
   }
 
 }

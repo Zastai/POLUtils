@@ -337,9 +337,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #endregion
 
-    #region String Table Viewer Events
+    #region General Viewer Events
 
-    private void CopyStringTableRow() {
+    private void CopyEntry() {
     string FullText = String.Empty;
       foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
       string ItemText = String.Empty;
@@ -356,24 +356,38 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Clipboard.SetDataObject(FullText);
     }
 
+    private void lstEntries_DoubleClick(object sender, EventArgs e) {
+      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+      ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
+	TPP.Show(this);
+      }
+    }
+
     private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
       // Support Ctrl-Ins in addition to the Ctrl-C supported by the context menu
       if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Insert)
-	this.CopyStringTableRow();
+	this.CopyEntry();
     }
 
     #region Context Menu Events
 
-    private void mnuSTCCopyRow_Click(object sender, System.EventArgs e) {
-      this.CopyStringTableRow();
+    private void mnuSTCProperties_Click(object sender, EventArgs e) {
+      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+      ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
+	TPP.Show(this);
+      }
     }
 
-    private void StringTableCopyFieldMenuItem_Click(object sender, System.EventArgs e) {
+    private void mnuSTCCopyRow_Click(object sender, System.EventArgs e) {
+      this.CopyEntry();
+    }
+
+    private void CopyEntryFieldMenuItem_Click(object sender, System.EventArgs e) {
     MenuItem MI = sender as MenuItem;
     string CopyText = String.Empty;
       foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
 	if (CopyText != "")
-	  CopyText += '\n';
+	  CopyText += "\r\n";
 	CopyText += LVI.SubItems[MI.Index].Text;
       }
       Clipboard.SetDataObject(CopyText);
@@ -382,13 +396,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void mnuStringTableContext_Popup(object sender, System.EventArgs e) {
       if (this.lstEntries.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
-	this.mnuSTCCopyField.MenuItems.Clear();
+	this.mnuELCCopyField.MenuItems.Clear();
 	foreach (ColumnHeader CH in this.lstEntries.Columns)
-	  this.mnuSTCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.StringTableCopyFieldMenuItem_Click)));
-	this.mnuSTCCopyField.Enabled = true;
+	  this.mnuELCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyEntryFieldMenuItem_Click)));
+	this.mnuELCCopyField.Enabled = true;
       }
       else
-	this.mnuSTCCopyField.Enabled = false;
+	this.mnuELCCopyField.Enabled = false;
     }
 
     #endregion
@@ -409,67 +423,83 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void tvDataFiles_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
       this.ResetViewers();
+      this.LoadedItems_ = null;
     string FileName = this.tvDataFiles.SelectedNode.Tag as string;
       if (FileName != null && File.Exists(FileName)) {
 	this.Enabled = false;
       FileScanDialog FSD = new FileScanDialog(FileName);
+      ThingList<Graphic> LoadedImages = null;
 	if (FSD.ShowDialog(this) == DialogResult.OK) {
-	  if (FSD.StringTableEntries.Count > 0) {
+	  this.LoadedItems_ = new ThingList<Item>();
+	  LoadedImages = new ThingList<Graphic>();
+	  this.lstEntries.SmallImageList = null;
+	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+	  this.lstEntries.Columns.Clear();
+	  this.lstEntries.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
+	  if (FSD.FileContents.Count > 0) {
+	    this.tabViewers.TabPages.Add(this.tabViewerGeneral);
 	    this.tabViewers.Visible = true;
-	    this.tabViewers.TabPages.Add(this.tabViewerStringTable);
 	    Application.DoEvents();
-	    this.lstEntries.Select();
-	    this.lstEntries.SmallImageList = null;
-	  int i = 0;
-	    foreach (Array A in FSD.StringTableEntries) {
-	      if (i == 0) {
-		this.lstEntries.Columns.Clear();
-		this.lstEntries.Columns.Add(I18N.GetText("ColumnHeader:Entry"), 1, HorizontalAlignment.Center);
-		foreach (ColumnHeader CH in A)
-		  this.lstEntries.Columns.Add(CH);
+	  ImageList EntryIcons = new ImageList();
+	    this.lstEntries.SmallImageList = EntryIcons;
+	    foreach (IThing T in FSD.FileContents) {
+	    int IconIndex = -1;
+	      {
+	      Image Icon = T.GetIcon();
+		if (Icon != null) {
+		  IconIndex = EntryIcons.Images.Count;
+		  EntryIcons.Images.Add(Icon);
+		}
 	      }
-	      else {
-	      ListViewItem LVI = this.lstEntries.Items.Add(String.Format("{0:00000000}", i), i - 1);
-		foreach (string S in A)
-		  LVI.SubItems.Add(S);
+	    ListViewItem LVI = this.lstEntries.Items.Add(T.TypeName, IconIndex);
+	      LVI.Tag = T;
+	      for (int i = 1; i < this.lstEntries.Columns.Count; ++i)
+		LVI.SubItems.Add("");
+	      foreach (string Field in T.GetFields()) {
+		if (!this.lstEntries.Columns.ContainsKey(Field)) {
+		  this.lstEntries.Columns.Add(Field, T.GetFieldName(Field), 60, HorizontalAlignment.Left, -1);
+		  LVI.SubItems.Add("");
+		}
+		LVI.SubItems[this.lstEntries.Columns[Field].Index].Text = T.GetFieldText(Field);
 	      }
-	      if ((++i % 100) == 0)
+	      if (T is Item)
+		this.LoadedItems_.Add(T as Item);
+	      else if (T is Graphic)
+		LoadedImages.Add(T as Graphic);
+	      if ((this.lstEntries.Items.Count % 256) == 255)
 		Application.DoEvents();
 	    }
-	    if (FSD.Images.Count == FSD.StringTableEntries.Count - 1) {
-	    ImageList EntryIcons = new ImageList();
-	      foreach (Graphic G in FSD.Images)
-		EntryIcons.Images.Add(G.GetIcon());
-	      this.lstEntries.SmallImageList = EntryIcons;
-	    }
+	    if (EntryIcons.Images.Count == 0)
+	      this.lstEntries.SmallImageList = null;
+	    Application.DoEvents();
 	    foreach (ColumnHeader CH in this.lstEntries.Columns) {
-	      CH.Width = -1;
+	      CH.Width = -2;
 	      CH.Width += 2;
 	    }
+	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
 	    Application.DoEvents();
 	  }
-	  if (FSD.Items.Count > 0) {
-	    this.tabViewers.Visible = true;
-	    this.tabViewers.TabPages.Add(this.tabViewerItems);
-	    this.LoadedItems_ = FSD.Items;
-	    this.cmbItems.Select();
-	    this.cmbItems.SelectedItem = null;
-	    this.cmbItems.Items.AddRange(FSD.Items.ToArray());
-	    this.cmbItems.SelectedIndex = 0;
-	    Application.DoEvents();
-	  }
-	  if (FSD.Images.Count > 0) {
-	    this.tabViewers.Visible = true;
-	    this.tabViewers.TabPages.Add(this.tabViewerImages);
+	  if (LoadedImages != null && LoadedImages.Count > 0) {
 	    this.cmbImageChooser.Select();
 	    this.cmbImageChooser.SelectedItem = null;
-	    this.cmbImageChooser.Items.AddRange(FSD.Images.ToArray());
+	    this.cmbImageChooser.Items.AddRange(LoadedImages.ToArray());
 	    this.cmbImageChooser.SelectedIndex = 0;
+	    this.tabViewers.TabPages.Insert(0, this.tabViewerImages);
+	    Application.DoEvents();
+	  }
+	  if (this.LoadedItems_ != null && this.LoadedItems_.Count > 0) {
+	    this.cmbItems.Select();
+	    this.cmbItems.SelectedItem = null;
+	    this.cmbItems.Items.AddRange(this.LoadedItems_.ToArray());
+	    this.cmbItems.SelectedIndex = 0;
+	    this.tabViewers.TabPages.Insert(0, this.tabViewerItems);
 	    Application.DoEvents();
 	  }
 	}
 	if (!this.tabViewers.Visible)
 	  this.pnlNoViewers.Visible = true;
+	else
+	  this.tabViewers.SelectedIndex = 0;
 	this.Enabled = true;
       }
     }

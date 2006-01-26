@@ -117,105 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GraphicTypeBitmap" xml:space="preserve">
-    <value>{0}-bit Bitmap</value>
-  </data>
-  <data name="GraphicTypeDXT" xml:space="preserve">
-    <value>DirectX Texture ({0})</value>
-  </data>
-  <data name="MacroBarLabel" xml:space="preserve">
-    <value>Macro Bar #{0}</value>
-  </data>
-  <data name="F:Item:id" xml:space="preserve">
-    <value>Item ID</value>
-  </data>
-  <data name="F:Item:flags" xml:space="preserve">
-    <value>Flags</value>
-  </data>
-  <data name="F:Item:stack-size" xml:space="preserve">
-    <value>Stack Size</value>
-  </data>
-  <data name="F:Item:type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="F:Item:english-name" xml:space="preserve">
-    <value>English Name</value>
-  </data>
-  <data name="F:Item:japanese-name" xml:space="preserve">
-    <value>Japanese Name</value>
-  </data>
-  <data name="F:Item:log-name-singular" xml:space="preserve">
-    <value>Log Name (Singular)</value>
-  </data>
-  <data name="F:Item:log-name-plural" xml:space="preserve">
-    <value>Log Name (Plural)</value>
-  </data>
-  <data name="F:Item:description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="F:Item:resource-id" xml:space="preserve">
-    <value>Resource ID</value>
-  </data>
-  <data name="F:Item:level" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="F:Item:slots" xml:space="preserve">
-    <value>Slots</value>
-  </data>
-  <data name="F:Item:races" xml:space="preserve">
-    <value>Races</value>
-  </data>
-  <data name="F:Item:jobs" xml:space="preserve">
-    <value>Jobs</value>
-  </data>
-  <data name="F:Item:max-charges" xml:space="preserve">
-    <value>Max. Charges</value>
-  </data>
-  <data name="F:Item:activation-time" xml:space="preserve">
-    <value>Activation Time</value>
-  </data>
-  <data name="F:Item:casting-time" xml:space="preserve">
-    <value>Casting Time</value>
-  </data>
-  <data name="F:Item:use-delay" xml:space="preserve">
-    <value>Use Delay</value>
-  </data>
-  <data name="F:Item:reuse-delay" xml:space="preserve">
-    <value>Reuse Delay</value>
-  </data>
-  <data name="F:Item:shield-size" xml:space="preserve">
-    <value>Shield Size</value>
-  </data>
-  <data name="F:Item:damage" xml:space="preserve">
-    <value>Damage</value>
-  </data>
-  <data name="F:Item:delay" xml:space="preserve">
-    <value>Delay</value>
-  </data>
-  <data name="F:Item:skill" xml:space="preserve">
-    <value>Skill</value>
-  </data>
-  <data name="PWD:StringResources" xml:space="preserve">
-    <value>Loading string resources (auto-translator, item names) from the various DAT files...
-This may take a while, depending on the speed of your machine.</value>
-  </data>
   <data name="BadResID" xml:space="preserve">
     <value>Unknown String Resource</value>
-  </data>
-  <data name="ImageText" xml:space="preserve">
-    <value>&lt;image&gt;</value>
-  </data>
-  <data name="InvalidThingToLoad" xml:space="preserve">
-    <value>Attempt to load "{0}" data from an invalid XML element.</value>
-  </data>
-  <data name="WrongThingToLoad" xml:space="preserve">
-    <value>Attempt to load "{0}" data from an XML element that contains a different kind of data.</value>
-  </data>
-  <data name="E:PictureBoxSizeMode.StretchImage" xml:space="preserve">
-    <value>Stretched</value>
-  </data>
-  <data name="E:PictureBoxSizeMode.Zoom" xml:space="preserve">
-    <value>Zoomed (Stretched Preserving Aspect Ratio)</value>
   </data>
   <data name="E:PictureBoxSizeMode.CenterImage" xml:space="preserve">
     <value>Centered (Actual Size)</value>
@@ -223,46 +126,275 @@ This may take a while, depending on the speed of your machine.</value>
   <data name="E:PictureBoxSizeMode.Normal" xml:space="preserve">
     <value>Normal (Actual Size, Top Left Corner)</value>
   </data>
+  <data name="E:PictureBoxSizeMode.StretchImage" xml:space="preserve">
+    <value>Stretched</value>
+  </data>
+  <data name="E:PictureBoxSizeMode.Zoom" xml:space="preserve">
+    <value>Zoomed (Stretched Preserving Aspect Ratio)</value>
+  </data>
+  <data name="F::activation-time" xml:space="preserve">
+    <value>Activation Time</value>
+  </data>
+  <data name="F::bits" xml:space="preserve">
+    <value>Bit Depth</value>
+  </data>
+  <data name="F::casting-time" xml:space="preserve">
+    <value>Casting Time</value>
+  </data>
+  <data name="F::category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="F::compression" xml:space="preserve">
+    <value>Compression</value>
+  </data>
+  <data name="F::damage" xml:space="preserve">
+    <value>Damage</value>
+  </data>
+  <data name="F::delay" xml:space="preserve">
+    <value>Delay</value>
+  </data>
+  <data name="F::description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="F::dps" xml:space="preserve">
+    <value>Damage Per Second</value>
+  </data>
+  <data name="F::element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="F::english-description" xml:space="preserve">
+    <value>English Description</value>
+  </data>
+  <data name="F::english-name" xml:space="preserve">
+    <value>English Name</value>
+  </data>
+  <data name="F::flag" xml:space="preserve">
+    <value>Flag</value>
+  </data>
+  <data name="F::flags" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="F::format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="F::height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="F::horizontal-resolution" xml:space="preserve">
+    <value>Horizontal Resolution</value>
+  </data>
+  <data name="F::icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="F::id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="F::image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="F::important-colors" xml:space="preserve">
+    <value>Important Colors</value>
+  </data>
+  <data name="F::japanese-description" xml:space="preserve">
+    <value>Japanese Description</value>
+  </data>
+  <data name="F::japanese-name" xml:space="preserve">
+    <value>Japanese Name</value>
+  </data>
+  <data name="F::jobs" xml:space="preserve">
+    <value>Jobs</value>
+  </data>
+  <data name="F::jug-size" xml:space="preserve">
+    <value>Jug Size</value>
+  </data>
+  <data name="F::level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="F::level-required" xml:space="preserve">
+    <value>Level Required</value>
+  </data>
+  <data name="F::log-name-plural" xml:space="preserve">
+    <value>Log Name (Plural)</value>
+  </data>
+  <data name="F::log-name-singular" xml:space="preserve">
+    <value>Log Name (Singular)</value>
+  </data>
+  <data name="F::max-charges" xml:space="preserve">
+    <value>Max. Charges</value>
+  </data>
+  <data name="F::magic-type" xml:space="preserve">
+    <value>Magic Type</value>
+  </data>
+  <data name="F::mp-cost" xml:space="preserve">
+    <value>MP Cost</value>
+  </data>
+  <data name="F::name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="F::name-1" xml:space="preserve">
+    <value>Name (Part 1)</value>
+  </data>
+  <data name="F::name-2" xml:space="preserve">
+    <value>Name (Part 2)</value>
+  </data>
+  <data name="F::planes" xml:space="preserve">
+    <value>Planes</value>
+  </data>
+  <data name="F::races" xml:space="preserve">
+    <value>Races</value>
+  </data>
+  <data name="F::recast-delay" xml:space="preserve">
+    <value>Recast Delay</value>
+  </data>
+  <data name="F::resource-id" xml:space="preserve">
+    <value>Resource ID</value>
+  </data>
+  <data name="F::reuse-delay" xml:space="preserve">
+    <value>Reuse Delay</value>
+  </data>
+  <data name="F::shield-size" xml:space="preserve">
+    <value>Shield Size</value>
+  </data>
+  <data name="F::size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="F::skill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="F::slots" xml:space="preserve">
+    <value>Slots</value>
+  </data>
+  <data name="F::stack-size" xml:space="preserve">
+    <value>Stack Size</value>
+  </data>
+  <data name="F::storage-slots" xml:space="preserve">
+    <value>Storage Slots</value>
+  </data>
+  <data name="F::text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="F::type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="F::unknown-1" xml:space="preserve">
+    <value>Unknown Value #1</value>
+  </data>
+  <data name="F::unknown-2" xml:space="preserve">
+    <value>Unknown Value #2</value>
+  </data>
+  <data name="F::unknown-3" xml:space="preserve">
+    <value>Unknown Value #3</value>
+  </data>
+  <data name="F::unknown-4" xml:space="preserve">
+    <value>Unknown Value #4</value>
+  </data>
+  <data name="F::unknown-5" xml:space="preserve">
+    <value>Unknown Value #5</value>
+  </data>
+  <data name="F::use-delay" xml:space="preserve">
+    <value>Use Delay</value>
+  </data>
+  <data name="F::used-colors" xml:space="preserve">
+    <value>Used Colors</value>
+  </data>
+  <data name="F::valid-targets" xml:space="preserve">
+    <value>Valid Target(s)</value>
+  </data>
+  <data name="F::vertical-resolution" xml:space="preserve">
+    <value>Vertical Resolution</value>
+  </data>
+  <data name="F::width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="FT:AbilityInfo" xml:space="preserve">
+    <value>Ability Info</value>
+  </data>
+  <data name="FT:DialogTable" xml:space="preserve">
+    <value>Dialog Table</value>
+  </data>
+  <data name="FT:Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="FT:ItemData" xml:space="preserve">
+    <value>Item Data</value>
+  </data>
+  <data name="FT:QuestInfo" xml:space="preserve">
+    <value>Quest Info</value>
+  </data>
+  <data name="FT:SimpleStringTable" xml:space="preserve">
+    <value>String Table</value>
+  </data>
+  <data name="FT:SpellInfo" xml:space="preserve">
+    <value>SpellInfo</value>
+  </data>
+  <data name="FT:StatusInfo" xml:space="preserve">
+    <value>Status Info</value>
+  </data>
+  <data name="FT:XIStringTable" xml:space="preserve">
+    <value>String Table</value>
+  </data>
+  <data name="FTM:CheckingFile" xml:space="preserve">
+    <value>Checking whether or not the file is in a supported format...</value>
+  </data>
+  <data name="FTM:LoadingData" xml:space="preserve">
+    <value>Loading data from the file...</value>
+  </data>
+  <data name="FTM:OpeningFile" xml:space="preserve">
+    <value>Opening the file...</value>
+  </data>
+  <data name="FTM:ScanningFile" xml:space="preserve">
+    <value>Scanning file...</value>
+  </data>
+  <data name="GraphicTypeBitmap" xml:space="preserve">
+    <value>{0}-bit Bitmap</value>
+  </data>
+  <data name="GraphicTypeDXT" xml:space="preserve">
+    <value>DirectX Texture ({0})</value>
+  </data>
+  <data name="ImageText" xml:space="preserve">
+    <value>&lt;image&gt;</value>
+  </data>
   <data name="InvalidThingField" xml:space="preserve">
     <value>Invalid "{0}" field - could not find root element.</value>
   </data>
-  <data name="F:Item:dps" xml:space="preserve">
-    <value>Damage Per Second</value>
+  <data name="InvalidThingToLoad" xml:space="preserve">
+    <value>Attempt to load "{0}" data from an invalid XML element.</value>
   </data>
-  <data name="F:Item:element" xml:space="preserve">
-    <value>Element</value>
+  <data name="MacroBarLabel" xml:space="preserve">
+    <value>Macro Bar #{0}</value>
   </data>
-  <data name="F:Item:jug-size" xml:space="preserve">
-    <value>Jug Size</value>
+  <data name="PWD:StringResources" xml:space="preserve">
+    <value>Loading string resources (auto-translator, item names) from the various DAT files...
+This may take a while, depending on the speed of your machine.</value>
   </data>
-  <data name="F:Item:storage-slots" xml:space="preserve">
-    <value>Storage Slots</value>
+  <data name="T:AbilityInfo" xml:space="preserve">
+    <value>Ability Info</value>
   </data>
-  <data name="F:Item:unknown-short-1" xml:space="preserve">
-    <value>Unknown Value #1</value>
-  </data>
-  <data name="F:Item:unknown-short-2" xml:space="preserve">
-    <value>Unknown Value #2</value>
-  </data>
-  <data name="F:Item:unknown-short-3" xml:space="preserve">
-    <value>Unknown Value #3</value>
-  </data>
-  <data name="F:Item:unknown-short-4" xml:space="preserve">
-    <value>Unknown Value #4</value>
-  </data>
-  <data name="F:Item:unknown-short-5" xml:space="preserve">
-    <value>Unknown Value #5</value>
-  </data>
-  <data name="F:Item:icon" xml:space="preserve">
-    <value>Icon</value>
-  </data>
-  <data name="F:Item:valid-targets" xml:space="preserve">
-    <value>Valid Target(s)</value>
+  <data name="T:DialogTableEntry" xml:space="preserve">
+    <value>DialogTableEntry</value>
   </data>
   <data name="T:Graphic" xml:space="preserve">
     <value>FFXI Image</value>
   </data>
   <data name="T:Item" xml:space="preserve">
     <value>FFXI Item</value>
+  </data>
+  <data name="T:QuestInfo" xml:space="preserve">
+    <value>Quest Info</value>
+  </data>
+  <data name="T:SimpleStringTableEntry" xml:space="preserve">
+    <value>String Table Entry</value>
+  </data>
+  <data name="T:SpellInfo" xml:space="preserve">
+    <value>SpellInfo</value>
+  </data>
+  <data name="T:StatusInfo" xml:space="preserve">
+    <value>Status Info</value>
+  </data>
+  <data name="T:XIStringTableEntry" xml:space="preserve">
+    <value>String Table Entry</value>
+  </data>
+  <data name="WrongThingToLoad" xml:space="preserve">
+    <value>Attempt to load "{0}" data from an XML element that contains a different kind of data.</value>
   </data>
 </root>

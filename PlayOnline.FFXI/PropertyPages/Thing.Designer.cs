@@ -40,6 +40,7 @@ namespace PlayOnline.FFXI.PropertyPages {
       // lblText
       // 
       resources.ApplyResources(this.lblText, "lblText");
+      this.lblText.AutoEllipsis = true;
       this.lblText.Name = "lblText";
       // 
       // lstFields
@@ -62,6 +63,7 @@ namespace PlayOnline.FFXI.PropertyPages {
       // lblTypeName
       // 
       resources.ApplyResources(this.lblTypeName, "lblTypeName");
+      this.lblTypeName.AutoEllipsis = true;
       this.lblTypeName.Name = "lblTypeName";
       // 
       // lblType
