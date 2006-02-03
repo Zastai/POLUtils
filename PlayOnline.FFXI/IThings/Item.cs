@@ -21,7 +21,10 @@ namespace PlayOnline.FFXI {
     }
 
     public override string ToString() {
-      return String.Format("[{0:X4}] {1} / {2}", this.ID_, this.EnglishName_, this.JapaneseName_);
+    string Name = this.EnglishName_;
+      if (POL.SelectedRegion == POL.Region.Japan)
+	Name = this.JapaneseName_;
+      return String.Format("[{0:X4}] {1}", this.ID_, Name);
     }
 
     public override List<PropertyPages.IThing> GetPropertyPages() {

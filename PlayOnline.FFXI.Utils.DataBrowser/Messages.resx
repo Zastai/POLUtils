@@ -403,8 +403,8 @@ Correct the problem and try again.</value>
   <data name="Query:BadQueryType" xml:space="preserve">
     <value>Unknown or unhandled query type.</value>
   </data>
-  <data name="Dialog:ExportItems" xml:space="preserve">
-    <value>Exporting item data.
+  <data name="Dialog:ExportFileContents" xml:space="preserve">
+    <value>Exporting file contents to XML.
 This may take quite a while.</value>
   </data>
   <data name="Dialog:SaveAllImages" xml:space="preserve">

@@ -243,6 +243,18 @@
   <data name="mnuELCCopyField.Text" xml:space="preserve">
     <value>Copy &amp;Field</value>
   </data>
+  <data name="mnuELCSep2.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="mnuELCEAll.Text" xml:space="preserve">
+    <value>&amp;All Entries...</value>
+  </data>
+  <data name="mnuELCESelected.Text" xml:space="preserve">
+    <value>&amp;Selected Entries...</value>
+  </data>
+  <data name="mnuELCExport.Text" xml:space="preserve">
+    <value>&amp;Export</value>
+  </data>
   <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>579, 17</value>
   </metadata>
@@ -286,7 +298,7 @@
     <value>10</value>
   </data>
   <data name="cmbItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 21</value>
+    <value>322, 21</value>
   </data>
   <data name="cmbItems.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -335,39 +347,6 @@
   </data>
   <data name="&gt;&gt;btnFindItems.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="btnExportItems.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnExportItems.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnExportItems.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnExportItems.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 11</value>
-  </data>
-  <data name="btnExportItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 22</value>
-  </data>
-  <data name="btnExportItems.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnExportItems.Text" xml:space="preserve">
-    <value>&amp;Export Item Data...</value>
-  </data>
-  <data name="&gt;&gt;btnExportItems.Name" xml:space="preserve">
-    <value>btnExportItems</value>
-  </data>
-  <data name="&gt;&gt;btnExportItems.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnExportItems.Parent" xml:space="preserve">
-    <value>grpMainItemActions</value>
-  </data>
-  <data name="&gt;&gt;btnExportItems.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="grpMainItemActions.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -441,39 +420,6 @@
   <data name="&gt;&gt;picImageViewer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnImageSaveAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnImageSaveAll.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnImageSaveAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnImageSaveAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>344, 8</value>
-  </data>
-  <data name="btnImageSaveAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 24</value>
-  </data>
-  <data name="btnImageSaveAll.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnImageSaveAll.Text" xml:space="preserve">
-    <value>Save &amp;All...</value>
-  </data>
-  <data name="&gt;&gt;btnImageSaveAll.Name" xml:space="preserve">
-    <value>btnImageSaveAll</value>
-  </data>
-  <data name="&gt;&gt;btnImageSaveAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnImageSaveAll.Parent" xml:space="preserve">
-    <value>pnlImageChooser</value>
-  </data>
-  <data name="&gt;&gt;btnImageSaveAll.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cmbImageChooser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -484,7 +430,7 @@
     <value>140, 8</value>
   </data>
   <data name="cmbImageChooser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 21</value>
+    <value>284, 21</value>
   </data>
   <data name="cmbImageChooser.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -499,7 +445,7 @@
     <value>pnlImageChooser</value>
   </data>
   <data name="&gt;&gt;cmbImageChooser.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="lblImageChooser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -529,7 +475,7 @@
     <value>pnlImageChooser</value>
   </data>
   <data name="&gt;&gt;lblImageChooser.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="pnlImageChooser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -586,10 +532,10 @@
     <value>Fill</value>
   </data>
   <data name="lstEntries.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+    <value>0, 28</value>
   </data>
   <data name="lstEntries.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 395</value>
+    <value>432, 367</value>
   </data>
   <data name="lstEntries.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -605,6 +551,81 @@
   </data>
   <data name="&gt;&gt;lstEntries.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnThingListSaveImages.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnThingListSaveImages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 3</value>
+  </data>
+  <data name="btnThingListSaveImages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 23</value>
+  </data>
+  <data name="btnThingListSaveImages.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnThingListSaveImages.Text" xml:space="preserve">
+    <value>&amp;Save All Images...</value>
+  </data>
+  <data name="&gt;&gt;btnThingListSaveImages.Name" xml:space="preserve">
+    <value>btnThingListSaveImages</value>
+  </data>
+  <data name="&gt;&gt;btnThingListSaveImages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnThingListSaveImages.Parent" xml:space="preserve">
+    <value>pnlThingListActions</value>
+  </data>
+  <data name="&gt;&gt;btnThingListSaveImages.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnThingListExportXML.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="btnThingListExportXML.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 23</value>
+  </data>
+  <data name="btnThingListExportXML.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnThingListExportXML.Text" xml:space="preserve">
+    <value>&amp;Export List As XML...</value>
+  </data>
+  <data name="&gt;&gt;btnThingListExportXML.Name" xml:space="preserve">
+    <value>btnThingListExportXML</value>
+  </data>
+  <data name="&gt;&gt;btnThingListExportXML.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnThingListExportXML.Parent" xml:space="preserve">
+    <value>pnlThingListActions</value>
+  </data>
+  <data name="&gt;&gt;btnThingListExportXML.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlThingListActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlThingListActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlThingListActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 28</value>
+  </data>
+  <data name="pnlThingListActions.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Name" xml:space="preserve">
+    <value>pnlThingListActions</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Parent" xml:space="preserve">
+    <value>tabViewerGeneral</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tabViewerGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -865,6 +886,30 @@
     <value>mnuELCCopyField</value>
   </data>
   <data name="&gt;&gt;mnuELCCopyField.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCSep2.Name" xml:space="preserve">
+    <value>mnuELCSep2</value>
+  </data>
+  <data name="&gt;&gt;mnuELCSep2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCExport.Name" xml:space="preserve">
+    <value>mnuELCExport</value>
+  </data>
+  <data name="&gt;&gt;mnuELCExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCEAll.Name" xml:space="preserve">
+    <value>mnuELCEAll</value>
+  </data>
+  <data name="&gt;&gt;mnuELCEAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuELCESelected.Name" xml:space="preserve">
+    <value>mnuELCESelected</value>
+  </data>
+  <data name="&gt;&gt;mnuELCESelected.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">

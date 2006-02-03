@@ -35,6 +35,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuELCSep = new System.Windows.Forms.MenuItem();
       this.mnuELCCopyRow = new System.Windows.Forms.MenuItem();
       this.mnuELCCopyField = new System.Windows.Forms.MenuItem();
+      this.mnuELCSep2 = new System.Windows.Forms.MenuItem();
+      this.mnuELCExport = new System.Windows.Forms.MenuItem();
+      this.mnuELCEAll = new System.Windows.Forms.MenuItem();
+      this.mnuELCESelected = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
       this.mnuWindows = new System.Windows.Forms.MenuItem();
       this.mnuOFileTable = new System.Windows.Forms.MenuItem();
@@ -45,18 +49,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.grpMainItemActions = new System.Windows.Forms.GroupBox();
       this.cmbItems = new System.Windows.Forms.ComboBox();
       this.btnFindItems = new System.Windows.Forms.Button();
-      this.btnExportItems = new System.Windows.Forms.Button();
       this.tabViewerImages = new System.Windows.Forms.ThemedTabPage();
       this.picImageViewer = new System.Windows.Forms.PictureBox();
       this.pnlImageChooser = new System.Windows.Forms.Panel();
-      this.btnImageSaveAll = new System.Windows.Forms.Button();
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
       this.lblImageChooser = new System.Windows.Forms.Label();
       this.tabViewerGeneral = new System.Windows.Forms.ThemedTabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
+      this.pnlThingListActions = new System.Windows.Forms.Panel();
+      this.btnThingListExportXML = new System.Windows.Forms.Button();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
+      this.btnThingListSaveImages = new System.Windows.Forms.Button();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -65,6 +70,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       ((System.ComponentModel.ISupportInitialize) (this.picImageViewer)).BeginInit();
       this.pnlImageChooser.SuspendLayout();
       this.tabViewerGeneral.SuspendLayout();
+      this.pnlThingListActions.SuspendLayout();
       this.pnlNoViewers.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -185,14 +191,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
             this.mnuELCProperties,
             this.mnuELCSep,
             this.mnuELCCopyRow,
-            this.mnuELCCopyField});
+            this.mnuELCCopyField,
+            this.mnuELCSep2,
+            this.mnuELCExport});
       this.mnuEntryListContext.Popup += new System.EventHandler(this.mnuStringTableContext_Popup);
       // 
       // mnuELCProperties
       // 
       this.mnuELCProperties.Index = 0;
       resources.ApplyResources(this.mnuELCProperties, "mnuELCProperties");
-      this.mnuELCProperties.Click += new System.EventHandler(this.mnuSTCProperties_Click);
+      this.mnuELCProperties.Click += new System.EventHandler(this.mnuELCProperties_Click);
       // 
       // mnuELCSep
       // 
@@ -203,12 +211,37 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       this.mnuELCCopyRow.Index = 2;
       resources.ApplyResources(this.mnuELCCopyRow, "mnuELCCopyRow");
-      this.mnuELCCopyRow.Click += new System.EventHandler(this.mnuSTCCopyRow_Click);
+      this.mnuELCCopyRow.Click += new System.EventHandler(this.mnuELCCopyRow_Click);
       // 
       // mnuELCCopyField
       // 
       this.mnuELCCopyField.Index = 3;
       resources.ApplyResources(this.mnuELCCopyField, "mnuELCCopyField");
+      // 
+      // mnuELCSep2
+      // 
+      this.mnuELCSep2.Index = 4;
+      resources.ApplyResources(this.mnuELCSep2, "mnuELCSep2");
+      // 
+      // mnuELCExport
+      // 
+      this.mnuELCExport.Index = 5;
+      this.mnuELCExport.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuELCEAll,
+            this.mnuELCESelected});
+      resources.ApplyResources(this.mnuELCExport, "mnuELCExport");
+      // 
+      // mnuELCEAll
+      // 
+      this.mnuELCEAll.Index = 0;
+      resources.ApplyResources(this.mnuELCEAll, "mnuELCEAll");
+      this.mnuELCEAll.Click += new System.EventHandler(this.mnuELCEAll_Click);
+      // 
+      // mnuELCESelected
+      // 
+      this.mnuELCESelected.Index = 1;
+      resources.ApplyResources(this.mnuELCESelected, "mnuELCESelected");
+      this.mnuELCESelected.Click += new System.EventHandler(this.mnuELCESelected_Click);
       // 
       // mnuMain
       // 
@@ -264,7 +297,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       this.grpMainItemActions.Controls.Add(this.cmbItems);
       this.grpMainItemActions.Controls.Add(this.btnFindItems);
-      this.grpMainItemActions.Controls.Add(this.btnExportItems);
       resources.ApplyResources(this.grpMainItemActions, "grpMainItemActions");
       this.grpMainItemActions.Name = "grpMainItemActions";
       this.grpMainItemActions.TabStop = false;
@@ -282,12 +314,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.btnFindItems, "btnFindItems");
       this.btnFindItems.Name = "btnFindItems";
       this.btnFindItems.Click += new System.EventHandler(this.btnFindItems_Click);
-      // 
-      // btnExportItems
-      // 
-      resources.ApplyResources(this.btnExportItems, "btnExportItems");
-      this.btnExportItems.Name = "btnExportItems";
-      this.btnExportItems.Click += new System.EventHandler(this.btnExportItems_Click);
       // 
       // tabViewerImages
       // 
@@ -308,17 +334,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // pnlImageChooser
       // 
-      this.pnlImageChooser.Controls.Add(this.btnImageSaveAll);
       this.pnlImageChooser.Controls.Add(this.cmbImageChooser);
       this.pnlImageChooser.Controls.Add(this.lblImageChooser);
       resources.ApplyResources(this.pnlImageChooser, "pnlImageChooser");
       this.pnlImageChooser.Name = "pnlImageChooser";
-      // 
-      // btnImageSaveAll
-      // 
-      resources.ApplyResources(this.btnImageSaveAll, "btnImageSaveAll");
-      this.btnImageSaveAll.Name = "btnImageSaveAll";
-      this.btnImageSaveAll.Click += new System.EventHandler(this.btnImageSaveAll_Click);
       // 
       // cmbImageChooser
       // 
@@ -337,6 +356,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // tabViewerGeneral
       // 
       this.tabViewerGeneral.Controls.Add(this.lstEntries);
+      this.tabViewerGeneral.Controls.Add(this.pnlThingListActions);
       resources.ApplyResources(this.tabViewerGeneral, "tabViewerGeneral");
       this.tabViewerGeneral.Name = "tabViewerGeneral";
       this.tabViewerGeneral.UseVisualStyleBackColor = true;
@@ -353,6 +373,20 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.View = System.Windows.Forms.View.Details;
       this.lstEntries.DoubleClick += new System.EventHandler(this.lstEntries_DoubleClick);
       this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
+      // 
+      // pnlThingListActions
+      // 
+      this.pnlThingListActions.Controls.Add(this.btnThingListSaveImages);
+      this.pnlThingListActions.Controls.Add(this.btnThingListExportXML);
+      resources.ApplyResources(this.pnlThingListActions, "pnlThingListActions");
+      this.pnlThingListActions.Name = "pnlThingListActions";
+      // 
+      // btnThingListExportXML
+      // 
+      resources.ApplyResources(this.btnThingListExportXML, "btnThingListExportXML");
+      this.btnThingListExportXML.Name = "btnThingListExportXML";
+      this.btnThingListExportXML.UseVisualStyleBackColor = true;
+      this.btnThingListExportXML.Click += new System.EventHandler(this.btnThingListExportXML_Click);
       // 
       // pnlNoViewers
       // 
@@ -371,6 +405,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
+      // btnThingListSaveImages
+      // 
+      resources.ApplyResources(this.btnThingListSaveImages, "btnThingListSaveImages");
+      this.btnThingListSaveImages.Name = "btnThingListSaveImages";
+      this.btnThingListSaveImages.UseVisualStyleBackColor = true;
+      this.btnThingListSaveImages.Click += new System.EventHandler(this.btnThingListSaveImages_Click);
+      // 
       // MainWindow
       // 
       resources.ApplyResources(this, "$this");
@@ -387,6 +428,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       ((System.ComponentModel.ISupportInitialize) (this.picImageViewer)).EndInit();
       this.pnlImageChooser.ResumeLayout(false);
       this.tabViewerGeneral.ResumeLayout(false);
+      this.pnlThingListActions.ResumeLayout(false);
       this.pnlNoViewers.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -420,13 +462,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.ComboBox cmbImageChooser;
     private System.Windows.Forms.Panel pnlNoViewers;
     private System.Windows.Forms.Label lblNoViewers;
-    private System.Windows.Forms.Button btnExportItems;
     private System.Windows.Forms.Button btnFindItems;
     private System.Windows.Forms.GroupBox grpMainItemActions;
     private System.Windows.Forms.ComboBox cmbItems;
     private System.Windows.Forms.MenuItem mnuOFileTable;
     private PlayOnline.FFXI.ItemEditor ieItemViewer;
-    private System.Windows.Forms.Button btnImageSaveAll;
     private System.Windows.Forms.MenuItem mnuELCCopyRow;
     private System.Windows.Forms.MenuItem mnuELCCopyField;
     private System.Windows.Forms.SaveFileDialog dlgExportFile;
@@ -436,6 +476,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuPCModeZoomed;
     private System.Windows.Forms.MenuItem mnuELCProperties;
     private System.Windows.Forms.MenuItem mnuELCSep;
+    private System.Windows.Forms.Panel pnlThingListActions;
+    private System.Windows.Forms.Button btnThingListExportXML;
+    private System.Windows.Forms.MenuItem mnuELCSep2;
+    private System.Windows.Forms.MenuItem mnuELCExport;
+    private System.Windows.Forms.MenuItem mnuELCEAll;
+    private System.Windows.Forms.MenuItem mnuELCESelected;
+    private System.Windows.Forms.Button btnThingListSaveImages;
 
   }
 

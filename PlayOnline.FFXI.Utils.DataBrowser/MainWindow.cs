@@ -166,40 +166,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
-    private FolderBrowserDialog dlgBrowseFolder = null;
-
-    private void PrepareFolderBrowser(string Description) {
-      if (this.dlgBrowseFolder == null) {
-	this.dlgBrowseFolder = new FolderBrowserDialog();
-	this.dlgBrowseFolder.Description = Description;
-      string Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "POLUtils");
-	if (!Directory.Exists(Location))
-	  Directory.CreateDirectory(Location);
-	this.dlgBrowseFolder.SelectedPath = Location;
-      }
-    }
-
-    private void btnImageSaveAll_Click(object sender, System.EventArgs e) {
-      this.PrepareFolderBrowser(I18N.GetText("Description:BrowseImageExportFolder"));
-      if (this.dlgBrowseFolder.ShowDialog() == DialogResult.OK) {
-      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
-      Thread T = new Thread(new ThreadStart(delegate () {
-	  Application.DoEvents();
-	  foreach (Graphic G in this.cmbImageChooser.Items) {
-	    G.GetIcon().Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, G.ToString() + ".png"), ImageFormat.Png);
-	    Application.DoEvents();
-	  }
-	  PWD.Close();
-	}));
-	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-	T.Start();
-	PWD.ShowDialog(this);
-	this.Activate();
-	PWD.Dispose();
-	PWD = null; 
-      }
-    }
-
     #region Context Menu Events
 
     private PictureBox GetSourcePicture(MenuItem SourceMenu) {
@@ -263,7 +229,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuPCModeNormal.Checked    = false;
       this.mnuPCModeCentered.Checked  = false;
       this.mnuPCModeStretched.Checked = false;
-      this.mnuPCModeZoomed.Checked    = false;
+      this.mnuPCModeZoomed.Checked    = true;
       this.SetPictureSizeMode(this.GetSourcePicture(sender as MenuItem), PictureBoxSizeMode.Zoom);
     }
 
@@ -300,24 +266,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private ThingList<Item>  LoadedItems_ = null;
     private PleaseWaitDialog PWD = null;
-
-    private void btnExportItems_Click(object sender, System.EventArgs e) {
-      if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
-	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
-      Thread T = new Thread(new ThreadStart(delegate () {
-	  Application.DoEvents();
-	  this.LoadedItems_.Save(this.dlgExportFile.FileName);
-	  Application.DoEvents();
-	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
-	}));
-	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-	T.Start();
-	this.PWD.ShowDialog(this);
-	this.Activate();
-	this.PWD.Dispose();
-	this.PWD = null;
-      }
-    }
 
     private void btnFindItems_Click(object sender, System.EventArgs e) {
       using (ItemFindDialog IFD = new ItemFindDialog(this.LoadedItems_)) {
@@ -369,16 +317,87 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	this.CopyEntry();
     }
 
+    private void ExportThings(IEnumerable ThingsToExport) {
+      this.dlgExportFile.FileName = "";
+      if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
+	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportFileContents"));
+      Thread T = new Thread(new ThreadStart(delegate () {
+	  Application.DoEvents();
+	ThingList Entries = new ThingList();
+	  foreach (ListViewItem LVI in ThingsToExport) {
+	    if (LVI.Tag is IThing)
+	      Entries.Add(LVI.Tag as IThing);
+	  }
+	  Entries.Save(this.dlgExportFile.FileName);
+	  Application.DoEvents();
+	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
+	}));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	this.PWD.ShowDialog(this);
+	this.Activate();
+	this.PWD.Dispose();
+	this.PWD = null;
+      }
+    }
+
+    private void btnThingListExportXML_Click(object sender, EventArgs e) {
+      this.ExportThings(this.lstEntries.Items);
+    }
+
+    private FolderBrowserDialog dlgBrowseFolder = null;
+
+    private void PrepareFolderBrowser(string Description) {
+      if (this.dlgBrowseFolder == null) {
+	this.dlgBrowseFolder = new FolderBrowserDialog();
+	this.dlgBrowseFolder.Description = Description;
+      string Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "POLUtils");
+	if (!Directory.Exists(Location))
+	  Directory.CreateDirectory(Location);
+	this.dlgBrowseFolder.SelectedPath = Location;
+      }
+    }
+
+    private void btnThingListSaveImages_Click(object sender, EventArgs e) {
+      this.PrepareFolderBrowser(I18N.GetText("Description:BrowseImageExportFolder"));
+      if (this.dlgBrowseFolder.ShowDialog() == DialogResult.OK) {
+      PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
+      Thread T = new Thread(new ThreadStart(delegate () {
+	  Application.DoEvents();
+	  foreach (ListViewItem LVI in this.lstEntries.Items) {
+	    if (LVI.Tag is IThing) {
+	    IThing X = LVI.Tag as IThing;
+	    Image I = X.GetIcon(); // FIXME: Assumes no IThing has more than one image
+	      if (I != null) {
+	      string ImageFileName = X.ToString() + ".png";
+		foreach (char C in Path.GetInvalidFileNameChars())
+		  ImageFileName = ImageFileName.Replace(C, '_');
+		I.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, ImageFileName), ImageFormat.Png);
+	      }
+	    }
+	    Application.DoEvents();
+	  }
+	  PWD.Close();
+	}));
+	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+	T.Start();
+	PWD.ShowDialog(this);
+	this.Activate();
+	PWD.Dispose();
+	PWD = null; 
+      }
+    }
+
     #region Context Menu Events
 
-    private void mnuSTCProperties_Click(object sender, EventArgs e) {
+    private void mnuELCProperties_Click(object sender, EventArgs e) {
       foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
       ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
 	TPP.Show(this);
       }
     }
 
-    private void mnuSTCCopyRow_Click(object sender, System.EventArgs e) {
+    private void mnuELCCopyRow_Click(object sender, System.EventArgs e) {
       this.CopyEntry();
     }
 
@@ -403,6 +422,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
       else
 	this.mnuELCCopyField.Enabled = false;
+    }
+
+    private void mnuELCEAll_Click(object sender, EventArgs e) {
+      this.ExportThings(this.lstEntries.Items);
+    }
+
+    private void mnuELCESelected_Click(object sender, EventArgs e) {
+      this.ExportThings(this.lstEntries.SelectedItems);
     }
 
     #endregion
