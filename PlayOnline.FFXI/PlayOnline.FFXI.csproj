@@ -93,13 +93,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbilityInfo.cs" />
-    <Compile Include="DialogTableEntry.cs" />
-    <Compile Include="QuestInfo.cs" />
-    <Compile Include="SpellInfo.cs" />
-    <Compile Include="StatusInfo.cs" />
-    <Compile Include="SimpleStringTableEntry.cs" />
-    <Compile Include="XIStringTableEntry.cs" />
+    <Compile Include="IThings\AbilityInfo.cs" />
+    <Compile Include="IThings\DialogTableEntry.cs" />
+    <Compile Include="IThings\Graphic.cs" />
+    <Compile Include="IThings\Item.cs" />
+    <Compile Include="IThings\QuestInfo.cs" />
+    <Compile Include="IThings\SimpleStringTableEntry.cs" />
+    <Compile Include="IThings\SpellInfo.cs" />
+    <Compile Include="IThings\StatusInfo.cs" />
+    <Compile Include="IThings\Thing.cs" />
+    <Compile Include="IThings\XIStringTableEntry.cs" />
     <Compile Include="FileTypes\SpellInfo.cs" />
     <Compile Include="FileTypes\SimpleStringTable.cs" />
     <Compile Include="FileTypes\DialogTable.cs" />
@@ -108,8 +111,6 @@
     <Compile Include="FileTypes\AbilityInfo.cs" />
     <Compile Include="FileTypes\StatusInfo.cs" />
     <Compile Include="FileTypes\Images.cs" />
-    <Compile Include="Graphic.cs" />
-    <Compile Include="Item.cs" />
     <Compile Include="ItemEditor.Designer.cs">
       <DependentUpon>ItemEditor.cs</DependentUpon>
     </Compile>
@@ -121,7 +122,6 @@
     <Compile Include="PropertyPages\IThing.Designer.cs">
       <DependentUpon>IThing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Thing.cs" />
     <Compile Include="ThingList.cs" />
     <Compile Include="IThing.cs" />
     <Compile Include="PleaseWaitDialog.Designer.cs">
