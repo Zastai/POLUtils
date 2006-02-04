@@ -148,12 +148,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // Reset the viewer tabs
       this.tabViewers.TabPages.Clear();
       // Reset all applicable viewer tab contents
+      this.lstEntries.Items.Clear();
+      this.lstEntries.ListViewItemSorter = null;
+      this.btnThingListSaveImages.Enabled = false;
       this.cmbItems.Items.Clear();
       this.cmbImageChooser.Items.Clear();
       this.picImageViewer.Image = null;
       this.picImageViewer.Tag = null;
-      this.lstEntries.Items.Clear();
-      this.lstEntries.ListViewItemSorter = null;
     }
 
     #region Image Viewer Events
@@ -455,10 +456,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       if (FileName != null && File.Exists(FileName)) {
 	this.Enabled = false;
       FileScanDialog FSD = new FileScanDialog(FileName);
-      ThingList<Graphic> LoadedImages = null;
 	if (FSD.ShowDialog(this) == DialogResult.OK) {
 	  this.LoadedItems_ = new ThingList<Item>();
-	  LoadedImages = new ThingList<Graphic>();
 	  this.lstEntries.SmallImageList = null;
 	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 	  this.lstEntries.Columns.Clear();
@@ -489,15 +488,24 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 		}
 		LVI.SubItems[this.lstEntries.Columns[Field].Index].Text = T.GetFieldText(Field);
 	      }
-	      if (T is Item)
-		this.LoadedItems_.Add(T as Item);
-	      else if (T is Graphic)
-		LoadedImages.Add(T as Graphic);
+	      if (T is Item) {
+		if (this.cmbItems.Items.Count == 0)
+		  this.tabViewers.TabPages.Add(this.tabViewerItems);
+		this.cmbItems.Items.Add(T);
+		this.LoadedItems_.Add(T as Item); // Only for the ItemFindDialog at the moment really
+	      }
+	      else if (T is Graphic) {
+		if (this.cmbImageChooser.Items.Count == 0)
+		  this.tabViewers.TabPages.Add(this.tabViewerImages);
+		this.cmbImageChooser.Items.Add(T);
+	      }
 	      if ((this.lstEntries.Items.Count % 256) == 255)
 		Application.DoEvents();
 	    }
 	    if (EntryIcons.Images.Count == 0)
 	      this.lstEntries.SmallImageList = null;
+	    else
+	      this.btnThingListSaveImages.Enabled = true;
 	    Application.DoEvents();
 	    foreach (ColumnHeader CH in this.lstEntries.Columns) {
 	      CH.Width = -2;
@@ -506,27 +514,23 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
 	    Application.DoEvents();
 	  }
-	  if (LoadedImages != null && LoadedImages.Count > 0) {
-	    this.cmbImageChooser.Select();
+	  if (this.cmbImageChooser.Items.Count > 0) {
 	    this.cmbImageChooser.SelectedItem = null;
-	    this.cmbImageChooser.Items.AddRange(LoadedImages.ToArray());
+	    this.tabViewers.SelectedTab = this.tabViewerImages;
+	    this.cmbImageChooser.Select();
 	    this.cmbImageChooser.SelectedIndex = 0;
-	    this.tabViewers.TabPages.Insert(0, this.tabViewerImages);
 	    Application.DoEvents();
 	  }
-	  if (this.LoadedItems_ != null && this.LoadedItems_.Count > 0) {
-	    this.cmbItems.Select();
+	  if (this.cmbItems.Items.Count > 0) {
 	    this.cmbItems.SelectedItem = null;
-	    this.cmbItems.Items.AddRange(this.LoadedItems_.ToArray());
+	    this.tabViewers.SelectedTab = this.tabViewerItems;
+	    this.cmbItems.Select();
 	    this.cmbItems.SelectedIndex = 0;
-	    this.tabViewers.TabPages.Insert(0, this.tabViewerItems);
 	    Application.DoEvents();
 	  }
 	}
 	if (!this.tabViewers.Visible)
 	  this.pnlNoViewers.Visible = true;
-	else
-	  this.tabViewers.SelectedIndex = 0;
 	this.Enabled = true;
       }
     }
