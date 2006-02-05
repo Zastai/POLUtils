@@ -2,7 +2,16 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
-    <news-item title="German Translation In Progress" author="Pebbles" date="January 18th, 2005">
+    <news-item title="Status Update" author="Pebbles" date="February 5th, 2006">
+      The rewrite of the core file content handling is pretty much completed; as a result, it will
+      be much easier for me to handle any changes S/E may make to the file format in future patches.
+      In addition, it will be possible to export the data from any file format supported by the data
+      browser to XML, making it much easier to detect the changes made by a patch.  In fact, one of the
+      main remaining tasks is to rework the item comparison app to handle comparing other data too.
+      I would expect that 0.8.0 will be relesed shortly after ther February patch (there's bound to be
+      some data changes in that).
+    </news-item>
+    <news-item title="German Translation In Progress" author="Pebbles" date="January 18th, 2006">
       A volunteer has stepped forward to provide a German translation of POLUtils - the installer has
       been covered already, with the full UI to follow soon.  A round of applause for Andy Müller
       (Missingno on Fairy) please!<br/>
