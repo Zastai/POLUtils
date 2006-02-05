@@ -27,16 +27,26 @@ namespace PlayOnline.FFXI.PropertyPages {
     private void AddFieldEntries(FFXI.IThing T) {
     List<String> AllFields = T.GetAllFields();
       foreach (string FieldName in AllFields) {
-      ListViewItem LVI = this.lstFields.Items.Add(FieldName);
 	if (T.HasField(FieldName)) {
 	object V = T.GetFieldValue(FieldName);
-	  LVI.Tag = V;
-	  LVI.SubItems.Add(T.GetFieldText(FieldName));
-	  if (V is FFXI.IThing)
-	    LVI.Font = new Font(LVI.Font, FontStyle.Underline);
+	  if (V is string && (V as string).Contains("\n")) {
+	  int LineCount = 0;
+	    foreach (string Line in (V as string).Split('\n')) {
+	    ListViewItem LVI = this.lstFields.Items.Add(String.Format("{0} [{1}]", FieldName, ++LineCount));
+	      LVI.Tag = Line;
+	      LVI.SubItems.Add(Line);
+	    }
+	  }
+	  else {
+	  ListViewItem LVI = this.lstFields.Items.Add(FieldName);
+	    LVI.Tag = V;
+	    LVI.SubItems.Add(T.GetFieldText(FieldName));
+	    if (V is FFXI.IThing)
+	      LVI.Font = new Font(LVI.Font, FontStyle.Underline);
+	  }
 	}
 	else
-	  LVI.ForeColor = SystemColors.GrayText;
+	  this.lstFields.Items.Add(FieldName).ForeColor = SystemColors.GrayText;
       }
     }
 
