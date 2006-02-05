@@ -68,8 +68,8 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return (this.Category_    != null);
 	case "description": return (this.Description_ != null);
-	case "name1":       return (this.Name1_       != null);
-	case "name2":       return (this.Name2_       != null);
+	case "name-1":      return (this.Name1_       != null);
+	case "name-2":      return (this.Name2_       != null);
 	// Nullables
 	case "id":          return this.ID_.HasValue;
 	default:            return false;
@@ -83,8 +83,8 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return this.Category_;
 	case "description": return this.Description_;
-	case "name1":       return this.Name1_;
-	case "name2":       return this.Name2_;
+	case "name-1":      return this.Name1_;
+	case "name-2":      return this.Name2_;
 	// Nullables
 	case "id":          return String.Format("{0}", this.ID_.Value);
 	default:            return null;
@@ -98,8 +98,8 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return this.Category_;
 	case "description": return this.Description_;
-	case "name1":       return this.Name1_;
-	case "name2":       return this.Name2_;
+	case "name-1":      return this.Name1_;
+	case "name-2":      return this.Name2_;
 	// Nullables
 	case "id":          return (object) this.ID_.Value;
 	default:            return null;
@@ -112,8 +112,8 @@ namespace PlayOnline.FFXI {
 	case "category":    this.Category_    =       this.LoadTextField         (Node); break;
 	case "description": this.Description_ =       this.LoadTextField         (Node); break;
 	case "id":          this.ID_          = (int) this.LoadSignedIntegerField(Node); break;
-	case "name1":       this.Name1_       =       this.LoadTextField         (Node); break;
-	case "name2":       this.Name2_       =       this.LoadTextField         (Node); break;
+	case "name-1":      this.Name1_       =       this.LoadTextField         (Node); break;
+	case "name-2":      this.Name2_       =       this.LoadTextField         (Node); break;
       }
     }
 
