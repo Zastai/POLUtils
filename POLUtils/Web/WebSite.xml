@@ -2,6 +2,11 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="More Translation News" author="Pebbles" date="February 16th, 2006">
+      The installer can now speak Spanish and French (thanks to Kapibara from the Phoenix server);
+      translations for the tools themselves are in progress, but probably won't make it into 0.8.0
+      (which is slated to be released next week after the patch).
+    </news-item>
     <news-item title="Status Update" author="Pebbles" date="February 5th, 2006">
       The rewrite of the core file content handling is pretty much completed; as a result, it will
       be much easier for me to handle any changes S/E may make to the file format in future patches.
