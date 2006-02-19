@@ -24,12 +24,8 @@ namespace PlayOnline.FFXI {
       // 
       // tabPages
       // 
-      this.tabPages.AccessibleDescription = null;
-      this.tabPages.AccessibleName = null;
-      resources.ApplyResources(this.tabPages, "tabPages");
-      this.tabPages.BackgroundImage = null;
       this.tabPages.Controls.Add(this.tabDummy);
-      this.tabPages.Font = null;
+      resources.ApplyResources(this.tabPages, "tabPages");
       this.tabPages.HotTrack = true;
       this.tabPages.Multiline = true;
       this.tabPages.Name = "tabPages";
@@ -38,33 +34,21 @@ namespace PlayOnline.FFXI {
       // 
       // tabDummy
       // 
-      this.tabDummy.AccessibleDescription = null;
-      this.tabDummy.AccessibleName = null;
       resources.ApplyResources(this.tabDummy, "tabDummy");
-      this.tabDummy.BackgroundImage = null;
-      this.tabDummy.Font = null;
       this.tabDummy.Name = "tabDummy";
       this.tabDummy.UseVisualStyleBackColor = true;
       // 
       // pnlButtons
       // 
-      this.pnlButtons.AccessibleDescription = null;
-      this.pnlButtons.AccessibleName = null;
-      resources.ApplyResources(this.pnlButtons, "pnlButtons");
       this.pnlButtons.BackColor = System.Drawing.Color.Transparent;
-      this.pnlButtons.BackgroundImage = null;
       this.pnlButtons.Controls.Add(this.btnClose);
-      this.pnlButtons.Font = null;
+      resources.ApplyResources(this.pnlButtons, "pnlButtons");
       this.pnlButtons.Name = "pnlButtons";
       // 
       // btnClose
       // 
-      this.btnClose.AccessibleDescription = null;
-      this.btnClose.AccessibleName = null;
       resources.ApplyResources(this.btnClose, "btnClose");
-      this.btnClose.BackgroundImage = null;
       this.btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.btnClose.Font = null;
       this.btnClose.Name = "btnClose";
       this.btnClose.UseVisualStyleBackColor = true;
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -72,16 +56,12 @@ namespace PlayOnline.FFXI {
       // ThingPropertyPages
       // 
       this.AcceptButton = this.btnClose;
-      this.AccessibleDescription = null;
-      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.BackgroundImage = null;
+      this.CancelButton = this.btnClose;
       this.Controls.Add(this.tabPages);
       this.Controls.Add(this.pnlButtons);
-      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Icon = null;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "ThingPropertyPages";
