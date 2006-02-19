@@ -141,6 +141,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.ResetViewers();
     }
 
+    private ImageList ListIcons_ = new ImageList();
+
     private void ResetViewers() {
       // Clear the entire right-hand pane
       this.pnlNoViewers.Visible = false;
@@ -149,12 +151,100 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewers.TabPages.Clear();
       // Reset all applicable viewer tab contents
       this.lstEntries.Items.Clear();
+      this.lstEntries.Columns.Clear();
       this.lstEntries.ListViewItemSorter = null;
+      this.ListIcons_.Images.Clear();
       this.btnThingListSaveImages.Enabled = false;
       this.cmbItems.Items.Clear();
       this.cmbImageChooser.Items.Clear();
       this.picImageViewer.Image = null;
       this.picImageViewer.Tag = null;
+    }
+
+    private void LoadFile(string FileName) {
+      this.ResetViewers();
+      this.LoadedItems_ = null;
+      if (FileName != null && File.Exists(FileName)) {
+	this.Enabled = false;
+      FileScanDialog FSD = new FileScanDialog(FileName);
+	if (FSD.ShowDialog(this) == DialogResult.OK) {
+	  this.LoadedItems_ = new ThingList<Item>();
+	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+	  this.lstEntries.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
+	  if (FSD.FileContents.Count > 0) {
+	    this.tabViewers.TabPages.Add(this.tabViewerGeneral);
+	    this.tabViewers.Visible = true;
+	    Application.DoEvents();
+	    foreach (IThing T in FSD.FileContents) {
+	    int IconIndex = -1;
+	      {
+	      Image Icon = T.GetIcon();
+		if (Icon != null) {
+		  IconIndex = this.ListIcons_.Images.Count;
+		  this.ListIcons_.Images.Add(Icon);
+		}
+	      }
+	    ListViewItem LVI = this.lstEntries.Items.Add(T.TypeName, IconIndex);
+	      LVI.Tag = T;
+	      for (int i = 1; i < this.lstEntries.Columns.Count; ++i)
+		LVI.SubItems.Add("");
+	      foreach (string Field in T.GetFields()) {
+		if (!this.lstEntries.Columns.ContainsKey(Field)) {
+		  this.lstEntries.Columns.Add(Field, T.GetFieldName(Field), 60, HorizontalAlignment.Left, -1);
+		  LVI.SubItems.Add("");
+		}
+		LVI.SubItems[this.lstEntries.Columns[Field].Index].Text = T.GetFieldText(Field);
+	      }
+	      if (T is Item) {
+		if (this.cmbItems.Items.Count == 0)
+		  this.tabViewers.TabPages.Add(this.tabViewerItems);
+		this.cmbItems.Items.Add(T);
+		this.LoadedItems_.Add(T as Item); // Only for the ItemFindDialog at the moment really
+	      }
+	      else if (T is Graphic) {
+		if (this.cmbImageChooser.Items.Count == 0)
+		  this.tabViewers.TabPages.Add(this.tabViewerImages);
+		this.cmbImageChooser.Items.Add(T);
+	      }
+	      if ((this.lstEntries.Items.Count % 256) == 255)
+		Application.DoEvents();
+	    }
+	    if (this.ListIcons_.Images.Count == 0) {
+	      this.lstEntries.SmallImageList = null;
+	    }
+	    else
+	      this.btnThingListSaveImages.Enabled = true;
+	    Application.DoEvents();
+	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
+	    this.ResizeListColumns();
+	  }
+	  if (this.cmbImageChooser.Items.Count > 0) {
+	    this.cmbImageChooser.SelectedItem = null;
+	    this.tabViewers.SelectedTab = this.tabViewerImages;
+	    this.cmbImageChooser.Select();
+	    this.cmbImageChooser.SelectedIndex = 0;
+	    Application.DoEvents();
+	  }
+	  if (this.cmbItems.Items.Count > 0) {
+	    this.cmbItems.SelectedItem = null;
+	    this.tabViewers.SelectedTab = this.tabViewerItems;
+	    this.cmbItems.Select();
+	    this.cmbItems.SelectedIndex = 0;
+	    Application.DoEvents();
+	  }
+	}
+	if (!this.tabViewers.Visible)
+	  this.pnlNoViewers.Visible = true;
+	this.Enabled = true;
+      }
+    }
+
+    private void ResizeListColumns() {
+      foreach (ColumnHeader CH in this.lstEntries.Columns) {
+	CH.Width = -2;
+	CH.Width += 2;
+      }
+      Application.DoEvents();
     }
 
     #region Image Viewer Events
@@ -389,6 +479,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
     }
 
+    private void chkShowIcons_CheckedChanged(object sender, EventArgs e) {
+      this.lstEntries.SmallImageList = (this.chkShowIcons.Checked ? this.ListIcons_ : null);
+    }
+
     #region Context Menu Events
 
     private void mnuELCProperties_Click(object sender, EventArgs e) {
@@ -450,89 +544,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void tvDataFiles_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
-      this.ResetViewers();
-      this.LoadedItems_ = null;
-    string FileName = this.tvDataFiles.SelectedNode.Tag as string;
-      if (FileName != null && File.Exists(FileName)) {
-	this.Enabled = false;
-      FileScanDialog FSD = new FileScanDialog(FileName);
-	if (FSD.ShowDialog(this) == DialogResult.OK) {
-	  this.LoadedItems_ = new ThingList<Item>();
-	  this.lstEntries.SmallImageList = null;
-	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-	  this.lstEntries.Columns.Clear();
-	  this.lstEntries.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
-	  if (FSD.FileContents.Count > 0) {
-	    this.tabViewers.TabPages.Add(this.tabViewerGeneral);
-	    this.tabViewers.Visible = true;
-	    Application.DoEvents();
-	  ImageList EntryIcons = new ImageList();
-	    this.lstEntries.SmallImageList = EntryIcons;
-	    foreach (IThing T in FSD.FileContents) {
-	    int IconIndex = -1;
-	      {
-	      Image Icon = T.GetIcon();
-		if (Icon != null) {
-		  IconIndex = EntryIcons.Images.Count;
-		  EntryIcons.Images.Add(Icon);
-		}
-	      }
-	    ListViewItem LVI = this.lstEntries.Items.Add(T.TypeName, IconIndex);
-	      LVI.Tag = T;
-	      for (int i = 1; i < this.lstEntries.Columns.Count; ++i)
-		LVI.SubItems.Add("");
-	      foreach (string Field in T.GetFields()) {
-		if (!this.lstEntries.Columns.ContainsKey(Field)) {
-		  this.lstEntries.Columns.Add(Field, T.GetFieldName(Field), 60, HorizontalAlignment.Left, -1);
-		  LVI.SubItems.Add("");
-		}
-		LVI.SubItems[this.lstEntries.Columns[Field].Index].Text = T.GetFieldText(Field);
-	      }
-	      if (T is Item) {
-		if (this.cmbItems.Items.Count == 0)
-		  this.tabViewers.TabPages.Add(this.tabViewerItems);
-		this.cmbItems.Items.Add(T);
-		this.LoadedItems_.Add(T as Item); // Only for the ItemFindDialog at the moment really
-	      }
-	      else if (T is Graphic) {
-		if (this.cmbImageChooser.Items.Count == 0)
-		  this.tabViewers.TabPages.Add(this.tabViewerImages);
-		this.cmbImageChooser.Items.Add(T);
-	      }
-	      if ((this.lstEntries.Items.Count % 256) == 255)
-		Application.DoEvents();
-	    }
-	    if (EntryIcons.Images.Count == 0)
-	      this.lstEntries.SmallImageList = null;
-	    else
-	      this.btnThingListSaveImages.Enabled = true;
-	    Application.DoEvents();
-	    foreach (ColumnHeader CH in this.lstEntries.Columns) {
-	      CH.Width = -2;
-	      CH.Width += 2;
-	    }
-	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
-	    Application.DoEvents();
-	  }
-	  if (this.cmbImageChooser.Items.Count > 0) {
-	    this.cmbImageChooser.SelectedItem = null;
-	    this.tabViewers.SelectedTab = this.tabViewerImages;
-	    this.cmbImageChooser.Select();
-	    this.cmbImageChooser.SelectedIndex = 0;
-	    Application.DoEvents();
-	  }
-	  if (this.cmbItems.Items.Count > 0) {
-	    this.cmbItems.SelectedItem = null;
-	    this.tabViewers.SelectedTab = this.tabViewerItems;
-	    this.cmbItems.Select();
-	    this.cmbItems.SelectedIndex = 0;
-	    Application.DoEvents();
-	  }
-	}
-	if (!this.tabViewers.Visible)
-	  this.pnlNoViewers.Visible = true;
-	this.Enabled = true;
-      }
+      this.LoadFile(this.tvDataFiles.SelectedNode.Tag as string);
     }
 
     private void tvDataFiles_BeforeExpand(object sender, System.Windows.Forms.TreeViewCancelEventArgs e) {
@@ -625,6 +637,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       using (FileTableDialog FTD = new FileTableDialog())
 	FTD.ShowDialog(this);
       this.Activate();
+    }
+
+    #endregion
+
+    #region Other Events
+
+    private void btnReloadFile_Click(object sender, EventArgs e) {
+      this.LoadFile(this.tvDataFiles.SelectedNode.Tag as string);
     }
 
     #endregion

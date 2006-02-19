@@ -57,11 +57,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerGeneral = new System.Windows.Forms.ThemedTabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlThingListActions = new System.Windows.Forms.Panel();
+      this.btnThingListSaveImages = new System.Windows.Forms.Button();
       this.btnThingListExportXML = new System.Windows.Forms.Button();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
-      this.btnThingListSaveImages = new System.Windows.Forms.Button();
+      this.btnReloadFile = new System.Windows.Forms.Button();
+      this.chkShowIcons = new System.Windows.Forms.CheckBox();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -376,10 +378,18 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // pnlThingListActions
       // 
+      this.pnlThingListActions.Controls.Add(this.chkShowIcons);
       this.pnlThingListActions.Controls.Add(this.btnThingListSaveImages);
       this.pnlThingListActions.Controls.Add(this.btnThingListExportXML);
       resources.ApplyResources(this.pnlThingListActions, "pnlThingListActions");
       this.pnlThingListActions.Name = "pnlThingListActions";
+      // 
+      // btnThingListSaveImages
+      // 
+      resources.ApplyResources(this.btnThingListSaveImages, "btnThingListSaveImages");
+      this.btnThingListSaveImages.Name = "btnThingListSaveImages";
+      this.btnThingListSaveImages.UseVisualStyleBackColor = true;
+      this.btnThingListSaveImages.Click += new System.EventHandler(this.btnThingListSaveImages_Click);
       // 
       // btnThingListExportXML
       // 
@@ -390,6 +400,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // pnlNoViewers
       // 
+      this.pnlNoViewers.Controls.Add(this.btnReloadFile);
       this.pnlNoViewers.Controls.Add(this.lblNoViewers);
       resources.ApplyResources(this.pnlNoViewers, "pnlNoViewers");
       this.pnlNoViewers.Name = "pnlNoViewers";
@@ -405,12 +416,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
-      // btnThingListSaveImages
+      // btnReloadFile
       // 
-      resources.ApplyResources(this.btnThingListSaveImages, "btnThingListSaveImages");
-      this.btnThingListSaveImages.Name = "btnThingListSaveImages";
-      this.btnThingListSaveImages.UseVisualStyleBackColor = true;
-      this.btnThingListSaveImages.Click += new System.EventHandler(this.btnThingListSaveImages_Click);
+      resources.ApplyResources(this.btnReloadFile, "btnReloadFile");
+      this.btnReloadFile.Name = "btnReloadFile";
+      this.btnReloadFile.UseVisualStyleBackColor = true;
+      this.btnReloadFile.Click += new System.EventHandler(this.btnReloadFile_Click);
+      // 
+      // chkShowIcons
+      // 
+      resources.ApplyResources(this.chkShowIcons, "chkShowIcons");
+      this.chkShowIcons.Name = "chkShowIcons";
+      this.chkShowIcons.UseVisualStyleBackColor = true;
+      this.chkShowIcons.CheckedChanged += new System.EventHandler(this.chkShowIcons_CheckedChanged);
       // 
       // MainWindow
       // 
@@ -429,6 +447,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.pnlImageChooser.ResumeLayout(false);
       this.tabViewerGeneral.ResumeLayout(false);
       this.pnlThingListActions.ResumeLayout(false);
+      this.pnlThingListActions.PerformLayout();
       this.pnlNoViewers.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -483,6 +502,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuELCEAll;
     private System.Windows.Forms.MenuItem mnuELCESelected;
     private System.Windows.Forms.Button btnThingListSaveImages;
+    private System.Windows.Forms.Button btnReloadFile;
+    private System.Windows.Forms.CheckBox chkShowIcons;
 
   }
 
