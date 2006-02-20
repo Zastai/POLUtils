@@ -267,6 +267,9 @@
   <data name="F::stack-size" xml:space="preserve">
     <value>Stack Size</value>
   </data>
+  <data name="F::status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="F::storage-slots" xml:space="preserve">
     <value>Storage Slots</value>
   </data>
@@ -325,7 +328,7 @@
     <value>String Table</value>
   </data>
   <data name="FT:SpellInfo" xml:space="preserve">
-    <value>SpellInfo</value>
+    <value>Spell Info</value>
   </data>
   <data name="FT:StatusInfo" xml:space="preserve">
     <value>Status Info</value>
@@ -386,7 +389,7 @@ This may take a while, depending on the speed of your machine.</value>
     <value>String Table Entry</value>
   </data>
   <data name="T:SpellInfo" xml:space="preserve">
-    <value>SpellInfo</value>
+    <value>Spell Info</value>
   </data>
   <data name="T:StatusInfo" xml:space="preserve">
     <value>Status Info</value>
