@@ -97,10 +97,16 @@ namespace PlayOnline.FFXI {
 #if false
 	this.Text_ = E.GetString(BR.ReadBytes(0x3b)).TrimEnd('\0');
 #else
+        // Read entry
       byte[] TextBytes = BR.ReadBytes(0x3b);
 	this.Text_ = String.Empty;
+	// Trim trailing NULs
+      int ByteCount = 0x3b;
+        while (TextBytes[ByteCount - 1] == 0x00)
+          --ByteCount;
+        // Process the message
       int LastPos = 0;
-	for (int i = 0; i < TextBytes.Length; ++i) {
+	for (int i = 0; i < ByteCount; ++i) {
 	  if (TextBytes[i] == 0x07) { // Line Break
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
