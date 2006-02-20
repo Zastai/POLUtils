@@ -45,17 +45,11 @@ namespace PlayOnline.Core {
 	}
       }
       // Check for installed POL software
-      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnline\InstallFolder")) {
-	if (POLKey != null)
-	  POL.AvailableRegions_ |= Region.Japan;
-      }
-      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineUS\InstallFolder")) {
-	if (POLKey != null)
-	  POL.AvailableRegions_ |= Region.NorthAmerica;
-      }
-      using (RegistryKey POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder")) {
-	if (POLKey != null)
-	  POL.AvailableRegions_ |= Region.Europe;
+      foreach (Region R in Enum.GetValues(typeof(Region))) {
+	using (RegistryKey POLKey = POL.OpenRegistryKey(R, "InstallFolder")) {
+	  if (POLKey != null)
+	    POL.AvailableRegions_ |= R;
+	}
       }
       // If user's choice is not available, clear that selection
       if ((POL.AvailableRegions_ & POL.SelectedRegion_) != POL.SelectedRegion_)
@@ -118,20 +112,7 @@ namespace PlayOnline.Core {
     }
 
     public static string GetApplicationPath(string ID, Region Region) {
-    RegistryKey POLKey = null;
-      switch (Region) {
-	case Region.Japan:
-	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnline\InstallFolder");
-	  break;
-	case Region.NorthAmerica:
-	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineUS\InstallFolder");
-	  break;
-	case Region.Europe: // Assumption
-	  POLKey = Registry.LocalMachine.OpenSubKey(@"Software\PlayOnlineEU\InstallFolder");
-	  break;
-	default:
-	  return null;
-      }
+    RegistryKey POLKey = POL.OpenRegistryKey("InstallFolder");
       if (POLKey == null)
 	return null;
     string InstallPath = POLKey.GetValue(ID, null) as string;
@@ -154,9 +135,9 @@ namespace PlayOnline.Core {
     public static RegistryKey OpenAppConfigKey(string ID, Region Region) {
     string BaseKey;
       switch (Region) {
-	case Region.Europe:       BaseKey = @"Software\PlayOnlineEU\SquareEnix"; break;
-	case Region.Japan:        BaseKey = @"Software\PlayOnline\SQUARE";       break;
-	case Region.NorthAmerica: BaseKey = @"Software\PlayOnlineUS\SquareEnix"; break;
+	case Region.Europe:       BaseKey = "SquareEnix"; break;
+	case Region.Japan:        BaseKey = "SQUARE";     break;
+	case Region.NorthAmerica: BaseKey = "SquareEnix"; break;
 	default: return null;
       }
     string AppKey;
@@ -164,8 +145,42 @@ namespace PlayOnline.Core {
       else if (ID == AppID.TetraMaster) AppKey = "TetraMaster";
       else if (ID == AppID.POLViewer)   AppKey = "PlayOnlineViewer";
       else return null;
-      try { return Registry.LocalMachine.OpenSubKey(Path.Combine(BaseKey, AppKey), true); } catch { }
-      return null;
+      return POL.OpenRegistryKey(Region, Path.Combine(BaseKey, AppKey), true);
+    }
+
+    private static RegistryKey OpenRegistryKey(string KeyName) {
+      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, false);
+    }
+
+    private static RegistryKey OpenRegistryKey(string KeyName, bool Writable) {
+      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, Writable);
+    }
+
+    private static RegistryKey OpenRegistryKey(Region Region, string KeyName) {
+      return POL.OpenRegistryKey(Region, KeyName, false);
+    }
+
+    private static RegistryKey OpenRegistryKey(Region Region, string KeyName, bool Writable) {
+    string SubKey;
+      {
+      string POLKey = "PlayOnline";
+	switch (Region) {
+	  case Region.Europe:       POLKey += "EU"; break;
+	  case Region.Japan:                        break;
+	  case Region.NorthAmerica: POLKey += "US"; break;
+	  default: return null;
+	}
+	SubKey = Path.Combine(POLKey, KeyName);
+      }
+      try {
+	using (RegistryKey Win64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
+	  if (Win64Root != null)
+	    return Win64Root.OpenSubKey(SubKey, Writable);
+	}
+	return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", SubKey), Writable);
+      } catch {
+	return null;
+      }
     }
 
     public static RegistryKey OpenPOLUtilsConfigKey() {
