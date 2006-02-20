@@ -45,8 +45,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
       this.Name = "FileScanDialog";
       this.ShowInTaskbar = false;
-      this.Activated += new System.EventHandler(this.FileScanDialog_Activated);
-      this.Closing += new System.ComponentModel.CancelEventHandler(this.FileScanDialog_Closing);
       this.ResumeLayout(false);
 
     }

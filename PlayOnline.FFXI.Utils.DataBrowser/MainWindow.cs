@@ -166,16 +166,17 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.LoadedItems_ = null;
       if (FileName != null && File.Exists(FileName)) {
 	this.Enabled = false;
-      FileScanDialog FSD = new FileScanDialog(FileName);
-	if (FSD.ShowDialog(this) == DialogResult.OK) {
+      FileScanner FS = new FileScanner();
+	FS.ScanFile(this, FileName);
+	if (FS.FileContents != null) {
 	  this.LoadedItems_ = new ThingList<Item>();
 	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 	  this.lstEntries.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
-	  if (FSD.FileContents.Count > 0) {
+	  if (FS.FileContents.Count > 0) {
 	    this.tabViewers.TabPages.Add(this.tabViewerGeneral);
 	    this.tabViewers.Visible = true;
 	    Application.DoEvents();
-	    foreach (IThing T in FSD.FileContents) {
+	    foreach (IThing T in FS.FileContents) {
 	    int IconIndex = -1;
 	      {
 	      Image Icon = T.GetIcon();

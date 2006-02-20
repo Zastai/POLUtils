@@ -10,63 +10,30 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using PlayOnline.Core;
-
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
   internal partial class FileScanDialog : Form {
 
-    private string FileName;
-
-    public FileScanDialog(string FileName) {
+    public FileScanDialog() {
       InitializeComponent();
-      this.FileName = FileName;
-      this.DialogResult = DialogResult.None;
+      this.DialogResult = DialogResult.Abort;
     }
 
-    public ThingList FileContents = new ThingList();
+    public void ResetProgress() {
+      this.prbScanProgress.Text    = String.Empty;
+      this.prbScanProgress.Value   = 0;
+      this.prbScanProgress.Visible = true;
+    }
 
-    private void ScanFile() {
+    public void SetProgress(string Message, double PercentCompleted) {
+      if (Message != null)
+	this.lblScanProgress.Text = Message;
+      this.prbScanProgress.Value = Math.Min((int) (PercentCompleted * this.prbScanProgress.Maximum), this.prbScanProgress.Maximum);
+    }
 
-      if (this.FileName != null && File.Exists(this.FileName)) {
-	this.prbScanProgress.Text    = String.Empty;
-	this.prbScanProgress.Value   = 0;
-	this.prbScanProgress.Visible = true;
-	this.FileContents = FileType.LoadAll(this.FileName, new FileType.ProgressCallback(
-	  delegate (string Message, double PercentCompleted) {
-	    if (Message != null)
-	      this.lblScanProgress.Text = Message;
-	    this.prbScanProgress.Value = Math.Min((int) (PercentCompleted * this.prbScanProgress.Maximum), this.prbScanProgress.Maximum);
-	    Application.DoEvents();
-	  }
-	));
-      }
-      this.Scanning = false;
-      this.ScanThread = null;
+    public void Finish() {
       this.DialogResult = DialogResult.OK;
       this.Close();
-    }
-
-    private bool   Scanning   = false;
-    private Thread ScanThread = null;
-
-    private void FileScanDialog_Activated(object sender, System.EventArgs e) {
-      lock (this) {
-	if (this.Scanning)
-	  return;
-	this.Scanning = true;
-        this.ScanThread = new Thread(new ThreadStart(this.ScanFile));
-	this.ScanThread.Start();
-      }
-    }
-
-    private void FileScanDialog_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-      if (this.ScanThread != null) {
-	this.ScanThread.Abort();
-	this.ScanThread = null;
-	this.FileContents.Clear();
-	this.DialogResult = DialogResult.Abort;
-      }
     }
 
   }

@@ -101,6 +101,8 @@
     <Compile Include="FileScanDialog.Designer.cs">
       <DependentUpon>FileScanDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileScanner.cs">
+    </Compile>
     <Compile Include="FileTableDialog.Designer.cs">
       <DependentUpon>FileTableDialog.cs</DependentUpon>
     </Compile>
