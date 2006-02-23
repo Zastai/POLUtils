@@ -28,6 +28,7 @@ namespace PlayOnline.FFXI {
     public static List<string> AllFields {
       get {
 	return new List<string>(new string[] {
+	  "index",
 	  "text",
 	});
       }
@@ -39,12 +40,14 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private string         Text_;
+    private Nullable<int> Index_;
+    private string        Text_;
     
     #endregion
 
     public override void Clear() {
-      this.Text_ = null;
+      this.Index_ = null;
+      this.Text_  = null;
     }
 
     #endregion
@@ -53,28 +56,32 @@ namespace PlayOnline.FFXI {
 
     public override bool HasField(string Field) {
       switch (Field) {
-	case "text": return (this.Text_ != null);
-	default:     return false;
+	case "index": return this.Index_.HasValue;
+	case "text":  return (this.Text_ != null);
+	default:      return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	case "text": return this.Text_;
-	default:     return null;
+	case "index": return (!this.Index_.HasValue ? String.Empty : String.Format("{0:00000}", this.Index_.Value));
+	case "text":  return this.Text_;
+	default:      return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
-	case "text": return this.Text_;
-	default:     return null;
+	case "index": return (!this.Index_.HasValue ? null : (object) this.Index_.Value);
+	case "text":  return this.Text_;
+	default:      return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	case "text": this.Text_ = this.LoadTextField           (Node); break;
+	case "index": this.Index_ = (int) this.LoadUnsignedIntegerField(Node); break;
+	case "text":  this.Text_  =       this.LoadTextField           (Node); break;
       }
     }
 
@@ -83,7 +90,12 @@ namespace PlayOnline.FFXI {
     #region ROM File Reading
 
     public bool Read(BinaryReader BR, long EntryStart, long EntryEnd) {
+      return this.Read(BR, null, EntryStart, EntryEnd);
+    }
+
+    public bool Read(BinaryReader BR, Nullable<int> Index, long EntryStart, long EntryEnd) {
       this.Clear();
+      this.Index_ = Index;
       try {
 	BR.BaseStream.Seek(4 + EntryStart, SeekOrigin.Begin);
       byte[] TextBytes = BR.ReadBytes((int) (EntryEnd - EntryStart));

@@ -35,7 +35,7 @@ namespace PlayOnline.FFXI.FileTypes {
       ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (int i = 0; i < EntryCount; ++i) {
       FFXI.XIStringTableEntry XSTE = new FFXI.XIStringTableEntry();
-	if (!XSTE.Read(BR, E, EntryBytes, DataBytes)) {
+	if (!XSTE.Read(BR, E, i, EntryBytes, DataBytes)) {
 	  TL.Clear();
 	  break;
 	}

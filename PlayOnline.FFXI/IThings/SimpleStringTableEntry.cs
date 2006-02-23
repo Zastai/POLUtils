@@ -64,7 +64,7 @@ namespace PlayOnline.FFXI {
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	case "id":   return (!this.ID_.HasValue ? String.Empty : String.Format("{0}", this.ID_.Value));
+	case "id":   return (!this.ID_.HasValue ? String.Empty : String.Format("{0:00000}", this.ID_.Value));
 	case "text": return this.Text_;
 	default:     return null;
       }
@@ -186,8 +186,8 @@ namespace PlayOnline.FFXI {
 	  }
 #endif
 	}
-	if (LastPos < TextBytes.Length)
-	  this.Text_ += E.GetString(TextBytes, LastPos, TextBytes.Length - LastPos);
+	if (LastPos < ByteCount)
+	  this.Text_ += E.GetString(TextBytes, LastPos, ByteCount - LastPos);
 #endif
 	return (BR.ReadByte() == 0xff);
       } catch { return false; }

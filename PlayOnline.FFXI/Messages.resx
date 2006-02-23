@@ -195,6 +195,9 @@
   <data name="F::important-colors" xml:space="preserve">
     <value>Important Colors</value>
   </data>
+  <data name="F::index" xml:space="preserve">
+    <value>Index</value>
+  </data>
   <data name="F::japanese-description" xml:space="preserve">
     <value>Japanese Description</value>
   </data>
