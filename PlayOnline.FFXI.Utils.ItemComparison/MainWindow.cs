@@ -44,6 +44,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private PleaseWaitDialog PWD = null;
 
+    private OpenFileDialog dlgLoadItems1 = null;
+    private OpenFileDialog dlgLoadItems2 = null;
 
     #region Item Loading & Duplicate Removal
 
@@ -213,14 +215,25 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     #region Event Handlers
 
+    private OpenFileDialog CreateLoadItemsDialog() {
+    OpenFileDialog OFD = new OpenFileDialog();
+      OFD.Title  = I18N.GetText("OpenDialog:Title");
+      OFD.Filter = I18N.GetText("OpenDialog:Filter");
+      return OFD;
+    }
+
     private void btnLoadItemSet1_Click(object sender, System.EventArgs e) {
-      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK)
-	this.LoadItems(this.dlgLoadItems.FileName, this.ieLeft);
+      if (this.dlgLoadItems1 == null)
+	this.dlgLoadItems1 = this.CreateLoadItemsDialog();
+      if (this.dlgLoadItems1.ShowDialog(this) == DialogResult.OK)
+	this.LoadItems(this.dlgLoadItems1.FileName, this.ieLeft);
     }
 
     private void btnLoadItemSet2_Click(object sender, System.EventArgs e) {
-      if (this.dlgLoadItems.ShowDialog(this) == DialogResult.OK)
-	this.LoadItems(this.dlgLoadItems.FileName, this.ieRight);
+      if (this.dlgLoadItems2 == null)
+	this.dlgLoadItems2 = this.CreateLoadItemsDialog();
+      if (this.dlgLoadItems2.ShowDialog(this) == DialogResult.OK)
+	this.LoadItems(this.dlgLoadItems2.FileName, this.ieRight);
     }
 
     private void btnPrevious_Click(object sender, System.EventArgs e) {

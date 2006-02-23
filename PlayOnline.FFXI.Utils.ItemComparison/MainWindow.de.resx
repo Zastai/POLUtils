@@ -123,9 +123,6 @@
   <data name="btnLoadItemSet2.Text" xml:space="preserve">
     <value>Lade Item Set &amp;2...</value>
   </data>
-  <data name="dlgLoadItems.Title" xml:space="preserve">
-    <value>Datei zum laden auswählen...</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnPrevious.Location" type="System.Drawing.Point, System.Drawing">
     <value>289, 4</value>

@@ -125,4 +125,7 @@ Dies könnte eine Weile dauern.</value>
     <value>Lösche unveränderte Items.
 Dies könnte eine Weile dauern.</value>
   </data>
+  <data name="OpenDialog:Title" xml:space="preserve">
+    <value>Datei zum laden auswählen...</value>
+  </data>
 </root>

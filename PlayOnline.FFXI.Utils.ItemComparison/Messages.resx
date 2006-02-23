@@ -122,4 +122,10 @@ This may take quite a while.</value>
     <value xml:space="preserve">Removing unchanged items.
 This may take quite a while.</value>
   </data>
+  <data name="OpenDialog:Title" xml:space="preserve">
+    <value>Select a file to load...</value>
+  </data>
+  <data name="OpenDialog:Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml|All Files (*.*)|*.*</value>
+  </data>
 </root>
