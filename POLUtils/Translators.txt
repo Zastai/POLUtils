@@ -1,8 +1,11 @@
 The various translations of POLUtils are provided by the following people:
 
-Language   State                     Translator
----------- ------------------------- -------------------------------------
-Dutch      Installer Only            Pebbles
-French     Installer Only            Kapibara from Phoenix
-German     Full                      Andy Müller (Missingno from Fairy)
-Spanish    Installer Only            Kapibara from Phoenix
+Language   Installer Main Program Translator
+---------- --------- ------------ -------------------------------------
+Dutch      Yes       No           Pebbles
+French     Yes       In Progress  Kapibara from Phoenix
+German     Yes       Partial      Andy Müller (Missingno from Fairy)
+Spanish    Yes       In Progress  Kapibara from Phoenix
+
+If you want to contribute a translation not listed above, let me know at
+pebbles.pandemonium@telenet.be!
