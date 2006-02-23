@@ -24,7 +24,7 @@ namespace PlayOnline.FFXI {
     string Name = this.EnglishName_;
       if (POL.SelectedRegion == POL.Region.Japan)
 	Name = this.JapaneseName_;
-      return String.Format("[{0:X4}] {1}", this.ID_, Name);
+      return String.Format("[{0:00000000}] {1}", this.ID_, Name);
     }
 
     public override List<PropertyPages.IThing> GetPropertyPages() {
@@ -249,8 +249,8 @@ namespace PlayOnline.FFXI {
 	case "type":              return (!this.Type_.HasValue           ? String.Empty : String.Format("{0}", this.Type_.Value));
 	case "valid-targets":     return (!this.ValidTargets_.HasValue   ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
 	// Nullables - Hex Values
-	case "id":                return (!this.ID_.HasValue             ? String.Empty : String.Format("{0:X8}", this.ID_.Value));
-	case "resource-id":       return (!this.ResourceID_.HasValue     ? String.Empty : String.Format("{0:X4}", this.ResourceID_.Value));
+	case "id":                return (!this.ID_.HasValue             ? String.Empty : String.Format("{0:X8} ({0})", this.ID_.Value));
+	case "resource-id":       return (!this.ResourceID_.HasValue     ? String.Empty : String.Format("{0:X4} ({0})", this.ResourceID_.Value));
 	case "unknown-1":         return (!this.Unknown1_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
 	case "unknown-2":         return (!this.Unknown2_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown2_.Value));
 	case "unknown-3":         return (!this.Unknown3_.HasValue       ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown3_.Value));
