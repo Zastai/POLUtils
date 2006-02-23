@@ -108,11 +108,7 @@ namespace PlayOnline.FFXI {
 	  if (TextBytes[i] == 0x07) { // Line Break
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-#if DEBUG
 	    this.Text_ += "\r\n";
-#else
-	    this.Text_ += String.Format("{0}NewLine{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd);
-#endif
 	    LastPos = i + 1;
 	  }
 	  else if (TextBytes[i] == 0x08) { // Character Name (You)
