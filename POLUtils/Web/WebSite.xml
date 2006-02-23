@@ -14,9 +14,9 @@
          as with 0.7.0, the ItemListUpgrade utility will convert old files to the new format.
          CSV Export is currently unavailable.</p>
       <p>The German translation of the main UI, and the German, Spanish and French installer translations
-         are included.  The old and extremely incomplete Dutch & Japanese UI translations were removed.</li>
+         are included.  The old and extremely incomplete Dutch &amp; Japanese UI translations were removed.
       </p>
-      <p>POLUtils will run natively on Win64 and should now correctly detect POL & FFXI on those systems.
+      <p>POLUtils will run natively on Win64 and should now correctly detect POL &amp; FFXI on those systems.
          Audio playback will probably be unavailable until Microsoft released a 64-bit version of Managed
          DirectX.  I may switch to using specifically 32-bit targeted builds in future releases to avoid
          further issues on Win64.</p>
@@ -348,7 +348,7 @@
   <downloads>
     <group name="POLUtils - Stable Beta">
       <file name="POLUtils-0.8.0-Release.exe">
-	Major core rewrite, minor tweaks & fixes.<br/>
+	Major core rewrite, minor tweaks &amp; fixes.<br/>
       </file>
       <file name="POLUtils-0.7.0-Release.exe">
 	Built for .NET 2.0.  Integrated EngrishOnry + minor cosmetic changes.<br/>
