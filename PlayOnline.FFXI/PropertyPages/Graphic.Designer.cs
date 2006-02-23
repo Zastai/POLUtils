@@ -17,13 +17,14 @@ namespace PlayOnline.FFXI.PropertyPages {
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Graphic));
       this.btnSelectColor = new System.Windows.Forms.Button();
-      this.radSolid = new System.Windows.Forms.RadioButton();
-      this.radTransparent = new System.Windows.Forms.RadioButton();
       this.lblBackColor = new System.Windows.Forms.Label();
       this.cmbViewMode = new System.Windows.Forms.ComboBox();
       this.lblViewMode = new System.Windows.Forms.Label();
       this.picImage = new System.Windows.Forms.PictureBox();
       this.dlgChooseColor = new System.Windows.Forms.ColorDialog();
+      this.cmbBackColor = new System.Windows.Forms.ComboBox();
+      this.btnSave = new System.Windows.Forms.Button();
+      this.dlgSaveImage = new System.Windows.Forms.SaveFileDialog();
       ((System.ComponentModel.ISupportInitialize) (this.picImage)).BeginInit();
       this.SuspendLayout();
       // 
@@ -33,22 +34,6 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.btnSelectColor.Name = "btnSelectColor";
       this.btnSelectColor.UseVisualStyleBackColor = true;
       this.btnSelectColor.Click += new System.EventHandler(this.btnSelectColor_Click);
-      // 
-      // radSolid
-      // 
-      resources.ApplyResources(this.radSolid, "radSolid");
-      this.radSolid.Name = "radSolid";
-      this.radSolid.UseVisualStyleBackColor = true;
-      this.radSolid.CheckedChanged += new System.EventHandler(this.radSolid_CheckedChanged);
-      // 
-      // radTransparent
-      // 
-      resources.ApplyResources(this.radTransparent, "radTransparent");
-      this.radTransparent.Checked = true;
-      this.radTransparent.Name = "radTransparent";
-      this.radTransparent.TabStop = true;
-      this.radTransparent.UseVisualStyleBackColor = true;
-      this.radTransparent.CheckedChanged += new System.EventHandler(this.radTransparent_CheckedChanged);
       // 
       // lblBackColor
       // 
@@ -81,13 +66,36 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.dlgChooseColor.AnyColor = true;
       this.dlgChooseColor.FullOpen = true;
       // 
+      // cmbBackColor
+      // 
+      resources.ApplyResources(this.cmbBackColor, "cmbBackColor");
+      this.cmbBackColor.DisplayMember = "Name";
+      this.cmbBackColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbBackColor.Items.AddRange(new object[] {
+            resources.GetString("cmbBackColor.Items"),
+            resources.GetString("cmbBackColor.Items1")});
+      this.cmbBackColor.Name = "cmbBackColor";
+      this.cmbBackColor.ValueMember = "Value";
+      this.cmbBackColor.SelectedIndexChanged += new System.EventHandler(this.cmbBackColor_SelectedIndexChanged);
+      // 
+      // btnSave
+      // 
+      resources.ApplyResources(this.btnSave, "btnSave");
+      this.btnSave.Name = "btnSave";
+      this.btnSave.UseVisualStyleBackColor = true;
+      this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+      // 
+      // dlgSaveImage
+      // 
+      resources.ApplyResources(this.dlgSaveImage, "dlgSaveImage");
+      // 
       // Graphic
       // 
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.btnSave);
+      this.Controls.Add(this.cmbBackColor);
       this.Controls.Add(this.btnSelectColor);
-      this.Controls.Add(this.radSolid);
-      this.Controls.Add(this.radTransparent);
       this.Controls.Add(this.lblBackColor);
       this.Controls.Add(this.cmbViewMode);
       this.Controls.Add(this.lblViewMode);
@@ -103,13 +111,14 @@ namespace PlayOnline.FFXI.PropertyPages {
     #endregion
 
     private System.Windows.Forms.Button btnSelectColor;
-    private System.Windows.Forms.RadioButton radSolid;
-    private System.Windows.Forms.RadioButton radTransparent;
     private System.Windows.Forms.Label lblBackColor;
     private System.Windows.Forms.ComboBox cmbViewMode;
     private System.Windows.Forms.Label lblViewMode;
     private System.Windows.Forms.PictureBox picImage;
     private System.Windows.Forms.ColorDialog dlgChooseColor;
+    private System.Windows.Forms.ComboBox cmbBackColor;
+    private System.Windows.Forms.Button btnSave;
+    private System.Windows.Forms.SaveFileDialog dlgSaveImage;
 
 
   }
