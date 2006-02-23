@@ -71,7 +71,7 @@ namespace POLUtils {
     private void btnAudioManager_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.Utils.AudioManager.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -79,7 +79,7 @@ namespace POLUtils {
     private void btnFFXIConfigEditor_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.ConfigEditor.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -87,7 +87,7 @@ namespace POLUtils {
     private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -95,7 +95,7 @@ namespace POLUtils {
     private void btnFFXIEngrishOnry_Click(object sender, EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.EngrishOnry.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -103,7 +103,7 @@ namespace POLUtils {
     private void btnFFXIItemComparison_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.ItemComparison.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -111,7 +111,7 @@ namespace POLUtils {
     private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.MacroManager.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
@@ -119,7 +119,7 @@ namespace POLUtils {
     private void btnTetraViewer_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.Utils.TetraViewer.MainWindow())
-	Utility.ShowDialog(this);
+	Utility.ShowDialog();
       this.Show();
       this.Activate();
     }
