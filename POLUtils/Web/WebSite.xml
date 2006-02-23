@@ -2,6 +2,25 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.8.0 Released" author="Pebbles" date="February 23rd, 2006">
+      <p>Today I'm releasing POLUtils 0.8.0, a collection of PlayOnline-related utilities.</p>
+      <p>It's fairly light on new features; the main thing is a complete rewrite of the core DAT
+         loading code, to make the various forms of data accessible in a generic way.<br/>
+         From the user's point of view, this currently mainly manifests itself as an ability to
+         export pretty much any supported DAT type to XML.  0.9.0 will see the item find dialog
+         replaced by a generic version, making text searches possible in the dialog tables, for
+         example; and the item list comparison tool will also be made generic.<br/>
+         As a side-effect, the XML format has been changed once again, but should now be stable;
+         as with 0.7.0, the ItemListUpgrade utility will convert old files to the new format.
+         CSV Export is currently unavailable.</p>
+      <p>The German translation of the main UI, and the German, Spanish and French installer translations
+         are included.  The old and extremely incomplete Dutch & Japanese UI translations were removed.</li>
+      </p>
+      <p>POLUtils will run natively on Win64 and should now correctly detect POL & FFXI on those systems.
+         Audio playback will probably be unavailable until Microsoft released a 64-bit version of Managed
+         DirectX.  I may switch to using specifically 32-bit targeted builds in future releases to avoid
+         further issues on Win64.</p>
+    </news-item>
     <news-item title="More Translation News" author="Pebbles" date="February 16th, 2006">
       The installer can now speak Spanish and French (thanks to Kapibara from the Phoenix server);
       translations for the tools themselves are in progress, but probably won't make it into 0.8.0
@@ -31,8 +50,8 @@
 	<li>Built using .NET 2.0; some UI tweaks have been made to match this switch (nothing major yet).</li>
 	<li>Integrated EngrishOnry into POLUtils.</li>
         <li>Added ItemListUpgrade, a simple utility that converts an "old" item list XML dump to the current format.</li>
-        <li>CSV Item Export now puts in Description as a single multiline field (tested import with Excel and Access), and will always include
-	    the item's icon info.</li>
+        <li>CSV Item Export now puts in Description as a single multiline field (tested import with Excel and Access),
+	    and will always include the item's icon info.</li>
 	<li>If anyone's interested in providing translations for POLUtils, a kit is now available (in the
 	    downloads section). Note that translating anything except the installer requires Visual Studio 2005
 	    (might work with Visual C# 2005 Express too, but that is untested).<br/>
@@ -328,6 +347,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.8.0-Release.exe">
+	Major core rewrite, minor tweaks & fixes.<br/>
+      </file>
       <file name="POLUtils-0.7.0-Release.exe">
 	Built for .NET 2.0.  Integrated EngrishOnry + minor cosmetic changes.<br/>
       </file>
@@ -367,12 +389,14 @@
     </group>
     <group name="POLUtils - Translator's Kit">
       <description>
-	These kits can be used to provide me with localized resources for POLUtils (i.e. translations for the
+	This kit can be used to provide me with localized resources for POLUtils (i.e. translations for the
 	installer and GUI).<br/>
-	Note that these require Visual Studio 2005 (or possibly Visual C# 2005 Express), except for the
-	installer translation.
+	Note that for optimal efficiency in doing the translation, Visual Studio 2005 or Visual C# 2005 Express
+	is required (otherwise you would not be able to size the controls to match the changed text).<br/>
+	The installer texts can be localized with a plain text editor, so you can still contribute if you're
+	unable or unwilling to use Visual Studio/C#.
       </description>
-      <file name="POLUtils-Localization-0.7.0.zip">Localization kit for POLUtils 0.7.0.</file>
+      <file name="POLUtils-Localization-0.8.0.zip">Current Localization.</file>
     </group>
     <group name="POLUtils - Support Files">
       <file name="mdxredist.msi">
