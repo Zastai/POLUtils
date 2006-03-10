@@ -2,6 +2,10 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="Forums Created" author="Pebbles" date="March 10th, 2006">
+      I've set up a simple forum at <a href="http://polutils.forumer.com/">polutils.forumer.com</a> -
+      feel free to head over there &amp; register.
+    </news-item>
     <news-item title="POLUtils 0.8.0 Released" author="Pebbles" date="February 23rd, 2006">
       <p>Today I'm releasing POLUtils 0.8.0, a collection of PlayOnline-related utilities.</p>
       <p>It's fairly light on new features; the main thing is a complete rewrite of the core DAT
