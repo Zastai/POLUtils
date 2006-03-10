@@ -445,6 +445,9 @@
       <link target="http://ffxi-atlas.com/" name="Vana'diel Atlas">The only map site you'll ever need.</link>
     </group>
     <group name="Forum Sites">
+      <link target="http://polutils.forumer.com/" name="POLUtils">
+        The official POLUtils forums.
+      </link>
       <link target="http://ffxi.killvoid.com/" name="KillingIfrit">
         One of the main FFXI forums; high moron and flame count, occasional nugget of useful info.
       </link>
