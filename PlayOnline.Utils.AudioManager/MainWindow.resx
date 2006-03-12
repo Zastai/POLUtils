@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -122,6 +125,40 @@
     <value>16, 16</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="chkBufferedPlayback.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkBufferedPlayback.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 203</value>
+  </data>
+  <data name="chkBufferedPlayback.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 17</value>
+  </data>
+  <data name="chkBufferedPlayback.TabIndex" type="System.Int32, mscorlib">
+    <value>667</value>
+  </data>
+  <data name="chkBufferedPlayback.Text" xml:space="preserve">
+    <value>Use &amp;Buffered Playback</value>
+  </data>
+  <metadata name="ttInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>442, 17</value>
+  </metadata>
+  <data name="chkBufferedPlayback.ToolTip" xml:space="preserve">
+    <value>If checked, playback will use a buffering thread, resulting a less memory use (and enabling playback of longer tracks such as Castle Zvahl and Yuhtunga Jungle).
+However, this will cause skipping and/or garbled playback if another DirectSound application (such as the POL Viewer) is open.</value>
+  </data>
+  <data name="&gt;&gt;chkBufferedPlayback.Name" xml:space="preserve">
+    <value>chkBufferedPlayback</value>
+  </data>
+  <data name="&gt;&gt;chkBufferedPlayback.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkBufferedPlayback.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
+  </data>
+  <data name="&gt;&gt;chkBufferedPlayback.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnStop.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -141,20 +178,20 @@
   <data name="btnStop.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="btnStop.Text">
-    <value xml:space="preserve">&amp;Stop</value>
+  <data name="btnStop.Text" xml:space="preserve">
+    <value>&amp;Stop</value>
   </data>
-  <data name="&gt;&gt;btnStop.Name">
-    <value xml:space="preserve">btnStop</value>
+  <data name="&gt;&gt;btnStop.Name" xml:space="preserve">
+    <value>btnStop</value>
   </data>
-  <data name="&gt;&gt;btnStop.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnStop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnStop.Parent">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;btnStop.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;btnStop.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;btnStop.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnPause.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -174,20 +211,20 @@
   <data name="btnPause.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnPause.Text">
-    <value xml:space="preserve">&amp;Pause</value>
+  <data name="btnPause.Text" xml:space="preserve">
+    <value>&amp;Pause</value>
   </data>
-  <data name="&gt;&gt;btnPause.Name">
-    <value xml:space="preserve">btnPause</value>
+  <data name="&gt;&gt;btnPause.Name" xml:space="preserve">
+    <value>btnPause</value>
   </data>
-  <data name="&gt;&gt;btnPause.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnPause.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnPause.Parent">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;btnPause.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;btnPause.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;btnPause.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnPlay.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -207,20 +244,20 @@
   <data name="btnPlay.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="btnPlay.Text">
-    <value xml:space="preserve">&amp;Play</value>
+  <data name="btnPlay.Text" xml:space="preserve">
+    <value>&amp;Play</value>
   </data>
-  <data name="&gt;&gt;btnPlay.Name">
-    <value xml:space="preserve">btnPlay</value>
+  <data name="&gt;&gt;btnPlay.Name" xml:space="preserve">
+    <value>btnPlay</value>
   </data>
-  <data name="&gt;&gt;btnPlay.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnPlay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnPlay.Parent">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;btnPlay.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;btnPlay.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;btnPlay.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnDecode.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -240,20 +277,20 @@
   <data name="btnDecode.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="btnDecode.Text">
-    <value xml:space="preserve">&amp;Decode...</value>
+  <data name="btnDecode.Text" xml:space="preserve">
+    <value>&amp;Decode...</value>
   </data>
-  <data name="&gt;&gt;btnDecode.Name">
-    <value xml:space="preserve">btnDecode</value>
+  <data name="&gt;&gt;btnDecode.Name" xml:space="preserve">
+    <value>btnDecode</value>
   </data>
-  <data name="&gt;&gt;btnDecode.Type">
-    <value xml:space="preserve">System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnDecode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnDecode.Parent">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;btnDecode.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;btnDecode.ZOrder">
-    <value xml:space="preserve">3</value>
+  <data name="&gt;&gt;btnDecode.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="grpFileInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -273,17 +310,17 @@
   <data name="txtComposer.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;txtComposer.Name">
-    <value xml:space="preserve">txtComposer</value>
+  <data name="&gt;&gt;txtComposer.Name" xml:space="preserve">
+    <value>txtComposer</value>
   </data>
-  <data name="&gt;&gt;txtComposer.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtComposer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtComposer.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtComposer.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtComposer.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;txtComposer.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lblComposer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -297,20 +334,20 @@
   <data name="lblComposer.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="lblComposer.Text">
-    <value xml:space="preserve">Composer:</value>
+  <data name="lblComposer.Text" xml:space="preserve">
+    <value>Composer:</value>
   </data>
-  <data name="&gt;&gt;lblComposer.Name">
-    <value xml:space="preserve">lblComposer</value>
+  <data name="&gt;&gt;lblComposer.Name" xml:space="preserve">
+    <value>lblComposer</value>
   </data>
-  <data name="&gt;&gt;lblComposer.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblComposer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblComposer.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblComposer.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblComposer.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;lblComposer.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="txtTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -327,17 +364,17 @@
   <data name="txtTitle.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;txtTitle.Name">
-    <value xml:space="preserve">txtTitle</value>
+  <data name="&gt;&gt;txtTitle.Name" xml:space="preserve">
+    <value>txtTitle</value>
   </data>
-  <data name="&gt;&gt;txtTitle.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtTitle.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtTitle.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtTitle.ZOrder">
-    <value xml:space="preserve">2</value>
+  <data name="&gt;&gt;txtTitle.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lblTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -351,20 +388,20 @@
   <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="lblTitle.Text">
-    <value xml:space="preserve">Title:</value>
+  <data name="lblTitle.Text" xml:space="preserve">
+    <value>Title:</value>
   </data>
-  <data name="&gt;&gt;lblTitle.Name">
-    <value xml:space="preserve">lblTitle</value>
+  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
+    <value>lblTitle</value>
   </data>
-  <data name="&gt;&gt;lblTitle.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblTitle.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblTitle.ZOrder">
-    <value xml:space="preserve">3</value>
+  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="txtFileLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -381,17 +418,17 @@
   <data name="txtFileLength.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;txtFileLength.Name">
-    <value xml:space="preserve">txtFileLength</value>
+  <data name="&gt;&gt;txtFileLength.Name" xml:space="preserve">
+    <value>txtFileLength</value>
   </data>
-  <data name="&gt;&gt;txtFileLength.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtFileLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtFileLength.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtFileLength.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtFileLength.ZOrder">
-    <value xml:space="preserve">4</value>
+  <data name="&gt;&gt;txtFileLength.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="lblFileLength.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -405,20 +442,20 @@
   <data name="lblFileLength.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="lblFileLength.Text">
-    <value xml:space="preserve">Length:</value>
+  <data name="lblFileLength.Text" xml:space="preserve">
+    <value>Length:</value>
   </data>
-  <data name="&gt;&gt;lblFileLength.Name">
-    <value xml:space="preserve">lblFileLength</value>
+  <data name="&gt;&gt;lblFileLength.Name" xml:space="preserve">
+    <value>lblFileLength</value>
   </data>
-  <data name="&gt;&gt;lblFileLength.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblFileLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblFileLength.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblFileLength.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblFileLength.ZOrder">
-    <value xml:space="preserve">5</value>
+  <data name="&gt;&gt;lblFileLength.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="txtFormat.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -435,17 +472,17 @@
   <data name="txtFormat.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;txtFormat.Name">
-    <value xml:space="preserve">txtFormat</value>
+  <data name="&gt;&gt;txtFormat.Name" xml:space="preserve">
+    <value>txtFormat</value>
   </data>
-  <data name="&gt;&gt;txtFormat.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtFormat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtFormat.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtFormat.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtFormat.ZOrder">
-    <value xml:space="preserve">6</value>
+  <data name="&gt;&gt;txtFormat.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="lblFormat.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -459,20 +496,20 @@
   <data name="lblFormat.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="lblFormat.Text">
-    <value xml:space="preserve">Format:</value>
+  <data name="lblFormat.Text" xml:space="preserve">
+    <value>Format:</value>
   </data>
-  <data name="&gt;&gt;lblFormat.Name">
-    <value xml:space="preserve">lblFormat</value>
+  <data name="&gt;&gt;lblFormat.Name" xml:space="preserve">
+    <value>lblFormat</value>
   </data>
-  <data name="&gt;&gt;lblFormat.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblFormat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblFormat.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblFormat.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblFormat.ZOrder">
-    <value xml:space="preserve">7</value>
+  <data name="&gt;&gt;lblFormat.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="txtFileType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -489,17 +526,17 @@
   <data name="txtFileType.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;txtFileType.Name">
-    <value xml:space="preserve">txtFileType</value>
+  <data name="&gt;&gt;txtFileType.Name" xml:space="preserve">
+    <value>txtFileType</value>
   </data>
-  <data name="&gt;&gt;txtFileType.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtFileType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtFileType.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtFileType.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtFileType.ZOrder">
-    <value xml:space="preserve">8</value>
+  <data name="&gt;&gt;txtFileType.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="lblFileType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -513,20 +550,20 @@
   <data name="lblFileType.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="lblFileType.Text">
-    <value xml:space="preserve">File Type:</value>
+  <data name="lblFileType.Text" xml:space="preserve">
+    <value>File Type:</value>
   </data>
-  <data name="&gt;&gt;lblFileType.Name">
-    <value xml:space="preserve">lblFileType</value>
+  <data name="&gt;&gt;lblFileType.Name" xml:space="preserve">
+    <value>lblFileType</value>
   </data>
-  <data name="&gt;&gt;lblFileType.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblFileType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblFileType.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblFileType.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblFileType.ZOrder">
-    <value xml:space="preserve">9</value>
+  <data name="&gt;&gt;lblFileType.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="txtLocation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -543,17 +580,17 @@
   <data name="txtLocation.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;txtLocation.Name">
-    <value xml:space="preserve">txtLocation</value>
+  <data name="&gt;&gt;txtLocation.Name" xml:space="preserve">
+    <value>txtLocation</value>
   </data>
-  <data name="&gt;&gt;txtLocation.Type">
-    <value xml:space="preserve">System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtLocation.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;txtLocation.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;txtLocation.ZOrder">
-    <value xml:space="preserve">10</value>
+  <data name="&gt;&gt;txtLocation.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="lblLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -567,20 +604,20 @@
   <data name="lblLocation.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="lblLocation.Text">
-    <value xml:space="preserve">Location:</value>
+  <data name="lblLocation.Text" xml:space="preserve">
+    <value>Location:</value>
   </data>
-  <data name="&gt;&gt;lblLocation.Name">
-    <value xml:space="preserve">lblLocation</value>
+  <data name="&gt;&gt;lblLocation.Name" xml:space="preserve">
+    <value>lblLocation</value>
   </data>
-  <data name="&gt;&gt;lblLocation.Type">
-    <value xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblLocation.Parent">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;lblLocation.Parent" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;lblLocation.ZOrder">
-    <value xml:space="preserve">11</value>
+  <data name="&gt;&gt;lblLocation.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="grpFileInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -591,20 +628,20 @@
   <data name="grpFileInfo.TabIndex" type="System.Int32, mscorlib">
     <value>666</value>
   </data>
-  <data name="grpFileInfo.Text">
-    <value xml:space="preserve">File Information</value>
+  <data name="grpFileInfo.Text" xml:space="preserve">
+    <value>File Information</value>
   </data>
-  <data name="&gt;&gt;grpFileInfo.Name">
-    <value xml:space="preserve">grpFileInfo</value>
+  <data name="&gt;&gt;grpFileInfo.Name" xml:space="preserve">
+    <value>grpFileInfo</value>
   </data>
-  <data name="&gt;&gt;grpFileInfo.Type">
-    <value xml:space="preserve">System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;grpFileInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpFileInfo.Parent">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;grpFileInfo.Parent" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;grpFileInfo.ZOrder">
-    <value xml:space="preserve">4</value>
+  <data name="&gt;&gt;grpFileInfo.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="pnlInfoArea.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -618,17 +655,17 @@
   <data name="pnlInfoArea.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;pnlInfoArea.Name">
-    <value xml:space="preserve">pnlInfoArea</value>
+  <data name="&gt;&gt;pnlInfoArea.Name" xml:space="preserve">
+    <value>pnlInfoArea</value>
   </data>
-  <data name="&gt;&gt;pnlInfoArea.Type">
-    <value xml:space="preserve">System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pnlInfoArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlInfoArea.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;pnlInfoArea.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;pnlInfoArea.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;pnlInfoArea.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tvMusicBrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -638,9 +675,6 @@
   </data>
   <data name="tvMusicBrowser.Indent" type="System.Int32, mscorlib">
     <value>19</value>
-  </data>
-  <data name="tvMusicBrowser.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
   </data>
   <data name="tvMusicBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -654,17 +688,17 @@
   <data name="tvMusicBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tvMusicBrowser.Name">
-    <value xml:space="preserve">tvMusicBrowser</value>
+  <data name="&gt;&gt;tvMusicBrowser.Name" xml:space="preserve">
+    <value>tvMusicBrowser</value>
   </data>
-  <data name="&gt;&gt;tvMusicBrowser.Type">
-    <value xml:space="preserve">System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tvMusicBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tvMusicBrowser.Parent">
-    <value xml:space="preserve">tabMusicBrowser</value>
+  <data name="&gt;&gt;tvMusicBrowser.Parent" xml:space="preserve">
+    <value>tabMusicBrowser</value>
   </data>
-  <data name="&gt;&gt;tvMusicBrowser.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;tvMusicBrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tabMusicBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 23</value>
@@ -675,20 +709,20 @@
   <data name="tabMusicBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="tabMusicBrowser.Text">
-    <value xml:space="preserve">Music</value>
+  <data name="tabMusicBrowser.Text" xml:space="preserve">
+    <value>Music</value>
   </data>
-  <data name="&gt;&gt;tabMusicBrowser.Name">
-    <value xml:space="preserve">tabMusicBrowser</value>
+  <data name="&gt;&gt;tabMusicBrowser.Name" xml:space="preserve">
+    <value>tabMusicBrowser</value>
   </data>
-  <data name="&gt;&gt;tabMusicBrowser.Type">
-    <value xml:space="preserve">System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabMusicBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabMusicBrowser.Parent">
-    <value xml:space="preserve">tabBrowsers</value>
+  <data name="&gt;&gt;tabMusicBrowser.Parent" xml:space="preserve">
+    <value>tabBrowsers</value>
   </data>
-  <data name="&gt;&gt;tabMusicBrowser.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;tabMusicBrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tvSoundBrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -705,9 +739,6 @@
   <data name="tvSoundBrowser.Indent" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="tvSoundBrowser.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
   <data name="tvSoundBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -720,17 +751,17 @@
   <data name="tvSoundBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tvSoundBrowser.Name">
-    <value xml:space="preserve">tvSoundBrowser</value>
+  <data name="&gt;&gt;tvSoundBrowser.Name" xml:space="preserve">
+    <value>tvSoundBrowser</value>
   </data>
-  <data name="&gt;&gt;tvSoundBrowser.Type">
-    <value xml:space="preserve">System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tvSoundBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tvSoundBrowser.Parent">
-    <value xml:space="preserve">tabSoundBrowser</value>
+  <data name="&gt;&gt;tvSoundBrowser.Parent" xml:space="preserve">
+    <value>tabSoundBrowser</value>
   </data>
-  <data name="&gt;&gt;tvSoundBrowser.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;tvSoundBrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tabSoundBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 23</value>
@@ -741,20 +772,20 @@
   <data name="tabSoundBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tabSoundBrowser.Text">
-    <value xml:space="preserve">Sound Effects</value>
+  <data name="tabSoundBrowser.Text" xml:space="preserve">
+    <value>Sound Effects</value>
   </data>
-  <data name="&gt;&gt;tabSoundBrowser.Name">
-    <value xml:space="preserve">tabSoundBrowser</value>
+  <data name="&gt;&gt;tabSoundBrowser.Name" xml:space="preserve">
+    <value>tabSoundBrowser</value>
   </data>
-  <data name="&gt;&gt;tabSoundBrowser.Type">
-    <value xml:space="preserve">System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabSoundBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabSoundBrowser.Parent">
-    <value xml:space="preserve">tabBrowsers</value>
+  <data name="&gt;&gt;tabSoundBrowser.Parent" xml:space="preserve">
+    <value>tabBrowsers</value>
   </data>
-  <data name="&gt;&gt;tabSoundBrowser.ZOrder">
-    <value xml:space="preserve">1</value>
+  <data name="&gt;&gt;tabSoundBrowser.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tabBrowsers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -771,26 +802,26 @@
   <data name="tabBrowsers.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;tabBrowsers.Name">
-    <value xml:space="preserve">tabBrowsers</value>
+  <data name="&gt;&gt;tabBrowsers.Name" xml:space="preserve">
+    <value>tabBrowsers</value>
   </data>
-  <data name="&gt;&gt;tabBrowsers.Type">
-    <value xml:space="preserve">System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabBrowsers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabBrowsers.Parent">
-    <value xml:space="preserve">$this</value>
+  <data name="&gt;&gt;tabBrowsers.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;tabBrowsers.ZOrder">
-    <value xml:space="preserve">0</value>
+  <data name="&gt;&gt;tabBrowsers.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="dlgSaveWave.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>324, 17</value>
   </metadata>
-  <data name="dlgSaveWave.Filter">
-    <value xml:space="preserve">Wave Files (*.wav)|*.wav|All Files (*.*)|*.*</value>
+  <data name="dlgSaveWave.Filter" xml:space="preserve">
+    <value>Wave Files (*.wav)|*.wav|All Files (*.*)|*.*</value>
   </data>
-  <data name="dlgSaveWave.Title">
-    <value xml:space="preserve">Decode To Wave...</value>
+  <data name="dlgSaveWave.Title" xml:space="preserve">
+    <value>Decode To Wave...</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -798,31 +829,37 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>804, 490</value>
   </data>
-  <data name="$this.Text">
-    <value xml:space="preserve">PlayOnline Audio Manager</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>PlayOnline Audio Manager</value>
   </data>
-  <data name="&gt;&gt;ilMusicBrowserIcons.Name">
-    <value xml:space="preserve">ilMusicBrowserIcons</value>
+  <data name="&gt;&gt;ilMusicBrowserIcons.Name" xml:space="preserve">
+    <value>ilMusicBrowserIcons</value>
   </data>
-  <data name="&gt;&gt;ilMusicBrowserIcons.Type">
-    <value xml:space="preserve">System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ilMusicBrowserIcons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ilSoundBrowserIcons.Name">
-    <value xml:space="preserve">ilSoundBrowserIcons</value>
+  <data name="&gt;&gt;ilSoundBrowserIcons.Name" xml:space="preserve">
+    <value>ilSoundBrowserIcons</value>
   </data>
-  <data name="&gt;&gt;ilSoundBrowserIcons.Type">
-    <value xml:space="preserve">System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ilSoundBrowserIcons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dlgSaveWave.Name">
-    <value xml:space="preserve">dlgSaveWave</value>
+  <data name="&gt;&gt;dlgSaveWave.Name" xml:space="preserve">
+    <value>dlgSaveWave</value>
   </data>
-  <data name="&gt;&gt;dlgSaveWave.Type">
-    <value xml:space="preserve">System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;dlgSaveWave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name">
-    <value xml:space="preserve">MainWindow</value>
+  <data name="&gt;&gt;ttInfo.Name" xml:space="preserve">
+    <value>ttInfo</value>
   </data>
-  <data name="&gt;&gt;$this.Type">
-    <value xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ttInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainWindow</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

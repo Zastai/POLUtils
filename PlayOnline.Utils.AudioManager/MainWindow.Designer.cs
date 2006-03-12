@@ -48,6 +48,7 @@ namespace PlayOnline.Utils.AudioManager {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.ilMusicBrowserIcons = new System.Windows.Forms.ImageList(this.components);
       this.pnlInfoArea = new System.Windows.Forms.Panel();
+      this.chkBufferedPlayback = new System.Windows.Forms.CheckBox();
       this.btnStop = new System.Windows.Forms.Button();
       this.btnPause = new System.Windows.Forms.Button();
       this.btnPlay = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@ namespace PlayOnline.Utils.AudioManager {
       this.tvSoundBrowser = new System.Windows.Forms.TreeView();
       this.ilSoundBrowserIcons = new System.Windows.Forms.ImageList(this.components);
       this.dlgSaveWave = new System.Windows.Forms.SaveFileDialog();
+      this.ttInfo = new System.Windows.Forms.ToolTip(this.components);
       this.pnlInfoArea.SuspendLayout();
       this.grpFileInfo.SuspendLayout();
       this.tabBrowsers.SuspendLayout();
@@ -87,6 +89,7 @@ namespace PlayOnline.Utils.AudioManager {
       // 
       // pnlInfoArea
       // 
+      this.pnlInfoArea.Controls.Add(this.chkBufferedPlayback);
       this.pnlInfoArea.Controls.Add(this.btnStop);
       this.pnlInfoArea.Controls.Add(this.btnPause);
       this.pnlInfoArea.Controls.Add(this.btnPlay);
@@ -94,6 +97,15 @@ namespace PlayOnline.Utils.AudioManager {
       this.pnlInfoArea.Controls.Add(this.grpFileInfo);
       resources.ApplyResources(this.pnlInfoArea, "pnlInfoArea");
       this.pnlInfoArea.Name = "pnlInfoArea";
+      // 
+      // chkBufferedPlayback
+      // 
+      resources.ApplyResources(this.chkBufferedPlayback, "chkBufferedPlayback");
+      this.chkBufferedPlayback.Checked = true;
+      this.chkBufferedPlayback.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.chkBufferedPlayback.Name = "chkBufferedPlayback";
+      this.ttInfo.SetToolTip(this.chkBufferedPlayback, resources.GetString("chkBufferedPlayback.ToolTip"));
+      this.chkBufferedPlayback.UseVisualStyleBackColor = true;
       // 
       // btnStop
       // 
@@ -232,10 +244,11 @@ namespace PlayOnline.Utils.AudioManager {
       this.tvMusicBrowser.HideSelection = false;
       this.tvMusicBrowser.HotTracking = true;
       this.tvMusicBrowser.ImageList = this.ilMusicBrowserIcons;
+      this.tvMusicBrowser.ItemHeight = 16;
       this.tvMusicBrowser.Name = "tvMusicBrowser";
-      this.tvMusicBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
-      this.tvMusicBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       this.tvMusicBrowser.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterCollapse);
+      this.tvMusicBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
+      this.tvMusicBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
       // 
       // tabSoundBrowser
       // 
@@ -249,10 +262,11 @@ namespace PlayOnline.Utils.AudioManager {
       this.tvSoundBrowser.HideSelection = false;
       this.tvSoundBrowser.HotTracking = true;
       this.tvSoundBrowser.ImageList = this.ilSoundBrowserIcons;
+      this.tvSoundBrowser.ItemHeight = 16;
       this.tvSoundBrowser.Name = "tvSoundBrowser";
-      this.tvSoundBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
-      this.tvSoundBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       this.tvSoundBrowser.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterCollapse);
+      this.tvSoundBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
+      this.tvSoundBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
       // 
       // ilSoundBrowserIcons
       // 
@@ -272,9 +286,10 @@ namespace PlayOnline.Utils.AudioManager {
       this.Controls.Add(this.tabBrowsers);
       this.Controls.Add(this.pnlInfoArea);
       this.Name = "MainWindow";
-      this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
       this.Closed += new System.EventHandler(this.MainWindow_Closed);
+      this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
       this.pnlInfoArea.ResumeLayout(false);
+      this.pnlInfoArea.PerformLayout();
       this.grpFileInfo.ResumeLayout(false);
       this.grpFileInfo.PerformLayout();
       this.tabBrowsers.ResumeLayout(false);
@@ -285,6 +300,9 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     #endregion
+
+    private System.Windows.Forms.CheckBox chkBufferedPlayback;
+    private System.Windows.Forms.ToolTip ttInfo;
 
   }
 

@@ -1,10 +1,8 @@
 // $Id$
 
+// Define to "hard link" with Managed DirectSound.  Requires adding a reference.
+// Note that this means the entire audio manager will not be able to run when MDX is not available.
 //#define UseDirectX
-
-#if UseDirectX // We only support this mess for "real" DirectX
-//#define BufferSound
-#endif
 
 using System;
 using System.Collections;
@@ -36,6 +34,7 @@ namespace PlayOnline.Utils.AudioManager {
       if (!ManagedDirectSound.Available) {
 	MessageBox.Show(this, "Managed DirectX is not available; sound playback will be disabled.", "DirectSound Initialization Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 	this.AudioEnabled = false;
+	this.chkBufferedPlayback.Enabled = false;
       }
 #endif
       this.Icon = Icons.AudioStuff;
@@ -131,8 +130,6 @@ namespace PlayOnline.Utils.AudioManager {
     private Device          AudioDevice        = null;
     private SecondaryBuffer CurrentBuffer      = null;
 
-#if BufferSound
-
     private readonly int    AudioBufferMarkers = 2;
     private AutoResetEvent  AudioUpdateTrigger = null;
     private Thread          AudioUpdateThread  = null;
@@ -167,8 +164,6 @@ namespace PlayOnline.Utils.AudioManager {
       }
     }
 
-#endif
-
     private void PausePlayback() {
       if (this.CurrentBuffer.Status.Playing) {
 	this.CurrentBuffer.Stop();
@@ -191,10 +186,8 @@ namespace PlayOnline.Utils.AudioManager {
 	  this.CurrentStream.Close();
 	  this.CurrentStream = null;
 	}
-#if BufferSound
 	if (this.AudioUpdateThread != null)
 	  this.AudioUpdateThread = null;
-#endif
       }
       this.btnPause.Enabled = false;
       this.btnPause.Text = "Pa&use";
@@ -220,41 +213,42 @@ namespace PlayOnline.Utils.AudioManager {
 	BD.BufferBytes = this.AudioBufferSize;
 	BD.GlobalFocus = true;
 	BD.StickyFocus = true;
-#if BufferSound
-	BD.ControlPositionNotify = true;
-	this.CurrentBuffer = new SecondaryBuffer(BD, this.AudioDevice);
-	if (this.AudioUpdateTrigger == null)
-	  this.AudioUpdateTrigger = new AutoResetEvent(false);
-      int ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
-      BufferPositionNotify[] UpdatePositions = new BufferPositionNotify[this.AudioBufferMarkers];
-	for (int i = 0; i < this.AudioBufferMarkers; ++i) {
-	  UpdatePositions[i] = new BufferPositionNotify();
-	  UpdatePositions[i].EventNotifyHandle = this.AudioUpdateTrigger.Handle;
-	  UpdatePositions[i].Offset = ChunkSize * i;
-	}
-      Notify N = new Notify(this.CurrentBuffer);
-	N.SetNotificationPositions(UpdatePositions);
-	this.CurrentStream = FI.AudioFile.OpenStream();
-	this.CurrentBuffer.Write(0, this.CurrentStream, this.CurrentBuffer.Caps.BufferBytes, LockFlag.EntireBuffer);
-	if (this.CurrentStream.Position < this.CurrentStream.Length) {
-	  this.AudioUpdateTrigger.Reset();
-	  this.AudioUpdateThread = new Thread(new ThreadStart(this.AudioUpdate));
-	  this.AudioUpdateThread.Start();
-	  this.btnPause.Enabled = true;
-	  this.btnStop.Enabled = true;
-	  this.AudioIsLooping = true;
+	if (this.chkBufferedPlayback.Checked) {
+	  BD.ControlPositionNotify = true;
+	  this.CurrentBuffer = new SecondaryBuffer(BD, this.AudioDevice);
+	  if (this.AudioUpdateTrigger == null)
+	    this.AudioUpdateTrigger = new AutoResetEvent(false);
+	int ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
+	BufferPositionNotify[] UpdatePositions = new BufferPositionNotify[this.AudioBufferMarkers];
+	  for (int i = 0; i < this.AudioBufferMarkers; ++i) {
+	    UpdatePositions[i] = new BufferPositionNotify();
+	    UpdatePositions[i].EventNotifyHandle = this.AudioUpdateTrigger.SafeWaitHandle.DangerousGetHandle();
+	    UpdatePositions[i].Offset = ChunkSize * i;
+	  }
+	Notify N = new Notify(this.CurrentBuffer);
+	  N.SetNotificationPositions(UpdatePositions);
+	  this.CurrentStream = FI.AudioFile.OpenStream();
+	  this.CurrentBuffer.Write(0, this.CurrentStream, this.CurrentBuffer.Caps.BufferBytes, LockFlag.EntireBuffer);
+	  if (this.CurrentStream.Position < this.CurrentStream.Length) {
+	    this.AudioUpdateTrigger.Reset();
+	    this.AudioUpdateThread = new Thread(new ThreadStart(this.AudioUpdate));
+	    this.AudioUpdateThread.Start();
+	    this.btnPause.Enabled = true;
+	    this.btnStop.Enabled = true;
+	    this.AudioIsLooping = true;
+	  }
+	  else {
+	    this.CurrentStream.Close();
+	    this.CurrentStream = null;
+	    this.AudioIsLooping = false;
+	  }
 	}
 	else {
-	  this.CurrentStream.Close();
-	  this.CurrentStream = null;
-	  this.AudioIsLooping = false;
+	  this.CurrentStream = FI.AudioFile.OpenStream(true);
+	  this.CurrentBuffer = new SecondaryBuffer(this.CurrentStream, BD, this.AudioDevice);
+	  this.btnPause.Enabled = true;
+	  this.btnStop.Enabled = true;
 	}
-#else
-	this.CurrentStream = FI.AudioFile.OpenStream(true);
-	this.CurrentBuffer = new SecondaryBuffer(this.CurrentStream, BD, this.AudioDevice);
-	this.btnPause.Enabled = true;
-	this.btnStop.Enabled = true;
-#endif
 	this.CurrentBuffer.Play(0, (this.AudioIsLooping ? BufferPlayFlags.Looping : BufferPlayFlags.Default));
       }
     }

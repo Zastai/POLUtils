@@ -85,17 +85,11 @@ namespace ManagedDirectX {
       private BufferPlayFlags() { }
 
       public static object Default {
-	get {
-	  try { return TMe.GetField("Default").GetValue(null); } catch { }
-	  return null;
-	}
+	get { try { return TMe.GetField("Default").GetValue(null); } catch { } return null; }
       }
 
       public static object Looping {
-	get {
-	  try { return TMe.GetField("Looping").GetValue(null); } catch { }
-	  return null;
-	}
+	get { try { return TMe.GetField("Looping").GetValue(null); } catch { } return null; }
       }
 
     }
@@ -107,10 +101,27 @@ namespace ManagedDirectX {
       private CooperativeLevel() { }
 
       public static object Normal {
-	get {
-	  try { return TMe.GetField("Normal").GetValue(null); } catch { }
-	  return null;
-	}
+	get { try { return TMe.GetField("Normal").GetValue(null); } catch { } return null; }
+      }
+
+    }
+
+    public class LockFlag {
+
+      private static Type TMe = ManagedDirectSound.GetType("Microsoft.DirectX.DirectSound.LockFlag");
+
+      private LockFlag() { }
+
+      public static object None {
+	get { try { return TMe.GetField("None").GetValue(null); } catch { } return null; }
+      }
+
+      public static object EntireBuffer {
+	get { try { return TMe.GetField("EntireBuffer").GetValue(null); } catch { } return null; }
+      }
+
+      public static object FromWriteCursor {
+	get { try { return TMe.GetField("FromWriteCursor").GetValue(null); } catch { } return null; }
       }
 
     }
@@ -122,10 +133,7 @@ namespace ManagedDirectX {
       private WaveFormatTag() { }
 
       public static object Pcm {
-	get {
-	  try { return TMe.GetField("Pcm").GetValue(null); } catch { }
-	  return null;
-	}
+	get { try { return TMe.GetField("Pcm").GetValue(null); } catch { } return null; }
       }
 
     }
@@ -204,6 +212,37 @@ namespace ManagedDirectX {
 	}
 	set {
 	  try { TMe.GetProperty("StickyFocus").SetValue(Me, value, null); } catch { }
+	}
+      }
+
+      public bool ControlPositionNotify {
+	get {
+	  try { return (bool) TMe.GetProperty("ControlPositionNotify").GetValue(Me, null); } catch { }
+	  return false;
+	}
+	set {
+	  try { TMe.GetProperty("ControlPositionNotify").SetValue(Me, value, null); } catch { }
+	}
+      }
+
+    }
+
+    public class BufferCaps {
+
+      private static Type TMe = ManagedDirectSound.GetType("Microsoft.DirectX.DirectSound.BufferCaps");
+      internal object Me;
+
+      public BufferCaps(object BufferCaps) {
+	Me = BufferCaps;
+      }
+
+      public int BufferBytes {
+	get {
+	  try { return (int) TMe.GetProperty("BufferBytes").GetValue(Me, null); } catch { }
+	  return 0;
+	}
+	set {
+	  try { TMe.GetProperty("BufferBytes").SetValue(Me, value, null); } catch { }
 	}
       }
 
@@ -298,6 +337,60 @@ namespace ManagedDirectX {
 
     }
 
+    public class BufferPositionNotify {
+
+      internal static Type TMe = ManagedDirectSound.GetType("Microsoft.DirectX.DirectSound.BufferPositionNotify");
+      internal object Me;
+
+      internal BufferPositionNotify() {
+	Me = ManagedDirectSound.CreateObject(TMe);
+      }
+
+      public int Offset {
+	get {
+	  try { return (int) TMe.GetProperty("Offset").GetValue(Me, null); } catch { }
+	  return 0;
+	}
+	set {
+	  try { TMe.GetProperty("Offset").SetValue(Me, value, null); } catch { }
+	}
+      }
+
+      public IntPtr EventNotifyHandle {
+	get {
+	  try { return (IntPtr) TMe.GetProperty("EventNotifyHandle").GetValue(Me, null); } catch { }
+	  return IntPtr.Zero;
+	}
+	set {
+	  try { TMe.GetProperty("EventNotifyHandle").SetValue(Me, value, null); } catch { }
+	}
+      }
+
+    }
+
+    public class Notify : IDisposable {
+
+      private static Type TMe = ManagedDirectSound.GetType("Microsoft.DirectX.DirectSound.Notify");
+      internal object Me;
+
+      public Notify(SecondaryBuffer Buffer) {
+	Me = ManagedDirectSound.CreateObject(TMe, Buffer.Me);
+      }
+
+      public void SetNotificationPositions(BufferPositionNotify[] Positions) {
+      Array RealPositions = Array.CreateInstance(BufferPositionNotify.TMe, Positions.Length);
+	for (int i = 0; i < Positions.Length; ++i)
+	  RealPositions.SetValue(Positions[i].Me, i);
+	TMe.InvokeMember("SetNotificationPositions", BindingFlags.InvokeMethod, null, Me, new object[] { RealPositions }, Application.CurrentCulture);
+      }
+
+      public void Dispose() {
+	if (Me != null && Me is IDisposable)
+	  (Me as IDisposable).Dispose();
+      }
+
+    }
+
     public class SecondaryBuffer : IDisposable {
 
       private static Type TMe = ManagedDirectSound.GetType("Microsoft.DirectX.DirectSound.SecondaryBuffer");
@@ -311,8 +404,15 @@ namespace ManagedDirectX {
 	Me = ManagedDirectSound.CreateObject(TMe, Stream, BufferDescription.Me, ParentDevice.Me);
       }
 
-      public void Play(int Priority, object BufferPlayFlags) {
-	TMe.InvokeMember("Play", BindingFlags.InvokeMethod, null, Me, new object[] { Priority, BufferPlayFlags }, Application.CurrentCulture);
+      public SecondaryBuffer(BufferDescription BufferDescription, Device ParentDevice) {
+	Me = ManagedDirectSound.CreateObject(TMe, BufferDescription.Me, ParentDevice.Me);
+      }
+
+      public BufferCaps Caps {
+	get {
+	  try { return new BufferCaps(TMe.GetProperty("Caps").GetValue(Me, null)); } catch { }
+	  return null;
+	}
       }
 
       public BufferStatus Status {
@@ -322,8 +422,23 @@ namespace ManagedDirectX {
 	}
       }
 
+      public int PlayPosition {
+	get {
+	  try { return (int) TMe.GetProperty("PlayPosition").GetValue(Me, null); } catch { }
+	  return 0;
+	}
+      }
+
+      public void Play(int Priority, object BufferPlayFlags) {
+	TMe.InvokeMember("Play", BindingFlags.InvokeMethod, null, Me, new object[] { Priority, BufferPlayFlags }, Application.CurrentCulture);
+      }
+
       public void Stop() {
 	TMe.InvokeMember("Stop", BindingFlags.InvokeMethod, null, Me, null, Application.CurrentCulture);
+      }
+
+      public void Write(int BufferStartingLocation, Stream Data, int NumberOfBytesToWrite, object LockFlag) {
+	TMe.InvokeMember("Write", BindingFlags.InvokeMethod, null, Me, new object[] { BufferStartingLocation, Data, NumberOfBytesToWrite, LockFlag }, Application.CurrentCulture);
       }
 
       public void Dispose() {
