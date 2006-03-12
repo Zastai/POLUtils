@@ -174,9 +174,14 @@ namespace PlayOnline.Core {
       }
       try {
 	using (RegistryKey Win64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
-	  if (Win64Root != null)
-	    return Win64Root.OpenSubKey(SubKey, Writable);
+	  if (Win64Root != null) {
+	  RegistryKey Win64Key = Win64Root.OpenSubKey(SubKey, Writable);
+	    if (Win64Key != null)
+	      return Win64Key;
+	  }
 	}
+      } catch { }
+      try {
 	return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", SubKey), Writable);
       } catch {
 	return null;
