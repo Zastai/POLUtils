@@ -60,6 +60,7 @@ namespace PlayOnline.FFXI {
       Application.DoEvents();
       // These aren't "real" resource strings as such, but it's convenient to access them this way
       FFXIResourceManager.LoadStringTable("ROM/97/48.DAT", "ROM/97/30.DAT", 0x0001); // Region Names
+      FFXIResourceManager.LoadStringTable("ROM/97/53.DAT", "ROM/97/56.DAT", 0x0002); // Area   Names
       Application.DoEvents();
       PWD.Close();
       FFXIResourceManager.Initialized = true;

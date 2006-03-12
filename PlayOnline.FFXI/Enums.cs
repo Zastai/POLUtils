@@ -18,12 +18,23 @@ namespace PlayOnline.FFXI {
     Ice       = 0x01,
     Wind      = 0x02,
     Earth     = 0x03,
-    Thunder   = 0x04,
+    Lightning = 0x04,
     Water     = 0x05,
     Light     = 0x06,
     Dark      = 0x07,
     Special   = 0x0f, // this is the element set on the Meteor spell
     Undecided = 0xff // this is the element set on inactive furnishing items in the item data
+  }
+
+  public enum ElementColor : byte {
+    Red       = 0x00,
+    Clear     = 0x01,
+    Green     = 0x02,
+    Yellow    = 0x03,
+    Purple    = 0x04,
+    Blue      = 0x05,
+    White     = 0x06,
+    Black     = 0x07,
   }
 
   [Flags]
