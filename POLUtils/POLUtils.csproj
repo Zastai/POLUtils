@@ -117,6 +117,10 @@
       <Project>{966ACE61-C745-4B5E-AFFA-31A50E24341B}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\PlayOnline.FFXI.Utils.StrangeApparatus\PlayOnline.FFXI.Utils.StrangeApparatus.csproj">
+      <Project>{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}</Project>
+      <Name>PlayOnline.FFXI.Utils.StrangeApparatus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayOnline.FFXI\PlayOnline.FFXI.csproj">
       <Name>PlayOnline.FFXI</Name>
       <Project>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</Project>

@@ -37,12 +37,14 @@ namespace POLUtils {
     }
 
     private void UpdateSelectedRegion() {
-      this.txtSelectedRegion.Text      = new NamedEnum(POL.SelectedRegion).Name;
-      this.btnChooseRegion.Enabled     = POL.MultipleRegionsAvailable;
-      this.btnFFXIConfigEditor.Enabled = POL.IsAppInstalled(AppID.FFXI);
-      this.btnFFXIDataBrowser.Enabled  = POL.IsAppInstalled(AppID.FFXI);
-      this.btnFFXIMacroManager.Enabled = POL.IsAppInstalled(AppID.FFXI);
-      this.btnTetraViewer.Enabled      = POL.IsAppInstalled(AppID.TetraMaster);
+      this.txtSelectedRegion.Text          = new NamedEnum(POL.SelectedRegion).Name;
+      this.btnChooseRegion.Enabled         = POL.MultipleRegionsAvailable;
+      this.btnFFXIConfigEditor.Enabled     = POL.IsAppInstalled(AppID.FFXI);
+      this.btnFFXIDataBrowser.Enabled      = POL.IsAppInstalled(AppID.FFXI);
+      this.btnFFXIMacroManager.Enabled     = POL.IsAppInstalled(AppID.FFXI);
+      this.btnFFXIStrangeApparatus.Enabled = POL.IsAppInstalled(AppID.FFXI);
+      this.btnFFXIEngrishOnry.Enabled      = POL.IsAppInstalled(AppID.FFXI) && (POL.AvailableRegions & POL.Region.Japan) != 0;
+      this.btnTetraViewer.Enabled          = POL.IsAppInstalled(AppID.TetraMaster);
     }
 
     #region Language Selection Events
@@ -111,6 +113,14 @@ namespace POLUtils {
     private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
       this.Hide();
       using (Form Utility = new PlayOnline.FFXI.Utils.MacroManager.MainWindow())
+	Utility.ShowDialog();
+      this.Show();
+      this.Activate();
+    }
+
+    private void btnFFXIStrangeApparatus_Click(object sender, System.EventArgs e) {
+      this.Hide();
+      using (Form Utility = new PlayOnline.FFXI.Utils.StrangeApparatus.MainWindow())
 	Utility.ShowDialog();
       this.Show();
       this.Activate();

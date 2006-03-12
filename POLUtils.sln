@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Site", "Web Site", "{D2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemListUpgrade", "ItemListUpgrade\ItemListUpgrade.csproj", "{C80C8B59-0A38-4A7B-9C73-00603123B006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.StrangeApparatus", "PlayOnline.FFXI.Utils.StrangeApparatus\PlayOnline.FFXI.Utils.StrangeApparatus.csproj", "{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80C8B59-0A38-4A7B-9C73-00603123B006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
