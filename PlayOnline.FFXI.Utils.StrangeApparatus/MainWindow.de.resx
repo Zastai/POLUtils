@@ -117,62 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnGenerateCodes.Text" xml:space="preserve">
+    <value>&amp;Code generieren</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="txtSoundEffects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 123</value>
+  <data name="lblCharacterName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
   </data>
-  <data name="lblSoundEffects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 13</value>
+  <data name="lblCharacterName.Text" xml:space="preserve">
+    <value>Spielername:</value>
   </data>
-  <data name="lblSoundEffects.Text" xml:space="preserve">
-    <value>Simulierter Soundeffekt:</value>
-  </data>
-  <data name="lbl3DResolution.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
-  </data>
-  <data name="lbl3DResolution.Text" xml:space="preserve">
-    <value>3D Auflösung:</value>
-  </data>
-  <data name="lblGUIResolution.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
-  </data>
-  <data name="lblGUIResolution.Text" xml:space="preserve">
-    <value>GUI Auflösung:</value>
-  </data>
-  <data name="grpGlobalConfig.Text" xml:space="preserve">
-    <value>Globale Einstellungen</value>
-  </data>
-  <data name="grpCharConfig.Text" xml:space="preserve">
-    <value>Pro-Charakter Einstellungen</value>
-  </data>
-  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 361</value>
-  </data>
-  <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 24</value>
-  </data>
-  <data name="btnClose.Text" xml:space="preserve">
-    <value>&amp;Schliessen</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 361</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 24</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>&amp;Abbrechen</value>
-  </data>
-  <data name="btnApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 361</value>
-  </data>
-  <data name="btnApply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 24</value>
-  </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Anwenden</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>FFXI Konfigurations-Editor</value>
+  <data name="colChipColor.Text" xml:space="preserve">
+    <value>Chip Farbe</value>
   </data>
 </root>
