@@ -2,6 +2,25 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.8.1 Released" author="Pebbles" date="March 20th, 2006">
+      <p>Today I'm releasing POLUtils 0.8.1, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>New component: a passcode generator for the Strange Apparatuses.</li>
+        <li>The AudioManager has been changed to incorporate the buffering playback used by the
+            oldest POLUtils version.  If this buffered playback is used (the default), all tracks
+            (well, except the ATRAC-3 ones, of course) will be playable (no more exceptions on the longer
+            ones) and consume far less memory.  As a drawback, playback will skip if another DirectSound
+            application (WinAmp, POL Viewer, ...) is active at the same time, and there is a bug that
+            causes the last second or so of some tracks to loop.</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>An issue that prevented correct POL detection on some systems has been resolved.</li>
+      </ul></p>
+      <p>Microsoft has a new DirectX SDK available, which includes a version of Managed DirectX
+         that targets .NET 2.0.  I'll be testing that out shortly; if all goes well, that means
+         audio playback will be available on 64-bit systems starting from the next version of
+         POLUtils.</p>
+    </news-item>
     <news-item title="Forums Created" author="Pebbles" date="March 10th, 2006">
       I've set up a simple forum at <a href="http://polutils.forumer.com/">polutils.forumer.com</a> -
       feel free to head over there &amp; register.
@@ -351,6 +370,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.8.1-Release.exe">
+	Strange Apparatus passcode generator, improved audio playback.<br/>
+      </file>
       <file name="POLUtils-0.8.0-Release.exe">
 	Major core rewrite, minor tweaks &amp; fixes.<br/>
       </file>
@@ -400,7 +422,7 @@
 	The installer texts can be localized with a plain text editor, so you can still contribute if you're
 	unable or unwilling to use Visual Studio/C#.
       </description>
-      <file name="POLUtils-Localization-0.8.0.zip">Current Localization.</file>
+      <file name="POLUtils-Localization.zip">Current localization kit.</file>
     </group>
     <group name="POLUtils - Support Files">
       <file name="mdxredist.msi">
