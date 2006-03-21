@@ -2,6 +2,11 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.8.2 Released" author="Pebbles" date="March 21st, 2006">
+      <p>Today I'm releasing POLUtils 0.8.2, a collection of PlayOnline-related utilities.</p>
+      <p>This version corrects the Strange Apparatus Passcode generator - the one in 0.8.1
+         listed the wrong elements (the codes were correct for each given zone though).</p>
+    </news-item>
     <news-item title="POLUtils 0.8.1 Released" author="Pebbles" date="March 20th, 2006">
       <p>Today I'm releasing POLUtils 0.8.1, a collection of PlayOnline-related utilities.</p>
       <p><strong>New Features:</strong><br/><ul>
@@ -370,6 +375,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.8.2-Release.exe">
+	Corrected the Strange Apparatus passcode generator.<br/>
+      </file>
       <file name="POLUtils-0.8.1-Release.exe">
 	Strange Apparatus passcode generator, improved audio playback.<br/>
       </file>
