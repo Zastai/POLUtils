@@ -2,9 +2,9 @@
 
 ;; --- Version Information ---
 
-VIProductVersion 0.8.1.0
+VIProductVersion 0.8.2.0
 
-!define VERSION 0.8.1
+!define VERSION 0.8.2
 
 VIAddVersionKey  "Build Time"      "${__DATE__} ${__TIME__}"
 VIAddVersionKey  "ProductName"     "POLUtils"
