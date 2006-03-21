@@ -19,7 +19,7 @@ namespace PlayOnline.FFXI.Utils.StrangeApparatus {
 
     // The values to add to the digits do not match the element numbers used in the item data,
     // but instead match the order of the days (FEWWILLDie).
-    private byte[] ElementOffsets = new byte[] { 0, 4, 3, 1, 5, 2, 6, 7 };
+    private byte[] ElementOffsets = new byte[] { 0, 3, 5, 2, 1, 4, 6, 7 };
 
     // The area numbers where the strange apparatuses are located.
     private byte[] AreaIDs = new byte[] { 191, 196, 197, 193, 195, 194, 200, 198 };
