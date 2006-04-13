@@ -97,7 +97,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileTypes\DMSGStringTable.cs" />
     <Compile Include="IThings\AbilityInfo.cs" />
+    <Compile Include="IThings\DMSGStringTableEntry.cs" />
     <Compile Include="IThings\DialogTableEntry.cs" />
     <Compile Include="IThings\Graphic.cs" />
     <Compile Include="IThings\Item.cs" />

@@ -318,6 +318,9 @@
   <data name="FT:DialogTable" xml:space="preserve">
     <value>Dialog Table</value>
   </data>
+  <data name="FT:DMSGStringTable" xml:space="preserve">
+    <value>String Table</value>
+  </data>
   <data name="FT:Images" xml:space="preserve">
     <value>Images</value>
   </data>
@@ -378,6 +381,9 @@ This may take a while, depending on the speed of your machine.</value>
   </data>
   <data name="T:DialogTableEntry" xml:space="preserve">
     <value>DialogTableEntry</value>
+  </data>
+  <data name="T:DMSGStringTableEntry" xml:space="preserve">
+    <value>String Table Entry</value>
   </data>
   <data name="T:Graphic" xml:space="preserve">
     <value>FFXI Image</value>
