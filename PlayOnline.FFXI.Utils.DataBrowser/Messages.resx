@@ -132,6 +132,9 @@
   <data name="FFXI3" xml:space="preserve">
     <value>Chains of Promathia</value>
   </data>
+  <data name="FFXI4" xml:space="preserve">
+    <value>Treasures of Aht Urhgan</value>
+  </data>
   <data name="InvalidEntry" xml:space="preserve">
     <value>&lt;invalid entry&gt;</value>
   </data>
