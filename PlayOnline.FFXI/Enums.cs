@@ -5,12 +5,14 @@ using System;
 namespace PlayOnline.FFXI {
 
   public enum AbilityType : byte {
-    General   = 0x00,
-    Job       = 0x01,
-    Beast     = 0x02,
-    Weapon    = 0x03,
-    Trait     = 0x04,
-    BloodPact = 0x06,
+    General     = 0x00,
+    Job         = 0x01,
+    Pet         = 0x02,
+    Weapon      = 0x03,
+    Trait       = 0x04,
+    BloodPact   = 0x06,
+    Corsair     = 0x08,
+    CorsairShot = 0x09,
   }
 
   public enum Element : byte {
@@ -101,7 +103,7 @@ namespace PlayOnline.FFXI {
     Furnishing = 0x000A,
     Plant      = 0x000B,
     Flowerpot  = 0x000C,
-    Material   = 0x000D,
+    PuppetItem = 0x000D,
     Mannequin  = 0x000E,
     Book       = 0x000F
   }
@@ -150,7 +152,15 @@ namespace PlayOnline.FFXI {
     BlackMagic    = 0x02,
     SummonerPact  = 0x03,
     Ninjutsu      = 0x04,
-    BardSong      = 0x05
+    BardSong      = 0x05,
+    BlueMagic     = 0x06,
+  }
+
+  public enum PuppetSlot : byte {
+    None       = 0x00,
+    Head       = 0x01,
+    Body       = 0x02,
+    Attachment = 0x03,
   }
 
   [Flags]

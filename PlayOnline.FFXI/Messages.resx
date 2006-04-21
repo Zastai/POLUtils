@@ -162,6 +162,9 @@
   <data name="F::element" xml:space="preserve">
     <value>Element</value>
   </data>
+  <data name="F::element-charge" xml:space="preserve">
+    <value>Element Charge</value>
+  </data>
   <data name="F::english-description" xml:space="preserve">
     <value>English Description</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="F::level-required" xml:space="preserve">
     <value>Level Required</value>
   </data>
+  <data name="F::list-icon-id" xml:space="preserve">
+    <value>List Icon ID</value>
+  </data>
   <data name="F::log-name-plural" xml:space="preserve">
     <value>Log Name (Plural)</value>
   </data>
@@ -242,6 +248,9 @@
   </data>
   <data name="F::planes" xml:space="preserve">
     <value>Planes</value>
+  </data>
+  <data name="F::puppet-slot" xml:space="preserve">
+    <value>Puppet Slot</value>
   </data>
   <data name="F::races" xml:space="preserve">
     <value>Races</value>

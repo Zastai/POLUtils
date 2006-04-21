@@ -30,12 +30,12 @@ namespace PlayOnline.FFXI {
 	return new List<string>(new string[] {
 	  "id",
 	  "type",
-	  "unknown-1",
+	  "list-icon-id",
 	  "mp-cost",
-	  "reuse-delay",
 	  "valid-targets",
 	  "name",
 	  "description",
+	  "unknown-1",
 	});
       }
     }
@@ -48,9 +48,9 @@ namespace PlayOnline.FFXI {
 
     private Nullable<ushort>      ID_;
     private Nullable<AbilityType> Type_;
-    private Nullable<byte>        Unknown1_;
+    private Nullable<byte>        ListIconID_;
     private Nullable<ushort>      MPCost_;
-    private Nullable<ushort>      ReuseDelay_;
+    private Nullable<ushort>      Unknown1_;
     private Nullable<ValidTarget> ValidTargets_;
     private string                Name_;
     private string                Description_;
@@ -60,9 +60,9 @@ namespace PlayOnline.FFXI {
     public override void Clear() {
       this.ID_           = null;
       this.Type_         = null;
-      this.Unknown1_     = null;
+      this.ListIconID_   = null;
       this.MPCost_       = null;
-      this.ReuseDelay_   = null;
+      this.Unknown1_     = null;
       this.ValidTargets_ = null;
       this.Name_         = null;
       this.Description_  = null;
@@ -79,8 +79,8 @@ namespace PlayOnline.FFXI {
 	case "name":          return (this.Name_        != null);
 	// Nullables
 	case "id":            return this.ID_.HasValue;
+	case "list-icon-id":  return this.ListIconID_.HasValue;
 	case "mp-cost":       return this.MPCost_.HasValue;
-	case "reuse-delay":   return this.ReuseDelay_.HasValue;
 	case "type":          return this.Type_.HasValue;
 	case "unknown-1":     return this.Unknown1_.HasValue;
 	case "valid-targets": return this.ValidTargets_.HasValue;
@@ -95,13 +95,12 @@ namespace PlayOnline.FFXI {
 	case "name":          return this.Name_;
 	// Nullables - Simple Values
 	case "id":            return (!this.ID_.HasValue           ? String.Empty : String.Format("{0}", this.ID_.Value));
+	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
 	case "mp-cost":       return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
 	case "type":          return (!this.Type_.HasValue         ? String.Empty : String.Format("{0}", this.Type_.Value));
 	case "valid-targets": return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
 	// Nullables - Hex Values
-	case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown1_.Value));
-	// Nullables - Time Values
-	case "reuse-delay":   return (!this.ReuseDelay_.HasValue   ? String.Empty : this.FormatTime(this.ReuseDelay_.Value));
+	case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
 	default:              return null;
       }
     }
@@ -113,8 +112,8 @@ namespace PlayOnline.FFXI {
 	case "name":          return this.Name_;
 	// Nullables
 	case "id":            return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
+	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
 	case "mp-cost":       return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
-	case "reuse-delay":   return (!this.ReuseDelay_.HasValue   ? null : (object) this.ReuseDelay_.Value);
 	case "type":          return (!this.Type_.HasValue         ? null : (object) this.Type_.Value);
 	case "unknown-1":     return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
 	case "valid-targets": return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
@@ -127,11 +126,11 @@ namespace PlayOnline.FFXI {
 	// "Simple" Fields
 	case "description":   this.Description_  =               this.LoadTextField           (Node); break;
 	case "id":            this.ID_           = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "list-icon-id":  this.ListIconID_   = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "mp-cost":       this.MPCost_       = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "name":          this.Name_         =               this.LoadTextField           (Node); break;
-	case "reuse-delay":   this.ReuseDelay_   = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "type":          this.Type_         = (AbilityType) this.LoadHexField            (Node); break;
-	case "unknown-1":     this.Unknown1_     = (byte)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-1":     this.Unknown1_     = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "valid-targets": this.ValidTargets_ = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
@@ -142,9 +141,9 @@ namespace PlayOnline.FFXI {
 
     // Block Layout:
     // 000-001 U16 Index
-    // 002-003 U16 Unknown
+    // 002-003 U16 List Icon ID (e.g. 40-47 for the elemental-colored dots)
     // 004-005 U16 MP Cost
-    // 006-007 U16 Cooldown
+    // 006-007 U16 Unknown (used to be the cooldown time)
     // 008-009 U16 Valid Targets
     // 00a-029 TXT Name
     // 02a-129 TXT Description (exact length unknown)
@@ -160,9 +159,9 @@ namespace PlayOnline.FFXI {
 	BR = new BinaryReader(new MemoryStream(Bytes, false));
 	this.ID_           = BR.ReadUInt16();
 	this.Type_         = (AbilityType) BR.ReadByte();
-	this.Unknown1_     = BR.ReadByte();
+	this.ListIconID_   = BR.ReadByte();
 	this.MPCost_       = BR.ReadUInt16();
-	this.ReuseDelay_   = BR.ReadUInt16();
+	this.Unknown1_     = BR.ReadUInt16();
 	this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
 	this.Name_         = E.GetString(BR.ReadBytes(32)).TrimEnd('\0');
 	this.Description_  = E.GetString(BR.ReadBytes(256)).TrimEnd('\0');

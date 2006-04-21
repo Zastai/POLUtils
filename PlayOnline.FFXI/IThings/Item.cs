@@ -74,6 +74,9 @@ namespace PlayOnline.FFXI {
 	  "casting-time",
 	  "use-delay",
 	  "reuse-delay",
+	  // Puppet Item Info
+	  "puppet-slot",
+	  "element-charge",
 	  // Special Stuff
 	  "icon",
 	  "unknown-1",
@@ -127,6 +130,9 @@ namespace PlayOnline.FFXI {
     private Nullable<byte>          CastingTime_;
     private Nullable<ushort>        UseDelay_;
     private Nullable<uint>          ReuseDelay_;
+    // Puppet Item Info
+    private Nullable<PuppetSlot>    PuppetSlot_;
+    private Nullable<uint>          ElementCharge_;
     // Special
     private Graphic                 Icon_;
     private Nullable<ushort>        Unknown1_;
@@ -168,6 +174,8 @@ namespace PlayOnline.FFXI {
       this.CastingTime_     = null;
       this.UseDelay_        = null;
       this.ReuseDelay_      = null;
+      this.PuppetSlot_      = null;
+      this.ElementCharge_   = null;
       this.Icon_            = null;
       this.Unknown1_        = null;
       this.Unknown2_        = null;
@@ -196,12 +204,14 @@ namespace PlayOnline.FFXI {
 	case "delay":             return this.Delay_.HasValue;
 	case "dps":               return this.DPS_.HasValue;
 	case "element":           return this.Element_.HasValue;
+	case "element-charge":    return this.ElementCharge_.HasValue;
 	case "flags":             return this.Flags_.HasValue;
 	case "id":                return this.ID_.HasValue;
 	case "jobs":              return this.Jobs_.HasValue;
 	case "jug-size":          return this.JugSize_.HasValue;
 	case "level":             return this.Level_.HasValue;
 	case "max-charges":       return this.MaxCharges_.HasValue;
+	case "puppet-slot":       return this.PuppetSlot_.HasValue;
 	case "races":             return this.Races_.HasValue;
 	case "resource-id":       return this.ResourceID_.HasValue;
 	case "reuse-delay":       return this.ReuseDelay_.HasValue;
@@ -231,6 +241,18 @@ namespace PlayOnline.FFXI {
 	case "japanese-name":     return this.JapaneseName_;
 	case "log-name-plural":   return this.LogNamePlural_;
 	case "log-name-singular": return this.LogNameSingular_;
+	// Objects - Special Formatting
+	case "element-charge": {
+	string Text = String.Empty;
+	  if (this.ElementCharge_.HasValue) {
+	    for (short i = 0; i < 8; ++i) {
+	      if (i != 0)
+		Text += ' ';
+	      Text += String.Format("{0}<{1}>", (Element) i, (this.ElementCharge_ >> (4 * i)) & 0xf);
+	    }
+	  }
+	  return Text;
+	}
 	// Nullables - Simple Values
 	case "damage":            return (!this.Damage_.HasValue         ? String.Empty : String.Format("{0}", this.Damage_.Value));
 	case "dps":               return (!this.DPS_.HasValue            ? String.Empty : String.Format("{0}", this.DPS_.Value / 100.0));
@@ -240,6 +262,7 @@ namespace PlayOnline.FFXI {
 	case "jug-size":          return (!this.JugSize_.HasValue        ? String.Empty : String.Format("{0}", this.JugSize_.Value));
 	case "level":             return (!this.Level_.HasValue          ? String.Empty : String.Format("{0}", this.Level_.Value));
 	case "max-charges":       return (!this.MaxCharges_.HasValue     ? String.Empty : String.Format("{0}", this.MaxCharges_.Value));
+	case "puppet-slot":       return (!this.PuppetSlot_.HasValue     ? String.Empty : String.Format("{0}", this.PuppetSlot_.Value));
 	case "races":             return (!this.Races_.HasValue          ? String.Empty : String.Format("{0}", this.Races_.Value));
 	case "shield-size":       return (!this.ShieldSize_.HasValue     ? String.Empty : String.Format("{0}", this.ShieldSize_.Value));
 	case "skill":             return (!this.Skill_.HasValue          ? String.Empty : String.Format("{0}", this.Skill_.Value));
@@ -283,12 +306,14 @@ namespace PlayOnline.FFXI {
 	case "delay":             return (!this.Delay_.HasValue          ? null : (object) this.Delay_.Value);
 	case "dps":               return (!this.DPS_.HasValue            ? null : (object) this.DPS_.Value);
 	case "element":           return (!this.Element_.HasValue        ? null : (object) this.Element_.Value);
+	case "element-charge":    return (!this.ElementCharge_.HasValue  ? null : (object) this.ElementCharge_.Value);
 	case "flags":             return (!this.Flags_.HasValue          ? null : (object) this.Flags_.Value);
 	case "id":                return (!this.ID_.HasValue             ? null : (object) this.ID_.Value);
 	case "jobs":              return (!this.Jobs_.HasValue           ? null : (object) this.Jobs_.Value);
 	case "jug-size":          return (!this.JugSize_.HasValue        ? null : (object) this.JugSize_.Value);
 	case "level":             return (!this.Level_.HasValue          ? null : (object) this.Level_.Value);
 	case "max-charges":       return (!this.MaxCharges_.HasValue     ? null : (object) this.MaxCharges_.Value);
+	case "puppet-slot":       return (!this.PuppetSlot_.HasValue     ? null : (object) this.PuppetSlot_.Value);
 	case "races":             return (!this.Races_.HasValue          ? null : (object) this.Races_.Value);
 	case "resource-id":       return (!this.ResourceID_.HasValue     ? null : (object) this.ResourceID_.Value);
 	case "reuse-delay":       return (!this.ReuseDelay_.HasValue     ? null : (object) this.ReuseDelay_.Value);
@@ -312,39 +337,41 @@ namespace PlayOnline.FFXI {
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
 	// "Simple" Fields
-	case "activation-time":   this.ActivationTime_  = (byte)          this.LoadUnsignedIntegerField(Node);             break;
-	case "casting-time":      this.CastingTime_     = (byte)          this.LoadUnsignedIntegerField(Node);             break;
-	case "damage":            this.Damage_          = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "delay":             this.Delay_           = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "description":       this.Description_     =                 this.LoadTextField           (Node);             break;
-	case "dps":               this.DPS_             = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "element":           this.Element_         = (Element)       this.LoadHexField            (Node);             break;
-	case "english-name":      this.EnglishName_     =                 this.LoadTextField           (Node);             break;
-	case "flags":             this.Flags_           = (ItemFlags)     this.LoadHexField            (Node);             break;
-	case "id":                this.ID_              = (uint)          this.LoadUnsignedIntegerField(Node);             break;
-	case "japanese-name":     this.JapaneseName_    =                 this.LoadTextField           (Node);             break;
-	case "jobs":              this.Jobs_            = (Job)           this.LoadHexField            (Node);             break;
-	case "jug-size":          this.JugSize_         = (byte)          this.LoadUnsignedIntegerField(Node);             break;
-	case "level":             this.Level_           = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "log-name-plural":   this.LogNamePlural_   =                 this.LoadTextField           (Node);             break;
-	case "log-name-singular": this.LogNameSingular_ =                 this.LoadTextField           (Node);             break;
-	case "max-charges":       this.MaxCharges_      = (byte)          this.LoadUnsignedIntegerField(Node);             break;
-	case "races":             this.Races_           = (Race)          this.LoadHexField            (Node);             break;
-	case "resource-id":       this.ResourceID_      = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "reuse-delay":       this.ReuseDelay_      = (uint)          this.LoadUnsignedIntegerField(Node);             break;
-	case "shield-size":       this.ShieldSize_      = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "skill":             this.Skill_           = (Skill)         this.LoadHexField            (Node);             break;
-	case "slots":             this.Slots_           = (EquipmentSlot) this.LoadHexField            (Node);             break;
-	case "stack-size":        this.StackSize_       = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "storage-slots":     this.StorageSlots_    = (short)         this.LoadSignedIntegerField  (Node);             break;
-	case "type":              this.Type_            = (ItemType)      this.LoadHexField            (Node);             break;
-	case "unknown-1":         this.Unknown1_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-2":         this.Unknown2_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-3":         this.Unknown3_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-4":         this.Unknown4_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "unknown-5":         this.Unknown5_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "use-delay":         this.UseDelay_        = (ushort)        this.LoadUnsignedIntegerField(Node);             break;
-	case "valid-targets":     this.ValidTargets_    = (ValidTarget)   this.LoadHexField            (Node);             break;
+	case "activation-time":   this.ActivationTime_  = (byte)          this.LoadUnsignedIntegerField(Node); break;
+	case "casting-time":      this.CastingTime_     = (byte)          this.LoadUnsignedIntegerField(Node); break;
+	case "damage":            this.Damage_          = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "delay":             this.Delay_           = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "description":       this.Description_     =                 this.LoadTextField           (Node); break;
+	case "dps":               this.DPS_             = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "element":           this.Element_         = (Element)       this.LoadHexField            (Node); break;
+	case "element-charge":    this.ElementCharge_   = (uint)          this.LoadUnsignedIntegerField(Node); break;
+	case "english-name":      this.EnglishName_     =                 this.LoadTextField           (Node); break;
+	case "flags":             this.Flags_           = (ItemFlags)     this.LoadHexField            (Node); break;
+	case "id":                this.ID_              = (uint)          this.LoadUnsignedIntegerField(Node); break;
+	case "japanese-name":     this.JapaneseName_    =                 this.LoadTextField           (Node); break;
+	case "jobs":              this.Jobs_            = (Job)           this.LoadHexField            (Node); break;
+	case "jug-size":          this.JugSize_         = (byte)          this.LoadUnsignedIntegerField(Node); break;
+	case "level":             this.Level_           = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "log-name-plural":   this.LogNamePlural_   =                 this.LoadTextField           (Node); break;
+	case "log-name-singular": this.LogNameSingular_ =                 this.LoadTextField           (Node); break;
+	case "max-charges":       this.MaxCharges_      = (byte)          this.LoadUnsignedIntegerField(Node); break;
+	case "puppet-slot":       this.PuppetSlot_      = (PuppetSlot)    this.LoadHexField            (Node); break;
+	case "races":             this.Races_           = (Race)          this.LoadHexField            (Node); break;
+	case "resource-id":       this.ResourceID_      = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "reuse-delay":       this.ReuseDelay_      = (uint)          this.LoadUnsignedIntegerField(Node); break;
+	case "shield-size":       this.ShieldSize_      = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "skill":             this.Skill_           = (Skill)         this.LoadHexField            (Node); break;
+	case "slots":             this.Slots_           = (EquipmentSlot) this.LoadHexField            (Node); break;
+	case "stack-size":        this.StackSize_       = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "storage-slots":     this.StorageSlots_    = (short)         this.LoadSignedIntegerField  (Node); break;
+	case "type":              this.Type_            = (ItemType)      this.LoadHexField            (Node); break;
+	case "unknown-1":         this.Unknown1_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-2":         this.Unknown2_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-3":         this.Unknown3_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-4":         this.Unknown4_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-5":         this.Unknown5_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "use-delay":         this.UseDelay_        = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "valid-targets":     this.ValidTargets_    = (ValidTarget)   this.LoadHexField            (Node); break;
 	// Sub-Things
 	case "icon":
 	  if (this.Icon_ == null)
@@ -358,20 +385,29 @@ namespace PlayOnline.FFXI {
     #region ROM File Reading
 
     public enum Language { English, Japanese };
-    public enum Type     { Armor, Object, Weapon };
+    public enum Type     { Armor, Object, PuppetItem, Weapon };
 
     public static void DeduceLanguageAndType(BinaryReader BR, out Language L, out Type T) {
     byte[] FirstItem = BR.ReadBytes(0x200);
       BR.BaseStream.Seek(-0x200, SeekOrigin.Current);
       FFXIEncryption.Rotate(FirstItem, 5);
-      { // Type -> Based on resource ID
+      { // Type -> Based on Resource ID and ID
       ushort ResourceID = (ushort) (FirstItem[10] + 256 * FirstItem[11]);
 	if (ResourceID >= 50000 && ResourceID < 60000)
 	  T = Type.Armor;
 	else if (ResourceID >= 10000 && ResourceID < 20000)
 	  T = Type.Weapon;
-	else
-	  T = Type.Object;
+	else {
+	uint ID = 0;
+	  for (int i = 0; i < 4; ++i) {
+	    ID <<= 8;
+	    ID += FirstItem[3 - i];
+	  }
+	  if (ID >= 0x2000)
+	    T = Type.PuppetItem;
+	  else
+	    T = Type.Object;
+	}
       }
       { // Language -> based on the 10 NUL bytes before the log names in english data + the log names
       int Offset = 14 + 22 + 22; // common info + english name + japanese name
@@ -379,6 +415,8 @@ namespace PlayOnline.FFXI {
 	  Offset += 10 + 2; // equipment info + armor info
 	else if (T == Type.Weapon)
 	  Offset += 10 + 8; // equipment info + weapon info
+	else if (T == Type.PuppetItem)
+	  Offset += 8; // puppet item info
 	L = Language.Japanese;
 	if (FirstItem[Offset + 12] != 0 && FirstItem[Offset + 76] != 0) {
 	  L = Language.English;
@@ -431,6 +469,11 @@ namespace PlayOnline.FFXI {
 	  this.JugSize_ =         BR.ReadByte();
 	}
       }
+      else if (T == Type.PuppetItem) {
+	this.PuppetSlot_    = (PuppetSlot) BR.ReadUInt16();
+	this.ElementCharge_ = BR.ReadUInt32();
+	this.Unknown2_      = BR.ReadUInt16();
+      }
       { // Text Fields
       FFXIEncoding E = new FFXIEncoding();
 	this.JapaneseName_ = E.GetString(BR.ReadBytes(22)).TrimEnd('\0');
@@ -456,7 +499,7 @@ namespace PlayOnline.FFXI {
 	this.UseDelay_    = BR.ReadUInt16();
 	this.ReuseDelay_  = BR.ReadUInt32();
       }
-      else {
+      else if (T == Type.Object) {
 	switch (this.Type_.Value) { // "Furniture" has extra fields
 	  case ItemType.Flowerpot:
 	  case ItemType.Furnishing:

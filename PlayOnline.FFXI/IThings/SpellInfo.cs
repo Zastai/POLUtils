@@ -28,22 +28,21 @@ namespace PlayOnline.FFXI {
     public static List<string> AllFields {
       get {
 	return new List<string>(new string[] {
+	  "index",
 	  "id",
+	  "english-name",
+	  "japanese-name",
 	  "magic-type",
 	  "element",
 	  "valid-targets",
 	  "skill",
+	  "level-required",
 	  "mp-cost",
 	  "casting-time",
 	  "recast-delay",
-	  "level-required",
-	  "unknown-1",
-	  "unknown-2",
-	  "unknown-3",
-	  "japanese-name",
-	  "english-name",
-	  "japanese-description",
 	  "english-description",
+	  "japanese-description",
+	  "unknown-1",
 	});
       }
     }
@@ -54,7 +53,7 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<ushort>      ID_;
+    private Nullable<ushort>      Index_;
     private Nullable<MagicType>   MagicType_;
     private Nullable<Element>     Element_;
     private Nullable<ValidTarget> ValidTargets_;
@@ -63,9 +62,8 @@ namespace PlayOnline.FFXI {
     private Nullable<byte>        CastingTime_;
     private Nullable<ushort>      RecastDelay_;
     private byte[]                LevelRequired_;
+    private Nullable<ushort>      ID_;
     private Nullable<byte>        Unknown1_;
-    private Nullable<byte>        Unknown2_;
-    private Nullable<byte>        Unknown3_;
     private string                JapaneseName_;
     private string                EnglishName_;
     private string                JapaneseDescription_;
@@ -74,7 +72,7 @@ namespace PlayOnline.FFXI {
     #endregion
 
     public override void Clear() {
-      this.ID_                  = null;
+      this.Index_               = null;
       this.MagicType_           = null;
       this.Element_             = null;
       this.ValidTargets_        = null;
@@ -83,9 +81,8 @@ namespace PlayOnline.FFXI {
       this.CastingTime_         = null;
       this.RecastDelay_         = null;
       this.LevelRequired_       = null;
+      this.ID_                  = null;
       this.Unknown1_            = null;
-      this.Unknown2_            = null;
-      this.Unknown3_            = null;
       this.JapaneseName_        = null;
       this.EnglishName_         = null;
       this.JapaneseDescription_ = null;
@@ -108,13 +105,12 @@ namespace PlayOnline.FFXI {
 	case "casting-time":          return this.CastingTime_.HasValue;
 	case "element":               return this.Element_.HasValue;
 	case "id":                    return this.ID_.HasValue;
+	case "index":                 return this.Index_.HasValue;
 	case "magic-type":            return this.MagicType_.HasValue;
 	case "mp-cost":               return this.MPCost_.HasValue;
 	case "recast-delay":          return this.RecastDelay_.HasValue;
 	case "skill":                 return this.Skill_.HasValue;
 	case "unknown-1":             return this.Unknown1_.HasValue;
-	case "unknown-2":             return this.Unknown2_.HasValue;
-	case "unknown-3":             return this.Unknown3_.HasValue;
 	case "valid-targets":         return this.ValidTargets_.HasValue;
 	default:                      return false;
       }
@@ -144,14 +140,13 @@ namespace PlayOnline.FFXI {
 	// Nullables - Simple Values
 	case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
 	case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
+	case "index":                return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.Index_.Value));
 	case "magic-type":           return (!this.MagicType_.HasValue    ? String.Empty : String.Format("{0}", this.MagicType_.Value));
 	case "mp-cost":              return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
 	case "skill":                return (!this.Skill_.HasValue        ? String.Empty : String.Format("{0}", this.Skill_.Value));
 	case "valid-targets":        return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
 	// Nullables - Hex Values
 	case "unknown-1":            return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown1_.Value));
-	case "unknown-2":            return (!this.Unknown2_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown2_.Value));
-	case "unknown-3":            return (!this.Unknown3_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown3_.Value));
 	// Nullables - Time Values
 	case "casting-time":         return (!this.CastingTime_.HasValue  ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
 	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? String.Empty : this.FormatTime(this.RecastDelay_.Value / 4.0));
@@ -171,13 +166,12 @@ namespace PlayOnline.FFXI {
 	case "casting-time":         return (!this.CastingTime_.HasValue  ? null : (object) this.CastingTime_.Value);
 	case "element":              return (!this.Element_.HasValue      ? null : (object) this.Element_.Value);
 	case "id":                   return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
+	case "index":                return (!this.Index_.HasValue        ? null : (object) this.Index_.Value);
 	case "magic-type":           return (!this.MagicType_.HasValue    ? null : (object) this.MagicType_.Value);
 	case "mp-cost":              return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
 	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? null : (object) this.RecastDelay_.Value);
 	case "skill":                return (!this.Skill_.HasValue        ? null : (object) this.Skill_.Value);
 	case "unknown-1":            return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
-	case "unknown-2":            return (!this.Unknown2_.HasValue     ? null : (object) this.Unknown2_.Value);
-	case "unknown-3":            return (!this.Unknown3_.HasValue     ? null : (object) this.Unknown3_.Value);
 	case "valid-targets":        return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
 	default:                     return null;
       }
@@ -191,6 +185,7 @@ namespace PlayOnline.FFXI {
 	case "english-description":  this.EnglishDescription_  =               this.LoadTextField           (Node); break;
 	case "english-name":         this.EnglishName_         =               this.LoadTextField           (Node); break;
 	case "id":                   this.ID_                  = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "index":                this.Index_               = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
 	case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
 	case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
@@ -199,8 +194,6 @@ namespace PlayOnline.FFXI {
 	case "recast-delay":         this.RecastDelay_         = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "skill":                this.Skill_               = (Skill)       this.LoadHexField            (Node); break;
 	case "unknown-1":            this.Unknown1_            = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "unknown-2":            this.Unknown2_            = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "unknown-3":            this.Unknown3_            = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "valid-targets":        this.ValidTargets_        = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
@@ -219,8 +212,7 @@ namespace PlayOnline.FFXI {
     // 00c-00c U8  Cast Time (1/4 second)
     // 00d-00d U8  Recast Delay (1/4 second)
     // 00e-025 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
-    // 026-026 U7  Unknown
-    // 027-027 U8  Unknown
+    // 026-027 U16 ID (0 for "unused" spells; starts out equal to the index, but doesn't stay that way)
     // 028-028 U8  Unknown
     // 029-03c TXT Japanese Name
     // 03d-050 TXT English Name
@@ -238,7 +230,7 @@ namespace PlayOnline.FFXI {
 	  return false;
 	BR = new BinaryReader(new MemoryStream(Bytes, false));
       } catch { return false; }
-      this.ID_            = BR.ReadUInt16();
+      this.Index_         = BR.ReadUInt16();
       this.MagicType_     = (MagicType)   BR.ReadUInt16();
       this.Element_       = (Element)     BR.ReadUInt16();
       this.ValidTargets_  = (ValidTarget) BR.ReadUInt16();
@@ -247,9 +239,8 @@ namespace PlayOnline.FFXI {
       this.CastingTime_   = BR.ReadByte();
       this.RecastDelay_   = BR.ReadByte();
       this.LevelRequired_ = BR.ReadBytes(24);
+      this.ID_            = BR.ReadUInt16();
       this.Unknown1_      = BR.ReadByte();
-      this.Unknown2_      = BR.ReadByte();
-      this.Unknown3_      = BR.ReadByte();
     FFXIEncoding E = new FFXIEncoding();
       this.JapaneseName_        = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
       this.EnglishName_         = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
