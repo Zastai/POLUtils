@@ -125,6 +125,9 @@
     <track id="206"><title>Yve'noile's Theme</title></track>
     <track id="245"><title>Tavnazian Safehold</title></track>
   </application>
+  <application id="0001" name="Final Fantasy XI - Treasures of Aht Urhgan">
+    <data-path>sound4/win/music/data</data-path>
+  </application>
   <application id="0002" name="Tetra Master">
     <data-path>data/win/sound/music</data-path>
     <composer>Naoshi Mizuta</composer>

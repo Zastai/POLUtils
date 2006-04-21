@@ -109,6 +109,7 @@ namespace PlayOnline.Utils.AudioManager {
 	  C.Text = null;
       }
       this.btnPlay.Enabled = false;
+      this.chkBufferedPlayback.Enabled = false;
       this.btnDecode.Enabled = false;
     }
 
@@ -305,8 +306,9 @@ namespace PlayOnline.Utils.AudioManager {
 	  }
 	  this.txtFormat.Text     = String.Format("{0}-channel {1}-bit {2}Hz {3}", FI.AudioFile.Channels, FI.AudioFile.BitsPerSample, FI.AudioFile.SampleRate, FI.AudioFile.SampleFormat);
 	  this.txtFileLength.Text = this.LengthText(FI.AudioFile.Length);
-	  this.btnDecode.Enabled  = FI.AudioFile.Playable;
-	  this.btnPlay.Enabled    = this.AudioEnabled && FI.AudioFile.Playable;
+	  this.chkBufferedPlayback.Enabled = FI.AudioFile.Playable && this.AudioEnabled;
+	  this.btnDecode.Enabled           = FI.AudioFile.Playable;
+	  this.btnPlay.Enabled             = FI.AudioFile.Playable && this.AudioEnabled;
 	}
 	else
 	  this.txtFileType.Text = "Folder";

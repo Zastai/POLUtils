@@ -169,6 +169,9 @@
   <application id="0001" name="FinalFantasy XI - Chains of Promathia">
     <data-path>sound3/win/se</data-path>
   </application>
+  <application id="0001" name="Final Fantasy XI - Treasures of Aht Urhgan">
+    <data-path>sound4/win/se</data-path>
+  </application>
   <application id="0002" name="Tetra Master">
     <data-path>data/win/sound/se</data-path>
     <track id="1007"><title>Play Order Selection Wheel</title></track>
