@@ -992,14 +992,14 @@
       <rom-file app="0" dir="118" file="109"><i18n-string id="Menu:Armor"/></rom-file>
       <rom-file app="0" dir="118" file="106"><i18n-string id="Menu:Items1"/></rom-file>
       <rom-file app="0" dir="118" file="107"><i18n-string id="Menu:Items2"/></rom-file>
-      <rom-file app="0" dir="118" file="110"><i18n-string id="Menu:Unused"/></rom-file>
+      <rom-file app="0" dir="118" file="110"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file app="0" dir="118" file="108"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file app="0" dir="000" file="007"><i18n-string id="Menu:Armor"/></rom-file>
       <rom-file app="0" dir="000" file="004"><i18n-string id="Menu:Items1"/></rom-file>
       <rom-file app="0" dir="000" file="005"><i18n-string id="Menu:Items2"/></rom-file>
-      <rom-file app="0" dir="000" file="008"><i18n-string id="Menu:Unused"/></rom-file>
+      <rom-file app="0" dir="000" file="008"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file app="0" dir="000" file="006"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
   </category>

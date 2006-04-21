@@ -186,8 +186,8 @@
   <data name="Menu:Items2" xml:space="preserve">
     <value>Items (Part &amp;2)</value>
   </data>
-  <data name="Menu:Unused" xml:space="preserve">
-    <value>Unused</value>
+  <data name="Menu:PuppetItems" xml:space="preserve">
+    <value>Puppet Items</value>
   </data>
   <data name="Menu:Armor" xml:space="preserve">
     <value>Armor</value>

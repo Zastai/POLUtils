@@ -153,6 +153,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstEntries.Items.Clear();
       this.lstEntries.Columns.Clear();
       this.lstEntries.ListViewItemSorter = null;
+      this.chkShowIcons.Checked = false;
       this.ListIcons_.Images.Clear();
       this.btnThingListSaveImages.Enabled = false;
       this.cmbItems.Items.Clear();
