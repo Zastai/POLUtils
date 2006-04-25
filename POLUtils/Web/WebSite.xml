@@ -2,6 +2,13 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.8.3 Released" author="Pebbles" date="April 25th, 2006">
+      <p>Today I'm releasing POLUtils 0.8.3, a collection of PlayOnline-related utilities.</p>
+      <p>This version adds (almost) full ToAU support; most dialog tables are known by EngrishOnry
+         and the data browser, and most map DATs are listed as well.  In addition, some of the
+	 other DAT fields were adjusted (most notably some changes to the Abilities info, and
+	 the addition of PuppetItem items).</p>
+    </news-item>
     <news-item title="POLUtils 0.8.2 Released" author="Pebbles" date="March 21st, 2006">
       <p>Today I'm releasing POLUtils 0.8.2, a collection of PlayOnline-related utilities.</p>
       <p>This version corrects the Strange Apparatus Passcode generator - the one in 0.8.1
@@ -375,6 +382,9 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.8.3-Release.exe">
+	Updated data browser &amp; EngrishOnry for ToAU.<br/>
+      </file>
       <file name="POLUtils-0.8.2-Release.exe">
 	Corrected the Strange Apparatus passcode generator.<br/>
       </file>
