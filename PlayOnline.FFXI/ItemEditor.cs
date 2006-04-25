@@ -48,6 +48,7 @@ namespace PlayOnline.FFXI {
 	case "delay":             return this.txtDelay;
 	case "description":       return this.txtDescription;
 	case "element":           return this.txtElement;
+	case "element-charge":    return this.txtElementCharge;
 	case "english-name":      return this.txtEName;
 	case "flags":             return this.txtFlags;
 	case "icon":		  return this.picIcon;
@@ -59,6 +60,7 @@ namespace PlayOnline.FFXI {
 	case "log-name-plural":   return this.txtPlural;
 	case "log-name-singular": return this.txtSingular;
 	case "max-charges":       return this.txtMaxCharges;
+	case "puppet-slot":       return this.txtPuppetSlot;
 	case "races":             return this.txtRaces;
 	case "resource-id":       return this.txtID;
 	case "reuse-delay":       return this.txtReuseTimer;
@@ -170,6 +172,12 @@ namespace PlayOnline.FFXI {
 	  this.txtJugSize.Text = I.GetFieldText("jug-size");
 	  this.ShowInfoGroup(this.grpWeaponInfo);
 	}
+	// Puppet Item Fields
+	if (I.HasField("puppet-slot")) {
+	  this.txtPuppetSlot.Text    = I.GetFieldText("puppet-slot");
+	  this.txtElementCharge.Text = I.GetFieldText("element-charge");
+	  this.ShowInfoGroup(this.grpPuppetItemInfo);
+	}
 	// Enchantment Fields
 	if (I.HasField("max-charges")) {
 	byte MaxCharges = (byte) I.GetFieldValue("max-charges");
@@ -201,6 +209,7 @@ namespace PlayOnline.FFXI {
       this.grpFurnitureInfo.Visible   = false;
       this.grpUsableItemInfo.Visible  = false;
       this.grpLogStrings.Visible      = false;
+      this.grpPuppetItemInfo.Visible  = false;
       this.grpShieldInfo.Visible      = false;
       this.grpWeaponInfo.Visible      = false;
     }

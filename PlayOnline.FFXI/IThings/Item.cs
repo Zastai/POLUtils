@@ -246,9 +246,12 @@ namespace PlayOnline.FFXI {
 	string Text = String.Empty;
 	  if (this.ElementCharge_.HasValue) {
 	    for (short i = 0; i < 8; ++i) {
-	      if (i != 0)
+	    byte Charge = (byte) ((this.ElementCharge_ >> (4 * i)) & 0xf);
+	      if (Charge == 0)
+		continue;
+	      if (Text != String.Empty)
 		Text += ' ';
-	      Text += String.Format("{0}<{1}>", (Element) i, (this.ElementCharge_ >> (4 * i)) & 0xf);
+	      Text += String.Format("{0}<{1}>", (Element) i, Charge);
 	    }
 	  }
 	  return Text;
