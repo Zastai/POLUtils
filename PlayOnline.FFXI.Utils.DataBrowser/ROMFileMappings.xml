@@ -1,655 +1,747 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- $Id$ -->
 <rom-file-mappings>
-  <category><name><i18n-string id="Menu:Dialog Tables"/></name>
+  <category><name><i18n-string id="Menu:DialogTables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <category><name><ffxi-string id="00010000"/></name>
-	<rom-file app="1" dir="018" file="038">Château d'Oraguille</rom-file>
-	<rom-file app="1" dir="018" file="036">Northern San d'Oria</rom-file>
-	<rom-file app="1" dir="018" file="037">Port San d'Oria</rom-file>
-	<rom-file app="1" dir="018" file="035">Southern San d'Oria</rom-file>
+	<rom-file app="1" dir="018" file="038"><ffxi-string id="000200E9"/></rom-file>
+	<rom-file app="1" dir="018" file="036"><ffxi-string id="000200E7"/></rom-file>
+	<rom-file app="1" dir="018" file="037"><ffxi-string id="000200E8"/></rom-file>
+	<rom-file app="1" dir="018" file="035"><ffxi-string id="000200E6"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010001"/></name>
-	<rom-file app="1" dir="018" file="040">Bastok Markets</rom-file>
-	<rom-file app="1" dir="018" file="039">Bastok Mines</rom-file>
-	<rom-file app="1" dir="018" file="042">Metalworks</rom-file>
-	<rom-file app="1" dir="018" file="041">Port Bastok</rom-file>
+	<rom-file app="1" dir="018" file="040"><ffxi-string id="000200EB"/></rom-file>
+	<rom-file app="1" dir="018" file="039"><ffxi-string id="000200EA"/></rom-file>
+	<rom-file app="1" dir="018" file="042"><ffxi-string id="000200ED"/></rom-file>
+	<rom-file app="1" dir="018" file="041"><ffxi-string id="000200EC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010002"/></name>
-	<rom-file app="1" dir="018" file="047">Heaven's Tower</rom-file>
-	<rom-file app="1" dir="018" file="045">Port Windurst</rom-file>
-	<rom-file app="1" dir="018" file="044">Windurst Walls</rom-file>
-	<rom-file app="1" dir="018" file="043">Windurst Waters</rom-file>
-	<rom-file app="1" dir="018" file="046">Windurst Woods</rom-file>
+	<rom-file app="1" dir="018" file="047"><ffxi-string id="000200F2"/></rom-file>
+	<rom-file app="1" dir="018" file="045"><ffxi-string id="000200F0"/></rom-file>
+	<rom-file app="1" dir="018" file="044"><ffxi-string id="000200EF"/></rom-file>
+	<rom-file app="1" dir="018" file="043"><ffxi-string id="000200EE"/></rom-file>
+	<rom-file app="1" dir="018" file="046"><ffxi-string id="000200F1"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010003"/></name>
-	<rom-file app="1" dir="018" file="050">Lower Jeuno</rom-file>
-	<rom-file app="1" dir="018" file="051">Port Jeuno</rom-file>
-	<rom-file app="1" dir="018" file="048">Ru'Lude Gardens</rom-file>
-	<rom-file app="1" dir="018" file="049">Upper Jeuno</rom-file>
+	<rom-file app="1" dir="018" file="050"><ffxi-string id="000200F5"/></rom-file>
+	<rom-file app="1" dir="018" file="051"><ffxi-string id="000200F6"/></rom-file>
+	<rom-file app="1" dir="018" file="048"><ffxi-string id="000200F3"/></rom-file>
+	<rom-file app="1" dir="018" file="049"><ffxi-string id="000200F4"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010004"/></name>
-	<rom-file app="1" dir="017" file="100">Bostaunieux Oubliette</rom-file>
-	<rom-file app="1" dir="017" file="034">East Ronfaure</rom-file>
-	<rom-file app="1" dir="017" file="074">Ghelsba Fort</rom-file>
-	<rom-file app="1" dir="017" file="073">Ghelsba Outpost</rom-file>
-	<rom-file app="1" dir="017" file="072">Horlais Peak</rom-file>
-	<rom-file app="1" dir="017" file="123">King Ranperre's Tomb</rom-file>
-	<rom-file app="1" dir="017" file="033">West Ronfaure</rom-file>
-	<rom-file app="1" dir="017" file="075">Yhugott Grotto</rom-file>
+	<rom-file app="1" dir="017" file="100"><ffxi-string id="000200A7"/></rom-file>
+	<rom-file app="1" dir="017" file="034"><ffxi-string id="00020065"/></rom-file>
+	<rom-file app="1" dir="017" file="074"><ffxi-string id="00020091"/></rom-file>
+	<rom-file app="1" dir="017" file="073"><ffxi-string id="0002008C"/></rom-file>
+	<rom-file app="1" dir="017" file="072"><ffxi-string id="0002008B"/></rom-file>
+	<rom-file app="1" dir="017" file="123"><ffxi-string id="000200BE"/></rom-file>
+	<rom-file app="1" dir="017" file="033"><ffxi-string id="00020064"/></rom-file>
+	<rom-file app="1" dir="017" file="075"><ffxi-string id="00020092"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010005"/></name>
-	<rom-file app="1" dir="018" file="001">Gusgen Mines</rom-file>
-	<rom-file app="1" dir="017" file="041">Konschtat Highlands</rom-file>
-	<rom-file app="1" dir="017" file="035">La Theine Plateau</rom-file>
-	<rom-file app="1" dir="017" file="126">Ordelle's Cave</rom-file>
-	<rom-file app="1" dir="018" file="053">Selbina</rom-file>
-	<rom-file app="1" dir="017" file="036">Valkurm Dunes</rom-file>
+	<rom-file app="1" dir="018" file="001"><ffxi-string id="000200C4"/></rom-file>
+	<rom-file app="1" dir="017" file="041"><ffxi-string id="0002006C"/></rom-file>
+	<rom-file app="1" dir="017" file="035"><ffxi-string id="00020066"/></rom-file>
+	<rom-file app="1" dir="017" file="126"><ffxi-string id="000200C1"/></rom-file>
+	<rom-file app="1" dir="018" file="053"><ffxi-string id="000200F8"/></rom-file>
+	<rom-file app="1" dir="017" file="036"><ffxi-string id="00020067"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010006"/></name>
-	<rom-file app="1" dir="017" file="038">Batallia Downs</rom-file>
-	<rom-file app="2" dir="002" file="012">Carpenter's Landing</rom-file>
-	<rom-file app="1" dir="017" file="082">Davoi</rom-file>
-	<rom-file app="1" dir="017" file="037">Jugner Forest</rom-file>
-	<rom-file app="1" dir="017" file="083">Monastic Cavern</rom-file>
-	<rom-file app="2" dir="002" file="011">Phanauet Channel</rom-file>
-	<rom-file app="1" dir="018" file="000">The Eldieme Necropolis</rom-file>
+	<rom-file app="1" dir="017" file="038"><ffxi-string id="00020069"/></rom-file>
+	<rom-file app="2" dir="002" file="012"><ffxi-string id="00020002"/></rom-file>
+	<rom-file app="1" dir="017" file="082"><ffxi-string id="00020095"/></rom-file>
+	<rom-file app="1" dir="017" file="037"><ffxi-string id="00020068"/></rom-file>
+	<rom-file app="1" dir="017" file="083"><ffxi-string id="00020096"/></rom-file>
+	<rom-file app="2" dir="002" file="011"><ffxi-string id="00020001"/></rom-file>
+	<rom-file app="1" dir="018" file="000"><ffxi-string id="000200C3"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010007"/></name>
-	<rom-file app="1" dir="017" file="124">Dangruf Wadi</rom-file>
-	<rom-file app="1" dir="017" file="106">Korroloka Tunnel</rom-file>
-	<rom-file app="1" dir="017" file="039">North Gustaberg</rom-file>
-	<rom-file app="1" dir="017" file="076">Palborough Mines</rom-file>
-	<rom-file app="1" dir="017" file="040">South Gustaberg</rom-file>
-	<rom-file app="1" dir="017" file="077">Waughroon Shrine</rom-file>
-	<rom-file app="1" dir="017" file="105">Zeruhn Mines</rom-file>
+	<rom-file app="1" dir="017" file="124"><ffxi-string id="000200BF"/></rom-file>
+	<rom-file app="1" dir="017" file="106"><ffxi-string id="000200AD"/></rom-file>
+	<rom-file app="1" dir="017" file="039"><ffxi-string id="0002006A"/></rom-file>
+	<rom-file app="1" dir="017" file="076"><ffxi-string id="0002008F"/></rom-file>
+	<rom-file app="1" dir="017" file="040"><ffxi-string id="0002006B"/></rom-file>
+	<rom-file app="1" dir="017" file="077"><ffxi-string id="00020090"/></rom-file>
+	<rom-file app="1" dir="017" file="105"><ffxi-string id="000200AC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010008"/></name>
-	<rom-file app="1" dir="017" file="080">Beadeaux</rom-file>
-	<rom-file app="1" dir="018" file="002">Crawler's Nest</rom-file>
-	<rom-file app="1" dir="017" file="042">Pashhow Marshland</rom-file>
-	<rom-file app="1" dir="017" file="081">Qu'lun Dome</rom-file>
-	<rom-file app="1" dir="017" file="043">Rolanberry Fields</rom-file>
+	<rom-file app="1" dir="017" file="080"><ffxi-string id="00020093"/></rom-file>
+	<rom-file app="1" dir="018" file="002"><ffxi-string id="000200C5"/></rom-file>
+	<rom-file app="1" dir="017" file="042"><ffxi-string id="0002006D"/></rom-file>
+	<rom-file app="1" dir="017" file="081"><ffxi-string id="00020094"/></rom-file>
+	<rom-file app="1" dir="017" file="043"><ffxi-string id="0002006E"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010009"/></name>
-	<rom-file app="1" dir="017" file="079">Balga's Dais</rom-file>
-	<rom-file app="1" dir="017" file="049">East Sarutabaruta</rom-file>
-	<rom-file app="1" dir="017" file="103">Full Moon Fountain</rom-file>
-	<rom-file app="1" dir="017" file="078">Giddeus</rom-file>
-	<rom-file app="1" dir="017" file="125">Inner Horutoto Ruins</rom-file>
-	<rom-file app="1" dir="017" file="127">Outer Horutoto Ruins</rom-file>
-	<rom-file app="1" dir="017" file="102">Toraimarai Canal</rom-file>
-	<rom-file app="1" dir="017" file="048">West Sarutabaruta</rom-file>
+	<rom-file app="1" dir="017" file="079"><ffxi-string id="00020092"/></rom-file>
+	<rom-file app="1" dir="017" file="049"><ffxi-string id="00020074"/></rom-file>
+	<rom-file app="1" dir="017" file="103"><ffxi-string id="000200AA"/></rom-file>
+	<rom-file app="1" dir="017" file="078"><ffxi-string id="00020091"/></rom-file>
+	<rom-file app="1" dir="017" file="125"><ffxi-string id="000200C0"/></rom-file>
+	<rom-file app="1" dir="017" file="127"><ffxi-string id="000200C2"/></rom-file>
+	<rom-file app="1" dir="017" file="102"><ffxi-string id="000200A9"/></rom-file>
+	<rom-file app="1" dir="017" file="048"><ffxi-string id="00020073"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000A"/></name>
-	<rom-file app="2" dir="002" file="014">Bibiki Bay</rom-file>
-	<rom-file app="1" dir="017" file="051">Buburimu Peninsula</rom-file>
-	<rom-file app="1" dir="018" file="018">Labyrinth Of Onzozo</rom-file>
-	<rom-file app="2" dir="002" file="013">Manaclipper</rom-file>
-	<rom-file app="1" dir="018" file="003">Maze Of Shakhrami</rom-file>
-	<rom-file app="1" dir="018" file="054">Mhaura</rom-file>
-	<rom-file app="1" dir="017" file="050">Tahrongi Canyon</rom-file>
+	<rom-file app="2" dir="002" file="014"><ffxi-string id="00020004"/></rom-file>
+	<rom-file app="1" dir="017" file="051"><ffxi-string id="00020076"/></rom-file>
+	<rom-file app="1" dir="018" file="018"><ffxi-string id="000200D5"/></rom-file>
+	<rom-file app="2" dir="002" file="013"><ffxi-string id="00020003"/></rom-file>
+	<rom-file app="1" dir="018" file="003"><ffxi-string id="000200C6"/></rom-file>
+	<rom-file app="1" dir="018" file="054"><ffxi-string id="000200F9"/></rom-file>
+	<rom-file app="1" dir="017" file="050"><ffxi-string id="00020075"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000B"/></name>
-	<rom-file app="1" dir="017" file="085">Altar Room</rom-file>
-	<rom-file app="2" dir="002" file="017">Attohwa Chasm</rom-file>
-	<rom-file app="2" dir="002" file="018">Boneyard Gully</rom-file>
-	<rom-file app="1" dir="017" file="084">Castle Oztroja</rom-file>
-	<rom-file app="1" dir="018" file="005">Garlaige Citadel</rom-file>
-	<rom-file app="1" dir="017" file="052">Meriphataud Mountains</rom-file>
-	<rom-file app="1" dir="017" file="053">Sauromugue Champaign</rom-file>
+	<rom-file app="1" dir="017" file="085"><ffxi-string id="00020098"/></rom-file>
+	<rom-file app="2" dir="002" file="017"><ffxi-string id="00020007"/></rom-file>
+	<rom-file app="2" dir="002" file="018"><ffxi-string id="00020008"/></rom-file>
+	<rom-file app="1" dir="017" file="084"><ffxi-string id="00020097"/></rom-file>
+	<rom-file app="1" dir="018" file="005"><ffxi-string id="000200C8"/></rom-file>
+	<rom-file app="1" dir="017" file="052"><ffxi-string id="00020077"/></rom-file>
+	<rom-file app="1" dir="017" file="053"><ffxi-string id="00020078"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000C"/></name>
-	<rom-file app="1" dir="017" file="044">Beaucedine Glacier</rom-file>
-	<rom-file app="1" dir="018" file="008">Cloister Of Frost</rom-file>
-	<rom-file app="1" dir="018" file="009">Fei'Yin</rom-file>
-	<rom-file app="2" dir="002" file="019">Pso'Xja</rom-file>
-	<rom-file app="1" dir="017" file="099">Ranguemont Pass</rom-file>
-	<rom-file app="1" dir="018" file="011">Qu'Bia Arena</rom-file>
-	<rom-file app="2" dir="002" file="020">The Shrouded Maw</rom-file>
+	<rom-file app="1" dir="017" file="044"><ffxi-string id="0002006F"/></rom-file>
+	<rom-file app="1" dir="018" file="008"><ffxi-string id="000200CB"/></rom-file>
+	<rom-file app="1" dir="018" file="009"><ffxi-string id="000200CC"/></rom-file>
+	<rom-file app="2" dir="002" file="019"><ffxi-string id="00020009"/></rom-file>
+	<rom-file app="1" dir="017" file="099"><ffxi-string id="000200A6"/></rom-file>
+	<rom-file app="1" dir="018" file="011"><ffxi-string id="000200CE"/></rom-file>
+	<rom-file app="2" dir="002" file="020"><ffxi-string id="0002000A"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000D"/></name>
-	<rom-file app="2" dir="002" file="016">Bearclaw Pinnacle</rom-file>
-	<rom-file app="1" dir="017" file="094">Castle Zvahl Baileys</rom-file>
-	<rom-file app="1" dir="017" file="095">Castle Zvahl Keep</rom-file>
-	<rom-file app="1" dir="017" file="098">Throne Room</rom-file>
-	<rom-file app="2" dir="002" file="015">Uleguerand Range</rom-file>
-	<rom-file app="1" dir="017" file="045">Xarcabard</rom-file>
+	<rom-file app="2" dir="002" file="016"><ffxi-string id="00020006"/></rom-file>
+	<rom-file app="1" dir="017" file="094"><ffxi-string id="000200A1"/></rom-file>
+	<rom-file app="1" dir="017" file="095"><ffxi-string id="000200A2"/></rom-file>
+	<rom-file app="1" dir="017" file="098"><ffxi-string id="000200A5"/></rom-file>
+	<rom-file app="2" dir="002" file="015"><ffxi-string id="00020005"/></rom-file>
+	<rom-file app="1" dir="017" file="045"><ffxi-string id="00020070"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000E"/></name>
-	<rom-file app="1" dir="017" file="060">Behemoth's Dominion</rom-file>
-	<rom-file app="1" dir="017" file="117">Lower Delkfutt's Tower</rom-file>
-	<rom-file app="1" dir="017" file="090">Middle Delkfutt's Tower</rom-file>
-	<rom-file app="1" dir="017" file="064">Mordion Gaol</rom-file>
-	<rom-file app="1" dir="017" file="059">Qu'fim Island</rom-file>
-	<rom-file app="1" dir="017" file="112">Stellar Fulcrum</rom-file>
-	<rom-file app="1" dir="017" file="091">Upper Delkfutt's Tower</rom-file>
+	<rom-file app="1" dir="017" file="060"><ffxi-string id="0002007F"/></rom-file>
+	<rom-file app="1" dir="017" file="117"><ffxi-string id="000200B8"/></rom-file>
+	<rom-file app="1" dir="017" file="090"><ffxi-string id="0002009D"/></rom-file>
+	<rom-file app="1" dir="017" file="064"><ffxi-string id="00020083"/></rom-file>
+	<rom-file app="1" dir="017" file="059"><ffxi-string id="0002007E"/></rom-file>
+	<rom-file app="1" dir="017" file="112"><ffxi-string id="000200B3"/></rom-file>
+	<rom-file app="1" dir="017" file="091"><ffxi-string id="0002009E"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000F"/></name>
-	<rom-file app="1" dir="018" file="007">Cloister Of Storms</rom-file>
-	<rom-file app="1" dir="017" file="087">Dragon's Aery</rom-file>
-	<rom-file app="1" dir="018" file="056">Hall Of The Gods</rom-file>
-	<rom-file app="1" dir="017" file="055">Ro'Maeve</rom-file>
-	<rom-file app="1" dir="017" file="054">Sanctuary Of Zi'tah</rom-file>
-	<rom-file app="1" dir="017" file="086">The Boyahda Tree</rom-file>
+	<rom-file app="1" dir="018" file="007"><ffxi-string id="000200CA"/></rom-file>
+	<rom-file app="1" dir="017" file="087"><ffxi-string id="0002009A"/></rom-file>
+	<rom-file app="1" dir="018" file="056"><ffxi-string id="000200FB"/></rom-file>
+	<rom-file app="1" dir="017" file="055"><ffxi-string id="0002007A"/></rom-file>
+	<rom-file app="1" dir="017" file="054"><ffxi-string id="00020079"/></rom-file>
+	<rom-file app="1" dir="017" file="086"><ffxi-string id="00020099"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010010"/></name>
-	<rom-file app="1" dir="017" file="101">Chamber Of Oracles</rom-file>
-	<rom-file app="1" dir="018" file="014">Cloister Of Tremors</rom-file>
-	<rom-file app="1" dir="017" file="047">Eastern Altepa Desert</rom-file>
-	<rom-file app="1" dir="018" file="013">Quicksand Caves</rom-file>
-	<rom-file app="1" dir="018" file="052">Rabao</rom-file>
-	<rom-file app="1" dir="017" file="058">Western Altepa Desert</rom-file>
+	<rom-file app="1" dir="017" file="101"><ffxi-string id="000200A8"/></rom-file>
+	<rom-file app="1" dir="018" file="014"><ffxi-string id="000200D1"/></rom-file>
+	<rom-file app="1" dir="017" file="047"><ffxi-string id="00020072"/></rom-file>
+	<rom-file app="1" dir="018" file="013"><ffxi-string id="000200D0"/></rom-file>
+	<rom-file app="1" dir="018" file="052"><ffxi-string id="000200F7"/></rom-file>
+	<rom-file app="1" dir="017" file="058"><ffxi-string id="0002007D"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010011"/></name>
-	<rom-file app="1" dir="017" file="046">Cape Terrigan</rom-file>
-	<rom-file app="1" dir="018" file="006">Cloister Of Gales</rom-file>
-	<rom-file app="1" dir="018" file="017">Gustav Tunnel</rom-file>
-	<rom-file app="1" dir="017" file="107">Kuftal Tunnel</rom-file>
-	<rom-file app="1" dir="017" file="061">Valley Of Sorrows</rom-file>
+	<rom-file app="1" dir="017" file="046"><ffxi-string id="00020071"/></rom-file>
+	<rom-file app="1" dir="018" file="006"><ffxi-string id="000200C9"/></rom-file>
+	<rom-file app="1" dir="018" file="017"><ffxi-string id="000200D4"/></rom-file>
+	<rom-file app="1" dir="017" file="107"><ffxi-string id="000200AE"/></rom-file>
+	<rom-file app="1" dir="017" file="061"><ffxi-string id="00020080"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010012"/></name>
-	<rom-file app="1" dir="018" file="055">Kazham</rom-file>
-	<rom-file app="1" dir="018" file="057">Norg</rom-file>
-	<rom-file app="1" dir="017" file="109">Sea Serpent Grotto</rom-file>
-	<rom-file app="1" dir="017" file="056">Yuhtunga Jungle</rom-file>
+	<rom-file app="1" dir="018" file="055"><ffxi-string id="000200FA"/></rom-file>
+	<rom-file app="1" dir="018" file="057"><ffxi-string id="000200FC"/></rom-file>
+	<rom-file app="1" dir="017" file="109"><ffxi-string id="000200B0"/></rom-file>
+	<rom-file app="1" dir="017" file="056"><ffxi-string id="0002007B"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010013"/></name>
-	<rom-file app="1" dir="018" file="012">Cloister Of Flames</rom-file>
-	<rom-file app="1" dir="018" file="016">Cloister Of Tides</rom-file>
-	<rom-file app="1" dir="017" file="093">Den Of Rancor</rom-file>
-	<rom-file app="1" dir="018" file="010">Ifrit's Cauldron</rom-file>
-	<rom-file app="1" dir="017" file="096">Sacrificial Chamber</rom-file>
-	<rom-file app="1" dir="017" file="092">Temple Of Uggalepih</rom-file>
-	<rom-file app="1" dir="017" file="057">Yhoator Jungle</rom-file>
+	<rom-file app="1" dir="018" file="012"><ffxi-string id="000200CF"/></rom-file>
+	<rom-file app="1" dir="018" file="016"><ffxi-string id="000200D3"/></rom-file>
+	<rom-file app="1" dir="017" file="093"><ffxi-string id="000200A0"/></rom-file>
+	<rom-file app="1" dir="018" file="010"><ffxi-string id="000200CD"/></rom-file>
+	<rom-file app="1" dir="017" file="096"><ffxi-string id="000200A3"/></rom-file>
+	<rom-file app="1" dir="017" file="092"><ffxi-string id="0002009F"/></rom-file>
+	<rom-file app="1" dir="017" file="057"><ffxi-string id="0002007C"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010014"/></name>
-	<rom-file app="1" dir="017" file="113">La'Loff Amphiteatre</rom-file>
-	<rom-file app="1" dir="017" file="063">Ru'Aun Gardens</rom-file>
-	<rom-file app="1" dir="017" file="114">The Celestial Nexus</rom-file>
-	<rom-file app="1" dir="017" file="111">The Shrine Of Ru'Avitau</rom-file>
-	<rom-file app="1" dir="017" file="110">Ve'Lugannon Palace</rom-file>
+	<rom-file app="1" dir="017" file="113"><ffxi-string id="000200B4"/></rom-file>
+	<rom-file app="1" dir="017" file="063"><ffxi-string id="00020082"/></rom-file>
+	<rom-file app="1" dir="017" file="114"><ffxi-string id="000200B5"/></rom-file>
+	<rom-file app="1" dir="017" file="111"><ffxi-string id="000200B2"/></rom-file>
+	<rom-file app="1" dir="017" file="110"><ffxi-string id="000200B1"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010015"/></name>
-	<rom-file app="1" dir="017" file="119">Dynamis Bastok</rom-file>
-	<rom-file app="1" dir="017" file="067">Dynamis Beaucedine</rom-file>
-	<rom-file app="1" dir="017" file="121">Dynamis Jeuno</rom-file>
-	<rom-file app="1" dir="017" file="118">Dynamis San d'Oria</rom-file>
-	<rom-file app="1" dir="017" file="120">Dynamis Windurst</rom-file>
-	<rom-file app="1" dir="017" file="068">Dynamis Xarcabard</rom-file>
+	<rom-file app="1" dir="017" file="119"><ffxi-string id="000200BA"/></rom-file>
+	<rom-file app="1" dir="017" file="067"><ffxi-string id="00020086"/></rom-file>
+	<rom-file app="1" dir="017" file="121"><ffxi-string id="000200BC"/></rom-file>
+	<rom-file app="1" dir="017" file="118"><ffxi-string id="000200B9"/></rom-file>
+	<rom-file app="1" dir="017" file="120"><ffxi-string id="000200BB"/></rom-file>
+	<rom-file app="1" dir="017" file="068"><ffxi-string id="00020087"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010016"/></name>
-	<rom-file app="2" dir="002" file="022">Newton Movalpolos</rom-file>
-	<rom-file app="2" dir="002" file="023">Mine Shaft #2716</rom-file>
-	<rom-file app="2" dir="002" file="021">Oldton Movalpolos</rom-file>
+	<rom-file app="2" dir="002" file="022"><ffxi-string id="0002000C"/></rom-file>
+	<rom-file app="2" dir="002" file="023"><ffxi-string id="0002000D"/></rom-file>
+	<rom-file app="2" dir="002" file="021"><ffxi-string id="0002000B"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
-	<rom-file app="2" dir="002" file="036">Tavnazian Safehold</rom-file>
+	<rom-file app="2" dir="002" file="036"><ffxi-string id="0002001A"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
-	<rom-file app="2" dir="002" file="053">Diorama Abdhaljs-Ghelsba</rom-file>
-	<rom-file app="2" dir="002" file="034">Lufaise Meadows</rom-file>
-	<rom-file app="2" dir="002" file="035">Misareux Coast</rom-file>
-	<rom-file app="2" dir="002" file="037">Phomiuna Aqueducts</rom-file>
-	<rom-file app="2" dir="002" file="038">Sacrarium</rom-file>
-	<rom-file app="2" dir="002" file="039">Riverne - Site #B01</rom-file>
-	<rom-file app="2" dir="002" file="040">Riverne - Site #A01</rom-file>
-	<rom-file app="2" dir="002" file="041">Monarch Linn</rom-file>
-	<rom-file app="2" dir="002" file="042">Sealion's Den</rom-file>
+	<rom-file app="2" dir="002" file="053"><ffxi-string id="0002002B"/></rom-file>
+	<rom-file app="2" dir="002" file="034"><ffxi-string id="00020018"/></rom-file>
+	<rom-file app="2" dir="002" file="035"><ffxi-string id="00020019"/></rom-file>
+	<rom-file app="2" dir="002" file="037"><ffxi-string id="0002001B"/></rom-file>
+	<rom-file app="2" dir="002" file="038"><ffxi-string id="0002001C"/></rom-file>
+	<rom-file app="2" dir="002" file="039"><ffxi-string id="0002001D"/></rom-file>
+	<rom-file app="2" dir="002" file="040"><ffxi-string id="0002001E"/></rom-file>
+	<rom-file app="2" dir="002" file="041"><ffxi-string id="0002001F"/></rom-file>
+	<rom-file app="2" dir="002" file="042"><ffxi-string id="00020020"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
-	<rom-file app="2" dir="002" file="024">Hall Of Transference</rom-file>
-	<rom-file app="2" dir="002" file="026">Promyvion - Holla</rom-file>
-	<rom-file app="2" dir="002" file="027">Spire Of Holla</rom-file>
-	<rom-file app="2" dir="002" file="028">Promyvion - Dem</rom-file>
-	<rom-file app="2" dir="002" file="029">Spire Of Dem</rom-file>
-	<rom-file app="2" dir="002" file="030">Promyvion - Mea</rom-file>
-	<rom-file app="2" dir="002" file="031">Spire Of Mea</rom-file>
-	<rom-file app="2" dir="002" file="032">Promyvion - Vazhl</rom-file>
-	<rom-file app="2" dir="002" file="033">Spire Of Vazhl</rom-file>
+	<rom-file app="2" dir="002" file="024"><ffxi-string id="0002000E"/></rom-file>
+	<rom-file app="2" dir="002" file="026"><ffxi-string id="00020010"/></rom-file>
+	<rom-file app="2" dir="002" file="027"><ffxi-string id="00020011"/></rom-file>
+	<rom-file app="2" dir="002" file="028"><ffxi-string id="00020012"/></rom-file>
+	<rom-file app="2" dir="002" file="029"><ffxi-string id="00020013"/></rom-file>
+	<rom-file app="2" dir="002" file="030"><ffxi-string id="00020014"/></rom-file>
+	<rom-file app="2" dir="002" file="031"><ffxi-string id="00020015"/></rom-file>
+	<rom-file app="2" dir="002" file="032"><ffxi-string id="00020016"/></rom-file>
+	<rom-file app="2" dir="002" file="033"><ffxi-string id="00020017"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
-	<rom-file app="2" dir="002" file="043">Al'Taieu</rom-file>
-	<rom-file app="2" dir="002" file="047">Empyreal Paradox</rom-file>
-	<rom-file app="2" dir="002" file="044">Grand Palace Of Hu'Xzoi</rom-file>
-	<rom-file app="2" dir="002" file="046">The Garden of Ru'Hmet</rom-file>
+	<rom-file app="2" dir="002" file="043"><ffxi-string id="00020021"/></rom-file>
+	<rom-file app="2" dir="002" file="047"><ffxi-string id="00020024"/></rom-file>
+	<rom-file app="2" dir="002" file="044"><ffxi-string id="00020022"/></rom-file>
+	<rom-file app="2" dir="002" file="046"><ffxi-string id="00020023"/></rom-file>
+      </category>
+      <!-- Limbus:                <category><name><ffxi-string id="0001001B"/></name></category> -->
+      <!-- Empire of Aht Urhgan : <category><name><ffxi-string id="0001001C"/></name></category> -->
+      <category><name><ffxi-string id="0001001D"/></name>
+	<rom-file app="3" dir="000" file="123"><ffxi-string id="00020032"/></rom-file>
+	<rom-file app="3" dir="000" file="121"><ffxi-string id="00020030"/></rom-file>
+	<rom-file app="3" dir="000" file="125"><ffxi-string id="00020034"/></rom-file>
+	<rom-file app="3" dir="001" file="015"><ffxi-string id="00020046"/></rom-file>
+	<rom-file app="3" dir="001" file="016"><ffxi-string id="00020047"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="0001001E"/></name>
+	<rom-file app="3" dir="001" file="013"><ffxi-string id="00020044"/></rom-file>
+	<rom-file app="3" dir="001" file="012"><ffxi-string id="00020043"/></rom-file>
+	<rom-file app="3" dir="001" file="010"><ffxi-string id="00020041"/></rom-file>
+	<rom-file app="3" dir="001" file="011"><ffxi-string id="00020042"/></rom-file>
+	<rom-file app="3" dir="000" file="124"><ffxi-string id="00020033"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="0001001F"/></name>
+	<rom-file app="3" dir="001" file="007"><ffxi-string id="0002003E"/></rom-file>
+	<rom-file app="3" dir="001" file="008"><ffxi-string id="0002003F"/></rom-file>
+	<rom-file app="3" dir="001" file="006"><ffxi-string id="0002003D"/></rom-file>
+	<rom-file app="3" dir="001" file="009"><ffxi-string id="00020040"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="00010020"/></name>
+	<rom-file app="3" dir="000" file="127"><ffxi-string id="00020036"/></rom-file>
+	<rom-file app="3" dir="001" file="024"><ffxi-string id="0002004F"/></rom-file>
+	<rom-file app="3" dir="001" file="000"><ffxi-string id="00020037"/></rom-file>
+	<rom-file app="3" dir="001" file="014"><ffxi-string id="00020045"/></rom-file>
+	<rom-file app="3" dir="000" file="126"><ffxi-string id="00020035"/></rom-file>
+	<rom-file app="3" dir="001" file="022"><ffxi-string id="0002004D"/></rom-file>
+	<rom-file app="3" dir="001" file="001"><ffxi-string id="00020038"/></rom-file>
+	<rom-file app="3" dir="001" file="002"><ffxi-string id="00020039"/></rom-file>
+	<rom-file app="3" dir="001" file="005"><ffxi-string id="0002003C"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="00010021"/></name>
+	<rom-file app="3" dir="001" file="017"><ffxi-string id="00020048"/></rom-file>
+	<rom-file app="3" dir="001" file="019"><ffxi-string id="0002004A"/></rom-file>
+	<rom-file app="3" dir="001" file="020"><ffxi-string id="0002004B"/></rom-file>
+	<rom-file app="3" dir="001" file="021"><ffxi-string id="0002004C"/></rom-file>
+	<rom-file app="3" dir="001" file="018"><ffxi-string id="00020049"/></rom-file>
+	<rom-file app="3" dir="001" file="023"><ffxi-string id="0002004E"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
-	<rom-file app="1" dir="018" file="029">Bastok-Jeuno Airship</rom-file>
-	<rom-file app="1" dir="018" file="031">Kazham-Jeuno Airship</rom-file>
-	<rom-file app="1" dir="018" file="028">San d'Oria-Jeuno Airship</rom-file>
-	<rom-file app="1" dir="018" file="030">Windurst-Jeuno Airship</rom-file>
+	<rom-file app="1" dir="018" file="029"><ffxi-string id="000200E0"/></rom-file>
+	<rom-file app="1" dir="018" file="031"><ffxi-string id="000200E2"/></rom-file>
+	<rom-file app="1" dir="018" file="028"><ffxi-string id="000200DF"/></rom-file>
+	<rom-file app="1" dir="018" file="030"><ffxi-string id="000200E1"/></rom-file>
 	<separator/>
-	<rom-file app="1" dir="018" file="026">Ship Bound For Mhaura</rom-file>
-	<rom-file app="1" dir="018" file="033">Ship Bound For Mhaura (2)</rom-file>
-	<rom-file app="1" dir="018" file="025">Ship Bound For Selbina</rom-file>
-	<rom-file app="1" dir="018" file="032">Ship Bound For Selbina (2)</rom-file>
+	<rom-file app="1" dir="018" file="026"><ffxi-string id="000200DD"/></rom-file>
+	<rom-file app="1" dir="018" file="033"><ffxi-string id="000200E4"/></rom-file>
+	<rom-file app="1" dir="018" file="025"><ffxi-string id="000200DC"/></rom-file>
+	<rom-file app="1" dir="018" file="032"><ffxi-string id="000200E3"/></rom-file>
 	<separator/>
-	<rom-file app="2" dir="002" file="054">Diorama Abdhaljs-Purgonorgo</rom-file>
-	<rom-file app="2" dir="002" file="051">Dynamis - Buburimu</rom-file>
-	<rom-file app="2" dir="002" file="052">Dynamis - Qufim</rom-file>
-	<rom-file app="2" dir="002" file="053">Dynamis - Tavnazia</rom-file>
-	<rom-file app="2" dir="002" file="050">Dynamis - Valkurm</rom-file>
-	<rom-file app="2" dir="002" file="049">Lower Promyvion</rom-file>
-	<rom-file app="2" dir="002" file="048">Ou'Hpat Obelisk</rom-file>
-	<rom-file app="1" dir="017" file="116">The Last Stand</rom-file>
+	<rom-file app="3" dir="000" file="118"><ffxi-string id="0002002E"/></rom-file>
+	<rom-file app="3" dir="000" file="119"><ffxi-string id="0002002F"/></rom-file>
+	<rom-file app="3" dir="001" file="003"><ffxi-string id="0002003A"/></rom-file>
+	<rom-file app="3" dir="001" file="004"><ffxi-string id="0002003B"/></rom-file>
+	<separator/>
+	<rom-file app="2" dir="002" file="054"><ffxi-string id="0002002C"/></rom-file>
+	<rom-file app="2" dir="002" file="051"><ffxi-string id="00020028"/></rom-file>
+	<rom-file app="2" dir="002" file="052"><ffxi-string id="00020029"/></rom-file>
+	<rom-file app="2" dir="002" file="053"><ffxi-string id="0002002A"/></rom-file>
+	<rom-file app="2" dir="002" file="050"><ffxi-string id="00020027"/></rom-file>
+	<rom-file app="1" dir="017" file="116"><ffxi-string id="000200B7"/></rom-file>
 	<separator/>
 	<rom-file app="1" dir="018" file="015">Cheat Menu</rom-file>
 	<separator/>
-	<rom-file app="2" dir="002" file="056">Unknown #1</rom-file>
-	<rom-file app="2" dir="002" file="078">Unknown #2</rom-file>
-	<rom-file app="2" dir="002" file="079">Unknown #3</rom-file>
-	<rom-file app="2" dir="002" file="090">Unknown #4</rom-file>
-	<rom-file app="2" dir="002" file="097">Unknown #5</rom-file>
+	<rom-file app="2" dir="002" file="049">Unknown #1</rom-file>
+	<rom-file app="2" dir="002" file="048">Unknown #2</rom-file>
+	<rom-file app="2" dir="002" file="056">Unknown #3</rom-file>
+	<rom-file app="2" dir="002" file="078">Unknown #4</rom-file>
+	<rom-file app="2" dir="002" file="079">Unknown #5</rom-file>
+	<rom-file app="2" dir="002" file="090">Unknown #6</rom-file>
+	<rom-file app="2" dir="002" file="097">Unknown #7</rom-file>
       </category>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <category><name><ffxi-string id="00010000"/></name>
-	<rom-file app="0" dir="023" file="042">Château d'Oraguille</rom-file>
-	<rom-file app="0" dir="023" file="040">Northern San d'Oria</rom-file>
-	<rom-file app="0" dir="023" file="041">Port San d'Oria</rom-file>
-	<rom-file app="0" dir="023" file="039">Southern San d'Oria</rom-file>
+	<rom-file app="0" dir="023" file="042"><ffxi-string id="000200E9"/></rom-file>
+	<rom-file app="0" dir="023" file="040"><ffxi-string id="000200E7"/></rom-file>
+	<rom-file app="0" dir="023" file="041"><ffxi-string id="000200E8"/></rom-file>
+	<rom-file app="0" dir="023" file="039"><ffxi-string id="000200E6"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010001"/></name>
-	<rom-file app="0" dir="023" file="044">Bastok Markets</rom-file>
-	<rom-file app="0" dir="023" file="043">Bastok Mines</rom-file>
-	<rom-file app="0" dir="023" file="046">Metalworks</rom-file>
-	<rom-file app="0" dir="023" file="045">Port Bastok</rom-file>
+	<rom-file app="0" dir="023" file="044"><ffxi-string id="000200EB"/></rom-file>
+	<rom-file app="0" dir="023" file="043"><ffxi-string id="000200EA"/></rom-file>
+	<rom-file app="0" dir="023" file="046"><ffxi-string id="000200ED"/></rom-file>
+	<rom-file app="0" dir="023" file="045"><ffxi-string id="000200EC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010002"/></name>
-	<rom-file app="0" dir="023" file="051">Heaven's Tower</rom-file>
-	<rom-file app="0" dir="023" file="049">Port Windurst</rom-file>
-	<rom-file app="0" dir="023" file="048">Windurst Walls</rom-file>
-	<rom-file app="0" dir="023" file="047">Windurst Waters</rom-file>
-	<rom-file app="0" dir="023" file="050">Windurst Woods</rom-file>
+	<rom-file app="0" dir="023" file="051"><ffxi-string id="000200F2"/></rom-file>
+	<rom-file app="0" dir="023" file="049"><ffxi-string id="000200F0"/></rom-file>
+	<rom-file app="0" dir="023" file="048"><ffxi-string id="000200EF"/></rom-file>
+	<rom-file app="0" dir="023" file="047"><ffxi-string id="000200EE"/></rom-file>
+	<rom-file app="0" dir="023" file="050"><ffxi-string id="000200F1"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010003"/></name>
-	<rom-file app="0" dir="023" file="054">Lower Jeuno</rom-file>
-	<rom-file app="0" dir="023" file="055">Port Jeuno</rom-file>
-	<rom-file app="0" dir="023" file="052">Ru'Lude Gardens</rom-file>
-	<rom-file app="0" dir="023" file="053">Upper Jeuno</rom-file>
+	<rom-file app="0" dir="023" file="054"><ffxi-string id="000200F5"/></rom-file>
+	<rom-file app="0" dir="023" file="055"><ffxi-string id="000200F6"/></rom-file>
+	<rom-file app="0" dir="023" file="052"><ffxi-string id="000200F3"/></rom-file>
+	<rom-file app="0" dir="023" file="053"><ffxi-string id="000200F4"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010004"/></name>
-	<rom-file app="0" dir="022" file="104">Bostaunieux Oubliette</rom-file>
-	<rom-file app="0" dir="022" file="038">East Ronfaure</rom-file>
-	<rom-file app="0" dir="022" file="078">Ghelsba Fort</rom-file>
-	<rom-file app="0" dir="022" file="077">Ghelsba Outpost</rom-file>
-	<rom-file app="0" dir="022" file="076">Horlais Peak</rom-file>
-	<rom-file app="0" dir="022" file="127">King Ranperre's Tomb</rom-file>
-	<rom-file app="0" dir="022" file="037">West Ronfaure</rom-file>
-	<rom-file app="0" dir="022" file="079">Yhugott Grotto</rom-file>
+	<rom-file app="0" dir="022" file="104"><ffxi-string id="000200A7"/></rom-file>
+	<rom-file app="0" dir="022" file="038"><ffxi-string id="00020065"/></rom-file>
+	<rom-file app="0" dir="022" file="078"><ffxi-string id="00020091"/></rom-file>
+	<rom-file app="0" dir="022" file="077"><ffxi-string id="0002008C"/></rom-file>
+	<rom-file app="0" dir="022" file="076"><ffxi-string id="0002008B"/></rom-file>
+	<rom-file app="0" dir="022" file="127"><ffxi-string id="000200BE"/></rom-file>
+	<rom-file app="0" dir="022" file="037"><ffxi-string id="00020064"/></rom-file>
+	<rom-file app="0" dir="022" file="079"><ffxi-string id="00020092"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010005"/></name>
-	<rom-file app="0" dir="023" file="005">Gusgen Mines</rom-file>
-	<rom-file app="0" dir="022" file="045">Konschtat Highlands</rom-file>
-	<rom-file app="0" dir="022" file="039">La Theine Plateau</rom-file>
-	<rom-file app="0" dir="023" file="002">Ordelle's Cave</rom-file>
-	<rom-file app="0" dir="023" file="057">Selbina</rom-file>
-	<rom-file app="0" dir="022" file="040">Valkurm Dunes</rom-file>
+	<rom-file app="0" dir="023" file="005"><ffxi-string id="000200C4"/></rom-file>
+	<rom-file app="0" dir="022" file="045"><ffxi-string id="0002006C"/></rom-file>
+	<rom-file app="0" dir="022" file="039"><ffxi-string id="00020066"/></rom-file>
+	<rom-file app="0" dir="023" file="002"><ffxi-string id="000200C1"/></rom-file>
+	<rom-file app="0" dir="023" file="057"><ffxi-string id="000200F8"/></rom-file>
+	<rom-file app="0" dir="022" file="040"><ffxi-string id="00020067"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010006"/></name>
-	<rom-file app="0" dir="022" file="042">Batallia Downs</rom-file>
-	<rom-file app="2" dir="001" file="040">Carpenter's Landing</rom-file>
-	<rom-file app="0" dir="022" file="086">Davoi</rom-file>
-	<rom-file app="0" dir="022" file="041">Jugner Forest</rom-file>
-	<rom-file app="0" dir="022" file="087">Monastic Cavern</rom-file>
-	<rom-file app="2" dir="001" file="039">Phanauet Channel</rom-file>
-	<rom-file app="0" dir="023" file="004">The Eldieme Necropolis</rom-file>
+	<rom-file app="0" dir="022" file="042"><ffxi-string id="00020069"/></rom-file>
+	<rom-file app="2" dir="001" file="040"><ffxi-string id="00020002"/></rom-file>
+	<rom-file app="0" dir="022" file="086"><ffxi-string id="00020095"/></rom-file>
+	<rom-file app="0" dir="022" file="041"><ffxi-string id="00020068"/></rom-file>
+	<rom-file app="0" dir="022" file="087"><ffxi-string id="00020096"/></rom-file>
+	<rom-file app="2" dir="001" file="039"><ffxi-string id="00020001"/></rom-file>
+	<rom-file app="0" dir="023" file="004"><ffxi-string id="000200C3"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010007"/></name>
-	<rom-file app="0" dir="023" file="000">Dangruf Wadi</rom-file>
-	<rom-file app="1" dir="013" file="068">Korroloka Tunnel</rom-file>
-	<rom-file app="0" dir="022" file="043">North Gustaberg</rom-file>
-	<rom-file app="0" dir="022" file="080">Palborough Mines</rom-file>
-	<rom-file app="0" dir="022" file="044">South Gustaberg</rom-file>
-	<rom-file app="0" dir="022" file="081">Waughroon Shrine</rom-file>
-	<rom-file app="0" dir="022" file="109">Zeruhn Mines</rom-file>
+	<rom-file app="0" dir="023" file="000"><ffxi-string id="000200BF"/></rom-file>
+	<rom-file app="1" dir="013" file="068"><ffxi-string id="000200AD"/></rom-file>
+	<rom-file app="0" dir="022" file="043"><ffxi-string id="0002006A"/></rom-file>
+	<rom-file app="0" dir="022" file="080"><ffxi-string id="0002008F"/></rom-file>
+	<rom-file app="0" dir="022" file="044"><ffxi-string id="0002006B"/></rom-file>
+	<rom-file app="0" dir="022" file="081"><ffxi-string id="00020090"/></rom-file>
+	<rom-file app="0" dir="022" file="109"><ffxi-string id="000200AC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010008"/></name>
-	<rom-file app="0" dir="022" file="084">Beadeaux</rom-file>
-	<rom-file app="0" dir="023" file="006">Crawler's Nest</rom-file>
-	<rom-file app="0" dir="022" file="046">Pashhow Marshland</rom-file>
-	<rom-file app="0" dir="022" file="085">Qu'lun Dome</rom-file>
-	<rom-file app="0" dir="022" file="047">Rolanberry Fields</rom-file>
+	<rom-file app="0" dir="022" file="084"><ffxi-string id="00020093"/></rom-file>
+	<rom-file app="0" dir="023" file="006"><ffxi-string id="000200C5"/></rom-file>
+	<rom-file app="0" dir="022" file="046"><ffxi-string id="0002006D"/></rom-file>
+	<rom-file app="0" dir="022" file="085"><ffxi-string id="00020094"/></rom-file>
+	<rom-file app="0" dir="022" file="047"><ffxi-string id="0002006E"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010009"/></name>
-	<rom-file app="0" dir="022" file="083">Balga's Dais</rom-file>
-	<rom-file app="0" dir="022" file="053">East Sarutabaruta</rom-file>
-	<rom-file app="1" dir="013" file="067">Full Moon Fountain</rom-file>
-	<rom-file app="0" dir="022" file="082">Giddeus</rom-file>
-	<rom-file app="0" dir="023" file="001">Inner Horutoto Ruins</rom-file>
-	<rom-file app="0" dir="023" file="003">Outer Horutoto Ruins</rom-file>
-	<rom-file app="0" dir="022" file="106">Toraimarai Canal</rom-file>
-	<rom-file app="0" dir="022" file="052">West Sarutabaruta</rom-file>
+	<rom-file app="0" dir="022" file="083"><ffxi-string id="00020092"/></rom-file>
+	<rom-file app="0" dir="022" file="053"><ffxi-string id="00020074"/></rom-file>
+	<rom-file app="1" dir="013" file="067"><ffxi-string id="000200AA"/></rom-file>
+	<rom-file app="0" dir="022" file="082"><ffxi-string id="00020091"/></rom-file>
+	<rom-file app="0" dir="023" file="001"><ffxi-string id="000200C0"/></rom-file>
+	<rom-file app="0" dir="023" file="003"><ffxi-string id="000200C2"/></rom-file>
+	<rom-file app="0" dir="022" file="106"><ffxi-string id="000200A9"/></rom-file>
+	<rom-file app="0" dir="022" file="052"><ffxi-string id="00020073"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000A"/></name>
-	<rom-file app="2" dir="001" file="042">Bibiki Bay</rom-file>
-	<rom-file app="0" dir="022" file="055">Buburimu Peninsula</rom-file>
-	<rom-file app="1" dir="013" file="089">Labyrinth Of Onzozo</rom-file>
-	<rom-file app="2" dir="001" file="041">Manaclipper</rom-file>
-	<rom-file app="0" dir="023" file="007">Maze Of Shakhrami</rom-file>
-	<rom-file app="0" dir="023" file="058">Mhaura</rom-file>
-	<rom-file app="0" dir="022" file="054">Tahrongi Canyon</rom-file>
+	<rom-file app="2" dir="001" file="042"><ffxi-string id="00020004"/></rom-file>
+	<rom-file app="0" dir="022" file="055"><ffxi-string id="00020076"/></rom-file>
+	<rom-file app="1" dir="013" file="089"><ffxi-string id="000200D5"/></rom-file>
+	<rom-file app="2" dir="001" file="041"><ffxi-string id="00020003"/></rom-file>
+	<rom-file app="0" dir="023" file="007"><ffxi-string id="000200C6"/></rom-file>
+	<rom-file app="0" dir="023" file="058"><ffxi-string id="000200F9"/></rom-file>
+	<rom-file app="0" dir="022" file="054"><ffxi-string id="00020075"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000B"/></name>
-	<rom-file app="0" dir="022" file="089">Altar Room</rom-file>
-	<rom-file app="2" dir="001" file="045">Attohwa Chasm</rom-file>
-	<rom-file app="2" dir="001" file="046">Boneyard Gully</rom-file>
-	<rom-file app="0" dir="022" file="088">Castle Oztroja</rom-file>
-	<rom-file app="0" dir="023" file="009">Garlaige Citadel</rom-file>
-	<rom-file app="0" dir="022" file="056">Meriphataud Mountains</rom-file>
-	<rom-file app="0" dir="022" file="057">Sauromugue Champaign</rom-file>
+	<rom-file app="0" dir="022" file="089"><ffxi-string id="00020098"/></rom-file>
+	<rom-file app="2" dir="001" file="045"><ffxi-string id="00020007"/></rom-file>
+	<rom-file app="2" dir="001" file="046"><ffxi-string id="00020008"/></rom-file>
+	<rom-file app="0" dir="022" file="088"><ffxi-string id="00020097"/></rom-file>
+	<rom-file app="0" dir="023" file="009"><ffxi-string id="000200C8"/></rom-file>
+	<rom-file app="0" dir="022" file="056"><ffxi-string id="00020077"/></rom-file>
+	<rom-file app="0" dir="022" file="057"><ffxi-string id="00020078"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000C"/></name>
-	<rom-file app="0" dir="022" file="048">Beaucedine Glacier</rom-file>
-	<rom-file app="1" dir="013" file="082">Cloister Of Frost</rom-file>
-	<rom-file app="0" dir="023" file="013">Fei'Yin</rom-file>
-	<rom-file app="2" dir="001" file="047">Pso'Xja</rom-file>
-	<rom-file app="0" dir="023" file="015">Qu'Bia Arena</rom-file>
-	<rom-file app="0" dir="022" file="103">Ranguemont Pass</rom-file>
-	<rom-file app="2" dir="001" file="048">The Shrouded Maw</rom-file>
+	<rom-file app="0" dir="022" file="048"><ffxi-string id="0002006F"/></rom-file>
+	<rom-file app="1" dir="013" file="082"><ffxi-string id="000200CB"/></rom-file>
+	<rom-file app="0" dir="023" file="013"><ffxi-string id="000200CC"/></rom-file>
+	<rom-file app="2" dir="001" file="047"><ffxi-string id="00020009"/></rom-file>
+	<rom-file app="0" dir="023" file="015"><ffxi-string id="000200CE"/></rom-file>
+	<rom-file app="0" dir="022" file="103"><ffxi-string id="000200A6"/></rom-file>
+	<rom-file app="2" dir="001" file="048"><ffxi-string id="0002000A"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000D"/></name>
-	<rom-file app="2" dir="001" file="044">Bearclaw Pinnacle</rom-file>
-	<rom-file app="0" dir="022" file="098">Castle Zvahl Baileys</rom-file>
-	<rom-file app="0" dir="022" file="099">Castle Zvahl Keep</rom-file>
-	<rom-file app="0" dir="022" file="102">Throne Room</rom-file>
-	<rom-file app="2" dir="001" file="043">Uleguerand Range</rom-file>
-	<rom-file app="0" dir="022" file="049">Xarcabard</rom-file>
+	<rom-file app="2" dir="001" file="044"><ffxi-string id="00020006"/></rom-file>
+	<rom-file app="0" dir="022" file="098"><ffxi-string id="000200A1"/></rom-file>
+	<rom-file app="0" dir="022" file="099"><ffxi-string id="000200A2"/></rom-file>
+	<rom-file app="0" dir="022" file="102"><ffxi-string id="000200A5"/></rom-file>
+	<rom-file app="2" dir="001" file="043"><ffxi-string id="00020005"/></rom-file>
+	<rom-file app="0" dir="022" file="049"><ffxi-string id="00020070"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000E"/></name>
-	<rom-file app="0" dir="022" file="064">Behemoth's Dominion</rom-file>
-	<rom-file app="0" dir="022" file="121">Lower Delkfutt's Tower</rom-file>
-	<rom-file app="0" dir="022" file="094">Middle Delkfutt's Tower</rom-file>
-	<rom-file app="0" dir="022" file="068">Mordion Gaol</rom-file>
-	<rom-file app="0" dir="022" file="063">Qu'fim Island</rom-file>
-	<rom-file app="1" dir="013" file="073">Stellar Fulcrum</rom-file>
-	<rom-file app="0" dir="022" file="095">Upper Delkfutt's Tower</rom-file>
+	<rom-file app="0" dir="022" file="064"><ffxi-string id="0002007F"/></rom-file>
+	<rom-file app="0" dir="022" file="121"><ffxi-string id="000200B8"/></rom-file>
+	<rom-file app="0" dir="022" file="094"><ffxi-string id="0002009D"/></rom-file>
+	<rom-file app="0" dir="022" file="068"><ffxi-string id="00020083"/></rom-file>
+	<rom-file app="0" dir="022" file="063"><ffxi-string id="0002007E"/></rom-file>
+	<rom-file app="1" dir="013" file="073"><ffxi-string id="000200B3"/></rom-file>
+	<rom-file app="0" dir="022" file="095"><ffxi-string id="0002009E"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000F"/></name>
-	<rom-file app="1" dir="013" file="081">Cloister Of Storms</rom-file>
-	<rom-file app="1" dir="013" file="062">Dragon's Aery</rom-file>
-	<rom-file app="1" dir="013" file="093">Hall Of The Gods</rom-file>
-	<rom-file app="1" dir="013" file="053">Ro'Maeve</rom-file>
-	<rom-file app="1" dir="013" file="052">Sanctuary Of Zi'tah</rom-file>
-	<rom-file app="1" dir="013" file="061">The Boyahda Tree</rom-file>
+	<rom-file app="1" dir="013" file="081"><ffxi-string id="000200CA"/></rom-file>
+	<rom-file app="1" dir="013" file="062"><ffxi-string id="0002009A"/></rom-file>
+	<rom-file app="1" dir="013" file="093"><ffxi-string id="000200FB"/></rom-file>
+	<rom-file app="1" dir="013" file="053"><ffxi-string id="0002007A"/></rom-file>
+	<rom-file app="1" dir="013" file="052"><ffxi-string id="00020079"/></rom-file>
+	<rom-file app="1" dir="013" file="061"><ffxi-string id="00020099"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010010"/></name>
-	<rom-file app="1" dir="013" file="066">Chamber Of Oracles</rom-file>
-	<rom-file app="1" dir="013" file="086">Cloister Of Tremors</rom-file>
-	<rom-file app="1" dir="013" file="051">Eastern Altepa Desert</rom-file>
-	<rom-file app="1" dir="013" file="085">Quicksand Caves</rom-file>
-	<rom-file app="1" dir="013" file="091">Rabao</rom-file>
-	<rom-file app="1" dir="013" file="056">Western Altepa Desert</rom-file>
+	<rom-file app="1" dir="013" file="066"><ffxi-string id="000200A8"/></rom-file>
+	<rom-file app="1" dir="013" file="086"><ffxi-string id="000200D1"/></rom-file>
+	<rom-file app="1" dir="013" file="051"><ffxi-string id="00020072"/></rom-file>
+	<rom-file app="1" dir="013" file="085"><ffxi-string id="000200D0"/></rom-file>
+	<rom-file app="1" dir="013" file="091"><ffxi-string id="000200F7"/></rom-file>
+	<rom-file app="1" dir="013" file="056"><ffxi-string id="0002007D"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010011"/></name>
-	<rom-file app="0" dir="022" file="050">Cape Terrigan</rom-file>
-	<rom-file app="1" dir="013" file="080">Cloister Of Gales</rom-file>
-	<rom-file app="1" dir="013" file="088">Gustav Tunnel</rom-file>
-	<rom-file app="1" dir="013" file="069">Kuftal Tunnel</rom-file>
-	<rom-file app="1" dir="013" file="057">Valley Of Sorrows</rom-file>
+	<rom-file app="1" dir="013" file="050"><ffxi-string id="00020071"/></rom-file>
+	<rom-file app="1" dir="013" file="080"><ffxi-string id="000200C9"/></rom-file>
+	<rom-file app="1" dir="013" file="088"><ffxi-string id="000200D4"/></rom-file>
+	<rom-file app="1" dir="013" file="069"><ffxi-string id="000200AE"/></rom-file>
+	<rom-file app="1" dir="013" file="057"><ffxi-string id="00020080"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010012"/></name>
-	<rom-file app="1" dir="013" file="092">Kazham</rom-file>
-	<rom-file app="1" dir="013" file="094">Norg</rom-file>
-	<rom-file app="1" dir="013" file="070">Sea Serpent Grotto</rom-file>
-	<rom-file app="1" dir="013" file="054">Yuhtunga Jungle</rom-file>
+	<rom-file app="1" dir="013" file="092"><ffxi-string id="000200FA"/></rom-file>
+	<rom-file app="1" dir="013" file="094"><ffxi-string id="000200FC"/></rom-file>
+	<rom-file app="1" dir="013" file="070"><ffxi-string id="000200B0"/></rom-file>
+	<rom-file app="1" dir="013" file="054"><ffxi-string id="0002007B"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010013"/></name>
-	<rom-file app="1" dir="013" file="084">Cloister Of Flames</rom-file>
-	<rom-file app="1" dir="013" file="087">Cloister Of Tides</rom-file>
-	<rom-file app="1" dir="013" file="064">Den Of Rancor</rom-file>
-	<rom-file app="1" dir="013" file="083">Ifrit's Cauldron</rom-file>
-	<rom-file app="1" dir="013" file="065">Sacrificial Chamber</rom-file>
-	<rom-file app="1" dir="013" file="063">Temple Of Uggalepih</rom-file>
-	<rom-file app="1" dir="013" file="055">Yhoator Jungle</rom-file>
+	<rom-file app="1" dir="013" file="084"><ffxi-string id="000200CF"/></rom-file>
+	<rom-file app="1" dir="013" file="087"><ffxi-string id="000200D3"/></rom-file>
+	<rom-file app="1" dir="013" file="064"><ffxi-string id="000200A0"/></rom-file>
+	<rom-file app="1" dir="013" file="083"><ffxi-string id="000200CD"/></rom-file>
+	<rom-file app="1" dir="013" file="065"><ffxi-string id="000200A3"/></rom-file>
+	<rom-file app="1" dir="013" file="063"><ffxi-string id="0002009F"/></rom-file>
+	<rom-file app="1" dir="013" file="055"><ffxi-string id="0002007C"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010014"/></name>
-	<rom-file app="1" dir="013" file="074">La'Loff Amphiteatre</rom-file>
-	<rom-file app="1" dir="013" file="058">Ru'Aun Gardens</rom-file>
-	<rom-file app="1" dir="013" file="075">The Celestial Nexus</rom-file>
-	<rom-file app="1" dir="013" file="072">The Shrine Of Ru'Avitau</rom-file>
-	<rom-file app="1" dir="013" file="071">Ve'Lugannon Palace</rom-file>
+	<rom-file app="1" dir="013" file="074"><ffxi-string id="000200B4"/></rom-file>
+	<rom-file app="1" dir="013" file="058"><ffxi-string id="00020082"/></rom-file>
+	<rom-file app="1" dir="013" file="075"><ffxi-string id="000200B5"/></rom-file>
+	<rom-file app="1" dir="013" file="072"><ffxi-string id="000200B2"/></rom-file>
+	<rom-file app="1" dir="013" file="071"><ffxi-string id="000200B1"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010015"/></name>
-	<rom-file app="1" dir="013" file="059">Dynamis Beaucedine</rom-file>
-	<rom-file app="1" dir="013" file="060">Dynamis Xarcabard</rom-file>
-	<rom-file app="1" dir="013" file="076">Dynamis San d'Oria</rom-file>
-	<rom-file app="1" dir="013" file="077">Dynamis Bastok</rom-file>
-	<rom-file app="1" dir="013" file="078">Dynamis Windurst</rom-file>
-	<rom-file app="1" dir="013" file="079">Dynamis Jeuno</rom-file>
+	<rom-file app="1" dir="013" file="059"><ffxi-string id="00020086"/></rom-file>
+	<rom-file app="1" dir="013" file="060"><ffxi-string id="00020087"/></rom-file>
+	<rom-file app="1" dir="013" file="076"><ffxi-string id="000200B9"/></rom-file>
+	<rom-file app="1" dir="013" file="077"><ffxi-string id="000200BA"/></rom-file>
+	<rom-file app="1" dir="013" file="078"><ffxi-string id="000200BB"/></rom-file>
+	<rom-file app="1" dir="013" file="079"><ffxi-string id="000200BC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010016"/></name>
-	<rom-file app="2" dir="001" file="050">Newton Movalpolos</rom-file>
-	<rom-file app="2" dir="001" file="051">Mine Shaft #2716</rom-file>
-	<rom-file app="2" dir="001" file="049">Oldton Movalpolos</rom-file>
+	<rom-file app="2" dir="001" file="050"><ffxi-string id="0002000C"/></rom-file>
+	<rom-file app="2" dir="001" file="051"><ffxi-string id="0002000D"/></rom-file>
+	<rom-file app="2" dir="001" file="049"><ffxi-string id="0002000B"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
-	<rom-file app="2" dir="001" file="064">Tavnazian Safehold</rom-file>
+	<rom-file app="2" dir="001" file="064"><ffxi-string id="0002001A"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
-	<rom-file app="2" dir="001" file="081">Diorama Abdhaljs-Ghelsba</rom-file>
-	<rom-file app="2" dir="001" file="062">Lufaise Meadows</rom-file>
-	<rom-file app="2" dir="001" file="063">Misareux Coast</rom-file>
-	<rom-file app="2" dir="001" file="065">Phomiuna Aqueducts</rom-file>
-	<rom-file app="2" dir="001" file="066">Sacrarium</rom-file>
-	<rom-file app="2" dir="001" file="067">Riverne - Site #B01</rom-file>
-	<rom-file app="2" dir="001" file="068">Riverne - Site #A01</rom-file>
-	<rom-file app="2" dir="001" file="069">Monarch Linn</rom-file>
-	<rom-file app="2" dir="001" file="070">Sealion's Den</rom-file>
+	<rom-file app="2" dir="001" file="081"><ffxi-string id="0002002B"/></rom-file>
+	<rom-file app="2" dir="001" file="062"><ffxi-string id="00020018"/></rom-file>
+	<rom-file app="2" dir="001" file="063"><ffxi-string id="00020019"/></rom-file>
+	<rom-file app="2" dir="001" file="065"><ffxi-string id="0002001B"/></rom-file>
+	<rom-file app="2" dir="001" file="066"><ffxi-string id="0002001C"/></rom-file>
+	<rom-file app="2" dir="001" file="067"><ffxi-string id="0002001D"/></rom-file>
+	<rom-file app="2" dir="001" file="068"><ffxi-string id="0002001E"/></rom-file>
+	<rom-file app="2" dir="001" file="069"><ffxi-string id="0002001F"/></rom-file>
+	<rom-file app="2" dir="001" file="070"><ffxi-string id="00020020"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
-	<rom-file app="2" dir="001" file="052">Hall Of Transference</rom-file>
-	<rom-file app="2" dir="001" file="054">Promyvion - Holla</rom-file>
-	<rom-file app="2" dir="001" file="055">Spire Of Holla</rom-file>
-	<rom-file app="2" dir="001" file="056">Promyvion - Dem</rom-file>
-	<rom-file app="2" dir="001" file="057">Spire Of Dem</rom-file>
-	<rom-file app="2" dir="001" file="058">Promyvion - Mea</rom-file>
-	<rom-file app="2" dir="001" file="059">Spire Of Mea</rom-file>
-	<rom-file app="2" dir="001" file="060">Promyvion - Vazhl</rom-file>
-	<rom-file app="2" dir="001" file="061">Spire Of Vazhl</rom-file>
+	<rom-file app="2" dir="001" file="052"><ffxi-string id="0002000E"/></rom-file>
+	<rom-file app="2" dir="001" file="054"><ffxi-string id="00020010"/></rom-file>
+	<rom-file app="2" dir="001" file="055"><ffxi-string id="00020011"/></rom-file>
+	<rom-file app="2" dir="001" file="056"><ffxi-string id="00020012"/></rom-file>
+	<rom-file app="2" dir="001" file="057"><ffxi-string id="00020013"/></rom-file>
+	<rom-file app="2" dir="001" file="058"><ffxi-string id="00020014"/></rom-file>
+	<rom-file app="2" dir="001" file="059"><ffxi-string id="00020015"/></rom-file>
+	<rom-file app="2" dir="001" file="060"><ffxi-string id="00020016"/></rom-file>
+	<rom-file app="2" dir="001" file="061"><ffxi-string id="00020017"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
-	<rom-file app="2" dir="001" file="071">Al'Taieu</rom-file>
-	<rom-file app="2" dir="001" file="074">Empyreal Paradox</rom-file>
-	<rom-file app="2" dir="001" file="072">Grand Palace Of Hu'Xzoi</rom-file>
-	<rom-file app="2" dir="001" file="073">The Garden of Ru'Hmet</rom-file>
+	<rom-file app="2" dir="001" file="071"><ffxi-string id="00020021"/></rom-file>
+	<rom-file app="2" dir="001" file="074"><ffxi-string id="00020024"/></rom-file>
+	<rom-file app="2" dir="001" file="072"><ffxi-string id="00020022"/></rom-file>
+	<rom-file app="2" dir="001" file="073"><ffxi-string id="00020023"/></rom-file>
+      </category>
+      <!-- Limbus:                <category><name><ffxi-string id="0001001B"/></name></category> -->
+      <!-- Empire of Aht Urhgan : <category><name><ffxi-string id="0001001C"/></name></category> -->
+      <category><name><ffxi-string id="0001001D"/></name>
+	<rom-file app="3" dir="000" file="089"><ffxi-string id="00020032"/></rom-file>
+	<rom-file app="3" dir="000" file="087"><ffxi-string id="00020030"/></rom-file>
+	<rom-file app="3" dir="000" file="091"><ffxi-string id="00020034"/></rom-file>
+	<rom-file app="3" dir="000" file="109"><ffxi-string id="00020046"/></rom-file>
+	<rom-file app="3" dir="000" file="110"><ffxi-string id="00020047"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="0001001E"/></name>
+	<rom-file app="3" dir="000" file="107"><ffxi-string id="00020044"/></rom-file>
+	<rom-file app="3" dir="000" file="106"><ffxi-string id="00020043"/></rom-file>
+	<rom-file app="3" dir="000" file="104"><ffxi-string id="00020041"/></rom-file>
+	<rom-file app="3" dir="000" file="105"><ffxi-string id="00020042"/></rom-file>
+	<rom-file app="3" dir="000" file="090"><ffxi-string id="00020033"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="0001001F"/></name>
+	<rom-file app="3" dir="000" file="101"><ffxi-string id="0002003E"/></rom-file>
+	<rom-file app="3" dir="000" file="102"><ffxi-string id="0002003F"/></rom-file>
+	<rom-file app="3" dir="000" file="100"><ffxi-string id="0002003D"/></rom-file>
+	<rom-file app="3" dir="000" file="103"><ffxi-string id="00020040"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="00010020"/></name>
+	<rom-file app="3" dir="000" file="093"><ffxi-string id="00020036"/></rom-file>
+	<rom-file app="3" dir="000" file="118"><ffxi-string id="0002004F"/></rom-file>
+	<rom-file app="3" dir="000" file="094"><ffxi-string id="00020037"/></rom-file>
+	<rom-file app="3" dir="000" file="108"><ffxi-string id="00020045"/></rom-file>
+	<rom-file app="3" dir="000" file="092"><ffxi-string id="00020035"/></rom-file>
+	<rom-file app="3" dir="000" file="116"><ffxi-string id="0002004D"/></rom-file>
+	<rom-file app="3" dir="000" file="095"><ffxi-string id="00020038"/></rom-file>
+	<rom-file app="3" dir="000" file="096"><ffxi-string id="00020039"/></rom-file>
+	<rom-file app="3" dir="000" file="099"><ffxi-string id="0002003C"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="00010021"/></name>
+	<rom-file app="3" dir="000" file="111"><ffxi-string id="00020048"/></rom-file>
+	<rom-file app="3" dir="000" file="113"><ffxi-string id="0002004A"/></rom-file>
+	<rom-file app="3" dir="000" file="114"><ffxi-string id="0002004B"/></rom-file>
+	<rom-file app="3" dir="000" file="115"><ffxi-string id="0002004C"/></rom-file>
+	<rom-file app="3" dir="000" file="112"><ffxi-string id="00020049"/></rom-file>
+	<rom-file app="3" dir="000" file="117"><ffxi-string id="0002004E"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
-	<rom-file app="0" dir="023" file="033">Bastok-Jeuno Airship</rom-file>
-	<rom-file app="1" dir="013" file="090">Kazham-Jeuno Airship</rom-file>
-	<rom-file app="0" dir="023" file="032">San d'Oria-Jeuno Airship</rom-file>
-	<rom-file app="0" dir="023" file="034">Windurst-Jeuno Airship</rom-file>
+	<rom-file app="0" dir="023" file="033"><ffxi-string id="000200E0"/></rom-file>
+	<rom-file app="1" dir="013" file="090"><ffxi-string id="000200E2"/></rom-file>
+	<rom-file app="0" dir="023" file="032"><ffxi-string id="000200DF"/></rom-file>
+	<rom-file app="0" dir="023" file="034"><ffxi-string id="000200E1"/></rom-file>
 	<separator/>
-	<rom-file app="0" dir="023" file="030">Ship Bound For Mhaura</rom-file>
-	<rom-file app="0" dir="023" file="037">Ship Bound For Mhaura (2)</rom-file>
-	<rom-file app="0" dir="023" file="029">Ship Bound For Selbina</rom-file>
-	<rom-file app="0" dir="023" file="036">Ship Bound For Selbina (2)</rom-file>
+	<rom-file app="0" dir="023" file="030"><ffxi-string id="000200DD"/></rom-file>
+	<rom-file app="0" dir="023" file="037"><ffxi-string id="000200E4"/></rom-file>
+	<rom-file app="0" dir="023" file="029"><ffxi-string id="000200DC"/></rom-file>
+	<rom-file app="0" dir="023" file="036"><ffxi-string id="000200E3"/></rom-file>
 	<separator/>
-	<rom-file app="2" dir="001" file="082">Diorama Abdhaljs-Purgonorgo</rom-file>
-	<rom-file app="2" dir="001" file="078">Dynamis - Buburimu</rom-file>
-	<rom-file app="2" dir="001" file="079">Dynamis - Qufim</rom-file>
-	<rom-file app="2" dir="001" file="080">Dynamis - Tavnazia</rom-file>
-	<rom-file app="2" dir="001" file="077">Dynamis - Valkurm</rom-file>
-	<rom-file app="2" dir="001" file="076">Lower Promyvion</rom-file>
-	<rom-file app="2" dir="001" file="075">Ou'Hpat Obelisk</rom-file>
-	<rom-file app="0" dir="022" file="120">The Last Stand</rom-file>
+	<rom-file app="3" dir="000" file="085"><ffxi-string id="0002002E"/></rom-file>
+	<rom-file app="3" dir="000" file="086"><ffxi-string id="0002002F"/></rom-file>
+	<rom-file app="3" dir="000" file="098"><ffxi-string id="0002003A"/></rom-file>
+	<rom-file app="3" dir="000" file="099"><ffxi-string id="0002003B"/></rom-file>
+	<separator/>
+	<rom-file app="2" dir="001" file="082"><ffxi-string id="0002002C"/></rom-file>
+	<rom-file app="2" dir="001" file="078"><ffxi-string id="00020028"/></rom-file>
+	<rom-file app="2" dir="001" file="079"><ffxi-string id="00020029"/></rom-file>
+	<rom-file app="2" dir="001" file="080"><ffxi-string id="0002002A"/></rom-file>
+	<rom-file app="2" dir="001" file="077"><ffxi-string id="00020027"/></rom-file>
+	<rom-file app="0" dir="022" file="120"><ffxi-string id="000200B7"/></rom-file>
 	<separator/>
 	<rom-file app="0" dir="023" file="019">Cheat Menu</rom-file>
 	<separator/>
-	<rom-file app="2" dir="001" file="084">Unknown #1</rom-file>
-	<rom-file app="2" dir="001" file="106">Unknown #2</rom-file>
-	<rom-file app="2" dir="001" file="107">Unknown #3</rom-file>
-	<rom-file app="2" dir="001" file="118">Unknown #4</rom-file>
-	<rom-file app="2" dir="001" file="125">Unknown #5</rom-file>
+	<rom-file app="2" dir="001" file="075">Unknown #1</rom-file>
+	<rom-file app="2" dir="001" file="076">Unknown #2</rom-file>
+	<rom-file app="2" dir="001" file="084">Unknown #3</rom-file>
+	<rom-file app="2" dir="001" file="106">Unknown #4</rom-file>
+	<rom-file app="2" dir="001" file="107">Unknown #5</rom-file>
+	<rom-file app="2" dir="001" file="118">Unknown #6</rom-file>
+	<rom-file app="2" dir="001" file="125">Unknown #7</rom-file>
       </category>
     </category>
   </category>
   <category><name><i18n-string id="Menu:Images"/></name>
     <category><name><i18n-string id="Menu:Maps"/></name>
       <category><name><ffxi-string id="00010000"/></name>
-	<category><name>The Kingdom of San d'Oria</name>
-	  <rom-file app="0" dir="018" file="063">Highlight: Southern San d'Oria</rom-file>
-	  <rom-file app="0" dir="018" file="086">Highlight: Northern San d'Oria</rom-file>
-	  <rom-file app="0" dir="018" file="087">Highlight: Port San d'Oria</rom-file>
-	  <rom-file app="0" dir="018" file="088">Highlight: Château d'Oraguille</rom-file>
+	<category><name><ffxi-string id="00010000"/></name>
+	  <rom-file app="0" dir="018" file="088"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200E9"/></rom-file>
+	  <rom-file app="0" dir="018" file="086"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200E7"/></rom-file>
+	  <rom-file app="0" dir="018" file="087"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200E8"/></rom-file>
+	  <rom-file app="0" dir="018" file="063"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200E6"/></rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="059">Southern San d'Oria</rom-file>
-	<rom-file app="0" dir="018" file="060">Northern San d'Oria</rom-file>
-	<rom-file app="0" dir="018" file="061">Port San d'Oria</rom-file>
-	<rom-file app="0" dir="018" file="062">Château d'Oraguille</rom-file>
+	<rom-file app="0" dir="018" file="062"><ffxi-string id="000200E9"/></rom-file>
+	<rom-file app="0" dir="018" file="060"><ffxi-string id="000200E7"/></rom-file>
+	<rom-file app="0" dir="018" file="061"><ffxi-string id="000200E8"/></rom-file>
+	<rom-file app="0" dir="018" file="059"><ffxi-string id="000200E6"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010001"/></name>
-	<category><name>The Republic of Bastok</name>
-	  <rom-file app="0" dir="018" file="068">Highlight: Bastok Mines</rom-file>
-	  <rom-file app="0" dir="018" file="089">Highlight: Bastok Markets</rom-file>
-	  <rom-file app="0" dir="018" file="090">Highlight: Port Bastok</rom-file>
-	  <rom-file app="0" dir="018" file="091">Highlight: Metalworks</rom-file>
+	<category><name><ffxi-string id="00010001"/></name>
+	  <rom-file app="0" dir="018" file="068"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200EA"/></rom-file>
+	  <rom-file app="0" dir="018" file="089"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200EB"/></rom-file>
+	  <rom-file app="0" dir="018" file="090"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200EC"/></rom-file>
+	  <rom-file app="0" dir="018" file="091"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200ED"/></rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="064">Bastok Mines</rom-file>
-	<rom-file app="0" dir="018" file="065">Bastok Markets</rom-file>
-	<rom-file app="0" dir="018" file="066">Port Bastok</rom-file>
-	<rom-file app="0" dir="018" file="067">Metalworks</rom-file>
+	<rom-file app="0" dir="018" file="064"><ffxi-string id="000200EA"/></rom-file>
+	<rom-file app="0" dir="018" file="065"><ffxi-string id="000200EB"/></rom-file>
+	<rom-file app="0" dir="018" file="066"><ffxi-string id="000200EC"/></rom-file>
+	<rom-file app="0" dir="018" file="067"><ffxi-string id="000200ED"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010002"/></name>
-	<category><name>The Federation of Windurst</name>
-	  <rom-file app="0" dir="018" file="074">Highlight: Windurst Waters</rom-file>
-	  <rom-file app="0" dir="018" file="092">Highlight: Windurst Walls</rom-file>
-	  <rom-file app="0" dir="018" file="093">Highlight: Port Windurst</rom-file>
-	  <rom-file app="0" dir="018" file="094">Highlight: Windurst Woods</rom-file>
+	<category><name><ffxi-string id="00010002"/></name>
+	  <rom-file app="0" dir="018" file="074"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200EE"/></rom-file>
+	  <rom-file app="0" dir="018" file="092"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200EF"/></rom-file>
+	  <rom-file app="0" dir="018" file="093"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F0"/></rom-file>
+	  <rom-file app="0" dir="018" file="094"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F1"/></rom-file>
 	</category>
-	<category><name>Windurst Waters</name>
-	  <rom-file app="0" dir="018" file="069">Full</rom-file>
-	  <rom-file app="0" dir="018" file="084">North Half</rom-file>
-	  <rom-file app="0" dir="018" file="085">South Half</rom-file>
+	<category><name><ffxi-string id="000200EE"/></name>
+	  <rom-file app="0" dir="018" file="069"><i18n-string id="Menu:Full"/></rom-file>
+	  <rom-file app="0" dir="018" file="084"><i18n-string id="Menu:NorthHalf"/></rom-file>
+	  <rom-file app="0" dir="018" file="085"><i18n-string id="Menu:SouthHalf"/></rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="070">Windurst Walls</rom-file>
-	<rom-file app="0" dir="018" file="071">Port Windurst</rom-file>
-	<rom-file app="0" dir="018" file="072">Windurst Woods</rom-file>
+	<rom-file app="0" dir="018" file="070"><ffxi-string id="000200EF"/></rom-file>
+	<rom-file app="0" dir="018" file="071"><ffxi-string id="000200F0"/></rom-file>
+	<rom-file app="0" dir="018" file="072"><ffxi-string id="000200F1"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010003"/></name>
-	<category><name>The Grand Duchy of Jeuno</name>
-	  <rom-file app="0" dir="018" file="079">Highlight: Ru'Lude Gardens</rom-file>
-	  <rom-file app="0" dir="018" file="095">Highlight: Upper Jeuno</rom-file>
-	  <rom-file app="0" dir="018" file="096">Highlight: Lower Jeuno</rom-file>
-	  <rom-file app="0" dir="018" file="097">Highlight: Port Jeuno</rom-file>
+	<category><name><ffxi-string id="00010003"/></name>
+	  <rom-file app="0" dir="018" file="079"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F3"/></rom-file>
+	  <rom-file app="0" dir="018" file="095"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F4"/></rom-file>
+	  <rom-file app="0" dir="018" file="096"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F5"/></rom-file>
+	  <rom-file app="0" dir="018" file="097"><i18n-string id="Menu:Highlight"/><ffxi-string id="000200F6"/></rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="075">Ru'Lude Gardens</rom-file>
-	<rom-file app="0" dir="018" file="076">Upper Jeuno</rom-file>
-	<rom-file app="0" dir="018" file="077">Lower Jeuno</rom-file>
-	<rom-file app="0" dir="018" file="078">Port Jeuno</rom-file>
+	<rom-file app="0" dir="018" file="075"><ffxi-string id="000200F3"/></rom-file>
+	<rom-file app="0" dir="018" file="076"><ffxi-string id="000200F4"/></rom-file>
+	<rom-file app="0" dir="018" file="077"><ffxi-string id="000200F5"/></rom-file>
+	<rom-file app="0" dir="018" file="078"><ffxi-string id="000200F6"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010004"/></name>
-	<category><name>Bostaunieux Oubliette</name>
-	  <rom-file app="0" dir="017" file="112">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="113">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="017" file="114">Map &amp;3</rom-file>
+	<category><name><ffxi-string id="000200A7"/></name>
+	  <rom-file app="0" dir="017" file="112"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="113"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="017" file="114"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="025">East Ronfaure</rom-file>
-	<category><name>Ghelsba Outpost</name>
-	  <rom-file app="0" dir="017" file="051">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="052">Map &amp;2</rom-file>
+	<rom-file app="0" dir="017" file="025"><ffxi-string id="00020065"/></rom-file>
+	<category><name><ffxi-string id="0002008C"/></name>
+	  <rom-file app="0" dir="017" file="051"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="052"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="053">Fort Ghelsba</rom-file>
-	<category><name>King Ranperre's Tomb</name>
-	  <rom-file app="0" dir="018" file="008">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="011">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="012">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="013">Map &amp;4</rom-file>
+	<rom-file app="0" dir="017" file="053"><ffxi-string id="0002008D"/></rom-file>
+	<category><name><ffxi-string id="000200BE"/></name>
+	  <rom-file app="0" dir="018" file="008"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="011"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="012"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="013"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="024">West Ronfaure</rom-file>
-	<category><name>Yughott Grotto</name>
-	  <rom-file app="0" dir="017" file="054">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="112">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="113">Map &amp;3</rom-file>
+	<rom-file app="0" dir="017" file="024"><ffxi-string id="00020064"/></rom-file>
+	<category><name><ffxi-string id="0002008E"/></name>
+	  <rom-file app="0" dir="017" file="054"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="112"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="113"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
       </category>
       <category><name><ffxi-string id="00010005"/></name>
-	<category><name>Gusgen Mines</name>
-	  <rom-file app="0" dir="018" file="026">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="027">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="028">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="029">Map &amp;4</rom-file>
-	  <rom-file app="0" dir="018" file="117">Map &amp;5</rom-file>
+	<category><name><ffxi-string id="000200C4"/></name>
+	  <rom-file app="0" dir="018" file="026"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="027"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="028"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="029"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="0" dir="018" file="117"><i18n-string id="Menu:MapN"/>5</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="026">La Theine Plateau</rom-file>
-	<rom-file app="0" dir="017" file="032">Konschtat Highlands</rom-file>
-	<category><name>Ordelle's Caves</name>
-	  <rom-file app="0" dir="018" file="020">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="021">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="022">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="114">Map &amp;4</rom-file>
+	<rom-file app="0" dir="017" file="026"><ffxi-string id="00020066"/></rom-file>
+	<rom-file app="0" dir="017" file="032"><ffxi-string id="0002006C"/></rom-file>
+	<category><name><ffxi-string id="000200C1"/></name>
+	  <rom-file app="0" dir="018" file="020"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="021"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="022"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="114"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="080">Selbina</rom-file>
-	<rom-file app="0" dir="017" file="027">Valkurm Dunes</rom-file>
+	<rom-file app="0" dir="018" file="080"><ffxi-string id="000200F8"/></rom-file>
+	<rom-file app="0" dir="017" file="027"><ffxi-string id="00020067"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010006"/></name>
-	<rom-file app="0" dir="017" file="029">Batallia Downs</rom-file>
-	<category><name>Carpenter's Landing</name>
-	  <rom-file app="2" dir="003" file="099">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="007" file="038">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="007" file="038">Map &amp;3</rom-file>
+	<rom-file app="0" dir="017" file="029"><ffxi-string id="00020069"/></rom-file>
+	<category><name><ffxi-string id="00020002"/></name>
+	  <rom-file app="2" dir="003" file="099"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="007" file="038"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="007" file="038"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="066">Davoi</rom-file>
-	<rom-file app="0" dir="017" file="028">Jugner Forest</rom-file>
-	<rom-file app="0" dir="017" file="067">Monastic Cavern</rom-file>
-	<rom-file app="2" dir="008" file="031">Phanauet Channel</rom-file>
-	<category><name>The Eldieme Necropolis</name>
-	  <rom-file app="0" dir="018" file="023">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="024">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="025">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="116">Map &amp;4</rom-file>
+	<rom-file app="0" dir="017" file="066"><ffxi-string id="00020095"/></rom-file>
+	<rom-file app="0" dir="017" file="028"><ffxi-string id="00020068"/></rom-file>
+	<rom-file app="0" dir="017" file="067"><ffxi-string id="00020096"/></rom-file>
+	<rom-file app="2" dir="008" file="031"><ffxi-string id="00020001"/></rom-file>
+	<category><name><ffxi-string id="000200C3"/></name>
+	  <rom-file app="0" dir="018" file="023"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="024"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="025"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="116"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
       </category>
       <category><name><ffxi-string id="00010007"/></name>
-	<category><name>Dangruf Wadi</name>
-	  <rom-file app="0" dir="018" file="009">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="010">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="014">Map &amp;3</rom-file>
+	<category><name><ffxi-string id="000200BF"/></name>
+	  <rom-file app="0" dir="018" file="009"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="010"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="014"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<category><name>Korroloka Tunnel</name>
-	  <rom-file app="0" dir="017" file="121">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="110">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="111">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="112">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="016" file="113">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="016" file="114">Map &amp;6</rom-file>
+	<category><name><ffxi-string id="000200AD"/></name>
+	  <rom-file app="0" dir="017" file="121"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="110"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="111"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="112"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="016" file="113"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="016" file="114"><i18n-string id="Menu:MapN"/>6</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="030">North Gustaberg</rom-file>
-	<category><name>Palborough Mines</name>
-	  <rom-file app="0" dir="017" file="055">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="056">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="017" file="057">Map &amp;3</rom-file>
+	<rom-file app="0" dir="017" file="030"><ffxi-string id="0002006A"/></rom-file>
+	<category><name><ffxi-string id="0002008F"/></name>
+	  <rom-file app="0" dir="017" file="055"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="056"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="017" file="057"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="031">South Gustaberg</rom-file>
-	<rom-file app="0" dir="017" file="120">Zeruhn Mines</rom-file>
+	<rom-file app="0" dir="017" file="031"><ffxi-string id="0002006B"/></rom-file>
+	<rom-file app="0" dir="017" file="120"><ffxi-string id="000200AC"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010008"/></name>
-	<category><name>Beadeaux</name>
-	  <rom-file app="0" dir="017" file="062">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="063">Map &amp;2</rom-file>
+	<category><name><ffxi-string id="00020093"/></name>
+	  <rom-file app="0" dir="017" file="062"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="063"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<category><name>Crawlers' Nest</name>
-	  <rom-file app="0" dir="018" file="030">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="031">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="111">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="118">Map &amp;4</rom-file>
+	<category><name><ffxi-string id="000200C5"/></name>
+	  <rom-file app="0" dir="018" file="030"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="031"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="111"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="118"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="033">Passhow Marshlands</rom-file>
-	<rom-file app="0" dir="017" file="065">Qulun Dome</rom-file>
-	<rom-file app="0" dir="017" file="034">Rolanberry Fields</rom-file>
+	<rom-file app="0" dir="017" file="033"><ffxi-string id="0002006D"/></rom-file>
+	<rom-file app="0" dir="017" file="065"><ffxi-string id="00020094"/></rom-file>
+	<rom-file app="0" dir="017" file="034"><ffxi-string id="0002006E"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010009"/></name>
-	<rom-file app="0" dir="017" file="040">East Sarutabaruta</rom-file>
-	<category><name>Giddeus</name>
-	  <rom-file app="0" dir="017" file="059">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="060">Map &amp;2</rom-file>
+	<rom-file app="0" dir="017" file="040"><ffxi-string id="00020074"/></rom-file>
+	<category><name><ffxi-string id="00020091"/></name>
+	  <rom-file app="0" dir="017" file="059"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="060"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
 	<category><name>Horutoto Ruins</name>
 	  <category><name>Amaryllis Tower</name>
-	    <rom-file app="0" dir="018" file="015">Map &amp;1</rom-file>
-	    <rom-file app="0" dir="018" file="050">Map &amp;2</rom-file>
-	    <rom-file app="0" dir="018" file="115">Map &amp;3</rom-file>
+	    <rom-file app="0" dir="018" file="015"><i18n-string id="Menu:MapN"/>1</rom-file>
+	    <rom-file app="0" dir="018" file="050"><i18n-string id="Menu:MapN"/>2</rom-file>
+	    <rom-file app="0" dir="018" file="115"><i18n-string id="Menu:MapN"/>3</rom-file>
 	  </category>
 	  <rom-file app="0" dir="018" file="045">Beetle's Burrow</rom-file>
 	  <rom-file app="0" dir="018" file="019">Dahlia Tower</rom-file>
@@ -657,104 +749,104 @@
 	  <rom-file app="0" dir="018" file="018">Lily Tower</rom-file>
 	  <rom-file app="0" dir="018" file="017">Marguerite Tower</rom-file>
 	  <category><name>Rose Tower</name>
-	    <rom-file app="0" dir="018" file="046">Map &amp;1</rom-file>
-	    <rom-file app="0" dir="018" file="049">Map &amp;2</rom-file>
+	    <rom-file app="0" dir="018" file="046"><i18n-string id="Menu:MapN"/>1</rom-file>
+	    <rom-file app="0" dir="018" file="049"><i18n-string id="Menu:MapN"/>2</rom-file>
 	  </category>
 	</category>
-	<category><name>Toraimarai Canal</name>
-	  <rom-file app="0" dir="017" file="117">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="048">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="109">Map &amp;3</rom-file>
+	<category><name><ffxi-string id="000200A9"/></name>
+	  <rom-file app="0" dir="017" file="117"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="048"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="109"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="039">West Sarutabaruta</rom-file>
+	<rom-file app="0" dir="017" file="039"><ffxi-string id="00020073"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000A"/></name>
-	<category><name>Bibiki Bay</name>
+	<category><name><ffxi-string id="00020004"/></name>
 	  <rom-file app="2" dir="003" file="100">Mainland</rom-file>
 	  <rom-file app="2" dir="003" file="101">Purgonorgo Isle</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="042">Buburimu Peninsula</rom-file>
-	<rom-file app="1" dir="017" file="027">Labyrinth of Onzozo</rom-file>
-	<rom-file app="2" dir="008" file="032">Manaclipper</rom-file>
-	<category><name>Maze of Shakhrami</name>
-	  <rom-file app="0" dir="018" file="032">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="033">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="119">Map &amp;3</rom-file>
+	<rom-file app="0" dir="017" file="042"><ffxi-string id="00020076"/></rom-file>
+	<rom-file app="1" dir="017" file="027"><ffxi-string id="000200D5"/></rom-file>
+	<rom-file app="2" dir="008" file="032"><ffxi-string id="00020003"/></rom-file>
+	<category><name><ffxi-string id="000200C6"/></name>
+	  <rom-file app="0" dir="018" file="032"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="033"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="119"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<rom-file app="0" dir="018" file="081">Mhaura</rom-file>
-	<rom-file app="0" dir="017" file="041">Tahrongi Canyon</rom-file>
+	<rom-file app="0" dir="018" file="081"><ffxi-string id="000200F9"/></rom-file>
+	<rom-file app="0" dir="017" file="041"><ffxi-string id="00020075"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000B"/></name>
-	<rom-file app="0" dir="017" file="072">Altar Room</rom-file>
-	<rom-file app="2" dir="003" file="103">Attohwa Chasm</rom-file>
-	<category><name>Castle Oztroja</name>
-	  <rom-file app="0" dir="017" file="068">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="069">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="017" file="070">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="017" file="071">Map &amp;4</rom-file>
-	  <rom-file app="0" dir="018" file="047">Map &amp;5</rom-file>
-	  <rom-file app="0" dir="018" file="051">Map &amp;6</rom-file>
-	  <rom-file app="0" dir="018" file="052">Map &amp;7</rom-file>
+	<rom-file app="0" dir="017" file="072"><ffxi-string id="00020098"/></rom-file>
+	<rom-file app="2" dir="003" file="103"><ffxi-string id="00020007"/></rom-file>
+	<category><name><ffxi-string id="00020097"/></name>
+	  <rom-file app="0" dir="017" file="068"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="069"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="017" file="070"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="017" file="071"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="0" dir="018" file="047"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="0" dir="018" file="051"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="0" dir="018" file="052"><i18n-string id="Menu:MapN"/>7</rom-file>
 	</category>
-	<category><name>Garlaige Citadel</name>
-	  <rom-file app="0" dir="018" file="034">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="042">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="043">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="044">Map &amp;4</rom-file>
-	  <rom-file app="0" dir="018" file="120">Map &amp;5</rom-file>
+	<category><name><ffxi-string id="000200C8"/></name>
+	  <rom-file app="0" dir="018" file="034"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="042"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="043"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="044"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="0" dir="018" file="120"><i18n-string id="Menu:MapN"/>5</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="043">Meriphataud Mountains</rom-file>
-	<rom-file app="0" dir="017" file="044">Sauromugue Champaign</rom-file>
+	<rom-file app="0" dir="017" file="043"><ffxi-string id="00020077"/></rom-file>
+	<rom-file app="0" dir="017" file="044"><ffxi-string id="00020078"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000C"/></name>
-	<rom-file app="0" dir="017" file="035">Beaucedine Glacier</rom-file>
-	<category><name>Fei'yin</name>
-	  <rom-file app="0" dir="018" file="037">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="038">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="121">Map &amp;3</rom-file>
+	<rom-file app="0" dir="017" file="035"><ffxi-string id="0002006F"/></rom-file>
+	<category><name><ffxi-string id="000200CC"/></name>
+	  <rom-file app="0" dir="018" file="037"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="038"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="121"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<category><name>Pso'Xja</name>
-	  <rom-file app="2" dir="003" file="104">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="003" file="105">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="003" file="106">Map &amp;3</rom-file>
-	  <rom-file app="2" dir="003" file="107">Map &amp;4</rom-file>
-	  <rom-file app="2" dir="003" file="108">Map &amp;5</rom-file>
-	  <rom-file app="2" dir="003" file="109">Map &amp;6</rom-file>
-	  <rom-file app="2" dir="003" file="110">Map &amp;7</rom-file>
-	  <rom-file app="2" dir="003" file="111">Map &amp;8</rom-file>
-	  <rom-file app="2" dir="003" file="112">Map &amp;9</rom-file>
-	  <rom-file app="2" dir="003" file="113">Map &amp;10</rom-file>
-	  <rom-file app="2" dir="003" file="114">Map &amp;11</rom-file>
-	  <rom-file app="2" dir="003" file="115">Map &amp;12</rom-file>
-	  <rom-file app="2" dir="003" file="116">Map &amp;13</rom-file>
-	  <rom-file app="2" dir="003" file="117">Map &amp;14</rom-file>
-	  <rom-file app="2" dir="003" file="118">Map &amp;15</rom-file>
-	  <rom-file app="2" dir="003" file="119">Map &amp;16</rom-file>
+	<category><name><ffxi-string id="00020009"/></name>
+	  <rom-file app="2" dir="003" file="104"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="003" file="105"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="003" file="106"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="2" dir="003" file="107"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="2" dir="003" file="108"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="2" dir="003" file="109"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="2" dir="003" file="110"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="2" dir="003" file="111"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="2" dir="003" file="112"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="2" dir="003" file="113"><i18n-string id="Menu:MapN"/>10</rom-file>
+	  <rom-file app="2" dir="003" file="114"><i18n-string id="Menu:MapN"/>11</rom-file>
+	  <rom-file app="2" dir="003" file="115"><i18n-string id="Menu:MapN"/>12</rom-file>
+	  <rom-file app="2" dir="003" file="116"><i18n-string id="Menu:MapN"/>13</rom-file>
+	  <rom-file app="2" dir="003" file="117"><i18n-string id="Menu:MapN"/>14</rom-file>
+	  <rom-file app="2" dir="003" file="118"><i18n-string id="Menu:MapN"/>15</rom-file>
+	  <rom-file app="2" dir="003" file="119"><i18n-string id="Menu:MapN"/>16</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="111">Ranguemont Pass</rom-file>
+	<rom-file app="0" dir="017" file="111"><ffxi-string id="000200A6"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000D"/></name>
-	<category><name>Castle Zvahl Baileys</name>
-	  <rom-file app="0" dir="017" file="101">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="098">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="018" file="099">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="018" file="100">Map &amp;4</rom-file>
+	<category><name><ffxi-string id="000200A1"/></name>
+	  <rom-file app="0" dir="017" file="101"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="098"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="018" file="099"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="018" file="100"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<category><name>Castle Zvahl Keep</name>
-	  <rom-file app="0" dir="017" file="107">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="017" file="108">Map &amp;2</rom-file>
-	  <rom-file app="0" dir="017" file="109">Map &amp;3</rom-file>
-	  <rom-file app="0" dir="017" file="110">Map &amp;4</rom-file>
-	  <rom-file app="0" dir="018" file="107">Map &amp;5</rom-file>
-	  <rom-file app="0" dir="018" file="108">Map &amp;6</rom-file>
-	  <rom-file app="0" dir="018" file="109">Map &amp;7</rom-file>
-	  <rom-file app="0" dir="018" file="110">Map &amp;8</rom-file>
+	<category><name><ffxi-string id="000200A2"/></name>
+	  <rom-file app="0" dir="017" file="107"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="017" file="108"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="0" dir="017" file="109"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="0" dir="017" file="110"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="0" dir="018" file="107"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="0" dir="018" file="108"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="0" dir="018" file="109"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="0" dir="018" file="110"><i18n-string id="Menu:MapN"/>8</rom-file>
 	</category>
-	<rom-file app="2" dir="003" file="102">Uleguerand Range</rom-file>
-	<rom-file app="0" dir="017" file="036">Xarcabard</rom-file>
+	<rom-file app="2" dir="003" file="102"><ffxi-string id="00020005"/></rom-file>
+	<rom-file app="0" dir="017" file="036"><ffxi-string id="00020070"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000E"/></name>
-	<rom-file app="0" dir="017" file="048">Behemoth's Dominion</rom-file>
+	<rom-file app="0" dir="017" file="048"><ffxi-string id="0002007F"/></rom-file>
 	<category><name>Delkfutt's Tower</name>
 	  <rom-file app="0" dir="017" file="096">Basement</rom-file>
 	  <rom-file app="0" dir="017" file="084">First Floor</rom-file>
@@ -773,209 +865,398 @@
 	  <rom-file app="0" dir="018" file="102">Hidden Elevator 2</rom-file>
 	  <rom-file app="0" dir="018" file="103">Hidden Elevator 3</rom-file>
 	</category>
-	<rom-file app="0" dir="017" file="047">Qufim Island</rom-file>
+	<rom-file app="0" dir="017" file="047"><ffxi-string id="0002007E"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001000F"/></name>
-	<rom-file app="1" dir="016" file="095">Dragon's Aery</rom-file>
-	<rom-file app="1" dir="017" file="031">Hall of the Gods</rom-file>
-	<rom-file app="1" dir="016" file="085">Ro'Maeve</rom-file>
-	<category><name>The Boyahda Tree</name>
-	  <rom-file app="1" dir="016" file="091">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="092">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="093">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="094">Map &amp;4</rom-file>
+	<rom-file app="1" dir="016" file="095"><ffxi-string id="0002009A"/></rom-file>
+	<rom-file app="1" dir="017" file="031"><ffxi-string id="000200FB"/></rom-file>
+	<rom-file app="1" dir="016" file="085"><ffxi-string id="0002007A"/></rom-file>
+	<category><name><ffxi-string id="00020099"/></name>
+	  <rom-file app="1" dir="016" file="091"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="092"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="093"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="094"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<rom-file app="1" dir="016" file="084">The Sanctuary of Zi'Tah</rom-file>
+	<rom-file app="1" dir="016" file="084"><ffxi-string id="00020079"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010010"/></name>
-	<rom-file app="1" dir="016" file="083">Eastern Altepa Desert</rom-file>
-	<category><name>Quicksand Caves</name>
-	  <rom-file app="1" dir="017" file="019">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="017" file="020">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="017" file="021">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="017" file="022">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="017" file="023">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="017" file="024">Map &amp;6</rom-file>
-	  <rom-file app="1" dir="024" file="007">Map &amp;7</rom-file>
-	  <rom-file app="1" dir="024" file="008">Map &amp;8</rom-file>
+	<rom-file app="1" dir="016" file="083"><ffxi-string id="00020072"/></rom-file>
+	<category><name><ffxi-string id="000200D0"/></name>
+	  <rom-file app="1" dir="017" file="019"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="017" file="020"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="017" file="021"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="017" file="022"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="017" file="023"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="017" file="024"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="1" dir="024" file="007"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="1" dir="024" file="008"><i18n-string id="Menu:MapN"/>8</rom-file>
 	</category>
-	<rom-file app="1" dir="017" file="029">Rabao</rom-file>
-	<rom-file app="1" dir="016" file="088">Western Altepa Desert</rom-file>
+	<rom-file app="1" dir="017" file="029"><ffxi-string id="000200F7"/></rom-file>
+	<rom-file app="1" dir="016" file="088"><ffxi-string id="0002007D"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010011"/></name>
-	<rom-file app="1" dir="016" file="082">Cape Terrigan</rom-file>
-	<category><name>Gustav Tunnel</name>
-	  <rom-file app="1" dir="017" file="025">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="017" file="026">Map &amp;2</rom-file>
+	<rom-file app="1" dir="016" file="082"><ffxi-string id="00020071"/></rom-file>
+	<category><name><ffxi-string id="000200D4"/></name>
+	  <rom-file app="1" dir="017" file="025"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="017" file="026"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<category><name>Kuftal Tunnel</name>
-	  <rom-file app="0" dir="017" file="122">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="115">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="116">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="117">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="016" file="118">Map &amp;5</rom-file>
+	<category><name><ffxi-string id="000200AE"/></name>
+	  <rom-file app="0" dir="017" file="122"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="115"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="116"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="117"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="016" file="118"><i18n-string id="Menu:MapN"/>5</rom-file>
 	</category>
-	<rom-file app="1" dir="016" file="089">Valley of Sorrows</rom-file>
+	<rom-file app="1" dir="016" file="089"><ffxi-string id="00020080"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010012"/></name>
-	<rom-file app="1" dir="017" file="030">Kazham</rom-file>
-	<rom-file app="1" dir="017" file="032">Norg</rom-file>
-	<category><name>Sea Serpent Grotto</name>
-	  <rom-file app="1" dir="016" file="119">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="120">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="121">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="122">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="016" file="123">Map &amp;5</rom-file>
+	<rom-file app="1" dir="017" file="030"><ffxi-string id="000200FA"/></rom-file>
+	<rom-file app="1" dir="017" file="032"><ffxi-string id="000200FC"/></rom-file>
+	<category><name><ffxi-string id="000200B0"/></name>
+	  <rom-file app="1" dir="016" file="119"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="120"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="121"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="122"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="016" file="123"><i18n-string id="Menu:MapN"/>5</rom-file>
 	</category>
-	<category><name>The Cavern of Flames</name>
-	  <rom-file app="0" dir="018" file="039">Map &amp;1</rom-file>
-	  <rom-file app="0" dir="018" file="040">Map &amp;2</rom-file>
+	<category><name>The Cavern Of Flames</name>
+	  <rom-file app="0" dir="018" file="039"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="0" dir="018" file="040"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<rom-file app="1" dir="016" file="086">Yuhtunga Jungle</rom-file>
+	<rom-file app="1" dir="016" file="086"><ffxi-string id="0002007B"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010013"/></name>
-	<category><name>Den of Rancor</name>
-	  <rom-file app="1" dir="016" file="100">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="101">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="102">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="103">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="016" file="104">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="016" file="105">Map &amp;6</rom-file>
-	  <rom-file app="1" dir="016" file="106">Map &amp;7</rom-file>
-	  <rom-file app="1" dir="016" file="107">Map &amp;8</rom-file>
-	  <rom-file app="1" dir="016" file="108">Map &amp;9</rom-file>
+	<category><name><ffxi-string id="000200A0"/></name>
+	  <rom-file app="1" dir="016" file="100"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="101"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="102"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="103"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="016" file="104"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="016" file="105"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="1" dir="016" file="106"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="1" dir="016" file="107"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="1" dir="016" file="108"><i18n-string id="Menu:MapN"/>9</rom-file>
 	</category>
-	<category><name>Ifrit's Cauldron</name>
-	  <rom-file app="1" dir="017" file="011">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="017" file="012">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="017" file="013">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="017" file="014">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="017" file="015">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="017" file="016">Map &amp;6</rom-file>
-	  <rom-file app="1" dir="017" file="017">Map &amp;7</rom-file>
-	  <rom-file app="1" dir="017" file="018">Map &amp;8</rom-file>
-	  <rom-file app="1" dir="024" file="006">Map &amp;9</rom-file>
+	<category><name><ffxi-string id="000200CD"/></name>
+	  <rom-file app="1" dir="017" file="011"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="017" file="012"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="017" file="013"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="017" file="014"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="017" file="015"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="017" file="016"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="1" dir="017" file="017"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="1" dir="017" file="018"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="1" dir="024" file="006"><i18n-string id="Menu:MapN"/>9</rom-file>
 	</category>
-	<category><name>Temple of Uggalepih</name>
-	  <rom-file app="1" dir="016" file="096">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="097">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="098">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="099">Map &amp;4</rom-file>
+	<category><name><ffxi-string id="0002009F"/></name>
+	  <rom-file app="1" dir="016" file="096"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="097"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="098"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="099"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
-	<rom-file app="1" dir="016" file="087">Yhoator Jungle</rom-file>
+	<rom-file app="1" dir="016" file="087"><ffxi-string id="0002007C"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010014"/></name>
-	<rom-file app="1" dir="016" file="090">Ru'Aun Gardens</rom-file>
-	<category><name>The Shrine Ru'Avitau</name>
-	  <rom-file app="1" dir="017" file="005">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="017" file="006">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="017" file="007">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="017" file="008">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="017" file="009">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="017" file="010">Map &amp;6</rom-file>
+	<rom-file app="1" dir="016" file="090"><ffxi-string id="00020082"/></rom-file>
+	<category><name><ffxi-string id="000200B2"/></name>
+	  <rom-file app="1" dir="017" file="005"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="017" file="006"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="017" file="007"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="017" file="008"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="017" file="009"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="017" file="010"><i18n-string id="Menu:MapN"/>6</rom-file>
 	</category>
-	<category><name>Ve'Lugannon Palace</name>
-	  <rom-file app="1" dir="016" file="124">Map &amp;1</rom-file>
-	  <rom-file app="1" dir="016" file="125">Map &amp;2</rom-file>
-	  <rom-file app="1" dir="016" file="126">Map &amp;3</rom-file>
-	  <rom-file app="1" dir="016" file="127">Map &amp;4</rom-file>
-	  <rom-file app="1" dir="017" file="000">Map &amp;5</rom-file>
-	  <rom-file app="1" dir="017" file="001">Map &amp;6</rom-file>
-	  <rom-file app="1" dir="017" file="002">Map &amp;7</rom-file>
-	  <rom-file app="1" dir="017" file="003">Map &amp;8</rom-file>
-	  <rom-file app="1" dir="017" file="004">Map &amp;9</rom-file>
+	<category><name><ffxi-string id="000200B1"/></name>
+	  <rom-file app="1" dir="016" file="124"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="1" dir="016" file="125"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="1" dir="016" file="126"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="1" dir="016" file="127"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="1" dir="017" file="000"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="1" dir="017" file="001"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="1" dir="017" file="002"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="1" dir="017" file="003"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="1" dir="017" file="004"><i18n-string id="Menu:MapN"/>9</rom-file>
 	</category>
       </category>
       <category><name><ffxi-string id="00010015"/></name>
       </category>
       <category><name><ffxi-string id="00010016"/></name>
-	<rom-file app="2" dir="003" file="120">Oldton Movalpolos</rom-file>
-	<rom-file app="2" dir="003" file="121">Newton Movalpolos</rom-file>
+	<rom-file app="2" dir="003" file="120"><ffxi-string id="0002000B"/></rom-file>
+	<rom-file app="2" dir="003" file="121"><ffxi-string id="0002000C"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010017"/></name>
-	<category><name>Tavnazian Safehold</name>
-	  <rom-file app="2" dir="004" file="003">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="004">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="004" file="005">Map &amp;3</rom-file>
+	<category><name><ffxi-string id="0002001A"/></name>
+	  <rom-file app="2" dir="004" file="003"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="004"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="004" file="005"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
       </category>
       <category><name><ffxi-string id="00010018"/></name>
-	<rom-file app="2" dir="004" file="001">Lufaise Meadows</rom-file>
-	<rom-file app="2" dir="004" file="001">Misareaux Coast</rom-file>
-	<category><name>Phomiuna Aqueducts</name>
-	  <rom-file app="2" dir="004" file="006">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="007">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="005" file="118">Map &amp;3</rom-file>
+	<rom-file app="2" dir="004" file="001"><ffxi-string id="00020018"/></rom-file>
+	<rom-file app="2" dir="004" file="001"><ffxi-string id="00020019"/></rom-file>
+	<category><name><ffxi-string id="0002001B"/></name>
+	  <rom-file app="2" dir="004" file="006"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="007"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="005" file="118"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<category><name>Riverne - Site #A01</name>
-	  <rom-file app="2" dir="004" file="012">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="013">Map &amp;2</rom-file>
+	<category><name><ffxi-string id="0002001E"/></name>
+	  <rom-file app="2" dir="004" file="012"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="013"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<category><name>Riverne - Site #B01</name>
-	  <rom-file app="2" dir="004" file="010">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="011">Map &amp;2</rom-file>
+	<category><name><ffxi-string id="0002001D"/></name>
+	  <rom-file app="2" dir="004" file="010"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="011"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<category><name>Sacrarium</name>
-	  <rom-file app="2" dir="004" file="008">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="009">Map &amp;2</rom-file>
+	<category><name><ffxi-string id="0002001C"/></name>
+	  <rom-file app="2" dir="004" file="008"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="009"><i18n-string id="Menu:MapN"/>2</rom-file>
 	</category>
-	<rom-file app="2" dir="005" file="119">Sealion's Den</rom-file>
+	<rom-file app="2" dir="005" file="119"><ffxi-string id="00020020"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010019"/></name>
-	<rom-file app="2" dir="003" file="123">Hall of Transference (Dem?)</rom-file>
-	<rom-file app="2" dir="003" file="122">Hall of Transference (Holla?)</rom-file>
-	<rom-file app="2" dir="003" file="124">Hall of Transference (Mea?)</rom-file>
-	<rom-file app="2" dir="003" file="126">Promyvion - Dem</rom-file>
-	<rom-file app="2" dir="003" file="125">Promyvion - Holla</rom-file>
-	<rom-file app="2" dir="003" file="127">Promyvion - Mea</rom-file>
-	<rom-file app="2" dir="004" file="000">Promyvion - Vahzl</rom-file>
+	<rom-file app="2" dir="003" file="123"><ffxi-string id="0002000E"/> (<ffxi-string id="00020012"/>?)</rom-file>
+	<rom-file app="2" dir="003" file="122"><ffxi-string id="0002000E"/> (<ffxi-string id="00020010"/>?)</rom-file>
+	<rom-file app="2" dir="003" file="124"><ffxi-string id="0002000E"/> (<ffxi-string id="00020014"/>?)</rom-file>
+	<rom-file app="2" dir="003" file="126"><ffxi-string id="00020012"/></rom-file>
+	<rom-file app="2" dir="003" file="125"><ffxi-string id="00020010"/></rom-file>
+	<rom-file app="2" dir="003" file="127"><ffxi-string id="00020014"/></rom-file>
+	<rom-file app="2" dir="004" file="000"><ffxi-string id="00020016"/></rom-file>
       </category>
       <category><name><ffxi-string id="0001001A"/></name>
-	<rom-file app="2" dir="004" file="014">Al'taieu</rom-file>
-	<category><name>Grand Palace of Hu'Xzoi</name>
-	  <rom-file app="2" dir="004" file="015">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="016">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="005" file="120">Map &amp;3</rom-file>
+	<rom-file app="2" dir="004" file="014"><ffxi-string id="00020021"/></rom-file>
+	<category><name><ffxi-string id="00020022"/></name>
+	  <rom-file app="2" dir="004" file="015"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="016"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="005" file="120"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
-	<category><name>The Garden of Ru'Hmet</name>
-	  <rom-file app="2" dir="004" file="017">Map &amp;1</rom-file>
-	  <rom-file app="2" dir="004" file="018">Map &amp;2</rom-file>
-	  <rom-file app="2" dir="004" file="019">Map &amp;3</rom-file>
-	  <rom-file app="2" dir="004" file="020">Map &amp;4</rom-file>
+	<category><name><ffxi-string id="00020023"/></name>
+	  <rom-file app="2" dir="004" file="017"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="2" dir="004" file="018"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="2" dir="004" file="019"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="2" dir="004" file="020"><i18n-string id="Menu:MapN"/>4</rom-file>
+	</category>
+      </category>
+      <!-- Limbus:                <category><name><ffxi-string id="0001001B"/></name></category> -->
+      <!-- Empire of Aht Urhgan : <category><name><ffxi-string id="0001001C"/></name></category> -->
+      <category><name><ffxi-string id="0001001D"/></name>
+	<rom-file app="3" dir="003" file="078"><ffxi-string id="00020032"/></rom-file>
+	<rom-file app="3" dir="003" file="077"><ffxi-string id="00020030"/></rom-file>
+	<category><name><ffxi-string id="00020034"/></name>
+	  <rom-file app="3" dir="003" file="080"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="081"><i18n-string id="Menu:MapN"/>2</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020046"/></name>
+	  <rom-file app="3" dir="004" file="022"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="023"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="024"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="025"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="026"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="027"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="028"><i18n-string id="Menu:MapN"/>7</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020047"/></name>
+	  <rom-file app="3" dir="004" file="029"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="030"><i18n-string id="Menu:MapN"/>2</rom-file>
+	</category>
+      </category>
+      <category><name><ffxi-string id="0001001E"/></name>
+	<category><name><ffxi-string id="00020044"/></name>
+	  <rom-file app="3" dir="004" file="005"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="006"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="007"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="008"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="009"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="010"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="011"><i18n-string id="Menu:MapN"/>7</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020041"/></name>
+	  <rom-file app="3" dir="003" file="121"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="122"><i18n-string id="Menu:MapN"/>2</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020042"/></name>
+	  <rom-file app="3" dir="003" file="123"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="124"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="003" file="125"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="003" file="126"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="003" file="127"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="000"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="001"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="004" file="002"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="004" file="003"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="004" file="004"><i18n-string id="Menu:MapN"/>10</rom-file>
+	</category>
+	<rom-file app="3" dir="003" file="079"><ffxi-string id="00020033"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="0001001F"/></name>
+	<category><name><ffxi-string id="0002003E"/></name>
+	  <rom-file app="3" dir="003" file="109"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="110"><i18n-string id="Menu:MapN"/>2</rom-file>
+	</category>
+	<category><name><ffxi-string id="0002003F"/></name>
+	  <rom-file app="3" dir="003" file="111"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="112"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="003" file="113"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="003" file="114"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="003" file="115"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="003" file="116"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="003" file="117"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="003" file="118"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="003" file="119"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="003" file="120"><i18n-string id="Menu:MapN"/>10</rom-file>
+	</category>
+	<rom-file app="3" dir="003" file="108"><ffxi-string id="0002003D"/></rom-file>
+      </category>
+      <category><name><ffxi-string id="00010020"/></name>
+	<category><name><ffxi-string id="00020036"/></name>
+	  <rom-file app="3" dir="003" file="083"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="084"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="003" file="085"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="113"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="114"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="115"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="116"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="004" file="117"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="004" file="118"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="004" file="119"><i18n-string id="Menu:MapN"/>10</rom-file>
+	  <rom-file app="3" dir="004" file="120"><i18n-string id="Menu:MapN"/>11</rom-file>
+	</category>
+	<category><name><ffxi-string id="0002004F"/></name>
+	  <rom-file app="3" dir="004" file="046"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="047"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="048"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="049"><i18n-string id="Menu:MapN"/>4</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020037"/></name>
+	  <rom-file app="3" dir="003" file="086"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="087"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="003" file="088"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="003" file="089"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="003" file="090"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="003" file="091"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="003" file="092"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="003" file="093"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="003" file="094"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="003" file="095"><i18n-string id="Menu:MapN"/>10</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020045"/></name>
+	  <rom-file app="3" dir="004" file="012"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="013"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="014"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="015"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="016"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="017"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="018"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="004" file="019"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="004" file="020"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="004" file="021"><i18n-string id="Menu:MapN"/>10</rom-file>
+	</category>
+	<rom-file app="3" dir="003" file="082"><ffxi-string id="00020035"/></rom-file>
+	<category><name><ffxi-string id="0002004D"/></name>
+	  <rom-file app="3" dir="004" file="036"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="037"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="038"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="039"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="040"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="004" file="041"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="004" file="042"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="004" file="043"><i18n-string id="Menu:MapN"/>8</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020038"/></name>
+	  <rom-file app="3" dir="003" file="096"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="003" file="097"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="003" file="098"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="003" file="099"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="003" file="100"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="003" file="101"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="003" file="102"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="003" file="103"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="003" file="104"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="003" file="105"><i18n-string id="Menu:MapN"/>10</rom-file>
+	</category>
+      </category>
+      <category><name><ffxi-string id="00010021"/></name>
+	<category><name><ffxi-string id="00020048"/></name>
+	  <rom-file app="3" dir="004" file="031"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="004" file="032"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="004" file="033"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="004" file="034"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="004" file="035"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="005" file="059"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="005" file="060"><i18n-string id="Menu:MapN"/>7</rom-file>
+	  <rom-file app="3" dir="005" file="061"><i18n-string id="Menu:MapN"/>8</rom-file>
+	  <rom-file app="3" dir="005" file="062"><i18n-string id="Menu:MapN"/>9</rom-file>
+	  <rom-file app="3" dir="005" file="063"><i18n-string id="Menu:MapN"/>10</rom-file>
+	  <rom-file app="3" dir="005" file="064"><i18n-string id="Menu:MapN"/>11</rom-file>
+	  <rom-file app="3" dir="005" file="065"><i18n-string id="Menu:MapN"/>12</rom-file>
+	</category>
+	<category><name><ffxi-string id="0002004A"/></name>
+	  <rom-file app="3" dir="010" file="121"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="010" file="122"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="010" file="123"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="010" file="124"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="010" file="125"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="010" file="126"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="010" file="127"><i18n-string id="Menu:MapN"/>7</rom-file>
+	</category>
+	<category><name><ffxi-string id="0002004B"/></name>
+	  <rom-file app="3" dir="011" file="000"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="011" file="001"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="011" file="002"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="011" file="003"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="011" file="004"><i18n-string id="Menu:MapN"/>5</rom-file>
+	</category>
+	<category><name><ffxi-string id="0002004C"/></name>
+	  <rom-file app="3" dir="011" file="005"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="011" file="006"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="011" file="007"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="011" file="008"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="011" file="009"><i18n-string id="Menu:MapN"/>5</rom-file>
+	</category>
+	<category><name><ffxi-string id="00020049"/></name>
+	  <rom-file app="3" dir="010" file="114"><i18n-string id="Menu:MapN"/>1</rom-file>
+	  <rom-file app="3" dir="010" file="115"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="010" file="116"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="010" file="117"><i18n-string id="Menu:MapN"/>4</rom-file>
+	  <rom-file app="3" dir="010" file="118"><i18n-string id="Menu:MapN"/>5</rom-file>
+	  <rom-file app="3" dir="010" file="119"><i18n-string id="Menu:MapN"/>6</rom-file>
+	  <rom-file app="3" dir="010" file="120"><i18n-string id="Menu:MapN"/>7</rom-file>
 	</category>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
 	<rom-file app="0" dir="017" file="023">Conquest Map</rom-file>
 	<rom-file app="0" dir="018" file="124">Creature Chart</rom-file>
-        <category><name>Diorama Abdhaljs</name>
-	  <rom-file app="2" dir="008" file="033">Ghelsba Outpost</rom-file>
-	  <rom-file app="2" dir="008" file="034">Purgonorgo Isle - Map 1</rom-file>
-	  <rom-file app="2" dir="008" file="035">Purgonorgo Isle - Map 2</rom-file>
-	</category>
+	<rom-file app="2" dir="008" file="033"><ffxi-string id="0002002B"/></rom-file>
+	<rom-file app="2" dir="008" file="034"><ffxi-string id="0002002C"/> - <i18n-string id="Menu:MapN"/>1</rom-file>
+	<rom-file app="2" dir="008" file="035"><ffxi-string id="0002002C"/> - <i18n-string id="Menu:MapN"/>2</rom-file>
 	<!-- Also: 0/17/38,45,46,49,64,75-82,97-100,102-106,115,116,118,119,123-127 and 0/18/0-7,35,36,58,73,82,83 -->
 	<rom-file app="0" dir="017" file="037">Dummy Map</rom-file>
 	<rom-file app="0" dir="018" file="123">Element Chart</rom-file>
-	<!-- Also: 0/17/61,73,74 and 0/18/41,105,106 -->
+	<!-- Also: 0/17/61,73,74; 0/18/41,105,106; 3/4/44,45 -->
 	<rom-file app="0" dir="017" file="050">No Map</rom-file>
 	<!-- Also: 0/17/83 -->
 	<rom-file app="0" dir="017" file="058">No Map (Alternate)</rom-file>
 	<rom-file app="0" dir="018" file="122">Stellar Map</rom-file>
         <category><name><i18n-string id="Menu:TransportRoutes"/></name>
-	  <rom-file app="0" dir="018" file="056">Airship - Jeuno → Bastok</rom-file>
-	  <rom-file app="1" dir="017" file="028">Airship - Jeuno → Kazham</rom-file>
-	  <rom-file app="0" dir="018" file="055">Airship - Jeuno → San d'Oria</rom-file>
-	  <rom-file app="0" dir="018" file="057">Airship - Jeuno → Windurst</rom-file>
-	  <rom-file app="0" dir="018" file="054">Ship - Mhaura → Selbina</rom-file>
-	  <rom-file app="0" dir="018" file="053">Ship - Selbina → Mhaura</rom-file>
+	  <rom-file app="0" dir="018" file="056"><ffxi-string id="000200E0"/></rom-file>
+	  <rom-file app="1" dir="017" file="028"><ffxi-string id="000200E2"/></rom-file>
+	  <rom-file app="0" dir="018" file="055"><ffxi-string id="000200DF"/></rom-file>
+	  <rom-file app="0" dir="018" file="057"><ffxi-string id="000200E1"/></rom-file>
+	  <rom-file app="0" dir="018" file="054"><ffxi-string id="000200DC"/></rom-file>
+	  <rom-file app="0" dir="018" file="053"><ffxi-string id="000200DD"/></rom-file>
+	  <separator/>
+	  <rom-file app="3" dir="003" file="075"><ffxi-string id="0002002E"/></rom-file>
+	  <rom-file app="3" dir="003" file="076"><ffxi-string id="0002002F"/></rom-file>
+	  <rom-file app="3" dir="003" file="106"><ffxi-string id="0002003A"/></rom-file>
+	  <rom-file app="3" dir="003" file="107"><ffxi-string id="0002003B"/></rom-file>
 	</category>
       </category>
     </category>
     <category><name><i18n-string id="Menu:Other"/></name>
-      <rom-file app="0" dir="000" file="001"><i18n-string id="Menu:Fonts+Menus"/></rom-file>
-      <rom-file app="0" dir="016" file="101"><i18n-string id="Menu:Rank (Bastok)"/></rom-file>
-      <rom-file app="0" dir="016" file="116"><i18n-string id="Menu:Rank (Windurst)"/></rom-file>
-      <rom-file app="0" dir="017" file="004"><i18n-string id="Menu:Rank (San d'Oria)"/></rom-file>
-      <category><name><i18n-string id="Menu:UI Windows"/></name>
+      <rom-file app="0" dir="000" file="001"><i18n-string id="Menu:FontsAndMenus"/></rom-file>
+      <rom-file app="0" dir="016" file="101"><i18n-string id="Menu:RankBastok"/></rom-file>
+      <rom-file app="0" dir="016" file="116"><i18n-string id="Menu:RankWindurst"/></rom-file>
+      <rom-file app="0" dir="017" file="004"><i18n-string id="Menu:RankSandOria"/></rom-file>
+      <category><name><i18n-string id="Menu:UIWindows"/></name>
 	<rom-file app="0" dir="000" file="014"><i18n-string id="Menu:StyleN"/>1</rom-file>
 	<rom-file app="0" dir="000" file="015"><i18n-string id="Menu:StyleN"/>2</rom-file>
 	<rom-file app="0" dir="000" file="016"><i18n-string id="Menu:StyleN"/>3</rom-file>
@@ -987,7 +1268,7 @@
       </category>
     </category>
   </category>
-  <category><name><i18n-string id="Menu:Item Data"/></name>
+  <category><name><i18n-string id="Menu:ItemData"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file app="0" dir="118" file="109"><i18n-string id="Menu:Armor"/></rom-file>
       <rom-file app="0" dir="118" file="106"><i18n-string id="Menu:Items1"/></rom-file>
@@ -1003,7 +1284,7 @@
       <rom-file app="0" dir="000" file="006"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
   </category>
-  <category><name><i18n-string id="Menu:String Tables"/></name>
+  <category><name><i18n-string id="Menu:StringTables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file app="0" dir="119" file="055"><i18n-string id="Menu:Abilities"/></rom-file>
       <rom-file app="0" dir="097" file="053"><i18n-string id="Menu:AreaNames"/></rom-file>
@@ -1023,7 +1304,7 @@
       <rom-file app="0" dir="097" file="048"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="119" file="056"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="119" file="057"><i18n-string id="Menu:Status"/></rom-file>
-      <rom-file app="0" dir="118" file="103"><i18n-string id="Menu:Time+Pronouns"/></rom-file>
+      <rom-file app="0" dir="118" file="103"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>
       <rom-file app="0" dir="119" file="054"><i18n-string id="Menu:Titles"/></rom-file>
       <rom-file app="0" dir="097" file="034"><i18n-string id="Menu:Various1"/></rom-file>
       <rom-file app="0" dir="097" file="040"><i18n-string id="Menu:Various2"/></rom-file>
@@ -1048,7 +1329,7 @@
       <rom-file app="0" dir="097" file="030"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="000" file="011"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="000" file="012"><i18n-string id="Menu:Status"/></rom-file>
-      <rom-file app="0" dir="118" file="102"><i18n-string id="Menu:Time+Pronouns"/></rom-file>
+      <rom-file app="0" dir="118" file="102"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>
       <rom-file app="0" dir="000" file="022"><i18n-string id="Menu:Titles"/></rom-file>
       <rom-file app="0" dir="097" file="017"><i18n-string id="Menu:Various1"/></rom-file>
       <rom-file app="0" dir="097" file="022"><i18n-string id="Menu:Various2"/></rom-file>
