@@ -22,8 +22,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Thread T = new Thread(new ThreadStart(delegate () {
 	  try {
 	    Application.DoEvents();
-	    Thread.Sleep(0);
-	    Application.DoEvents();
+	    while (!this.FSD.Visible) {
+	      Thread.Sleep(0);
+	      Application.DoEvents();
+	    }
 	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.ResetProgress(); }));
 	    this.FileContents = FileType.LoadAll(FileName, new FileType.ProgressCallback(
 	      delegate (string Message, double PercentCompleted) {
@@ -31,7 +33,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	      }
 	    ));
 	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); }));
-	  } catch(Exception E) { this.FileContents = null; }
+	  } catch(Exception) { this.FileContents = null; }
 	}));
 	  T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	  T.Start();
