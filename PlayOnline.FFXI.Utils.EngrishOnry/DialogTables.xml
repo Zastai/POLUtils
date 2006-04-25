@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <!-- $Id$ -->
 <rom-files>
+  <!-- FFXI -->
   <rom-file><japanese app="0" dir="022" file="037"/><english app="1" dir="017" file="033"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="038"/><english app="1" dir="017" file="034"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="039"/><english app="1" dir="017" file="035"/></rom-file>
@@ -14,7 +15,6 @@
   <rom-file><japanese app="0" dir="022" file="047"/><english app="1" dir="017" file="043"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="048"/><english app="1" dir="017" file="044"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="049"/><english app="1" dir="017" file="045"/></rom-file>
-  <rom-file><japanese app="0" dir="022" file="050"/><english app="1" dir="017" file="046"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="052"/><english app="1" dir="017" file="048"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="053"/><english app="1" dir="017" file="049"/></rom-file>
   <rom-file><japanese app="0" dir="022" file="054"/><english app="1" dir="017" file="050"/></rom-file>
@@ -88,6 +88,8 @@
   <rom-file><japanese app="0" dir="023" file="055"/><english app="1" dir="018" file="051"/></rom-file>
   <rom-file><japanese app="0" dir="023" file="057"/><english app="1" dir="018" file="053"/></rom-file>
   <rom-file><japanese app="0" dir="023" file="058"/><english app="1" dir="018" file="054"/></rom-file>
+  <!-- RotZ -->
+  <rom-file><japanese app="1" dir="013" file="050"/><english app="1" dir="017" file="046"/></rom-file>
   <rom-file><japanese app="1" dir="013" file="051"/><english app="1" dir="017" file="047"/></rom-file>
   <rom-file><japanese app="1" dir="013" file="052"/><english app="1" dir="017" file="054"/></rom-file>
   <rom-file><japanese app="1" dir="013" file="053"/><english app="1" dir="017" file="055"/></rom-file>
@@ -132,6 +134,7 @@
   <rom-file><japanese app="1" dir="013" file="092"/><english app="1" dir="018" file="055"/></rom-file>
   <rom-file><japanese app="1" dir="013" file="093"/><english app="1" dir="018" file="056"/></rom-file>
   <rom-file><japanese app="1" dir="013" file="094"/><english app="1" dir="018" file="057"/></rom-file>
+  <!-- CoP -->
   <rom-file><japanese app="2" dir="001" file="039"/><english app="2" dir="002" file="011"/></rom-file>
   <rom-file><japanese app="2" dir="001" file="040"/><english app="2" dir="002" file="012"/></rom-file>
   <rom-file><japanese app="2" dir="001" file="041"/><english app="2" dir="002" file="013"/></rom-file>
@@ -180,4 +183,39 @@
   <rom-file><japanese app="2" dir="001" file="107"/><english app="2" dir="002" file="079"/></rom-file>
   <rom-file><japanese app="2" dir="001" file="118"/><english app="2" dir="002" file="090"/></rom-file>
   <rom-file><japanese app="2" dir="001" file="125"/><english app="2" dir="002" file="097"/></rom-file>
+  <!-- ToAU -->
+  <rom-file><japanese app="3" dir="000" file="085"/><english app="3" dir="000" file="119"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="086"/><english app="3" dir="000" file="120"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="087"/><english app="3" dir="000" file="121"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="088"/><english app="2" dir="000" file="122"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="089"/><english app="3" dir="000" file="123"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="090"/><english app="3" dir="000" file="124"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="091"/><english app="3" dir="000" file="125"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="092"/><english app="3" dir="000" file="126"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="093"/><english app="3" dir="000" file="127"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="094"/><english app="3" dir="001" file="000"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="095"/><english app="3" dir="001" file="001"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="096"/><english app="3" dir="001" file="002"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="097"/><english app="3" dir="001" file="003"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="098"/><english app="3" dir="001" file="004"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="099"/><english app="3" dir="001" file="005"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="100"/><english app="3" dir="001" file="006"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="101"/><english app="3" dir="001" file="007"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="102"/><english app="3" dir="001" file="008"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="103"/><english app="3" dir="001" file="009"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="104"/><english app="3" dir="001" file="010"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="105"/><english app="3" dir="001" file="011"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="106"/><english app="3" dir="001" file="012"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="107"/><english app="3" dir="001" file="013"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="108"/><english app="3" dir="001" file="014"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="109"/><english app="3" dir="001" file="015"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="110"/><english app="3" dir="001" file="016"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="111"/><english app="3" dir="001" file="017"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="112"/><english app="3" dir="001" file="018"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="113"/><english app="3" dir="001" file="019"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="114"/><english app="3" dir="001" file="020"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="115"/><english app="3" dir="001" file="021"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="116"/><english app="3" dir="001" file="022"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="117"/><english app="3" dir="001" file="023"/></rom-file>
+  <rom-file><japanese app="3" dir="000" file="118"/><english app="3" dir="001" file="024"/></rom-file>
 </rom-files>
