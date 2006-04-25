@@ -18,9 +18,9 @@ namespace PlayOnline.FFXI {
   public enum Element : byte {
     Fire      = 0x00,
     Ice       = 0x01,
-    Wind      = 0x02,
+    Air       = 0x02,
     Earth     = 0x03,
-    Lightning = 0x04,
+    Thunder   = 0x04,
     Water     = 0x05,
     Light     = 0x06,
     Dark      = 0x07,
@@ -111,7 +111,7 @@ namespace PlayOnline.FFXI {
   [Flags]
   public enum Job : uint {
     None  = 0x00000000,
-    All   = 0x0000FFFE, // Masks valid jobs
+    All   = 0x0007FFFE, // Masks valid jobs
     // Specific
     WAR   = 0x00000002,
     MNK   = 0x00000004,
