@@ -165,6 +165,9 @@
   <data name="Menu:MapN" xml:space="preserve">
     <value>Map &amp;</value>
   </data>
+  <data name="Menu:MobLists" xml:space="preserve">
+    <value>&amp;NPC/Monster Lists</value>
+  </data>
   <data name="Menu:NorthHalf" xml:space="preserve">
     <value>&amp;North Half</value>
   </data>
@@ -296,6 +299,9 @@
   </data>
   <data name="Menu:WeatherTypes" xml:space="preserve">
     <value>&amp;Weather Types</value>
+  </data>
+  <data name="Menu:WithPirates" xml:space="preserve">
+    <value> (With Pirates)</value>
   </data>
   <data name="AbilityCheck" xml:space="preserve">
     <value>Checking whether the file contains ability information...</value>
