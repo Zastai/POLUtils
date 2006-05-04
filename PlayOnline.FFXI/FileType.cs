@@ -23,6 +23,7 @@ namespace PlayOnline.FFXI {
 	Results.Add(new FileTypes.StatusInfo());
 	Results.Add(new FileTypes.QuestInfo());
 	Results.Add(new FileTypes.ItemData());
+	Results.Add(new FileTypes.MobList());
 	Results.Add(new FileTypes.Images());
 	return Results;
       }

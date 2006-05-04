@@ -336,6 +336,9 @@
   <data name="FT:ItemData" xml:space="preserve">
     <value>Item Data</value>
   </data>
+  <data name="FT:MobList" xml:space="preserve">
+    <value>NPC/Monster List</value>
+  </data>
   <data name="FT:QuestInfo" xml:space="preserve">
     <value>Quest Info</value>
   </data>
@@ -399,6 +402,9 @@ This may take a while, depending on the speed of your machine.</value>
   </data>
   <data name="T:Item" xml:space="preserve">
     <value>FFXI Item</value>
+  </data>
+  <data name="T:MobListEntry" xml:space="preserve">
+    <value>NPC/Monster List Entry</value>
   </data>
   <data name="T:QuestInfo" xml:space="preserve">
     <value>Quest Info</value>
