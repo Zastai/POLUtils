@@ -33,7 +33,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	      }
 	    ));
 	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); }));
-	  } catch(Exception) { this.FileContents = null; }
+	  } catch {
+	    this.FileContents = null;
+	    try { this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); })); } catch { }
+	  }
 	}));
 	  T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	  T.Start();
