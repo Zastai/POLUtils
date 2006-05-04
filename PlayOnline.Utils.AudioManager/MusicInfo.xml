@@ -127,6 +127,29 @@
   </application>
   <application id="0001" name="Final Fantasy XI - Treasures of Aht Urhgan">
     <data-path>sound4/win/music/data</data-path>
+    <track id="138"><title>Aht Urhgan Battle Theme</title></track>
+    <track id="139"><title>Aht Urhgan Dungeon Battle Theme</title></track>
+    <track id="142"><title>Aht Urhgan Title Screen Music</title></track>
+    <track id="143"><title>Aht Urhgan Boss Battle Theme (?)</title></track>
+    <track id="144"><title>Aht Urhgan Assault Battle Theme</title></track>
+    <track id="146"><title>Aht Urhgan Besieged Battle Theme (?)</title></track>
+    <track id="147"><title>Aht Urhgan Boat Ride</title></track>
+    <track id="148"><title>Aht Urhgan ???</title></track>
+    <track id="149"><title>Bafhlau Thickets - Wajaom Woodlands</title></track>
+    <track id="150"><title>Arrapago Reef</title></track>
+    <track id="172"><title>Aht Urhgan ???</title></track>
+    <track id="173"><title>Caedarva Mire</title></track>
+    <track id="174"><title>Aydeewa Subterrane</title></track>
+    <track id="175"><title>Nashmau</title></track>
+    <track id="176"><title>Aht Urhgan ???</title></track>
+    <track id="177"><title>Aht Urhgan ???</title></track>
+    <track id="178"><title>Al Zahbi - Aht Urhgan Whitegate</title></track>
+    <track id="179"><title>Aht Urhgan Title Screen Music</title></track>
+    <track id="183"><title>Aht Urhgan ???</title></track>
+    <track id="184"><title>Aht Urhgan ???</title></track>
+    <track id="185"><title>Aht Urhgan ???</title></track>
+    <track id="186"><title>(empty track)</title></track>
+    <track id="187"><title>(empty track)</title></track>
   </application>
   <application id="0002" name="Tetra Master">
     <data-path>data/win/sound/music</data-path>
