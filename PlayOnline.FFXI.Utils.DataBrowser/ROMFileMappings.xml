@@ -1082,6 +1082,7 @@
 	<category><name><ffxi-string id="00020041"/></name>
 	  <rom-file app="3" dir="003" file="121"><i18n-string id="Menu:MapN"/>1</rom-file>
 	  <rom-file app="3" dir="003" file="122"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="005" file="005"><i18n-string id="Menu:MapN"/>3</rom-file>
 	</category>
 	<category><name><ffxi-string id="00020042"/></name>
 	  <rom-file app="3" dir="003" file="123"><i18n-string id="Menu:MapN"/>1</rom-file>
@@ -1101,6 +1102,8 @@
 	<category><name><ffxi-string id="0002003E"/></name>
 	  <rom-file app="3" dir="003" file="109"><i18n-string id="Menu:MapN"/>1</rom-file>
 	  <rom-file app="3" dir="003" file="110"><i18n-string id="Menu:MapN"/>2</rom-file>
+	  <rom-file app="3" dir="005" file="006"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  <rom-file app="3" dir="006" file="055"><i18n-string id="Menu:MapN"/>4</rom-file>
 	</category>
 	<category><name><ffxi-string id="0002003F"/></name>
 	  <rom-file app="3" dir="003" file="111"><i18n-string id="Menu:MapN"/>1</rom-file>
@@ -1233,6 +1236,7 @@
 	</category>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
+	<rom-file app="0" dir="161" file="034">Besieged Map</rom-file>
 	<rom-file app="0" dir="017" file="023">Conquest Map</rom-file>
 	<rom-file app="0" dir="018" file="124">Creature Chart</rom-file>
 	<!-- Also: 0/17/38,45,46,49,64,75-82,97-100,102-106,115,116,118,119,123-127 and 0/18/0-7,35,36,58,73,82,83 -->
