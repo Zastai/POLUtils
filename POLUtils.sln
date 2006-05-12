@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemListUpgrade", "ItemList
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.StrangeApparatus", "PlayOnline.FFXI.Utils.StrangeApparatus\PlayOnline.FFXI.Utils.StrangeApparatus.csproj", "{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassExtractor", "MassExtractor\MassExtractor.csproj", "{C9683F0B-16CA-4CEF-907A-2802B5F12C43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
