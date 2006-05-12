@@ -43,11 +43,11 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private string        Category_;
-    private Nullable<int> ID_;
-    private string        Name1_;
-    private string        Name2_;
-    private string        Description_;
+    private string Category_;
+    private uint?  ID_;
+    private string Name1_;
+    private string Name2_;
+    private string Description_;
     
     #endregion
 
@@ -109,11 +109,11 @@ namespace PlayOnline.FFXI {
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
 	// "Simple" Fields
-	case "category":    this.Category_    =       this.LoadTextField         (Node); break;
-	case "description": this.Description_ =       this.LoadTextField         (Node); break;
-	case "id":          this.ID_          = (int) this.LoadSignedIntegerField(Node); break;
-	case "name-1":      this.Name1_       =       this.LoadTextField         (Node); break;
-	case "name-2":      this.Name2_       =       this.LoadTextField         (Node); break;
+	case "category":    this.Category_    =        this.LoadTextField           (Node); break;
+	case "description": this.Description_ =        this.LoadTextField           (Node); break;
+	case "id":          this.ID_          = (uint) this.LoadUnsignedIntegerField(Node); break;
+	case "name-1":      this.Name1_       =        this.LoadTextField           (Node); break;
+	case "name-2":      this.Name2_       =        this.LoadTextField           (Node); break;
       }
     }
 
@@ -125,7 +125,7 @@ namespace PlayOnline.FFXI {
       this.Clear();
       this.Category_ = Category;
       try {
-	this.ID_      = BR.ReadInt32();
+	this.ID_      = BR.ReadUInt32();
       long Name1Start = BR.ReadInt32();
       long Name2Start = BR.ReadInt32();
       long BodyStart  = BR.ReadInt32();

@@ -95,12 +95,12 @@ namespace PlayOnline.FFXI {
     #region Data Fields
 
     // General
-    private Nullable<uint>          ID_;
-    private Nullable<ItemFlags>     Flags_;
-    private Nullable<ushort>        StackSize_;
-    private Nullable<ItemType>      Type_;
-    private Nullable<ushort>        ResourceID_;
-    private Nullable<ValidTarget>   ValidTargets_;
+    private uint?          ID_;
+    private ItemFlags?     Flags_;
+    private ushort?        StackSize_;
+    private ItemType?      Type_;
+    private ushort?        ResourceID_;
+    private ValidTarget?   ValidTargets_;
     private string                  EnglishName_;
     private string                  JapaneseName_;
     private string                  Description_;
@@ -108,38 +108,38 @@ namespace PlayOnline.FFXI {
     private string                  LogNameSingular_;
     private string                  LogNamePlural_;
     // Furniture-Specific
-    private Nullable<Element>       Element_;
-    private Nullable<short>         StorageSlots_;
+    private Element?       Element_;
+    private short?         StorageSlots_;
     // UsableItem-Specific
-    private Nullable<byte>          ActivationTime_;
+    private byte?          ActivationTime_;
     // Equipment-Specific
-    private Nullable<ushort>        Level_;
-    private Nullable<EquipmentSlot> Slots_;
-    private Nullable<Race>          Races_;
-    private Nullable<Job>           Jobs_;
+    private ushort?        Level_;
+    private EquipmentSlot? Slots_;
+    private Race?          Races_;
+    private Job?           Jobs_;
     // Armor-Specific
-    private Nullable<ushort>        ShieldSize_;
+    private ushort?        ShieldSize_;
     // Weapon-Specific
-    private Nullable<ushort>        Damage_;
-    private Nullable<ushort>        Delay_;
-    private Nullable<ushort>        DPS_;
-    private Nullable<Skill>         Skill_;
-    private Nullable<byte>          JugSize_;
+    private ushort?        Damage_;
+    private ushort?        Delay_;
+    private ushort?        DPS_;
+    private Skill?         Skill_;
+    private byte?          JugSize_;
     // Enchantment Info
-    private Nullable<byte>          MaxCharges_;
-    private Nullable<byte>          CastingTime_;
-    private Nullable<ushort>        UseDelay_;
-    private Nullable<uint>          ReuseDelay_;
+    private byte?          MaxCharges_;
+    private byte?          CastingTime_;
+    private ushort?        UseDelay_;
+    private uint?          ReuseDelay_;
     // Puppet Item Info
-    private Nullable<PuppetSlot>    PuppetSlot_;
-    private Nullable<uint>          ElementCharge_;
+    private PuppetSlot?    PuppetSlot_;
+    private uint?          ElementCharge_;
     // Special
     private Graphic                 Icon_;
-    private Nullable<ushort>        Unknown1_;
-    private Nullable<ushort>        Unknown2_;
-    private Nullable<ushort>        Unknown3_;
-    private Nullable<ushort>        Unknown4_;
-    private Nullable<ushort>        Unknown5_;
+    private ushort?        Unknown1_;
+    private ushort?        Unknown2_;
+    private ushort?        Unknown3_;
+    private ushort?        Unknown4_;
+    private ushort?        Unknown5_;
     
     #endregion
 

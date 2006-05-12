@@ -40,8 +40,8 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<uint> ID_;
-    private string         Name_;
+    private uint?  ID_;
+    private string Name_;
     
     #endregion
 
@@ -95,7 +95,9 @@ namespace PlayOnline.FFXI {
       FFXIEncoding E = new FFXIEncoding();
 	this.Name_ = E.GetString(BR.ReadBytes(0x18)).TrimEnd('\0');
 	this.ID_   = BR.ReadUInt32();
-	// No verification possible at this level
+	// ID seems to be 010 + zone id + mob id (=> there's a hard max of 0xFFF (= 4095) mobs per zone, which seems plenty :))
+	if ((this.ID_ & 0xFFF00000) != 0x01000000)
+	  return false;
 	return true;
       } catch { return false; }
     }

@@ -10,7 +10,8 @@ namespace PlayOnline.FFXI.FileTypes {
 
     public override ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback) {
     ThingList TL = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:ScanningFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:ScanningFile"), 0);
     Graphic G = new Graphic();
       while (BR.BaseStream.Position < BR.BaseStream.Length) {
       long Pos = BR.BaseStream.Position; // Save Position (G.Read() will advance it an unknown amount)

@@ -10,7 +10,8 @@ namespace PlayOnline.FFXI.FileTypes {
 
     public override ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback) {
     ThingList TL = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
       if ((BR.BaseStream.Length % 0xC00) != 0 || BR.BaseStream.Position != 0)
 	return TL;
       // First deduce the type of item data is in the file.
@@ -18,7 +19,8 @@ namespace PlayOnline.FFXI.FileTypes {
     Item.Type T;
       Item.DeduceLanguageAndType(BR, out L, out T);
       // Now read the items
-      ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
     long ItemCount = BR.BaseStream.Length / 0xC00;
     long CurrentItem = 0;
       while (BR.BaseStream.Position < BR.BaseStream.Length) {
@@ -27,7 +29,8 @@ namespace PlayOnline.FFXI.FileTypes {
 	  TL.Clear();
 	  break;
 	}
-	ProgressCallback(null, (double) ++CurrentItem / ItemCount);
+	if (ProgressCallback != null)
+	  ProgressCallback(null, (double) ++CurrentItem / ItemCount);
 	TL.Add(I);
       }
       return TL;

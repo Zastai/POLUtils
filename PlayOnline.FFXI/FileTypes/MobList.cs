@@ -10,15 +10,15 @@ namespace PlayOnline.FFXI.FileTypes {
 
     public override ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback) {
     ThingList TL = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
       if ((BR.BaseStream.Length % 0x1C) != 0 || BR.BaseStream.Position != 0)
 	return TL;
     long EntryCount = BR.BaseStream.Length / 0x1C;
-      ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       try {
-#if DEBUG
-      uint LastID = 0;
-#endif
+      int ZoneID = -1;
 	for (int i = 0; i < EntryCount; ++i) {
 	FFXI.MobListEntry MLE = new FFXI.MobListEntry();
 	  if (!MLE.Read(BR)) {
@@ -30,12 +30,17 @@ namespace PlayOnline.FFXI.FileTypes {
 	    TL.Clear();
 	    break;
 	  }
-#if DEBUG
-	  if (ThisID <= LastID)
-	    Console.WriteLine("Mob List Entry #{0}: ID {1:X8} <= Previous ID {2:X8}", i, ThisID, LastID);
-	  LastID = ThisID;
-#endif
-	  ProgressCallback(null, (double) (i + 1) / EntryCount);
+	  else if (i > 0) { // Entire file should be for 1 specific zone
+	  int ThisZone = (int) (ThisID & 0x000FF000);
+	    if (ZoneID < 0)
+	      ZoneID = ThisZone;
+	    else if (ThisZone != ZoneID) {
+	      TL.Clear();
+	      break;
+	    }
+	  }
+	  if (ProgressCallback != null)
+	    ProgressCallback(null, (double) (i + 1) / EntryCount);
 	  TL.Add(MLE);
 	}
       } catch {

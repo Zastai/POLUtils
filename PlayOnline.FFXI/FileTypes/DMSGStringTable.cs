@@ -12,7 +12,8 @@ namespace PlayOnline.FFXI.FileTypes {
 
     public override ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback) {
     ThingList TL = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
       if (BR.BaseStream.Length < 0x38 || BR.BaseStream.Position != 0)
 	return TL;
     FFXIEncoding E = new FFXIEncoding();
@@ -38,14 +39,16 @@ namespace PlayOnline.FFXI.FileTypes {
       // 12 NUL bytes
       if (BR.ReadUInt32() != 0 || BR.ReadUInt32() != 0 || BR.ReadUInt32() != 0)
 	return TL;
-      ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
-      for (int i = 0; i < EntryCount; ++i) {
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
+      for (uint i = 0; i < EntryCount; ++i) {
       FFXI.DMSGStringTableEntry DSTE = new FFXI.DMSGStringTableEntry();
 	if (!DSTE.Read(BR, E, i, EntryBytes, DataBytes)) {
 	  TL.Clear();
 	  break;
 	}
-	ProgressCallback(null, (double) (i + 1) / EntryCount);
+	if (ProgressCallback != null)
+	  ProgressCallback(null, (double) (i + 1) / EntryCount);
 	TL.Add(DSTE);
       }
       return TL;

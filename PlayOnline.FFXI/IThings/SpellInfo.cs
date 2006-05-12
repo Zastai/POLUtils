@@ -53,21 +53,21 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<ushort>      Index_;
-    private Nullable<MagicType>   MagicType_;
-    private Nullable<Element>     Element_;
-    private Nullable<ValidTarget> ValidTargets_;
-    private Nullable<Skill>       Skill_;
-    private Nullable<ushort>      MPCost_;
-    private Nullable<byte>        CastingTime_;
-    private Nullable<ushort>      RecastDelay_;
-    private byte[]                LevelRequired_;
-    private Nullable<ushort>      ID_;
-    private Nullable<byte>        Unknown1_;
-    private string                JapaneseName_;
-    private string                EnglishName_;
-    private string                JapaneseDescription_;
-    private string                EnglishDescription_;
+    private ushort?      Index_;
+    private MagicType?   MagicType_;
+    private Element?     Element_;
+    private ValidTarget? ValidTargets_;
+    private Skill?       Skill_;
+    private ushort?      MPCost_;
+    private byte?        CastingTime_;
+    private ushort?      RecastDelay_;
+    private byte[]       LevelRequired_;
+    private ushort?      ID_;
+    private byte?        Unknown1_;
+    private string       JapaneseName_;
+    private string       EnglishName_;
+    private string       JapaneseDescription_;
+    private string       EnglishDescription_;
     
     #endregion
 

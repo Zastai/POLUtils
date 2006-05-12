@@ -40,8 +40,8 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<uint> ID_;
-    private string         Text_;
+    private uint?  ID_;
+    private string Text_;
     
     #endregion
 

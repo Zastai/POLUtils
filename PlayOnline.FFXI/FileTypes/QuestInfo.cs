@@ -11,7 +11,8 @@ namespace PlayOnline.FFXI.FileTypes {
 
     public override ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback) {
     ThingList TL = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
       if (Encoding.ASCII.GetString(BR.ReadBytes(4)) != "menu")
 	return TL;
       if (BR.ReadInt32() != 0x101)
@@ -26,11 +27,13 @@ namespace PlayOnline.FFXI.FileTypes {
       BR.ReadUInt32(); // unknown
       if (BR.ReadInt64() != 0)
 	return TL;
-      ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
     uint MenuCount = 0;
     FFXIEncoding E = new FFXIEncoding();
       while (BR.BaseStream.Position < BR.BaseStream.Length) {
-	ProgressCallback(null, ((double) (BR.BaseStream.Position + 1) / BR.BaseStream.Length));
+	if (ProgressCallback != null)
+	  ProgressCallback(null, ((double) (BR.BaseStream.Position + 1) / BR.BaseStream.Length));
       string Marker   = Encoding.ASCII.GetString(BR.ReadBytes(4));
       string Filler   = Encoding.ASCII.GetString(BR.ReadBytes(4));
       string MenuName = Encoding.ASCII.GetString(BR.ReadBytes(8));

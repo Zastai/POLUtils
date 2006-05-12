@@ -93,21 +93,21 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private String           Format_;
-    private Nullable<byte>   Flag_;
-    private String           Category_;
-    private String           ID_;
-    private Nullable<int>    Width_;
-    private Nullable<int>    Height_;
-    private Nullable<ushort> Planes_;
-    private Nullable<ushort> BitCount_;
-    private Nullable<uint>   Compression_;
-    private Nullable<uint>   ImageSize_;
-    private Nullable<uint>   HorizontalResolution_;
-    private Nullable<uint>   VerticalResolution_;
-    private Nullable<uint>   UsedColors_;
-    private Nullable<uint>   ImportantColors_;
-    private Image            Image_;
+    private String  Format_;
+    private byte?   Flag_;
+    private String  Category_;
+    private String  ID_;
+    private int?    Width_;
+    private int?    Height_;
+    private ushort? Planes_;
+    private ushort? BitCount_;
+    private uint?   Compression_;
+    private uint?   ImageSize_;
+    private uint?   HorizontalResolution_;
+    private uint?   VerticalResolution_;
+    private uint?   UsedColors_;
+    private uint?   ImportantColors_;
+    private Image   Image_;
     
     #endregion
 

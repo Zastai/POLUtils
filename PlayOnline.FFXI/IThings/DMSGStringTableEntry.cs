@@ -48,10 +48,10 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<int>    Index_;
-    private string           Text_;
+    private uint?   Index_;
+    private string  Text_;
 #if IncludeUnknownFields
-    private Nullable<ushort> Unknown1_;
+    private ushort? Unknown1_;
 #endif
     
     #endregion
@@ -103,7 +103,7 @@ namespace PlayOnline.FFXI {
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	case "index":     this.Index_    = (int)    this.LoadUnsignedIntegerField(Node); break;
+	case "index":     this.Index_    = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "text":      this.Text_     =          this.LoadTextField           (Node); break;
 #if IncludeUnknownFields
 	case "unknown-1": this.Unknown1_ = (ushort) this.LoadUnsignedIntegerField(Node); break;
@@ -119,7 +119,7 @@ namespace PlayOnline.FFXI {
       return this.Read(BR, E, null, EntryBytes, DataBytes);
     }
 
-    public bool Read(BinaryReader BR, Encoding E, Nullable<int> Index, uint EntryBytes, uint DataBytes) {
+    public bool Read(BinaryReader BR, Encoding E, uint? Index, uint EntryBytes, uint DataBytes) {
       this.Clear();
       this.Index_ = Index;
     long IndexPos = -1;

@@ -188,7 +188,7 @@ namespace PlayOnline.FFXI {
       return Result;
     }
 
-    protected Nullable<UInt64> LoadHexField(XmlElement Node) {
+    protected ulong? LoadHexField(XmlElement Node) {
       try { return ulong.Parse(Node.InnerText, NumberStyles.HexNumber); } catch { return null; }
     }
 
@@ -205,7 +205,7 @@ namespace PlayOnline.FFXI {
       return Result;
     }
 
-    protected Nullable<Int64> LoadSignedIntegerField(XmlElement Node) {
+    protected long? LoadSignedIntegerField(XmlElement Node) {
       try { return long.Parse(Node.InnerText, NumberStyles.Integer); } catch { return null; }
     }
 
@@ -221,7 +221,7 @@ namespace PlayOnline.FFXI {
       return Node.InnerText;
     }
 
-    protected Nullable<UInt64> LoadUnsignedIntegerField(XmlElement Node) {
+    protected ulong? LoadUnsignedIntegerField(XmlElement Node) {
       try { return ulong.Parse(Node.InnerText, NumberStyles.Integer); } catch { return null; }
     }
 

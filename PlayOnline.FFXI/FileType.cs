@@ -44,8 +44,12 @@ namespace PlayOnline.FFXI {
 
     public abstract ThingList Load(BinaryReader BR, ProgressCallback ProgressCallback);
 
+    public virtual ThingList Load(BinaryReader BR) { return this.Load(BR,       null); }
+    public virtual ThingList Load(string FileName) { return this.Load(FileName, null); }
+
     public virtual ThingList Load(string FileName, ProgressCallback ProgressCallback) {
-      ProgressCallback(I18N.GetText("FTM:OpeningFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:OpeningFile"), 0);
     BinaryReader BR = null;
       try {
 	BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read), Encoding.ASCII);
@@ -59,7 +63,8 @@ namespace PlayOnline.FFXI {
 
     public static ThingList LoadAll(string FileName, ProgressCallback ProgressCallback, bool FirstMatchOnly) {
     ThingList Results = new ThingList();
-      ProgressCallback(I18N.GetText("FTM:OpeningFile"), 0);
+      if (ProgressCallback != null)
+	ProgressCallback(I18N.GetText("FTM:OpeningFile"), 0);
     BinaryReader BR = null;
       try {
 	BR = new BinaryReader(new FileStream(FileName, FileMode.Open, FileAccess.Read), Encoding.ASCII);
@@ -67,12 +72,15 @@ namespace PlayOnline.FFXI {
       if (BR == null || BR.BaseStream == null)
 	return Results;
       foreach (FileType FT in FileType.AllTypes) {
-      ProgressCallback SubCallback = new ProgressCallback(delegate (string Message, double PercentCompleted) {
-	string SubMessage = null;
-	  if (Message != null)
-	    SubMessage = String.Format("[{0}] {1}", FT.Name, Message);
-	  ProgressCallback(SubMessage, PercentCompleted);
-	});
+      ProgressCallback SubCallback = null;
+	if (ProgressCallback != null) {
+	  SubCallback = new ProgressCallback(delegate (string Message, double PercentCompleted) {
+	  string SubMessage = null;
+	    if (Message != null)
+	      SubMessage = String.Format("[{0}] {1}", FT.Name, Message);
+	    ProgressCallback(SubMessage, PercentCompleted);
+	  });
+	}
       ThingList SubResults = FT.Load(BR, SubCallback);
 	if (SubResults != null) {
 	  Results.AddRange(SubResults);
@@ -86,6 +94,14 @@ namespace PlayOnline.FFXI {
 
     public static ThingList LoadAll(string FileName, ProgressCallback ProgressCallback) {
       return FileType.LoadAll(FileName, ProgressCallback, true);
+    }
+
+    public static ThingList LoadAll(string FileName, bool FirstMatchOnly) {
+      return FileType.LoadAll(FileName, null, FirstMatchOnly);
+    }
+
+    public static ThingList LoadAll(string FileName) {
+      return FileType.LoadAll(FileName, null, true);
     }
 
   }

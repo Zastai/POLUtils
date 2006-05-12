@@ -46,14 +46,14 @@ namespace PlayOnline.FFXI {
 
     #region Data Fields
 
-    private Nullable<ushort>      ID_;
-    private Nullable<AbilityType> Type_;
-    private Nullable<byte>        ListIconID_;
-    private Nullable<ushort>      MPCost_;
-    private Nullable<ushort>      Unknown1_;
-    private Nullable<ValidTarget> ValidTargets_;
-    private string                Name_;
-    private string                Description_;
+    private ushort?      ID_;
+    private AbilityType? Type_;
+    private byte?        ListIconID_;
+    private ushort?      MPCost_;
+    private ushort?      Unknown1_;
+    private ValidTarget? ValidTargets_;
+    private string       Name_;
+    private string       Description_;
     
     #endregion
 

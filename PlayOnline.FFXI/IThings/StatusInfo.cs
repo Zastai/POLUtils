@@ -51,13 +51,13 @@ namespace PlayOnline.FFXI {
     #region Data Fields
 
     // General
-    private Nullable<ushort> ID_;
-    private string           EnglishName_;
-    private string           JapaneseName_;
-    private string           EnglishDescription_;
-    private string           JapaneseDescription_;
-    private Nullable<ushort> Unknown1_;
-    private Graphic          Icon_;
+    private ushort? ID_;
+    private string  EnglishName_;
+    private string  JapaneseName_;
+    private string  EnglishDescription_;
+    private string  JapaneseDescription_;
+    private ushort? Unknown1_;
+    private Graphic Icon_;
     
     #endregion
 
