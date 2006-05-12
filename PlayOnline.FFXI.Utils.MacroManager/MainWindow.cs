@@ -289,17 +289,15 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 	  if (CategoryMenu == null) {
 	    CategoryMenu = ParentMenu.MenuItems.Add("&Unknown Category");
 	    switch (MG.Category) {
-	      case 0x0104: CategoryMenu.Text = String.Format("&Japanese Messages", MG.Category); break;
-	      case 0x0202: CategoryMenu.Text = String.Format("&English Messages",  MG.Category); break;
+	      case 2: CategoryMenu.Text = "&English Messages";  break;
+	      case 4: CategoryMenu.Text = "&Japanese Messages"; break;
 	    }
 	    CategoryMenus[MG.Category] = CategoryMenu;
 	  }
 	MenuItem GroupMenu = CategoryMenu.MenuItems.Add(MG.Title);
 	  GroupMenu.MenuItems.Add(MG.Description).Enabled = false;
-	  foreach (AutoTranslator.Message M in MG.Messages) {
-	  uint ResID = (uint) ((uint) (M.Category << 16) + (ushort) (M.ParentGroup << 8) + M.ID);
-	    GroupMenu.MenuItems.Add(new ATMenuItem(ResID, new EventHandler(this.AutoTransMenuItem_Click)));
-	  }
+	  foreach (AutoTranslator.Message M in MG.Messages)
+	    GroupMenu.MenuItems.Add(new ATMenuItem(M.ResID, new EventHandler(this.AutoTransMenuItem_Click)));
 	}
       }
     }
