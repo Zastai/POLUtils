@@ -112,6 +112,8 @@ namespace PlayOnline.Core {
     }
 
     public static string GetApplicationPath(string ID, Region Region) {
+      if ((POL.AvailableRegions & Region) == 0)
+	return null;
     RegistryKey POLKey = POL.OpenRegistryKey("InstallFolder");
       if (POLKey == null)
 	return null;
