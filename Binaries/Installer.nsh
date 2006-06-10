@@ -18,7 +18,7 @@ Name "POLUtils"
 
 !include "Version.nsh"
 
-OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
+OutFile "Installers\POLUtils-${VERSION}-${BUILD}-${PLATFORM}.exe"
 
 !define INSTALLER_REG_KEY Software\Pebbles\Installation\POLUtils
 
@@ -123,13 +123,13 @@ SectionEnd
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
   SectionIn 1 2 RO
   SetOutPath "$INSTDIR"
-  File           "${BUILDDIR}\PlayOnline.Core.dll"
-  File /nonfatal "${BUILDDIR}\PlayOnline.Utils.*.dll"
-  File           "${BUILDDIR}\PlayOnline.FFXI.dll"
-  File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
-  File           "${BUILDDIR}\POLUtils.exe"
-  File           "${BUILDDIR}\Translators.txt"
-  File           "${BUILDDIR}\ItemListUpgrade.exe"
+  File           "${BUILDDIR}\${PLATFORM}\PlayOnline.Core.dll"
+  File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.Utils.*.dll"
+  File           "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.dll"
+  File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.Utils.*.dll"
+  File           "${BUILDDIR}\${PLATFORM}\POLUtils.exe"
+  File           "${BUILDDIR}\${PLATFORM}\Translators.txt"
+  File           "${BUILDDIR}\${PLATFORM}\ItemListUpgrade.exe"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
@@ -137,19 +137,19 @@ SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
   Section $(NAME_SECTION_TR_DE) SECTION_TR_DE
     SectionIn 2
     SetOutPath "$INSTDIR\de"
-    File /nonfatal "${BUILDDIR}\de\*.resources.dll"
+    File /nonfatal "${BUILDDIR}\${PLATFORM}\de\*.resources.dll"
   SectionEnd
 
   ;Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
   ;  SectionIn 2
   ;  SetOutPath "$INSTDIR\ja"
-  ;  File /nonfatal "${BUILDDIR}\ja\*.resources.dll"
+  ;  File /nonfatal "${BUILDDIR}\${PLATFORM}\ja\*.resources.dll"
   ;SectionEnd
 
   ;Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
   ;  SectionIn 2
   ;  SetOutPath "$INSTDIR\nl"
-  ;  File /nonfatal "${BUILDDIR}\nl\*.resources.dll"
+  ;  File /nonfatal "${BUILDDIR}\${PLATFORM}\nl\*.resources.dll"
   ;SectionEnd
 
 SubSectionEnd
