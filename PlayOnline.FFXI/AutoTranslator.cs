@@ -116,8 +116,7 @@ namespace PlayOnline.FFXI {
       MG.Title       = E.GetString(BR.ReadBytes(32)).TrimEnd('\0');
       MG.Description = E.GetString(BR.ReadBytes(32)).TrimEnd('\0');
     uint MessageCount = BR.ReadUInt32();
-    uint MessageBytes = BR.ReadUInt32();
-    long MessageStart = BR.BaseStream.Position;
+      /* MessageBytes */ BR.ReadUInt32();
       for (int i = 0; i < MessageCount; ++i)
 	MG.Messages.Add(AutoTranslator.ReadMessage(BR, E));
       return MG;
