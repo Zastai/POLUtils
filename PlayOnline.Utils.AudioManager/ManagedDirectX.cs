@@ -1,5 +1,8 @@
 // $Id$
 
+// Define this to include MDX 2.0 in the list of assemblies to (try to) load.  Currently disabled because it is not backwards compatible.
+//#define USE_MDX_2
+
 using System;
 using System.IO;
 using System.Globalization;
@@ -18,15 +21,36 @@ namespace ManagedDirectX {
 
     private ManagedDirectSound() { }
 
-    private static bool     Initialized = false;
-    private static Assembly Assembly = null;
+    private static bool     Initialized     = false;
+    private static Assembly Assembly        = null;
+    private static byte     AssemblyVersion = 0;
 
     private static void Load() {
       if (!ManagedDirectSound.Initialized) {
-	if (ManagedDirectSound.Assembly == null)
-	  try { ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"); } catch { }
-	if (ManagedDirectSound.Assembly == null)
-	  try { ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"); } catch { }
+	ManagedDirectSound.AssemblyVersion = 0;
+#if USE_MDX_2
+	if (ManagedDirectSound.Assembly == null) {
+	  try { // 2.0 (beta)
+	    ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
+	    ManagedDirectSound.AssemblyVersion = 2;
+	  }
+	  catch { }
+	}
+#endif
+	if (ManagedDirectSound.Assembly == null) {
+	  try { // 1.1
+	    ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
+	    ManagedDirectSound.AssemblyVersion = 1;
+	  }
+	  catch { }
+	}
+	if (ManagedDirectSound.Assembly == null) {
+	  try { // 1.0
+	    ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
+	    ManagedDirectSound.AssemblyVersion = 1;
+	  }
+	  catch { }
+	}
 	ManagedDirectSound.Initialized = true;
       }
     }
@@ -65,9 +89,16 @@ namespace ManagedDirectX {
     public static object CreateObject(Type Type, params object[] Arguments) {
       if (Arguments == null)
 	Arguments = new object[] { };
-      if (ManagedDirectSound.Available)
+      if (ManagedDirectSound.Available) {
 	return ManagedDirectSound.Assembly.CreateInstance(Type.FullName, false, BindingFlags.CreateInstance, null, Arguments, Application.CurrentCulture, null);
+      }
       return null;
+    }
+
+    public static byte Version {
+      get {
+	return ManagedDirectSound.AssemblyVersion;
+      }
     }
 
   }
@@ -171,7 +202,7 @@ namespace ManagedDirectX {
       }
 
       public void SetCooperativeLevel(Control Owner, object CooperativeLevel) {
-	TMe.InvokeMember("SetCooperativeLevel", BindingFlags.InvokeMethod, null, Me, new object[] { Owner, CooperativeLevel }, Application.CurrentCulture);
+	TMe.InvokeMember("SetCooperativeLevel", BindingFlags.InvokeMethod, null, Me, new object[] { Owner.Handle, CooperativeLevel }, Application.CurrentCulture);
       }
 
     }
@@ -182,7 +213,13 @@ namespace ManagedDirectX {
       internal object Me;
 
       public BufferDescription(WaveFormat Format) {
-	Me = ManagedDirectSound.CreateObject(TMe, Format.Me);
+	if (ManagedDirectSound.Version == 2) { // Managed DirectX 2.x only has a 0-argument constructor, and a WaveFormat property
+	  Me = ManagedDirectSound.CreateObject(TMe);
+	  TMe.GetProperty("WaveFormat").SetValue(Me, Format.Me, null);
+	}
+	else { // Managed DirectX 1.x has a constructor that takes a WaveFormat, and no way to set it afterwards
+	  Me = ManagedDirectSound.CreateObject(TMe, Format.Me);
+	}
       }
 
       public int BufferBytes {
