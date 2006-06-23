@@ -33,6 +33,7 @@ namespace PlayOnline.FFXI {
 	  "name-1",
 	  "name-2",
 	  "description",
+	  "extra",
 	});
       }
     }
@@ -48,6 +49,7 @@ namespace PlayOnline.FFXI {
     private string Name1_;
     private string Name2_;
     private string Description_;
+    private string Extra_;
     
     #endregion
 
@@ -57,6 +59,7 @@ namespace PlayOnline.FFXI {
       this.Name1_       = null;
       this.Name2_       = null;
       this.Description_ = null;
+      this.Extra_       = null;
     }
 
     #endregion
@@ -68,6 +71,7 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return (this.Category_    != null);
 	case "description": return (this.Description_ != null);
+	case "extra":       return (this.Extra_       != null);
 	case "name-1":      return (this.Name1_       != null);
 	case "name-2":      return (this.Name2_       != null);
 	// Nullables
@@ -83,6 +87,7 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return this.Category_;
 	case "description": return this.Description_;
+	case "extra":       return this.Extra_;
 	case "name-1":      return this.Name1_;
 	case "name-2":      return this.Name2_;
 	// Nullables
@@ -98,6 +103,7 @@ namespace PlayOnline.FFXI {
 	// Objects
 	case "category":    return this.Category_;
 	case "description": return this.Description_;
+	case "extra":       return this.Extra_;
 	case "name-1":      return this.Name1_;
 	case "name-2":      return this.Name2_;
 	// Nullables
@@ -111,6 +117,7 @@ namespace PlayOnline.FFXI {
 	// "Simple" Fields
 	case "category":    this.Category_    =        this.LoadTextField           (Node); break;
 	case "description": this.Description_ =        this.LoadTextField           (Node); break;
+	case "extra":       this.Extra_       =        this.LoadTextField           (Node); break;
 	case "id":          this.ID_          = (uint) this.LoadUnsignedIntegerField(Node); break;
 	case "name-1":      this.Name1_       =        this.LoadTextField           (Node); break;
 	case "name-2":      this.Name2_       =        this.LoadTextField           (Node); break;
@@ -135,34 +142,61 @@ namespace PlayOnline.FFXI {
 	  return false;
       FFXIEncoding E = new FFXIEncoding();
       long CurPos = BR.BaseStream.Position;
-	BR.BaseStream.Seek(MenuStart + Name1Start, SeekOrigin.Begin);
+	BR.BaseStream.Position = MenuStart + Name1Start;
 	this.Name1_ = FFXIEncryption.ReadEncodedString(BR, E);
-	BR.BaseStream.Seek(MenuStart + Name2Start, SeekOrigin.Begin);
+	BR.BaseStream.Position = MenuStart + Name2Start;
 	this.Name2_ = FFXIEncryption.ReadEncodedString(BR, E);
-	BR.BaseStream.Seek(MenuStart + BodyStart, SeekOrigin.Begin);
-       int LineCount = BR.ReadInt32();
-	if (LineCount < 0) {
-	  BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
-	  return false;
-	}
-	{ // Read entry description lines
-	long[] LineStart = new long[LineCount];
-	  for (int i = 0; i < LineCount; ++i) {
-	    LineStart[i] = BR.ReadInt32();
-	    if (LineStart[i] < 0) {
-	      BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
-	      return false;
+	BR.BaseStream.Position = MenuStart + BodyStart;
+	{
+	int LineCount = BR.ReadInt32();
+	  if (LineCount < 0) {
+	    BR.BaseStream.Position = CurPos;
+	    return false;
+	  }
+	  { // Read entry description lines
+	  long[] LineStart = new long[LineCount];
+	    for (int i = 0; i < LineCount; ++i) {
+	      LineStart[i] = BR.ReadInt32();
+	      if (LineStart[i] < 0) {
+		BR.BaseStream.Position = CurPos;
+		return false;
+	      }
+	    }
+	    this.Description_ = String.Empty;
+	    for (int i = 0; i < LineCount; ++i) {
+	      BR.BaseStream.Position = MenuStart + LineStart[i];
+	      if (i > 0)
+		this.Description_ += "\r\n";
+	      this.Description_ += FFXIEncryption.ReadEncodedString(BR, E);
 	    }
 	  }
-	  this.Description_ = String.Empty;
-	  for (int i = 0; i < LineCount; ++i) {
-	    BR.BaseStream.Seek(MenuStart + LineStart[i], SeekOrigin.Begin);
-	    if (this.Description_ != String.Empty)
-	      this.Description_ += "\r\n";
-	    this.Description_ += FFXIEncryption.ReadEncodedString(BR, E);
+	}
+	BR.BaseStream.Position = MenuStart + Unknown;
+	{
+	int LineCount = BR.ReadInt32();
+	  if (LineCount < 0) {
+	    BR.BaseStream.Position = CurPos;
+	    return false;
+	  }
+	  { // Read entry description lines
+	  long[] LineStart = new long[LineCount];
+	    for (int i = 0; i < LineCount; ++i) {
+	      LineStart[i] = BR.ReadInt32();
+	      if (LineStart[i] < 0) {
+		BR.BaseStream.Position = CurPos;
+		return false;
+	      }
+	    }
+	    this.Extra_ = String.Empty;
+	    for (int i = 0; i < LineCount; ++i) {
+	      BR.BaseStream.Position = MenuStart + LineStart[i];
+	      if (i > 0)
+		this.Extra_ += "\r\n";
+	      this.Extra_ += FFXIEncryption.ReadEncodedString(BR, E);
+	    }
 	  }
 	}
-	BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
+	BR.BaseStream.Position = CurPos;
 	return true;
       } catch { return false; }
     }
