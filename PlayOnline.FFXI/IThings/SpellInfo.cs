@@ -204,7 +204,7 @@ namespace PlayOnline.FFXI {
 
     // Block Layout:
     // 000-001 U16 Index
-    // 002-003 U16 Spell Type (1/2/3/4/5 - White/Black/Summon/Ninja/Bard)
+    // 002-003 U16 Magic Type (1/2/3/4/5/6 - White/Black/Summon/Ninja/Bard/Blue)
     // 004-005 U16 Element
     // 006-007 U16 Valid Targets
     // 008-009 U16 Skill

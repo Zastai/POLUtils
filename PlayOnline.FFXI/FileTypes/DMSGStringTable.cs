@@ -20,7 +20,7 @@ namespace PlayOnline.FFXI.FileTypes {
       // Skip (presumably) fixed portion of the header
       if ((E.GetString(BR.ReadBytes(8)) != "d_msg".PadRight(8, '\0')) || BR.ReadUInt16() != 1 || BR.ReadUInt32() != 0 || BR.ReadUInt16() != 2 || BR.ReadUInt32() != 3)
 	return TL;
-      // Read the yseful header fields
+      // Read the useful header fields
     uint EntryCount = BR.ReadUInt32();
       if (BR.ReadUInt32() != 1)
 	return TL;
