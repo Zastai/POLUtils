@@ -1578,58 +1578,58 @@
   <category><name><i18n-string id="Menu:StringTables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file app="0" dir="119" file="055"><i18n-string id="Menu:Abilities"/></rom-file>
-      <rom-file app="0" dir="097" file="053"><i18n-string id="Menu:AreaNames"/></rom-file>
-      <rom-file app="0" dir="097" file="057"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
-      <rom-file app="0" dir="097" file="039"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
-      <rom-file app="0" dir="097" file="045"><i18n-string id="Menu:DayNames"/></rom-file>
-      <rom-file app="0" dir="097" file="043"><i18n-string id="Menu:Directions"/></rom-file>
-      <rom-file app="0" dir="097" file="035"><i18n-string id="Menu:ErrorMessages"/></rom-file>
-      <rom-file app="0" dir="097" file="037"><i18n-string id="Menu:InGameMessages1"/></rom-file>
-      <rom-file app="0" dir="097" file="038"><i18n-string id="Menu:InGameMessages2"/></rom-file>
-      <rom-file app="0" dir="097" file="055"><i18n-string id="Menu:JobNames"/></rom-file>
-      <rom-file app="0" dir="097" file="042"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
-      <rom-file app="0" dir="097" file="041"><i18n-string id="Menu:MenuItemText"/></rom-file>
-      <rom-file app="0" dir="097" file="046"><i18n-string id="Menu:MoonPhases"/></rom-file>
-      <rom-file app="0" dir="097" file="036"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <rom-file app="0" dir="165" file="084"><i18n-string id="Menu:AreaNames"/></rom-file>
+      <rom-file app="0" dir="165" file="083"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
+      <rom-file app="0" dir="165" file="074"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
+      <rom-file app="0" dir="165" file="080"><i18n-string id="Menu:DayNames"/></rom-file>
+      <rom-file app="0" dir="165" file="081"><i18n-string id="Menu:Directions"/></rom-file>
+      <rom-file app="0" dir="165" file="070"><i18n-string id="Menu:ErrorMessages"/></rom-file>
+      <rom-file app="0" dir="165" file="072"><i18n-string id="Menu:InGameMessages1"/></rom-file>
+      <rom-file app="0" dir="165" file="073"><i18n-string id="Menu:InGameMessages2"/></rom-file>
+      <rom-file app="0" dir="165" file="086"><i18n-string id="Menu:JobNames"/></rom-file>
+      <rom-file app="0" dir="165" file="075"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
+      <rom-file app="0" dir="165" file="076"><i18n-string id="Menu:MenuItemText"/></rom-file>
+      <rom-file app="0" dir="165" file="082"><i18n-string id="Menu:MoonPhases"/></rom-file>
+      <rom-file app="0" dir="165" file="071"><i18n-string id="Menu:POLMessages"/></rom-file>
       <rom-file app="0" dir="118" file="115"><i18n-string id="Menu:Quests"/></rom-file>
-      <rom-file app="0" dir="097" file="048"><i18n-string id="Menu:RegionNames"/></rom-file>
+      <rom-file app="0" dir="165" file="078"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="119" file="056"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="119" file="057"><i18n-string id="Menu:Status"/></rom-file>
       <rom-file app="0" dir="118" file="103"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>
       <rom-file app="0" dir="119" file="054"><i18n-string id="Menu:Titles"/></rom-file>
-      <rom-file app="0" dir="097" file="034"><i18n-string id="Menu:Various1"/></rom-file>
-      <rom-file app="0" dir="097" file="040"><i18n-string id="Menu:Various2"/></rom-file>
-      <rom-file app="0" dir="097" file="049"><i18n-string id="Menu:Various3"/></rom-file>
-      <rom-file app="0" dir="097" file="044"><i18n-string id="Menu:WeatherTypes"/></rom-file>
+      <rom-file app="0" dir="165" file="069"><i18n-string id="Menu:Various1"/></rom-file>
+      <rom-file app="0" dir="165" file="077"><i18n-string id="Menu:Various2"/></rom-file>
+      <rom-file app="0" dir="097" file="049"><i18n-string id="Menu:Various3"/></rom-file><!-- FIXME: Remove altogether? -->
+      <rom-file app="0" dir="165" file="079"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file app="0" dir="000" file="010"><i18n-string id="Menu:Abilities"/></rom-file>
-      <rom-file app="0" dir="097" file="056"><i18n-string id="Menu:AreaNames"/></rom-file>
-      <rom-file app="0" dir="097" file="021"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
-      <rom-file app="0" dir="097" file="027"><i18n-string id="Menu:DayNames"/></rom-file>
-      <rom-file app="0" dir="097" file="025"><i18n-string id="Menu:Directions"/></rom-file>
-      <rom-file app="0" dir="097" file="018"><i18n-string id="Menu:ErrorMessages"/></rom-file>
-      <rom-file app="0" dir="097" file="019"><i18n-string id="Menu:InGameMessages1"/></rom-file>
-      <rom-file app="0" dir="097" file="020"><i18n-string id="Menu:InGameMessages2"/></rom-file>
-      <rom-file app="0" dir="097" file="029"><i18n-string id="Menu:JobNames"/></rom-file>
-      <rom-file app="0" dir="097" file="024"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
-      <rom-file app="0" dir="097" file="023"><i18n-string id="Menu:MenuItemText"/></rom-file>
-      <rom-file app="0" dir="097" file="028"><i18n-string id="Menu:MoonPhases"/></rom-file>
-      <rom-file app="0" dir="097" file="008"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <rom-file app="0" dir="165" file="063"><i18n-string id="Menu:AreaNames"/></rom-file>
+      <rom-file app="0" dir="165" file="058"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
+      <rom-file app="0" dir="165" file="066"><i18n-string id="Menu:DayNames"/></rom-file>
+      <rom-file app="0" dir="165" file="067"><i18n-string id="Menu:Directions"/></rom-file>
+      <rom-file app="0" dir="165" file="054"><i18n-string id="Menu:ErrorMessages"/></rom-file>
+      <rom-file app="0" dir="165" file="056"><i18n-string id="Menu:InGameMessages1"/></rom-file>
+      <rom-file app="0" dir="165" file="057"><i18n-string id="Menu:InGameMessages2"/></rom-file>
+      <rom-file app="0" dir="165" file="064"><i18n-string id="Menu:JobNames"/></rom-file>
+      <rom-file app="0" dir="165" file="059"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
+      <rom-file app="0" dir="165" file="060"><i18n-string id="Menu:MenuItemText"/></rom-file>
+      <rom-file app="0" dir="165" file="068"><i18n-string id="Menu:MoonPhases"/></rom-file>
+      <rom-file app="0" dir="165" file="055"><i18n-string id="Menu:POLMessages"/></rom-file>
       <rom-file app="0" dir="118" file="113"><i18n-string id="Menu:Quests"/></rom-file>
-      <rom-file app="0" dir="097" file="030"><i18n-string id="Menu:RegionNames"/></rom-file>
+      <rom-file app="0" dir="165" file="062"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file app="0" dir="000" file="011"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file app="0" dir="000" file="012"><i18n-string id="Menu:Status"/></rom-file>
       <rom-file app="0" dir="118" file="102"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>
       <rom-file app="0" dir="000" file="022"><i18n-string id="Menu:Titles"/></rom-file>
-      <rom-file app="0" dir="097" file="017"><i18n-string id="Menu:Various1"/></rom-file>
-      <rom-file app="0" dir="097" file="022"><i18n-string id="Menu:Various2"/></rom-file>
-      <rom-file app="0" dir="097" file="031"><i18n-string id="Menu:Various3"/></rom-file>
-      <rom-file app="0" dir="097" file="026"><i18n-string id="Menu:WeatherTypes"/></rom-file>
+      <rom-file app="0" dir="165" file="053"><i18n-string id="Menu:Various1"/></rom-file>
+      <rom-file app="0" dir="165" file="061"><i18n-string id="Menu:Various2"/></rom-file>
+      <rom-file app="0" dir="097" file="031"><i18n-string id="Menu:Various3"/></rom-file><!-- FIXME: Remove altogether? -->
+      <rom-file app="0" dir="165" file="065"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Common"/></name>
-      <rom-file app="0" dir="097" file="054"><i18n-string id="Menu:AreaNamesShort"/></rom-file>
-      <rom-file app="0" dir="118" file="104"><i18n-string id="Menu:JobNamesShort"/></rom-file>
+      <rom-file app="0" dir="165" file="085"><i18n-string id="Menu:AreaNamesShort"/></rom-file>
+      <rom-file app="0" dir="165" file="087"><i18n-string id="Menu:JobNamesShort"/></rom-file>
       <rom-file app="0" dir="118" file="105"><i18n-string id="Menu:RaceNames"/></rom-file>
     </category>
   </category>
