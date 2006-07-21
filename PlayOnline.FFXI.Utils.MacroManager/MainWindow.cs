@@ -282,6 +282,7 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
     }
 
     private void AddAutoTransMenuItems(MenuItem ParentMenu) {
+#if false
     Hashtable CategoryMenus = new Hashtable();
       if (AutoTranslator.Data != null) {
 	foreach (AutoTranslator.MessageGroup MG in AutoTranslator.Data) {
@@ -300,6 +301,9 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 	    GroupMenu.MenuItems.Add(new ATMenuItem(M.ResID, new EventHandler(this.AutoTransMenuItem_Click)));
 	}
       }
+#else
+      ParentMenu.MenuItems.Add("Temporarily Disabled").Enabled = false;
+#endif
     }
 
     private void AddFacesMenuItems(MenuItem FaceMenu) {
