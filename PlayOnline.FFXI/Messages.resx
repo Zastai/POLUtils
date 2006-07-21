@@ -120,6 +120,51 @@
   <data name="BadResID" xml:space="preserve">
     <value>Unknown String Resource</value>
   </data>
+  <data name="E:Race.All" xml:space="preserve">
+    <value>All Races</value>
+  </data>
+  <data name="E:Race.Elvaan" xml:space="preserve">
+    <value>Elvaan</value>
+  </data>
+  <data name="E:Race.ElvaanFemale" xml:space="preserve">
+    <value>Elvaan ♀</value>
+  </data>
+  <data name="E:Race.ElvaanMale" xml:space="preserve">
+    <value>Elvaan ♂</value>
+  </data>
+  <data name="E:Race.Female" xml:space="preserve">
+    <value>♀ Only</value>
+  </data>
+  <data name="E:Race.Galka" xml:space="preserve">
+    <value>Galka</value>
+  </data>
+  <data name="E:Race.Hume" xml:space="preserve">
+    <value>Hume</value>
+  </data>
+  <data name="E:Race.HumeFemale" xml:space="preserve">
+    <value>Hume ♀</value>
+  </data>
+  <data name="E:Race.HumeMale" xml:space="preserve">
+    <value>Hume ♂</value>
+  </data>
+  <data name="E:Race.Male" xml:space="preserve">
+    <value>♂ Only</value>
+  </data>
+  <data name="E:Race.Mithra" xml:space="preserve">
+    <value>Mithra</value>
+  </data>
+  <data name="E:Race.None" xml:space="preserve">
+    <value>No Races</value>
+  </data>
+  <data name="E:Race.Tarutaru" xml:space="preserve">
+    <value>Tarutaru</value>
+  </data>
+  <data name="E:Race.TarutaruFemale" xml:space="preserve">
+    <value>Tarutaru ♀</value>
+  </data>
+  <data name="E:Race.TarutaruMale" xml:space="preserve">
+    <value>Tarutaru ♂</value>
+  </data>
   <data name="E:PictureBoxSizeMode.CenterImage" xml:space="preserve">
     <value>Centered (Actual Size)</value>
   </data>
@@ -170,6 +215,9 @@
   </data>
   <data name="F::english-name" xml:space="preserve">
     <value>English Name</value>
+  </data>
+  <data name="F::extra" xml:space="preserve">
+    <value>Extra Text</value>
   </data>
   <data name="F::flag" xml:space="preserve">
     <value>Flag</value>
@@ -383,10 +431,6 @@
   </data>
   <data name="MacroBarLabel" xml:space="preserve">
     <value>Macro Bar #{0}</value>
-  </data>
-  <data name="PWD:StringResources" xml:space="preserve">
-    <value>Loading string resources (auto-translator, item names) from the various DAT files...
-This may take a while, depending on the speed of your machine.</value>
   </data>
   <data name="T:AbilityInfo" xml:space="preserve">
     <value>Ability Info</value>
