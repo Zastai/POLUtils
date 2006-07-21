@@ -23,21 +23,10 @@ namespace PlayOnline.Core {
 	this.EnumValueName_ = EnumValue.ToString();
     }
 
-    public string Name {
-      get {
-	return this.EnumValueName_;
-      }
-    }
+    public string Name  { get { return this.EnumValueName_; } }
+    public object Value { get { return this.EnumValue_;     } }
 
-    public object Value {
-      get {
-	return this.EnumValue_;
-      }
-    }
-
-    public override string ToString() {
-      return this.Name;
-    }
+    public override string ToString() { return this.Name; }
 
     public static NamedEnum[] GetAll(Type T) {
       if (!T.IsEnum)
