@@ -394,7 +394,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	FullText += ItemText;
       }
       if (FullText != String.Empty)
-	Clipboard.SetDataObject(FullText);
+	Clipboard.SetDataObject(FullText, true);
     }
 
     private void lstEntries_DoubleClick(object sender, EventArgs e) {
@@ -506,7 +506,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  CopyText += "\r\n";
 	CopyText += LVI.SubItems[MI.Index].Text;
       }
-      Clipboard.SetDataObject(CopyText);
+      Clipboard.SetDataObject(CopyText, true);
     }
 
 

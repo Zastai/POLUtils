@@ -227,7 +227,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    CopyText += '\n';
 	  CopyText += LVI.SubItems[MI.Index + 1].Text;
 	}
-	Clipboard.SetDataObject(CopyText);
+	Clipboard.SetDataObject(CopyText, true);
       }
     }
 
