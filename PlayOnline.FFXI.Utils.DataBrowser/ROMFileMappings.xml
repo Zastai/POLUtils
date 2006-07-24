@@ -283,8 +283,8 @@
 	<separator/>
 	<rom-file app="1" dir="018" file="015">Cheat Menu</rom-file>
 	<separator/>
-	<rom-file app="2" dir="002" file="049">Unknown #1</rom-file>
-	<rom-file app="2" dir="002" file="048">Unknown #2</rom-file>
+	<rom-file app="2" dir="002" file="048">Unknown #1</rom-file>
+	<rom-file app="2" dir="002" file="049">Unknown #2</rom-file>
 	<rom-file app="2" dir="002" file="056">Unknown #3</rom-file>
 	<rom-file app="2" dir="002" file="078">Unknown #4</rom-file>
 	<rom-file app="2" dir="002" file="079">Unknown #5</rom-file>
@@ -1300,7 +1300,7 @@
     <category><name><ffxi-string id="00010000"/></name>
       <rom-file app="0" dir="027" file="042"><ffxi-string id="000200E9"/></rom-file>
       <rom-file app="0" dir="027" file="040"><ffxi-string id="000200E7"/></rom-file>
-      <rom-file app="0" dir="028" file="041"><ffxi-string id="000200E8"/></rom-file>
+      <rom-file app="0" dir="027" file="041"><ffxi-string id="000200E8"/></rom-file>
       <rom-file app="0" dir="027" file="039"><ffxi-string id="000200E6"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010001"/></name>
