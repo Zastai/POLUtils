@@ -18,11 +18,12 @@ namespace PlayOnline.FFXI.FileTypes {
 	if (G.Read(BR)) {
 	  TL.Add(G);
 	  G = new Graphic();
-	  ProgressCallback(null, (double) (BR.BaseStream.Position + 1) / BR.BaseStream.Length);
+	  if (ProgressCallback != null)
+	    ProgressCallback(null, (double) (BR.BaseStream.Position + 1) / BR.BaseStream.Length);
 	}
 	else {
 	  BR.BaseStream.Seek(Pos + 1, SeekOrigin.Begin);
-	  if (BR.BaseStream.Position == BR.BaseStream.Length || (BR.BaseStream.Position % 1024) == 0)
+	  if (ProgressCallback != null && (BR.BaseStream.Position == BR.BaseStream.Length || (BR.BaseStream.Position % 1024) == 0))
 	    ProgressCallback(null, (double) (BR.BaseStream.Position + 1) / BR.BaseStream.Length);
 	}
       }
