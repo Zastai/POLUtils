@@ -186,6 +186,7 @@
     <Compile Include="ThingPropertyPages.Designer.cs">
       <DependentUpon>ThingPropertyPages.cs</DependentUpon>
     </Compile>
+    <Compile Include="VanadielDate.cs" />
     <EmbeddedResource Include="ConversionTables\00xx.dat" />
     <EmbeddedResource Include="ConversionTables\81xx.dat" />
     <EmbeddedResource Include="ConversionTables\82xx.dat" />
