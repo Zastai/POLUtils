@@ -120,6 +120,30 @@
   <data name="BadResID" xml:space="preserve">
     <value>Unknown String Resource</value>
   </data>
+  <data name="E:MoonPhase.NewMoon" xml:space="preserve">
+    <value>New Moon</value>
+  </data>
+  <data name="E:MoonPhase.WaxingCrescent" xml:space="preserve">
+    <value>Waxing Crescent</value>
+  </data>
+  <data name="E:MoonPhase.FirstQuarterMoon" xml:space="preserve">
+    <value>First Quarter Moon</value>
+  </data>
+  <data name="E:MoonPhase.WaxingGibbous" xml:space="preserve">
+    <value>Waxing Gibbous</value>
+  </data>
+  <data name="E:MoonPhase.FullMoon" xml:space="preserve">
+    <value>Full Moon</value>
+  </data>
+  <data name="E:MoonPhase.WaningGibbous" xml:space="preserve">
+    <value>Waning Gibbous</value>
+  </data>
+  <data name="E:MoonPhase.LastQuarterMoon" xml:space="preserve">
+    <value>Last Quarter Moon</value>
+  </data>
+  <data name="E:MoonPhase.WaningCrescent" xml:space="preserve">
+    <value>Waning Crescent</value>
+  </data>
   <data name="E:Race.All" xml:space="preserve">
     <value>All Races</value>
   </data>
