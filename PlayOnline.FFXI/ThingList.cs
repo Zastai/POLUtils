@@ -36,6 +36,7 @@ namespace PlayOnline.FFXI {
     public bool Save(string FileName) {
       try {
       XmlDocument D = new XmlDocument();
+      	D.AppendChild(D.CreateXmlDeclaration("1.0", "utf-8", null));
       	D.AppendChild(D.CreateElement("thing-list"));
 	foreach (IThing T in this)
 	  D.DocumentElement.AppendChild(T.Save(D));
