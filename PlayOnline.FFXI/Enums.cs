@@ -214,7 +214,17 @@ namespace PlayOnline.FFXI {
     StringInstrument = 0x29,
     WindInstrument   = 0x2a,
     Fishing          = 0x30,
-    Special          = 0xff // Set on pet food
+    // These are assumed values, no known data actually uses them
+    Woodworking      = 0x31,
+    Smithing         = 0x32,
+    Goldsmithing     = 0x33,
+    Clothcraft       = 0x34,
+    Leathercraft     = 0x35,
+    Bonecraft        = 0x36,
+    Alchemy          = 0x37,
+    Cooking          = 0x38,
+    // Set on pet food
+    Special          = 0xff
   }
 
   [Flags]
