@@ -378,6 +378,18 @@
   <data name="F::unknown-5" xml:space="preserve">
     <value>Unknown Value #5</value>
   </data>
+  <data name="F::unknown-6" xml:space="preserve">
+    <value>Unknown Value #6</value>
+  </data>
+  <data name="F::unknown-7" xml:space="preserve">
+    <value>Unknown Value #7</value>
+  </data>
+  <data name="F::unknown-8" xml:space="preserve">
+    <value>Unknown Value #8</value>
+  </data>
+  <data name="F::unknown-9" xml:space="preserve">
+    <value>Unknown Value #9</value>
+  </data>
   <data name="F::use-delay" xml:space="preserve">
     <value>Use Delay</value>
   </data>
