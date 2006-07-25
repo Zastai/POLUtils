@@ -101,12 +101,12 @@ namespace PlayOnline.FFXI {
     private ItemType?      Type_;
     private ushort?        ResourceID_;
     private ValidTarget?   ValidTargets_;
-    private string                  EnglishName_;
-    private string                  JapaneseName_;
-    private string                  Description_;
+    private string         EnglishName_;
+    private string         JapaneseName_;
+    private string         Description_;
     // English-Specific
-    private string                  LogNameSingular_;
-    private string                  LogNamePlural_;
+    private string         LogNameSingular_;
+    private string         LogNamePlural_;
     // Furniture-Specific
     private Element?       Element_;
     private short?         StorageSlots_;
@@ -134,7 +134,7 @@ namespace PlayOnline.FFXI {
     private PuppetSlot?    PuppetSlot_;
     private uint?          ElementCharge_;
     // Special
-    private Graphic                 Icon_;
+    private Graphic        Icon_;
     private ushort?        Unknown1_;
     private ushort?        Unknown2_;
     private ushort?        Unknown3_;
