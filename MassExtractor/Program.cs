@@ -103,7 +103,7 @@ namespace MassExtractor {
 	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM/165/77.DAT"),   Path.Combine(OutputFolder, "various-2.xml"));
 	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM/165/79.DAT"),   Path.Combine(OutputFolder, "weather-types.xml"));
 	// Dialog Tables (to detect new quests etc)
-	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM3/2/11.DAT"),    Path.Combine(OutputFolder, String.Format("en-dialog-table-{0:X4}.xml", 0x0001)));
+	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM3/2/11.DAT"),    Path.Combine(OutputFolder, String.Format("dialog-table-{0:X4}.xml", 0x0001)));
 	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM3/2/12.DAT"),    Path.Combine(OutputFolder, String.Format("dialog-table-{0:X4}.xml", 0x0002)));
 	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM3/2/13.DAT"),    Path.Combine(OutputFolder, String.Format("dialog-table-{0:X4}.xml", 0x0003)));
 	Program.ExtractFile(Path.Combine(FFXIFolder, "ROM3/2/14.DAT"),    Path.Combine(OutputFolder, String.Format("dialog-table-{0:X4}.xml", 0x0004)));
