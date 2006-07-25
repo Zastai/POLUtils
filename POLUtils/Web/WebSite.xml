@@ -2,6 +2,16 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.0 Released" author="Pebbles" date="July 25th, 2006">
+      <p>Today I'm releasing POLUtils 0.9.0, a collection of PlayOnline-related utilities.</p>
+      <p>This is mainly a bugfix release; there aren't many new features.  Support was added
+         for Mob/NPC lists; that's about it.  Some of the ROM mappings were fixed, and clipboard
+         access was finally fixed (so stuff you copy will stay there after POLUtils closes).</p>
+      <p>POLUtils is now available as two separate builds - one for x86 (32-bit) systems and
+         one for x64 systems (no Itanium build, sorry).  Unfortunately only Managed DirectX 2.0
+         supports x64, and its interface is completely different from that of MDX 1.0, so the
+         x64 build currently does not support audio playback.</p>
+    </news-item>
     <news-item title="POLUtils 0.8.3 Released" author="Pebbles" date="April 25th, 2006">
       <p>Today I'm releasing POLUtils 0.8.3, a collection of PlayOnline-related utilities.</p>
       <p>This version adds (almost) full ToAU support; most dialog tables are known by EngrishOnry
@@ -382,6 +392,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.0-Release-x86.exe"/>
+      <file name="POLUtils-0.9.0-Release-x64.exe">
+	Bugfixes and NPC/Mob list support.<br/>
+      </file>
       <file name="POLUtils-0.8.3-Release.exe">
 	Updated data browser &amp; EngrishOnry for ToAU.<br/>
       </file>
