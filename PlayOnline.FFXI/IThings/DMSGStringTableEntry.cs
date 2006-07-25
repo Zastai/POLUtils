@@ -37,6 +37,14 @@ namespace PlayOnline.FFXI {
 	  "text",
 #if IncludeUnknownFields
 	  "unknown-1",
+	  "unknown-2",
+	  "unknown-3",
+	  "unknown-4",
+	  "unknown-5",
+	  "unknown-6",
+	  "unknown-7",
+	  "unknown-8",
+	  "unknown-9",
 #endif
 	});
       }
@@ -51,7 +59,15 @@ namespace PlayOnline.FFXI {
     private uint?   Index_;
     private string  Text_;
 #if IncludeUnknownFields
-    private ushort? Unknown1_;
+    private uint?   Unknown1_;
+    private ushort? Unknown2_;
+    private uint?   Unknown3_;
+    private uint?   Unknown4_;
+    private uint?   Unknown5_;
+    private uint?   Unknown6_;
+    private uint?   Unknown7_;
+    private ushort? Unknown8_;
+    private ushort? Unknown9_;
 #endif
     
     #endregion
@@ -74,6 +90,14 @@ namespace PlayOnline.FFXI {
 	case "text":      return (this.Text_ != null);
 #if IncludeUnknownFields
 	case "unknown-1": return this.Unknown1_.HasValue;
+	case "unknown-2": return this.Unknown2_.HasValue;
+	case "unknown-3": return this.Unknown3_.HasValue;
+	case "unknown-4": return this.Unknown4_.HasValue;
+	case "unknown-5": return this.Unknown5_.HasValue;
+	case "unknown-6": return this.Unknown6_.HasValue;
+	case "unknown-7": return this.Unknown7_.HasValue;
+	case "unknown-8": return this.Unknown8_.HasValue;
+	case "unknown-9": return this.Unknown9_.HasValue;
 #endif
 	default:          return false;
       }
@@ -84,7 +108,15 @@ namespace PlayOnline.FFXI {
 	case "index":     return (!this.Index_.HasValue    ? String.Empty : String.Format("{0:00000}", this.Index_.Value));
 	case "text":      return this.Text_;
 #if IncludeUnknownFields
-	case "unknown-1": return (!this.Unknown1_.HasValue ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
+	case "unknown-1": return (!this.Unknown1_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown1_.Value));
+	case "unknown-2": return (!this.Unknown2_.HasValue ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown2_.Value));
+	case "unknown-3": return (!this.Unknown3_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown3_.Value));
+	case "unknown-4": return (!this.Unknown4_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown4_.Value));
+	case "unknown-5": return (!this.Unknown5_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown5_.Value));
+	case "unknown-6": return (!this.Unknown6_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown6_.Value));
+	case "unknown-7": return (!this.Unknown7_.HasValue ? String.Empty : String.Format("{0:X8} ({0})", this.Unknown7_.Value));
+	case "unknown-8": return (!this.Unknown8_.HasValue ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown8_.Value));
+	case "unknown-9": return (!this.Unknown9_.HasValue ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown9_.Value));
 #endif
 	default:          return null;
       }
@@ -96,6 +128,14 @@ namespace PlayOnline.FFXI {
 	case "text":      return this.Text_;
 #if IncludeUnknownFields
 	case "unknown-1": return (!this.Unknown1_.HasValue ? null : (object) this.Unknown1_.Value);
+	case "unknown-2": return (!this.Unknown2_.HasValue ? null : (object) this.Unknown2_.Value);
+	case "unknown-3": return (!this.Unknown3_.HasValue ? null : (object) this.Unknown3_.Value);
+	case "unknown-4": return (!this.Unknown4_.HasValue ? null : (object) this.Unknown4_.Value);
+	case "unknown-5": return (!this.Unknown5_.HasValue ? null : (object) this.Unknown5_.Value);
+	case "unknown-6": return (!this.Unknown6_.HasValue ? null : (object) this.Unknown6_.Value);
+	case "unknown-7": return (!this.Unknown7_.HasValue ? null : (object) this.Unknown7_.Value);
+	case "unknown-8": return (!this.Unknown8_.HasValue ? null : (object) this.Unknown8_.Value);
+	case "unknown-9": return (!this.Unknown9_.HasValue ? null : (object) this.Unknown9_.Value);
 #endif
 	default:          return null;
       }
@@ -106,7 +146,15 @@ namespace PlayOnline.FFXI {
 	case "index":     this.Index_    = (uint)   this.LoadUnsignedIntegerField(Node); break;
 	case "text":      this.Text_     =          this.LoadTextField           (Node); break;
 #if IncludeUnknownFields
-	case "unknown-1": this.Unknown1_ = (ushort) this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-1": this.Unknown1_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-2": this.Unknown2_ = (ushort) this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-3": this.Unknown3_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-4": this.Unknown4_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-5": this.Unknown5_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-6": this.Unknown6_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-7": this.Unknown7_ = (uint)   this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-8": this.Unknown8_ = (ushort) this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-9": this.Unknown9_ = (ushort) this.LoadUnsignedIntegerField(Node); break;
 #endif
       }
     }
@@ -122,42 +170,35 @@ namespace PlayOnline.FFXI {
     public bool Read(BinaryReader BR, Encoding E, uint? Index, uint EntryBytes, uint DataBytes) {
       this.Clear();
       this.Index_ = Index;
+      BR.BaseStream.Seek(0x38 + 0x24 * Index.Value, SeekOrigin.Begin);
     long IndexPos = -1;
       try {
       uint  Offset = BR.ReadUInt32();
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
-      short Size = BR.ReadInt16();
-	if (BR.ReadUInt16() != 0xCCCC)
-	  goto BadData;
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
-	if (BR.ReadUInt32() != 0xCCCCCCCC)
-	  goto BadData;
 #if IncludeUnknownFields
-	this.Unknown1_ = BR.ReadUInt16(); // seems to always be 1
+	this.Unknown1_ = BR.ReadUInt32();
 #else
-	if (BR.ReadUInt16() != 1)
-	  goto BadData;
+	BR.BaseStream.Seek(4, SeekOrigin.Current);
 #endif
-	if (BR.ReadUInt16() != 0xCCCC)
-	  goto BadData;
+      short Size = BR.ReadInt16();
+#if IncludeUnknownFields
+	this.Unknown2_ = BR.ReadUInt16();
+	this.Unknown3_ = BR.ReadUInt32();
+	this.Unknown4_ = BR.ReadUInt32();
+	this.Unknown5_ = BR.ReadUInt32();
+	this.Unknown6_ = BR.ReadUInt32();
+	this.Unknown7_ = BR.ReadUInt32();
+	this.Unknown8_ = BR.ReadUInt16();
+	this.Unknown9_ = BR.ReadUInt16();
+#else
+	BR.BaseStream.Seek(36, SeekOrigin.Current);
+#endif
 	if (Size < 0 || Offset + Size > DataBytes)
 	  return false;
 	IndexPos = BR.BaseStream.Position;
 	BR.BaseStream.Seek(0x38 + EntryBytes + Offset, SeekOrigin.Begin);
 	this.Text_ = E.GetString(BR.ReadBytes(Size)).TrimEnd('\0');
-	BR.BaseStream.Seek(IndexPos, SeekOrigin.Begin);
 	return true;
       } catch { }
-    BadData:
-      BR.BaseStream.Seek(0x38 + 0x24 * (Index.Value + 1), SeekOrigin.Begin);
       return false;
     }
 
