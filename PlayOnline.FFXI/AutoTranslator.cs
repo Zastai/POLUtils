@@ -1,4 +1,4 @@
-// $Id$
+﻿// $Id$
 
 using System;
 using System.Collections;
@@ -71,12 +71,12 @@ namespace PlayOnline.FFXI {
 	if (Text != null && Text.Length > 2 && Text.Length <= 6 && Text[0] == '@') {
 	char ReferenceType = Text[1];
 	  try {
-	  uint EntryNumber = uint.Parse(Text.Substring(2), NumberStyles.AllowHexSpecifier);
+	  ushort EntryNumber = ushort.Parse(Text.Substring(2), NumberStyles.AllowHexSpecifier);
 	    switch (ReferenceType) {
-	      case 'A': Text = FFXIResourceManager.GetResourceString(0x00020000U + EntryNumber); break; // Area
-	      case 'C': Text = FFXIResourceManager.GetResourceString(0x00050000U + EntryNumber); break; // Spell
-	      case 'J': Text = FFXIResourceManager.GetResourceString(0x00030000U + EntryNumber); break; // Job
-	      case 'Y': Text = FFXIResourceManager.GetResourceString(0x00040000U + EntryNumber); break; // Ability
+	      case 'A': Text = FFXIResourceManager.GetAreaName   (EntryNumber); break;
+	      case 'C': Text = FFXIResourceManager.GetSpellName  (EntryNumber); break;
+	      case 'J': Text = FFXIResourceManager.GetJobName    (EntryNumber); break;
+	      case 'Y': Text = FFXIResourceManager.GetAbilityName(EntryNumber); break;
 	    }
 	  } catch { }
 	}
