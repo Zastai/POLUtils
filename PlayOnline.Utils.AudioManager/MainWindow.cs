@@ -344,8 +344,15 @@ namespace PlayOnline.Utils.AudioManager {
 	if (FI != null && FI.AudioFile != null) {
 	  this.dlgSaveWave.FileName = TN.Text;
 	  if (this.dlgSaveWave.ShowDialog() == DialogResult.OK) {
-	    using (WaveWriter WW = new WaveWriter(FI.AudioFile, this.dlgSaveWave.FileName))
-	      WW.ShowDialog(this);
+	    try {
+	    string SafeName = this.dlgSaveWave.FileName;
+	      foreach (char C in Path.GetInvalidPathChars())
+		SafeName = SafeName.Replace(C, '_');
+	      using (WaveWriter WW = new WaveWriter(FI.AudioFile, SafeName))
+		WW.ShowDialog(this);
+	    } catch (Exception E) {
+	      MessageBox.Show("Failed to decode audio file: " + E.Message, "Audio Decode Failed");
+	    }
 	  }
 	}
       }
