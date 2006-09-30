@@ -74,9 +74,13 @@ namespace PlayOnline.FFXI {
       foreach (string ItemDAT in FFXIResourceManager.ItemDATs) {
       BinaryReader BR = FFXIResourceManager.OpenDATFile(ItemDAT);
 	if (BR != null) {
-	byte[] FirstIDBytes = BR.ReadBytes(4);
-	  FFXIEncryption.Rotate(FirstIDBytes, 5);
-	uint FirstID = FirstIDBytes[0] + (uint) FirstIDBytes[1] * 256 + (uint) FirstIDBytes[2] * 256 * 256 + (uint) FirstIDBytes[3] * 256 * 256 * 256;
+	uint FirstID = 0xFFFFFFFF;
+	  try { // We used to get the ID of the very first (dummy) entry - but that was reset to 0 in the July 24th 2006 patch, so now we check the second entry
+	    BR.BaseStream.Position = 0xC00;
+	  byte[] FirstIDBytes = BR.ReadBytes(4);
+	    FFXIEncryption.Rotate(FirstIDBytes, 5);
+	    FirstID = FirstIDBytes[0] + (uint) FirstIDBytes[1] * 256 + (uint) FirstIDBytes[2] * 256 * 256 + (uint) FirstIDBytes[3] * 256 * 256 * 256 - 1;
+	  } catch { }
 	  if (FirstID <= ID && ID <= (FirstID + BR.BaseStream.Length / 0xC00)) {
 	  Item.Language L;
 	  Item.Type T;
@@ -133,7 +137,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetAutoTranslatorMessage(byte Category, byte Language, ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/76/23.DAT");
+    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/168/25.DAT"); // JP = ROM/168/24.DAT
       if (BR != null) {
 	while (BR.BaseStream.Position + 76 <= BR.BaseStream.Length) {
 	byte   GroupCat  = BR.ReadByte();
@@ -142,13 +146,13 @@ namespace PlayOnline.FFXI {
 	  BR.BaseStream.Position += 64;
 	uint   Messages  = BR.ReadUInt32();
 	uint   DataBytes = BR.ReadUInt32();
-	  if (GroupCat == Category && GroupLang == Language && GroupID == (ID & 0xff00)) { // We found the right group
+	  if (GroupID == (ID & 0xff00)) { // We found the right group (ignoring category & language for now)
 	    for (uint i = 0; i < Messages && BR.BaseStream.Position + 5 < BR.BaseStream.Length; ++i) {
 	    byte   MessageCat  = BR.ReadByte();
 	    byte   MessageLang = BR.ReadByte();
 	    ushort MessageID   = (ushort) (BR.ReadByte() * 256 + BR.ReadByte());
 	    byte   TextLength  = BR.ReadByte();
-	      if (MessageCat == Category && MessageLang == Language && MessageID == ID) { // We found the right message
+	      if (MessageID == ID) { // We found the right message (ignoring category & language for now)
 	      byte[] MessageBytes = BR.ReadBytes(TextLength);
 		BR.Close();
 	      string MessageText = FFXIResourceManager.E.GetString(MessageBytes).TrimEnd('\0');
@@ -156,7 +160,7 @@ namespace PlayOnline.FFXI {
 	      }
 	      else {
 		BR.BaseStream.Position += TextLength;
-		if (MessageCat == 0x04) { // There is an extra string to skip
+		if (MessageLang == 0x04) { // There is an extra string to skip for Japanese entries
 		  TextLength  = BR.ReadByte();
 		  BR.BaseStream.Position += TextLength;
 		}
@@ -176,7 +180,7 @@ namespace PlayOnline.FFXI {
     byte   Language = (byte) ((ResourceID >> 16) & 0xff);
     ushort ID       = (ushort) (ResourceID & 0xffff);
       switch (Category) {
-	case 0x00: // My own additions
+	case 0x00: // My own additions (scheduled for removal now that there are separate accessors for them)
 	  switch (Language) {
 	    case 1: return FFXIResourceManager.GetRegionName(ID);
 	    case 2: return FFXIResourceManager.GetAreaName(ID);
@@ -187,7 +191,10 @@ namespace PlayOnline.FFXI {
 	  break;
 	case 0x02: return FFXIResourceManager.GetAutoTranslatorMessage(Category, Language, ID);
 	case 0x04: return FFXIResourceManager.GetAutoTranslatorMessage(Category, Language, ID);
+	case 0x06: return FFXIResourceManager.GetItemName(Language, ID);
 	case 0x07: return FFXIResourceManager.GetItemName(Language, ID);
+	case 0x08: return FFXIResourceManager.GetItemName(Language, ID);
+	case 0x09: return FFXIResourceManager.GetItemName(Language, ID);
 	case 0x13: return FFXIResourceManager.GetKeyItemName(Language, ID);
       }
       return null;
