@@ -44,13 +44,6 @@ namespace ManagedDirectX {
 	  }
 	  catch { }
 	}
-	if (ManagedDirectSound.Assembly == null) {
-	  try { // 1.0
-	    ManagedDirectSound.Assembly = Assembly.Load("Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
-	    ManagedDirectSound.AssemblyVersion = 1;
-	  }
-	  catch { }
-	}
 	ManagedDirectSound.Initialized = true;
       }
     }
