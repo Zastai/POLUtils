@@ -121,7 +121,7 @@ namespace PlayOnline.FFXI {
 	// Common Fields
 	this.picIcon.Image = I.GetIcon();
 	this.ttToolTip.SetToolTip(this.picIcon, I.GetFieldText("icon"));
-	this.txtID.Text           = I.GetFieldText("id");
+	this.txtID.Text           = I.GetFieldText("id") + "/" + I.GetFieldText("resource-id");
 	this.txtType.Text         = I.GetFieldText("type");
 	this.txtEName.Text        = I.GetFieldText("english-name");
 	this.txtJName.Text        = I.GetFieldText("japanese-name");
