@@ -136,4 +136,22 @@ namespace PlayOnline.FFXI {
 
   }
 
+  public class MessageGroupCollection : ReadOnlyCollectionBase {
+
+    public void Add     (AutoTranslator.MessageGroup MG) {        this.InnerList.Add     (MG); }
+    public bool Contains(AutoTranslator.MessageGroup MG) { return this.InnerList.Contains(MG); }
+    public int  IndexOf (AutoTranslator.MessageGroup MG) { return this.InnerList.IndexOf (MG); }
+    public void Remove  (AutoTranslator.MessageGroup MG) {        this.InnerList.Remove  (MG); }
+
+  }
+
+  public class MessageCollection : ReadOnlyCollectionBase {
+
+    public void Add     (AutoTranslator.Message M) {        this.InnerList.Add     (M); }
+    public bool Contains(AutoTranslator.Message M) { return this.InnerList.Contains(M); }
+    public int  IndexOf (AutoTranslator.Message M) { return this.InnerList.IndexOf (M); }
+    public void Remove  (AutoTranslator.Message M) {        this.InnerList.Remove  (M); }
+
+  }
+
 }

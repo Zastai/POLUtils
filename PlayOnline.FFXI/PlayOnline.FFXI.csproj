@@ -126,9 +126,9 @@
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AutoTranslator.cs">
+    <None Include="AutoTranslator.cs">
       <SubType>Code</SubType>
-    </Compile>
+    </None>
     <Compile Include="Character.cs">
       <SubType>Code</SubType>
     </Compile>
