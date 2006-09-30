@@ -204,7 +204,7 @@ namespace PlayOnline.FFXI {
 	  DecodedString += FFXIEncoding.SpecialMarkerEnd;
 	  continue;
 	}
-	// FFXI Extension: Resource Text (Auto-Translator or Item)
+	// FFXI Extension: Resource Text (Auto-Translator/Item/Key Item)
 	if (bytes[pos] == 0xFD && pos + 5 < index + count && bytes[pos + 5] == 0xFD) {
 	uint ResourceID = 0;
 	  ResourceID <<= 8; ResourceID += bytes[pos + 1];
