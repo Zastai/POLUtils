@@ -7,5 +7,5 @@ French     Yes       In Progress  Kapibara from Phoenix
 German     Yes       Partial      Andy Müller (Missingno from Fairy)
 Spanish    Yes       In Progress  Kapibara from Phoenix
 
-If you want to contribute a translation not listed above, let me know at
-pebbles.pandemonium@telenet.be!
+If you want to contribute a translation not listed above, PM me on the
+POLUtils forums (http://polutils.forumer.com/).
