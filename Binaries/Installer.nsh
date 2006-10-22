@@ -130,6 +130,7 @@ Section $(NAME_SECTION_MAIN) SECTION_MAIN
   File           "${BUILDDIR}\${PLATFORM}\POLUtils.exe"
   File           "${BUILDDIR}\${PLATFORM}\Translators.txt"
   File           "${BUILDDIR}\${PLATFORM}\ItemListUpgrade.exe"
+  File           "${BUILDDIR}\${PLATFORM}\MassExtractor.exe"
 SectionEnd
 
 SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
@@ -212,6 +213,7 @@ Section "Uninstall"
   Delete "$INSTDIR\POLUtils.exe"
   Delete "$INSTDIR\Translators.txt"
   Delete "$INSTDIR\ItemListUpgrade.exe"
+  Delete "$INSTDIR\MassExtractor.exe"
   ;; Translations
   Delete "$INSTDIR\de\*.resources.dll"
   RMDir "$INSTDIR\de"
