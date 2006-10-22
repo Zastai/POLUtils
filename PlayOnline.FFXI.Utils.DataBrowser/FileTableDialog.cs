@@ -32,7 +32,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	}
       string VTableFile = Path.Combine(DataDir, String.Format("VTABLE{0}.DAT", Suffix));
       string FTableFile = Path.Combine(DataDir, String.Format("FTABLE{0}.DAT", Suffix));
-	if (i == 0) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
+	if (i == 1) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
 	  DataDir = Path.Combine(DataRoot, "Rom");
 	if (File.Exists(VTableFile) && File.Exists(FTableFile)) {
 	  try {
