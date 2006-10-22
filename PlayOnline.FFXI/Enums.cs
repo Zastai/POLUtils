@@ -5,14 +5,15 @@ using System;
 namespace PlayOnline.FFXI {
 
   public enum AbilityType : byte {
-    General     = 0x00,
-    Job         = 0x01,
-    Pet         = 0x02,
-    Weapon      = 0x03,
-    Trait       = 0x04,
-    BloodPact   = 0x06,
-    Corsair     = 0x08,
-    CorsairShot = 0x09,
+    General       = 0x00,
+    Job           = 0x01,
+    Pet           = 0x02,
+    Weapon        = 0x03,
+    Trait         = 0x04,
+    BloodPactRage = 0x06,
+    Corsair       = 0x08,
+    CorsairShot   = 0x09,
+    BloodPactWard = 0x0a,
   }
 
   public enum Element : byte {
