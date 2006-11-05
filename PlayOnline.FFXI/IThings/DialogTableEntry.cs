@@ -126,7 +126,7 @@ namespace PlayOnline.FFXI {
 	  else if (TextBytes[i] == 0x0a && i + 1 < TextBytes.Length) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Numeric Parameter {1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 1], FFXIEncoding.SpecialMarkerEnd);
+	    this.Text_ += String.Format("{0}Numeric Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
 	    LastPos = i + 2;
 	    ++i;
 	  }
@@ -139,49 +139,91 @@ namespace PlayOnline.FFXI {
 	  else if (TextBytes[i] == 0x0c && i + 1 < TextBytes.Length) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Multiple Choice (Parameter {1}){2}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 1], FFXIEncoding.SpecialMarkerEnd);
+	    this.Text_ += String.Format("{0}Multiple Choice (Parameter {2}){1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
 	    LastPos = i + 2;
 	    ++i;
 	  }
 	  else if (TextBytes[i] == 0x19 && i + 1 < TextBytes.Length) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Item Parameter {1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 1], FFXIEncoding.SpecialMarkerEnd);
+	    this.Text_ += String.Format("{0}Item Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
 	    LastPos = i + 2;
 	    ++i;
 	  }
 	  else if (TextBytes[i] == 0x1a && i + 1 < TextBytes.Length) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Marker: {1:X2}{2:X2}{3}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 0], TextBytes[i + 1], FFXIEncoding.SpecialMarkerEnd);
+	    this.Text_ += String.Format("{0}Key Item Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
+	    LastPos = i + 2;
+	    ++i;
+	  }
+	  else if (TextBytes[i] == 0x1c && i + 1 < TextBytes.Length) { // Chocobo Name
+	    if (LastPos < i)
+	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
+	    this.Text_ += String.Format("{0}Player/Chocobo Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
 	    LastPos = i + 2;
 	    ++i;
 	  }
 	  else if (TextBytes[i] == 0x1e && i + 1 < TextBytes.Length) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Set Color #{1}{2}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 1], FFXIEncoding.SpecialMarkerEnd);
+	    this.Text_ += String.Format("{0}Set Color #{2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
 	    LastPos = i + 2;
 	    ++i;
 	  }
-	  else if (TextBytes[i] == 0x7f && i + 2 < TextBytes.Length) { // Unknown Type of Text Substitution
+	  else if (TextBytes[i] == 0x7f && i + 1 < TextBytes.Length) { // Various stuff
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
-	    this.Text_ += String.Format("{0}Marker: {1:X2}{2:X2}{3:X2}{4}", FFXIEncoding.SpecialMarkerStart, TextBytes[i + 0], TextBytes[i + 1], TextBytes[i + 2], FFXIEncoding.SpecialMarkerEnd);
-	    LastPos = i + 3;
-	    i += 2;
+	    if (TextBytes[i + 1] == 0x31 && i + 2 < TextBytes.Length) { // Unknown, but seems to indicate user needs to hit RET
+	      if (TextBytes[i + 2] != 0)
+		this.Text_ += String.Format("{0}{2}-Second Delay + Prompt{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 2]);
+	      else
+		this.Text_ += String.Format("{0}Prompt{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else if (TextBytes[i + 1] == 0x85) // Multiple Choice: Player Gender
+	      this.Text_ += String.Format("{0}Multiple Choice (Player Gender){1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd);
+	    else if (TextBytes[i + 1] == 0x8D && i + 2 < TextBytes.Length) {
+	      this.Text_ += String.Format("{0}Weather Event Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 2]);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else if (TextBytes[i + 1] == 0x8E && i + 2 < TextBytes.Length) {
+	      this.Text_ += String.Format("{0}Weather Type Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 2]);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else if (TextBytes[i + 1] == 0x92 && i + 2 < TextBytes.Length) {
+	      this.Text_ += String.Format("{0}Singular/Plural Choice (Parameter {2}){1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 2]);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else if (TextBytes[i + 1] == 0xB1 && i + 2 < TextBytes.Length) { // Usually found before an item name or key item name
+	      this.Text_ += String.Format("{0}Title Parameter {2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 2]);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else if (i + 2 < TextBytes.Length) {
+	      this.Text_ += String.Format("{0}Unknown Parameter (Type: {2:X2}) {3}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1], TextBytes[i + 2]);
+	      ++LastPos;
+	      ++i;
+	    }
+	    else
+	      this.Text_ += String.Format("{0}Unknown Marker Type: {2:X2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i + 1]);
+	    LastPos = i + 2;
+	    ++i;
 	  }
-#if DEBUG
-	  else if (TextBytes[i] < 0x20) {
+	  else if (TextBytes[i] == 0x7f || TextBytes[i] < 0x20) {
 	    if (LastPos < i)
 	      this.Text_ += E.GetString(TextBytes, LastPos, i - LastPos);
 	    this.Text_ += String.Format("{0}Possible Special Code: {2:X2}{1}", FFXIEncoding.SpecialMarkerStart, FFXIEncoding.SpecialMarkerEnd, TextBytes[i]);
 	    LastPos = i + 1;
 	  }
-#endif
 	}
 	if (LastPos < TextBytes.Length)
 	  this.Text_ += E.GetString(TextBytes, LastPos, TextBytes.Length - LastPos);
+	this.Text_ = this.Text_.TrimEnd('\0');
         return true;
       } catch { return false; }
     }
