@@ -21,7 +21,7 @@ namespace POLUtils {
       this.Icon = Icons.POLViewer;
       {
       Version V = Assembly.GetExecutingAssembly().GetName().Version;
-	this.Text += String.Format(" {0}.{1}.{2}", V.Major, V.Minor, V.Build);
+	this.Text += String.Format(" {0}.{1}.{2} (r{3})", V.Major, V.Minor, V.Build, SVN.Revision);
       }
       this.cmbCultures.Items.AddRange(POLUtils.AvailableCultures.ToArray());
       this.cmbCultures.SelectedItem = CultureChoice.Current;
