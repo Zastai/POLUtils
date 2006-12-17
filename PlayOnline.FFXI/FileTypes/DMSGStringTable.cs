@@ -42,7 +42,7 @@ namespace PlayOnline.FFXI.FileTypes {
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (uint i = 0; i < EntryCount; ++i) {
-      FFXI.DMSGStringTableEntry DSTE = new FFXI.DMSGStringTableEntry();
+      Things.DMSGStringTableEntry DSTE = new Things.DMSGStringTableEntry();
 	if (!DSTE.Read(BR, E, i, EntryBytes, DataBytes)) {
 	  TL.Clear();
 	  break;

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using PlayOnline.Core;
 
-namespace PlayOnline.FFXI {
+namespace PlayOnline.FFXI.Things {
 
   public class StatusInfo : Thing {
 

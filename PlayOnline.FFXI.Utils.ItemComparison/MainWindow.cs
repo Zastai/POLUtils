@@ -12,6 +12,8 @@ using System.Windows.Forms.VisualStyles;
 using System.Xml;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.ItemComparison {
 

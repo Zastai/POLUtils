@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Xml;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
@@ -22,29 +23,34 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private class ROMMenuItem : MenuItem {
 
-      public ROMMenuItem(string Text, int App, int Dir, int File, EventHandler OnClick) : base(Text, OnClick) {
+      public ROMMenuItem(string Text, int FileID, EventHandler OnClick) : base(Text, OnClick) {
+	if (FFXI.GetFilePath(FileID, out this.App_, out this.Dir_, out this.File_))
+	  this.UpdatePath();
+	else
+	  this.Enabled = false;
+      }
+
+      public ROMMenuItem(string Text, byte App, byte Dir, byte File, EventHandler OnClick) : base(Text, OnClick) {
 	this.App_  = App;
 	this.Dir_  = Dir;
 	this.File_ = File;
-	this.Enabled = System.IO.File.Exists(this.ROMFilePath);
+	this.UpdatePath();
       }
 
-      public int ROMApp  { get { return this.App_;  } }
-      public int ROMDir  { get { return this.Dir_;  } }
-      public int ROMFile { get { return this.File_; } }
-
-      private int App_;
-      private int Dir_;
-      private int File_;
-
-      public string ROMFilePath {
-	get {
-	string ROMDir = "Rom";
-	  if (this.App_ > 0)
-	    ROMDir += String.Format("{0}", this.App_ + 1);
-	  return Path.Combine(Path.Combine(Path.Combine(POL.GetApplicationPath(AppID.FFXI), ROMDir), this.Dir_.ToString()), String.Format("{0}.DAT", this.File_));
-	}
+      private void UpdatePath() {
+	this.Path_ = FFXI.GetFilePath(this.App_, this.Dir_, this.File_);
+	this.Enabled = File.Exists(this.Path_);
       }
+
+      public byte   ROMApp  { get { return this.App_;  } }
+      public byte   ROMDir  { get { return this.Dir_;  } }
+      public byte   ROMFile { get { return this.File_; } }
+      public string ROMPath { get { return this.Path_; } }
+
+      private byte   App_;
+      private byte   Dir_;
+      private byte   File_;
+      private string Path_;
 
     }
 
@@ -71,12 +77,14 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	      else if (XN.Name == "separator")
 		this.MenuItems.Add("-");
 	      else if (XN.Name == "rom-file") {
-		try {
-		int ROMApp  = XmlConvert.ToInt32(XN.Attributes["app"].InnerText);
-		int ROMDir  = XmlConvert.ToInt32(XN.Attributes["dir"].InnerText);
-		int ROMFile = XmlConvert.ToInt32(XN.Attributes["file"].InnerText);
+		if (XN.Attributes["id"] != null)
+		  this.MenuItems.Add(new ROMMenuItem(this.BuildItemName(XN), XmlConvert.ToInt32(XN.Attributes["id"].InnerText), this.ROMMenuItemClick_));
+		else if (XN.Attributes["app"] != null && XN.Attributes["dir"] != null && XN.Attributes["file"] != null) {
+		byte ROMApp  = XmlConvert.ToByte(XN.Attributes["app"].InnerText);
+		byte ROMDir  = XmlConvert.ToByte(XN.Attributes["dir"].InnerText);
+		byte ROMFile = XmlConvert.ToByte(XN.Attributes["file"].InnerText);
 		  this.MenuItems.Add(new ROMMenuItem(this.BuildItemName(XN), ROMApp, ROMDir, ROMFile, this.ROMMenuItemClick_));
-		} catch { }
+		}
 	      }
 	    }
 	  }
@@ -211,11 +219,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	      if ((this.lstEntries.Items.Count % 256) == 255)
 		Application.DoEvents();
 	    }
-	    if (this.ListIcons_.Images.Count == 0) {
+	    if (this.ListIcons_.Images.Count == 0)
 	      this.lstEntries.SmallImageList = null;
-	    }
-	    else
-	      this.btnThingListSaveImages.Enabled = true;
+	    this.btnThingListSaveImages.Enabled = (this.ListIcons_.Images.Count != 0);
+	    this.chkShowIcons.Enabled = (this.ListIcons_.Images.Count != 0);
 	    Application.DoEvents();
 	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
 	    this.ResizeListColumns();
@@ -633,12 +640,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     ROMMenuItem RMI = sender as ROMMenuItem;
       if (RMI != null)
 	this.SelectEntry(RMI.ROMApp, RMI.ROMDir, RMI.ROMFile);
-    }
-
-    private void mnuOFileTable_Click(object sender, System.EventArgs e) {
-      using (FileTableDialog FTD = new FileTableDialog())
-	FTD.ShowDialog(this);
-      this.Activate();
     }
 
     #endregion

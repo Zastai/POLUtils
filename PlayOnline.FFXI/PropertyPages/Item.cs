@@ -12,7 +12,7 @@ namespace PlayOnline.FFXI.PropertyPages {
 
   public partial class Item : IThing {
 
-    public Item(FFXI.Item I) {
+    public Item(Things.Item I) {
       this.InitializeComponent();
       this.ieEditor.Item = I;
       this.Size = this.ieEditor.Size;

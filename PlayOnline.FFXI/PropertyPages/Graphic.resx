@@ -366,7 +366,4 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Graphic</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.PropertyPages.IThing, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
 </root>

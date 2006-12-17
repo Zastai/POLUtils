@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI {
 

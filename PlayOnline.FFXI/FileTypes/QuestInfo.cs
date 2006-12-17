@@ -47,7 +47,7 @@ namespace PlayOnline.FFXI.FileTypes {
 	  }
 	int EntryCount = BR.ReadInt32();
 	  for (int i = 0; i < EntryCount; ++i) {
-	  FFXI.QuestInfo QI = new FFXI.QuestInfo();
+	  Things.QuestInfo QI = new Things.QuestInfo();
 	    if (!QI.Read(BR, MenuName, Offset + 0x10)) {
 	      TL.Clear();
 	      return TL;

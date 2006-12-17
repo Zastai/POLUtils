@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI {
 
@@ -27,19 +28,19 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetAreaName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry("ROM/165/84.DAT", ID); // JP = ROM/165/63.DAT
+      return FFXIResourceManager.GetStringTableEntry(55465, ID); // JP = 55535
     }
 
     public static string GetJobName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry("ROM/165/86.DAT", ID); // JP = ROM/165/64.DAT
+      return FFXIResourceManager.GetStringTableEntry(55467, ID); // JP = 55536
     }
 
     public static string GetRegionName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry("ROM/165/78.DAT", ID); // JP = ROM/165/62.DAT
+      return FFXIResourceManager.GetStringTableEntry(55654, ID); // JP = 55534
     }
 
     public static string GetAbilityName(ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/119/55.DAT"); // JP = ROM/0/10.DAT
+    BinaryReader BR = FFXIResourceManager.OpenDATFile(85); // JP = 10
       if (BR != null) {
 	if ((ID + 1) * 0x400 <= BR.BaseStream.Length) {
 	  BR.BaseStream.Position = ID * 0x400;
@@ -54,7 +55,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetSpellName(ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/119/56.DAT");
+    BinaryReader BR = FFXIResourceManager.OpenDATFile(86);
       if (BR != null) {
 	if ((ID + 1) * 0x400 <= BR.BaseStream.Length) {
 	  BR.BaseStream.Position = ID * 0x400;
@@ -68,10 +69,11 @@ namespace PlayOnline.FFXI {
       return null;
     }
 
-    private static string[] ItemDATs = new string[] { "ROM/118/106.DAT", "ROM/118/107.DAT", "ROM/118/108.DAT", "ROM/118/109.DAT", "ROM/118/110.DAT" };
+    // JP: 4, 5, 6, 7, 8
+    private static ushort[] ItemDATs = new ushort[] { 73, 74, 75, 76, 77 };
 
     public static string GetItemName(byte Language, ushort ID) {
-      foreach (string ItemDAT in FFXIResourceManager.ItemDATs) {
+      foreach (ushort ItemDAT in FFXIResourceManager.ItemDATs) {
       BinaryReader BR = FFXIResourceManager.OpenDATFile(ItemDAT);
 	if (BR != null) {
 	uint FirstID = 0xFFFFFFFF;
@@ -105,7 +107,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetKeyItemName(byte Language, ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/118/115.DAT"); // JP = ROM/118/113.DAT
+    BinaryReader BR = FFXIResourceManager.OpenDATFile(82); // JP = 80
       if (BR != null) {
 	if (Encoding.ASCII.GetString(BR.ReadBytes(4)) == "menu" && BR.ReadUInt32() == 0x101) {
 	  BR.BaseStream.Position = 0x20;
@@ -137,7 +139,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetAutoTranslatorMessage(byte Category, byte Language, ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile("ROM/168/25.DAT"); // JP = ROM/168/24.DAT
+    BinaryReader BR = FFXIResourceManager.OpenDATFile(55665); // JP = 55545
       if (BR != null) {
 	while (BR.BaseStream.Position + 76 <= BR.BaseStream.Length) {
 	byte   GroupCat  = BR.ReadByte();
@@ -200,8 +202,8 @@ namespace PlayOnline.FFXI {
       return null;
     }
 
-    private static string GetStringTableEntry(string DATFileName, ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile(DATFileName);
+    private static string GetStringTableEntry(ushort FileNumber, ushort ID) {
+    BinaryReader BR = FFXIResourceManager.OpenDATFile(FileNumber);
       if (BR != null) {
 	// Assume the header's fine - just skip to the relevant bits
 	BR.BaseStream.Position += 20;
@@ -244,16 +246,12 @@ namespace PlayOnline.FFXI {
       return Text;
     }
 
-    private static BinaryReader OpenDATFile(string DATFileName) {
+    private static BinaryReader OpenDATFile(ushort FileNumber) {
       try {
-      string FFXIPath = POL.GetApplicationPath(AppID.FFXI);
-	if (FFXIPath != null && DATFileName != null) {
-	string FullDATFileName = Path.Combine(FFXIPath, DATFileName);
-	  if (File.Exists(FullDATFileName))
-	    return new BinaryReader(new FileStream(FullDATFileName, FileMode.Open, FileAccess.Read));
-	}
-      }
-      catch { }
+      string FullDATFileName = FFXI.GetFilePath(FileNumber);
+	if (File.Exists(FullDATFileName))
+	  return new BinaryReader(new FileStream(FullDATFileName, FileMode.Open, FileAccess.Read));
+      } catch { }
       return null;
     }
 

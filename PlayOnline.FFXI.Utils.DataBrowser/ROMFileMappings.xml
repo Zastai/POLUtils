@@ -4,10 +4,10 @@
   <category><name><i18n-string id="Menu:DialogTables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <category><name><ffxi-string id="00010000"/></name>
-	<rom-file app="1" dir="018" file="038"><ffxi-string id="000200E9"/></rom-file>
-	<rom-file app="1" dir="018" file="036"><ffxi-string id="000200E7"/></rom-file>
-	<rom-file app="1" dir="018" file="037"><ffxi-string id="000200E8"/></rom-file>
-	<rom-file app="1" dir="018" file="035"><ffxi-string id="000200E6"/></rom-file>
+	<rom-file id="6653"><ffxi-string id="000200E9"/></rom-file>
+	<rom-file id="6651"><ffxi-string id="000200E7"/></rom-file>
+	<rom-file id="6652"><ffxi-string id="000200E8"/></rom-file>
+	<rom-file id="6650"><ffxi-string id="000200E6"/></rom-file>
       </category>
       <category><name><ffxi-string id="00010001"/></name>
 	<rom-file app="1" dir="018" file="040"><ffxi-string id="000200EB"/></rom-file>
@@ -1282,18 +1282,18 @@
   </category>
   <category><name><i18n-string id="Menu:ItemData"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
-      <rom-file app="0" dir="118" file="109"><i18n-string id="Menu:Armor"/></rom-file>
-      <rom-file app="0" dir="118" file="106"><i18n-string id="Menu:Items1"/></rom-file>
-      <rom-file app="0" dir="118" file="107"><i18n-string id="Menu:Items2"/></rom-file>
-      <rom-file app="0" dir="118" file="110"><i18n-string id="Menu:PuppetItems"/></rom-file>
-      <rom-file app="0" dir="118" file="108"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="00076"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="00073"><i18n-string id="Menu:Items1"/></rom-file>
+      <rom-file id="00074"><i18n-string id="Menu:Items2"/></rom-file>
+      <rom-file id="00077"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="00075"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
-      <rom-file app="0" dir="000" file="007"><i18n-string id="Menu:Armor"/></rom-file>
-      <rom-file app="0" dir="000" file="004"><i18n-string id="Menu:Items1"/></rom-file>
-      <rom-file app="0" dir="000" file="005"><i18n-string id="Menu:Items2"/></rom-file>
-      <rom-file app="0" dir="000" file="008"><i18n-string id="Menu:PuppetItems"/></rom-file>
-      <rom-file app="0" dir="000" file="006"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="00004"><i18n-string id="Menu:Items1"/></rom-file>
+      <rom-file id="00005"><i18n-string id="Menu:Items2"/></rom-file>
+      <rom-file id="00008"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="00006"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
   </category>
   <category><name><i18n-string id="Menu:MobLists"/></name>

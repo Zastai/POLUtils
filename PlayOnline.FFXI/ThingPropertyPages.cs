@@ -13,8 +13,8 @@ namespace PlayOnline.FFXI {
     private int DeltaW;
     private int DeltaH;
 
-    public ThingPropertyPages(IThing T) {
-      InitializeComponent();
+    public ThingPropertyPages(Things.IThing T) {
+      this.InitializeComponent();
       // Use the dummy page to get size deltas, then discard it
       this.DeltaW = this.Width  - this.tabDummy.Width;
       this.DeltaH = this.Height - this.tabDummy.Height;

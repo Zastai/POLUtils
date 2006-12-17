@@ -6,7 +6,7 @@ using System.IO;
 
 using PlayOnline.Core;
 
-namespace PlayOnline.FFXI {
+namespace PlayOnline.FFXI.Things {
 
   public class AbilityInfo : Thing {
 

@@ -14,7 +14,7 @@ namespace PlayOnline.FFXI.PropertyPages {
 
   public partial class Thing : IThing {
 
-    public Thing(FFXI.IThing T) {
+    public Thing(Things.IThing T) {
       InitializeComponent();
       this.picIcon.Image = T.GetIcon();
       if (this.picIcon.Image == null)
@@ -24,7 +24,7 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.AddFieldEntries(T);
     }
 
-    private void AddFieldEntries(FFXI.IThing T) {
+    private void AddFieldEntries(Things.IThing T) {
     List<String> AllFields = T.GetAllFields();
       foreach (string FieldName in AllFields) {
 	if (T.HasField(FieldName)) {
@@ -41,7 +41,7 @@ namespace PlayOnline.FFXI.PropertyPages {
 	  ListViewItem LVI = this.lstFields.Items.Add(FieldName);
 	    LVI.Tag = V;
 	    LVI.SubItems.Add(T.GetFieldText(FieldName));
-	    if (V is FFXI.IThing)
+	    if (V is Things.IThing)
 	      LVI.Font = new Font(LVI.Font, FontStyle.Underline);
 	  }
 	}
@@ -52,7 +52,7 @@ namespace PlayOnline.FFXI.PropertyPages {
 
     private void lstFields_ItemActivate(object sender, EventArgs e) {
       if (this.lstFields.SelectedItems != null && this.lstFields.SelectedItems.Count > 0) {
-      FFXI.IThing T = this.lstFields.SelectedItems[0].Tag as FFXI.IThing;
+      Things.IThing T = this.lstFields.SelectedItems[0].Tag as Things.IThing;
 	if (T != null) {
 	  using (ThingPropertyPages TPP = new ThingPropertyPages(T))
 	    TPP.ShowDialog(this);

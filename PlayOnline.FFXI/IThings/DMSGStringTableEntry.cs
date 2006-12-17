@@ -11,7 +11,7 @@ using System.Text;
 
 using PlayOnline.Core;
 
-namespace PlayOnline.FFXI {
+namespace PlayOnline.FFXI.Things {
 
   public class DMSGStringTableEntry : Thing {
 

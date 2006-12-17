@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.FileTypes {
 

@@ -37,7 +37,7 @@ namespace PlayOnline.FFXI.FileTypes {
 	  TL.Clear();
 	  break;
 	}
-      FFXI.DialogTableEntry DTE = new FFXI.DialogTableEntry();
+      Things.DialogTableEntry DTE = new Things.DialogTableEntry();
 	if (!DTE.Read(BR, i, Entries[(int) i], Entries[(int) i + 1])) {
 	  TL.Clear();
 	  break;

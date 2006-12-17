@@ -87,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FFXI.cs" />
     <Compile Include="FileTypes\MobList.cs" />
     <Compile Include="FileTypes\DMSGStringTable.cs" />
     <Compile Include="IThings\AbilityInfo.cs" />
@@ -270,13 +271,13 @@
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PropertyPages\IThing.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>IThing.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PropertyPages\Item.resx">
       <DependentUpon>Item.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPages\IThing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IThing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropertyPages\Thing.resx">
       <DependentUpon>Thing.cs</DependentUpon>

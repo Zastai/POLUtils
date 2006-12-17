@@ -20,7 +20,7 @@ namespace PlayOnline.FFXI.FileTypes {
       try {
       int ZoneID = -1;
 	for (int i = 0; i < EntryCount; ++i) {
-	FFXI.MobListEntry MLE = new FFXI.MobListEntry();
+	Things.MobListEntry MLE = new Things.MobListEntry();
 	  if (!MLE.Read(BR)) {
 	    TL.Clear();
 	    break;

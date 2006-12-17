@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace PlayOnline.FFXI {
+namespace PlayOnline.FFXI.Things {
 
   public interface IThing {
 

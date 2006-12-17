@@ -18,7 +18,7 @@ namespace PlayOnline.FFXI.FileTypes {
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (int i = 0; i < EntryCount; ++i) {
-      FFXI.SpellInfo SI = new FFXI.SpellInfo();
+      Things.SpellInfo SI = new Things.SpellInfo();
 	if (!SI.Read(BR)) {
 	  TL.Clear();
 	  break;

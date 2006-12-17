@@ -131,18 +131,15 @@
   <data name="&gt;&gt;ieEditor.Name" xml:space="preserve">
     <value>ieEditor</value>
   </data>
-  <data name="&gt;&gt;ieEditor.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
   <data name="&gt;&gt;ieEditor.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ieEditor.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -151,8 +148,5 @@
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Item</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.PropertyPages.IThing, PlayOnline.FFXI, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
 </root>

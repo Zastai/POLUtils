@@ -18,7 +18,7 @@ namespace PlayOnline.FFXI.FileTypes {
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (int i = 0; i < EntryCount; ++i) {
-      FFXI.SimpleStringTableEntry SSTE = new FFXI.SimpleStringTableEntry();
+      Things.SimpleStringTableEntry SSTE = new Things.SimpleStringTableEntry();
 	if (!SSTE.Read(BR)) {
 	  TL.Clear();
 	  break;

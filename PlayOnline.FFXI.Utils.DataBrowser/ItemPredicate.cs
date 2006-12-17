@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 

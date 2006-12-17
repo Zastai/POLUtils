@@ -12,6 +12,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 

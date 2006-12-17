@@ -8,6 +8,7 @@ using System.Text;
 using System.Xml;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.ConfigEditor {
 

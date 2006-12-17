@@ -15,7 +15,7 @@ namespace PlayOnline.FFXI.PropertyPages {
 
   public partial class Graphic : IThing {
 
-    public Graphic(FFXI.Graphic G) {
+    public Graphic(Things.Graphic G) {
       InitializeComponent();
       this.dlgSaveImage.FileName = G.ToString() + ".png";
       this.picImage.Image = G.GetFieldValue("image") as Image;

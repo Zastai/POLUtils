@@ -18,7 +18,7 @@ namespace PlayOnline.FFXI.FileTypes {
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (int i = 0; i < EntryCount; ++i) {
-      FFXI.AbilityInfo AI = new FFXI.AbilityInfo();
+      Things.AbilityInfo AI = new Things.AbilityInfo();
 	if (!AI.Read(BR)) {
 	  TL.Clear();
 	  break;

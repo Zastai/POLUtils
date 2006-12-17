@@ -40,8 +40,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.mnuELCEAll = new System.Windows.Forms.MenuItem();
       this.mnuELCESelected = new System.Windows.Forms.MenuItem();
       this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
-      this.mnuWindows = new System.Windows.Forms.MenuItem();
-      this.mnuOFileTable = new System.Windows.Forms.MenuItem();
       this.pnlViewerArea = new System.Windows.Forms.Panel();
       this.tabViewers = new System.Windows.Forms.TabControl();
       this.tabViewerItems = new System.Windows.Forms.ThemedTabPage();
@@ -57,13 +55,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewerGeneral = new System.Windows.Forms.ThemedTabPage();
       this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlThingListActions = new System.Windows.Forms.Panel();
+      this.chkShowIcons = new System.Windows.Forms.CheckBox();
       this.btnThingListSaveImages = new System.Windows.Forms.Button();
       this.btnThingListExportXML = new System.Windows.Forms.Button();
       this.pnlNoViewers = new System.Windows.Forms.Panel();
+      this.btnReloadFile = new System.Windows.Forms.Button();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
-      this.btnReloadFile = new System.Windows.Forms.Button();
-      this.chkShowIcons = new System.Windows.Forms.CheckBox();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -245,24 +243,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.mnuELCESelected, "mnuELCESelected");
       this.mnuELCESelected.Click += new System.EventHandler(this.mnuELCESelected_Click);
       // 
-      // mnuMain
-      // 
-      this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuWindows});
-      // 
-      // mnuWindows
-      // 
-      this.mnuWindows.Index = 0;
-      this.mnuWindows.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuOFileTable});
-      resources.ApplyResources(this.mnuWindows, "mnuWindows");
-      // 
-      // mnuOFileTable
-      // 
-      this.mnuOFileTable.Index = 0;
-      resources.ApplyResources(this.mnuOFileTable, "mnuOFileTable");
-      this.mnuOFileTable.Click += new System.EventHandler(this.mnuOFileTable_Click);
-      // 
       // pnlViewerArea
       // 
       this.pnlViewerArea.Controls.Add(this.tabViewers);
@@ -384,6 +364,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.pnlThingListActions, "pnlThingListActions");
       this.pnlThingListActions.Name = "pnlThingListActions";
       // 
+      // chkShowIcons
+      // 
+      resources.ApplyResources(this.chkShowIcons, "chkShowIcons");
+      this.chkShowIcons.Name = "chkShowIcons";
+      this.chkShowIcons.UseVisualStyleBackColor = true;
+      this.chkShowIcons.CheckedChanged += new System.EventHandler(this.chkShowIcons_CheckedChanged);
+      // 
       // btnThingListSaveImages
       // 
       resources.ApplyResources(this.btnThingListSaveImages, "btnThingListSaveImages");
@@ -405,6 +392,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       resources.ApplyResources(this.pnlNoViewers, "pnlNoViewers");
       this.pnlNoViewers.Name = "pnlNoViewers";
       // 
+      // btnReloadFile
+      // 
+      resources.ApplyResources(this.btnReloadFile, "btnReloadFile");
+      this.btnReloadFile.Name = "btnReloadFile";
+      this.btnReloadFile.UseVisualStyleBackColor = true;
+      this.btnReloadFile.Click += new System.EventHandler(this.btnReloadFile_Click);
+      // 
       // lblNoViewers
       // 
       resources.ApplyResources(this.lblNoViewers, "lblNoViewers");
@@ -415,20 +409,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
-      // 
-      // btnReloadFile
-      // 
-      resources.ApplyResources(this.btnReloadFile, "btnReloadFile");
-      this.btnReloadFile.Name = "btnReloadFile";
-      this.btnReloadFile.UseVisualStyleBackColor = true;
-      this.btnReloadFile.Click += new System.EventHandler(this.btnReloadFile_Click);
-      // 
-      // chkShowIcons
-      // 
-      resources.ApplyResources(this.chkShowIcons, "chkShowIcons");
-      this.chkShowIcons.Name = "chkShowIcons";
-      this.chkShowIcons.UseVisualStyleBackColor = true;
-      this.chkShowIcons.CheckedChanged += new System.EventHandler(this.chkShowIcons_CheckedChanged);
       // 
       // MainWindow
       // 
@@ -472,7 +452,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.MenuItem mnuPCSaveAs;
     private System.Windows.Forms.ContextMenu mnuEntryListContext;
     private System.Windows.Forms.Panel pnlViewerArea;
-    private System.Windows.Forms.MenuItem mnuWindows;
     private System.Windows.Forms.TabControl tabViewers;
     private System.Windows.Forms.ListView lstEntries;
     private System.Windows.Forms.PictureBox picImageViewer;
@@ -484,7 +463,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.Button btnFindItems;
     private System.Windows.Forms.GroupBox grpMainItemActions;
     private System.Windows.Forms.ComboBox cmbItems;
-    private System.Windows.Forms.MenuItem mnuOFileTable;
     private PlayOnline.FFXI.ItemEditor ieItemViewer;
     private System.Windows.Forms.MenuItem mnuELCCopyRow;
     private System.Windows.Forms.MenuItem mnuELCCopyField;

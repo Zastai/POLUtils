@@ -13,7 +13,7 @@ using System.Xml;
 
 using PlayOnline.Core;
 
-namespace PlayOnline.FFXI {
+namespace PlayOnline.FFXI.Things {
 
   public abstract class Thing : IThing {
 

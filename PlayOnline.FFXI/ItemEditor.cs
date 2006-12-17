@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
+using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI {
 
