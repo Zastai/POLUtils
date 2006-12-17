@@ -120,6 +120,9 @@
   <data name="Creating" xml:space="preserve">
     <value>Creating {0}...</value>
   </data>
+  <data name="DumpFileTable" xml:space="preserve">
+    <value>Dumping the file table... </value>
+  </data>
   <data name="ElapsedTime" xml:space="preserve">
     <value>Elapsed time: {0:G}</value>
   </data>

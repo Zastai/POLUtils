@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text;
 
 using PlayOnline.Core;
 using PlayOnline.FFXI;
+using PlayOnline.FFXI.Things;
 
 namespace MassExtractor {
 
@@ -83,6 +85,46 @@ namespace MassExtractor {
 	Console.WriteLine(I18N.GetText("TargetFolder"), OutputFolder);
 	Console.WriteLine(String.Format(I18N.GetText("StartTime"), ExtractionStart));
 	Directory.SetCurrentDirectory(FFXIFolder);
+	Console.Write(I18N.GetText("DumpFileTable"));
+	{ // Dump File Table
+	StreamWriter FileTable = new StreamWriter(Path.Combine(OutputFolder, "file-table.csv"), false, Encoding.UTF8);
+	  FileTable.WriteLine("\"File ID\",\"Path\"");
+	  for (byte i = 1; i < 10; ++i) {
+	  string Suffix = "";
+	  string DataDir = FFXIFolder;
+	    if (i > 1) {
+	      Suffix = i.ToString();
+	      DataDir = Path.Combine(DataDir, "Rom" + Suffix);
+	    }
+	  string VTableFile = Path.Combine(DataDir, String.Format("VTABLE{0}.DAT", Suffix));
+	  string FTableFile = Path.Combine(DataDir, String.Format("FTABLE{0}.DAT", Suffix));
+	    if (i == 1) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
+	      DataDir = Path.Combine(DataDir, "Rom");
+	    if (System.IO.File.Exists(VTableFile) && System.IO.File.Exists(FTableFile)) {
+	      try {
+	      BinaryReader VBR = new BinaryReader(new FileStream(VTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
+	      BinaryReader FBR = new BinaryReader(new FileStream(FTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
+	      long FileCount = VBR.BaseStream.Length;
+		for (long j = 0; j < FileCount; ++j) {
+		  if (VBR.ReadByte() == i) {
+		    FBR.BaseStream.Seek(2 * j, SeekOrigin.Begin);
+		  ushort FileDir = FBR.ReadUInt16();
+		  byte Dir  = (byte) (FileDir / 0x80);
+		  byte File = (byte) (FileDir % 0x80);
+		    FileTable.WriteLine("{0},\"{1}\"", j, Path.Combine(DataDir, Path.Combine(Dir.ToString(), Path.ChangeExtension(File.ToString(), ".dat"))));
+		  }
+		}
+		FBR.Close();
+		VBR.Close();
+	      }
+	      catch { }
+	    }
+	  }
+	  FileTable.Close();
+	  Console.ForegroundColor = ConsoleColor.Green;
+	  Console.WriteLine(I18N.GetText("OK"));
+	  Console.ForegroundColor = ConsoleColor.White;
+	}
 	if (ScanAllFiles) {
 	  for (int i = 1; i < 10; ++i) {
 	  string ROMFolder = "Rom";
