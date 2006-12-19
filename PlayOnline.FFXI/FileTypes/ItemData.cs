@@ -13,12 +13,11 @@ namespace PlayOnline.FFXI.FileTypes {
     ThingList TL = new ThingList();
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
-      if ((BR.BaseStream.Length % 0xC00) != 0 || BR.BaseStream.Position != 0)
+      if ((BR.BaseStream.Length % 0xC00) != 0 || BR.BaseStream.Length < 0x1800 || BR.BaseStream.Position != 0)
 	return TL;
       // First deduce the type of item data is in the file.
-    Item.Language L;
     Item.Type T;
-      Item.DeduceLanguageAndType(BR, out L, out T);
+      Item.DeduceType(BR, out T);
       // Now read the items
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
@@ -26,7 +25,7 @@ namespace PlayOnline.FFXI.FileTypes {
     long CurrentItem = 0;
       while (BR.BaseStream.Position < BR.BaseStream.Length) {
       Item I = new Item();
-	if (!I.Read(BR, L, T)) {
+	if (!I.Read(BR, T)) {
 	  TL.Clear();
 	  break;
 	}

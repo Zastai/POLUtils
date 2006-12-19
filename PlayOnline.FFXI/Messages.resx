@@ -414,6 +414,9 @@
   <data name="FT:DMSGStringTable" xml:space="preserve">
     <value>String Table</value>
   </data>
+  <data name="FT:DMSGStringTable2" xml:space="preserve">
+    <value>String Table</value>
+  </data>
   <data name="FT:Images" xml:space="preserve">
     <value>Images</value>
   </data>
@@ -472,9 +475,12 @@
     <value>Ability Info</value>
   </data>
   <data name="T:DialogTableEntry" xml:space="preserve">
-    <value>DialogTableEntry</value>
+    <value>Dialog Table Entry</value>
   </data>
   <data name="T:DMSGStringTableEntry" xml:space="preserve">
+    <value>String Table Entry</value>
+  </data>
+  <data name="T:DMSGStringTableEntry2" xml:space="preserve">
     <value>String Table Entry</value>
   </data>
   <data name="T:Graphic" xml:space="preserve">

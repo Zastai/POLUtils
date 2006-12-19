@@ -50,11 +50,10 @@ namespace PlayOnline.FFXI {
 	case "description":       return this.txtDescription;
 	case "element":           return this.txtElement;
 	case "element-charge":    return this.txtElementCharge;
-	case "english-name":      return this.txtEName;
+	case "name":              return this.txtName;
 	case "flags":             return this.txtFlags;
 	case "icon":		  return this.picIcon;
 	case "id":                return this.txtID;
-	case "japanese-name":     return this.txtJName;
 	case "jobs":              return this.txtJobs;
 	case "jug-size":          return this.txtJugSize;
 	case "level":             return this.txtLevel;
@@ -63,7 +62,7 @@ namespace PlayOnline.FFXI {
 	case "max-charges":       return this.txtMaxCharges;
 	case "puppet-slot":       return this.txtPuppetSlot;
 	case "races":             return this.txtRaces;
-	case "resource-id":       return this.txtID;
+	case "resource-id":       return this.txtResourceID;
 	case "reuse-delay":       return this.txtReuseTimer;
 	case "shield-size":       return this.txtShieldSize;
 	case "skill":             return this.txtSkill;
@@ -73,12 +72,9 @@ namespace PlayOnline.FFXI {
 	case "type":              return this.txtType;
 	case "use-delay":         return this.txtEquipDelay;
 	case "valid-targets":     return this.txtValidTargets;
-	//case "unknown-1":       return this.txtUnknown1;
-	//case "unknown-2":       return this.txtUnknown2;
-	//case "unknown-3":       return this.txtUnknown3;
-	//case "unknown-4":       return this.txtUnknown4;
-	//case "unknown-5":       return this.txtUnknown5;
-	//case "unknown-6":       return this.txtUnknown5;
+	case "unknown-1":         return null;
+	case "unknown-2":         return null;
+	case "unknown-3":         return null;
       }
       return null;
     }
@@ -122,13 +118,13 @@ namespace PlayOnline.FFXI {
 	// Common Fields
 	this.picIcon.Image = I.GetIcon();
 	this.ttToolTip.SetToolTip(this.picIcon, I.GetFieldText("icon"));
-	this.txtID.Text           = I.GetFieldText("id") + "/" + I.GetFieldText("resource-id");
+	this.txtID.Text           = I.GetFieldText("id");
+	this.txtResourceID.Text   = I.GetFieldText("resource-id");
 	this.txtType.Text         = I.GetFieldText("type");
-	this.txtEName.Text        = I.GetFieldText("english-name");
-	this.txtJName.Text        = I.GetFieldText("japanese-name");
+	this.txtStackSize.Text    = I.GetFieldText("stack-size");
+	this.txtName.Text         = I.GetFieldText("name");
 	this.txtDescription.Text  = I.GetFieldText("description");
 	this.txtFlags.Text        = I.GetFieldText("flags");
-	this.txtStackSize.Text    = I.GetFieldText("stack-size");
 	this.txtValidTargets.Text = I.GetFieldText("valid-targets");
 	// English Fields
 	if (I.HasField("log-name-singular")) {
@@ -192,12 +188,13 @@ namespace PlayOnline.FFXI {
 	}
       }
       else {
-	this.picIcon.Image = null;
 	this.ttToolTip.SetToolTip(this.picIcon, null);
-	this.txtID.Text           = this.txtType.Text      = String.Empty;
-	this.txtEName.Text        = this.txtJName.Text     = String.Empty;
-	this.txtFlags.Text        = this.txtStackSize.Text = String.Empty;
+	this.picIcon.Image        = null;
+	this.txtID.Text           = this.txtResourceID.Text = String.Empty;
+	this.txtType.Text         = this.txtStackSize.Text  = String.Empty;
+	this.txtName.Text         = String.Empty;
 	this.txtDescription.Text  = String.Empty;
+	this.txtFlags.Text        = String.Empty;
 	this.txtValidTargets.Text = String.Empty;
       }
     }

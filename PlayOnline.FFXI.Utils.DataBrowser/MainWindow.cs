@@ -381,6 +381,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void cmbItems_SelectedIndexChanged(object sender, System.EventArgs e) {
       this.ieItemViewer.Item = this.cmbItems.SelectedItem as Item;
+      // Annoyingly we cannot set the selected item in the listview - hopefully a datagrid does allow it...
     }
 
     #endregion

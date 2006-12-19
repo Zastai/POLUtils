@@ -175,7 +175,7 @@
     <value>115, 19</value>
   </data>
   <data name="txtJobs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 20</value>
+    <value>301, 20</value>
   </data>
   <data name="txtJobs.TabIndex" type="System.Int32, mscorlib">
     <value>301</value>
@@ -363,6 +363,60 @@
   <data name="&gt;&gt;grpEquipmentInfo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="txtResourceID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtResourceID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 20</value>
+  </data>
+  <data name="txtResourceID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 20</value>
+  </data>
+  <data name="txtResourceID.TabIndex" type="System.Int32, mscorlib">
+    <value>101</value>
+  </data>
+  <data name="&gt;&gt;txtResourceID.Name" xml:space="preserve">
+    <value>txtResourceID</value>
+  </data>
+  <data name="&gt;&gt;txtResourceID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtResourceID.Parent" xml:space="preserve">
+    <value>grpCommonInfo</value>
+  </data>
+  <data name="&gt;&gt;txtResourceID.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblResourceID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblResourceID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblResourceID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 23</value>
+  </data>
+  <data name="lblResourceID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="lblResourceID.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblResourceID.Text" xml:space="preserve">
+    <value>Resource ID:</value>
+  </data>
+  <data name="&gt;&gt;lblResourceID.Name" xml:space="preserve">
+    <value>lblResourceID</value>
+  </data>
+  <data name="&gt;&gt;lblResourceID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblResourceID.Parent" xml:space="preserve">
+    <value>grpCommonInfo</value>
+  </data>
+  <data name="&gt;&gt;lblResourceID.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="txtValidTargets.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -385,70 +439,46 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtValidTargets.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
-  <data name="txtJName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="txtName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="txtJName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 68</value>
+  <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>120, 44</value>
   </data>
-  <data name="txtJName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 20</value>
+  <data name="txtName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 20</value>
   </data>
-  <data name="txtJName.TabIndex" type="System.Int32, mscorlib">
-    <value>103</value>
-  </data>
-  <data name="&gt;&gt;txtJName.Name" xml:space="preserve">
-    <value>txtJName</value>
-  </data>
-  <data name="&gt;&gt;txtJName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtJName.Parent" xml:space="preserve">
-    <value>grpCommonInfo</value>
-  </data>
-  <data name="&gt;&gt;txtJName.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtEName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="txtEName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 44</value>
-  </data>
-  <data name="txtEName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 20</value>
-  </data>
-  <data name="txtEName.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtName.TabIndex" type="System.Int32, mscorlib">
     <value>102</value>
   </data>
-  <data name="&gt;&gt;txtEName.Name" xml:space="preserve">
-    <value>txtEName</value>
+  <data name="&gt;&gt;txtName.Name" xml:space="preserve">
+    <value>txtName</value>
   </data>
-  <data name="&gt;&gt;txtEName.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtName.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtEName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtName.Parent" xml:space="preserve">
     <value>grpCommonInfo</value>
   </data>
-  <data name="&gt;&gt;txtEName.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="txtDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="txtDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 92</value>
+    <value>85, 92</value>
   </data>
   <data name="txtDescription.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="txtDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 112</value>
+    <value>331, 112</value>
   </data>
   <data name="txtDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>104</value>
+    <value>105</value>
   </data>
   <data name="&gt;&gt;txtDescription.Name" xml:space="preserve">
     <value>txtDescription</value>
@@ -460,19 +490,19 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtDescription.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="txtStackSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="txtStackSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>389, 208</value>
+    <value>363, 68</value>
   </data>
   <data name="txtStackSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 20</value>
+    <value>53, 20</value>
   </data>
   <data name="txtStackSize.TabIndex" type="System.Int32, mscorlib">
-    <value>106</value>
+    <value>104</value>
   </data>
   <data name="&gt;&gt;txtStackSize.Name" xml:space="preserve">
     <value>txtStackSize</value>
@@ -484,19 +514,19 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtStackSize.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="txtFlags.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="txtFlags.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 208</value>
+    <value>85, 208</value>
   </data>
   <data name="txtFlags.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 20</value>
+    <value>331, 20</value>
   </data>
   <data name="txtFlags.TabIndex" type="System.Int32, mscorlib">
-    <value>105</value>
+    <value>106</value>
   </data>
   <data name="&gt;&gt;txtFlags.Name" xml:space="preserve">
     <value>txtFlags</value>
@@ -508,19 +538,19 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtFlags.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="txtType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="txtType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 20</value>
+    <value>120, 68</value>
   </data>
   <data name="txtType.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 20</value>
   </data>
   <data name="txtType.TabIndex" type="System.Int32, mscorlib">
-    <value>101</value>
+    <value>103</value>
   </data>
   <data name="&gt;&gt;txtType.Name" xml:space="preserve">
     <value>txtType</value>
@@ -532,16 +562,16 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtType.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="txtID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 20</value>
+    <value>120, 19</value>
   </data>
   <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 20</value>
+    <value>105, 20</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -556,7 +586,7 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;txtID.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="picIcon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -583,7 +613,7 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;picIcon.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblValidTargets.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -613,7 +643,7 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;lblValidTargets.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,66 +673,36 @@
     <value>grpCommonInfo</value>
   </data>
   <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lblJName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblJName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblJName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 71</value>
-  </data>
-  <data name="lblJName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="lblJName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblJName.Text" xml:space="preserve">
-    <value>Japanese Name:</value>
-  </data>
-  <data name="&gt;&gt;lblJName.Name" xml:space="preserve">
-    <value>lblJName</value>
-  </data>
-  <data name="&gt;&gt;lblJName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblJName.Parent" xml:space="preserve">
-    <value>grpCommonInfo</value>
-  </data>
-  <data name="&gt;&gt;lblJName.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="lblEName.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 47</value>
+  <data name="lblName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 47</value>
   </data>
-  <data name="lblEName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
+  <data name="lblName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
   </data>
-  <data name="lblEName.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblName.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="lblEName.Text" xml:space="preserve">
-    <value>English Name:</value>
+  <data name="lblName.Text" xml:space="preserve">
+    <value>Name:</value>
   </data>
-  <data name="&gt;&gt;lblEName.Name" xml:space="preserve">
-    <value>lblEName</value>
+  <data name="&gt;&gt;lblName.Name" xml:space="preserve">
+    <value>lblName</value>
   </data>
-  <data name="&gt;&gt;lblEName.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblName.Parent" xml:space="preserve">
     <value>grpCommonInfo</value>
   </data>
-  <data name="&gt;&gt;lblEName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblName.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="lblStackSize.AutoSize" type="System.Boolean, mscorlib">
@@ -712,7 +712,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblStackSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>322, 212</value>
+    <value>296, 71</value>
   </data>
   <data name="lblStackSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>
@@ -772,7 +772,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 24</value>
+    <value>76, 71</value>
   </data>
   <data name="lblType.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 13</value>
@@ -1393,7 +1393,7 @@
     <value>355, 19</value>
   </data>
   <data name="txtReuseTimer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
+    <value>61, 20</value>
   </data>
   <data name="txtReuseTimer.TabIndex" type="System.Int32, mscorlib">
     <value>403</value>
@@ -1852,7 +1852,7 @@
     <value>97, 45</value>
   </data>
   <data name="txtElementCharge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 20</value>
+    <value>319, 20</value>
   </data>
   <data name="txtElementCharge.TabIndex" type="System.Int32, mscorlib">
     <value>901</value>

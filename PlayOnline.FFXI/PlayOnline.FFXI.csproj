@@ -88,9 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFXI.cs" />
+    <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\MobList.cs" />
     <Compile Include="FileTypes\DMSGStringTable.cs" />
     <Compile Include="IThings\AbilityInfo.cs" />
+    <Compile Include="IThings\DMSGStringTableEntry2.cs" />
     <Compile Include="IThings\MobListEntry.cs" />
     <Compile Include="IThings\DMSGStringTableEntry.cs" />
     <Compile Include="IThings\DialogTableEntry.cs" />

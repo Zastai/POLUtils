@@ -28,8 +28,7 @@ namespace PlayOnline.FFXI {
       this.lblLevel = new System.Windows.Forms.Label();
       this.grpCommonInfo = new System.Windows.Forms.GroupBox();
       this.txtValidTargets = new System.Windows.Forms.TextBox();
-      this.txtJName = new System.Windows.Forms.TextBox();
-      this.txtEName = new System.Windows.Forms.TextBox();
+      this.txtName = new System.Windows.Forms.TextBox();
       this.txtDescription = new System.Windows.Forms.TextBox();
       this.txtStackSize = new System.Windows.Forms.TextBox();
       this.txtFlags = new System.Windows.Forms.TextBox();
@@ -38,8 +37,7 @@ namespace PlayOnline.FFXI {
       this.picIcon = new System.Windows.Forms.PictureBox();
       this.lblValidTargets = new System.Windows.Forms.Label();
       this.lblDescription = new System.Windows.Forms.Label();
-      this.lblJName = new System.Windows.Forms.Label();
-      this.lblEName = new System.Windows.Forms.Label();
+      this.lblName = new System.Windows.Forms.Label();
       this.lblStackSize = new System.Windows.Forms.Label();
       this.lblFlags = new System.Windows.Forms.Label();
       this.lblType = new System.Windows.Forms.Label();
@@ -86,6 +84,8 @@ namespace PlayOnline.FFXI {
       this.txtElementCharge = new System.Windows.Forms.TextBox();
       this.lblPuppetSlot = new System.Windows.Forms.Label();
       this.lblElementCharge = new System.Windows.Forms.Label();
+      this.txtResourceID = new System.Windows.Forms.TextBox();
+      this.lblResourceID = new System.Windows.Forms.Label();
       this.grpEquipmentInfo.SuspendLayout();
       this.grpCommonInfo.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize) (this.picIcon)).BeginInit();
@@ -160,9 +160,10 @@ namespace PlayOnline.FFXI {
       // grpCommonInfo
       // 
       this.grpCommonInfo.BackColor = System.Drawing.Color.Transparent;
+      this.grpCommonInfo.Controls.Add(this.txtResourceID);
+      this.grpCommonInfo.Controls.Add(this.lblResourceID);
       this.grpCommonInfo.Controls.Add(this.txtValidTargets);
-      this.grpCommonInfo.Controls.Add(this.txtJName);
-      this.grpCommonInfo.Controls.Add(this.txtEName);
+      this.grpCommonInfo.Controls.Add(this.txtName);
       this.grpCommonInfo.Controls.Add(this.txtDescription);
       this.grpCommonInfo.Controls.Add(this.txtStackSize);
       this.grpCommonInfo.Controls.Add(this.txtFlags);
@@ -171,8 +172,7 @@ namespace PlayOnline.FFXI {
       this.grpCommonInfo.Controls.Add(this.picIcon);
       this.grpCommonInfo.Controls.Add(this.lblValidTargets);
       this.grpCommonInfo.Controls.Add(this.lblDescription);
-      this.grpCommonInfo.Controls.Add(this.lblJName);
-      this.grpCommonInfo.Controls.Add(this.lblEName);
+      this.grpCommonInfo.Controls.Add(this.lblName);
       this.grpCommonInfo.Controls.Add(this.lblStackSize);
       this.grpCommonInfo.Controls.Add(this.lblFlags);
       this.grpCommonInfo.Controls.Add(this.lblType);
@@ -187,17 +187,11 @@ namespace PlayOnline.FFXI {
       this.txtValidTargets.Name = "txtValidTargets";
       this.txtValidTargets.ReadOnly = true;
       // 
-      // txtJName
+      // txtName
       // 
-      resources.ApplyResources(this.txtJName, "txtJName");
-      this.txtJName.Name = "txtJName";
-      this.txtJName.ReadOnly = true;
-      // 
-      // txtEName
-      // 
-      resources.ApplyResources(this.txtEName, "txtEName");
-      this.txtEName.Name = "txtEName";
-      this.txtEName.ReadOnly = true;
+      resources.ApplyResources(this.txtName, "txtName");
+      this.txtName.Name = "txtName";
+      this.txtName.ReadOnly = true;
       // 
       // txtDescription
       // 
@@ -246,15 +240,10 @@ namespace PlayOnline.FFXI {
       resources.ApplyResources(this.lblDescription, "lblDescription");
       this.lblDescription.Name = "lblDescription";
       // 
-      // lblJName
+      // lblName
       // 
-      resources.ApplyResources(this.lblJName, "lblJName");
-      this.lblJName.Name = "lblJName";
-      // 
-      // lblEName
-      // 
-      resources.ApplyResources(this.lblEName, "lblEName");
-      this.lblEName.Name = "lblEName";
+      resources.ApplyResources(this.lblName, "lblName");
+      this.lblName.Name = "lblName";
       // 
       // lblStackSize
       // 
@@ -546,6 +535,17 @@ namespace PlayOnline.FFXI {
       resources.ApplyResources(this.lblElementCharge, "lblElementCharge");
       this.lblElementCharge.Name = "lblElementCharge";
       // 
+      // txtResourceID
+      // 
+      resources.ApplyResources(this.txtResourceID, "txtResourceID");
+      this.txtResourceID.Name = "txtResourceID";
+      this.txtResourceID.ReadOnly = true;
+      // 
+      // lblResourceID
+      // 
+      resources.ApplyResources(this.lblResourceID, "lblResourceID");
+      this.lblResourceID.Name = "lblResourceID";
+      // 
       // ItemEditor
       // 
       this.BackColor = System.Drawing.Color.Transparent;
@@ -595,10 +595,8 @@ namespace PlayOnline.FFXI {
     private System.Windows.Forms.TextBox txtLevel;
     private System.Windows.Forms.GroupBox grpCommonInfo;
     private System.Windows.Forms.Label lblDescription;
-    private System.Windows.Forms.Label lblJName;
-    private System.Windows.Forms.Label lblEName;
-    private System.Windows.Forms.TextBox txtJName;
-    private System.Windows.Forms.TextBox txtEName;
+    private System.Windows.Forms.Label lblName;
+    private System.Windows.Forms.TextBox txtName;
     private System.Windows.Forms.TextBox txtDescription;
     private System.Windows.Forms.Label lblStackSize;
     private System.Windows.Forms.Label lblFlags;
@@ -654,6 +652,8 @@ namespace PlayOnline.FFXI {
     private System.Windows.Forms.TextBox txtElementCharge;
     private System.Windows.Forms.Label lblPuppetSlot;
     private System.Windows.Forms.Label lblElementCharge;
+    private System.Windows.Forms.TextBox txtResourceID;
+    private System.Windows.Forms.Label lblResourceID;
 
   }
 

@@ -76,29 +76,16 @@ namespace PlayOnline.FFXI {
       foreach (ushort ItemDAT in FFXIResourceManager.ItemDATs) {
       BinaryReader BR = FFXIResourceManager.OpenDATFile(ItemDAT);
 	if (BR != null) {
-	uint FirstID = 0xFFFFFFFF;
-	  try { // We used to get the ID of the very first (dummy) entry - but that was reset to 0 in the July 24th 2006 patch, so now we check the second entry
-	    BR.BaseStream.Position = 0xC00;
-	  byte[] FirstIDBytes = BR.ReadBytes(4);
-	    FFXIEncryption.Rotate(FirstIDBytes, 5);
-	    FirstID = FirstIDBytes[0] + (uint) FirstIDBytes[1] * 256 + (uint) FirstIDBytes[2] * 256 * 256 + (uint) FirstIDBytes[3] * 256 * 256 * 256 - 1;
-	  } catch { }
-	  if (FirstID <= ID && ID <= (FirstID + BR.BaseStream.Length / 0xC00)) {
-	  Item.Language L;
-	  Item.Type T;
-	    BR.BaseStream.Position = 0;
-	    Item.DeduceLanguageAndType(BR, out L, out T);
-	    BR.BaseStream.Position = 0xC00 * (ID - FirstID);
-	    switch (T) {
-	      case Item.Type.Armor:      BR.BaseStream.Position += 48; break;
-	      case Item.Type.Object:     BR.BaseStream.Position += 36; break;
-	      case Item.Type.PuppetItem: BR.BaseStream.Position += 44; break;
-	      case Item.Type.Weapon:     BR.BaseStream.Position += 54; break;
+	Item.Type T;
+	  Item.DeduceType(BR, out T);
+	long Offset = (ID & 0xfff) * 0xc00;
+	  if (BR.BaseStream.Length <= Offset + 0xc00) {
+	  Item I = new Item();
+	    BR.BaseStream.Position = Offset;
+	    if (I.Read(BR, T) && (ushort) I.GetFieldValue("id") == ID) {
+	      BR.Close();
+	      return I.GetFieldText("name");
 	    }
-	  byte[] NameBytes = BR.ReadBytes(22);
-	    FFXIEncryption.Rotate(NameBytes, 5);
-	    BR.Close();
-	    return FFXIResourceManager.E.GetString(NameBytes).TrimEnd('\0');
 	  }
 	  BR.Close();
 	}
@@ -204,26 +191,29 @@ namespace PlayOnline.FFXI {
 
     private static string GetStringTableEntry(ushort FileNumber, ushort ID) {
     BinaryReader BR = FFXIResourceManager.OpenDATFile(FileNumber);
-      if (BR != null) {
-	// Assume the header's fine - just skip to the relevant bits
-	BR.BaseStream.Position += 20;
-      uint EntryCount = BR.ReadUInt32();
-	BR.BaseStream.Position += 4;
-	if (ID < EntryCount && BR.ReadUInt32() == BR.BaseStream.Length) {
+      try {
+	if (BR != null) {
+	  BR.BaseStream.Position = 0x18;
 	uint HeaderBytes = BR.ReadUInt32();
 	uint EntryBytes  = BR.ReadUInt32();
+	  BR.ReadUInt32();
 	uint DataBytes   = BR.ReadUInt32();
-	  if (HeaderBytes == 0x38 && EntryBytes == EntryCount * 36 && BR.BaseStream.Length == HeaderBytes + EntryBytes + DataBytes) {
-	    BR.BaseStream.Position = HeaderBytes + ID * 36;
-	  uint Offset = BR.ReadUInt32();
-	    BR.BaseStream.Position += 4;
-	  ushort Length = BR.ReadUInt16();
-	    BR.BaseStream.Position = HeaderBytes + EntryBytes + Offset;
-	  string Text = FFXIResourceManager.E.GetString(BR.ReadBytes(Length)).TrimEnd('\0');
-	    BR.Close();
-	    return Text;
+	  if (HeaderBytes == 0x40 && ID * 8 < EntryBytes && HeaderBytes + EntryBytes + DataBytes == BR.BaseStream.Length) {
+	    BR.BaseStream.Position = 0x40 + ID * 8;
+	  uint Offset = (BR.ReadUInt32() ^ 0xFFFFFFFF);
+	  uint Length = (BR.ReadUInt32() ^ 0xFFFFFFFF) - 40;
+	    if (Length >= 0 && 40 + Offset + Length <= DataBytes) {
+	      BR.BaseStream.Position = HeaderBytes + EntryBytes + 40 + Offset;
+	    byte[] TextBytes = BR.ReadBytes((int) Length);
+	      for (uint i = 0; i < TextBytes.Length; ++i)
+		TextBytes[i] ^= 0xff;
+	      return E.GetString(TextBytes).TrimEnd('\0');
+	    }
 	  }
 	}
+      } catch {
+	// ignore
+      } finally {
 	BR.Close();
       }
       return null;

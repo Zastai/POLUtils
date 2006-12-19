@@ -148,22 +148,22 @@ namespace PlayOnline.FFXI.Things {
     // 022-041 TXT Japanese Name
     // 042-0C1 TXT English Description
     // 0C2-141 TXT Japanese Description
-    // 200-201 U16 Icon Size
-    // 202-bff IMG Icon (+ padding)
+    // 280-281 U16 Icon Size
+    // 282-bff IMG Icon (+ padding)
     public bool Read(BinaryReader BR) {
       this.Clear();
       try {
-      byte[] Bytes     = BR.ReadBytes(0x200);
-      byte[] IconBytes = BR.ReadBytes(0xa00);
+      byte[] Bytes     = BR.ReadBytes(0x280);
+      byte[] IconBytes = BR.ReadBytes(0x980);
 	if (!FFXIEncryption.DecodeDataBlock(Bytes))
 	  return false;
-	if (IconBytes[0x9ff] != 0xff)
+	if (IconBytes[0x97f] != 0xff)
 	  return false;
 	{ // Verify that the icon info is valid
 	Graphic StatusIcon = new Graphic();
 	BinaryReader IconBR = new BinaryReader(new MemoryStream(IconBytes, false));
 	int IconSize = IconBR.ReadInt32();
-	  if (IconSize > 0 && IconSize <= 0x9fb) {
+	  if (IconSize > 0 && IconSize <= 0x97b) {
 	    if (!StatusIcon.Read(IconBR) || IconBR.BaseStream.Position != 4 + IconSize) {
 	      IconBR.Close();
 	      return false;
