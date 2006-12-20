@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-  <xsl:output method="xml" version="1.0" encoding="utf-8" omit-xml-declaration="no" media-type="text/xml" indent="yes" />
+  <xsl:output method="xml" version="1.0" encoding="utf-8" omit-xml-declaration="no" media-type="text/xml" indent="yes"/>
 
   <!-- Step 1: Try to figure out which format it is. -->
   <xsl:template match="/">
@@ -33,25 +33,49 @@
   <xsl:template mode="format-1" match="/ffxi-item-info">
     <thing-list>
       <xsl:for-each select="item">
-	<thing type="FFXI Item">
-	  <xsl:for-each select="field">
-	    <field>
-	      <xsl:apply-templates mode="format-1" select="." />
-	    </field>
-	  </xsl:for-each>
-	  <xsl:apply-templates mode="format-1" select="icon" />
-	  <!-- Calculate DPS -->
-	  <xsl:if test="./field[@name = 'Type'] = 'Weapon'">
-	    <field name="dps"><xsl:value-of select="round(6000 * number(./field[@name = 'Damage']) div number(./field[@name = 'Delay'])) div 100"/></field>
-	  </xsl:if>
+	<thing type="Item">
+	  <xsl:apply-templates mode="format-1" select="."/>
 	</thing>
       </xsl:for-each>
     </thing-list>
   </xsl:template>
 
+  <xsl:template mode="format-1" match="/ffxi-item-info/item">
+    <xsl:for-each select="field">
+      <xsl:choose>
+	<xsl:when test="@name = 'EnglishName'">
+	  <xsl:if test="/ffxi-item-info/data-language = 'English'">
+	    <field>
+	      <xsl:attribute name="name">name</xsl:attribute>
+	      <xsl:value-of select="."/>
+	    </field>
+	  </xsl:if>
+	</xsl:when>
+	<xsl:when test="@name = 'JapaneseName'">
+	  <xsl:if test="/ffxi-item-info/data-language = 'Japanese'">
+	    <field>
+	      <xsl:attribute name="name">name</xsl:attribute>
+	      <xsl:value-of select="."/>
+	    </field>
+	  </xsl:if>
+	</xsl:when>
+	<xsl:otherwise>
+	  <field>
+	    <xsl:apply-templates mode="format-1" select="."/>
+	  </field>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+    <!-- Calculate DPS -->
+    <xsl:if test="./field[@name = 'Damage'] and ./field[@name = 'Delay']">
+      <field name="dps"><xsl:value-of select="round(6000 * number(./field[@name = 'Damage']) div number(./field[@name = 'Delay']))"/></field>
+    </xsl:if>
+    <xsl:apply-templates mode="format-1" select="icon"/>
+  </xsl:template>
+
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field">
     <!-- Default field rule: map the field name and preserve the value -->
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:value-of select="."/>
   </xsl:template>
 
@@ -64,7 +88,7 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Flags']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:variable name="flag01">0<xsl:if test="contains(., 'Flag00')"><xsl:value-of select="1"/></xsl:if></xsl:variable>
     <xsl:variable name="flag02">0<xsl:if test="contains(., 'Flag01')"><xsl:value-of select="2"/></xsl:if></xsl:variable>
     <xsl:variable name="flag03">0<xsl:if test="contains(., 'Flag02')"><xsl:value-of select="4"/></xsl:if></xsl:variable>
@@ -87,8 +111,8 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Jobs']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
-    <xsl:variable name="flag01">0</xsl:variable> <!-- Unused -->
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
+    <xsl:variable name="flag01">0</xsl:variable><!-- Unused -->
     <xsl:variable name="flag02">0<xsl:if test=". = 'All' or contains(., 'WAR')"><xsl:value-of select="2"/></xsl:if></xsl:variable>
     <xsl:variable name="flag03">0<xsl:if test=". = 'All' or contains(., 'MNK')"><xsl:value-of select="4"/></xsl:if></xsl:variable>
     <xsl:variable name="flag04">0<xsl:if test=". = 'All' or contains(., 'WHM')"><xsl:value-of select="8"/></xsl:if></xsl:variable>
@@ -110,7 +134,7 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Slots']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:variable name="flag01">0<xsl:if test=". = 'All' or contains(., 'Main')"><xsl:value-of select="1"/></xsl:if></xsl:variable>
     <xsl:variable name="flag02">0<xsl:if test=". = 'All' or contains(., 'Sub')"><xsl:value-of select="2"/></xsl:if></xsl:variable>
     <xsl:variable name="flag03">0<xsl:if test=". = 'All' or contains(., 'Range')"><xsl:value-of select="4"/></xsl:if></xsl:variable>
@@ -133,7 +157,7 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Races']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:variable name="flag01">0</xsl:variable>
     <xsl:variable name="flag02">0<xsl:if test=". = 'All' or contains(., 'HumeMale') or (contains(., 'Hume') and not (contains(., 'HumeFemale'))) or (contains(., 'Male') and not (contains(., 'ElvaanMale') or contains(., 'TarutaruMale')))"><xsl:value-of select="2"/></xsl:if></xsl:variable>
     <xsl:variable name="flag03">0<xsl:if test=". = 'All' or contains(., 'HumeFemale') or (contains(., 'Hume') and not (contains(., 'HumeMale'))) or (contains(., 'Female') and not (contains(., 'ElvaanFemale') or contains(., 'TarutaruFemale')))"><xsl:value-of select="4"/></xsl:if></xsl:variable>
@@ -156,7 +180,7 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Skill']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:choose>
       <xsl:when test=". = 'None'">00</xsl:when>
       <xsl:when test=". = 'HandToHand'">01</xsl:when>
@@ -191,7 +215,7 @@
   </xsl:template>
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/field[@name = 'Type']">
-    <xsl:apply-templates mode="format-1-map-field-name"/>
+    <xsl:apply-templates mode="format-1-map-field-name" select="."/>
     <xsl:choose>
       <xsl:when test=". = 'Nothing'">0000</xsl:when>
       <xsl:when test=". = 'Item'">0001</xsl:when>
@@ -215,12 +239,12 @@
 
   <xsl:template mode="format-1" match="/ffxi-item-info/item/icon">
     <field name="icon">
-      <thing type="FFXI Graphic">
+      <thing type="Graphic">
 	<xsl:if test="@category"><field name="category"><xsl:value-of select="@category"/></field></xsl:if>
 	<xsl:if test="@id"><field name="id"><xsl:value-of select="@id"/></field></xsl:if>
 	<xsl:if test="@format"><field name="format"><xsl:value-of select="@format"/></field></xsl:if>
 	<field name="image" format="image/png" encoding="base64">
-	  <xsl:value-of select="." />
+	  <xsl:value-of select="."/>
 	</field>
       </thing>
     </field>
@@ -228,7 +252,7 @@
 
   <xsl:template mode="format-1" match="*">
     <xsl:message>Unhandled element: <xsl:value-of select="name(.)"/></xsl:message>
-    <xsl:call-template name="error-exit" />
+    <xsl:call-template name="error-exit"/>
   </xsl:template>
   
   <!--==========-->
@@ -239,36 +263,66 @@
     <thing-list>
       <xsl:for-each select="Item">
 	<thing type="Item">
-	  <xsl:for-each select="./child::*">
-	    <field>
-	      <xsl:attribute name="name">
-		<xsl:call-template name="map-field-name">
-		  <xsl:with-param name="field-name" select="name()"/>
-		</xsl:call-template>
-	      </xsl:attribute>
-	      <xsl:choose><!-- No fields need reformatting except for Icon -->
-		<xsl:when test="name() = 'Icon'">
-		  <thing type="Graphic">
-		    <xsl:if test="@Category"><field name="category"><xsl:value-of select="@Category"/></field></xsl:if>
-		    <xsl:if test="@ID"><field name="id"><xsl:value-of select="@ID"/></field></xsl:if>
-		    <xsl:if test="@Format"><field name="format"><xsl:value-of select="@Format"/></field></xsl:if>
-		    <field name="image" format="image/png" encoding="base64">
-		      <xsl:value-of select="." />
-		    </field>
-		  </thing>
-		</xsl:when>
-		<xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-	      </xsl:choose>
-	    </field>
-	  </xsl:for-each>
+	  <xsl:apply-templates mode="format-2" select="."/>
 	</thing>
       </xsl:for-each>
     </thing-list>
   </xsl:template>
 
+  <xsl:template mode="format-2" match="/ItemList/Item">
+    <xsl:for-each select="./child::*">
+      <xsl:choose>
+	<xsl:when test="name() = 'EnglishName'">
+	  <xsl:if test="/ItemList[@Language = 'English']">
+	    <field>
+	      <xsl:attribute name="name">name</xsl:attribute>
+	      <xsl:value-of select="."/>
+	    </field>
+	  </xsl:if>
+	</xsl:when>
+	<xsl:when test="name() = 'JapaneseName'">
+	  <xsl:if test="/ItemList[@Language = 'Japanese']">
+	    <field>
+	      <xsl:attribute name="name">name</xsl:attribute>
+	      <xsl:value-of select="."/>
+	    </field>
+	  </xsl:if>
+	</xsl:when>
+	<xsl:when test="name() = 'Icon'">
+	  <field>
+	    <xsl:attribute name="name">
+	      <xsl:call-template name="map-field-name">
+		<xsl:with-param name="field-name" select="name()"/>
+	      </xsl:call-template>
+	    </xsl:attribute>
+	    <thing type="Graphic">
+	      <xsl:if test="@Category"><field name="category"><xsl:value-of select="@Category"/></field></xsl:if>
+	      <xsl:if test="@ID"><field name="id"><xsl:value-of select="@ID"/></field></xsl:if>
+	      <xsl:if test="@Format"><field name="format"><xsl:value-of select="@Format"/></field></xsl:if>
+	      <field name="image" format="image/png" encoding="base64">
+		<xsl:value-of select="."/>
+	      </field>
+	    </thing>
+	  </field>
+	</xsl:when>
+	<xsl:otherwise>
+	  <field>
+	    <xsl:attribute name="name">
+	      <xsl:call-template name="map-field-name">
+		<xsl:with-param name="field-name" select="name()"/>
+	      </xsl:call-template>
+	    </xsl:attribute>
+	    <xsl:if test="name() = 'Jobs'">0000</xsl:if>
+	    <xsl:value-of select="."/>
+	  </field>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
   <xsl:template mode="format-2" match="*">
     <xsl:message>Unhandled element: <xsl:value-of select="name(.)"/></xsl:message>
-    <xsl:call-template name="error-exit" />
+    <xsl:call-template name="error-exit"/>
   </xsl:template>
   
   <!--==========-->
@@ -276,8 +330,49 @@
   <!--==========-->
 
   <xsl:template mode="format-3" match="/thing-list">
-    <!-- This is the current format, so just copy verbatim -->
-    <xsl:copy-of select="." />
+    <thing-list>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="format-3" select="./thing"/>
+    </thing-list>
+  </xsl:template>
+
+  <xsl:template mode="format-3" match="/thing-list/thing">
+    <thing>
+      <xsl:copy-of select="@*"/>
+      <xsl:for-each select="field">
+	<xsl:choose>
+	  <!-- english-name and japanese-name were obsoleted by the 20061218 patch; either discard or rename to 'name' -->
+	  <xsl:when test="@name = 'english-name'">
+	    <xsl:if test="../field[@name = 'log-name-singular']">
+	      <field>
+		<xsl:copy-of select="@*"/>
+		<xsl:attribute name="name">name</xsl:attribute>
+		<xsl:copy-of select="*"/>
+		<xsl:copy-of select="text()"/>
+	      </field>
+	    </xsl:if>
+	  </xsl:when>
+	  <xsl:when test="@name = 'japanese-name'">
+	    <xsl:if test="not(../field[@name = 'log-name-singular'])">
+	      <field>
+		<xsl:copy-of select="@*"/>
+		<xsl:attribute name="name">name</xsl:attribute>
+		<xsl:copy-of select="*"/>
+		<xsl:copy-of select="text()"/>
+	      </field>
+	    </xsl:if>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:copy-of select="."/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:for-each>
+    </thing>
+  </xsl:template>
+
+  <!-- Default: field is unchanged, so copy verbatim -->
+  <xsl:template mode="format-3" match="/thing-list/field">
+    <xsl:copy-of select="."/>
   </xsl:template>
 
   <!--=============-->
@@ -285,10 +380,10 @@
   <!--=============-->
 
   <xsl:template name="format-number-as-hex">
-    <xsl:param name="number" select="0" />
+    <xsl:param name="number" select="0"/>
 
-    <xsl:variable name="this-nybble" select="$number mod 16" />
-    <xsl:variable name="rest" select="floor($number div 16)" />
+    <xsl:variable name="this-nybble" select="$number mod 16"/>
+    <xsl:variable name="rest" select="floor($number div 16)"/>
 
     <xsl:if test="$rest != 0">
       <xsl:call-template name="format-number-as-hex">
@@ -309,35 +404,35 @@
   <xsl:template name="map-field-name">
     <xsl:param name="field-name"/>
     <xsl:choose>
-      <xsl:when test="$field-name = 'ID'">id</xsl:when>
-      <xsl:when test="$field-name = 'Flags'">flags</xsl:when>
-      <xsl:when test="$field-name = 'StackSize'">stack-size</xsl:when>
-      <xsl:when test="$field-name = 'Type'">type</xsl:when>
-      <xsl:when test="$field-name = 'ResourceID'">resource-id</xsl:when>
-      <xsl:when test="$field-name = 'MysteryField'">resource-id</xsl:when>
-      <xsl:when test="$field-name = 'ValidTargets'">valid-targets</xsl:when>
-      <xsl:when test="$field-name = 'EnglishName'">english-name</xsl:when>
-      <xsl:when test="$field-name = 'JapaneseName'">japanese-name</xsl:when>
-      <xsl:when test="$field-name = 'LogNameSingular'">log-name-singular</xsl:when>
-      <xsl:when test="$field-name = 'LogNamePlural'">log-name-plural</xsl:when>
+      <xsl:when test="$field-name = 'CastTime'">casting-time</xsl:when>
+      <xsl:when test="$field-name = 'DPS'">dps</xsl:when>
+      <xsl:when test="$field-name = 'Damage'">damage</xsl:when>
+      <xsl:when test="$field-name = 'Delay'">delay</xsl:when>
       <xsl:when test="$field-name = 'Description'">description</xsl:when>
       <xsl:when test="$field-name = 'Element'">element</xsl:when>
-      <xsl:when test="$field-name = 'Storage'">storage-slots</xsl:when>
-      <xsl:when test="$field-name = 'Level'">level</xsl:when>
-      <xsl:when test="$field-name = 'Slots'">slots</xsl:when>
-      <xsl:when test="$field-name = 'Races'">races</xsl:when>
-      <xsl:when test="$field-name = 'Jobs'">jobs</xsl:when>
-      <xsl:when test="$field-name = 'MaxCharges'">max-charges</xsl:when>
-      <xsl:when test="$field-name = 'CastTime'">casting-time</xsl:when>
       <xsl:when test="$field-name = 'EquipDelay'">use-delay</xsl:when>
+      <xsl:when test="$field-name = 'Flags'">flags</xsl:when>
+      <xsl:when test="$field-name = 'ID'">id</xsl:when>
+      <xsl:when test="$field-name = 'Icon'">icon</xsl:when>
+      <xsl:when test="$field-name = 'Jobs'">jobs</xsl:when>
+      <xsl:when test="$field-name = 'JugSize'">jug-size</xsl:when>
+      <xsl:when test="$field-name = 'Level'">level</xsl:when>
+      <xsl:when test="$field-name = 'LogNamePlural'">log-name-plural</xsl:when>
+      <xsl:when test="$field-name = 'LogNameSingular'">log-name-singular</xsl:when>
+      <xsl:when test="$field-name = 'MaxCharges'">max-charges</xsl:when>
+      <xsl:when test="$field-name = 'MysteryField'">resource-id</xsl:when>
+      <xsl:when test="$field-name = 'Races'">races</xsl:when>
+      <xsl:when test="$field-name = 'ResourceID'">resource-id</xsl:when>
       <xsl:when test="$field-name = 'ReuseTimer'">reuse-delay</xsl:when>
       <xsl:when test="$field-name = 'ShieldSize'">shield-size</xsl:when>
-      <xsl:when test="$field-name = 'Damage'">damage</xsl:when>
-      <xsl:when test="$field-name = 'DPS'">dps</xsl:when>
-      <xsl:when test="$field-name = 'Delay'">delay</xsl:when>
-      <xsl:when test="$field-name = 'JugSize'">jug-size</xsl:when>
-      <xsl:when test="$field-name = 'Icon'">icon</xsl:when>
-      <xsl:otherwise><xsl:message>WARNING: Name of field <xsl:value-of select="$field-name"/> was not changed.</xsl:message></xsl:otherwise>
+      <xsl:when test="$field-name = 'Skill'">skill</xsl:when>
+      <xsl:when test="$field-name = 'Slots'">slots</xsl:when>
+      <xsl:when test="$field-name = 'StackSize'">stack-size</xsl:when>
+      <xsl:when test="$field-name = 'Storage'">storage-slots</xsl:when>
+      <xsl:when test="$field-name = 'Type'">type</xsl:when>
+      <xsl:when test="$field-name = 'ValidTargets'">valid-targets</xsl:when>
+      <!-- EnglishName and JapaneseName are handled before the field name is mapped. -->
+      <xsl:otherwise><xsl:message terminate="yes">Unhandled field: '<xsl:value-of select="$field-name"/>'.</xsl:message></xsl:otherwise>
     </xsl:choose>
   </xsl:template>
   
