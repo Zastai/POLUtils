@@ -499,8 +499,8 @@ namespace PlayOnline.FFXI.Things {
       if (StringCount > 2) {
 	// Strings[1] is unused (flag == 1)
 	this.LogNameSingular_ = Strings[2];
-	this.LogNamePlural_   = Strings[3];
-	this.Description_     = Strings[4];
+	this.LogNamePlural_ = Strings[3];
+	this.Description_ = Strings[4];
       }
       else
 	this.Description_ = Strings[1];
@@ -513,7 +513,7 @@ namespace PlayOnline.FFXI.Things {
       while (BR.BaseStream.Position < 0x280) {
 	TextBytes.AddRange(BR.ReadBytes(4));
 	if (TextBytes.Contains(0))
-	  return E.GetString(TextBytes.ToArray(), 0, TextBytes.IndexOf(0)).Replace("\n", "\r\n");
+	  return E.GetString(TextBytes.ToArray(), 0, TextBytes.IndexOf(0)).Replace("\n", Environment.NewLine);
       }
       return null;
     }

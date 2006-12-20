@@ -107,6 +107,10 @@ namespace PlayOnline.FFXI {
       this.ShowItem();
     }
 
+    public bool IsFieldShown(string Field) {
+      return (this.GetFieldControl(Field) != null);
+    }
+
     #endregion
 
     #region Private Methods

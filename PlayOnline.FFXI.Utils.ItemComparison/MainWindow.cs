@@ -93,6 +93,8 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	  DifferenceSeen = true;
 	else {
 	  foreach (string Field in Item.AllFields) {
+	    if (!this.ieLeft.IsFieldShown(Field)) // If we can't see the difference, there's no point
+	      continue;
 	    if (this.LeftItems[i].GetFieldText(Field) != this.RightItems[i].GetFieldText(Field)) {
 	      DifferenceSeen = true;
 	      break;
@@ -110,7 +112,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       int OverflowPos = this.LeftItems.Count;
 	while (OverflowPos < this.RightItems.Count) {
 	Item I = this.RightItems[OverflowPos++];
-	  if (I.GetFieldText("english-name") == String.Empty || I.GetFieldText("english-name") == ".")
+	  if (I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
 	    continue;
 	  this.RightItemsShown.Add(I);
 	}
@@ -119,7 +121,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       int OverflowPos = this.RightItems.Count;
 	while (OverflowPos < this.LeftItems.Count) {
 	Item I = this.LeftItems[OverflowPos++];
-	  if (I.GetFieldText("english-name") == String.Empty || I.GetFieldText("english-name") == ".")
+	  if (I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
 	    continue;
 	  this.LeftItemsShown.Add(I);
 	}
@@ -162,9 +164,11 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       if (this.ieLeft.Item != null && this.ieRight.Item != null) {
 	// Compare fields
 	foreach (string Field in Item.AllFields) {
-	bool FieldChanged = (this.ieLeft.Item.GetFieldText(Field) != this.ieRight.Item.GetFieldText(Field));
-	  this.ieLeft.MarkField (Field, FieldChanged);
-	  this.ieRight.MarkField(Field, FieldChanged);
+	  if (this.ieLeft.IsFieldShown(Field)) {
+	  bool FieldChanged = (this.ieLeft.Item.GetFieldText(Field) != this.ieRight.Item.GetFieldText(Field));
+	    this.ieLeft.MarkField (Field, FieldChanged);
+	    this.ieRight.MarkField(Field, FieldChanged);
+	  }
 	}
 	{ // Compare icon
 	bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
