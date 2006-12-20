@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,11 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Caption:NoPOL">
-    <value xml:space="preserve">Not Installed</value>
+  <data name="Caption:AskMaybeTOSViolation" xml:space="preserve">
+    <value>Possible TOS Violation</value>
   </data>
-  <data name="Text:NoPOL">
-    <value xml:space="preserve">Could not find any version of the PlayOnline client software.
+  <data name="Caption:AskTOSViolation" xml:space="preserve">
+    <value>TOS Violation</value>
+  </data>
+  <data name="Caption:NoPOL" xml:space="preserve">
+    <value>Not Installed</value>
+  </data>
+  <data name="Text:AskMaybeTOSViolation" xml:space="preserve">
+    <value>Using this tool may be a violation of the PlayOnline and/or Final Fantasy XI Terms of Service; if caught, you may face suspension or termination of your account.
+
+Are you sure you want to run it?</value>
+  </data>
+  <data name="Text:AskTOSViolation" xml:space="preserve">
+    <value>Using this tool is in violation of the PlayOnline and/or Final Fantasy XI Terms of Service; if caught, your account will most likely be supended or terminated.
+
+Are you sure you want to run it?</value>
+  </data>
+  <data name="Text:NoPOL" xml:space="preserve">
+    <value>Could not find any version of the PlayOnline client software.
 Please install it and try again.</value>
   </data>
 </root>

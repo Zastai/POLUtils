@@ -63,6 +63,20 @@ namespace POLUtils {
 
     #endregion
 
+    #region TOS Warnings
+
+    private bool AskMaybeTOSViolation() {
+      return (MessageBox.Show(this, I18N.GetText("Text:AskMaybeTOSViolation"), I18N.GetText("Caption:AskMaybeTOSViolation"),
+	      MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+    }
+
+    private bool AskTOSViolation() {
+      return (MessageBox.Show(this, I18N.GetText("Text:AskTOSViolation"), I18N.GetText("Caption:AskTOSViolation"),
+	      MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+    }
+
+    #endregion
+
     #region Button Events
 
     private void btnChooseRegion_Click(object sender, System.EventArgs e) {
@@ -95,11 +109,13 @@ namespace POLUtils {
     }
 
     private void btnFFXIEngrishOnry_Click(object sender, EventArgs e) {
-      this.Hide();
-      using (Form Utility = new PlayOnline.FFXI.Utils.EngrishOnry.MainWindow())
-	Utility.ShowDialog();
-      this.Show();
-      this.Activate();
+      if (this.AskMaybeTOSViolation()) {
+	this.Hide();
+	using (Form Utility = new PlayOnline.FFXI.Utils.EngrishOnry.MainWindow())
+	  Utility.ShowDialog();
+	this.Show();
+	this.Activate();
+      }
     }
 
     private void btnFFXIItemComparison_Click(object sender, System.EventArgs e) {
@@ -111,11 +127,13 @@ namespace POLUtils {
     }
 
     private void btnFFXIMacroManager_Click(object sender, System.EventArgs e) {
-      this.Hide();
-      using (Form Utility = new PlayOnline.FFXI.Utils.MacroManager.MainWindow())
-	Utility.ShowDialog();
-      this.Show();
-      this.Activate();
+      if (this.AskMaybeTOSViolation()) {
+	this.Hide();
+	using (Form Utility = new PlayOnline.FFXI.Utils.MacroManager.MainWindow())
+	  Utility.ShowDialog();
+	this.Show();
+	this.Activate();
+      }
     }
 
     private void btnFFXIStrangeApparatus_Click(object sender, System.EventArgs e) {
