@@ -228,6 +228,9 @@
   <data name="Menu:AreaNamesShort" xml:space="preserve">
     <value>&amp;Area Names (Search)</value>
   </data>
+  <data name="Menu:CharacterSelect" xml:space="preserve">
+    <value>&amp;Character Selection</value>
+  </data>
   <data name="Menu:ChatFilterTypes" xml:space="preserve">
     <value>&amp;Chat Filter Types</value>
   </data>
@@ -236,6 +239,9 @@
   </data>
   <data name="Menu:Directions" xml:space="preserve">
     <value>&amp;Directions</value>
+  </data>
+  <data name="Menu:EquipmentLocations" xml:space="preserve">
+    <value>&amp;Equipment Locations</value>
   </data>
   <data name="Menu:ErrorMessages" xml:space="preserve">
     <value>&amp;Error Messages</value>
@@ -293,9 +299,6 @@
   </data>
   <data name="Menu:Various2" xml:space="preserve">
     <value>&amp;Various (2)</value>
-  </data>
-  <data name="Menu:Various3" xml:space="preserve">
-    <value>&amp;Various (3)</value>
   </data>
   <data name="Menu:WeatherTypes" xml:space="preserve">
     <value>&amp;Weather Types</value>
