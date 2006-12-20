@@ -60,29 +60,19 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       // pnlLog
       // 
-      this.pnlLog.AccessibleDescription = null;
-      this.pnlLog.AccessibleName = null;
-      resources.ApplyResources(this.pnlLog, "pnlLog");
-      this.pnlLog.BackgroundImage = null;
       this.pnlLog.Controls.Add(this.lblActivityLog);
       this.pnlLog.Controls.Add(this.rtbActivityLog);
-      this.pnlLog.Font = null;
+      resources.ApplyResources(this.pnlLog, "pnlLog");
       this.pnlLog.Name = "pnlLog";
       // 
       // lblActivityLog
       // 
-      this.lblActivityLog.AccessibleDescription = null;
-      this.lblActivityLog.AccessibleName = null;
       resources.ApplyResources(this.lblActivityLog, "lblActivityLog");
-      this.lblActivityLog.Font = null;
       this.lblActivityLog.Name = "lblActivityLog";
       // 
       // rtbActivityLog
       // 
-      this.rtbActivityLog.AccessibleDescription = null;
-      this.rtbActivityLog.AccessibleName = null;
       resources.ApplyResources(this.rtbActivityLog, "rtbActivityLog");
-      this.rtbActivityLog.BackgroundImage = null;
       this.rtbActivityLog.Name = "rtbActivityLog";
       this.rtbActivityLog.ReadOnly = true;
       // 
@@ -91,20 +81,19 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.mnuConfigSpellData.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuTranslateSpellNames,
             this.mnuTranslateSpellDescriptions});
-      resources.ApplyResources(this.mnuConfigSpellData, "mnuConfigSpellData");
       // 
       // mnuTranslateSpellNames
       // 
       this.mnuTranslateSpellNames.Checked = true;
-      resources.ApplyResources(this.mnuTranslateSpellNames, "mnuTranslateSpellNames");
       this.mnuTranslateSpellNames.Index = 0;
+      resources.ApplyResources(this.mnuTranslateSpellNames, "mnuTranslateSpellNames");
       this.mnuTranslateSpellNames.Click += new System.EventHandler(this.mnuTranslateSpellNames_Click);
       // 
       // mnuTranslateSpellDescriptions
       // 
       this.mnuTranslateSpellDescriptions.Checked = true;
-      resources.ApplyResources(this.mnuTranslateSpellDescriptions, "mnuTranslateSpellDescriptions");
       this.mnuTranslateSpellDescriptions.Index = 1;
+      resources.ApplyResources(this.mnuTranslateSpellDescriptions, "mnuTranslateSpellDescriptions");
       this.mnuTranslateSpellDescriptions.Click += new System.EventHandler(this.mnuTranslateSpellDescriptions_Click);
       // 
       // mnuConfigItemData
@@ -112,20 +101,19 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.mnuConfigItemData.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuTranslateItemNames,
             this.mnuTranslateItemDescriptions});
-      resources.ApplyResources(this.mnuConfigItemData, "mnuConfigItemData");
       // 
       // mnuTranslateItemNames
       // 
       this.mnuTranslateItemNames.Checked = true;
-      resources.ApplyResources(this.mnuTranslateItemNames, "mnuTranslateItemNames");
       this.mnuTranslateItemNames.Index = 0;
+      resources.ApplyResources(this.mnuTranslateItemNames, "mnuTranslateItemNames");
       this.mnuTranslateItemNames.Click += new System.EventHandler(this.mnuTranslateItemNames_Click);
       // 
       // mnuTranslateItemDescriptions
       // 
       this.mnuTranslateItemDescriptions.Checked = true;
-      resources.ApplyResources(this.mnuTranslateItemDescriptions, "mnuTranslateItemDescriptions");
       this.mnuTranslateItemDescriptions.Index = 1;
+      resources.ApplyResources(this.mnuTranslateItemDescriptions, "mnuTranslateItemDescriptions");
       this.mnuTranslateItemDescriptions.Click += new System.EventHandler(this.mnuTranslateItemDescriptions_Click);
       // 
       // mnuConfigAutoTrans
@@ -133,27 +121,22 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.mnuConfigAutoTrans.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuPreserveJapaneseATCompletion,
             this.mnuEnglishATCompletionOnly});
-      resources.ApplyResources(this.mnuConfigAutoTrans, "mnuConfigAutoTrans");
       // 
       // mnuPreserveJapaneseATCompletion
       // 
       this.mnuPreserveJapaneseATCompletion.Checked = true;
-      resources.ApplyResources(this.mnuPreserveJapaneseATCompletion, "mnuPreserveJapaneseATCompletion");
       this.mnuPreserveJapaneseATCompletion.Index = 0;
+      resources.ApplyResources(this.mnuPreserveJapaneseATCompletion, "mnuPreserveJapaneseATCompletion");
       this.mnuPreserveJapaneseATCompletion.Click += new System.EventHandler(this.mnuPreserveJapaneseATCompletion_Click);
       // 
       // mnuEnglishATCompletionOnly
       // 
-      resources.ApplyResources(this.mnuEnglishATCompletionOnly, "mnuEnglishATCompletionOnly");
       this.mnuEnglishATCompletionOnly.Index = 1;
+      resources.ApplyResources(this.mnuEnglishATCompletionOnly, "mnuEnglishATCompletionOnly");
       this.mnuEnglishATCompletionOnly.Click += new System.EventHandler(this.mnuEnglishATCompletionOnly_Click);
       // 
       // pnlActions
       // 
-      this.pnlActions.AccessibleDescription = null;
-      this.pnlActions.AccessibleName = null;
-      resources.ApplyResources(this.pnlActions, "pnlActions");
-      this.pnlActions.BackgroundImage = null;
       this.pnlActions.Controls.Add(this.btnConfigAbilities);
       this.pnlActions.Controls.Add(this.lblAbilities);
       this.pnlActions.Controls.Add(this.btnRestoreAbilities);
@@ -178,238 +161,148 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.pnlActions.Controls.Add(this.btnTranslateAutoTrans);
       this.pnlActions.Controls.Add(this.btnRestoreItemData);
       this.pnlActions.Controls.Add(this.btnTranslateItemData);
-      this.pnlActions.Font = null;
+      resources.ApplyResources(this.pnlActions, "pnlActions");
       this.pnlActions.Name = "pnlActions";
       // 
       // btnConfigAbilities
       // 
-      this.btnConfigAbilities.AccessibleDescription = null;
-      this.btnConfigAbilities.AccessibleName = null;
       resources.ApplyResources(this.btnConfigAbilities, "btnConfigAbilities");
-      this.btnConfigAbilities.BackgroundImage = null;
-      this.btnConfigAbilities.Font = null;
       this.btnConfigAbilities.Name = "btnConfigAbilities";
       this.btnConfigAbilities.Click += new System.EventHandler(this.btnConfigAbilities_Click);
       // 
       // lblAbilities
       // 
-      this.lblAbilities.AccessibleDescription = null;
-      this.lblAbilities.AccessibleName = null;
-      resources.ApplyResources(this.lblAbilities, "lblAbilities");
       this.lblAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblAbilities.Font = null;
+      resources.ApplyResources(this.lblAbilities, "lblAbilities");
       this.lblAbilities.Name = "lblAbilities";
       // 
       // btnRestoreAbilities
       // 
-      this.btnRestoreAbilities.AccessibleDescription = null;
-      this.btnRestoreAbilities.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreAbilities, "btnRestoreAbilities");
-      this.btnRestoreAbilities.BackgroundImage = null;
-      this.btnRestoreAbilities.Font = null;
       this.btnRestoreAbilities.Name = "btnRestoreAbilities";
       this.btnRestoreAbilities.Click += new System.EventHandler(this.btnRestoreAbilities_Click);
       // 
       // btnTranslateAbilities
       // 
-      this.btnTranslateAbilities.AccessibleDescription = null;
-      this.btnTranslateAbilities.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateAbilities, "btnTranslateAbilities");
-      this.btnTranslateAbilities.BackgroundImage = null;
-      this.btnTranslateAbilities.Font = null;
       this.btnTranslateAbilities.Name = "btnTranslateAbilities";
       this.btnTranslateAbilities.Click += new System.EventHandler(this.btnTranslateAbilities_Click);
       // 
       // btnConfigDialogTables
       // 
-      this.btnConfigDialogTables.AccessibleDescription = null;
-      this.btnConfigDialogTables.AccessibleName = null;
       resources.ApplyResources(this.btnConfigDialogTables, "btnConfigDialogTables");
-      this.btnConfigDialogTables.BackgroundImage = null;
-      this.btnConfigDialogTables.Font = null;
       this.btnConfigDialogTables.Name = "btnConfigDialogTables";
       // 
       // btnConfigStringTables
       // 
-      this.btnConfigStringTables.AccessibleDescription = null;
-      this.btnConfigStringTables.AccessibleName = null;
       resources.ApplyResources(this.btnConfigStringTables, "btnConfigStringTables");
-      this.btnConfigStringTables.BackgroundImage = null;
-      this.btnConfigStringTables.Font = null;
       this.btnConfigStringTables.Name = "btnConfigStringTables";
       // 
       // btnConfigAutoTrans
       // 
-      this.btnConfigAutoTrans.AccessibleDescription = null;
-      this.btnConfigAutoTrans.AccessibleName = null;
       resources.ApplyResources(this.btnConfigAutoTrans, "btnConfigAutoTrans");
-      this.btnConfigAutoTrans.BackgroundImage = null;
-      this.btnConfigAutoTrans.Font = null;
       this.btnConfigAutoTrans.Name = "btnConfigAutoTrans";
       this.btnConfigAutoTrans.Click += new System.EventHandler(this.btnConfigAutoTrans_Click);
       // 
       // btnConfigItemData
       // 
-      this.btnConfigItemData.AccessibleDescription = null;
-      this.btnConfigItemData.AccessibleName = null;
       resources.ApplyResources(this.btnConfigItemData, "btnConfigItemData");
-      this.btnConfigItemData.BackgroundImage = null;
-      this.btnConfigItemData.Font = null;
       this.btnConfigItemData.Name = "btnConfigItemData";
       this.btnConfigItemData.Click += new System.EventHandler(this.btnConfigItemData_Click);
       // 
       // btnConfigSpellData
       // 
-      this.btnConfigSpellData.AccessibleDescription = null;
-      this.btnConfigSpellData.AccessibleName = null;
       resources.ApplyResources(this.btnConfigSpellData, "btnConfigSpellData");
-      this.btnConfigSpellData.BackgroundImage = null;
-      this.btnConfigSpellData.Font = null;
       this.btnConfigSpellData.Name = "btnConfigSpellData";
       this.btnConfigSpellData.Click += new System.EventHandler(this.btnConfigSpellData_Click);
       // 
       // lblItemData
       // 
-      this.lblItemData.AccessibleDescription = null;
-      this.lblItemData.AccessibleName = null;
-      resources.ApplyResources(this.lblItemData, "lblItemData");
       this.lblItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblItemData.Font = null;
+      resources.ApplyResources(this.lblItemData, "lblItemData");
       this.lblItemData.Name = "lblItemData";
       // 
       // lblAutoTranslator
       // 
-      this.lblAutoTranslator.AccessibleDescription = null;
-      this.lblAutoTranslator.AccessibleName = null;
-      resources.ApplyResources(this.lblAutoTranslator, "lblAutoTranslator");
       this.lblAutoTranslator.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblAutoTranslator.Font = null;
+      resources.ApplyResources(this.lblAutoTranslator, "lblAutoTranslator");
       this.lblAutoTranslator.Name = "lblAutoTranslator";
       // 
       // lblSpellData
       // 
-      this.lblSpellData.AccessibleDescription = null;
-      this.lblSpellData.AccessibleName = null;
-      resources.ApplyResources(this.lblSpellData, "lblSpellData");
       this.lblSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblSpellData.Font = null;
+      resources.ApplyResources(this.lblSpellData, "lblSpellData");
       this.lblSpellData.Name = "lblSpellData";
       // 
       // lblStringTables
       // 
-      this.lblStringTables.AccessibleDescription = null;
-      this.lblStringTables.AccessibleName = null;
-      resources.ApplyResources(this.lblStringTables, "lblStringTables");
       this.lblStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblStringTables.Font = null;
+      resources.ApplyResources(this.lblStringTables, "lblStringTables");
       this.lblStringTables.Name = "lblStringTables";
       // 
       // lblDialogTables
       // 
-      this.lblDialogTables.AccessibleDescription = null;
-      this.lblDialogTables.AccessibleName = null;
-      resources.ApplyResources(this.lblDialogTables, "lblDialogTables");
       this.lblDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblDialogTables.Font = null;
+      resources.ApplyResources(this.lblDialogTables, "lblDialogTables");
       this.lblDialogTables.Name = "lblDialogTables";
       // 
       // btnRestoreSpellData
       // 
-      this.btnRestoreSpellData.AccessibleDescription = null;
-      this.btnRestoreSpellData.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreSpellData, "btnRestoreSpellData");
-      this.btnRestoreSpellData.BackgroundImage = null;
-      this.btnRestoreSpellData.Font = null;
       this.btnRestoreSpellData.Name = "btnRestoreSpellData";
       this.btnRestoreSpellData.Click += new System.EventHandler(this.btnRestoreSpellData_Click);
       // 
       // btnTranslateSpellData
       // 
-      this.btnTranslateSpellData.AccessibleDescription = null;
-      this.btnTranslateSpellData.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateSpellData, "btnTranslateSpellData");
-      this.btnTranslateSpellData.BackgroundImage = null;
-      this.btnTranslateSpellData.Font = null;
       this.btnTranslateSpellData.Name = "btnTranslateSpellData";
       this.btnTranslateSpellData.Click += new System.EventHandler(this.btnTranslateSpellData_Click);
       // 
       // btnRestoreStringTables
       // 
-      this.btnRestoreStringTables.AccessibleDescription = null;
-      this.btnRestoreStringTables.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreStringTables, "btnRestoreStringTables");
-      this.btnRestoreStringTables.BackgroundImage = null;
-      this.btnRestoreStringTables.Font = null;
       this.btnRestoreStringTables.Name = "btnRestoreStringTables";
       this.btnRestoreStringTables.Click += new System.EventHandler(this.btnRestoreStringTables_Click);
       // 
       // btnTranslateStringTables
       // 
-      this.btnTranslateStringTables.AccessibleDescription = null;
-      this.btnTranslateStringTables.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateStringTables, "btnTranslateStringTables");
-      this.btnTranslateStringTables.BackgroundImage = null;
-      this.btnTranslateStringTables.Font = null;
       this.btnTranslateStringTables.Name = "btnTranslateStringTables";
       this.btnTranslateStringTables.Click += new System.EventHandler(this.btnTranslateStringTables_Click);
       // 
       // btnRestoreDialogTables
       // 
-      this.btnRestoreDialogTables.AccessibleDescription = null;
-      this.btnRestoreDialogTables.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreDialogTables, "btnRestoreDialogTables");
-      this.btnRestoreDialogTables.BackgroundImage = null;
-      this.btnRestoreDialogTables.Font = null;
       this.btnRestoreDialogTables.Name = "btnRestoreDialogTables";
       this.btnRestoreDialogTables.Click += new System.EventHandler(this.btnRestoreDialogTables_Click);
       // 
       // btnTranslateDialogTables
       // 
-      this.btnTranslateDialogTables.AccessibleDescription = null;
-      this.btnTranslateDialogTables.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateDialogTables, "btnTranslateDialogTables");
-      this.btnTranslateDialogTables.BackgroundImage = null;
-      this.btnTranslateDialogTables.Font = null;
       this.btnTranslateDialogTables.Name = "btnTranslateDialogTables";
       this.btnTranslateDialogTables.Click += new System.EventHandler(this.btnTranslateDialogTables_Click);
       // 
       // btnRestoreAutoTrans
       // 
-      this.btnRestoreAutoTrans.AccessibleDescription = null;
-      this.btnRestoreAutoTrans.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreAutoTrans, "btnRestoreAutoTrans");
-      this.btnRestoreAutoTrans.BackgroundImage = null;
-      this.btnRestoreAutoTrans.Font = null;
       this.btnRestoreAutoTrans.Name = "btnRestoreAutoTrans";
       this.btnRestoreAutoTrans.Click += new System.EventHandler(this.btnRestoreAutoTrans_Click);
       // 
       // btnTranslateAutoTrans
       // 
-      this.btnTranslateAutoTrans.AccessibleDescription = null;
-      this.btnTranslateAutoTrans.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateAutoTrans, "btnTranslateAutoTrans");
-      this.btnTranslateAutoTrans.BackgroundImage = null;
-      this.btnTranslateAutoTrans.Font = null;
       this.btnTranslateAutoTrans.Name = "btnTranslateAutoTrans";
       this.btnTranslateAutoTrans.Click += new System.EventHandler(this.btnTranslateAutoTrans_Click);
       // 
       // btnRestoreItemData
       // 
-      this.btnRestoreItemData.AccessibleDescription = null;
-      this.btnRestoreItemData.AccessibleName = null;
       resources.ApplyResources(this.btnRestoreItemData, "btnRestoreItemData");
-      this.btnRestoreItemData.BackgroundImage = null;
-      this.btnRestoreItemData.Font = null;
       this.btnRestoreItemData.Name = "btnRestoreItemData";
       this.btnRestoreItemData.Click += new System.EventHandler(this.btnRestoreItemData_Click);
       // 
       // btnTranslateItemData
       // 
-      this.btnTranslateItemData.AccessibleDescription = null;
-      this.btnTranslateItemData.AccessibleName = null;
       resources.ApplyResources(this.btnTranslateItemData, "btnTranslateItemData");
-      this.btnTranslateItemData.BackgroundImage = null;
-      this.btnTranslateItemData.Font = null;
       this.btnTranslateItemData.Name = "btnTranslateItemData";
       this.btnTranslateItemData.Click += new System.EventHandler(this.btnTranslateItemData_Click);
       // 
@@ -418,30 +311,24 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.mnuConfigAbilities.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuTranslateAbilityNames,
             this.mnuTranslateAbilityDescriptions});
-      resources.ApplyResources(this.mnuConfigAbilities, "mnuConfigAbilities");
       // 
       // mnuTranslateAbilityNames
       // 
       this.mnuTranslateAbilityNames.Checked = true;
-      resources.ApplyResources(this.mnuTranslateAbilityNames, "mnuTranslateAbilityNames");
       this.mnuTranslateAbilityNames.Index = 0;
+      resources.ApplyResources(this.mnuTranslateAbilityNames, "mnuTranslateAbilityNames");
       // 
       // mnuTranslateAbilityDescriptions
       // 
       this.mnuTranslateAbilityDescriptions.Checked = true;
-      resources.ApplyResources(this.mnuTranslateAbilityDescriptions, "mnuTranslateAbilityDescriptions");
       this.mnuTranslateAbilityDescriptions.Index = 1;
+      resources.ApplyResources(this.mnuTranslateAbilityDescriptions, "mnuTranslateAbilityDescriptions");
       // 
       // MainWindow
       // 
-      this.AccessibleDescription = null;
-      this.AccessibleName = null;
       resources.ApplyResources(this, "$this");
-      this.BackgroundImage = null;
       this.Controls.Add(this.pnlLog);
       this.Controls.Add(this.pnlActions);
-      this.Font = null;
-      this.Icon = null;
       this.Name = "MainWindow";
       this.pnlLog.ResumeLayout(false);
       this.pnlActions.ResumeLayout(false);

@@ -27,20 +27,13 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       Application.DoEvents();
     }
 
-    private string GetROMPath(short App, short Dir, short FileID) {
-    string ROMDir = "Rom";
-      if (App > 0)
-	ROMDir += String.Format("{0}", App + 1);
-      return Path.Combine(Path.Combine(POL.GetApplicationPath(AppID.FFXI), ROMDir), Path.Combine(String.Format("{0}", Dir), String.Format("{0}.DAT", FileID)));
-    }
-
     private void LogFailure(string Action) {
       this.AddLogEntry(String.Format(I18N.GetText("ActionFailed"), Action));
     }
 
     private string MakeBackupFolder(bool CreateIfNeeded) {
       try {
-      string BackupFolder = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "EngrishFFXI-Backup");
+      string BackupFolder = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "EngrishOnry-Backup");
 	if (CreateIfNeeded && !Directory.Exists(BackupFolder)) {
 	  this.AddLogEntry(String.Format(I18N.GetText("CreateBackupDir"), BackupFolder));
 	  Directory.CreateDirectory(BackupFolder);
@@ -57,11 +50,11 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       return this.MakeBackupFolder(true);
     }
 
-    private bool BackupFile(short App, short Dir, short FileID) {
+    private bool BackupFile(int FileNumber) {
       try {
-      string BackupName = Path.Combine(this.MakeBackupFolder(), String.Format("{0}-{1}-{2}.dat", App, Dir, FileID));
+      string BackupName = Path.Combine(this.MakeBackupFolder(), String.Format("{0}.dat", FileNumber));
 	if (!File.Exists(BackupName)) {
-	string OriginalName = this.GetROMPath(App, Dir, FileID);
+	string OriginalName = FFXI.GetFilePath(FileNumber);
 	  this.AddLogEntry(String.Format(I18N.GetText("BackingUp"), OriginalName));
 	  File.Copy(OriginalName, BackupName);
 	}
@@ -73,11 +66,11 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       }
     }
 
-    private bool RestoreFile(short App, short Dir, short FileID) {
+    private bool RestoreFile(int FileNumber) {
       try {
-      string BackupName = Path.Combine(this.MakeBackupFolder(false), String.Format("{0}-{1}-{2}.dat", App, Dir, FileID));
+      string BackupName = Path.Combine(this.MakeBackupFolder(), String.Format("{0}.dat", FileNumber));
 	if (File.Exists(BackupName)) {
-	string OriginalName = this.GetROMPath(App, Dir, FileID);
+	string OriginalName = FFXI.GetFilePath(FileNumber);
 	  this.AddLogEntry(String.Format(I18N.GetText("Restoring"), OriginalName));
 	  File.Copy(BackupName, OriginalName, true);
 	}
@@ -89,18 +82,31 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       }
     }
 
+    private void SwapFile(int JPFileNumber, int ENFileNumber) {
+      try {
+	if (!this.BackupFile(JPFileNumber))
+	  return;
+      string SourceFile = FFXI.GetFilePath(ENFileNumber);
+      string TargetFile = FFXI.GetFilePath(JPFileNumber);
+	this.AddLogEntry(String.Format(I18N.GetText("ReplaceJPROM"), TargetFile));
+	this.AddLogEntry(String.Format(I18N.GetText("SourceENROM"), SourceFile));
+	File.Copy(SourceFile, TargetFile, true);
+      }
+      catch { this.LogFailure("SwapFile"); }
+    }
+
     #endregion
 
     #region Item Data Translation
 
-    private void TranslateItemFile(short JApp, short JDir, short JFileID, short EApp, short EDir, short EFileID, short Type) {
+    private void TranslateItemFile(int JPFileNumber, int ENFileNumber) {
       if (!this.mnuTranslateItemNames.Checked && !this.mnuTranslateItemDescriptions.Checked)
 	return;
-      if (!this.BackupFile(JApp, JDir, JFileID))
+      if (!this.BackupFile(JPFileNumber))
 	return;
       try {
-      string JFileName = this.GetROMPath(JApp, JDir, JFileID);
-      string EFileName = this.GetROMPath(EApp, EDir, EFileID);
+      string JFileName = FFXI.GetFilePath(JPFileNumber);
+      string EFileName = FFXI.GetFilePath(ENFileNumber);
 	this.AddLogEntry(String.Format(I18N.GetText("TranslatingItems"), JFileName));
       FileStream JStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
       FileStream EStream = new FileStream(EFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -112,27 +118,29 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 	  this.AddLogEntry(I18N.GetText("FileSizeMismatch"));
 	  goto TranslationDone;
 	}
+      Things.Item.Type T;
+	{
+	BinaryReader BR = new BinaryReader(JStream);
+	  Things.Item.DeduceType(BR, out T);
+	  BR = new BinaryReader(EStream);
+	Things.Item.Type ET;
+	  Things.Item.DeduceType(BR, out ET);
+	  if (T != ET) {
+	    this.AddLogEntry(I18N.GetText("ItemTypeMismatch"));
+	    goto TranslationDone;
+	  }
+	}
       long ItemCount = JStream.Length / 0xc00;
-      byte[] JData = new byte[0x200];
-      byte[] EData = new byte[0x200];
+      byte[] JData = new byte[0x280];
+      byte[] EData = new byte[0x280];
 	for (long i = 0; i < ItemCount; ++i) {
-	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Read(JData, 0, 0x200);
-	  EStream.Seek(i * 0xc00, SeekOrigin.Begin); EStream.Read(EData, 0, 0x200);
+	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Read(JData, 0, 0x280);
+	  EStream.Seek(i * 0xc00, SeekOrigin.Begin); EStream.Read(EData, 0, 0x280);
 	  if (this.mnuTranslateItemNames.Checked) {
-	    switch (Type) {
-	      case 0: Array.Copy(EData, 0x24, JData, 0x0E, 0x16); break; // Item
-	      case 1: Array.Copy(EData, 0x36, JData, 0x20, 0x16); break; // Weapon
-	      case 2: Array.Copy(EData, 0x30, JData, 0x1A, 0x16); break; // Armor
-	    }
 	  }
 	  if (this.mnuTranslateItemDescriptions.Checked) {
-	    switch (Type) {
-	      case 0: Array.Copy(EData, 0xC6, JData, 0x3A, 0xBC); break; // Item
-	      case 1: Array.Copy(EData, 0xD8, JData, 0x4C, 0xBC); break; // Weapon
-	      case 2: Array.Copy(EData, 0xD2, JData, 0x46, 0xBC); break; // Armor
-	    }
 	  }
-	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Write(JData, 0, 0x200);
+	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Write(JData, 0, 0x280);
 	}
       TranslationDone:
 	JStream.Close();
@@ -143,17 +151,47 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       }
     }
 
+    private void btnTranslateItemData_Click(object sender, System.EventArgs e) {
+      this.TranslateItemFile(4, 73);
+      this.TranslateItemFile(5, 74);
+      this.TranslateItemFile(6, 75);
+      this.TranslateItemFile(7, 76);
+      this.TranslateItemFile(8, 77);
+      this.AddLogEntry(I18N.GetText("ItemTranslateDone"));
+    }
+
+    private void btnRestoreItemData_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(4);
+      this.RestoreFile(5);
+      this.RestoreFile(6);
+      this.RestoreFile(7);
+      this.RestoreFile(8);
+      this.AddLogEntry(I18N.GetText("ItemRestoreDone"));
+    }
+
+    private void btnConfigItemData_Click(object sender, System.EventArgs e) {
+      this.mnuConfigItemData.Show(this.btnConfigItemData, new Point(0, this.btnConfigItemData.Height));
+    }
+
+    private void mnuTranslateItemNames_Click(object sender, System.EventArgs e) {
+      this.mnuTranslateItemNames.Checked = !this.mnuTranslateItemNames.Checked;
+    }
+
+    private void mnuTranslateItemDescriptions_Click(object sender, System.EventArgs e) {
+      this.mnuTranslateItemDescriptions.Checked = !this.mnuTranslateItemDescriptions.Checked;
+    }
+
     #endregion
 
     #region Spell Data Translation
 
-    private void TranslateSpellFile(short App, short Dir, short FileID) {
+    private void TranslateSpellFile(int FileNumber) {
       if (!this.mnuTranslateSpellNames.Checked && !this.mnuTranslateSpellDescriptions.Checked)
 	return;
-      if (!this.BackupFile(App, Dir, FileID))
+      if (!this.BackupFile(FileNumber))
 	return;
       try {
-      string FileName = this.GetROMPath(App, Dir, FileID);
+      string FileName = FFXI.GetFilePath(FileNumber);
 	this.AddLogEntry(String.Format(I18N.GetText("TranslatingSpells"), FileName));
       FileStream SpellStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 	if ((SpellStream.Length % 0x400) != 0) {
@@ -178,18 +216,42 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       }
     }
 
+    private void btnTranslateSpellData_Click(object sender, System.EventArgs e) {
+      this.TranslateSpellFile(11);
+      this.TranslateSpellFile(86);
+      this.AddLogEntry(I18N.GetText("SpellTranslateDone"));
+    }
+
+    private void btnRestoreSpellData_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(11);
+      this.RestoreFile(86);
+      this.AddLogEntry(I18N.GetText("SpellRestoreDone"));
+    }
+
+    private void btnConfigSpellData_Click(object sender, System.EventArgs e) {
+      this.mnuConfigSpellData.Show(this.btnConfigSpellData, new Point(0, this.btnConfigSpellData.Height));
+    }
+
+    private void mnuTranslateSpellNames_Click(object sender, System.EventArgs e) {
+      this.mnuTranslateSpellNames.Checked = !this.mnuTranslateSpellNames.Checked;
+    }
+
+    private void mnuTranslateSpellDescriptions_Click(object sender, System.EventArgs e) {
+      this.mnuTranslateSpellDescriptions.Checked = !this.mnuTranslateSpellDescriptions.Checked;
+    }
+
     #endregion
 
     #region Ability Data Translation
 
-    private void TranslateAbilityFile(short JApp, short JDir, short JFileID, short EApp, short EDir, short EFileID) {
+    private void TranslateAbilityFile(int JPFileNumber, int ENFileNumber) {
       if (!this.mnuTranslateAbilityNames.Checked && !this.mnuTranslateAbilityDescriptions.Checked)
 	return;
-      if (!this.BackupFile(JApp, JDir, JFileID))
+      if (!this.BackupFile(JPFileNumber))
 	return;
       try {
-      string JFileName = this.GetROMPath(JApp, JDir, JFileID);
-      string EFileName = this.GetROMPath(EApp, EDir, EFileID);
+      string JFileName = FFXI.GetFilePath(JPFileNumber);
+      string EFileName = FFXI.GetFilePath(ENFileNumber);
 	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAbilities"), JFileName));
 	this.AddLogEntry(String.Format(I18N.GetText("UsingEnglishFile"), EFileName));
       FileStream JFileStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
@@ -221,16 +283,30 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       }
     }
 
+    private void btnTranslateAbilities_Click(object sender, System.EventArgs e) {
+      this.TranslateAbilityFile(10, 85);
+      this.AddLogEntry(I18N.GetText("AbilityTranslateDone"));
+    }
+
+    private void btnRestoreAbilities_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(10);
+      this.AddLogEntry(I18N.GetText("AbilityRestoreDone"));
+    }
+
+    private void btnConfigAbilities_Click(object sender, System.EventArgs e) {
+      this.mnuConfigAbilities.Show(this.btnConfigAbilities, new Point(0, this.btnConfigAbilities.Height));
+    }
+
     #endregion
 
     #region Auto-Translator Translation
 
-    private void TranslateAutoTranslatorFile(short App, short Dir, short FileID) {
-      if (!this.BackupFile(App, Dir, FileID))
+    private void TranslateAutoTranslatorFile(int FileNumber) {
+      if (!this.BackupFile(FileNumber))
 	return;
     FileStream ATStream = null;
       try {
-      string FileName = this.GetROMPath(App, Dir, FileID);
+      string FileName = FFXI.GetFilePath(FileNumber);
 	ATStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAutoTrans"), FileName));
 	if (ATStream.Length < 1024 * 1024) {
@@ -350,211 +426,13 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 	ATStream.Close();
     }
 
-    #endregion
-
-    #region File Swaps (Dialog Tables / String Tables)
-
-    private SortedList SwappableFiles;
-
-    private XmlDocument LoadSwappableFileInfo(string Category) {
-      if (this.SwappableFiles == null)
-	this.SwappableFiles = new SortedList();
-      if (this.SwappableFiles[Category] == null) {
-      Stream InfoData = Assembly.GetExecutingAssembly().GetManifestResourceStream(Category + ".xml");
-	if (InfoData != null) {
-	XmlReader XR = new XmlTextReader(InfoData);
-	  try {
-	  XmlDocument XD = new XmlDocument();
-	    XD.Load(XR);
-	    this.SwappableFiles[Category] = XD;
-	  } catch { }
-	  XR.Close();
-	  InfoData.Close();
-	}
-	if (this.SwappableFiles[Category] == null)
-	  this.LogFailure("LoadSwappableFileInfo");
-      }
-      return this.SwappableFiles[Category] as XmlDocument;
-    }
-
-    private string GetSwappableFilePath(XmlNode DialogTable) {
-    short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
-    short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
-    short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
-      return this.GetROMPath(App, Dir, FileID);
-    }
-
-    private bool BackupSwappableFile(XmlNode DialogTable) {
-    short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
-    short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
-    short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
-      return this.BackupFile(App, Dir, FileID);
-    }
-
-    private void SwapFile(XmlNode Source, XmlNode Target) {
-      try {
-	if (!this.BackupSwappableFile(Target))
-	  return;
-      string SourceFile = this.GetSwappableFilePath(Source);
-      string TargetFile = this.GetSwappableFilePath(Target);
-	this.AddLogEntry(String.Format(I18N.GetText("ReplaceJPROM"), TargetFile));
-	this.AddLogEntry(String.Format(I18N.GetText("SourceENROM"), SourceFile));
-	File.Copy(SourceFile, TargetFile, true);
-      }
-      catch {
-	this.LogFailure("SwapFile");
-      }
-    }
-
-    private void RestoreSwappedFile(XmlNode DialogTable) {
-      try {
-      short App    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("app").InnerText);
-      short Dir    = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("dir").InnerText);
-      short FileID = XmlConvert.ToInt16(DialogTable.Attributes.GetNamedItem("file").InnerText);
-	this.RestoreFile(App, Dir, FileID);
-      }
-      catch {
-	this.LogFailure("RestoreDialogTable");
-      }
-    }
-
-    private void SwapFiles(string Category) {
-    XmlDocument XD = this.LoadSwappableFileInfo(Category);
-      if (XD != null) {
-	foreach (XmlNode XN in XD.SelectNodes("/rom-files/rom-file"))
-	  this.SwapFile(XN.SelectSingleNode("./english"), XN.SelectSingleNode("./japanese"));
-      }
-    }
-
-    private void RestoreSwappedFiles(string Category) {
-    XmlDocument XD = this.LoadSwappableFileInfo(Category);
-      if (XD != null) {
-	foreach (XmlNode XN in XD.SelectNodes("/rom-files/rom-file"))
-	  this.RestoreSwappedFile(XN.SelectSingleNode("./japanese"));
-      }
-    }
-
-    #endregion
-
-    #region Events
-
-    #region Spell Data
-
-    private void btnTranslateSpellData_Click(object sender, System.EventArgs e) {
-      this.TranslateSpellFile(0,   0, 11);
-      this.TranslateSpellFile(0, 119, 56);
-      this.AddLogEntry(I18N.GetText("SpellTranslateDone"));
-    }
-
-    private void btnRestoreSpellData_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0,   0, 11);
-      this.RestoreFile(0, 119, 56);
-      this.AddLogEntry(I18N.GetText("SpellRestoreDone"));
-    }
-
-    private void btnConfigSpellData_Click(object sender, System.EventArgs e) {
-      this.mnuConfigSpellData.Show(this.btnConfigSpellData, new Point(0, this.btnConfigSpellData.Height));
-    }
-
-    private void mnuTranslateSpellNames_Click(object sender, System.EventArgs e) {
-      this.mnuTranslateSpellNames.Checked = !this.mnuTranslateSpellNames.Checked;
-    }
-
-    private void mnuTranslateSpellDescriptions_Click(object sender, System.EventArgs e) {
-      this.mnuTranslateSpellDescriptions.Checked = !this.mnuTranslateSpellDescriptions.Checked;
-    }
-
-    #endregion
-
-    #region Item Data
-
-    private void btnTranslateItemData_Click(object sender, System.EventArgs e) {
-      this.TranslateItemFile(0, 0, 4, 0, 118, 106, 0);
-      this.TranslateItemFile(0, 0, 5, 0, 118, 107, 0);
-      this.TranslateItemFile(0, 0, 6, 0, 118, 108, 1);
-      this.TranslateItemFile(0, 0, 7, 0, 118, 109, 2);
-      this.TranslateItemFile(0, 0, 8, 0, 118, 110, 0);
-      this.AddLogEntry(I18N.GetText("ItemTranslateDone"));
-    }
-
-    private void btnRestoreItemData_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0, 0, 4);
-      this.RestoreFile(0, 0, 5);
-      this.RestoreFile(0, 0, 6);
-      this.RestoreFile(0, 0, 7);
-      this.RestoreFile(0, 0, 8);
-      this.AddLogEntry(I18N.GetText("ItemRestoreDone"));
-    }
-
-    private void btnConfigItemData_Click(object sender, System.EventArgs e) {
-      this.mnuConfigItemData.Show(this.btnConfigItemData, new Point(0, this.btnConfigItemData.Height));
-    }
-
-    private void mnuTranslateItemNames_Click(object sender, System.EventArgs e) {
-      this.mnuTranslateItemNames.Checked = !this.mnuTranslateItemNames.Checked;
-    }
-
-    private void mnuTranslateItemDescriptions_Click(object sender, System.EventArgs e) {
-      this.mnuTranslateItemDescriptions.Checked = !this.mnuTranslateItemDescriptions.Checked;
-    }
-
-    #endregion
-
-    #region Abilities
-
-    private void btnTranslateAbilities_Click(object sender, System.EventArgs e) {
-      this.TranslateAbilityFile(0, 0, 10, 0, 119, 55);
-      this.AddLogEntry(I18N.GetText("AbilityTranslateDone"));
-    }
-
-    private void btnRestoreAbilities_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0, 0, 10);
-      this.AddLogEntry(I18N.GetText("AbilityRestoreDone"));
-    }
-
-    private void btnConfigAbilities_Click(object sender, System.EventArgs e) {
-      this.mnuConfigAbilities.Show(this.btnConfigAbilities, new Point(0, this.btnConfigAbilities.Height));
-    }
-
-    #endregion
-
-    #region Dialog Tables
-
-    private void btnTranslateDialogTables_Click(object sender, System.EventArgs e) {
-      this.SwapFiles("DialogTables");
-      this.AddLogEntry(I18N.GetText("DialogTableTranslateDone"));
-    }
-
-    private void btnRestoreDialogTables_Click(object sender, System.EventArgs e) {
-      this.RestoreSwappedFiles("DialogTables");
-      this.AddLogEntry(I18N.GetText("DialogTableRestoreDone"));
-    }
-
-    #endregion
-
-    #region String Tables
-
-    private void btnTranslateStringTables_Click(object sender, System.EventArgs e) {
-      this.SwapFiles("StringTables");
-      this.AddLogEntry(I18N.GetText("StringTableTranslateDone"));
-    }
-
-    private void btnRestoreStringTables_Click(object sender, System.EventArgs e) {
-      this.RestoreSwappedFiles("StringTables");
-      this.AddLogEntry(I18N.GetText("StringTableRestoreDone"));
-    }
-
-    #endregion
-
-    #region Auto-Translator
-
     private void btnTranslateAutoTrans_Click(object sender, System.EventArgs e) {
-      this.TranslateAutoTranslatorFile(0, 76, 23);
+      this.TranslateAutoTranslatorFile(55545);
       this.AddLogEntry(I18N.GetText("AutoTransTranslateDone"));
     }
 
     private void btnRestoreAutoTrans_Click(object sender, System.EventArgs e) {
-      this.RestoreFile(0, 76, 23);
+      this.RestoreFile(55545);
       this.AddLogEntry(I18N.GetText("AutoTransRestoreDone"));
     }
 
@@ -573,6 +451,60 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
     }
 
     #endregion
+
+    #region Dialog Tables / String Tables
+
+    private void btnTranslateDialogTables_Click(object sender, System.EventArgs e) {
+      for (ushort i = 0; i < 0x100; ++i)
+	this.SwapFile(6120 + i, 6420 + i);
+      this.AddLogEntry(I18N.GetText("DialogTableTranslateDone"));
+    }
+
+    private void btnRestoreDialogTables_Click(object sender, System.EventArgs e) {
+      for (ushort i = 0; i < 0x100; ++i)
+	this.RestoreFile(6120 + i);
+      this.AddLogEntry(I18N.GetText("DialogTableRestoreDone"));
+    }
+
+    private void btnTranslateStringTables_Click(object sender, System.EventArgs e) {
+      this.SwapFile(55525, 55645);
+      this.SwapFile(55526, 55646);
+      this.SwapFile(55527, 55647);
+      this.SwapFile(55528, 55648);
+      this.SwapFile(55529, 55649);
+      this.SwapFile(55530, 55650);
+      this.SwapFile(55531, 55651);
+      this.SwapFile(55532, 55652);
+      this.SwapFile(55533, 55653);
+      this.SwapFile(55534, 55654);
+      this.SwapFile(55535, 55465); // out of sequence in the EN side of things
+      this.SwapFile(55536, 55467); // out of sequence in the EN side of things
+      this.SwapFile(55537, 55657);
+      this.SwapFile(55538, 55658);
+      this.SwapFile(55539, 55659);
+      this.SwapFile(55540, 55660);
+      this.AddLogEntry(I18N.GetText("StringTableTranslateDone"));
+    }
+
+    private void btnRestoreStringTables_Click(object sender, System.EventArgs e) {
+      this.RestoreFile(55525);
+      this.RestoreFile(55526);
+      this.RestoreFile(55527);
+      this.RestoreFile(55528);
+      this.RestoreFile(55529);
+      this.RestoreFile(55530);
+      this.RestoreFile(55531);
+      this.RestoreFile(55532);
+      this.RestoreFile(55533);
+      this.RestoreFile(55534);
+      this.RestoreFile(55535);
+      this.RestoreFile(55536);
+      this.RestoreFile(55537);
+      this.RestoreFile(55538);
+      this.RestoreFile(55539);
+      this.RestoreFile(55540);
+      this.AddLogEntry(I18N.GetText("StringTableRestoreDone"));
+    }
 
     #endregion
 

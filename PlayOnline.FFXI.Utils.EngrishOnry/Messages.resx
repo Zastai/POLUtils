@@ -198,6 +198,9 @@
   <data name="FileSizeMismatch" xml:space="preserve">
     <value>*** File sizes of Japanese and English files do not match - Translation Aborted ***</value>
   </data>
+  <data name="ItemTypeMismatch" xml:space="preserve">
+    <value>*** Item type of Japanese and English files do not match - Translation Aborted ***</value>
+  </data>
   <data name="TranslatingAbilities" xml:space="preserve">
     <value>Translating ability data file: {0}</value>
   </data>
