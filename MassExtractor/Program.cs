@@ -96,161 +96,97 @@ namespace MassExtractor {
 	Console.WriteLine(I18N.GetText("SourceFolder"), FFXIFolder);
 	Console.WriteLine(I18N.GetText("TargetFolder"), OutputFolder);
 	Console.WriteLine(String.Format(I18N.GetText("StartTime"), ExtractionStart));
-	Directory.SetCurrentDirectory(FFXIFolder);
-	Console.Write(I18N.GetText("DumpFileTable"));
-	{ // Dump File Table
-	StreamWriter FileTable = new StreamWriter(Path.Combine(OutputFolder, "file-table.csv"), false, Encoding.UTF8);
-	  FileTable.WriteLine("\"File ID\"\t\"ROMDir\"\t\"Dir\"\t\"File\"");
-	  for (byte i = 1; i < 10; ++i) {
-	  string Suffix = "";
-	  string DataDir = FFXIFolder;
-	    if (i > 1) {
-	      Suffix = i.ToString();
-	      DataDir = Path.Combine(DataDir, "Rom" + Suffix);
-	    }
-	  string VTableFile = Path.Combine(DataDir, String.Format("VTABLE{0}.DAT", Suffix));
-	  string FTableFile = Path.Combine(DataDir, String.Format("FTABLE{0}.DAT", Suffix));
-	    if (i == 1) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
-	      DataDir = Path.Combine(DataDir, "Rom");
-	    if (System.IO.File.Exists(VTableFile) && System.IO.File.Exists(FTableFile)) {
-	      try {
-	      BinaryReader VBR = new BinaryReader(new FileStream(VTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
-	      BinaryReader FBR = new BinaryReader(new FileStream(FTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
-	      long FileCount = VBR.BaseStream.Length;
-		for (long j = 0; j < FileCount; ++j) {
-		  if (VBR.ReadByte() == i) {
-		    FBR.BaseStream.Seek(2 * j, SeekOrigin.Begin);
-		  ushort FileDir = FBR.ReadUInt16();
-		  byte Dir  = (byte) (FileDir / 0x80);
-		  byte File = (byte) (FileDir % 0x80);
-		    FileTable.WriteLine("{0}\t\"{1}\"\t\"{2}\"\t\"{3}\"", j, Path.GetFileName(DataDir), Dir.ToString(), Path.ChangeExtension(File.ToString(), ".dat"));
-		  }
-		}
-		FBR.Close();
-		VBR.Close();
+	if (ScanAllFiles)
+	  Program.DoFullFileScan(FFXIFolder, OutputFolder);
+	else { // Process "known" files
+	  Directory.SetCurrentDirectory(OutputFolder);
+	  Console.Write(I18N.GetText("DumpFileTable"));
+	  { // Dump File Table
+	  StreamWriter FileTable = new StreamWriter("file-table.csv", false, Encoding.UTF8);
+	    FileTable.WriteLine("\"File ID\"\t\"ROMDir\"\t\"Dir\"\t\"File\"");
+	    for (byte i = 1; i < 10; ++i) {
+	    string Suffix = "";
+	    string DataDir = FFXIFolder;
+	      if (i > 1) {
+		Suffix = i.ToString();
+		DataDir = Path.Combine(DataDir, "Rom" + Suffix);
 	      }
-	      catch { }
-	    }
-	  }
-	  FileTable.Close();
-	  Console.ForegroundColor = ConsoleColor.Green;
-	  Console.WriteLine(I18N.GetText("OK"));
-	  Console.ForegroundColor = ConsoleColor.White;
-	}
-	if (ScanAllFiles) {
-	  for (int i = 1; i < 10; ++i) {
-	  string ROMFolder = "Rom";
-	    if (i > 1)
-	      ROMFolder += i.ToString();
-	    if (Directory.Exists(ROMFolder)) {
-	      for (int j = 0; j < 1000; ++j) {
-	      string ROMSubFolder = Path.Combine(ROMFolder, j.ToString());
-		if (Directory.Exists(ROMSubFolder)) {
-		  Console.WriteLine(I18N.GetText("Scanning"), ROMSubFolder);
-		long Files      = 0;
-		long KnownFiles = 0;
-		  for (int k = 0; k < 128; ++k) {
-		  string ROMFile = Path.Combine(ROMSubFolder, String.Format("{0}.DAT", k));
-		    if (File.Exists(ROMFile)) {
-		    ThingList KnownData = FileType.LoadAll(ROMFile, null);
-		      if (KnownData != null && KnownData.Count > 0) {
-			Console.WriteLine(I18N.GetText("ExtractingAll"), KnownData.Count, ROMFile);
-			++KnownFiles;
-		      ThingList<Graphic> Images = new ThingList<Graphic>();
-		      ThingList NonImages = new ThingList();
-			foreach (IThing T in KnownData) {
-			  if (T is Graphic)
-			    Images.Add(T as Graphic);
-			  else
-			    NonImages.Add(T);
-			}
-			KnownData.Clear();
-			if (Images.Count == 1) {
-			Image I = Images[0].GetFieldValue("image") as Image;
-			  if (I != null) {
-			  string Category  = Images[0].GetFieldText("category");
-			  string ID        = Images[0].GetFieldText("id");
-			  string ImageFile = String.Format("{0}-{1}-{2} - ({3}) {4}.png", i, j, k, Category, ID);
-			    I.Save(Path.Combine(OutputFolder, ImageFile), ImageFormat.Png);
-			  }
-			}
-			else if (Images.Count > 0) {
-			string ImageFolder = Path.Combine(OutputFolder, String.Format("{0}-{1}-{2}", i, j, k));
-			int    ImageIndex  = 0;
-			  foreach (Graphic G in Images) {
-			  Image I = G.GetFieldValue("image") as Image;
-			    if (I != null) {
-			      if (!Directory.Exists(ImageFolder))
-				Directory.CreateDirectory(ImageFolder);
-			    string Category  = G.GetFieldText("category");
-			    string ID        = G.GetFieldText("id");
-			    string ImageFile = String.Format("{0} - ({1}) {2}.png", ++ImageIndex, Category, ID);
-			      I.Save(Path.Combine(ImageFolder, ImageFile), ImageFormat.Png);
-			    }
-			  }
-			}
-			Images.Clear();
-			if (NonImages.Count > 0)
-			  NonImages.Save(Path.Combine(OutputFolder, String.Format("{0}-{1}-{2}.xml", i, j, k)));
-			NonImages.Clear();
-		      }
-		      ++Files;
+	    string VTableFile = Path.Combine(DataDir, String.Format("VTABLE{0}.DAT", Suffix));
+	    string FTableFile = Path.Combine(DataDir, String.Format("FTABLE{0}.DAT", Suffix));
+	      if (i == 1) // add the Rom now (not needed for the *TABLE.DAT, but needed for the other DAT paths)
+		DataDir = Path.Combine(DataDir, "Rom");
+	      if (System.IO.File.Exists(VTableFile) && System.IO.File.Exists(FTableFile)) {
+		try {
+		BinaryReader VBR = new BinaryReader(new FileStream(VTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
+		BinaryReader FBR = new BinaryReader(new FileStream(FTableFile, FileMode.Open, FileAccess.Read, FileShare.Read));
+		long FileCount = VBR.BaseStream.Length;
+		  for (long j = 0; j < FileCount; ++j) {
+		    if (VBR.ReadByte() == i) {
+		      FBR.BaseStream.Seek(2 * j, SeekOrigin.Begin);
+		    ushort FileDir = FBR.ReadUInt16();
+		    byte Dir  = (byte) (FileDir / 0x80);
+		    byte File = (byte) (FileDir % 0x80);
+		      FileTable.WriteLine("{0}\t\"{1}\"\t\"{2}\"\t\"{3}\"", j, Path.GetFileName(DataDir), Dir.ToString(), Path.ChangeExtension(File.ToString(), ".dat"));
 		    }
 		  }
-		  Console.WriteLine(" => {0} of {1} file(s) contained recogniseable data", KnownFiles, Files);
+		  FBR.Close();
+		  VBR.Close();
 		}
+		catch { }
 	      }
 	    }
+	    FileTable.Close();
+	    Console.ForegroundColor = ConsoleColor.Green;
+	    Console.WriteLine(I18N.GetText("OK"));
+	    Console.ForegroundColor = ConsoleColor.White;
 	  }
-	}
-	else { // Scan "known" files
 	  // Interesting Data
-	  Program.ExtractFile(73, Path.Combine(OutputFolder, "items-general.xml"));
-	  Program.ExtractFile(74, Path.Combine(OutputFolder, "items-usable.xml"));
-	  Program.ExtractFile(75, Path.Combine(OutputFolder, "items-weapons.xml"));
-	  Program.ExtractFile(76, Path.Combine(OutputFolder, "items-armor.xml"));
-	  Program.ExtractFile(77, Path.Combine(OutputFolder, "items-puppet.xml"));
+	  Program.ExtractFile(73, "items-general.xml");
+	  Program.ExtractFile(74, "items-usable.xml");
+	  Program.ExtractFile(75, "items-weapons.xml");
+	  Program.ExtractFile(76, "items-armor.xml");
+	  Program.ExtractFile(77, "items-puppet.xml");
 	  // 78 = main UI image file (fonts, icons, ...)
 	  // 79 = logon UI image file (logo, character creation text)
 	  // 80 = ? (but initally loads like quests)
 	  // 81 = ?
-	  Program.ExtractFile(82, Path.Combine(OutputFolder, "quests.xml"));
+	  Program.ExtractFile(82, "quests.xml");
 	  // 83 = ?
-	  Program.ExtractFile(84, Path.Combine(OutputFolder, "titles.xml"));
-	  Program.ExtractFile(85, Path.Combine(OutputFolder, "abilities.xml"));
-	  Program.ExtractFile(86, Path.Combine(OutputFolder, "spells.xml"));
-	  Program.ExtractFile(87, Path.Combine(OutputFolder, "statuses.xml"));
+	  Program.ExtractFile(84, "titles.xml");
+	  Program.ExtractFile(85, "abilities.xml");
+	  Program.ExtractFile(86, "spells.xml");
+	  Program.ExtractFile(87, "statuses.xml");
 	  // Dialog Tables
 	  for (ushort i = 0; i < 0x100; ++i)
-	    Program.ExtractFile(6420 + i, Path.Combine(OutputFolder, String.Format("dialog-table-{0:X2}.xml", i)));
+	    Program.ExtractFile(6420 + i, String.Format("dialog-table-{0:000}.xml", i));
 	  // Mob Lists
 	  for (ushort i = 0; i < 0x100; ++i)
-	    Program.ExtractFile(6720 + i, Path.Combine(OutputFolder, String.Format("mob-list-{0:X2}.xml", i)));
+	    Program.ExtractFile(6720 + i, String.Format("mob-list-{0:000}.xml", i));
 	  // String Tables
-	  Program.ExtractFile(55465, Path.Combine(OutputFolder, "area-names.xml"));
-	  Program.ExtractFile(55466, Path.Combine(OutputFolder, "area-names-search.xml"));
-	  Program.ExtractFile(55467, Path.Combine(OutputFolder, "job-names.xml"));
-	  Program.ExtractFile(55468, Path.Combine(OutputFolder, "job-names-short.xml"));
-	  Program.ExtractFile(55469, Path.Combine(OutputFolder, "race-names.xml"));
-	  Program.ExtractFile(55470, Path.Combine(OutputFolder, "character-selection-strings.xml"));
-	  Program.ExtractFile(55471, Path.Combine(OutputFolder, "equipment-locations.xml"));
+	  Program.ExtractFile(55465, "area-names.xml");
+	  Program.ExtractFile(55466, "area-names-search.xml");
+	  Program.ExtractFile(55467, "job-names.xml");
+	  Program.ExtractFile(55468, "job-names-short.xml");
+	  Program.ExtractFile(55469, "race-names.xml");
+	  Program.ExtractFile(55470, "character-selection-strings.xml");
+	  Program.ExtractFile(55471, "equipment-locations.xml");
 	  // More String Tables
-	  Program.ExtractFile(55645, Path.Combine(OutputFolder, "various-1.xml"));
-	  Program.ExtractFile(55646, Path.Combine(OutputFolder, "error-messages.xml"));
-	  Program.ExtractFile(55647, Path.Combine(OutputFolder, "pol-messages.xml"));
-	  Program.ExtractFile(55648, Path.Combine(OutputFolder, "ingame-messages-1.xml"));
-	  Program.ExtractFile(55649, Path.Combine(OutputFolder, "ingame-messages-2.xml"));
-	  Program.ExtractFile(55650, Path.Combine(OutputFolder, "chat-filter-types.xml"));
-	  Program.ExtractFile(55651, Path.Combine(OutputFolder, "menu-item-description.xml"));
-	  Program.ExtractFile(55652, Path.Combine(OutputFolder, "menu-item-text.xml"));
-	  Program.ExtractFile(55653, Path.Combine(OutputFolder, "various-2.xml"));
-	  Program.ExtractFile(55654, Path.Combine(OutputFolder, "region-names.xml"));
+	  Program.ExtractFile(55645, "various-1.xml");
+	  Program.ExtractFile(55646, "error-messages.xml");
+	  Program.ExtractFile(55647, "pol-messages.xml");
+	  Program.ExtractFile(55648, "ingame-messages-1.xml");
+	  Program.ExtractFile(55649, "ingame-messages-2.xml");
+	  Program.ExtractFile(55650, "chat-filter-types.xml");
+	  Program.ExtractFile(55651, "menu-item-description.xml");
+	  Program.ExtractFile(55652, "menu-item-text.xml");
+	  Program.ExtractFile(55653, "various-2.xml");
+	  Program.ExtractFile(55654, "region-names.xml");
 	  // 55655-55656 are assigned to a JP string table (Rom\97\56.dat)
-	  Program.ExtractFile(55657, Path.Combine(OutputFolder, "weather-types.xml"));
-	  Program.ExtractFile(55658, Path.Combine(OutputFolder, "day-names.xml"));
-	  Program.ExtractFile(55659, Path.Combine(OutputFolder, "directions.xml"));
-	  Program.ExtractFile(55660, Path.Combine(OutputFolder, "moon-phases.xml"));
-	  Program.ExtractFile(55661, Path.Combine(OutputFolder, "area-names-alternate.xml"));
+	  Program.ExtractFile(55657, "weather-types.xml");
+	  Program.ExtractFile(55658, "day-names.xml");
+	  Program.ExtractFile(55659, "directions.xml");
+	  Program.ExtractFile(55660, "moon-phases.xml");
+	  Program.ExtractFile(55661, "area-names-alternate.xml");
 	  // 55662-55664 are assigned to a JP string table (Rom\97\56.dat)
 	}
       DateTime ExtractionEnd = DateTime.Now;
@@ -264,6 +200,74 @@ namespace MassExtractor {
 	return 1;
       }
       finally { Console.ResetColor(); }
+    }
+
+    private static void DoFullFileScan(string FFXIFolder, string OutputFolder) {
+      Directory.SetCurrentDirectory(FFXIFolder);
+      for (int i = 1; i < 10; ++i) {
+      string ROMFolder = "Rom";
+	if (i > 1)
+	  ROMFolder += i.ToString();
+	if (Directory.Exists(ROMFolder)) {
+	  for (int j = 0; j < 1000; ++j) {
+	  string ROMSubFolder = Path.Combine(ROMFolder, j.ToString());
+	    if (Directory.Exists(ROMSubFolder)) {
+	      Console.WriteLine(I18N.GetText("Scanning"), ROMSubFolder);
+	    long Files      = 0;
+	    long KnownFiles = 0;
+	      for (int k = 0; k < 128; ++k) {
+	      string ROMFile = Path.Combine(ROMSubFolder, String.Format("{0}.DAT", k));
+		if (File.Exists(ROMFile)) {
+		ThingList KnownData = FileType.LoadAll(ROMFile, null);
+		  if (KnownData != null && KnownData.Count > 0) {
+		    Console.WriteLine(I18N.GetText("ExtractingAll"), KnownData.Count, ROMFile);
+		    ++KnownFiles;
+		  ThingList<Graphic> Images = new ThingList<Graphic>();
+		  ThingList NonImages = new ThingList();
+		    foreach (IThing T in KnownData) {
+		      if (T is Graphic)
+			Images.Add(T as Graphic);
+		      else
+			NonImages.Add(T);
+		    }
+		    KnownData.Clear();
+		    if (Images.Count == 1) {
+		    Image I = Images[0].GetFieldValue("image") as Image;
+		      if (I != null) {
+		      string Category  = Images[0].GetFieldText("category");
+		      string ID        = Images[0].GetFieldText("id");
+		      string ImageFile = String.Format("{0}-{1}-{2} - ({3}) {4}.png", i, j, k, Category, ID);
+			I.Save(Path.Combine(OutputFolder, ImageFile), ImageFormat.Png);
+		      }
+		    }
+		    else if (Images.Count > 0) {
+		    string ImageFolder = Path.Combine(OutputFolder, String.Format("{0}-{1}-{2}", i, j, k));
+		    int    ImageIndex  = 0;
+		      foreach (Graphic G in Images) {
+		      Image I = G.GetFieldValue("image") as Image;
+			if (I != null) {
+			  if (!Directory.Exists(ImageFolder))
+			    Directory.CreateDirectory(ImageFolder);
+			string Category  = G.GetFieldText("category");
+			string ID        = G.GetFieldText("id");
+			string ImageFile = String.Format("{0} - ({1}) {2}.png", ++ImageIndex, Category, ID);
+			  I.Save(Path.Combine(ImageFolder, ImageFile), ImageFormat.Png);
+			}
+		      }
+		    }
+		    Images.Clear();
+		    if (NonImages.Count > 0)
+		      NonImages.Save(Path.Combine(OutputFolder, String.Format("{0}-{1}-{2}.xml", i, j, k)));
+		    NonImages.Clear();
+		  }
+		  ++Files;
+		}
+	      }
+	      Console.WriteLine(" => {0} of {1} file(s) contained recogniseable data", KnownFiles, Files);
+	    }
+	  }
+	}
+      }
     }
 
   }
