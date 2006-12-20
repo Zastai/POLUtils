@@ -2,6 +2,18 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.1 Released" author="Pebbles" date="December 20th, 2006">
+      <p>Today I'm releasing POLUtils 0.9.1, a collection of PlayOnline-related utilities.</p>
+      <p>There are some changes under the hood, but the main reason for this release is the
+         DAT changes of the 20061218 patch.  EngrishOnry currently has its item and autotrans
+         translation disabled (both are broken); I may push a 0.9.2 release before the end of the
+         year with a working EngrishOnry.</p>
+    </news-item>
+    <news-item title="DAT Format Changes" author="Pebbles" date="December 18th, 2006">
+      <p>Today's patch changed the Item and Status DAT formats (as well as the string table format),
+         breaking POLUtils - this is being worked on.  In the meantime, do NOT use Engrishonry as
+         it will corrupt the item data.</p>
+    </news-item>
     <news-item title="POLUtils 0.9.0 Released" author="Pebbles" date="July 25th, 2006">
       <p>Today I'm releasing POLUtils 0.9.0, a collection of PlayOnline-related utilities.</p>
       <p>This is mainly a bugfix release; there aren't many new features.  Support was added
@@ -392,6 +404,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.1-Release-x86.exe"/>
+      <file name="POLUtils-0.9.1-Release-x64.exe">
+	Bugfixes and NPC/Mob list support.<br/>
+      </file>
       <file name="POLUtils-0.9.0-Release-x86.exe"/>
       <file name="POLUtils-0.9.0-Release-x64.exe">
 	Bugfixes and NPC/Mob list support.<br/>
