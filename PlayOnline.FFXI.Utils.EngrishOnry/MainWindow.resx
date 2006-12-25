@@ -151,7 +151,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="rtbActivityLog.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Sans Typewriter, 9pt</value>
+    <value>Lucida Sans Typewriter, 8pt</value>
   </data>
   <data name="rtbActivityLog.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 20</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="rtbActivityLog.Text" xml:space="preserve">
     <value />
+  </data>
+  <data name="rtbActivityLog.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;rtbActivityLog.Name" xml:space="preserve">
     <value>rtbActivityLog</value>
@@ -227,6 +230,318 @@
   </data>
   <data name="mnuEnglishATCompletionOnly.Text" xml:space="preserve">
     <value>&amp;English Completion Only</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAbilities.Name" xml:space="preserve">
+    <value>btnConfigAbilities</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAbilities.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAbilities.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAbilities.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblAbilities.Name" xml:space="preserve">
+    <value>lblAbilities</value>
+  </data>
+  <data name="&gt;&gt;lblAbilities.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAbilities.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblAbilities.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAbilities.Name" xml:space="preserve">
+    <value>btnRestoreAbilities</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAbilities.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAbilities.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAbilities.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAbilities.Name" xml:space="preserve">
+    <value>btnTranslateAbilities</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAbilities.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAbilities.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAbilities.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnConfigDialogTables.Name" xml:space="preserve">
+    <value>btnConfigDialogTables</value>
+  </data>
+  <data name="&gt;&gt;btnConfigDialogTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigDialogTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigDialogTables.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnConfigStringTables.Name" xml:space="preserve">
+    <value>btnConfigStringTables</value>
+  </data>
+  <data name="&gt;&gt;btnConfigStringTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigStringTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigStringTables.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAutoTrans.Name" xml:space="preserve">
+    <value>btnConfigAutoTrans</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAutoTrans.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAutoTrans.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigAutoTrans.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnConfigItemData.Name" xml:space="preserve">
+    <value>btnConfigItemData</value>
+  </data>
+  <data name="&gt;&gt;btnConfigItemData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigItemData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigItemData.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnConfigSpellData.Name" xml:space="preserve">
+    <value>btnConfigSpellData</value>
+  </data>
+  <data name="&gt;&gt;btnConfigSpellData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnConfigSpellData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnConfigSpellData.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblItemData.Name" xml:space="preserve">
+    <value>lblItemData</value>
+  </data>
+  <data name="&gt;&gt;lblItemData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblItemData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblItemData.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;lblAutoTranslator.Name" xml:space="preserve">
+    <value>lblAutoTranslator</value>
+  </data>
+  <data name="&gt;&gt;lblAutoTranslator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAutoTranslator.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblAutoTranslator.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;lblSpellData.Name" xml:space="preserve">
+    <value>lblSpellData</value>
+  </data>
+  <data name="&gt;&gt;lblSpellData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSpellData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblSpellData.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;lblStringTables.Name" xml:space="preserve">
+    <value>lblStringTables</value>
+  </data>
+  <data name="&gt;&gt;lblStringTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblStringTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblStringTables.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;lblDialogTables.Name" xml:space="preserve">
+    <value>lblDialogTables</value>
+  </data>
+  <data name="&gt;&gt;lblDialogTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDialogTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lblDialogTables.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreSpellData.Name" xml:space="preserve">
+    <value>btnRestoreSpellData</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreSpellData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreSpellData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreSpellData.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateSpellData.Name" xml:space="preserve">
+    <value>btnTranslateSpellData</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateSpellData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateSpellData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateSpellData.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreStringTables.Name" xml:space="preserve">
+    <value>btnRestoreStringTables</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreStringTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreStringTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreStringTables.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateStringTables.Name" xml:space="preserve">
+    <value>btnTranslateStringTables</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateStringTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateStringTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateStringTables.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreDialogTables.Name" xml:space="preserve">
+    <value>btnRestoreDialogTables</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreDialogTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreDialogTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreDialogTables.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateDialogTables.Name" xml:space="preserve">
+    <value>btnTranslateDialogTables</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateDialogTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateDialogTables.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateDialogTables.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAutoTrans.Name" xml:space="preserve">
+    <value>btnRestoreAutoTrans</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAutoTrans.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAutoTrans.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreAutoTrans.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAutoTrans.Name" xml:space="preserve">
+    <value>btnTranslateAutoTrans</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAutoTrans.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAutoTrans.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateAutoTrans.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreItemData.Name" xml:space="preserve">
+    <value>btnRestoreItemData</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreItemData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreItemData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreItemData.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateItemData.Name" xml:space="preserve">
+    <value>btnTranslateItemData</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateItemData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateItemData.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;btnTranslateItemData.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="pnlActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>519, 72</value>
+  </data>
+  <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Name" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnConfigAbilities.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -425,9 +740,6 @@
   </data>
   <data name="&gt;&gt;btnConfigAutoTrans.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="btnConfigItemData.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="btnConfigItemData.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -840,9 +1152,6 @@
   <data name="&gt;&gt;btnTranslateAutoTrans.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
-  <data name="btnRestoreItemData.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="btnRestoreItemData.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
@@ -870,9 +1179,6 @@
   <data name="&gt;&gt;btnRestoreItemData.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
-  <data name="btnTranslateItemData.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="btnTranslateItemData.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
@@ -899,30 +1205,6 @@
   </data>
   <data name="&gt;&gt;btnTranslateItemData.ZOrder" xml:space="preserve">
     <value>23</value>
-  </data>
-  <data name="pnlActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="pnlActions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>519, 72</value>
-  </data>
-  <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Name" xml:space="preserve">
-    <value>pnlActions</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <metadata name="mnuConfigAbilities.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>477, 17</value>

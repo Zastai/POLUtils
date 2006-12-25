@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -16,7 +17,7 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
   public partial class MainWindow : System.Windows.Forms.Form {
 
     public MainWindow() {
-      InitializeComponent();
+      this.InitializeComponent();
       this.Icon = Icons.POLViewer;
     }
 
@@ -130,16 +131,98 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 	    goto TranslationDone;
 	  }
 	}
+      ushort StringBase = 0;
+	switch (T) {
+	  case Things.Item.Type.Armor:      StringBase = 36; break;
+	  case Things.Item.Type.Item:       StringBase = 20; break;
+	  case Things.Item.Type.PuppetItem: StringBase = 24; break;
+	  case Things.Item.Type.UsableItem: StringBase = 16; break;
+	  case Things.Item.Type.Weapon:     StringBase = 44; break;
+	  default:
+	    this.AddLogEntry(I18N.GetText("ItemTypeBad"));
+	    goto TranslationDone;
+	}
       long ItemCount = JStream.Length / 0xc00;
       byte[] JData = new byte[0x280];
       byte[] EData = new byte[0x280];
+      MemoryStream JMemStream = new MemoryStream(JData, true);
+      MemoryStream EMemStream = new MemoryStream(EData, false);
+      FFXIEncoding E = new FFXIEncoding();
 	for (long i = 0; i < ItemCount; ++i) {
 	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Read(JData, 0, 0x280);
 	  EStream.Seek(i * 0xc00, SeekOrigin.Begin); EStream.Read(EData, 0, 0x280);
-	  if (this.mnuTranslateItemNames.Checked) {
+	  FFXIEncryption.Rotate(JData, 5);
+	  FFXIEncryption.Rotate(EData, 5);
+	  // Read English or Japanese Name
+	List<byte> Name = new List<byte>();
+	  {
+	  MemoryStream MS = null;
+	    if (this.mnuTranslateItemNames.Checked)
+	      MS = EMemStream;
+	    else
+	      MS = JMemStream;
+	    MS.Position = StringBase + 4;
+	  BinaryReader BR = new BinaryReader(MS);
+	    MS.Position = StringBase + 0x1c + BR.ReadUInt32();
+	    while (MS.Position < 0x280) {
+	    int B = MS.ReadByte();
+	      if (B <= 0)
+		break;
+	      Name.Add((byte) B);
+	    }
+	    Name.Add(0);
+	    while (Name.Count % 4 != 0)
+	      Name.Add(0);
 	  }
-	  if (this.mnuTranslateItemDescriptions.Checked) {
+	  // Read English or Japanese Description
+	List<byte> Description = new List<byte>();
+	  {
+	  MemoryStream MS = null;
+	    if (this.mnuTranslateItemDescriptions.Checked) {
+	      EMemStream.Position = StringBase + 4 + 8 * 4;
+	      MS = EMemStream;
+	    }
+	    else {
+	      JMemStream.Position = StringBase + 4 + 8 * 1;
+	      MS = JMemStream;
+	    }
+	  BinaryReader BR = new BinaryReader(MS);
+	    MS.Position = StringBase + 0x1c + BR.ReadUInt32();
+	    while (MS.Position < 0x280) {
+	    int B = MS.ReadByte();
+	      if (B <= 0)
+		break;
+	      Description.Add((byte) B);
+	    }
+	    Description.Add(0);
+	    while (Description.Count % 4 != 0)
+	      Description.Add(0);
 	  }
+	  { // Construct a new string table
+	  BinaryWriter BW = new BinaryWriter(JMemStream);
+	    Array.Clear(JData, StringBase, 0x280 - StringBase);
+	    JMemStream.Position = StringBase;
+	  uint NameOffset = 0x14; // Right after the string table header
+	  uint DescOffset = NameOffset + (uint) Name.Count + 28;
+	    BW.Write((uint)  2);
+	    BW.Write(NameOffset);
+	    BW.Write((uint)  0);
+	    BW.Write(DescOffset);
+	    BW.Write((uint)  0);
+	    BW.Write((uint)  1);
+	    BW.Write((ulong) 0);
+	    BW.Write((ulong) 0);
+	    BW.Write((ulong) 0);
+	    BW.Write(Name.ToArray());
+	    BW.Write((uint)  1);
+	    BW.Write((ulong) 0);
+	    BW.Write((ulong) 0);
+	    BW.Write((ulong) 0);
+	    BW.Write(Description.ToArray());
+	    BW.Write((uint)  1);
+	  }
+	  // Update file data
+	  FFXIEncryption.Rotate(JData, 3);
 	  JStream.Seek(i * 0xc00, SeekOrigin.Begin); JStream.Write(JData, 0, 0x280);
 	}
       TranslationDone:
