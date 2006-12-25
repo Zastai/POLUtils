@@ -40,8 +40,8 @@ namespace PlayOnline.FFXI.FileTypes {
 	    TL.Clear();
 	    return TL;
 	  }
-	string MenuName   = Encoding.ASCII.GetString(BR.ReadBytes(8));
-	  if (BR.ReadUInt32() != 0 || MenuName.Substring(0, 4) != ShortName) {
+	string MenuName = Encoding.ASCII.GetString(BR.ReadBytes(8));
+	  if (BR.ReadUInt32() != 0 || MenuName.Substring(0, 3) != ShortName) { // Used to be a full match but the JP data of 20061218 had pr_sc vs pr_1
 	    TL.Clear();
 	    return TL;
 	  }

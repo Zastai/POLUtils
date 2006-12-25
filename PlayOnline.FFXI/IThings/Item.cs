@@ -406,14 +406,14 @@ namespace PlayOnline.FFXI.Things {
 	this.Icon_ = G;
 	BR.BaseStream.Seek(0, SeekOrigin.Begin);
       } catch { return false; }
-      // Common Fields
+      // Common Fields (14 bytes)
       this.ID_           =               BR.ReadUInt32();
       this.Flags_        = (ItemFlags)   BR.ReadUInt16();
       this.StackSize_    =               BR.ReadUInt16();
       this.Type_         = (ItemType)    BR.ReadUInt16();
       this.ResourceID_   =               BR.ReadUInt16();
       this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
-      // Extra Fields (Equipment Only)
+      // Extra Fields (22/30/10/6/2 bytes for Armor/Weapon/Puppet/Item/UsableItem)
       if (T == Type.Armor || T == Type.Weapon) {
 	this.Level_ =                 BR.ReadUInt16();
 	this.Slots_ = (EquipmentSlot) BR.ReadUInt16();
@@ -433,7 +433,7 @@ namespace PlayOnline.FFXI.Things {
 	this.CastingTime_ = BR.ReadByte();
 	this.UseDelay_    = BR.ReadUInt16();
 	if (T == Type.Armor)
-	  this.Unknown2_  = BR.ReadUInt16(); // dispense-related?
+	  this.Unknown2_  = BR.ReadUInt16();
 	this.ReuseDelay_  = BR.ReadUInt32();
       }
       else if (T == Type.PuppetItem) {
@@ -457,7 +457,7 @@ namespace PlayOnline.FFXI.Things {
       }
       else if (T == Type.UsableItem)
 	this.ActivationTime_ = BR.ReadUInt16();
-      // Next Up: Strings
+      // Next Up: Strings (variable size)
     long StringBase  = BR.BaseStream.Position;
     uint StringCount = BR.ReadUInt32();
       if (StringCount > 8) {
@@ -467,7 +467,7 @@ namespace PlayOnline.FFXI.Things {
     FFXIEncoding E = new FFXIEncoding();
     string[] Strings = new string[StringCount];
       for (byte i = 0; i < StringCount; ++i) {
-      long Offset = StringBase + BR.ReadUInt32() - 0x2c + 0x48;
+      long Offset = StringBase + 0x1c + BR.ReadUInt32();
       uint Flag   = BR.ReadUInt32(); // seems to be 1 if the offset is not actually an offset (as in the case of the 2nd entry in the english DATs)
 	if (Offset < 0 || Offset + 4 > 0x280 || (Flag != 0 && Flag != 1)) {
 	  this.Clear();
@@ -511,9 +511,18 @@ namespace PlayOnline.FFXI.Things {
     private string ReadString(BinaryReader BR, Encoding E) {
     List<byte> TextBytes = new List<byte>();
       while (BR.BaseStream.Position < 0x280) {
-	TextBytes.AddRange(BR.ReadBytes(4));
-	if (TextBytes.Contains(0))
-	  return E.GetString(TextBytes.ToArray(), 0, TextBytes.IndexOf(0)).Replace("\n", Environment.NewLine);
+      byte[] Next4 = BR.ReadBytes(4);
+      byte UsableBytes = (byte) Next4.Length;
+	while (UsableBytes > 0 && Next4[UsableBytes - 1] == 0)
+	  --UsableBytes;
+	if (UsableBytes != 4) {
+	byte i = 0;
+	  while (UsableBytes-- > 0)
+	    TextBytes.Add(Next4[i++]);
+	  return E.GetString(TextBytes.ToArray()).Replace("\n", Environment.NewLine);
+	}
+	else
+	  TextBytes.AddRange(Next4);
       }
       return null;
     }

@@ -99,11 +99,11 @@ namespace PlayOnline.FFXI.Things {
       this.Index_ = Index;
       BR.BaseStream.Position = HeaderBytes + 0x8 * Index.Value;
       try {
-      uint Offset = (BR.ReadUInt32() ^ 0xFFFFFFFF);
-      uint Length = (BR.ReadUInt32() ^ 0xFFFFFFFF) - 40;
-	if (Length < 0 || 40 + Offset + Length > DataBytes)
+      uint Offset = ~BR.ReadUInt32() + 40;
+      uint Length = ~BR.ReadUInt32() - 40;
+	if (Length < 0 || Offset + Length > DataBytes)
 	  return false;
-	BR.BaseStream.Position = HeaderBytes + EntryBytes + 40 + Offset;
+	BR.BaseStream.Position = HeaderBytes + EntryBytes + Offset;
       byte[] TextBytes = BR.ReadBytes((int) Length);
 	for (uint i = 0; i < TextBytes.Length; ++i)
 	  TextBytes[i] ^= 0xff;
