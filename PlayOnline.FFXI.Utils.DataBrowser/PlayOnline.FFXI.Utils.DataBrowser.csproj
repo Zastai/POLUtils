@@ -34,6 +34,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +55,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +66,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -80,16 +84,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\PlayOnline.Core\PlayOnline.Core.csproj">
-      <Name>PlayOnline.Core</Name>
-      <Project>{84C42502-1564-4617-B80C-ACE781051CE8}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\PlayOnline.FFXI\PlayOnline.FFXI.csproj">
-      <Name>PlayOnline.FFXI</Name>
-      <Project>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileScanDialog.Designer.cs">
@@ -157,6 +151,16 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ROMFileMappings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlayOnline.Core\PlayOnline.Core.csproj">
+      <Project>{84C42502-1564-4617-B80C-ACE781051CE8}</Project>
+      <Name>PlayOnline.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlayOnline.FFXI\PlayOnline.FFXI.csproj">
+      <Project>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</Project>
+      <Name>PlayOnline.FFXI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
