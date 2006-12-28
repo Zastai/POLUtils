@@ -210,4 +210,19 @@
   <data name="UsingEnglishFile" xml:space="preserve">
     <value>Using English data file: {0}</value>
   </data>
+  <data name="ATBadENID" xml:space="preserve">
+    <value>*** Bad English ID ({0:X8}) - Translation Aborted ***</value>
+  </data>
+  <data name="ATBadJPID" xml:space="preserve">
+    <value>*** Bad Japanese ID ({0:X8}) - Translation Aborted ***</value>
+  </data>
+  <data name="ATCountMismatch" xml:space="preserve">
+    <value>*** Group Entry Count Mismatch (Japanese: {0}, English: {1}) - Translation Aborted ***</value>
+  </data>
+  <data name="ATIDMismatch" xml:space="preserve">
+    <value>*** ID Mismatch (Japanese: {0:X8}, English: {1:X8}) - Translation Aborted ***</value>
+  </data>
+  <data name="ATLowercaseProblem" xml:space="preserve">
+    <value>*** Lowercase string changed length (32 =&gt; {0})  - Translation Aborted ***</value>
+  </data>
 </root>

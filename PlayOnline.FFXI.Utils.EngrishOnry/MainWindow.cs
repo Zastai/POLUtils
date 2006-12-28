@@ -109,6 +109,7 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       string JFileName = FFXI.GetFilePath(JPFileNumber);
       string EFileName = FFXI.GetFilePath(ENFileNumber);
 	this.AddLogEntry(String.Format(I18N.GetText("TranslatingItems"), JFileName));
+	this.AddLogEntry(String.Format(I18N.GetText("UsingEnglishFile"), EFileName));
       FileStream JStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
       FileStream EStream = new FileStream(EFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 	if ((JStream.Length % 0xc00) != 0) {
@@ -384,133 +385,119 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 
     #region Auto-Translator Translation
 
-    private void TranslateAutoTranslatorFile(int FileNumber) {
-      if (!this.BackupFile(FileNumber))
+    private void TranslateAutoTranslatorFile(int JPFileNumber, int ENFileNumber) {
+      if (!this.BackupFile(JPFileNumber))
 	return;
-    FileStream ATStream = null;
       try {
-      string FileName = FFXI.GetFilePath(FileNumber);
-	ATStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAutoTrans"), FileName));
-	if (ATStream.Length < 1024 * 1024) {
-	byte[] ATData = new byte[ATStream.Length];
-	  ATStream.Read(ATData, 0, (int) ATStream.Length);
-	BinaryReader BR = new BinaryReader(new MemoryStream(ATData, false));
-	Hashtable EnglishMessages = new Hashtable();
-	  while (BR.BaseStream.Position != BR.BaseStream.Length) { // Scan through, recording the location of english messages
-	  uint GroupID = BR.ReadUInt32();
-	    if ((GroupID & 0xffff) == 0x202) {
-	      EnglishMessages[(GroupID >> 16) & 0xffff] = BR.BaseStream.Position;
-	      BR.BaseStream.Seek(32 + 32, SeekOrigin.Current);
-	    uint MessageCount = BR.ReadUInt32();
-	      BR.BaseStream.Seek(4, SeekOrigin.Current);
-	      for (uint i = 0; i < MessageCount; ++i) {
-	      uint MessageID = BR.ReadUInt32();
-		EnglishMessages[(MessageID >> 16) & 0xffff] = BR.BaseStream.Position;
-		BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
-	      }
+      string JFileName = FFXI.GetFilePath(JPFileNumber);
+      string EFileName = FFXI.GetFilePath(ENFileNumber);
+	this.AddLogEntry(String.Format(I18N.GetText("TranslatingAutoTrans"), JFileName));
+	this.AddLogEntry(String.Format(I18N.GetText("UsingEnglishFile"), EFileName));
+      FileStream ATStream = new FileStream(JFileName, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+      MemoryStream NewStream = new MemoryStream();
+      BinaryReader JBR = new BinaryReader(ATStream);
+      BinaryWriter JBW = new BinaryWriter(NewStream);
+      BinaryReader EBR = new BinaryReader(new FileStream(EFileName, FileMode.Open, FileAccess.Read));
+      FFXIEncoding E = new FFXIEncoding();
+	while (ATStream.Position != ATStream.Length) {
+	  { // Validate & Copy ID
+	  uint JID = JBR.ReadUInt32();
+	  uint EID = EBR.ReadUInt32();
+	    if ((JID & 0xffff) != 0x102) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATBadJPID"), JID));
+	      goto TranslationDone;
 	    }
-	    else { // Skip the group header and data
-	      BR.BaseStream.Seek(32 + 32 + 4, SeekOrigin.Current);
-	      BR.BaseStream.Seek(BR.ReadUInt32(), SeekOrigin.Current);
+	    if ((EID & 0xffff) != 0x202) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATBadENID"), EID));
+	      goto TranslationDone;
 	    }
+	    if ((EID & 0xffff0000) != (JID & 0xffff0000)) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATIDMismatch"), JID, EID));
+	      goto TranslationDone;
+	    }
+	    JBW.Write(JID);
 	  }
-	  ATStream.Seek(0, SeekOrigin.Begin);
-	FFXIEncoding E = null;
-	BinaryWriter BW = new BinaryWriter(ATStream);
-	  BR.BaseStream.Seek(0, SeekOrigin.Begin);
-	  while (BR.BaseStream.Position != BR.BaseStream.Length) { // Scan through, recording the location of english messages
-	  uint GroupID = BR.ReadUInt32();
-	    BW.Write(GroupID);
-	  long ENGroupPos = 0;
-	    if ((GroupID & 0xffff) != 0x202 && EnglishMessages.ContainsKey((GroupID >> 16) & 0xffff))
-	      ENGroupPos = (long) EnglishMessages[(GroupID >> 16) & 0xffff];
-	    if (ENGroupPos == 0) { // EN, or JP without EN equivalent
-	      BW.Write(BR.ReadBytes(32 + 32 + 4));
-	    byte[] GroupBytes = BR.ReadBytes(BR.ReadInt32());
-	      BW.Write(GroupBytes.Length); BW.Write(GroupBytes);
+	  // Group name -> use English
+	  JBW.Write(EBR.ReadBytes(32));
+	  JBR.BaseStream.Position += 32;
+	  // Completion Text -> based on config
+	  if (this.mnuPreserveJapaneseATCompletion.Checked) {
+	    JBW.Write(JBR.ReadBytes(32));
+	    EBR.BaseStream.Position += 32;
+	  }
+	  else {
+	  byte[] EnglishCompletion = E.GetBytes(E.GetString(EBR.ReadBytes(32)).ToLowerInvariant()); // we want it lowercase
+	    if (EnglishCompletion.Length != 32) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATLowercaseProblem"), EnglishCompletion.Length));
+	      goto TranslationDone;
+	    }
+	    JBW.Write(EnglishCompletion);
+	    JBR.BaseStream.Position += 32;
+	  }
+	uint JEntryCount = JBR.ReadUInt32();
+	uint EEntryCount = EBR.ReadUInt32();
+	  if (JEntryCount != EEntryCount) {
+	    this.AddLogEntry(String.Format(I18N.GetText("ATCountMismatch"), JEntryCount, EEntryCount));
+	    goto TranslationDone;
+	  }
+	  JBW.Write(JEntryCount);
+	long EntryBytesPos = JBW.BaseStream.Position;
+	  JBW.Write((uint) 0);
+	  JBR.BaseStream.Position += 4;
+	  EBR.BaseStream.Position += 4;
+	  for (uint i = 0; i < JEntryCount; ++i) {
+	    // Validate & Copy ID
+	  uint JID = JBR.ReadUInt32();
+	  uint EID = EBR.ReadUInt32();
+	    if ((JID & 0xffff) != 0x102) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATBadJPID"), JID));
+	      goto TranslationDone;
+	    }
+	    if ((EID & 0xffff) != 0x202) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATBadENID"), EID));
+	      goto TranslationDone;
+	    }
+	    if ((EID & 0xffff0000) != (JID & 0xffff0000)) {
+	      this.AddLogEntry(String.Format(I18N.GetText("ATIDMismatch"), JID, EID));
+	      goto TranslationDone;
+	    }
+	    JBW.Write(JID);
+	    // Display text -> use English
+	  byte[] EnglishText = EBR.ReadBytes(EBR.ReadByte());
+	    JBW.Write((byte) EnglishText.Length);
+	    JBW.Write(EnglishText);
+	    JBR.BaseStream.Position += 1 + JBR.ReadByte();
+	    // Completion Text -> based on config
+	    if (this.mnuPreserveJapaneseATCompletion.Checked) {
+	    byte[] JapaneseText = JBR.ReadBytes(JBR.ReadByte());
+	      JBW.Write((byte) JapaneseText.Length);
+	      JBW.Write(JapaneseText);
 	    }
 	    else {
-	      BR.BaseStream.Seek(32 + 32, SeekOrigin.Current); // Skip "old" names
-	      {
-	      long CurPos = BR.BaseStream.Position;
-		BR.BaseStream.Seek(ENGroupPos, SeekOrigin.Begin);
-		BW.Write(BR.ReadBytes(32 + 32));
-		BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
-	      }
-	    uint MessageCount = BR.ReadUInt32();
-	      BW.Write(MessageCount);
-	    long SizePos = BW.BaseStream.Position; // we'll be back here to update the group size
-	      BW.Write(BR.ReadUInt32());
-	      for (uint i = 0; i < MessageCount; ++i) {
-	      uint MessageID = BR.ReadUInt32();
-		BW.Write(MessageID);
-	      long ENMessagePos = 0;
-		if (EnglishMessages.ContainsKey((MessageID >> 16) & 0xffff))
-		  ENMessagePos =  (long) EnglishMessages[(MessageID >> 16) & 0xffff];
-		if (ENMessagePos == 0) { // Simply copy
-		byte[] Text;
-		  Text = BR.ReadBytes(BR.ReadByte()); BW.Write((byte) Text.Length); BW.Write(Text);
-		  Text = BR.ReadBytes(BR.ReadByte()); BW.Write((byte) Text.Length); BW.Write(Text);
-		}
-		else {
-		byte[] ENText = null;
-		  { // Skip back and grab english text
-		  long CurPos = BR.BaseStream.Position;
-		    BR.BaseStream.Seek(ENMessagePos, SeekOrigin.Begin);
-		    ENText = BR.ReadBytes(BR.ReadByte());
-		    BR.BaseStream.Seek(CurPos, SeekOrigin.Begin);
-		  }
-		  // Set the english text as primary
-		  BW.Write((byte) ENText.Length); BW.Write(ENText);
-		  if (this.mnuPreserveJapaneseATCompletion.Checked) {
-		  byte[] JPPrimary   = BR.ReadBytes(BR.ReadByte());
-		  byte[] JPSecondary = BR.ReadBytes(BR.ReadByte());
-		    if (JPSecondary.Length == 0)
-		      JPSecondary = JPPrimary;
-		    BW.Write((byte) JPSecondary.Length); BW.Write(JPSecondary);
-		  }
-		  else if (this.mnuEnglishATCompletionOnly.Checked) {
-		    // Skip JP strings
-		    BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
-		    BR.BaseStream.Seek(BR.ReadByte(), SeekOrigin.Current);
-		    if (E == null)
-		      E = new FFXIEncoding();
-		  string NormalText = E.GetString(ENText);
-		  string LowerCaseText = NormalText.ToLower();
-		    if (LowerCaseText != NormalText) {
-		      ENText = E.GetBytes(LowerCaseText);
-		      BW.Write((byte) ENText.Length); BW.Write(ENText);
-		    }
-		    else
-		      BW.Write((byte) 0);
-		  }
-		  else
-		    BW.Write((byte) 0);
-		}
-	      }
-	      // Update group size
-	    uint GroupSize = (uint) (BW.BaseStream.Position - SizePos - 4);
-	      BW.BaseStream.Seek(SizePos, SeekOrigin.Begin);
-	      BW.Write(GroupSize);
-	      BW.BaseStream.Seek(GroupSize, SeekOrigin.Current);
+	    byte[] LowerEnglishText = E.GetBytes(E.GetString(EnglishText).ToLowerInvariant());
+	      JBW.Write((byte) LowerEnglishText.Length);
+	      JBW.Write(LowerEnglishText);
+	      JBR.BaseStream.Position += 1 + JBR.ReadByte();
 	    }
 	  }
-	  ATStream.SetLength(ATStream.Position);
-	  BR.Close();
+	long EndOfGroupPos = JBW.BaseStream.Position;
+	  JBW.BaseStream.Position = EntryBytesPos;
+	  JBW.Write((uint) (EndOfGroupPos - EntryBytesPos - 4));
+	  JBW.BaseStream.Position = EndOfGroupPos;
 	}
-	else
-	  this.AddLogEntry(I18N.GetText("AutoTransTooLarge"));
-      }
-      catch {
-	this.LogFailure("TranslateAutoTranslator");
-      }
-      if (ATStream != null)
+	ATStream.Seek(0, SeekOrigin.Begin);
+	ATStream.Write(NewStream.ToArray(), 0, (int) NewStream.Length);
+	ATStream.SetLength(NewStream.Length);
+      TranslationDone:
 	ATStream.Close();
+	NewStream.Close();
+	EBR.Close();
+      }
+      catch { this.LogFailure("TranslateAutoTranslator"); }
     }
 
     private void btnTranslateAutoTrans_Click(object sender, System.EventArgs e) {
-      this.TranslateAutoTranslatorFile(55545);
+      this.TranslateAutoTranslatorFile(55545, 55665);
       this.AddLogEntry(I18N.GetText("AutoTransTranslateDone"));
     }
 
