@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
-[assembly: AssemblyCopyright    ("Copyright © 2005,2006 Tim Van Holder")]
+[assembly: AssemblyCopyright    ("Copyright © 2005,2006,2007 Tim Van Holder")]
 [assembly: AssemblyTrademark    ("")]
-[assembly: AssemblyCulture      ("")]		
+[assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("0.9.1.0")]
+[assembly: AssemblyVersion      ("0.9.2.0")]
