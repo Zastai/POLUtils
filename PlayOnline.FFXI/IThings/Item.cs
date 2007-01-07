@@ -467,31 +467,20 @@ namespace PlayOnline.FFXI.Things {
     FFXIEncoding E = new FFXIEncoding();
     string[] Strings = new string[StringCount];
       for (byte i = 0; i < StringCount; ++i) {
-      long Offset = StringBase + 0x1c + BR.ReadUInt32();
+      long Offset = StringBase + BR.ReadUInt32();
       uint Flag   = BR.ReadUInt32(); // seems to be 1 if the offset is not actually an offset (as in the case of the 2nd entry in the english DATs)
-	if (Offset < 0 || Offset + 4 > 0x280 || (Flag != 0 && Flag != 1)) {
+	if (Offset < 0 || Offset + 0x20 > 0x280 || (Flag != 0 && Flag != 1)) {
 	  this.Clear();
 	  return false;
 	}
 	if (Flag == 0) {
 	  BR.BaseStream.Position = Offset;
 	  Strings[i] = this.ReadString(BR, E);
-	  BR.BaseStream.Position = StringBase + 4 + 8 * (i + 1);
-	}
-      }
-      { // Verify the remainder of the string header (uint32 "1" + 6x uint32 "0")
-      bool OK = true;
-	if (BR.ReadUInt32() != 1)
-	  OK = false;
-	for (byte i = 0; i < 6; ++i) {
-	  if (BR.ReadUInt32() != 0) {
+	  if (Strings[i] == null) {
 	    this.Clear();
 	    return false;
 	  }
-	}
-	if (!OK) {
-	  this.Clear();
-	  return false;
+	  BR.BaseStream.Position = StringBase + 4 + 8 * (i + 1);
 	}
       }
       // Assign the strings to the proper fields
@@ -509,6 +498,13 @@ namespace PlayOnline.FFXI.Things {
     }
 
     private string ReadString(BinaryReader BR, Encoding E) {
+      // Read past "padding"
+      if (BR.ReadUInt32() != 1)
+	return null;
+      for (byte i = 0; i < 6; ++i) {
+	if (BR.ReadUInt32() != 0)
+	  return null;
+      }
     List<byte> TextBytes = new List<byte>();
       while (BR.BaseStream.Position < 0x280) {
       byte[] Next4 = BR.ReadBytes(4);

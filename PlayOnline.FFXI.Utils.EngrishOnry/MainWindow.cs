@@ -205,21 +205,24 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 	    JMemStream.Position = StringBase;
 	  uint NameOffset = 0x14; // Right after the string table header
 	  uint DescOffset = NameOffset + (uint) Name.Count + 28;
-	    BW.Write((uint)  2);
-	    BW.Write(NameOffset);
+	    BW.Write((uint)  2);  // String Count
+	    BW.Write(NameOffset); // Entry #1
 	    BW.Write((uint)  0);
-	    BW.Write(DescOffset);
+	    BW.Write(DescOffset); // Entry #2
 	    BW.Write((uint)  0);
+	    // String #1 - Padding + text bytes
 	    BW.Write((uint)  1);
 	    BW.Write((ulong) 0);
 	    BW.Write((ulong) 0);
 	    BW.Write((ulong) 0);
 	    BW.Write(Name.ToArray());
+	    // String #2 - Padding + text bytes
 	    BW.Write((uint)  1);
 	    BW.Write((ulong) 0);
 	    BW.Write((ulong) 0);
 	    BW.Write((ulong) 0);
 	    BW.Write(Description.ToArray());
+	    // End marker
 	    BW.Write((uint)  1);
 	  }
 	  // Update file data
