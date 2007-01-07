@@ -124,6 +124,6 @@
     <value>Ziel:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Decodiere nach Wave...</value>
+    <value>Decodiere nach Wav...</value>
   </data>
 </root>

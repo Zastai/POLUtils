@@ -91,7 +91,7 @@ LangString UI_RUNPROG                    ${LANG_FRENCH} "&Course POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_FRENCH} "Uninstall POLUtils"
 
 !insertmacro MUI_LANGUAGE "German"
-LangString DESC_SECTION_DESKTOP_SHORTCUT ${LANG_GERMAN} "Eine Desktopverknüpfung zu POLUtils."
+LangString DESC_SECTION_DESKTOP_SHORTCUT ${LANG_GERMAN} "Eine Desktopverknüpfung zu POLUtils erstellen."
 LangString DESC_SECTION_MAIN             ${LANG_GERMAN} "POLUtils selber."
 LangString DESC_SECTION_TRANS            ${LANG_GERMAN} "Übersetzte Ressourcen für POLUtils (optional)."
 LangString DESC_SECTION_TR_DE            ${LANG_GERMAN} "Deutsche Ressourcen für POLUtils."
