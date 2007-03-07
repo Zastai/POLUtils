@@ -1283,16 +1283,16 @@
   <category><name><i18n-string id="Menu:ItemData"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file id="00076"><i18n-string id="Menu:Armor"/></rom-file>
-      <rom-file id="00073"><i18n-string id="Menu:Items1"/></rom-file>
-      <rom-file id="00074"><i18n-string id="Menu:Items2"/></rom-file>
+      <rom-file id="00073"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="00077"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="00074"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="00075"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
-      <rom-file id="00004"><i18n-string id="Menu:Items1"/></rom-file>
-      <rom-file id="00005"><i18n-string id="Menu:Items2"/></rom-file>
+      <rom-file id="00004"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="00008"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="00005"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="00006"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
   </category>

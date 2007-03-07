@@ -177,10 +177,10 @@
   <data name="Menu:ItemData" xml:space="preserve">
     <value>I&amp;tem Daten</value>
   </data>
-  <data name="Menu:Items1" xml:space="preserve">
+  <data name="Menu:GeneralItems" xml:space="preserve">
     <value>Items (Part &amp;1)</value>
   </data>
-  <data name="Menu:Items2" xml:space="preserve">
+  <data name="Menu:UsableItems" xml:space="preserve">
     <value>Items (Part &amp;2)</value>
   </data>
   <data name="Menu:Unused" xml:space="preserve">
