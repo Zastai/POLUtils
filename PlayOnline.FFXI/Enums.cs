@@ -106,7 +106,8 @@ namespace PlayOnline.FFXI {
     Flowerpot  = 0x000C,
     PuppetItem = 0x000D,
     Mannequin  = 0x000E,
-    Book       = 0x000F
+    Book       = 0x000F,
+    RacingForm = 0x0010
   }
 
   [Flags]

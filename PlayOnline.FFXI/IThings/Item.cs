@@ -460,7 +460,7 @@ namespace PlayOnline.FFXI.Things {
       // Next Up: Strings (variable size)
     long StringBase  = BR.BaseStream.Position;
     uint StringCount = BR.ReadUInt32();
-      if (StringCount > 8) {
+      if (StringCount > 9) {
 	this.Clear();
 	return false;
       }
@@ -468,11 +468,13 @@ namespace PlayOnline.FFXI.Things {
     string[] Strings = new string[StringCount];
       for (byte i = 0; i < StringCount; ++i) {
       long Offset = StringBase + BR.ReadUInt32();
-      uint Flag   = BR.ReadUInt32(); // seems to be 1 if the offset is not actually an offset (as in the case of the 2nd entry in the english DATs)
+      uint Flag   = BR.ReadUInt32();
 	if (Offset < 0 || Offset + 0x20 > 0x280 || (Flag != 0 && Flag != 1)) {
 	  this.Clear();
 	  return false;
 	}
+	// Flag seems to be 1 if the offset is not actually an offset. Could just be padding to make StringCount unique per language, or it could be an indication
+	// of the pronoun to use (a/an/the/...). The latter makes sense because of the increased number of such flags for french and german.
 	if (Flag == 0) {
 	  BR.BaseStream.Position = Offset;
 	  Strings[i] = this.ReadString(BR, E);
@@ -485,14 +487,34 @@ namespace PlayOnline.FFXI.Things {
       }
       // Assign the strings to the proper fields
       this.Name_ = Strings[0];
-      if (StringCount > 2) {
-	// Strings[1] is unused (flag == 1)
-	this.LogNameSingular_ = Strings[2];
-	this.LogNamePlural_ = Strings[3];
-	this.Description_ = Strings[4];
+      switch (StringCount) {
+	case 2: // Japanese
+	  this.Description_ = Strings[1];
+	  break;
+	case 5: // English
+	  // unused:              Strings[1]
+	  this.LogNameSingular_ = Strings[2];
+	  this.LogNamePlural_   = Strings[3];
+	  this.Description_     = Strings[4];
+	  break;
+	case 6: // French
+	  // unused:              Strings[1]
+	  // unused:              Strings[2]
+	  this.LogNameSingular_ = Strings[3];
+	  this.LogNamePlural_   = Strings[4];
+	  this.Description_     = Strings[5];
+	  break;
+	case 9: // German
+	  // unused:              Strings[1]
+	  // unused:              Strings[2]
+	  // unused:              Strings[3]
+	  this.LogNameSingular_ = Strings[4];
+	  // unused:              Strings[5]
+	  // unused:              Strings[6]
+	  this.LogNamePlural_   = Strings[7];
+	  this.Description_     = Strings[8];
+	  break;
       }
-      else
-	this.Description_ = Strings[1];
       BR.Close();
       return true;
     }
