@@ -141,6 +141,12 @@
   <data name="Menu:English" xml:space="preserve">
     <value>&amp;Englisch</value>
   </data>
+  <data name="Menu:French" xml:space="preserve">
+    <value>&amp;Französisch</value>
+  </data>
+  <data name="Menu:German" xml:space="preserve">
+    <value>&amp;Deutsch</value>
+  </data>
   <data name="Menu:Japanese" xml:space="preserve">
     <value>&amp;Japanisch</value>
   </data>

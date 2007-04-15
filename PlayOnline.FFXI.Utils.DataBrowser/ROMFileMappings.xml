@@ -2,6 +2,7 @@
 <!-- $Id$ -->
 <rom-file-mappings>
   <category><name><i18n-string id="Menu:DialogTables"/></name>
+    <!-- English: 6420-6675 -->
     <category><name><i18n-string id="Menu:English"/></name>
       <category><name><ffxi-string id="00010000"/></name>
 	<rom-file id="6653"><ffxi-string id="000200E9"/></rom-file>
@@ -292,6 +293,9 @@
 	<rom-file app="2" dir="002" file="097">Unknown #7</rom-file>
       </category>
     </category>
+    <!-- French: 56285-56540 -->
+    <!-- German: 55865-56120 -->
+    <!-- Japanese: 6120-6375 -->
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <category><name><ffxi-string id="00010000"/></name>
 	<rom-file app="0" dir="023" file="042"><ffxi-string id="000200E9"/></rom-file>
@@ -1288,6 +1292,20 @@
       <rom-file id="00074"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="00075"><i18n-string id="Menu:Weapons"/></rom-file>
     </category>
+    <category><name><i18n-string id="Menu:French"/></name>
+      <rom-file id="56238"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="56235"><i18n-string id="Menu:GeneralItems"/></rom-file>
+      <rom-file id="56239"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="56236"><i18n-string id="Menu:UsableItems"/></rom-file>
+      <rom-file id="56237"><i18n-string id="Menu:Weapons"/></rom-file>
+    </category>
+    <category><name><i18n-string id="Menu:German"/></name>
+      <rom-file id="55818"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="55815"><i18n-string id="Menu:GeneralItems"/></rom-file>
+      <rom-file id="55819"><i18n-string id="Menu:PuppetItems"/></rom-file>
+      <rom-file id="55816"><i18n-string id="Menu:UsableItems"/></rom-file>
+      <rom-file id="55817"><i18n-string id="Menu:Weapons"/></rom-file>
+    </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
       <rom-file id="00004"><i18n-string id="Menu:GeneralItems"/></rom-file>
@@ -1580,9 +1598,11 @@
       <rom-file id="00085"><i18n-string id="Menu:Abilities"/></rom-file>
       <rom-file id="55465"><i18n-string id="Menu:AreaNames"/></rom-file>
       <rom-file id="55661"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
+      <rom-file id="55470"><i18n-string id="Menu:CharacterSelect"/></rom-file>
       <rom-file id="55650"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
       <rom-file id="55658"><i18n-string id="Menu:DayNames"/></rom-file>
       <rom-file id="55659"><i18n-string id="Menu:Directions"/></rom-file>
+      <rom-file id="55471"><i18n-string id="Menu:EquipmentLocations"/></rom-file>
       <rom-file id="55646"><i18n-string id="Menu:ErrorMessages"/></rom-file>
       <rom-file id="55648"><i18n-string id="Menu:InGameMessages1"/></rom-file>
       <rom-file id="55649"><i18n-string id="Menu:InGameMessages2"/></rom-file>
@@ -1592,6 +1612,7 @@
       <rom-file id="55660"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55647"><i18n-string id="Menu:POLMessages"/></rom-file>
       <rom-file id="00082"><i18n-string id="Menu:Quests"/></rom-file>
+      <rom-file id="55469"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="55654"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file id="00086"><i18n-string id="Menu:Spells"/></rom-file>
       <rom-file id="00087"><i18n-string id="Menu:Status"/></rom-file>
@@ -1600,6 +1621,64 @@
       <rom-file id="55645"><i18n-string id="Menu:Various1"/></rom-file>
       <rom-file id="55653"><i18n-string id="Menu:Various2"/></rom-file>
       <rom-file id="55657"><i18n-string id="Menu:WeatherTypes"/></rom-file>
+    </category>
+    <category><name><i18n-string id="Menu:French"/></name>
+      <!--<rom-file id="00010"><i18n-string id="Menu:Abilities"/></rom-file>-->
+      <rom-file id="56195"><i18n-string id="Menu:AreaNames"/></rom-file>
+      <rom-file id="56225"><i18n-string id="Menu:BlueMagicHelp"/></rom-file>
+      <rom-file id="56202"><i18n-string id="Menu:CharacterSelect"/></rom-file>
+      <rom-file id="56190"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
+      <rom-file id="56198"><i18n-string id="Menu:DayNames"/></rom-file>
+      <rom-file id="56199"><i18n-string id="Menu:Directions"/></rom-file>
+      <rom-file id="56206"><i18n-string id="Menu:EquipmentLocations"/></rom-file>
+      <rom-file id="56186"><i18n-string id="Menu:ErrorMessages"/></rom-file>
+      <rom-file id="56188"><i18n-string id="Menu:InGameMessages1"/></rom-file>
+      <rom-file id="56189"><i18n-string id="Menu:InGameMessages2"/></rom-file>
+      <rom-file id="56196"><i18n-string id="Menu:JobNames"/></rom-file>
+      <rom-file id="56191"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
+      <rom-file id="56192"><i18n-string id="Menu:MenuItemText"/></rom-file>
+      <rom-file id="56226"><i18n-string id="Menu:MeripoHelp"/></rom-file>
+      <rom-file id="56200"><i18n-string id="Menu:MoonPhases"/></rom-file>
+      <rom-file id="56187"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <!--<rom-file id="00080"><i18n-string id="Menu:Quests"/></rom-file>-->
+      <rom-file id="56203"><i18n-string id="Menu:RaceNames"/></rom-file>
+      <rom-file id="56194"><i18n-string id="Menu:RegionNames"/></rom-file>
+      <!--<rom-file id="00011"><i18n-string id="Menu:Spells"/></rom-file>-->
+      <rom-file id="56243"><i18n-string id="Menu:Status"/></rom-file>
+      <!--<rom-file id="00045"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>-->
+      <!--<rom-file id="00022"><i18n-string id="Menu:Titles"/></rom-file>-->
+      <rom-file id="56185"><i18n-string id="Menu:Various1"/></rom-file>
+      <rom-file id="56193"><i18n-string id="Menu:Various2"/></rom-file>
+      <rom-file id="56197"><i18n-string id="Menu:WeatherTypes"/></rom-file>
+    </category>
+    <category><name><i18n-string id="Menu:German"/></name>
+      <!--<rom-file id="00010"><i18n-string id="Menu:Abilities"/></rom-file>-->
+      <rom-file id="55775"><i18n-string id="Menu:AreaNames"/></rom-file><!-- also: 55781 -->
+      <rom-file id="55805"><i18n-string id="Menu:BlueMagicHelp"/></rom-file>
+      <rom-file id="55782"><i18n-string id="Menu:CharacterSelect"/></rom-file>
+      <rom-file id="55770"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
+      <rom-file id="55778"><i18n-string id="Menu:DayNames"/></rom-file>
+      <rom-file id="55779"><i18n-string id="Menu:Directions"/></rom-file>
+      <rom-file id="55786"><i18n-string id="Menu:EquipmentLocations"/></rom-file>
+      <rom-file id="55766"><i18n-string id="Menu:ErrorMessages"/></rom-file>
+      <rom-file id="55768"><i18n-string id="Menu:InGameMessages1"/></rom-file>
+      <rom-file id="55769"><i18n-string id="Menu:InGameMessages2"/></rom-file>
+      <rom-file id="55776"><i18n-string id="Menu:JobNames"/></rom-file>
+      <rom-file id="55806"><i18n-string id="Menu:MeripoHelp"/></rom-file>
+      <rom-file id="55771"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
+      <rom-file id="55772"><i18n-string id="Menu:MenuItemText"/></rom-file>
+      <rom-file id="55780"><i18n-string id="Menu:MoonPhases"/></rom-file>
+      <rom-file id="55767"><i18n-string id="Menu:POLMessages"/></rom-file>
+      <!--<rom-file id="00080"><i18n-string id="Menu:Quests"/></rom-file>-->
+      <rom-file id="55783"><i18n-string id="Menu:RaceNames"/></rom-file>
+      <rom-file id="55774"><i18n-string id="Menu:RegionNames"/></rom-file>
+      <!--<rom-file id="00011"><i18n-string id="Menu:Spells"/></rom-file>-->
+      <rom-file id="55823"><i18n-string id="Menu:Status"/></rom-file>
+      <!--<rom-file id="00045"><i18n-string id="Menu:TimeAndPronouns"/></rom-file>-->
+      <!--<rom-file id="00022"><i18n-string id="Menu:Titles"/></rom-file>-->
+      <rom-file id="55765"><i18n-string id="Menu:Various1"/></rom-file>
+      <rom-file id="55773"><i18n-string id="Menu:Various2"/></rom-file>
+      <rom-file id="55777"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00010"><i18n-string id="Menu:Abilities"/></rom-file>
@@ -1628,9 +1707,6 @@
     <category><name><i18n-string id="Menu:Common"/></name>
       <rom-file id="55466"><i18n-string id="Menu:AreaNamesShort"/></rom-file>
       <rom-file id="55468"><i18n-string id="Menu:JobNamesShort"/></rom-file>
-      <rom-file id="55469"><i18n-string id="Menu:RaceNames"/></rom-file>
-      <rom-file id="55470"><i18n-string id="Menu:CharacterSelect"/></rom-file>
-      <rom-file id="55471"><i18n-string id="Menu:EquipmentLocations"/></rom-file>
     </category>
   </category>
 </rom-file-mappings>

@@ -144,6 +144,12 @@
   <data name="Menu:English" xml:space="preserve">
     <value>&amp;English</value>
   </data>
+  <data name="Menu:French" xml:space="preserve">
+    <value>&amp;French</value>
+  </data>
+  <data name="Menu:German" xml:space="preserve">
+    <value>&amp;German</value>
+  </data>
   <data name="Menu:FontsAndMenus" xml:space="preserve">
     <value>&amp;Fonts &amp;&amp; Menus</value>
   </data>
@@ -228,6 +234,9 @@
   <data name="Menu:AreaNamesShort" xml:space="preserve">
     <value>&amp;Area Names (Search)</value>
   </data>
+  <data name="Menu:BlueMagicHelp" xml:space="preserve">
+    <value>&amp;Blue Magic Help Text</value>
+  </data>
   <data name="Menu:CharacterSelect" xml:space="preserve">
     <value>&amp;Character Selection</value>
   </data>
@@ -263,6 +272,9 @@
   </data>
   <data name="Menu:MenuItemText" xml:space="preserve">
     <value>&amp;Menu Item Text</value>
+  </data>
+  <data name="Menu:MeripoHelp" xml:space="preserve">
+    <value>&amp;Merit Point Help Text</value>
   </data>
   <data name="Menu:MoonPhases" xml:space="preserve">
     <value>&amp;Moon Phases</value>
