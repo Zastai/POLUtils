@@ -148,10 +148,91 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTetraViewer.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="grpRegion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;cmbCultures.Name" xml:space="preserve">
+    <value>cmbCultures</value>
+  </data>
+  <data name="&gt;&gt;cmbCultures.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbCultures.Parent" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;cmbCultures.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnChooseRegion.Name" xml:space="preserve">
+    <value>btnChooseRegion</value>
+  </data>
+  <data name="&gt;&gt;btnChooseRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChooseRegion.Parent" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;btnChooseRegion.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtSelectedRegion.Name" xml:space="preserve">
+    <value>txtSelectedRegion</value>
+  </data>
+  <data name="&gt;&gt;txtSelectedRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSelectedRegion.Parent" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;txtSelectedRegion.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblSelectedRegion.Name" xml:space="preserve">
+    <value>lblSelectedRegion</value>
+  </data>
+  <data name="&gt;&gt;lblSelectedRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSelectedRegion.Parent" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;lblSelectedRegion.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblToolLanguage.Name" xml:space="preserve">
+    <value>lblToolLanguage</value>
+  </data>
+  <data name="&gt;&gt;lblToolLanguage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblToolLanguage.Parent" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;lblToolLanguage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="grpRegion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 0</value>
+  </data>
+  <data name="grpRegion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 76</value>
+  </data>
+  <data name="grpRegion.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Name" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="cmbCultures.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -294,27 +375,6 @@
   <data name="&gt;&gt;lblToolLanguage.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="grpRegion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 0</value>
-  </data>
-  <data name="grpRegion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 76</value>
-  </data>
-  <data name="grpRegion.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Name" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="btnAudioManager.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
@@ -343,7 +403,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAudioManager.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnFFXIMacroManager.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -373,7 +433,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIMacroManager.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnFFXIDataBrowser.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -403,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIDataBrowser.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnFFXIConfigEditor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -433,7 +493,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIConfigEditor.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnFFXIItemComparison.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -463,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIItemComparison.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnFFXIEngrishOnry.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -493,7 +553,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIEngrishOnry.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFFXIStrangeApparatus.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -523,13 +583,43 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIStrangeApparatus.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnFFXINPCRenamer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnFFXINPCRenamer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnFFXINPCRenamer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 192</value>
+  </data>
+  <data name="btnFFXINPCRenamer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 24</value>
+  </data>
+  <data name="btnFFXINPCRenamer.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnFFXINPCRenamer.Text" xml:space="preserve">
+    <value>FFXI NPC Renamer</value>
+  </data>
+  <data name="&gt;&gt;btnFFXINPCRenamer.Name" xml:space="preserve">
+    <value>btnFFXINPCRenamer</value>
+  </data>
+  <data name="&gt;&gt;btnFFXINPCRenamer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFFXINPCRenamer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnFFXINPCRenamer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>362, 193</value>
+    <value>362, 222</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

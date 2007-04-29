@@ -152,6 +152,16 @@ namespace POLUtils {
       this.Activate();
     }
 
+    private void btnFFXINPCRenamer_Click(object sender, EventArgs e) {
+      if (this.AskTOSViolation()) {
+	this.Hide();
+	using (Form Utility = new PlayOnline.FFXI.Utils.NPCRenamer.MainWindow())
+	  Utility.ShowDialog();
+	this.Show();
+	this.Activate();
+      }
+    }
+
     #endregion
 
   }

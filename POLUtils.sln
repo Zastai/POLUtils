@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.Stran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassExtractor", "MassExtractor\MassExtractor.csproj", "{C9683F0B-16CA-4CEF-907A-2802B5F12C43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.FFXI.Utils.NPCRenamer", "PlayOnline.FFXI.Utils.NPCRenamer\PlayOnline.FFXI.Utils.NPCRenamer.csproj", "{7A167973-DB45-472B-8983-F06B98CE1E70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -160,6 +162,14 @@ Global
 		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Release|x64.Build.0 = Release|x64
 		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Release|x86.ActiveCfg = Release|x86
 		{C9683F0B-16CA-4CEF-907A-2802B5F12C43}.Release|x86.Build.0 = Release|x86
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Debug|x64.ActiveCfg = Debug|x64
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Debug|x64.Build.0 = Debug|x64
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Debug|x86.ActiveCfg = Debug|x86
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Debug|x86.Build.0 = Debug|x86
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Release|x64.ActiveCfg = Release|x64
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Release|x64.Build.0 = Release|x64
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Release|x86.ActiveCfg = Release|x86
+		{7A167973-DB45-472B-8983-F06B98CE1E70}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

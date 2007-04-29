@@ -28,6 +28,7 @@ namespace POLUtils {
       this.btnFFXIItemComparison = new System.Windows.Forms.Button();
       this.btnFFXIEngrishOnry = new System.Windows.Forms.Button();
       this.btnFFXIStrangeApparatus = new System.Windows.Forms.Button();
+      this.btnFFXINPCRenamer = new System.Windows.Forms.Button();
       this.grpRegion.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -125,9 +126,16 @@ namespace POLUtils {
       this.btnFFXIStrangeApparatus.Name = "btnFFXIStrangeApparatus";
       this.btnFFXIStrangeApparatus.Click += new System.EventHandler(this.btnFFXIStrangeApparatus_Click);
       // 
+      // btnFFXINPCRenamer
+      // 
+      resources.ApplyResources(this.btnFFXINPCRenamer, "btnFFXINPCRenamer");
+      this.btnFFXINPCRenamer.Name = "btnFFXINPCRenamer";
+      this.btnFFXINPCRenamer.Click += new System.EventHandler(this.btnFFXINPCRenamer_Click);
+      // 
       // POLUtilsUI
       // 
       resources.ApplyResources(this, "$this");
+      this.Controls.Add(this.btnFFXINPCRenamer);
       this.Controls.Add(this.btnFFXIStrangeApparatus);
       this.Controls.Add(this.btnFFXIEngrishOnry);
       this.Controls.Add(this.btnFFXIItemComparison);
@@ -163,6 +171,7 @@ namespace POLUtils {
     private System.Windows.Forms.Button btnFFXIItemComparison;
     private System.Windows.Forms.Button btnFFXIEngrishOnry;
     private System.Windows.Forms.Button btnFFXIStrangeApparatus;
+    private System.Windows.Forms.Button btnFFXINPCRenamer;
 
   }
 

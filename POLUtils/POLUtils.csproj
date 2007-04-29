@@ -115,6 +115,10 @@
       <Project>{966ACE61-C745-4B5E-AFFA-31A50E24341B}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
+    <ProjectReference Include="..\PlayOnline.FFXI.Utils.NPCRenamer\PlayOnline.FFXI.Utils.NPCRenamer.csproj">
+      <Project>{7A167973-DB45-472B-8983-F06B98CE1E70}</Project>
+      <Name>PlayOnline.FFXI.Utils.NPCRenamer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayOnline.FFXI.Utils.StrangeApparatus\PlayOnline.FFXI.Utils.StrangeApparatus.csproj">
       <Project>{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}</Project>
       <Name>PlayOnline.FFXI.Utils.StrangeApparatus</Name>
