@@ -24,7 +24,7 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
       this.grpNames = new System.Windows.Forms.GroupBox();
       this.lstNPCNames = new System.Windows.Forms.ListView();
       this.btnClose = new System.Windows.Forms.Button();
-      this.btnSaveChanges = new System.Windows.Forms.Button();
+      this.btnShowChanges = new System.Windows.Forms.Button();
       colNPCName = new System.Windows.Forms.ColumnHeader();
       this.grpArea.SuspendLayout();
       this.grpNames.SuspendLayout();
@@ -80,19 +80,19 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
       this.btnClose.UseVisualStyleBackColor = true;
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
-      // btnSaveChanges
+      // btnShowChanges
       // 
-      resources.ApplyResources(this.btnSaveChanges, "btnSaveChanges");
-      this.btnSaveChanges.Name = "btnSaveChanges";
-      this.btnSaveChanges.UseVisualStyleBackColor = true;
-      this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+      resources.ApplyResources(this.btnShowChanges, "btnShowChanges");
+      this.btnShowChanges.Name = "btnShowChanges";
+      this.btnShowChanges.UseVisualStyleBackColor = true;
+      this.btnShowChanges.Click += new System.EventHandler(this.btnShowChanges_Click);
       // 
       // MainWindow
       // 
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.btnClose;
-      this.Controls.Add(this.btnSaveChanges);
+      this.Controls.Add(this.btnShowChanges);
       this.Controls.Add(this.btnClose);
       this.Controls.Add(this.grpNames);
       this.Controls.Add(this.grpArea);
@@ -110,7 +110,7 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
     private System.Windows.Forms.ComboBox cmbArea;
     private System.Windows.Forms.GroupBox grpNames;
     private System.Windows.Forms.Button btnClose;
-    private System.Windows.Forms.Button btnSaveChanges;
+    private System.Windows.Forms.Button btnShowChanges;
     private System.Windows.Forms.ListView lstNPCNames;
 
   }
