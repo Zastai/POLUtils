@@ -153,87 +153,6 @@
   <data name="grpRegion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;cmbCultures.Name" xml:space="preserve">
-    <value>cmbCultures</value>
-  </data>
-  <data name="&gt;&gt;cmbCultures.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbCultures.Parent" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;cmbCultures.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnChooseRegion.Name" xml:space="preserve">
-    <value>btnChooseRegion</value>
-  </data>
-  <data name="&gt;&gt;btnChooseRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChooseRegion.Parent" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;btnChooseRegion.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtSelectedRegion.Name" xml:space="preserve">
-    <value>txtSelectedRegion</value>
-  </data>
-  <data name="&gt;&gt;txtSelectedRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSelectedRegion.Parent" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;txtSelectedRegion.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblSelectedRegion.Name" xml:space="preserve">
-    <value>lblSelectedRegion</value>
-  </data>
-  <data name="&gt;&gt;lblSelectedRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSelectedRegion.Parent" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;lblSelectedRegion.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblToolLanguage.Name" xml:space="preserve">
-    <value>lblToolLanguage</value>
-  </data>
-  <data name="&gt;&gt;lblToolLanguage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblToolLanguage.Parent" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;lblToolLanguage.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="grpRegion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 0</value>
-  </data>
-  <data name="grpRegion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 76</value>
-  </data>
-  <data name="grpRegion.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Name" xml:space="preserve">
-    <value>grpRegion</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpRegion.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="cmbCultures.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -374,6 +293,27 @@
   </data>
   <data name="&gt;&gt;lblToolLanguage.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="grpRegion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 0</value>
+  </data>
+  <data name="grpRegion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 76</value>
+  </data>
+  <data name="grpRegion.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Name" xml:space="preserve">
+    <value>grpRegion</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpRegion.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="btnAudioManager.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>

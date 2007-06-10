@@ -43,7 +43,7 @@ namespace POLUtils {
       this.btnFFXIDataBrowser.Enabled      = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIMacroManager.Enabled     = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIStrangeApparatus.Enabled = POL.IsAppInstalled(AppID.FFXI);
-      this.btnFFXIEngrishOnry.Enabled      = POL.IsAppInstalled(AppID.FFXI) && (POL.AvailableRegions & POL.Region.Japan) != 0;
+      this.btnFFXIEngrishOnry.Enabled      = POL.IsAppInstalled(AppID.FFXI) && (POL.AvailableRegions & POL.Region.Japan) != 0 && false;
       this.btnTetraViewer.Enabled          = POL.IsAppInstalled(AppID.TetraMaster);
     }
 
