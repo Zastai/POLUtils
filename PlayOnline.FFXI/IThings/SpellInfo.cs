@@ -16,7 +16,7 @@ namespace PlayOnline.FFXI.Things {
     }
 
     public override string ToString() {
-      return String.Format("{0} / {1}", this.EnglishName_, this.JapaneseName_);
+      return String.Format("Spell #{0}", this.ID_);
     }
 
     public override List<PropertyPages.IThing> GetPropertyPages() {
@@ -30,8 +30,6 @@ namespace PlayOnline.FFXI.Things {
 	return new List<string>(new string[] {
 	  "index",
 	  "id",
-	  "english-name",
-	  "japanese-name",
 	  "magic-type",
 	  "element",
 	  "valid-targets",
@@ -40,8 +38,6 @@ namespace PlayOnline.FFXI.Things {
 	  "mp-cost",
 	  "casting-time",
 	  "recast-delay",
-	  "english-description",
-	  "japanese-description",
 	  "unknown-1",
 	});
       }
@@ -64,10 +60,6 @@ namespace PlayOnline.FFXI.Things {
     private byte[]       LevelRequired_;
     private ushort?      ID_;
     private byte?        Unknown1_;
-    private string       JapaneseName_;
-    private string       EnglishName_;
-    private string       JapaneseDescription_;
-    private string       EnglishDescription_;
     
     #endregion
 
@@ -83,10 +75,6 @@ namespace PlayOnline.FFXI.Things {
       this.LevelRequired_       = null;
       this.ID_                  = null;
       this.Unknown1_            = null;
-      this.JapaneseName_        = null;
-      this.EnglishName_         = null;
-      this.JapaneseDescription_ = null;
-      this.EnglishDescription_  = null;
     }
 
     #endregion
@@ -96,10 +84,6 @@ namespace PlayOnline.FFXI.Things {
     public override bool HasField(string Field) {
       switch (Field) {
 	// Objects
-	case "english-description":   return (this.EnglishDescription_  != null);
-	case "english-name":          return (this.EnglishName_         != null);
-	case "japanese-description":  return (this.JapaneseDescription_ != null);
-	case "japanese-name":         return (this.JapaneseName_        != null);
 	case "level-required":        return (this.LevelRequired_       != null);
 	// Nullables
 	case "casting-time":          return this.CastingTime_.HasValue;
@@ -132,11 +116,6 @@ namespace PlayOnline.FFXI.Things {
 	  }
 	  return LevelInfo;
 	}
-	// Objects
-	case "english-description":  return this.EnglishDescription_;
-	case "english-name":         return this.EnglishName_;
-	case "japanese-description": return this.JapaneseDescription_;
-	case "japanese-name":        return this.JapaneseName_;
 	// Nullables - Simple Values
 	case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
 	case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
@@ -157,10 +136,6 @@ namespace PlayOnline.FFXI.Things {
     public override object GetFieldValue(string Field) {
       switch (Field) {
 	// Objects
-	case "english-description":  return this.EnglishDescription_;
-	case "english-name":         return this.EnglishName_;
-	case "japanese-description": return this.JapaneseDescription_;
-	case "japanese-name":        return this.JapaneseName_;
 	case "level-required":       return this.LevelRequired_;
 	// Nullables
 	case "casting-time":         return (!this.CastingTime_.HasValue  ? null : (object) this.CastingTime_.Value);
@@ -182,12 +157,8 @@ namespace PlayOnline.FFXI.Things {
 	// "Simple" Fields
 	case "casting-time":         this.CastingTime_         = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "element":              this.Element_             = (Element)     this.LoadHexField            (Node); break;
-	case "english-description":  this.EnglishDescription_  =               this.LoadTextField           (Node); break;
-	case "english-name":         this.EnglishName_         =               this.LoadTextField           (Node); break;
 	case "id":                   this.ID_                  = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "index":                this.Index_               = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
-	case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
 	case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
 	case "magic-type":           this.MagicType_           = (MagicType)   this.LoadHexField            (Node); break;
 	case "mp-cost":              this.MPCost_              = (ushort)      this.LoadUnsignedIntegerField(Node); break;
@@ -214,11 +185,7 @@ namespace PlayOnline.FFXI.Things {
     // 00e-025 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
     // 026-027 U16 ID (0 for "unused" spells; starts out equal to the index, but doesn't stay that way)
     // 028-028 U8  Unknown
-    // 029-03c TXT Japanese Name
-    // 03d-050 TXT English Name
-    // 051-0D0 TXT Japanese Description
-    // 0D1-150 TXT English Description
-    // 151-3fe U8  Padding (NULs)
+    // 029-3fe U8  Padding (NULs)
     // 3ff-3ff U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
       this.Clear();
@@ -241,17 +208,12 @@ namespace PlayOnline.FFXI.Things {
       this.LevelRequired_ = BR.ReadBytes(24);
       this.ID_            = BR.ReadUInt16();
       this.Unknown1_      = BR.ReadByte();
-    FFXIEncoding E = new FFXIEncoding();
-      this.JapaneseName_        = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
-      this.EnglishName_         = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
-      this.JapaneseDescription_ = E.GetString(BR.ReadBytes(128)).TrimEnd('\0');
-      this.EnglishDescription_  = E.GetString(BR.ReadBytes(128)).TrimEnd('\0');
 #if DEBUG
       { // Read the next 64 bits, and report if it's not 0 (means there's new data to identify)
       ulong Next64 = BR.ReadUInt64();
 	if (Next64 != 0) {
 	  Console.ForegroundColor = ConsoleColor.Red;
-	  Console.WriteLine("Nonzero data after item ({0}): {1:X16}", this.EnglishName_, Next64);
+	  Console.WriteLine("Nonzero data after entry (Spell #{0}): {1:X16}", this.ID_, Next64);
 	  Console.ResetColor();
 	}
       }
