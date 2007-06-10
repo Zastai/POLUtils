@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FileTableDialog:StatusFormat" xml:space="preserve">
-    <value>{0} - {1} file(s) assigned</value>
-  </data>
-  <data name="FileTableDialog:StatusSorting" xml:space="preserve">
-    <value>Sorting...</value>
-  </data>
   <data name="FFXI1" xml:space="preserve">
     <value>Final Fantasy XI</value>
   </data>
@@ -137,6 +131,9 @@
   </data>
   <data name="InvalidEntry" xml:space="preserve">
     <value>&lt;invalid entry&gt;</value>
+  </data>
+  <data name="Menu:Currency" xml:space="preserve">
+    <value>&amp;Currency</value>
   </data>
   <data name="Menu:DialogTables" xml:space="preserve">
     <value>&amp;Dialog Tables</value>
@@ -267,6 +264,9 @@
   <data name="Menu:JobNamesShort" xml:space="preserve">
     <value>&amp;Job Names (Short)</value>
   </data>
+  <data name="Menu:KeyItems" xml:space="preserve">
+    <value>Key Items</value>
+  </data>
   <data name="Menu:MenuItemDesc" xml:space="preserve">
     <value>&amp;Menu Item Descriptions</value>
   </data>
@@ -276,6 +276,9 @@
   <data name="Menu:MeripoHelp" xml:space="preserve">
     <value>&amp;Merit Point Help Text</value>
   </data>
+  <data name="Menu:Missions" xml:space="preserve">
+    <value>Missions</value>
+  </data>
   <data name="Menu:MoonPhases" xml:space="preserve">
     <value>&amp;Moon Phases</value>
   </data>
@@ -283,7 +286,7 @@
     <value>&amp;POL Messages</value>
   </data>
   <data name="Menu:Quests" xml:space="preserve">
-    <value>Quests / Missions / Key Items</value>
+    <value>Quests</value>
   </data>
   <data name="Menu:RaceNames" xml:space="preserve">
     <value>&amp;Race Names</value>
@@ -294,8 +297,17 @@
   <data name="Menu:Spells" xml:space="preserve">
     <value>&amp;Spells</value>
   </data>
-  <data name="Menu:Status" xml:space="preserve">
-    <value>&amp;Status</value>
+  <data name="Menu:SpellNames" xml:space="preserve">
+    <value>&amp;Spell Names</value>
+  </data>
+  <data name="Menu:SpellDescriptions" xml:space="preserve">
+    <value>&amp;Spell Descriptions</value>
+  </data>
+  <data name="Menu:StatusInfo" xml:space="preserve">
+    <value>&amp;Statuses</value>
+  </data>
+  <data name="Menu:StatusNames" xml:space="preserve">
+    <value>&amp;Status Names</value>
   </data>
   <data name="Menu:TimeAndPronouns" xml:space="preserve">
     <value>&amp;Time-Related Terms + Pronouns</value>
