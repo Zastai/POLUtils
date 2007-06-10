@@ -177,7 +177,7 @@ namespace PlayOnline.FFXI.Things {
 #if IncludeUnknownFields
 	this.Unknown1_ = BR.ReadUInt32();
 #else
-	BR.BaseStream.Seek(4, SeekOrigin.Current);
+	BR.BaseStream.Position += 4;
 #endif
       short Size = BR.ReadInt16();
 #if IncludeUnknownFields
@@ -190,7 +190,7 @@ namespace PlayOnline.FFXI.Things {
 	this.Unknown8_ = BR.ReadUInt16();
 	this.Unknown9_ = BR.ReadUInt16();
 #else
-	BR.BaseStream.Seek(36, SeekOrigin.Current);
+	BR.BaseStream.Position += 26;
 #endif
 	if (Size < 0 || Offset + Size > DataBytes)
 	  return false;
