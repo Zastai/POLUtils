@@ -13,7 +13,7 @@ namespace PlayOnline.FFXI.FileTypes {
     ThingList TL = new ThingList();
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:CheckingFile"), 0);
-      if ((BR.BaseStream.Length % 0xC00) != 0 || BR.BaseStream.Length < 0x1800 || BR.BaseStream.Position != 0)
+      if ((BR.BaseStream.Length % 0xC00) != 0 || BR.BaseStream.Length < 0xc000 || BR.BaseStream.Position != 0)
 	return TL;
       // First deduce the type of item data is in the file.
     Item.Type T;
@@ -32,6 +32,10 @@ namespace PlayOnline.FFXI.FileTypes {
 	if (ProgressCallback != null)
 	  ProgressCallback(null, (double) ++CurrentItem / ItemCount);
 	TL.Add(I);
+	// A currency DAT currently has 1 "real" item and 15 dummy entries (all NULs); a better thing to do would be to break if such a dummy entry
+	// is seen, but since we currently detect currency from its 0xFFFF ID, this is safe enough for now.
+	if (BR.BaseStream.Length == 0xc000 && T == Item.Type.Currency)
+	  break;
       }
       return TL;
     }

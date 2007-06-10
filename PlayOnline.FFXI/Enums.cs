@@ -100,7 +100,7 @@ namespace PlayOnline.FFXI {
     Linkshell  = 0x0006,
     UsableItem = 0x0007,
     Crystal    = 0x0008,
-    Unknown    = 0x0009,
+    Currency   = 0x0009,
     Furnishing = 0x000A,
     Plant      = 0x000B,
     Flowerpot  = 0x000C,

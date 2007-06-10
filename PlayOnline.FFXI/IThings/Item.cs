@@ -364,30 +364,36 @@ namespace PlayOnline.FFXI.Things {
 
     #region ROM File Reading
 
-    public enum Type { Unknown, Armor, Item, PuppetItem, UsableItem, Weapon };
+    public enum Type { Unknown, Armor, Currency, Item, PuppetItem, UsableItem, Weapon };
 
     public static void DeduceType(BinaryReader BR, out Type T) {
       T = Type.Unknown;
     byte[] FirstItem = null;
+    long Position = BR.BaseStream.Position;
+      BR.BaseStream.Position = 0;
       try {
-      long Position = BR.BaseStream.Position;
-	BR.BaseStream.Position = 0xc00;
-	FirstItem = BR.ReadBytes(0x280);
-	BR.BaseStream.Position = Position;
-	FFXIEncryption.Rotate(FirstItem, 5);
-      } catch { return; }
-      { // Type -> Based on ID
-      uint ID = 0;
-	for (int i = 0; i < 4; ++i) {
-	  ID <<= 8;
-	  ID += FirstItem[3 - i];
+	while (BR.BaseStream.Position != BR.BaseStream.Length) {
+	  FirstItem = BR.ReadBytes(0x4);
+	  BR.BaseStream.Position += (0xc00 - 0x4);
+	  FFXIEncryption.Rotate(FirstItem, 5);
+	  { // Type -> Based on ID
+	  uint ID = 0;
+	    for (int i = 0; i < 4; ++i) {
+	      ID <<= 8;
+	      ID += FirstItem[3 - i];
+	    }
+	    if     (ID == 0xffff) T = Type.Currency;
+	    else if (ID < 0x1000) T = Type.Item;
+	    else if (ID < 0x2000) T = Type.UsableItem;
+	    else if (ID < 0x3000) T = Type.PuppetItem;
+	    else if (ID < 0x4000) T = Type.Armor;
+	    else if (ID < 0x7000) T = Type.Weapon;
+	  }
+	  if (T != Type.Unknown)
+	    break;
 	}
-	     if (ID < 0x1000) T = Type.Item;
-	else if (ID < 0x2000) T = Type.UsableItem;
-	else if (ID < 0x3000) T = Type.PuppetItem;
-	else if (ID < 0x4000) T = Type.Armor;
-	else if (ID < 0x7000) T = Type.Weapon;
-      }
+      } catch { }
+      BR.BaseStream.Position = Position;
     }
 
     public bool Read(BinaryReader BR, Type T) {
@@ -409,7 +415,7 @@ namespace PlayOnline.FFXI.Things {
       // Common Fields (14 bytes)
       this.ID_           =               BR.ReadUInt32();
       this.Flags_        = (ItemFlags)   BR.ReadUInt16();
-      this.StackSize_    =               BR.ReadUInt16();
+      this.StackSize_    =               BR.ReadUInt16(); // 0xe0ff for Currency, which kinda suggests this is really 2 separate bytes
       this.Type_         = (ItemType)    BR.ReadUInt16();
       this.ResourceID_   =               BR.ReadUInt16();
       this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
@@ -457,6 +463,8 @@ namespace PlayOnline.FFXI.Things {
       }
       else if (T == Type.UsableItem)
 	this.ActivationTime_ = BR.ReadUInt16();
+      else if (T == Type.Currency)
+	this.Unknown2_ = BR.ReadUInt16();
       // Next Up: Strings (variable size)
     long StringBase  = BR.BaseStream.Position;
     uint StringCount = BR.ReadUInt32();
