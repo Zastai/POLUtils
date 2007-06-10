@@ -17,6 +17,7 @@ namespace PlayOnline.FFXI {
       List<FileType> Results = new List<FileType>();
 	Results.Add(new FileTypes.DialogTable());
 	Results.Add(new FileTypes.XIStringTable());
+	Results.Add(new FileTypes.DMSGContainer());
 	Results.Add(new FileTypes.DMSGStringTable());
 	Results.Add(new FileTypes.DMSGStringTable2());
 	Results.Add(new FileTypes.SimpleStringTable());
