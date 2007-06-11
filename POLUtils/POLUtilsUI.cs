@@ -45,6 +45,7 @@ namespace POLUtils {
       this.btnFFXIStrangeApparatus.Enabled = POL.IsAppInstalled(AppID.FFXI);
       this.btnFFXIEngrishOnry.Enabled      = POL.IsAppInstalled(AppID.FFXI) && (POL.AvailableRegions & POL.Region.Japan) != 0 && false;
       this.btnTetraViewer.Enabled          = POL.IsAppInstalled(AppID.TetraMaster);
+      this.btnFFXINPCRenamer.Enabled       = POL.IsAppInstalled(AppID.FFXI);
     }
 
     #region Language Selection Events
