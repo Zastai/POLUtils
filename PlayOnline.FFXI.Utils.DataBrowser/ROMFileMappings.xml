@@ -1859,282 +1859,284 @@
     </category>
   </category>
   <category><name><i18n-string id="Menu:MobLists"/></name>
+    <!-- Language Independent: 6720-6975 -->
     <category><name><ffxi-string id="00010000"/></name>
-      <rom-file id="06353"><ffxi-string id="000200E9"/></rom-file>
-      <rom-file id="06351"><ffxi-string id="000200E7"/></rom-file>
-      <rom-file id="06352"><ffxi-string id="000200E8"/></rom-file>
-      <rom-file id="06350"><ffxi-string id="000200E6"/></rom-file>
+      <rom-file id="06953"><ffxi-string id="000200E9"/></rom-file>
+      <rom-file id="06951"><ffxi-string id="000200E7"/></rom-file>
+      <rom-file id="06952"><ffxi-string id="000200E8"/></rom-file>
+      <rom-file id="06950"><ffxi-string id="000200E6"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010001"/></name>
-      <rom-file id="06355"><ffxi-string id="000200EB"/></rom-file>
-      <rom-file id="06354"><ffxi-string id="000200EA"/></rom-file>
-      <rom-file id="06357"><ffxi-string id="000200ED"/></rom-file>
-      <rom-file id="06356"><ffxi-string id="000200EC"/></rom-file>
+      <rom-file id="06955"><ffxi-string id="000200EB"/></rom-file>
+      <rom-file id="06954"><ffxi-string id="000200EA"/></rom-file>
+      <rom-file id="06957"><ffxi-string id="000200ED"/></rom-file>
+      <rom-file id="06956"><ffxi-string id="000200EC"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010002"/></name>
-      <rom-file id="06362"><ffxi-string id="000200F2"/></rom-file>
-      <rom-file id="06360"><ffxi-string id="000200F0"/></rom-file>
-      <rom-file id="06359"><ffxi-string id="000200EF"/></rom-file>
-      <rom-file id="06358"><ffxi-string id="000200EE"/></rom-file>
-      <rom-file id="06361"><ffxi-string id="000200F1"/></rom-file>
+      <rom-file id="06962"><ffxi-string id="000200F2"/></rom-file>
+      <rom-file id="06960"><ffxi-string id="000200F0"/></rom-file>
+      <rom-file id="06959"><ffxi-string id="000200EF"/></rom-file>
+      <rom-file id="06958"><ffxi-string id="000200EE"/></rom-file>
+      <rom-file id="06961"><ffxi-string id="000200F1"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010003"/></name>
-      <rom-file id="06365"><ffxi-string id="000200F5"/></rom-file>
-      <rom-file id="06366"><ffxi-string id="000200F6"/></rom-file>
-      <rom-file id="06363"><ffxi-string id="000200F3"/></rom-file>
-      <rom-file id="06364"><ffxi-string id="000200F4"/></rom-file>
+      <rom-file id="06965"><ffxi-string id="000200F5"/></rom-file>
+      <rom-file id="06966"><ffxi-string id="000200F6"/></rom-file>
+      <rom-file id="06963"><ffxi-string id="000200F3"/></rom-file>
+      <rom-file id="06964"><ffxi-string id="000200F4"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010004"/></name>
-      <rom-file id="06287"><ffxi-string id="000200A7"/></rom-file>
-      <rom-file id="06221"><ffxi-string id="00020065"/></rom-file>
-      <rom-file id="06261"><ffxi-string id="0002008D"/></rom-file>
-      <rom-file id="06260"><ffxi-string id="0002008C"/></rom-file>
-      <rom-file id="06259"><ffxi-string id="0002008B"/></rom-file>
-      <rom-file id="06310"><ffxi-string id="000200BE"/></rom-file>
-      <rom-file id="06220"><ffxi-string id="00020064"/></rom-file>
-      <rom-file id="06262"><ffxi-string id="0002008E"/></rom-file>
+      <rom-file id="06887"><ffxi-string id="000200A7"/></rom-file>
+      <rom-file id="06821"><ffxi-string id="00020065"/></rom-file>
+      <rom-file id="06861"><ffxi-string id="0002008D"/></rom-file>
+      <rom-file id="06860"><ffxi-string id="0002008C"/></rom-file>
+      <rom-file id="06859"><ffxi-string id="0002008B"/></rom-file>
+      <rom-file id="06910"><ffxi-string id="000200BE"/></rom-file>
+      <rom-file id="06820"><ffxi-string id="00020064"/></rom-file>
+      <rom-file id="06862"><ffxi-string id="0002008E"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010005"/></name>
-      <rom-file id="06316"><ffxi-string id="000200C4"/></rom-file>
-      <rom-file id="06228"><ffxi-string id="0002006C"/></rom-file>
-      <rom-file id="06222"><ffxi-string id="00020066"/></rom-file>
-      <rom-file id="06313"><ffxi-string id="000200C1"/></rom-file>
-      <rom-file id="06368"><ffxi-string id="000200F8"/></rom-file>
-      <rom-file id="06223"><ffxi-string id="00020067"/></rom-file>
+      <rom-file id="06916"><ffxi-string id="000200C4"/></rom-file>
+      <rom-file id="06828"><ffxi-string id="0002006C"/></rom-file>
+      <rom-file id="06822"><ffxi-string id="00020066"/></rom-file>
+      <rom-file id="06913"><ffxi-string id="000200C1"/></rom-file>
+      <rom-file id="06968"><ffxi-string id="000200F8"/></rom-file>
+      <rom-file id="06823"><ffxi-string id="00020067"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010006"/></name>
-      <rom-file id="06225"><ffxi-string id="00020069"/></rom-file>
-      <rom-file id="06122"><ffxi-string id="00020002"/></rom-file>
-      <rom-file id="06269"><ffxi-string id="00020095"/></rom-file>
-      <rom-file id="06224"><ffxi-string id="00020068"/></rom-file>
-      <rom-file id="06270"><ffxi-string id="00020096"/></rom-file>
-      <rom-file id="06121"><ffxi-string id="00020001"/></rom-file>
-      <rom-file id="06315"><ffxi-string id="000200C3"/></rom-file>
+      <rom-file id="06825"><ffxi-string id="00020069"/></rom-file>
+      <rom-file id="06722"><ffxi-string id="00020002"/></rom-file>
+      <rom-file id="06869"><ffxi-string id="00020095"/></rom-file>
+      <rom-file id="06824"><ffxi-string id="00020068"/></rom-file>
+      <rom-file id="06870"><ffxi-string id="00020096"/></rom-file>
+      <rom-file id="06721"><ffxi-string id="00020001"/></rom-file>
+      <rom-file id="06915"><ffxi-string id="000200C3"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010007"/></name>
-      <rom-file id="06311"><ffxi-string id="000200BF"/></rom-file>
-      <rom-file id="06293"><ffxi-string id="000200AD"/></rom-file>
-      <rom-file id="06226"><ffxi-string id="0002006A"/></rom-file>
-      <rom-file id="06263"><ffxi-string id="0002008F"/></rom-file>
-      <rom-file id="06227"><ffxi-string id="0002006B"/></rom-file>
-      <rom-file id="06264"><ffxi-string id="00020090"/></rom-file>
-      <rom-file id="06292"><ffxi-string id="000200AC"/></rom-file>
+      <rom-file id="06911"><ffxi-string id="000200BF"/></rom-file>
+      <rom-file id="06893"><ffxi-string id="000200AD"/></rom-file>
+      <rom-file id="06826"><ffxi-string id="0002006A"/></rom-file>
+      <rom-file id="06863"><ffxi-string id="0002008F"/></rom-file>
+      <rom-file id="06827"><ffxi-string id="0002006B"/></rom-file>
+      <rom-file id="06864"><ffxi-string id="00020090"/></rom-file>
+      <rom-file id="06892"><ffxi-string id="000200AC"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010008"/></name>
-      <rom-file id="06267"><ffxi-string id="00020093"/></rom-file>
-      <rom-file id="06317"><ffxi-string id="000200C5"/></rom-file>
-      <rom-file id="06229"><ffxi-string id="0002006D"/></rom-file>
-      <rom-file id="06268"><ffxi-string id="00020094"/></rom-file>
-      <rom-file id="06230"><ffxi-string id="0002006E"/></rom-file>
+      <rom-file id="06867"><ffxi-string id="00020093"/></rom-file>
+      <rom-file id="06917"><ffxi-string id="000200C5"/></rom-file>
+      <rom-file id="06829"><ffxi-string id="0002006D"/></rom-file>
+      <rom-file id="06868"><ffxi-string id="00020094"/></rom-file>
+      <rom-file id="06830"><ffxi-string id="0002006E"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010009"/></name>
-      <rom-file id="06266"><ffxi-string id="00020092"/></rom-file>
-      <rom-file id="06236"><ffxi-string id="00020074"/></rom-file>
-      <rom-file id="06290"><ffxi-string id="000200AA"/></rom-file>
-      <rom-file id="06265"><ffxi-string id="00020091"/></rom-file>
-      <rom-file id="06312"><ffxi-string id="000200C0"/></rom-file>
-      <rom-file id="06314"><ffxi-string id="000200C2"/></rom-file>
-      <rom-file id="06289"><ffxi-string id="000200A9"/></rom-file>
-      <rom-file id="06235"><ffxi-string id="00020073"/></rom-file>
+      <rom-file id="06866"><ffxi-string id="00020092"/></rom-file>
+      <rom-file id="06836"><ffxi-string id="00020074"/></rom-file>
+      <rom-file id="06890"><ffxi-string id="000200AA"/></rom-file>
+      <rom-file id="06865"><ffxi-string id="00020091"/></rom-file>
+      <rom-file id="06912"><ffxi-string id="000200C0"/></rom-file>
+      <rom-file id="06914"><ffxi-string id="000200C2"/></rom-file>
+      <rom-file id="06889"><ffxi-string id="000200A9"/></rom-file>
+      <rom-file id="06835"><ffxi-string id="00020073"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000A"/></name>
-      <rom-file id="06124"><ffxi-string id="00020004"/></rom-file>
-      <rom-file id="06238"><ffxi-string id="00020076"/></rom-file>
-      <rom-file id="06333"><ffxi-string id="000200D5"/></rom-file>
-      <rom-file id="06123"><ffxi-string id="00020003"/></rom-file>
-      <rom-file id="06318"><ffxi-string id="000200C6"/></rom-file>
-      <rom-file id="06369"><ffxi-string id="000200F9"/></rom-file>
-      <rom-file id="06237"><ffxi-string id="00020075"/></rom-file>
+      <rom-file id="06724"><ffxi-string id="00020004"/></rom-file>
+      <rom-file id="06838"><ffxi-string id="00020076"/></rom-file>
+      <rom-file id="06933"><ffxi-string id="000200D5"/></rom-file>
+      <rom-file id="06723"><ffxi-string id="00020003"/></rom-file>
+      <rom-file id="06918"><ffxi-string id="000200C6"/></rom-file>
+      <rom-file id="06969"><ffxi-string id="000200F9"/></rom-file>
+      <rom-file id="06837"><ffxi-string id="00020075"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000B"/></name>
-      <rom-file id="06272"><ffxi-string id="00020098"/></rom-file>
-      <rom-file id="06127"><ffxi-string id="00020007"/></rom-file>
-      <rom-file id="06128"><ffxi-string id="00020008"/></rom-file>
-      <rom-file id="06271"><ffxi-string id="00020097"/></rom-file>
-      <rom-file id="06320"><ffxi-string id="000200C8"/></rom-file>
-      <rom-file id="06239"><ffxi-string id="00020077"/></rom-file>
-      <rom-file id="06240"><ffxi-string id="00020078"/></rom-file>
+      <rom-file id="06872"><ffxi-string id="00020098"/></rom-file>
+      <rom-file id="06727"><ffxi-string id="00020007"/></rom-file>
+      <rom-file id="06728"><ffxi-string id="00020008"/></rom-file>
+      <rom-file id="06871"><ffxi-string id="00020097"/></rom-file>
+      <rom-file id="06920"><ffxi-string id="000200C8"/></rom-file>
+      <rom-file id="06839"><ffxi-string id="00020077"/></rom-file>
+      <rom-file id="06840"><ffxi-string id="00020078"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000C"/></name>
-      <rom-file id="06231"><ffxi-string id="0002006F"/></rom-file>
-      <rom-file id="06323"><ffxi-string id="000200CB"/></rom-file>
-      <rom-file id="06324"><ffxi-string id="000200CC"/></rom-file>
-      <rom-file id="06129"><ffxi-string id="00020009"/></rom-file>
-      <rom-file id="06286"><ffxi-string id="000200A6"/></rom-file>
-      <rom-file id="06326"><ffxi-string id="000200CE"/></rom-file>
-      <rom-file id="06130"><ffxi-string id="0002000A"/></rom-file>
+      <rom-file id="06831"><ffxi-string id="0002006F"/></rom-file>
+      <rom-file id="06923"><ffxi-string id="000200CB"/></rom-file>
+      <rom-file id="06924"><ffxi-string id="000200CC"/></rom-file>
+      <rom-file id="06729"><ffxi-string id="00020009"/></rom-file>
+      <rom-file id="06886"><ffxi-string id="000200A6"/></rom-file>
+      <rom-file id="06926"><ffxi-string id="000200CE"/></rom-file>
+      <rom-file id="06730"><ffxi-string id="0002000A"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000D"/></name>
-      <rom-file id="06126"><ffxi-string id="00020006"/></rom-file>
-      <rom-file id="06281"><ffxi-string id="000200A1"/></rom-file>
-      <rom-file id="06282"><ffxi-string id="000200A2"/></rom-file>
-      <rom-file id="06285"><ffxi-string id="000200A5"/></rom-file>
-      <rom-file id="06125"><ffxi-string id="00020005"/></rom-file>
-      <rom-file id="06232"><ffxi-string id="00020070"/></rom-file>
+      <rom-file id="06726"><ffxi-string id="00020006"/></rom-file>
+      <rom-file id="06881"><ffxi-string id="000200A1"/></rom-file>
+      <rom-file id="06882"><ffxi-string id="000200A2"/></rom-file>
+      <rom-file id="06885"><ffxi-string id="000200A5"/></rom-file>
+      <rom-file id="06725"><ffxi-string id="00020005"/></rom-file>
+      <rom-file id="06832"><ffxi-string id="00020070"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000E"/></name>
-      <rom-file id="06247"><ffxi-string id="0002007F"/></rom-file>
-      <rom-file id="06304"><ffxi-string id="000200B8"/></rom-file>
-      <rom-file id="06277"><ffxi-string id="0002009D"/></rom-file>
-      <rom-file id="06251"><ffxi-string id="00020083"/></rom-file>
-      <rom-file id="06246"><ffxi-string id="0002007E"/></rom-file>
-      <rom-file id="06299"><ffxi-string id="000200B3"/></rom-file>
-      <rom-file id="06278"><ffxi-string id="0002009E"/></rom-file>
+      <rom-file id="06847"><ffxi-string id="0002007F"/></rom-file>
+      <rom-file id="06904"><ffxi-string id="000200B8"/></rom-file>
+      <rom-file id="06877"><ffxi-string id="0002009D"/></rom-file>
+      <rom-file id="06851"><ffxi-string id="00020083"/></rom-file>
+      <rom-file id="06846"><ffxi-string id="0002007E"/></rom-file>
+      <rom-file id="06899"><ffxi-string id="000200B3"/></rom-file>
+      <rom-file id="06878"><ffxi-string id="0002009E"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001000F"/></name>
-      <rom-file id="06322"><ffxi-string id="000200CA"/></rom-file>
-      <rom-file id="06274"><ffxi-string id="0002009A"/></rom-file>
-      <rom-file id="06371"><ffxi-string id="000200FB"/></rom-file>
-      <rom-file id="06242"><ffxi-string id="0002007A"/></rom-file>
-      <rom-file id="06273"><ffxi-string id="00020099"/></rom-file>
-      <rom-file id="06241"><ffxi-string id="00020079"/></rom-file>
+      <rom-file id="06922"><ffxi-string id="000200CA"/></rom-file>
+      <rom-file id="06874"><ffxi-string id="0002009A"/></rom-file>
+      <rom-file id="06971"><ffxi-string id="000200FB"/></rom-file>
+      <rom-file id="06842"><ffxi-string id="0002007A"/></rom-file>
+      <rom-file id="06873"><ffxi-string id="00020099"/></rom-file>
+      <rom-file id="06841"><ffxi-string id="00020079"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010010"/></name>
-      <rom-file id="06288"><ffxi-string id="000200A8"/></rom-file>
-      <rom-file id="06329"><ffxi-string id="000200D1"/></rom-file>
-      <rom-file id="06234"><ffxi-string id="00020072"/></rom-file>
-      <rom-file id="06328"><ffxi-string id="000200D0"/></rom-file>
-      <rom-file id="06367"><ffxi-string id="000200F7"/></rom-file>
-      <rom-file id="06245"><ffxi-string id="0002007D"/></rom-file>
+      <rom-file id="06888"><ffxi-string id="000200A8"/></rom-file>
+      <rom-file id="06929"><ffxi-string id="000200D1"/></rom-file>
+      <rom-file id="06834"><ffxi-string id="00020072"/></rom-file>
+      <rom-file id="06928"><ffxi-string id="000200D0"/></rom-file>
+      <rom-file id="06967"><ffxi-string id="000200F7"/></rom-file>
+      <rom-file id="06845"><ffxi-string id="0002007D"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010011"/></name>
-      <rom-file id="06233"><ffxi-string id="00020071"/></rom-file>
-      <rom-file id="06321"><ffxi-string id="000200C9"/></rom-file>
-      <rom-file id="06332"><ffxi-string id="000200D4"/></rom-file>
-      <rom-file id="06294"><ffxi-string id="000200AE"/></rom-file>
-      <rom-file id="06248"><ffxi-string id="00020080"/></rom-file>
+      <rom-file id="06833"><ffxi-string id="00020071"/></rom-file>
+      <rom-file id="06921"><ffxi-string id="000200C9"/></rom-file>
+      <rom-file id="06932"><ffxi-string id="000200D4"/></rom-file>
+      <rom-file id="06894"><ffxi-string id="000200AE"/></rom-file>
+      <rom-file id="06848"><ffxi-string id="00020080"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010012"/></name>
-      <rom-file id="06370"><ffxi-string id="000200FA"/></rom-file>
-      <rom-file id="06372"><ffxi-string id="000200FC"/></rom-file>
-      <rom-file id="06296"><ffxi-string id="000200B0"/></rom-file>
-      <rom-file id="06243"><ffxi-string id="0002007B"/></rom-file>
+      <rom-file id="06970"><ffxi-string id="000200FA"/></rom-file>
+      <rom-file id="06972"><ffxi-string id="000200FC"/></rom-file>
+      <rom-file id="06896"><ffxi-string id="000200B0"/></rom-file>
+      <rom-file id="06843"><ffxi-string id="0002007B"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010013"/></name>
-      <rom-file id="06327"><ffxi-string id="000200CF"/></rom-file>
-      <rom-file id="06331"><ffxi-string id="000200D3"/></rom-file>
-      <rom-file id="06280"><ffxi-string id="000200A0"/></rom-file>
-      <rom-file id="06325"><ffxi-string id="000200CD"/></rom-file>
-      <rom-file id="06283"><ffxi-string id="000200A3"/></rom-file>
-      <rom-file id="06279"><ffxi-string id="0002009F"/></rom-file>
-      <rom-file id="06244"><ffxi-string id="0002007C"/></rom-file>
+      <rom-file id="06927"><ffxi-string id="000200CF"/></rom-file>
+      <rom-file id="06931"><ffxi-string id="000200D3"/></rom-file>
+      <rom-file id="06880"><ffxi-string id="000200A0"/></rom-file>
+      <rom-file id="06925"><ffxi-string id="000200CD"/></rom-file>
+      <rom-file id="06883"><ffxi-string id="000200A3"/></rom-file>
+      <rom-file id="06879"><ffxi-string id="0002009F"/></rom-file>
+      <rom-file id="06844"><ffxi-string id="0002007C"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010014"/></name>
-      <rom-file id="06300"><ffxi-string id="000200B4"/></rom-file>
-      <rom-file id="06250"><ffxi-string id="00020082"/></rom-file>
-      <rom-file id="06301"><ffxi-string id="000200B5"/></rom-file>
-      <rom-file id="06298"><ffxi-string id="000200B2"/></rom-file>
-      <rom-file id="06297"><ffxi-string id="000200B1"/></rom-file>
+      <rom-file id="06900"><ffxi-string id="000200B4"/></rom-file>
+      <rom-file id="06850"><ffxi-string id="00020082"/></rom-file>
+      <rom-file id="06901"><ffxi-string id="000200B5"/></rom-file>
+      <rom-file id="06898"><ffxi-string id="000200B2"/></rom-file>
+      <rom-file id="06897"><ffxi-string id="000200B1"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010015"/></name>
-      <rom-file id="06306"><ffxi-string id="000200BA"/></rom-file>
-      <rom-file id="06254"><ffxi-string id="00020086"/></rom-file>
-      <rom-file id="06160"><ffxi-string id="00020028"/></rom-file>
-      <rom-file id="06308"><ffxi-string id="000200BC"/></rom-file>
-      <rom-file id="06161"><ffxi-string id="00020029"/></rom-file>
-      <rom-file id="06305"><ffxi-string id="000200B9"/></rom-file>
-      <rom-file id="06162"><ffxi-string id="0002002A"/></rom-file>
-      <rom-file id="06159"><ffxi-string id="00020027"/></rom-file>
-      <rom-file id="06307"><ffxi-string id="000200BB"/></rom-file>
-      <rom-file id="06255"><ffxi-string id="00020087"/></rom-file>
+      <rom-file id="06906"><ffxi-string id="000200BA"/></rom-file>
+      <rom-file id="06854"><ffxi-string id="00020086"/></rom-file>
+      <rom-file id="06760"><ffxi-string id="00020028"/></rom-file>
+      <rom-file id="06908"><ffxi-string id="000200BC"/></rom-file>
+      <rom-file id="06761"><ffxi-string id="00020029"/></rom-file>
+      <rom-file id="06905"><ffxi-string id="000200B9"/></rom-file>
+      <rom-file id="06762"><ffxi-string id="0002002A"/></rom-file>
+      <rom-file id="06759"><ffxi-string id="00020027"/></rom-file>
+      <rom-file id="06907"><ffxi-string id="000200BB"/></rom-file>
+      <rom-file id="06855"><ffxi-string id="00020087"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010016"/></name>
-      <rom-file id="06132"><ffxi-string id="0002000C"/></rom-file>
-      <rom-file id="06133"><ffxi-string id="0002000D"/></rom-file>
-      <rom-file id="06131"><ffxi-string id="0002000B"/></rom-file>
+      <rom-file id="06732"><ffxi-string id="0002000C"/></rom-file>
+      <rom-file id="06733"><ffxi-string id="0002000D"/></rom-file>
+      <rom-file id="06731"><ffxi-string id="0002000B"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010017"/></name>
-      <rom-file id="06146"><ffxi-string id="0002001A"/></rom-file>
+      <rom-file id="06746"><ffxi-string id="0002001A"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010018"/></name>
-      <rom-file id="06144"><ffxi-string id="00020018"/></rom-file>
-      <rom-file id="06145"><ffxi-string id="00020019"/></rom-file>
-      <rom-file id="06151"><ffxi-string id="0002001F"/></rom-file>
-      <rom-file id="06147"><ffxi-string id="0002001B"/></rom-file>
-      <rom-file id="06149"><ffxi-string id="0002001D"/></rom-file>
-      <rom-file id="06150"><ffxi-string id="0002001E"/></rom-file>
-      <rom-file id="06148"><ffxi-string id="0002001C"/></rom-file>
-      <rom-file id="06152"><ffxi-string id="00020020"/></rom-file>
+      <rom-file id="06744"><ffxi-string id="00020018"/></rom-file>
+      <rom-file id="06745"><ffxi-string id="00020019"/></rom-file>
+      <rom-file id="06747"><ffxi-string id="0002001B"/></rom-file>
+      <rom-file id="06748"><ffxi-string id="0002001C"/></rom-file>
+      <rom-file id="06749"><ffxi-string id="0002001D"/></rom-file>
+      <rom-file id="06750"><ffxi-string id="0002001E"/></rom-file>
+      <rom-file id="06751"><ffxi-string id="0002001F"/></rom-file>
+      <rom-file id="06752"><ffxi-string id="00020020"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010019"/></name>
-      <rom-file id="06134"><ffxi-string id="0002000E"/></rom-file>
-      <rom-file id="06138"><ffxi-string id="00020012"/></rom-file>
-      <rom-file id="06136"><ffxi-string id="00020010"/></rom-file>
-      <rom-file id="06140"><ffxi-string id="00020014"/></rom-file>
-      <rom-file id="06142"><ffxi-string id="00020016"/></rom-file>
-      <rom-file id="06139"><ffxi-string id="00020013"/></rom-file>
-      <rom-file id="06137"><ffxi-string id="00020011"/></rom-file>
-      <rom-file id="06141"><ffxi-string id="00020015"/></rom-file>
-      <rom-file id="06143"><ffxi-string id="00020017"/></rom-file>
+      <rom-file id="06734"><ffxi-string id="0002000E"/></rom-file>
+      <rom-file id="06738"><ffxi-string id="00020012"/></rom-file>
+      <rom-file id="06736"><ffxi-string id="00020010"/></rom-file>
+      <rom-file id="06740"><ffxi-string id="00020014"/></rom-file>
+      <rom-file id="06742"><ffxi-string id="00020016"/></rom-file>
+      <rom-file id="06739"><ffxi-string id="00020013"/></rom-file>
+      <rom-file id="06737"><ffxi-string id="00020011"/></rom-file>
+      <rom-file id="06741"><ffxi-string id="00020015"/></rom-file>
+      <rom-file id="06743"><ffxi-string id="00020017"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001001A"/></name>
-      <rom-file id="06153"><ffxi-string id="00020021"/></rom-file>
-      <rom-file id="06156"><ffxi-string id="00020024"/></rom-file>
-      <rom-file id="06154"><ffxi-string id="00020022"/></rom-file>
-      <rom-file id="06155"><ffxi-string id="00020023"/></rom-file>
+      <rom-file id="06753"><ffxi-string id="00020021"/></rom-file>
+      <rom-file id="06756"><ffxi-string id="00020024"/></rom-file>
+      <rom-file id="06754"><ffxi-string id="00020022"/></rom-file>
+      <rom-file id="06755"><ffxi-string id="00020023"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001001B"/></name>
-      <rom-file id="06158"><ffxi-string id="00020026"/></rom-file>
-      <rom-file id="06157"><ffxi-string id="00020025"/></rom-file>
+      <rom-file id="06758"><ffxi-string id="00020026"/></rom-file>
+      <rom-file id="06757"><ffxi-string id="00020025"/></rom-file>
     </category>
     <!-- Empire of Aht Urhgan : <category><name><ffxi-string id="0001001C"/></name></category> -->
     <category><name><ffxi-string id="0001001D"/></name>
-      <rom-file id="06170"><ffxi-string id="00020032"/></rom-file>
-      <rom-file id="06168"><ffxi-string id="00020030"/></rom-file>
-      <rom-file id="06172"><ffxi-string id="00020034"/></rom-file>
-      <rom-file id="06190"><ffxi-string id="00020046"/></rom-file>
-      <rom-file id="06191"><ffxi-string id="00020047"/></rom-file>
+      <rom-file id="06770"><ffxi-string id="00020032"/></rom-file>
+      <rom-file id="06768"><ffxi-string id="00020030"/></rom-file>
+      <rom-file id="06772"><ffxi-string id="00020034"/></rom-file>
+      <rom-file id="06790"><ffxi-string id="00020046"/></rom-file>
+      <rom-file id="06791"><ffxi-string id="00020047"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001001E"/></name>
-      <rom-file id="06188"><ffxi-string id="00020044"/></rom-file>
-      <rom-file id="06187"><ffxi-string id="00020043"/></rom-file>
-      <rom-file id="06185"><ffxi-string id="00020041"/></rom-file>
-      <rom-file id="06186"><ffxi-string id="00020042"/></rom-file>
-      <rom-file id="06171"><ffxi-string id="00020033"/></rom-file>
+      <rom-file id="06788"><ffxi-string id="00020044"/></rom-file>
+      <rom-file id="06787"><ffxi-string id="00020043"/></rom-file>
+      <rom-file id="06785"><ffxi-string id="00020041"/></rom-file>
+      <rom-file id="06786"><ffxi-string id="00020042"/></rom-file>
+      <rom-file id="06771"><ffxi-string id="00020033"/></rom-file>
     </category>
     <category><name><ffxi-string id="0001001F"/></name>
-      <rom-file id="06182"><ffxi-string id="0002003E"/></rom-file>
-      <rom-file id="06183"><ffxi-string id="0002003F"/></rom-file>
-      <rom-file id="06181"><ffxi-string id="0002003D"/></rom-file>
-      <rom-file id="06184"><ffxi-string id="00020040"/></rom-file>
+      <rom-file id="06782"><ffxi-string id="0002003E"/></rom-file>
+      <rom-file id="06783"><ffxi-string id="0002003F"/></rom-file>
+      <rom-file id="06781"><ffxi-string id="0002003D"/></rom-file>
+      <rom-file id="06784"><ffxi-string id="00020040"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010020"/></name>
-      <rom-file id="06174"><ffxi-string id="00020036"/></rom-file>
-      <rom-file id="06199"><ffxi-string id="0002004F"/></rom-file>
-      <rom-file id="06175"><ffxi-string id="00020037"/></rom-file>
-      <rom-file id="06189"><ffxi-string id="00020045"/></rom-file>
-      <rom-file id="06173"><ffxi-string id="00020035"/></rom-file>
-      <rom-file id="06197"><ffxi-string id="0002004D"/></rom-file>
-      <rom-file id="06176"><ffxi-string id="00020038"/></rom-file>
-      <rom-file id="06177"><ffxi-string id="00020039"/></rom-file>
-      <rom-file id="06180"><ffxi-string id="0002003C"/></rom-file>
+      <rom-file id="06774"><ffxi-string id="00020036"/></rom-file>
+      <rom-file id="06799"><ffxi-string id="0002004F"/></rom-file>
+      <rom-file id="06775"><ffxi-string id="00020037"/></rom-file>
+      <rom-file id="06789"><ffxi-string id="00020045"/></rom-file>
+      <rom-file id="06773"><ffxi-string id="00020035"/></rom-file>
+      <rom-file id="06797"><ffxi-string id="0002004D"/></rom-file>
+      <rom-file id="06776"><ffxi-string id="00020038"/></rom-file>
+      <rom-file id="06777"><ffxi-string id="00020039"/></rom-file>
+      <rom-file id="06780"><ffxi-string id="0002003C"/></rom-file>
     </category>
     <category><name><ffxi-string id="00010021"/></name>
-      <rom-file id="06192"><ffxi-string id="00020048"/></rom-file>
-      <rom-file id="06194"><ffxi-string id="0002004A"/></rom-file>
-      <rom-file id="06195"><ffxi-string id="0002004B"/></rom-file>
-      <rom-file id="06198"><ffxi-string id="0002004E"/></rom-file>
-      <rom-file id="06196"><ffxi-string id="0002004C"/></rom-file>
-      <rom-file id="06193"><ffxi-string id="00020049"/></rom-file>
+      <rom-file id="06792"><ffxi-string id="00020048"/></rom-file>
+      <rom-file id="06794"><ffxi-string id="0002004A"/></rom-file>
+      <rom-file id="06795"><ffxi-string id="0002004B"/></rom-file>
+      <rom-file id="06798"><ffxi-string id="0002004E"/></rom-file>
+      <rom-file id="06796"><ffxi-string id="0002004C"/></rom-file>
+      <rom-file id="06793"><ffxi-string id="00020049"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Other"/></name>
-      <rom-file id="06344"><ffxi-string id="000200E0"/></rom-file>
-      <rom-file id="06346"><ffxi-string id="000200E2"/></rom-file>
-      <rom-file id="06343"><ffxi-string id="000200DF"/></rom-file>
-      <rom-file id="06345"><ffxi-string id="000200E1"/></rom-file>
+      <rom-file id="06944"><ffxi-string id="000200E0"/></rom-file>
+      <rom-file id="06946"><ffxi-string id="000200E2"/></rom-file>
+      <rom-file id="06943"><ffxi-string id="000200DF"/></rom-file>
+      <rom-file id="06945"><ffxi-string id="000200E1"/></rom-file>
       <separator/>
-      <rom-file id="06341"><ffxi-string id="000200DD"/></rom-file>
-      <rom-file id="06348"><ffxi-string id="000200E4"/> <i18n-string id="Menu:WithPirates"/></rom-file>
-      <rom-file id="06340"><ffxi-string id="000200DC"/></rom-file>
-      <rom-file id="06347"><ffxi-string id="000200E3"/> <i18n-string id="Menu:WithPirates"/></rom-file>
+      <rom-file id="06941"><ffxi-string id="000200DD"/></rom-file>
+      <rom-file id="06948"><ffxi-string id="000200E4"/> <i18n-string id="Menu:WithPirates"/></rom-file>
+      <rom-file id="06940"><ffxi-string id="000200DC"/></rom-file>
+      <rom-file id="06947"><ffxi-string id="000200E3"/> <i18n-string id="Menu:WithPirates"/></rom-file>
       <separator/>
-      <rom-file id="06166"><ffxi-string id="0002002E"/></rom-file>
-      <rom-file id="06167"><ffxi-string id="0002002F"/></rom-file>
-      <rom-file id="06178"><ffxi-string id="0002003A"/></rom-file>
-      <rom-file id="06179"><ffxi-string id="0002003B"/></rom-file>
+      <rom-file id="06766"><ffxi-string id="0002002E"/></rom-file>
+      <rom-file id="06767"><ffxi-string id="0002002F"/></rom-file>
+      <rom-file id="06778"><ffxi-string id="0002003A"/></rom-file>
+      <rom-file id="06779"><ffxi-string id="0002003B"/></rom-file>
       <separator/>
-      <rom-file id="06163"><ffxi-string id="0002002B"/></rom-file>
-      <rom-file id="06164"><ffxi-string id="0002002C"/></rom-file>
+      <rom-file id="06763"><ffxi-string id="0002002B"/></rom-file>
+      <rom-file id="06764"><ffxi-string id="0002002C"/></rom-file>
+      <rom-file id="06903"><ffxi-string id="000200B7"/></rom-file>
     </category>
   </category>
   <category><name><i18n-string id="Menu:StringTables"/></name>

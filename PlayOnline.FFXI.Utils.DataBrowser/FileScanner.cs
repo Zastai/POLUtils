@@ -35,13 +35,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); }));
 	  } catch {
 	    this.FileContents = null;
-	    try { this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); })); } catch { }
 	  }
 	}));
 	  T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	  T.Start();
-	  if (this.FSD.ShowDialog(ParentForm) == DialogResult.Abort)
+	  if (this.FSD.ShowDialog(ParentForm) == DialogResult.Abort) {
+	    this.FSD.Finish();
 	    this.FileContents = null;
+	  }
+	  if (T.IsAlive)
+	    T.Abort();
 	  this.FSD.Dispose();
 	  this.FSD = null;
 	}
