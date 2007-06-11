@@ -375,6 +375,36 @@
   <data name="F::string-5" xml:space="preserve">
     <value>String 5</value>
   </data>
+  <data name="F::string-6" xml:space="preserve">
+    <value>String 6</value>
+  </data>
+  <data name="F::string-7" xml:space="preserve">
+    <value>String 7</value>
+  </data>
+  <data name="F::string-8" xml:space="preserve">
+    <value>String 8</value>
+  </data>
+  <data name="F::string-9" xml:space="preserve">
+    <value>String 9</value>
+  </data>
+  <data name="F::string-10" xml:space="preserve">
+    <value>String 10</value>
+  </data>
+  <data name="F::string-11" xml:space="preserve">
+    <value>String 11</value>
+  </data>
+  <data name="F::string-12" xml:space="preserve">
+    <value>String 12</value>
+  </data>
+  <data name="F::string-13" xml:space="preserve">
+    <value>String 13</value>
+  </data>
+  <data name="F::string-14" xml:space="preserve">
+    <value>String 14</value>
+  </data>
+  <data name="F::string-15" xml:space="preserve">
+    <value>String 15</value>
+  </data>
   <data name="F::text" xml:space="preserve">
     <value>Text</value>
   </data>
@@ -498,7 +528,7 @@
   <data name="T:DMSGStringTableEntry" xml:space="preserve">
     <value>String Table Entry</value>
   </data>
-  <data name="T:DMSGStringTableEntry2" xml:space="preserve">
+  <data name="T:DMSGStringBlock" xml:space="preserve">
     <value>String Table Entry</value>
   </data>
   <data name="T:Graphic" xml:space="preserve">

@@ -41,14 +41,30 @@ namespace PlayOnline.FFXI.FileTypes {
       if (ProgressCallback != null)
 	ProgressCallback(I18N.GetText("FTM:LoadingData"), 0);
       for (uint i = 0; i < EntryCount; ++i) {
-      Things.DMSGStringTableEntry2 DSTE2 = new Things.DMSGStringTableEntry2();
-	if (!DSTE2.Read(BR, E, i, HeaderBytes, EntryBytes, DataBytes)) {
+	BR.BaseStream.Position = HeaderBytes + i * 8;
+      int Offset = ~BR.ReadInt32();
+      int Length = ~BR.ReadInt32();
+	if (Length < 0 || Offset < 0 || Offset + Length > DataBytes) {
+	  TL.Clear();
+	  break;
+	}
+	BR.BaseStream.Position = HeaderBytes + EntryBytes + Offset;
+      BinaryReader EntryBR = new BinaryReader(new MemoryStream(BR.ReadBytes(Length)));
+      bool ItemAdded = false;
+	{
+	Things.DMSGStringBlock SB = new Things.DMSGStringBlock();
+	  if (SB.Read(EntryBR, E, i)) {
+	    TL.Add(SB);
+	    ItemAdded = true;
+	  }
+	}
+	EntryBR.Close();
+	if (!ItemAdded) {
 	  TL.Clear();
 	  break;
 	}
 	if (ProgressCallback != null)
 	  ProgressCallback(null, (double) (i + 1) / EntryCount);
-	TL.Add(DSTE2);
       }
       return TL;
     }

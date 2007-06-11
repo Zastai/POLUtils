@@ -35,7 +35,9 @@ namespace PlayOnline.FFXI.FileTypes {
 	return TL;
       if (BR.ReadUInt32() != 0)
 	return TL;
-    uint BytesPerEntry = BR.ReadUInt32();
+    int BytesPerEntry = BR.ReadInt32();
+      if (BytesPerEntry < 0)
+	return TL;
     uint DataBytes = BR.ReadUInt32();
       if (FileSize != (HeaderBytes + DataBytes) || (DataBytes % BytesPerEntry) != 0)
 	return TL;
@@ -56,6 +58,23 @@ namespace PlayOnline.FFXI.FileTypes {
       // - Spell Names        = 0x08C
       // - Spell Descriptions = 0x100
       for (uint i = 0; i < EntryCount; ++i) {
+      BinaryReader EntryBR = new BinaryReader(new MemoryStream(BR.ReadBytes(BytesPerEntry)));
+	EntryBR.BaseStream.Position = 0;
+      bool ItemAdded = false;
+	{
+	Things.DMSGStringBlock SB = new Things.DMSGStringBlock();
+	  if (SB.Read(EntryBR, E, i)) {
+	    TL.Add(SB);
+	    ItemAdded = true;
+	  }
+	}
+	EntryBR.Close();
+	if (!ItemAdded) {
+	  TL.Clear();
+	  break;
+	}
+	if (ProgressCallback != null)
+	  ProgressCallback(null, (double) (i + 1) / EntryCount);
       }
       return TL;
     }
