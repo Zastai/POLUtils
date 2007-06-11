@@ -63,7 +63,7 @@ namespace PlayOnline.FFXI.Things {
 
     private uint?        Index_;
     private List<string> Strings_;
-    private uint?        StringCount_;
+    private int?         StringCount_;
     
     #endregion
 
@@ -170,7 +170,7 @@ namespace PlayOnline.FFXI.Things {
 	case "string-13":    this.LoadString(Node, 12); break;
 	case "string-14":    this.LoadString(Node, 13); break;
 	case "string-15":    this.LoadString(Node, 14); break;
-	case "string-count": this.StringCount_ = (uint) this.LoadUnsignedIntegerField(Node); break;
+	case "string-count": this.StringCount_ = (int) this.LoadSignedIntegerField(Node); break;
       }
     }
 
@@ -182,12 +182,20 @@ namespace PlayOnline.FFXI.Things {
       this.Clear();
       this.Index_ = Index;
       try {
-	this.StringCount_ = ~BR.ReadUInt32();
+      bool need_bitflip = false;
+	this.StringCount_ = BR.ReadInt32();
+	if (this.StringCount_ < 0 || this.StringCount_ > 100) { // 100 is anarbitrary cut-off point
+	  this.StringCount_ = ~this.StringCount_;
+	  if (this.StringCount_ < 0 || this.StringCount_ > 100)
+	    return false;
+	  else
+	    need_bitflip = true;
+	}
       uint[] StringOffsets = new uint[this.StringCount_.Value];
       uint[] StringFlags   = new uint[this.StringCount_.Value];
 	for (uint i = 0; i < this.StringCount_.Value; ++i) {
-	  StringOffsets[i] = ~BR.ReadUInt32();
-	  StringFlags  [i] = ~BR.ReadUInt32();
+	  StringOffsets[i] = BR.ReadUInt32() ^ (need_bitflip ? 0xffffffff : 0x00000000);
+	  StringFlags  [i] = BR.ReadUInt32() ^ (need_bitflip ? 0xffffffff : 0x00000000);
 	  if (StringOffsets[i] < 0 || StringOffsets[i] + 28 + 4 > BR.BaseStream.Length || (StringFlags[i] != 0 && StringFlags[i] != 1))
 	    return false;
 	}
@@ -198,10 +206,12 @@ namespace PlayOnline.FFXI.Things {
 	List<byte> TextBytes = new List<byte>();
 	  while (true) {
 	  byte[] FourBytes = BR.ReadBytes(4);
-	    FourBytes[0] ^= 0xff;
-	    FourBytes[1] ^= 0xff;
-	    FourBytes[2] ^= 0xff;
-	    FourBytes[3] ^= 0xff;
+	    if (need_bitflip) {
+	      FourBytes[0] ^= 0xff;
+	      FourBytes[1] ^= 0xff;
+	      FourBytes[2] ^= 0xff;
+	      FourBytes[3] ^= 0xff;
+	    }
 	    TextBytes.AddRange(FourBytes);
 	    if (FourBytes[3] == 0)
 	      break;

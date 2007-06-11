@@ -465,6 +465,9 @@
   <data name="FT:DMSGStringTable2" xml:space="preserve">
     <value>String Table</value>
   </data>
+  <data name="FT:DMSGStringTable3" xml:space="preserve">
+    <value>String Table</value>
+  </data>
   <data name="FT:Images" xml:space="preserve">
     <value>Images</value>
   </data>
