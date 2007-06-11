@@ -40,6 +40,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetAbilityName(ushort ID) {
+#if false // FIXME: Not updated to new DAT file format
     BinaryReader BR = FFXIResourceManager.OpenDATFile(85); // JP = 10
       if (BR != null) {
 	if ((ID + 1) * 0x400 <= BR.BaseStream.Length) {
@@ -52,9 +53,13 @@ namespace PlayOnline.FFXI {
 	BR.Close();
       }
       return null;
+#else
+      return String.Format("Ability #{0}", ID);
+#endif
     }
 
     public static string GetSpellName(ushort ID) {
+#if false // FIXME: Not updated to new DAT file format
     BinaryReader BR = FFXIResourceManager.OpenDATFile(86);
       if (BR != null) {
 	if ((ID + 1) * 0x400 <= BR.BaseStream.Length) {
@@ -67,6 +72,9 @@ namespace PlayOnline.FFXI {
 	BR.Close();
       }
       return null;
+#else
+      return String.Format("Spell #{0}", ID);
+#endif
     }
 
     // JP: 4, 5, 6, 7, 8
@@ -79,10 +87,10 @@ namespace PlayOnline.FFXI {
 	Item.Type T;
 	  Item.DeduceType(BR, out T);
 	long Offset = (ID & 0xfff) * 0xc00;
-	  if (BR.BaseStream.Length <= Offset + 0xc00) {
+	  if (BR.BaseStream.Length >= Offset + 0xc00) {
 	  Item I = new Item();
 	    BR.BaseStream.Position = Offset;
-	    if (I.Read(BR, T) && (ushort) I.GetFieldValue("id") == ID) {
+	    if (I.Read(BR, T) && (uint) I.GetFieldValue("id") == ID) {
 	      BR.Close();
 	      return I.GetFieldText("name");
 	    }
@@ -94,6 +102,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetKeyItemName(byte Language, ushort ID) {
+#if false // FIXME: Not updated to new DAT file format
     BinaryReader BR = FFXIResourceManager.OpenDATFile(82); // JP = 80
       if (BR != null) {
 	if (Encoding.ASCII.GetString(BR.ReadBytes(4)) == "menu" && BR.ReadUInt32() == 0x101) {
@@ -123,9 +132,13 @@ namespace PlayOnline.FFXI {
 	BR.Close();
       }
       return null;
+#else
+      return String.Format("Key Item #{0}", ID);
+#endif
     }
 
     public static string GetAutoTranslatorMessage(byte Category, byte Language, ushort ID) {
+      // FIXME: This is probably a stale file
     BinaryReader BR = FFXIResourceManager.OpenDATFile(55665); // JP = 55545
       if (BR != null) {
 	while (BR.BaseStream.Position + 76 <= BR.BaseStream.Length) {
@@ -194,6 +207,7 @@ namespace PlayOnline.FFXI {
       try {
 	if (BR != null) {
 	  BR.BaseStream.Position = 0x18;
+	// FIXME: Assumes single-string table; code should be made more generic.
 	uint HeaderBytes = BR.ReadUInt32();
 	uint EntryBytes  = BR.ReadUInt32();
 	  BR.ReadUInt32();
