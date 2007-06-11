@@ -2,6 +2,17 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.3 Released" author="Pebbles" date="June 11th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.3, a collection of PlayOnline-related utilities.</p>
+      <p>A new utility was added which allows editing npc/monster names (which violates the TOS,
+         so use at your own risk). Also, the data browser was updated with new DAT locations,
+         and adds the French &amp; German DATs as well.</p>
+      <p>Note that support for the new DATs is fairly rough (the raw string tables are shown),
+         and some of the related resource strings (as seen in the macro editor) are not supported
+         properly yet. Also, because of the various new DAT formats, EngrishOnry has been
+         disabled until I take it upon myself to redo it for full EN-FR-DE-JP resource switching
+         including support for the new DAT formats.</p>
+    </news-item>
     <news-item title="POLUtils 0.9.2 Released" author="Pebbles" date="January 7th, 2007">
       <p>Today I'm releasing POLUtils 0.9.2, a collection of PlayOnline-related utilities.</p>
       <p>The only changes here are fixed item &amp; autotrans translation in EngrishOnry, and
@@ -409,6 +420,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.3-Release-x86.exe"/>
+      <file name="POLUtils-0.9.3-Release-x64.exe">
+	NPC Renamer; French/German DATs.<br/>
+      </file>
       <file name="POLUtils-0.9.2-Release-x86.exe"/>
       <file name="POLUtils-0.9.2-Release-x64.exe">
 	Fixed EngrishOnry (items, autotrans).<br/>
@@ -614,7 +629,8 @@
       <p>
 	This probably means you're using an older (pre-XP) version of Windows.  POLUtils has no control over the
 	font of its menus; that's handled by the system.  Try setting the menu font (via the Appearance tab of
-	the Display properties in the Control Panel) to Tahoma, that should work.
+	the Display properties in the Control Panel) to Tahoma, that should work. If running on Vista, also try
+	setting POLUtils to run in XP SP2 Compatibility mode.
       </p>
     </para>
     <para>
