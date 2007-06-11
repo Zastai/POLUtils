@@ -2141,8 +2141,8 @@
   </category>
   <category><name><i18n-string id="Menu:StringTables"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
-      <rom-file id="55701"><i18n-string id="Menu:Abilities"/> 1</rom-file>
-      <rom-file id="55733"><i18n-string id="Menu:Abilities"/> 2</rom-file>
+      <rom-file id="55701"><i18n-string id="Menu:AbilityNames"/></rom-file>
+      <rom-file id="55733"><i18n-string id="Menu:AbilityDescriptions"/></rom-file>
       <rom-file id="55465"><i18n-string id="Menu:AreaNames"/></rom-file>
       <rom-file id="55661"><i18n-string id="Menu:AreaNamesAlt"/></rom-file>
       <rom-file id="55470"><i18n-string id="Menu:CharacterSelect"/></rom-file>
@@ -2190,8 +2190,8 @@
       <rom-file id="55657"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:French"/></name>
-      <rom-file id="56241"><i18n-string id="Menu:Abilities"/> 1</rom-file>
-      <rom-file id="56273"><i18n-string id="Menu:Abilities"/> 2</rom-file>
+      <rom-file id="56241"><i18n-string id="Menu:AbilityNames"/></rom-file>
+      <rom-file id="56273"><i18n-string id="Menu:AbilityDescriptions"/></rom-file>
       <rom-file id="56195"><i18n-string id="Menu:AreaNames"/></rom-file>
       <rom-file id="56225"><i18n-string id="Menu:BlueMagicHelp"/></rom-file>
       <rom-file id="56202"><i18n-string id="Menu:CharacterSelect"/></rom-file>
@@ -2240,8 +2240,8 @@
       <rom-file id="56197"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:German"/></name>
-      <rom-file id="55821"><i18n-string id="Menu:Abilities"/> 1</rom-file>
-      <rom-file id="55853"><i18n-string id="Menu:Abilities"/> 2</rom-file>
+      <rom-file id="55821"><i18n-string id="Menu:AbilityNames"/></rom-file>
+      <rom-file id="55853"><i18n-string id="Menu:AbilityDescriptions"/></rom-file>
       <rom-file id="55775"><i18n-string id="Menu:AreaNames"/></rom-file><!-- also: 55781 -->
       <rom-file id="55805"><i18n-string id="Menu:BlueMagicHelp"/></rom-file>
       <rom-file id="55782"><i18n-string id="Menu:CharacterSelect"/></rom-file>
@@ -2290,8 +2290,8 @@
       <rom-file id="55777"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
-      <rom-file id="55581"><i18n-string id="Menu:Abilities"/> 1</rom-file>
-      <rom-file id="55613"><i18n-string id="Menu:Abilities"/> 2</rom-file>
+      <rom-file id="55581"><i18n-string id="Menu:AbilityNames"/></rom-file>
+      <rom-file id="55613"><i18n-string id="Menu:AbilityDescriptions"/></rom-file>
       <rom-file id="55535"><i18n-string id="Menu:AreaNames"/></rom-file>
       <rom-file id="55530"><i18n-string id="Menu:ChatFilterTypes"/></rom-file>
       <rom-file id="55538"><i18n-string id="Menu:DayNames"/></rom-file>
@@ -2335,6 +2335,7 @@
       <rom-file id="55537"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Common"/></name>
+      <!-- <rom-file id="?????"><i18n-string id="Menu:Abilities"/></rom-file> -->
       <rom-file id="55466"><i18n-string id="Menu:AreaNamesShort"/></rom-file>
       <rom-file id="55468"><i18n-string id="Menu:JobNamesShort"/></rom-file>
       <rom-file id="00011"><i18n-string id="Menu:Spells"/></rom-file>

@@ -222,6 +222,12 @@
   <data name="Menu:Abilities" xml:space="preserve">
     <value>&amp;Abilities</value>
   </data>
+  <data name="Menu:AbilityNames" xml:space="preserve">
+    <value>&amp;Ability Names</value>
+  </data>
+  <data name="Menu:AbilityDescriptions" xml:space="preserve">
+    <value>&amp;Ability Descriptions</value>
+  </data>
   <data name="Menu:AreaNames" xml:space="preserve">
     <value>&amp;Area Names</value>
   </data>
