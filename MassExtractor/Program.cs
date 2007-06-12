@@ -146,16 +146,10 @@ namespace MassExtractor {
 	  Program.ExtractFile(75, "items-weapons.xml");
 	  Program.ExtractFile(76, "items-armor.xml");
 	  Program.ExtractFile(77, "items-puppet.xml");
-	  // 78 = main UI image file (fonts, icons, ...)
-	  // 79 = logon UI image file (logo, character creation text)
-	  // 80 = ? (but initally loads like quests)
-	  // 81 = ?
 	  Program.ExtractFile(82, "quests.xml");
-	  // 83 = ?
-	  Program.ExtractFile(84, "titles.xml");
-	  Program.ExtractFile(85, "abilities.xml");
 	  Program.ExtractFile(86, "spells.xml");
 	  Program.ExtractFile(87, "statuses.xml");
+	  Program.ExtractFile(91, "items-currency.xml");
 	  // Dialog Tables
 	  for (ushort i = 0; i < 0x100; ++i)
 	    Program.ExtractFile(6420 + i, String.Format("dialog-table-{0:000}.xml", i));
@@ -181,13 +175,33 @@ namespace MassExtractor {
 	  Program.ExtractFile(55652, "menu-item-text.xml");
 	  Program.ExtractFile(55653, "various-2.xml");
 	  Program.ExtractFile(55654, "region-names.xml");
-	  // 55655-55656 are assigned to a JP string table (Rom\97\56.dat)
 	  Program.ExtractFile(55657, "weather-types.xml");
 	  Program.ExtractFile(55658, "day-names.xml");
 	  Program.ExtractFile(55659, "directions.xml");
 	  Program.ExtractFile(55660, "moon-phases.xml");
 	  Program.ExtractFile(55661, "area-names-alternate.xml");
-	  // 55662-55664 are assigned to a JP string table (Rom\97\56.dat)
+	  // String Tables That Used To Be Special Formats
+	  Program.ExtractFile(55695, "key-items.xml");
+	  Program.ExtractFile(55701, "ability-names.xml");
+	  Program.ExtractFile(55702, "spell-names.xml");
+	  Program.ExtractFile(55704, "titles.xml");
+	  Program.ExtractFile(55706, "quests-sandoria.xml");
+	  Program.ExtractFile(55707, "quests-bastok.xml");
+	  Program.ExtractFile(55708, "quests-windurst.xml");
+	  Program.ExtractFile(55709, "quests-jeuno.xml");
+	  Program.ExtractFile(55710, "quests-other.xml");
+	  Program.ExtractFile(55711, "quests-zilart.xml");
+	  Program.ExtractFile(55712, "quests-ahtuhrgan.xml");
+	  Program.ExtractFile(55715, "missions-sandoria.xml");
+	  Program.ExtractFile(55716, "missions-bastok.xml");
+	  Program.ExtractFile(55717, "missions-windurst.xml");
+	  Program.ExtractFile(55718, "missions-zilart.xml");
+	  Program.ExtractFile(55719, "missions-promathia.xml");
+	  Program.ExtractFile(55720, "missions-assault.xml");
+	  Program.ExtractFile(55721, "missions-ahtuhrgan.xml");
+	  Program.ExtractFile(55725, "status-names.xml");
+	  Program.ExtractFile(55733, "ability-descriptions.xml");
+	  Program.ExtractFile(55734, "spell-descriptions.xml");
 	}
       DateTime ExtractionEnd = DateTime.Now;
 	Console.WriteLine(String.Format(I18N.GetText("EndTime"), ExtractionEnd));
