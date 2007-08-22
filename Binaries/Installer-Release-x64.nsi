@@ -4,4 +4,6 @@
 !define BUILD    Release
 !define PLATFORM x64
 
+InstallDir "$PROGRAMFILES64\Pebbles\POLUtils"
+
 !include "Installer.nsh"

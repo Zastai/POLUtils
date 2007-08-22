@@ -28,7 +28,6 @@ OutFile "Installers\POLUtils-${VERSION}-${BUILD}-${PLATFORM}.exe"
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
 
-InstallDir       "$PROGRAMFILES\Pebbles\POLUtils"
 InstallDirRegKey HKLM "${INSTALLER_REG_KEY}" "Install Location"
 
 !define MUI_ICON                 "${NSISDIR}\Contrib\Graphics\Icons\modern-install-colorful.ico"
