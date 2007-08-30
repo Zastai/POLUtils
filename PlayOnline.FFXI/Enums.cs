@@ -91,23 +91,26 @@ namespace PlayOnline.FFXI {
   }
 
   public enum ItemType : ushort {
-    Nothing    = 0x0000,
-    Item       = 0x0001,
-    QuestItem  = 0x0002,
-    Fish       = 0x0003,
-    Weapon     = 0x0004,
-    Armor      = 0x0005,
-    Linkshell  = 0x0006,
-    UsableItem = 0x0007,
-    Crystal    = 0x0008,
-    Currency   = 0x0009,
-    Furnishing = 0x000A,
-    Plant      = 0x000B,
-    Flowerpot  = 0x000C,
-    PuppetItem = 0x000D,
-    Mannequin  = 0x000E,
-    Book       = 0x000F,
-    RacingForm = 0x0010
+    Nothing     = 0x0000,
+    Item        = 0x0001,
+    QuestItem   = 0x0002,
+    Fish        = 0x0003,
+    Weapon      = 0x0004,
+    Armor       = 0x0005,
+    Linkshell   = 0x0006,
+    UsableItem  = 0x0007,
+    Crystal     = 0x0008,
+    Currency    = 0x0009,
+    Furnishing  = 0x000A,
+    Plant       = 0x000B,
+    Flowerpot   = 0x000C,
+    PuppetItem  = 0x000D,
+    Mannequin   = 0x000E,
+    Book        = 0x000F,
+    RacingForm  = 0x0010,
+    BettingSlip = 0x0011,
+    Plate       = 0x0012,
+    Reflector   = 0x0013,
   }
 
   [Flags]

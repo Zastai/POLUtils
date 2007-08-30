@@ -115,7 +115,7 @@ namespace PlayOnline.FFXI.Things {
     private ushort?        ShieldSize_;
     // Weapon-Specific
     private ushort?        Damage_;
-    private ushort?        Delay_;
+    private short?         Delay_;
     private ushort?        DPS_;
     private Skill?         Skill_;
     private byte?          JugSize_;
@@ -323,7 +323,7 @@ namespace PlayOnline.FFXI.Things {
 	case "activation-time":   this.ActivationTime_  = (ushort)        this.LoadUnsignedIntegerField(Node); break;
 	case "casting-time":      this.CastingTime_     = (byte)          this.LoadUnsignedIntegerField(Node); break;
 	case "damage":            this.Damage_          = (ushort)        this.LoadUnsignedIntegerField(Node); break;
-	case "delay":             this.Delay_           = (ushort)        this.LoadUnsignedIntegerField(Node); break;
+	case "delay":             this.Delay_           = (short)         this.LoadSignedIntegerField  (Node); break;
 	case "description":       this.Description_     =                 this.LoadTextField           (Node); break;
 	case "dps":               this.DPS_             = (ushort)        this.LoadUnsignedIntegerField(Node); break;
 	case "element":           this.Element_         = (Element)       this.LoadHexField            (Node); break;
@@ -429,7 +429,7 @@ namespace PlayOnline.FFXI.Things {
 	  this.ShieldSize_ = BR.ReadUInt16();
 	else { // Weapon
 	  this.Damage_   =         BR.ReadUInt16();
-	  this.Delay_    =         BR.ReadUInt16();
+	  this.Delay_    =         BR.ReadInt16();
 	  this.DPS_      =         BR.ReadUInt16();
 	  this.Skill_    = (Skill) BR.ReadByte();
 	  this.JugSize_  =         BR.ReadByte();
