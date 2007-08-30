@@ -184,7 +184,7 @@ namespace PlayOnline.FFXI.Things {
       try {
       bool need_bitflip = false;
 	this.StringCount_ = BR.ReadInt32();
-	if (this.StringCount_ < 0 || this.StringCount_ > 100) { // 100 is anarbitrary cut-off point
+	if (this.StringCount_ < 0 || this.StringCount_ > 100) { // 100 is an arbitrary cut-off point
 	  this.StringCount_ = ~this.StringCount_;
 	  if (this.StringCount_ < 0 || this.StringCount_ > 100)
 	    return false;
