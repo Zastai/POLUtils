@@ -144,7 +144,7 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void UpdateBufferContents() {
       lock (this) {
-	if (this.CurrentBuffer == null)
+	if (this.CurrentBuffer == null || this.CurrentStream == null)
 	  return;
 	// Determine the proper update location
       int ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
