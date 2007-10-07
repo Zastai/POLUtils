@@ -22,8 +22,11 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.picWarning.Image = Icons.POLConfigWarn.ToBitmap();
       this.lblWarning.Text = I18N.GetText("SettingsWarning");
       this.cmbCharacters.Items.Clear();
-      foreach (Character C in Game.Characters)
-	this.cmbCharacters.Items.Add(new CharacterConfig(C));
+      foreach (Character C in Game.Characters) {
+      CharacterConfig CC = new CharacterConfig(C);
+	if (CC.Colors != null)
+	  this.cmbCharacters.Items.Add(CC);
+      }
       if (this.cmbCharacters.Items.Count == 0) {
 	this.grpCharConfig.Visible = false;
 	this.Height -= this.grpCharConfig.Height + this.grpCharConfig.Top - (this.grpGlobalConfig.Top + this.grpGlobalConfig.Height);

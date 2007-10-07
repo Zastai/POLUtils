@@ -42,18 +42,21 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
     private void LoadConfig() {
       if (this.Character_ == null)
 	return;
-    BinaryReader BR = new BinaryReader(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.Read));
-      if (BR != null) {
-	BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
-	this.Colors_ = new Color[23];
-	for (int i = 0; i < 23; ++i)
-	  this.Colors_[i] = Graphic.ReadColor(BR, 32);
-	BR.Close();
+      try {
+      BinaryReader BR = new BinaryReader(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.Read));
+	if (BR != null) {
+	  BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
+	  this.Colors_ = new Color[23];
+	  for (int i = 0; i < 23; ++i)
+	    this.Colors_[i] = Graphic.ReadColor(BR, 32);
+	  BR.Close();
+	}
       }
+      catch { this.Colors_ = null; }
     }
 
     public void Save() {
-      if (this.Character_ == null)
+      if (this.Character_ == null || this.Colors_ == null)
 	return;
     BinaryWriter BW = new BinaryWriter(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.ReadWrite));
       if (BW != null) {

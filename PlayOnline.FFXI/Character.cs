@@ -63,11 +63,7 @@ namespace PlayOnline.FFXI {
     public override string ToString() { return this.Name; }
 
     public FileStream OpenUserFile(string FileName, FileMode Mode, FileAccess Access) {
-    FileStream Result = null;
-      try {
-	Result = new FileStream(Path.Combine(this.DataDir_, FileName), Mode, Access, FileShare.Read);
-      } catch (Exception E) { Console.WriteLine("{0}", E.ToString()); }
-      return Result;
+      return new FileStream(Path.Combine(this.DataDir_, FileName), Mode, Access, FileShare.Read);
     }
 
     public void SaveMacroBar(int Index) {
