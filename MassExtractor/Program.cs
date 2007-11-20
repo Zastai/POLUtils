@@ -27,31 +27,39 @@ namespace MassExtractor {
     }
 
     private static void ExtractFile(string ROMPath, string OutputFile) {
-      Console.Write(I18N.GetText("Extracting"), Path.GetFileName(OutputFile));
-    ThingList KnownData = FileType.LoadAll(ROMPath, null);
-      Console.ForegroundColor = ConsoleColor.White;
-      Console.Write(I18N.GetText("Load"));
-      if (KnownData != null) {
-	Console.ForegroundColor = ConsoleColor.Green;
-	Console.Write(I18N.GetText("OK"));
-      bool SaveOK = KnownData.Save(OutputFile);
+	Console.Write(I18N.GetText("Extracting"), Path.GetFileName(OutputFile));
+      try {
+      ThingList KnownData = FileType.LoadAll(ROMPath, null);
 	Console.ForegroundColor = ConsoleColor.White;
-	Console.Write(I18N.GetText("Save"));
-	if (SaveOK) {
+	Console.Write(I18N.GetText("Load"));
+	if (KnownData != null) {
 	  Console.ForegroundColor = ConsoleColor.Green;
-	  Console.WriteLine(I18N.GetText("OK"));
+	  Console.Write(I18N.GetText("OK"));
+	bool SaveOK = KnownData.Save(OutputFile);
+	  Console.ForegroundColor = ConsoleColor.White;
+	  Console.Write(I18N.GetText("Save"));
+	  if (SaveOK) {
+	    Console.ForegroundColor = ConsoleColor.Green;
+	    Console.WriteLine(I18N.GetText("OK"));
+	  }
+	  else {
+	    Console.ForegroundColor = ConsoleColor.Red;
+	    Console.WriteLine(I18N.GetText("FAILED"));
+	  }
+	  KnownData.Clear();
 	}
 	else {
 	  Console.ForegroundColor = ConsoleColor.Red;
 	  Console.WriteLine(I18N.GetText("FAILED"));
 	}
-	KnownData.Clear();
       }
-      else {
+      catch (Exception E) {
 	Console.ForegroundColor = ConsoleColor.Red;
-	Console.WriteLine(I18N.GetText("FAILED"));
+	Console.WriteLine(I18N.GetText("Exception"), E.Message);
       }
-      Console.ForegroundColor = ConsoleColor.White;
+      finally {
+	Console.ForegroundColor = ConsoleColor.White;
+      }
     }
 
     [STAThread]
