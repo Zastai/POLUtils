@@ -1,4 +1,4 @@
-// $Id$
+﻿// $Id$
 
 using System;
 
@@ -109,7 +109,7 @@ namespace PlayOnline.FFXI {
     Book        = 0x000F,
     RacingForm  = 0x0010,
     BettingSlip = 0x0011,
-    Plate       = 0x0012,
+    SoulPlate   = 0x0012,
     Reflector   = 0x0013,
   }
 
