@@ -2,6 +2,12 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.4 Released" author="Pebbles" date="June 11th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.4, a collection of PlayOnline-related utilities.</p>
+      <p>Not too many changes this time, mainly fixing the loading of the armor DATs, and
+         adding some extra field values (DNC, SCH for jobs, SoulPlate and Reflector for item
+         types).</p>
+    </news-item>
     <news-item title="POLUtils 0.9.3 Released" author="Pebbles" date="June 11th, 2007">
       <p>Today I'm releasing POLUtils 0.9.3, a collection of PlayOnline-related utilities.</p>
       <p>A new utility was added which allows editing npc/monster names (which violates the TOS,
@@ -420,6 +426,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.4-Release-x86.exe"/>
+      <file name="POLUtils-0.9.4-Release-x64.exe">
+	Minor DAT loading fixes.<br/>
+      </file>
       <file name="POLUtils-0.9.3-Release-x86.exe"/>
       <file name="POLUtils-0.9.3-Release-x64.exe">
 	NPC Renamer; French/German DATs.<br/>
