@@ -1,4 +1,4 @@
-// $Id$
+﻿// $Id$
 
 using System;
 using System.Collections.Generic;
@@ -149,14 +149,16 @@ namespace MassExtractor {
 	    Console.ForegroundColor = ConsoleColor.White;
 	  }
 	  // Interesting Data
+	  Program.ExtractFile(11, "old-spells-1.xml");
 	  Program.ExtractFile(73, "items-general.xml");
 	  Program.ExtractFile(74, "items-usable.xml");
 	  Program.ExtractFile(75, "items-weapons.xml");
 	  Program.ExtractFile(76, "items-armor.xml");
 	  Program.ExtractFile(77, "items-puppet.xml");
 	  Program.ExtractFile(82, "quests.xml");
-	  Program.ExtractFile(86, "spells.xml");
-	  Program.ExtractFile(87, "statuses.xml");
+	  Program.ExtractFile(85, "old-abilities.xml");
+	  Program.ExtractFile(86, "old-spells-2.xml");
+	  Program.ExtractFile(87, "old-statuses.xml");
 	  Program.ExtractFile(91, "items-currency.xml");
 	  // Dialog Tables
 	  for (ushort i = 0; i < 0x100; ++i)
