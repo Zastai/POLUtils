@@ -385,7 +385,7 @@ namespace PlayOnline.FFXI.Things {
 	    if     (ID == 0xffff) T = Type.Currency;
 	    else if (ID < 0x1000) T = Type.Item;
 	    else if (ID < 0x2000) T = Type.UsableItem;
-	    else if (ID < 0x3000) T = Type.PuppetItem;
+	    else if (ID < 0x2200) T = Type.PuppetItem;
 	    else if (ID < 0x4000) T = Type.Armor;
 	    else if (ID < 0x7000) T = Type.Weapon;
 	  }
@@ -468,7 +468,7 @@ namespace PlayOnline.FFXI.Things {
       // Next Up: Strings (variable size)
     long StringBase  = BR.BaseStream.Position;
     uint StringCount = BR.ReadUInt32();
-      if (StringCount > 9) {
+      if (StringCount > 9) { // Sanity check, for safety - 0 strings is fine for now
 	this.Clear();
 	return false;
       }
@@ -494,18 +494,20 @@ namespace PlayOnline.FFXI.Things {
 	}
       }
       // Assign the strings to the proper fields
-      this.Name_ = Strings[0];
       switch (StringCount) {
 	case 2: // Japanese
-	  this.Description_ = Strings[1];
+	  this.Name_            = Strings[0];
+	  this.Description_     = Strings[1];
 	  break;
 	case 5: // English
+	  this.Name_            = Strings[0];
 	  // unused:              Strings[1]
 	  this.LogNameSingular_ = Strings[2];
 	  this.LogNamePlural_   = Strings[3];
 	  this.Description_     = Strings[4];
 	  break;
 	case 6: // French
+	  this.Name_            = Strings[0];
 	  // unused:              Strings[1]
 	  // unused:              Strings[2]
 	  this.LogNameSingular_ = Strings[3];
@@ -513,6 +515,7 @@ namespace PlayOnline.FFXI.Things {
 	  this.Description_     = Strings[5];
 	  break;
 	case 9: // German
+	  this.Name_            = Strings[0];
 	  // unused:              Strings[1]
 	  // unused:              Strings[2]
 	  // unused:              Strings[3]
