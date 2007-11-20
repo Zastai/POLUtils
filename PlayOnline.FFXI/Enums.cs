@@ -116,7 +116,7 @@ namespace PlayOnline.FFXI {
   [Flags]
   public enum Job : uint {
     None  = 0x00000000,
-    All   = 0x0007FFFE, // Masks valid jobs
+    All   = 0x001FFFFE, // Masks valid jobs
     // Specific
     WAR   = 0x00000002,
     MNK   = 0x00000004,
@@ -136,8 +136,8 @@ namespace PlayOnline.FFXI {
     BLU   = 0x00010000,
     COR   = 0x00020000,
     PUP   = 0x00040000,
-    JOB19 = 0x00080000,
-    JOB20 = 0x00100000,
+    DNC   = 0x00080000,
+    SCH   = 0x00100000,
     JOB21 = 0x00200000,
     JOB22 = 0x00400000,
     JOB23 = 0x00800000,
