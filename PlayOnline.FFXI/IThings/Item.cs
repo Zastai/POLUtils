@@ -1,4 +1,4 @@
-// $Id$
+﻿// $Id$
 
 using System;
 using System.Collections.Generic;
@@ -385,7 +385,7 @@ namespace PlayOnline.FFXI.Things {
 	    if     (ID == 0xffff) T = Type.Currency;
 	    else if (ID < 0x1000) T = Type.Item;
 	    else if (ID < 0x2000) T = Type.UsableItem;
-	    else if (ID < 0x2200) T = Type.PuppetItem;
+	    else if (ID < 0x2c00) T = Type.PuppetItem;
 	    else if (ID < 0x4000) T = Type.Armor;
 	    else if (ID < 0x7000) T = Type.Weapon;
 	  }
