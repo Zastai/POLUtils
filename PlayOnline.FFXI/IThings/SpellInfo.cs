@@ -39,6 +39,10 @@ namespace PlayOnline.FFXI.Things {
 	  "casting-time",
 	  "recast-delay",
 	  "unknown-1",
+	  "japanese-name",
+	  "english-name",
+	  "japanese-description",
+	  "english-description",
 	});
       }
     }
@@ -60,6 +64,10 @@ namespace PlayOnline.FFXI.Things {
     private byte[]       LevelRequired_;
     private ushort?      ID_;
     private byte?        Unknown1_;
+    private string       JapaneseName_;
+    private string       EnglishName_;
+    private string       JapaneseDescription_;
+    private string       EnglishDescription_;
     
     #endregion
 
@@ -75,6 +83,10 @@ namespace PlayOnline.FFXI.Things {
       this.LevelRequired_       = null;
       this.ID_                  = null;
       this.Unknown1_            = null;
+      this.JapaneseName_        = null;
+      this.EnglishName_         = null;
+      this.JapaneseDescription_ = null;
+      this.EnglishDescription_  = null;
     }
 
     #endregion
@@ -84,19 +96,23 @@ namespace PlayOnline.FFXI.Things {
     public override bool HasField(string Field) {
       switch (Field) {
 	// Objects
-	case "level-required":        return (this.LevelRequired_       != null);
+	case "english-description":  return (this.EnglishDescription_  != null);
+	case "english-name":         return (this.EnglishName_         != null);
+	case "japanese-description": return (this.JapaneseDescription_ != null);
+	case "japanese-name":        return (this.JapaneseName_        != null);
+	case "level-required":       return (this.LevelRequired_       != null);
 	// Nullables
-	case "casting-time":          return this.CastingTime_.HasValue;
-	case "element":               return this.Element_.HasValue;
-	case "id":                    return this.ID_.HasValue;
-	case "index":                 return this.Index_.HasValue;
-	case "magic-type":            return this.MagicType_.HasValue;
-	case "mp-cost":               return this.MPCost_.HasValue;
-	case "recast-delay":          return this.RecastDelay_.HasValue;
-	case "skill":                 return this.Skill_.HasValue;
-	case "unknown-1":             return this.Unknown1_.HasValue;
-	case "valid-targets":         return this.ValidTargets_.HasValue;
-	default:                      return false;
+	case "casting-time":         return this.CastingTime_.HasValue;
+	case "element":              return this.Element_.HasValue;
+	case "id":                   return this.ID_.HasValue;
+	case "index":                return this.Index_.HasValue;
+	case "magic-type":           return this.MagicType_.HasValue;
+	case "mp-cost":              return this.MPCost_.HasValue;
+	case "recast-delay":         return this.RecastDelay_.HasValue;
+	case "skill":                return this.Skill_.HasValue;
+	case "unknown-1":            return this.Unknown1_.HasValue;
+	case "valid-targets":        return this.ValidTargets_.HasValue;
+	default:                     return false;
       }
     }
 
@@ -116,6 +132,11 @@ namespace PlayOnline.FFXI.Things {
 	  }
 	  return LevelInfo;
 	}
+	// Strings
+	case "english-description":  return (this.EnglishDescription_  == null ? String.Empty : this.EnglishDescription_);
+	case "english-name":         return (this.EnglishName_         == null ? String.Empty : this.EnglishName_);
+	case "japanese-description": return (this.JapaneseDescription_ == null ? String.Empty : this.JapaneseDescription_);
+	case "japanese-name":        return (this.JapaneseName_        == null ? String.Empty : this.JapaneseName_);
 	// Nullables - Simple Values
 	case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
 	case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
@@ -136,6 +157,10 @@ namespace PlayOnline.FFXI.Things {
     public override object GetFieldValue(string Field) {
       switch (Field) {
 	// Objects
+	case "english-description":  return this.EnglishDescription_;
+	case "english-name":         return this.EnglishName_;
+	case "japanese-description": return this.JapaneseDescription_;
+	case "japanese-name":        return this.JapaneseName_;
 	case "level-required":       return this.LevelRequired_;
 	// Nullables
 	case "casting-time":         return (!this.CastingTime_.HasValue  ? null : (object) this.CastingTime_.Value);
@@ -157,8 +182,12 @@ namespace PlayOnline.FFXI.Things {
 	// "Simple" Fields
 	case "casting-time":         this.CastingTime_         = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "element":              this.Element_             = (Element)     this.LoadHexField            (Node); break;
+	case "english-description":  this.EnglishDescription_  =               this.LoadTextField           (Node); break;
+	case "english-name":         this.EnglishName_         =               this.LoadTextField           (Node); break;
 	case "id":                   this.ID_                  = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "index":                this.Index_               = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
+	case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
 	case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
 	case "magic-type":           this.MagicType_           = (MagicType)   this.LoadHexField            (Node); break;
 	case "mp-cost":              this.MPCost_              = (ushort)      this.LoadUnsignedIntegerField(Node); break;
@@ -185,7 +214,11 @@ namespace PlayOnline.FFXI.Things {
     // 00e-025 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
     // 026-027 U16 ID (0 for "unused" spells; starts out equal to the index, but doesn't stay that way)
     // 028-028 U8  Unknown
-    // 029-3fe U8  Padding (NULs)
+    // 029-03c CHR Japanese Name (20 bytes)
+    // 03d-051 CHR English Name (20 bytes)
+    // 052-0d1 CHR Japanese Description (128 bytes)
+    // 0d2-151 CHR English Description (128 bytes)
+    // 152-3fe U8  Padding (NULs)
     // 3ff-3ff U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
       this.Clear();
@@ -208,6 +241,16 @@ namespace PlayOnline.FFXI.Things {
       this.LevelRequired_ = BR.ReadBytes(24);
       this.ID_            = BR.ReadUInt16();
       this.Unknown1_      = BR.ReadByte();
+      FFXIEncoding E = new FFXIEncoding();
+      this.JapaneseName_        = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
+      this.EnglishName_         = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
+      this.JapaneseDescription_ = E.GetString(BR.ReadBytes(128)).TrimEnd('\0');
+      this.EnglishDescription_  = E.GetString(BR.ReadBytes(128)).TrimEnd('\0');
+      // A slightly newer revision of this format no longer has the names, so mark them unset when empty
+      if (this.JapaneseName_       .Length == 0) this.JapaneseName_        = null;
+      if (this.EnglishName_        .Length == 0) this.EnglishName_         = null;
+      if (this.JapaneseDescription_.Length == 0) this.JapaneseDescription_ = null;
+      if (this.EnglishDescription_ .Length == 0) this.EnglishDescription_  = null;
 #if DEBUG
       { // Read the next 64 bits, and report if it's not 0 (means there's new data to identify)
       ulong Next64 = BR.ReadUInt64();
