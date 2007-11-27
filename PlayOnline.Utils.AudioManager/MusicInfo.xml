@@ -151,6 +151,21 @@
     <track id="186"><title>(empty track)</title></track>
     <track id="187"><title>(empty track)</title></track>
   </application>
+  <application id="0001" name="Final Fantasy XI - Wings of the Goddess">
+    <data-path>sound5/win/music/data</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#5)">
+    <data-path>sound6/win/music/data</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#6)">
+    <data-path>sound7/win/music/data</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#7)">
+    <data-path>sound8/win/music/data</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#8)">
+    <data-path>sound9/win/music/data</data-path>
+  </application>
   <application id="0002" name="Tetra Master">
     <data-path>data/win/sound/music</data-path>
     <composer>Naoshi Mizuta</composer>

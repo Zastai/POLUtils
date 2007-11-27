@@ -172,6 +172,21 @@
   <application id="0001" name="Final Fantasy XI - Treasures of Aht Urhgan">
     <data-path>sound4/win/se</data-path>
   </application>
+  <application id="0001" name="Final Fantasy XI - Wings of the Goddess">
+    <data-path>sound5/win/se</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#5)">
+    <data-path>sound6/win/se</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#6)">
+    <data-path>sound7/win/se</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#7)">
+    <data-path>sound8/win/se</data-path>
+  </application>
+  <application id="0001" name="Final Fantasy XI - Future Expansion (#8)">
+    <data-path>sound9/win/se</data-path>
+  </application>
   <application id="0002" name="Tetra Master">
     <data-path>data/win/sound/se</data-path>
     <track id="1007"><title>Play Order Selection Wheel</title></track>
