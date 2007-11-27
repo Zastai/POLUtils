@@ -42,19 +42,10 @@ namespace PlayOnline.FFXI {
       }
     }
 
-    public MacroFolderCollection MacroBars {
-      get {
-	if (this.MacroBars_ == null)
-	  this.LoadMacroBars();
-	return this.MacroBars_;
-      }
-    }
-
     #region Private Fields
 
     private string                ID_;
     private string                DataDir_;
-    private MacroFolderCollection MacroBars_;
 
     #endregion
 
@@ -64,19 +55,6 @@ namespace PlayOnline.FFXI {
 
     public FileStream OpenUserFile(string FileName, FileMode Mode, FileAccess Access) {
       return new FileStream(Path.Combine(this.DataDir_, FileName), Mode, Access, FileShare.Read);
-    }
-
-    public void SaveMacroBar(int Index) {
-      this.MacroBars_[Index].WriteToMacroBar(Path.Combine(this.DataDir_, String.Format("mcr{0:#}.dat", Index)));
-    }
-
-    private void LoadMacroBars() {
-      this.MacroBars_ = new MacroFolderCollection();
-      for (int i = 0; i < 10; ++i) {
-      MacroFolder MF = MacroFolder.LoadFromMacroBar(Path.Combine(this.DataDir_, String.Format("mcr{0:#}.dat", i)));
-	MF.Name = String.Format(I18N.GetText("MacroBarLabel"), i + 1);
-	this.MacroBars_.Add(MF);
-      }
     }
 
   }

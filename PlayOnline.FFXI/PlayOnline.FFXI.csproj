@@ -91,11 +91,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FFXI.cs" />
     <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\DMSGStringTable3.cs" />
     <Compile Include="FileTypes\MobList.cs" />
     <Compile Include="FileTypes\DMSGStringTable.cs" />
+    <Compile Include="Game.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IThings\AbilityInfo.cs" />
     <Compile Include="IThings\DMSGStringBlock.cs" />
     <Compile Include="IThings\MobListEntry.cs" />
@@ -137,12 +143,6 @@
     <None Include="AutoTranslator.cs">
       <SubType>Code</SubType>
     </None>
-    <Compile Include="Character.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Collections.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Enums.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -156,15 +156,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FFXIResourceManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Game.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Macro.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MacroFolder.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PleaseWaitDialog.cs">
