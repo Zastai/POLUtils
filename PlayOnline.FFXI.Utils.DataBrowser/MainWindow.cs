@@ -133,7 +133,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Console.WriteLine("{0}", E.ToString());
 	this.tvDataFiles.ImageList = null;
       }
-      for (int i = 1; i < 5; ++i) {
+      for (int i = 1; i < 9; ++i) {
       string DataDir = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "Rom");
 	if (i > 1)
 	  DataDir += i.ToString();
