@@ -2,7 +2,12 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
-    <news-item title="POLUtils 0.9.4 Released" author="Pebbles" date="June 11th, 2007">
+    <news-item title="POLUtils 0.9.5 Released" author="Pebbles" date="December 8th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.5, a collection of PlayOnline-related utilities.</p>
+      <p>This improves WotG support in the data browsers (maps aren't catalogued yet), and
+         adds macro book support to the macro editor.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.4 Released" author="Pebbles" date="November 20th, 2007">
       <p>Today I'm releasing POLUtils 0.9.4, a collection of PlayOnline-related utilities.</p>
       <p>Not too many changes this time, mainly fixing the loading of the armor DATs, and
          adding some extra field values (DNC, SCH for jobs, SoulPlate and Reflector for item
@@ -426,6 +431,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.5-Release-x86.exe"/>
+      <file name="POLUtils-0.9.5-Release-x64.exe">
+	More WotG support + handle macro books.<br/>
+      </file>
       <file name="POLUtils-0.9.4-Release-x86.exe"/>
       <file name="POLUtils-0.9.4-Release-x64.exe">
 	Minor DAT loading fixes.<br/>
