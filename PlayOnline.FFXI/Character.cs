@@ -53,8 +53,12 @@ namespace PlayOnline.FFXI {
 
     public override string ToString() { return this.Name; }
 
+    public string GetUserFileName(string FileName) {
+      return Path.Combine(this.DataDir_, FileName);
+    }
+
     public FileStream OpenUserFile(string FileName, FileMode Mode, FileAccess Access) {
-      return new FileStream(Path.Combine(this.DataDir_, FileName), Mode, Access, FileShare.Read);
+      return new FileStream(this.GetUserFileName(FileName), Mode, Access, FileShare.Read);
     }
 
   }
