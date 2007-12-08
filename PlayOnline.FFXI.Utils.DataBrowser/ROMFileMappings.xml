@@ -2425,22 +2425,25 @@
       <category><name><i18n-string id="Menu:Missions"/></name>
 	<rom-file id="55715">Sandy</rom-file>
 	<rom-file id="55716">Bastok</rom-file>
-	<rom-file id="55717">Windy</rom-file>
+	<rom-file id="55717">Windurst</rom-file>
 	<rom-file id="55718">Zilart</rom-file>
 	<rom-file id="55719">Promathia</rom-file>
 	<rom-file id="55720">Assault</rom-file>
 	<rom-file id="55721">Aht Urhgan</rom-file>
+	<rom-file id="55723">Goddess</rom-file>
+	<rom-file id="55724">Campaign</rom-file>
       </category>
       <rom-file id="55660"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55647"><i18n-string id="Menu:POLMessages"/></rom-file>
       <category><name><i18n-string id="Menu:Quests"/></name>
 	<rom-file id="55706">Sandy</rom-file>
 	<rom-file id="55707">Bastok</rom-file>
-	<rom-file id="55708">Windy</rom-file>
+	<rom-file id="55708">Windurst</rom-file>
 	<rom-file id="55709">Jeuno</rom-file>
 	<rom-file id="55710">Other</rom-file>
 	<rom-file id="55711">Zilart</rom-file>
 	<rom-file id="55712">Aht Urhgan</rom-file>
+	<rom-file id="55722">Goddess</rom-file>
       </category>
       <rom-file id="55469"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="55654"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2475,22 +2478,25 @@
       <category><name><i18n-string id="Menu:Missions"/></name>
 	<rom-file id="56255">Sandy</rom-file>
 	<rom-file id="56256">Bastok</rom-file>
-	<rom-file id="56257">Windy</rom-file>
+	<rom-file id="56257">Windurst</rom-file>
 	<rom-file id="56258">Zilart</rom-file>
 	<rom-file id="56259">Promathia</rom-file>
 	<rom-file id="56260">Assault</rom-file>
 	<rom-file id="56261">Aht Urhgan</rom-file>
+	<rom-file id="56263">Goddess</rom-file>
+	<rom-file id="56264">Campaign</rom-file>
       </category>
       <rom-file id="56200"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="56187"><i18n-string id="Menu:POLMessages"/></rom-file>
       <category><name><i18n-string id="Menu:Quests"/></name>
 	<rom-file id="56246">Sandy</rom-file>
 	<rom-file id="56247">Bastok</rom-file>
-	<rom-file id="56248">Windy</rom-file>
+	<rom-file id="56248">Windurst</rom-file>
 	<rom-file id="56249">Jeuno</rom-file>
 	<rom-file id="56250">Other</rom-file>
 	<rom-file id="56251">Zilart</rom-file>
 	<rom-file id="56252">Aht Urhgan</rom-file>
+	<rom-file id="56262">Goddess</rom-file>
       </category>
       <rom-file id="56203"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="56194"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2525,22 +2531,25 @@
       <category><name><i18n-string id="Menu:Missions"/></name>
 	<rom-file id="55835">Sandy</rom-file>
 	<rom-file id="55836">Bastok</rom-file>
-	<rom-file id="55837">Windy</rom-file>
+	<rom-file id="55837">Windurst</rom-file>
 	<rom-file id="55838">Zilart</rom-file>
 	<rom-file id="55839">Promathia</rom-file>
 	<rom-file id="55840">Assault</rom-file>
 	<rom-file id="55841">Aht Urhgan</rom-file>
+	<rom-file id="55843">Goddess</rom-file>
+	<rom-file id="55844">Campaign</rom-file>
       </category>
       <rom-file id="55780"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55767"><i18n-string id="Menu:POLMessages"/></rom-file>
       <category><name><i18n-string id="Menu:Quests"/></name>
 	<rom-file id="55826">Sandy</rom-file>
 	<rom-file id="55827">Bastok</rom-file>
-	<rom-file id="55828">Windy</rom-file>
+	<rom-file id="55828">Windurst</rom-file>
 	<rom-file id="55829">Jeuno</rom-file>
 	<rom-file id="55830">Other</rom-file>
 	<rom-file id="55831">Zilart</rom-file>
 	<rom-file id="55832">Aht Urhgan</rom-file>
+	<rom-file id="55842">Goddess</rom-file>
       </category>
       <rom-file id="55783"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="55774"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2571,22 +2580,25 @@
       <category><name><i18n-string id="Menu:Missions"/></name>
 	<rom-file id="55595">Sandy</rom-file>
 	<rom-file id="55596">Bastok</rom-file>
-	<rom-file id="55597">Windy</rom-file>
+	<rom-file id="55597">Windurst</rom-file>
 	<rom-file id="55598">Zilart</rom-file>
 	<rom-file id="55599">Promathia</rom-file>
 	<rom-file id="55600">Assault</rom-file>
 	<rom-file id="55601">Aht Urhgan</rom-file>
+	<rom-file id="55603">Goddess</rom-file>
+	<rom-file id="55604">Campaign</rom-file>
       </category>
       <rom-file id="55540"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55527"><i18n-string id="Menu:POLMessages"/></rom-file>
       <category><name><i18n-string id="Menu:Quests"/></name>
 	<rom-file id="55586">Sandy</rom-file>
 	<rom-file id="55587">Bastok</rom-file>
-	<rom-file id="55588">Windy</rom-file>
+	<rom-file id="55588">Windurst</rom-file>
 	<rom-file id="55589">Jeuno</rom-file>
 	<rom-file id="55590">Other</rom-file>
 	<rom-file id="55591">Zilart</rom-file>
 	<rom-file id="55592">Aht Urhgan</rom-file>
+	<rom-file id="55602">Goddess</rom-file>
       </category>
       <rom-file id="55534"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file id="55582"><i18n-string id="Menu:SpellNames"/></rom-file>
