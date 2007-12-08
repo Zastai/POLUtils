@@ -146,7 +146,7 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
 
     // The history file
 
-    private static string HistoryFileName = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "POLUtils"), "npc-name-change-history.xml");
+    private static string HistoryFileName = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Path.Combine("Pebbles", "POLUtils")), "npc-name-change-history.xml");
 
     public static void LoadHistory() {
       NameChange.Applied.Clear();

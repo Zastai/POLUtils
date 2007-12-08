@@ -188,10 +188,15 @@ Section "-RegisterInstallationInfo"
 SectionEnd
 
 Section "-FinishUp"
+  ; migrate NPC renamer history
+  IfFileExists "$APPDATA\POLUtils\npc-name-change-history.xml" +1 RenameHistoryMigrated
+    SetOutPath "$LOCALAPPDATA\Pebbles\POLUtils"
+    Rename "$APPDATA\POLUtils\npc-name-change-history.xml" "npc-name-change-history.xml"
+  RenameHistoryMigrated:
+  SetOutPath $INSTDIR
   ; write uninstall information
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\POLUtils" "DisplayName"     "POLUtils"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\POLUtils" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  SetOutPath $INSTDIR
   WriteUninstaller "uninstall.exe"
   ; create start menu entries if requested
   !insertmacro MUI_STARTMENU_WRITE_BEGIN "StartMenu"
@@ -239,6 +244,11 @@ Section "Uninstall"
     MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_CURRENT_MACROLIB) IDNO LibRemovalComplete
     Delete "$LOCALAPPDATA\Pebbles\POLUtils\macro-library.xml"
   LibRemovalComplete:
+  ;; NPC Renamer History
+  IfFileExists "$LOCALAPPDATA\Pebbles\POLUtils\npc-name-change-history.xml" +1 RenameHistoryRemovalComplete
+    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_NPC_RENAMER_HISTORY) IDNO RenameHistoryRemovalComplete
+    Delete "$LOCALAPPDATA\Pebbles\POLUtils\macro-library.xml"
+  RenameHistoryRemovalComplete:
   RMDir "$LOCALAPPDATA\Pebbles\POLUtils"
   RMDir "$LOCALAPPDATA\Pebbles"
   ;; The uninstaller itself
