@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Collections;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 using PlayOnline.Core;
@@ -11,8 +12,6 @@ using PlayOnline.Core;
 namespace PlayOnline.FFXI.Utils.MacroManager {
 
   public partial class MainWindow : Form {
-
-    private string MacroLibraryFile;
 
     private class ATMenuItem : MenuItem {
 
@@ -45,12 +44,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       }
       // Prepare textbox context menu
       this.CreateTextInsertMenu();
-      // Build macro library file name
-    string LocalAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-    string SettingsDir = Path.Combine(LocalAppData, Path.Combine("Pebbles", "POLUtils"));
-      if (!Directory.Exists(SettingsDir))
-	Directory.CreateDirectory(SettingsDir);
-      this.MacroLibraryFile = Path.Combine(SettingsDir, "macro-library.xml");
       // Set Up Library & Character Trees
       this.AddMacroLibraryNode(this.tvMacroTree);
       Game.Clear(); // Force fresh data
@@ -60,8 +53,9 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 
     private void AddMacroBar(string FileName, TreeNode Parent) {
       try {
-      MacroFolder MF = MacroFolder.LoadFromMacroBar(FileName);
-	MF.Name = "Dropped Macro Bar";
+      MacroFolder MF = null;
+	if (File.Exists(FileName)) // MacroFolder.LoadFromDATFile() creates an empty macro folder tree if the file doesn't exist, so test this first.
+	  MF = MacroSet.Load(FileName, "Dropped Macro Bar").Clone(); // Clone() turns it into a regular MacroFolder instead of a MacroSet
 	if (MF == null)
 	  throw new InvalidOperationException("Only valid macro bar files (mcr*.dat) can be dropped onto the macro tree.");
 	this.AddMacroFolderNode(MF, Parent);
@@ -80,40 +74,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       MacroNode.Text = M.Name;
       if (this.tvMacroTree.SelectedNode == MacroNode)
 	this.ShowProperties(M);
-    }
-
-    private bool IsClearAllowed(TreeNode TN) {
-      if (TN.Tag is Character || TN.Tag is MacroFolder || TN.Tag is Macro)
-	return true;
-      return false;
-    }
-
-    private bool IsDeleteAllowed(TreeNode TN) {
-      if (TN.Tag is MacroFolder)
-	return (TN.Parent != null && !(TN.Tag as MacroFolder).Locked);
-      else if (TN.Tag is Macro) {
-      MacroFolder OwnerFolder = TN.Parent.Tag as MacroFolder;
-	return (OwnerFolder != null && !OwnerFolder.Locked);
-      }
-      return false;
-    }
-
-    private bool IsRenameAllowed(TreeNode TN) {
-      if (TN.Tag is Character || TN.Tag is Macro)
-	return true;
-      else if (TN.Tag is MacroFolder)
-	return !(TN.Tag as MacroFolder).Locked;
-      return false;
-    }
-
-    private bool IsSaveAllowed(TreeNode TN) {
-      if (TN.Tag is Character) // Allow saving all of a character's macro bars at once
-	return true;
-      else if (TN.Tag is MacroFolder) { // Allow saving the macro library, and character macro bars
-	if (TN.Parent == null || TN.Parent.Tag is Character)
-	  return true;
-      }
-      return false;
     }
 
     private void ShowProperties(Macro M) {
@@ -205,24 +165,43 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
     }
 
     private void DoSave(TreeNode TN, bool Confirm) {
-      if (TN.Tag is Character) {
-      Character C = TN.Tag as Character;
-	for (int i = 0; i < 10; ++i)
-	  C.SaveMacroBar(i);
-      }
-      else if (TN.Tag is MacroFolder) {
+      if (TN.Tag is MacroFolder) {
       MacroFolder MF = TN.Tag as MacroFolder;
-	if (!MF.Locked)
-	  MF.WriteToXml(this.MacroLibraryFile);
-	else {
-	Character C = TN.Parent.Tag as Character;
-	  if (C != null)
-	    C.SaveMacroBar(C.MacroBars.IndexOf(MF));
-	}
+	if (MF.CanSave)
+	  MF.Save();
       }
     }
 
-    private void DoUndo(TreeNode TN, bool Confirm) {
+    private bool IsClearAllowed(TreeNode TN) {
+      if (TN.Tag is MacroFolder || TN.Tag is Macro)
+	return true;
+      return false;
+    }
+
+    private bool IsDeleteAllowed(TreeNode TN) {
+      if (TN.Tag is CharacterMacros || TN.Tag is MacroBook || TN.Tag is MacroLibrary || TN.Tag is MacroSet)
+	return false;
+      else if (TN.Tag is Macro) {
+      MacroFolder OwnerFolder = TN.Parent.Tag as MacroFolder;
+	return (OwnerFolder != null && !OwnerFolder.Locked);
+      }
+      else if (TN.Tag is MacroFolder)
+	return !(TN.Tag as MacroFolder).Locked;
+      return false;
+    }
+
+    private bool IsRenameAllowed(TreeNode TN) {
+      if (TN.Tag is CharacterMacros || TN.Tag is MacroBook || TN.Tag is Macro)
+	return true;
+      else if (TN.Tag is MacroFolder)
+	return !(TN.Tag as MacroFolder).Locked;
+      return false;
+    }
+
+    private bool IsSaveAllowed(TreeNode TN) {
+      if (TN.Tag is MacroFolder)
+	return (TN.Tag as MacroFolder).CanSave;
+      return false;
     }
 
     #endregion
@@ -230,18 +209,11 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
     #region TreeView Creation
 
     private void AddMacroLibraryNode(TreeView Parent) {
-      if (File.Exists(this.MacroLibraryFile))
-	this.AddMacroFolderNode(MacroFolder.LoadFromXml(MacroLibraryFile), this.tvMacroTree);
-      else
-	this.AddMacroFolderNode(new MacroFolder("Macro Library"), this.tvMacroTree);
+      this.AddMacroFolderNode(MacroLibrary.Load(), this.tvMacroTree);
     }
 
     private void AddCharacterNode(Character C, TreeView Parent) {
-    TreeNode CharacterNode = new TreeNode(C.Name, 1, 1);
-      CharacterNode.Tag = C;
-      foreach (MacroFolder MF in C.MacroBars)
-	this.AddMacroFolderNode(MF, CharacterNode);
-      Parent.Nodes.Add(CharacterNode);
+      this.AddMacroFolderNode(new CharacterMacros(C), Parent);
     }
 
     private TreeNode AddMacroFolderNode(MacroFolder Folder, TreeNode Parent) {
@@ -752,7 +724,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.mnuTreeClear.Enabled  = this.IsClearAllowed (this.ContextNode);
       this.mnuTreeDelete.Enabled = this.IsDeleteAllowed(this.ContextNode);
       this.mnuTreeSave.Enabled   = this.IsSaveAllowed  (this.ContextNode);
-      //this.mnuTreeUndo.Enabled   = this.mnuTreeSave.Enabled;
       // The "New" portion is optional; use Visible rather than Enabled
       this.mnuTreeSep2.Visible = this.mnuTreeNew.Visible = (this.ContextNode.Tag is MacroFolder && !(this.ContextNode.Tag as MacroFolder).Locked);
     }
@@ -793,10 +764,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.DoSave(this.ContextNode, true);
     }
 
-    private void mnuTreeUndo_Click(object sender, System.EventArgs e) {
-      this.DoUndo(this.ContextNode, true);
-    }
-
     #endregion
 
     #region TreeView Events
@@ -812,9 +779,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
     Character   C  = e.Node.Tag as Character;   if (C  != null) { C.Name  = e.Label; return; }
     MacroFolder MF = e.Node.Tag as MacroFolder; if (MF != null) { MF.Name = e.Label; return; }
     Macro       M  = e.Node.Tag as Macro;       if (M  != null) { M.Name  = e.Label; return; }
-    }
-
-    private void tvMacroTree_BeforeSelect(object sender, System.Windows.Forms.TreeViewCancelEventArgs e) {
     }
 
     private void tvMacroTree_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
@@ -841,64 +805,55 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 
     #region Drag & Drop Events
 
+    private bool CanBeMoved(TreeNode TN) {
+      if (TN == null || TN.Tag == null)
+	return false;
+      else if (TN.Tag is SpecialMacroFolder)
+	return false;
+      else if (TN.Tag is Macro || TN.Tag is MacroFolder)
+	return this.CanAddOrRemoveItem(TN.Parent);
+      else 
+	return false;
+    }
+
+    private bool CanAddOrRemoveItem(TreeNode TN) {
+      if (TN == null || TN.Tag == null)
+	return false;
+      else if (TN.Tag is MacroLibrary)
+	return true;
+      else if (TN.Tag is MacroFolder && !(TN.Tag is SpecialMacroFolder))
+	return !(TN.Tag as MacroFolder).Locked;
+      else 
+	return false;
+    }
+
+    private bool IsLocatedBelow(TreeNode Node, TreeNode PossibleAncestor) {
+      if (Node == null || PossibleAncestor == null || Node == PossibleAncestor)
+	return false;
+      foreach (TreeNode TN in PossibleAncestor.Nodes) {
+	if (TN == Node || this.IsLocatedBelow(Node, TN))
+	  return true;
+      }
+      return false;
+    }
+
+    private void KillSubTree(TreeNode Node) {
+    TreeNode Owner = Node.Parent;
+      Node.Remove();
+      if (Owner != null && Owner.Tag is MacroFolder) {
+      MacroFolder MF = Owner.Tag as MacroFolder;
+	if (Node.Tag is Macro)
+	  MF.Macros.Remove(Node.Tag as Macro);
+	else if (Node.Tag is MacroFolder)
+	  MF.Folders.Remove(Node.Tag as MacroFolder);
+      }
+    }
+
     private void tvMacroTree_DragDrop(object sender, System.Windows.Forms.DragEventArgs e) {
     TreeNode DropNode = this.tvMacroTree.GetNodeAt(this.tvMacroTree.PointToClient(new Point(e.X, e.Y)));
-      if (e.Data.GetDataPresent(typeof(TreeNode))) {
-      TreeNode DragNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
-	if (DropNode.Tag is MacroFolder) {
-	MacroFolder DropFolder = DropNode.Tag as MacroFolder;
-	  if (e.Effect == DragDropEffects.Move) {
-	    if (DragNode.Tag is MacroFolder) {
-	    MacroFolder DragFolder = DragNode.Tag as MacroFolder;
-	      (DragNode.Parent.Tag as MacroFolder).Folders.Remove(DragFolder);
-	      DropFolder.Folders.Add(DragFolder);
-	    }
-	    else if (DragNode.Tag is Macro) {
-	    Macro DragMacro = DragNode.Tag as Macro;
-	      (DragNode.Parent.Tag as MacroFolder).Macros.Remove(DragMacro);
-	      DropFolder.Macros.Add(DragMacro);
-	    }
-	    // Relocate the tree node
-	    DragNode.Parent.Nodes.Remove(DragNode);
-	    DropNode.Nodes.Add(DragNode);
-	    this.tvMacroTree.SelectedNode = DragNode;
-	  }
-	  else { // Insert copy of dragged item under the target folder
-	    if (DragNode.Tag is Macro) {
-	    Macro DragMacro = (DragNode.Tag as Macro);
-	    Macro CopiedMacro = DragMacro.Clone();
-	      DropFolder.Macros.Add(CopiedMacro);
-	      this.tvMacroTree.SelectedNode = this.AddMacroNode(CopiedMacro, DropNode);
-	    }
-	    else if (DragNode.Tag is MacroFolder) {
-	    MacroFolder DragFolder = (DragNode.Tag as MacroFolder);
-	    MacroFolder CopiedFolder = DragFolder.Clone();
-	      DropFolder.Folders.Add(CopiedFolder);
-	      this.tvMacroTree.SelectedNode = this.AddMacroFolderNode(CopiedFolder, DropNode);
-	    }
-	    else if (DragNode.Tag is Character) {
-	    Character C = DragNode.Tag as Character;
-	    MacroFolder CopiedCharacter = new MacroFolder(String.Format("Macros for {0}", C.Name));
-	      foreach (MacroFolder Bar in C.MacroBars)
-		CopiedCharacter.Folders.Add(Bar.Clone());
-	      DropFolder.Folders.Add(CopiedCharacter);
-	      this.tvMacroTree.SelectedNode = this.AddMacroFolderNode(CopiedCharacter, DropNode);
-	    }
-	  }
-	}
-	else if (DropNode.Tag is Macro) { // Replace macro contents
-	Macro Source = DragNode.Tag as Macro;
-	Macro Target = DropNode.Tag as Macro;
-	  if (Target.Empty || MessageBox.Show(this, String.Format("Are you sure you want to replace the '{0}' macro with the '{1}' macro?", Target.Name, Source.Name), "Confirm Replace", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
-	    Target.Name = Source.Name;
-	    for (int i = 0; i < 6; ++i)
-	      Target.Commands[i] = Source.Commands[i];
-	    this.RefreshMacroNode(DropNode);
-	    this.tvMacroTree.SelectedNode = DropNode;
-	  }
-	}
-      }
-      else if (e.Data.GetDataPresent("FileDrop")) { // allow dropping macro bars onto the macro library
+      if (DropNode == null)
+	return;
+      if (e.Data.GetDataPresent("FileDrop")) {
 	try {
 	String[] FileNames = e.Data.GetData("FileDrop") as String[];
 	  foreach (String MacroBarFile in FileNames)
@@ -906,45 +861,72 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 	}
 	catch { }
       }
+      else if (e.Data.GetDataPresent(typeof(TreeNode))) {
+      TreeNode DragNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+	if (DropNode.Tag is Macro) {
+	  if (DragNode.Tag is Macro) {
+	  Macro Source = DragNode.Tag as Macro;
+	  Macro Target = DropNode.Tag as Macro;
+	    if (Target.Empty || MessageBox.Show(this, String.Format("Are you sure you want to replace the '{0}' macro with the '{1}' macro?", Target.Name, Source.Name), "Confirm Replace", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
+	      Target.Name = Source.Name;
+	      for (int i = 0; i < 6; ++i)
+		Target.Commands[i] = Source.Commands[i];
+	      this.RefreshMacroNode(DropNode);
+	      this.tvMacroTree.SelectedNode = DropNode;
+	      if (e.Effect == DragDropEffects.Move)
+		this.KillSubTree(DragNode);
+	    }
+	  }
+	}
+	else if (DropNode.Tag is MacroFolder) {
+	MacroFolder DropFolder = DropNode.Tag as MacroFolder;
+	  if (DragNode.Tag is Macro) {
+	    Macro DragMacro = (DragNode.Tag as Macro).Clone();
+	    DropFolder.Macros.Add(DragMacro);
+	    this.tvMacroTree.SelectedNode = this.AddMacroNode(DragMacro, DropNode);
+	    if (e.Effect == DragDropEffects.Move)
+	      this.KillSubTree(DragNode);
+	  }
+	  else if (DragNode.Tag is MacroFolder) {
+	    MacroFolder DragFolder = (DragNode.Tag as MacroFolder).Clone();
+	    DropFolder.Folders.Add(DragFolder);
+	    this.tvMacroTree.SelectedNode = this.AddMacroFolderNode(DragFolder, DropNode);
+	    if (e.Effect == DragDropEffects.Move)
+	      this.KillSubTree(DragNode);
+	  }
+	}
+      }
     }
 
     private void tvMacroTree_DragOver(object sender, System.Windows.Forms.DragEventArgs e) {
       e.Effect = DragDropEffects.None;
     TreeNode DropNode = this.tvMacroTree.GetNodeAt(this.tvMacroTree.PointToClient(new Point(e.X, e.Y)));
+      if (DropNode == null)
+	return;
       if (e.Data.GetDataPresent(typeof(TreeNode))) {
       TreeNode DragNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
-	if (DropNode != null && DragNode != DropNode) {
-	  if (DropNode.Tag is MacroFolder) {
-	    // We currently don't handle dropping anything on a locked folder.
-	    if (!(DropNode.Tag as MacroFolder).Locked) {
-	      e.Effect = DragDropEffects.Copy;
-	      if ((e.AllowedEffect & DragDropEffects.Move) != 0 && (e.KeyState & 0x2c) != 0x08)
-		e.Effect = DragDropEffects.Move;
-	    }
-	  }
-	  else if (DropNode.Tag is Macro && DragNode.Tag is Macro)
+	if (DropNode != DragNode && !this.IsLocatedBelow(DropNode, DragNode)) { // Don't allow invalid tree moves
+	  if ((DropNode.Tag is Macro && DragNode.Tag is Macro) || this.CanAddOrRemoveItem(DropNode)) {
 	    e.Effect = DragDropEffects.Copy;
+	    if ((e.AllowedEffect & DragDropEffects.Move) != 0 && (e.KeyState & 0x2c) != 0x08)
+	      e.Effect = DragDropEffects.Move;
+	  }
 	}
       }
-      else if (e.Data.GetDataPresent("FileDrop")) {
-	if (DropNode != null && DropNode.Tag is MacroFolder && !(DropNode.Tag as MacroFolder).Locked)
-	  e.Effect = DragDropEffects.Copy;
-      }
+      else if (e.Data.GetDataPresent("FileDrop") && this.CanAddOrRemoveItem(DropNode))
+	e.Effect = DragDropEffects.Copy;
     }
 
     private void tvMacroTree_ItemDrag(object sender, System.Windows.Forms.ItemDragEventArgs e) {
     TreeNode DragNode = e.Item as TreeNode;
-      if (DragNode == null)
+      if (DragNode == null || DragNode.Tag == null)
 	return;
-      if (DragNode.Tag is Character || DragNode.Tag is Macro || (DragNode.Tag is MacroFolder && DragNode.Parent != null)) {
+      else if (DragNode.Tag is MacroLibrary) // Can't drag a macro library
+	return;
+      else if (DragNode.Tag is Macro || DragNode.Tag is MacroFolder) {
       DragDropEffects AllowedEffects = DragDropEffects.Copy;
-	{ // If the source folder isn't locked, allow moves
-	TreeNode SourceFolderNode = DragNode;
-	  if (DragNode.Tag is Macro)
-	    SourceFolderNode = DragNode.Parent;
-	  if (SourceFolderNode.Tag is MacroFolder && !(SourceFolderNode.Tag as MacroFolder).Locked)
-	    AllowedEffects |= DragDropEffects.Move;
-	}
+	if (this.CanBeMoved(DragNode))
+	  AllowedEffects |= DragDropEffects.Move;
 	this.DoDragDrop(DragNode, AllowedEffects);
       }
     }

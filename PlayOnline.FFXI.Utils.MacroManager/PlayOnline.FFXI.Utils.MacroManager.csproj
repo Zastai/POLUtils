@@ -94,6 +94,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterMacros.cs" />
+    <Compile Include="Collections.cs" />
+    <Compile Include="MacroLibrary.cs" />
+    <Compile Include="MacroSet.cs" />
+    <Compile Include="Macro.cs" />
+    <Compile Include="MacroBook.cs" />
+    <Compile Include="MacroFolder.cs" />
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
@@ -101,6 +108,7 @@
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SpecialMacroFolder.cs" />
     <EmbeddedResource Include="MainWindow.de.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
       <SubType>Designer</SubType>

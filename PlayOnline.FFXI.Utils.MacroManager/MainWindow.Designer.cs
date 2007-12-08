@@ -25,7 +25,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
     private System.Windows.Forms.MenuItem mnuTreeNew;
     private System.Windows.Forms.MenuItem mnuTreeNewFolder;
     private System.Windows.Forms.MenuItem mnuTreeNewMacro;
-    private System.Windows.Forms.MenuItem mnuTreeUndo;
     private System.Windows.Forms.MenuItem mnuTreeSave;
     private System.Windows.Forms.MenuItem mnuTreeSep2;
     private System.Windows.Forms.MenuItem mnuTreeSep;
@@ -54,7 +53,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.mnuTreeDelete = new System.Windows.Forms.MenuItem();
       this.mnuTreeRename = new System.Windows.Forms.MenuItem();
       this.mnuTreeSave = new System.Windows.Forms.MenuItem();
-      this.mnuTreeUndo = new System.Windows.Forms.MenuItem();
       this.mnuTreeSep = new System.Windows.Forms.MenuItem();
       this.mnuTreeCollapse = new System.Windows.Forms.MenuItem();
       this.mnuTreeExpand = new System.Windows.Forms.MenuItem();
@@ -93,13 +91,12 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.tvMacroTree.Name = "tvMacroTree";
       this.tvMacroTree.PathSeparator = "::";
       this.tvMacroTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvMacroTree_DragDrop);
-      this.tvMacroTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMacroTree_AfterSelect);
-      this.tvMacroTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_AfterLabelEdit);
-      this.tvMacroTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tvMacroTree_KeyUp);
-      this.tvMacroTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMacroTree_ItemDrag);
-      this.tvMacroTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_BeforeLabelEdit);
-      this.tvMacroTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvMacroTree_BeforeSelect);
       this.tvMacroTree.DragOver += new System.Windows.Forms.DragEventHandler(this.tvMacroTree_DragOver);
+      this.tvMacroTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_AfterLabelEdit);
+      this.tvMacroTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMacroTree_AfterSelect);
+      this.tvMacroTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tvMacroTree_KeyUp);
+      this.tvMacroTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_BeforeLabelEdit);
+      this.tvMacroTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMacroTree_ItemDrag);
       // 
       // mnuTreeContext
       // 
@@ -108,7 +105,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
             this.mnuTreeDelete,
             this.mnuTreeRename,
             this.mnuTreeSave,
-            this.mnuTreeUndo,
             this.mnuTreeSep,
             this.mnuTreeCollapse,
             this.mnuTreeExpand,
@@ -141,43 +137,37 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       resources.ApplyResources(this.mnuTreeSave, "mnuTreeSave");
       this.mnuTreeSave.Click += new System.EventHandler(this.mnuTreeSave_Click);
       // 
-      // mnuTreeUndo
-      // 
-      resources.ApplyResources(this.mnuTreeUndo, "mnuTreeUndo");
-      this.mnuTreeUndo.Index = 4;
-      this.mnuTreeUndo.Click += new System.EventHandler(this.mnuTreeUndo_Click);
-      // 
       // mnuTreeSep
       // 
-      this.mnuTreeSep.Index = 5;
+      this.mnuTreeSep.Index = 4;
       resources.ApplyResources(this.mnuTreeSep, "mnuTreeSep");
       // 
       // mnuTreeCollapse
       // 
-      this.mnuTreeCollapse.Index = 6;
+      this.mnuTreeCollapse.Index = 5;
       resources.ApplyResources(this.mnuTreeCollapse, "mnuTreeCollapse");
       this.mnuTreeCollapse.Click += new System.EventHandler(this.mnuTreeCollapse_Click);
       // 
       // mnuTreeExpand
       // 
-      this.mnuTreeExpand.Index = 7;
+      this.mnuTreeExpand.Index = 6;
       resources.ApplyResources(this.mnuTreeExpand, "mnuTreeExpand");
       this.mnuTreeExpand.Click += new System.EventHandler(this.mnuTreeExpand_Click);
       // 
       // mnuTreeExpandAll
       // 
-      this.mnuTreeExpandAll.Index = 8;
+      this.mnuTreeExpandAll.Index = 7;
       resources.ApplyResources(this.mnuTreeExpandAll, "mnuTreeExpandAll");
       this.mnuTreeExpandAll.Click += new System.EventHandler(this.mnuTreeExpandAll_Click);
       // 
       // mnuTreeSep2
       // 
-      this.mnuTreeSep2.Index = 9;
+      this.mnuTreeSep2.Index = 8;
       resources.ApplyResources(this.mnuTreeSep2, "mnuTreeSep2");
       // 
       // mnuTreeNew
       // 
-      this.mnuTreeNew.Index = 10;
+      this.mnuTreeNew.Index = 9;
       this.mnuTreeNew.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuTreeNewFolder,
             this.mnuTreeNewMacro});
