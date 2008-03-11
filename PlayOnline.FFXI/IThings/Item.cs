@@ -441,6 +441,7 @@ namespace PlayOnline.FFXI.Things {
 	if (T == Type.Armor)
 	  this.Unknown2_  = BR.ReadUInt16();
 	this.ReuseDelay_  = BR.ReadUInt32();
+	this.Unknown3_    = BR.ReadUInt32();
       }
       else if (T == Type.PuppetItem) {
 	this.PuppetSlot_    = (PuppetSlot) BR.ReadUInt16();
@@ -461,8 +462,10 @@ namespace PlayOnline.FFXI.Things {
 	    break;
 	}
       }
-      else if (T == Type.UsableItem)
+      else if (T == Type.UsableItem) {
 	this.ActivationTime_ = BR.ReadUInt16();
+	this.Unknown1_ = BR.ReadUInt32();
+      }
       else if (T == Type.Currency)
 	this.Unknown2_ = BR.ReadUInt16();
       // Next Up: Strings (variable size)
