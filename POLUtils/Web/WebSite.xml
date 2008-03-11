@@ -2,6 +2,10 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.6 Released" author="Pebbles" date="March 11th, 2008">
+      <p>Today I'm releasing POLUtils 0.9.6, a collection of PlayOnline-related utilities.</p>
+      <p>Updates item loading for the DAT changes in the March update.</p>
+    </news-item>
     <news-item title="POLUtils 0.9.5 Released" author="Pebbles" date="December 8th, 2007">
       <p>Today I'm releasing POLUtils 0.9.5, a collection of PlayOnline-related utilities.</p>
       <p>This improves WotG support in the data browsers (maps aren't catalogued yet), and
@@ -431,6 +435,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.6-Release-x86.exe"/>
+      <file name="POLUtils-0.9.6-Release-x64.exe">
+	Fixed item loading broken by the 20080310 patch.<br/>
+      </file>
       <file name="POLUtils-0.9.5-Release-x86.exe"/>
       <file name="POLUtils-0.9.5-Release-x64.exe">
 	More WotG support + handle macro books.<br/>
