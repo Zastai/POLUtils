@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
-[assembly: AssemblyCopyright    ("Copyright © 2007 Tim Van Holder")]
+[assembly: AssemblyCopyright    ("Copyright © 2007,2008 Tim Van Holder")]
 [assembly: AssemblyTrademark    ("PlayOnline, Final Fantasy and Vanadiel are registered trademarks of Square Enix Co., Ltd.")]
 [assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("0.9.5.0")]
+[assembly: AssemblyVersion      ("0.9.6.0")]
