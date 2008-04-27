@@ -165,15 +165,6 @@ namespace POLUtils {
 
     #endregion
 
-      private void btnMogSafe_Click(object sender, EventArgs e)
-      {
-          this.Hide();
-          using (Form Utility = new PlayOnline.FFXI.Utils.MogSafe.MainWindow())
-              Utility.ShowDialog();
-          this.Show();
-          this.Activate();
-      }
-
   }
 
 }
