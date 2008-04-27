@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTetraViewer.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="grpRegion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -157,13 +157,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="cmbCultures.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="cmbCultures.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 44</value>
   </data>
   <data name="cmbCultures.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 21</value>
+    <value>248, 24</value>
   </data>
   <data name="cmbCultures.TabIndex" type="System.Int32, mscorlib">
     <value>102</value>
@@ -223,7 +223,7 @@
     <value>132, 16</value>
   </data>
   <data name="txtSelectedRegion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 20</value>
+    <value>180, 22</value>
   </data>
   <data name="txtSelectedRegion.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -313,7 +313,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpRegion.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="btnAudioManager.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -343,7 +343,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAudioManager.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="btnFFXIMacroManager.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -373,7 +373,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIMacroManager.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnFFXIDataBrowser.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -403,7 +403,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIDataBrowser.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnFFXIConfigEditor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -433,7 +433,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIConfigEditor.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnFFXIItemComparison.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -463,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIItemComparison.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnFFXIEngrishOnry.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -493,7 +493,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIEngrishOnry.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnFFXIStrangeApparatus.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -523,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXIStrangeApparatus.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFFXINPCRenamer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -532,7 +532,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnFFXINPCRenamer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 192</value>
+    <value>100, 194</value>
   </data>
   <data name="btnFFXINPCRenamer.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 24</value>
@@ -553,6 +553,39 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnFFXINPCRenamer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnMogSafe.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="btnMogSafe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnMogSafe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 194</value>
+  </data>
+  <data name="btnMogSafe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 24</value>
+  </data>
+  <data name="btnMogSafe.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnMogSafe.Text" xml:space="preserve">
+    <value>MogSafe</value>
+  </data>
+  <data name="btnMogSafe.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnMogSafe.Name" xml:space="preserve">
+    <value>btnMogSafe</value>
+  </data>
+  <data name="&gt;&gt;btnMogSafe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMogSafe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnMogSafe.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

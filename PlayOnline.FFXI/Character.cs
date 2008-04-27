@@ -11,6 +11,9 @@ namespace PlayOnline.FFXI {
 
   public class Character {
 
+      public delegate void CharacterNameChangedDelegate(Character sender, string id, string oldname, string newname);
+      public event CharacterNameChangedDelegate CharacterNameChanged;
+
     internal Character(string ContentID) {
       this.ID_ = ContentID;
       this.DataDir_ = Path.Combine(POL.GetApplicationPath(AppID.FFXI), Path.Combine("User", ContentID));
@@ -31,13 +34,23 @@ namespace PlayOnline.FFXI {
 	return ((value == null) ? DefaultName : value);
       }
       set {
-	using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
-	  if (NameMappings != null) {
-	    if (value == null)
-	      NameMappings.DeleteValue(this.ID_, false);
-	    else
-	      NameMappings.SetValue(this.ID_, value);
-	  }
+          string oldname = Name;
+
+	    using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
+	      if (NameMappings != null) {
+	        if (value == null)
+	          NameMappings.DeleteValue(this.ID_, false);
+	        else
+	          NameMappings.SetValue(this.ID_, value);
+	      }
+
+          string newname = Name;
+          if (oldname != newname)
+          {
+              CharacterNameChangedDelegate del = CharacterNameChanged;
+              if (del != null)
+                  del(this, ID, oldname, newname);
+          }
 	}
       }
     }

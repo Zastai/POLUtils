@@ -1,0 +1,12 @@
+0x400000;PlayOnline.Core
+0x400000;PlayOnline.FFXI
+0x400000;PlayOnline.FFXI.Utils.ConfigEditor
+0x400000;PlayOnline.FFXI.Utils.DataBrowser
+0x400000;PlayOnline.FFXI.Utils.EngrishOnry
+0x400000;PlayOnline.FFXI.Utils.ItemComparison
+0x400000;PlayOnline.FFXI.Utils.MacroManager
+0x400000;PlayOnline.FFXI.Utils.MogSafe
+0x400000;PlayOnline.FFXI.Utils.NPCRenamer
+0x400000;PlayOnline.FFXI.Utils.StrangeApparatus
+0x400000;PlayOnline.Utils.AudioManager
+0x400000;PlayOnline.Utils.TetraViewer
