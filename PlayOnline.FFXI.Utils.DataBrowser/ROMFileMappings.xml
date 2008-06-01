@@ -2524,7 +2524,7 @@
       <rom-file id="55768"><i18n-string id="Menu:InGameMessages1"/></rom-file>
       <rom-file id="55769"><i18n-string id="Menu:InGameMessages2"/></rom-file>
       <rom-file id="55776"><i18n-string id="Menu:JobNames"/></rom-file>
-      <rom-file id="55695"><i18n-string id="Menu:KeyItems"/></rom-file><!-- alternative file IDs: 55696,55697,55698,55699,55700,55703,55705,55713,55714 -->
+      <rom-file id="55825"><i18n-string id="Menu:KeyItems"/></rom-file>
       <rom-file id="55806"><i18n-string id="Menu:MeripoHelp"/></rom-file>
       <rom-file id="55771"><i18n-string id="Menu:MenuItemDesc"/></rom-file>
       <rom-file id="55772"><i18n-string id="Menu:MenuItemText"/></rom-file>
