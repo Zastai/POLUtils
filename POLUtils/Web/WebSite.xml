@@ -2,7 +2,7 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
-    <news-item title="POLUtils 0.9.6 Released" author="Pebbles" date="July 8th, 2008">
+    <news-item title="POLUtils 0.9.7 Released" author="Pebbles" date="July 8th, 2008">
       <p>Today I'm releasing POLUtils 0.9.7, a collection of PlayOnline-related utilities.</p>
       <p>Only minor tweaks, no major changes. Consider this the "final" version - I don't expect
          there to be any versions after this (I have some offers regarding continued fixes for
