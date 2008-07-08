@@ -15,4 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark    ("")]
 [assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("0.9.6.0")]
+[assembly: AssemblyVersion      ("0.9.7.0")]

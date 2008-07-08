@@ -2,6 +2,12 @@
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils 0.9.6 Released" author="Pebbles" date="July 8th, 2008">
+      <p>Today I'm releasing POLUtils 0.9.7, a collection of PlayOnline-related utilities.</p>
+      <p>Only minor tweaks, no major changes. Consider this the "final" version - I don't expect
+         there to be any versions after this (I have some offers regarding continued fixes for
+         formats broken by patches, but we'll have to see if/how that pans out).</p>
+    </news-item>
     <news-item title="POLUtils 0.9.6 Released" author="Pebbles" date="March 11th, 2008">
       <p>Today I'm releasing POLUtils 0.9.6, a collection of PlayOnline-related utilities.</p>
       <p>Updates item loading for the DAT changes in the March update.</p>
@@ -435,6 +441,10 @@
   <!-- Downloads -->
   <downloads>
     <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.7-Release-x86.exe"/>
+      <file name="POLUtils-0.9.7-Release-x64.exe">
+	Minor tweaks.<br/>
+      </file>
       <file name="POLUtils-0.9.6-Release-x86.exe"/>
       <file name="POLUtils-0.9.6-Release-x64.exe">
 	Fixed item loading broken by the 20080310 patch.<br/>
