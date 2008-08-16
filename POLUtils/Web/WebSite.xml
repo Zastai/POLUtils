@@ -588,7 +588,7 @@
     </group>
   </links>
   <!-- Site Sections -->
-  <section name="Home" file="index.html" webstats4u="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
+  <section name="Home" file="index.html" motigo="ADNQcQc5tT8Op5L39Ogb1cjZggeQ">
     <para>Welcome to Pebbles&apos; Program Page.</para>
     <para>
       Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
@@ -691,7 +691,7 @@
       </p>
     </para>
   </section>
-  <section name="Download Area" file="downloads.html" webstats4u="ADNQdQo0vLkP4XweMb5W1npl0G7w">
+  <section name="Download Area" file="downloads.html" motigo="ADNQdQo0vLkP4XweMb5W1npl0G7w">
     <para>Here you can download Pebbles&apos; programs.</para>
     <downloads/>
   </section>

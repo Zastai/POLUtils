@@ -75,10 +75,10 @@
 	    Optimized to look good in <a href="http://www.mozilla.org/products/firefox/">Firefox</a>; other browsers may render this
 	    page incorrectly.<br/>
 	    Copyright © 2004,2005,2006,2007,2008 Tim Van Holder.
-	    <xsl:if test="@webstats4u">
-              <a target="_blank" href="http://www.webstats4u.com/stats?{@webstats4u}">
-                <img src="http://m1.webstats4u.com/n?id={@webstats4u}" border="0" width="18" height="18" alt="Webstats4U - Free web site statistics" />
-              </a>
+	    <xsl:if test="@motigo">
+	      <a id="mws3362929" href="http://webstats.motigo.com/">
+		<img width="18" height="18" border="0" alt="Free counter and web stats" src="http://m1.webstats.motigo.com/n.gif?id={@webstats4u}"/></a>
+	      <script src="http://m1.webstats.motigo.com/c.js?id=3362929" type="text/javascript"></script>
 	    </xsl:if>
 	  </td></tr>
 	</table>
@@ -235,7 +235,7 @@
       <xsl:text> - </xsl:text>
       <xsl:value-of select="@name"/>
     </title>
-    <meta http-equiv="Content-Type" content="text/xhtml; charset=iso-8859-1" />
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
     <link rel="stylesheet" href="site.css" media="screen"/>
     <xsl:if test="/website/@news-feed and (.//news or .//news-headlines)">
       <link rel="alternate" type="application/rss+xml" title="RSS" href="{concat(/website/@url, /website/@news-feed)}" />
