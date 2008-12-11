@@ -75,11 +75,6 @@
 	    Optimized to look good in <a href="http://www.mozilla.org/products/firefox/">Firefox</a>; other browsers may render this
 	    page incorrectly.<br/>
 	    Copyright © 2004,2005,2006,2007,2008 Tim Van Holder.
-	    <xsl:if test="@motigo">
-	      <a id="mws3362929" href="http://webstats.motigo.com/">
-		<img width="18" height="18" border="0" alt="Free counter and web stats" src="http://m1.webstats.motigo.com/n.gif?id={@webstats4u}"/></a>
-	      <script src="http://m1.webstats.motigo.com/c.js?id=3362929" type="text/javascript"></script>
-	    </xsl:if>
 	  </td></tr>
 	</table>
       </body>
