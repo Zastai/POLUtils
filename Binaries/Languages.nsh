@@ -36,7 +36,7 @@ LangString MB_SPECIAL_BUILD              ${LANG_ENGLISH} "This is a special (${B
 LangString MB_MDX_NOT_FOUND              ${LANG_ENGLISH} "Managed DirectX does not seem to be installed on this system.$\r$\nAudio playback will not be available.$\r$\n$\r$\nAn installer for Managed DirectX is available on the web page."
 LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_ENGLISH} "Do you want to remove your macro library?"
 LangString MB_DELETE_NPC_RENAMER_HISTORY ${LANG_ENGLISH} "Do you want to remove the NPC name change history?"
-LangString SITE_NAME                     ${LANG_ENGLISH} "Pebbles' Program Page"
+LangString SITE_NAME                     ${LANG_ENGLISH} "POLUtils (on Google Code)"
 LangString UI_RUNPROG                    ${LANG_ENGLISH} "&Run POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_ENGLISH} "Uninstall POLUtils"
 
@@ -67,7 +67,7 @@ LangString MB_SPECIAL_BUILD              ${LANG_DUTCH} "Dit is een speciale (${B
 LangString MB_MDX_NOT_FOUND              ${LANG_DUTCH} "Managed DirectX is blijkbaar niet geïnstalleerd op dit systeem.$\r$\nGeluidsweergave zal niet beschikbaar zijn.$\r$\n$\r$\nEen installatieprograma voor Managed DirectX is beschikbaar op de POLUtils webstek."
 LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_DUTCH} "Wilt U dat uw macro-bibliotheek verwijderd wordt?"
 LangString MB_DELETE_NPC_RENAMER_HISTORY ${LANG_DUTCH} "wilt U dat de historiek van NPC-naamsveranderingen verwijderd wordt?"
-LangString SITE_NAME                     ${LANG_DUTCH} "Pebbles' Program Page"
+LangString SITE_NAME                     ${LANG_DUTCH} "POLUtils (op Google Code)"
 LangString UI_RUNPROG                    ${LANG_DUTCH} "&Start POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_DUTCH} "Installatie van POLUtils ongedaan maken"
 
@@ -98,7 +98,7 @@ LangString MB_SPECIAL_BUILD              ${LANG_FRENCH} "Ceci est une constructi
 LangString MB_MDX_NOT_FOUND              ${LANG_FRENCH} "Managed DirectX ne semble pas être installé sur ce système.$\r$\nLe playback audio ne sera pas disponible.$\r$\n$\r$\nUn installateur pour Managed DirectX est disponible sur le page Web."
 LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_FRENCH} "Voulez-vous enlever votre macro bibliothèque?"
 LangString MB_DELETE_NPC_RENAMER_HISTORY ${LANG_FRENCH} "Do you want to remove the NPC name change history?"
-LangString SITE_NAME                     ${LANG_FRENCH} "Page de programme de Pebbles"
+LangString SITE_NAME                     ${LANG_FRENCH} "POLUtils (sur Google Code)"
 LangString UI_RUNPROG                    ${LANG_FRENCH} "&Course POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_FRENCH} "Uninstall POLUtils"
 
@@ -129,7 +129,7 @@ LangString MB_SPECIAL_BUILD              ${LANG_GERMAN} "Dieses ist eine speziel
 LangString MB_MDX_NOT_FOUND              ${LANG_GERMAN} "Managed DirectX scheint auf ihrem System nicht installiert zu sein.$\r$\nAudio Wiedergabe wird nicht möglich sein.$\r$\n$\r$\nEin Installer für Managed DirectX ist auf der web Page verfügbar."
 LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_GERMAN} "Möchten Sie ihre Macro Bibliothek löschen?"
 LangString MB_DELETE_NPC_RENAMER_HISTORY ${LANG_GERMAN} "Do you want to remove the NPC name change history?"
-LangString SITE_NAME                     ${LANG_GERMAN} "Pebbles' Program Page"
+LangString SITE_NAME                     ${LANG_GERMAN} "POLUtils (auf Google Code)"
 LangString UI_RUNPROG                    ${LANG_GERMAN} "&Start POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_GERMAN} "Uninstall POLUtils"
 
@@ -160,7 +160,7 @@ LangString MB_SPECIAL_BUILD              ${LANG_SPANISH} "Recopilación especial 
 LangString MB_MDX_NOT_FOUND              ${LANG_SPANISH} "Managed DirectX, no parece estar instalado en este sistema.$\r$\nLa reproducción de audio no estara disponible.$\r$\n$\r$\nUn instalador para Managed DirectX esta disponible en la pagina web."
 LangString MB_DELETE_CURRENT_MACROLIB    ${LANG_SPANISH} "¿Deseas remover tu libreria de macros?"
 LangString MB_DELETE_NPC_RENAMER_HISTORY ${LANG_SPANISH} "Do you want to remove the NPC name change history?"
-LangString SITE_NAME                     ${LANG_SPANISH} "Pebbles' Program Page"
+LangString SITE_NAME                     ${LANG_SPANISH} "POLUtils (en Google Code)"
 LangString UI_RUNPROG                    ${LANG_SPANISH} "&Iniciar POLUtils"
 LangString UNINSTALL_SHORTCUT            ${LANG_SPANISH} "Desinstalar POLUtils"
 

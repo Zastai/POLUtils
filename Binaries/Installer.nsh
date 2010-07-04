@@ -14,7 +14,7 @@
 !include "MUI.nsh"
 !include "Sections.nsh"
 
-SetCompressor LZMA
+SetCompressor /Solid LZMA
 AllowSkipFiles off
 SetOverwrite ifnewer
 CRCCheck on
@@ -23,7 +23,7 @@ Name "POLUtils"
 
 !define REQUIRED_DOTNET_VERSION 2.0
 
-!define SITE_URL "http://users.telenet.be/pebbles/"
+!define SITE_URL "http://code.google.com/polutils/"
 
 !include "Version.nsh"
 
