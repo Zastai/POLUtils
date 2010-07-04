@@ -12,6 +12,8 @@ The solution also tries to build the website pages via a makefile; for this you'
 (from libxslt). These are all available via the Cygwin project, and should be in Visual Studio's path as well (see above). Note that
 this is completely optional - by the time the web site build is done, all relevant executables will already be built.
 
+Building the installer requires NSIS (http://nsis.sourceforge.net/).
+
 For building the translator kit, more GNU tools will be required (at least bash and awk). Advanced use only.
 
 See also CODING.txt for coding and style guidelines, if you want to modify the code.
