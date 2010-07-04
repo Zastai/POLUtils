@@ -4,9 +4,11 @@
   <!-- News Items -->
   <news file="news.html">
     <news-item title="POLUtils Now Open Source" author="Pebbles" date="July 4th, 2010">
-      <p>POLUtils has been made Open Source - it's available from http://code.google.com/polutils now,
-         under the Apache License. Someone has also come forward to take over maintainership, so it
-         will soon be under new management as well. Watch this space.</p>
+      <p>POLUtils has been made Open Source - it's available from
+         <a href="http://code.google.com/p/polutils/">Google Code</a> now, under the
+         <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License</a>.
+         Someone has also come forward to take over maintainership, so POLUtils will soon be
+         under new management as well. Watch this space.</p>
     </news-item>
     <news-item title="POLUtils 0.9.7 Released" author="Pebbles" date="July 8th, 2008">
       <p>Today I'm releasing POLUtils 0.9.7, a collection of PlayOnline-related utilities.</p>

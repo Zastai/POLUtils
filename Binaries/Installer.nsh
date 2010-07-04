@@ -23,7 +23,7 @@ Name "POLUtils"
 
 !define REQUIRED_DOTNET_VERSION 2.0
 
-!define SITE_URL "http://code.google.com/polutils/"
+!define SITE_URL "http://code.google.com/p/polutils/"
 
 !include "Version.nsh"
 
