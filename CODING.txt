@@ -1,0 +1,9 @@
+# $Id$
+
+TODO: Expand this a lot and make it more readable, perhaps referring Visual Studio option settings where possible.
+
+POLUtils Coding Guidelines
+==========================
+
+Indent size: 2
+Tab Size:    8
