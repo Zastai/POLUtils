@@ -1,3 +1,5 @@
+# $Id$
+
 website: Output/index.html Output/site.css Output/rss.png
 
 Output/site.css: pebbles.css

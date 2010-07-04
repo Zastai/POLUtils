@@ -1,7 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- $Id$ -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id$ -->
 <website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
   <!-- News Items -->
   <news file="news.html">
+    <news-item title="POLUtils Now Open Source" author="Pebbles" date="July 4th, 2010">
+      <p>POLUtils has been made Open Source - it's available from http://code.google.com/polutils now,
+         under the Apache License. Someone has also come forward to take over maintainership, so it
+         will soon be under new management as well. Watch this space.</p>
+    </news-item>
     <news-item title="POLUtils 0.9.7 Released" author="Pebbles" date="July 8th, 2008">
       <p>Today I'm releasing POLUtils 0.9.7, a collection of PlayOnline-related utilities.</p>
       <p>Only minor tweaks, no major changes. Consider this the "final" version - I don't expect
