@@ -74,8 +74,23 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 	this.CurrentItem = -1;
       else
 	this.CurrentItem = 0;
-      if (this.RightItems != null && this.LeftItems != null)
+      // In general, this tool supports comparing heterogenic item sets (as useless as that may be).
+      // However, the 2010-09-09 patch prepended a range of 1024 armor pieces to the previous range (so 0x2800-0x4000 instead of 0x2C00-0x4000).
+      // So we detect that specific case and cope with it padding the shorter set at the front (with nulls); this also means we should drop leading null entries whenever
+      // a new set is loaded.
+      while (this.LeftItems != null && this.LeftItems.Count > 0 && this.LeftItems[0] == null)
+	this.LeftItems.RemoveAt(0);
+      while (this.RightItems != null && this.RightItems.Count > 0 && this.RightItems[0] == null)
+	this.RightItems.RemoveAt(0);
+      if (this.RightItems != null && this.LeftItems != null) {
+	if (this.LeftItems.Count != this.RightItems.Count) {
+	uint LID = (uint) this.LeftItems [0].GetFieldValue("id");
+	uint RID = (uint) this.RightItems[0].GetFieldValue("id");
+	  if (LID == 0x2800 && RID == 0x2c00) this.RightItems.InsertRange(0, new Item[0x400]);
+	  if (LID == 0x2c00 && RID == 0x2800) this.LeftItems .InsertRange(0, new Item[0x400]);
+	}
 	this.btnRemoveUnchanged.Invoke(new AnonymousMethod(delegate () { this.btnRemoveUnchanged.Enabled = true; }));
+      }
       this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
     }
 
@@ -97,22 +112,28 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.LeftItemsShown  = new ThingList<Item>();
       this.RightItemsShown = new ThingList<Item>();
       for (int i = 0; i < this.LeftItems.Count && i < this.RightItems.Count; ++i) {
+      Item LI = this.LeftItems [i];
+      Item RI = this.RightItems[i];
       bool DifferenceSeen = false;
-	if (this.GetIconString(this.LeftItems[i]) != this.GetIconString(this.RightItems[i]))
+	if (LI == null)
+	  DifferenceSeen = !(RI == null || RI.GetFieldText("name") == String.Empty || RI.GetFieldText("name") == ".");
+	else if (RI == null)
+	  DifferenceSeen = !(LI == null || LI.GetFieldText("name") == String.Empty || LI.GetFieldText("name") == ".");
+	else if (this.GetIconString(LI) != this.GetIconString(RI))
 	  DifferenceSeen = true;
 	else {
 	  foreach (string Field in Item.AllFields) {
 	    if (!this.ieLeft.IsFieldShown(Field)) // If we can't see the difference, there's no point
 	      continue;
-	    if (this.LeftItems[i].GetFieldText(Field) != this.RightItems[i].GetFieldText(Field)) {
+	    if (LI.GetFieldText(Field) != RI.GetFieldText(Field)) {
 	      DifferenceSeen = true;
 	      break;
 	    }
 	  }
 	}
 	if (DifferenceSeen) {
-	  this.LeftItemsShown.Add(this.LeftItems[i]);
-	  this.RightItemsShown.Add(this.RightItems[i]);
+	  this.LeftItemsShown .Add(LI);
+	  this.RightItemsShown.Add(RI);
 	}
 	Application.DoEvents();
       }
@@ -121,7 +142,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       int OverflowPos = this.LeftItems.Count;
 	while (OverflowPos < this.RightItems.Count) {
 	Item I = this.RightItems[OverflowPos++];
-	  if (I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
+	  if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
 	    continue;
 	  this.RightItemsShown.Add(I);
 	}
@@ -130,7 +151,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       int OverflowPos = this.RightItems.Count;
 	while (OverflowPos < this.LeftItems.Count) {
 	Item I = this.LeftItems[OverflowPos++];
-	  if (I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
+	  if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
 	    continue;
 	  this.LeftItemsShown.Add(I);
 	}
