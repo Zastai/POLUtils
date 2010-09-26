@@ -2622,9 +2622,9 @@
       <rom-file id="55537"><i18n-string id="Menu:WeatherTypes"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Common"/></name>
-      <!-- <rom-file id="?????"><i18n-string id="Menu:Abilities"/></rom-file> -->
       <rom-file id="55466"><i18n-string id="Menu:AreaNamesShort"/></rom-file>
       <rom-file id="55468"><i18n-string id="Menu:JobNamesShort"/></rom-file>
+      <rom-file id="00081"><i18n-string id="Menu:Spells"/> &amp;&amp; <i18n-string id="Menu:Abilities"/></rom-file>
       <rom-file id="00011"><i18n-string id="Menu:Spells"/> (Old, Stale)</rom-file>
       <rom-file id="00086"><i18n-string id="Menu:Spells"/> (Even Older)</rom-file>
     </category>
