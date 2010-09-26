@@ -95,6 +95,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FFXI.cs" />
+    <Compile Include="FileTypes\SpellAndAbilityInfo.cs" />
     <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\DMSGStringTable3.cs" />
     <Compile Include="FileTypes\MobList.cs" />
@@ -103,6 +104,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IThings\AbilityInfo.cs" />
+    <Compile Include="IThings\AbilityInfo2.cs" />
+    <Compile Include="IThings\SpellInfo2.cs" />
     <Compile Include="IThings\DMSGStringBlock.cs" />
     <Compile Include="IThings\MobListEntry.cs" />
     <Compile Include="IThings\DMSGStringTableEntry.cs" />

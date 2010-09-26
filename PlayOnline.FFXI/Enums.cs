@@ -23,6 +23,15 @@ namespace PlayOnline.FFXI {
     Corsair       = 0x08,
     CorsairShot   = 0x09,
     BloodPactWard = 0x0a,
+    Samba         = 0x0b,
+    Waltz         = 0x0c,
+    Step          = 0x0d,
+    Flourish1     = 0x0e,
+    Scholar       = 0x0f,
+    Jig           = 0x10,
+    Flourish2     = 0x11,
+    Monster       = 0x12,
+    Flourish3     = 0x13,
   }
 
   public enum Element : byte {
@@ -35,7 +44,7 @@ namespace PlayOnline.FFXI {
     Light     = 0x06,
     Dark      = 0x07,
     Special   = 0x0f, // this is the element set on the Meteor spell
-    Undecided = 0xff // this is the element set on inactive furnishing items in the item data
+    Undecided = 0xff, // this is the element set on inactive furnishing items in the item data
   }
 
   public enum ElementColor : byte {
@@ -233,6 +242,7 @@ namespace PlayOnline.FFXI {
     Singing          = 0x28,
     StringInstrument = 0x29,
     WindInstrument   = 0x2a,
+    BlueMagic        = 0x2b,
     Fishing          = 0x30,
     // These are assumed values, no known data actually uses them
     Woodworking      = 0x31,

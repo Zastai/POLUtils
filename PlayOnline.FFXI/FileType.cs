@@ -32,6 +32,7 @@ namespace PlayOnline.FFXI {
 	Results.Add(new FileTypes.DMSGStringTable2());
 	Results.Add(new FileTypes.DMSGStringTable3());
 	Results.Add(new FileTypes.SimpleStringTable());
+	Results.Add(new FileTypes.SpellAndAbilityInfo());
 	Results.Add(new FileTypes.SpellInfo());
 	Results.Add(new FileTypes.AbilityInfo());
 	Results.Add(new FileTypes.StatusInfo());
