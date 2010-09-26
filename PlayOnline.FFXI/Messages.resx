@@ -525,6 +525,9 @@
   <data name="T:AbilityInfo" xml:space="preserve">
     <value>Ability Info</value>
   </data>
+  <data name="T:AbilityInfo2" xml:space="preserve">
+    <value>Ability Info</value>
+  </data>
   <data name="T:DialogTableEntry" xml:space="preserve">
     <value>Dialog Table Entry</value>
   </data>
@@ -550,6 +553,9 @@
     <value>String Table Entry</value>
   </data>
   <data name="T:SpellInfo" xml:space="preserve">
+    <value>Spell Info</value>
+  </data>
+  <data name="T:SpellInfo2" xml:space="preserve">
     <value>Spell Info</value>
   </data>
   <data name="T:StatusInfo" xml:space="preserve">
