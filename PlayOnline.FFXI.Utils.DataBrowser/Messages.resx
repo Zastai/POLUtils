@@ -117,6 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbilityCheck" xml:space="preserve">
+    <value>Checking whether the file contains ability information...</value>
+  </data>
+  <data name="AbilityLoad" xml:space="preserve">
+    <value>Loading ability information - please wait...</value>
+  </data>
+  <data name="AbilityLoadProgress" xml:space="preserve">
+    <value>Loading ability information ({0}/{1}) - please wait...</value>
+  </data>
+  <data name="ColumnHeader:Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Description:BrowseImageExportFolder" xml:space="preserve">
+    <value>Select the folder where the images should be saved.
+WARNING: Existing files with the same name will be overwritten without prompting.</value>
+  </data>
+  <data name="Dialog:ExportFileContents" xml:space="preserve">
+    <value>Exporting file contents to XML.
+This may take quite a while.</value>
+  </data>
+  <data name="Dialog:SaveAllImages" xml:space="preserve">
+    <value>Saving all images to disk.
+This may take quite a while.</value>
+  </data>
+  <data name="DialogCheck" xml:space="preserve">
+    <value>Checking whether the file contains dialog strings...</value>
+  </data>
+  <data name="DialogLoad" xml:space="preserve">
+    <value>Loading dialog strings - please wait...</value>
+  </data>
+  <data name="DialogLoadProgress" xml:space="preserve">
+    <value>Loading dialog strings ({0}/{1}) - please wait...</value>
+  </data>
+  <data name="E:Test.Contains" xml:space="preserve">
+    <value>contains</value>
+  </data>
+  <data name="E:Test.DoesntContain" xml:space="preserve">
+    <value>doesn't contain</value>
+  </data>
+  <data name="E:Test.DoesntMatchRegexp" xml:space="preserve">
+    <value>doesn't match regexp</value>
+  </data>
+  <data name="E:Test.EndsWith" xml:space="preserve">
+    <value>ends with</value>
+  </data>
+  <data name="E:Test.Equals" xml:space="preserve">
+    <value>exactly matches</value>
+  </data>
+  <data name="E:Test.MatchesRegexp" xml:space="preserve">
+    <value>matches regexp</value>
+  </data>
+  <data name="E:Test.StartsWith" xml:space="preserve">
+    <value>starts with</value>
+  </data>
+  <data name="Export:DirDialogDesc" xml:space="preserve">
+    <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
+  </data>
   <data name="FFXI1" xml:space="preserve">
     <value>Final Fantasy XI</value>
   </data>
@@ -141,104 +198,38 @@
   <data name="FFXI8" xml:space="preserve">
     <value>A Shantotto Ascension</value>
   </data>
+  <data name="ImageScan" xml:space="preserve">
+    <value>Scanning file for images - please wait...</value>
+  </data>
+  <data name="ImageScanProgress" xml:space="preserve">
+    <value>Scanning file for images ({0} found so far) - please wait...</value>
+  </data>
   <data name="InvalidEntry" xml:space="preserve">
     <value>&lt;invalid entry&gt;</value>
   </data>
-  <data name="Menu:Currency" xml:space="preserve">
-    <value>&amp;Currency</value>
+  <data name="ItemCheck" xml:space="preserve">
+    <value>Checking whether the file contains item data...</value>
   </data>
-  <data name="Menu:DialogTables" xml:space="preserve">
-    <value>&amp;Dialog Tables</value>
+  <data name="ItemField:Any" xml:space="preserve">
+    <value>Any Field</value>
   </data>
-  <data name="Menu:English" xml:space="preserve">
-    <value>&amp;English</value>
+  <data name="ItemLoad" xml:space="preserve">
+    <value>Loading item information - please wait...</value>
   </data>
-  <data name="Menu:French" xml:space="preserve">
-    <value>&amp;French</value>
-  </data>
-  <data name="Menu:German" xml:space="preserve">
-    <value>&amp;German</value>
-  </data>
-  <data name="Menu:FontsAndMenus" xml:space="preserve">
-    <value>&amp;Fonts &amp;&amp; Menus</value>
-  </data>
-  <data name="Menu:Full" xml:space="preserve">
-    <value>&amp;Full</value>
-  </data>
-  <data name="Menu:Highlight" xml:space="preserve">
-    <value>Highlight: </value>
-  </data>
-  <data name="Menu:Images" xml:space="preserve">
-    <value>&amp;Images</value>
-  </data>
-  <data name="Menu:Japanese" xml:space="preserve">
-    <value>&amp;Japanese</value>
-  </data>
-  <data name="Menu:Maps" xml:space="preserve">
-    <value>&amp;Maps</value>
-  </data>
-  <data name="Menu:MapN" xml:space="preserve">
-    <value>Map &amp;</value>
-  </data>
-  <data name="Menu:MobLists" xml:space="preserve">
-    <value>&amp;NPC/Monster Lists</value>
-  </data>
-  <data name="Menu:NorthHalf" xml:space="preserve">
-    <value>&amp;North Half</value>
-  </data>
-  <data name="Menu:Other" xml:space="preserve">
-    <value>&amp;Other</value>
-  </data>
-  <data name="Menu:RankBastok" xml:space="preserve">
-    <value>&amp;Rank (Bastok)</value>
-  </data>
-  <data name="Menu:RankWindurst" xml:space="preserve">
-    <value>&amp;Rank (Windurst)</value>
-  </data>
-  <data name="Menu:RankSandOria" xml:space="preserve">
-    <value>&amp;Rank (San d'Oria)</value>
-  </data>
-  <data name="Menu:SouthHalf" xml:space="preserve">
-    <value>&amp;South Half</value>
-  </data>
-  <data name="Menu:UIWindows" xml:space="preserve">
-    <value>&amp;UI Windows</value>
-  </data>
-  <data name="Menu:StyleN" xml:space="preserve">
-    <value>Style &amp;</value>
-  </data>
-  <data name="Menu:ItemData" xml:space="preserve">
-    <value>I&amp;tem Data</value>
-  </data>
-  <data name="Menu:GeneralItems" xml:space="preserve">
-    <value>&amp;General Items</value>
-  </data>
-  <data name="Menu:UsableItems" xml:space="preserve">
-    <value>&amp;Usable Items</value>
-  </data>
-  <data name="Menu:PuppetItems" xml:space="preserve">
-    <value>Puppet Items</value>
-  </data>
-  <data name="Menu:Armor" xml:space="preserve">
-    <value>Armor</value>
-  </data>
-  <data name="Menu:Weapons" xml:space="preserve">
-    <value>Weapons</value>
-  </data>
-  <data name="Menu:StringTables" xml:space="preserve">
-    <value>&amp;String Tables</value>
-  </data>
-  <data name="Menu:Common" xml:space="preserve">
-    <value>&amp;Common</value>
+  <data name="ItemLoadProgress" xml:space="preserve">
+    <value>Loading item information ({0}/{1}) - please wait...</value>
   </data>
   <data name="Menu:Abilities" xml:space="preserve">
     <value>&amp;Abilities</value>
   </data>
+  <data name="Menu:AbilityDescriptions" xml:space="preserve">
+    <value>&amp;Ability Descriptions</value>
+  </data>
   <data name="Menu:AbilityNames" xml:space="preserve">
     <value>&amp;Ability Names</value>
   </data>
-  <data name="Menu:AbilityDescriptions" xml:space="preserve">
-    <value>&amp;Ability Descriptions</value>
+  <data name="Menu:Abyssea" xml:space="preserve">
+    <value>&amp;Abyssea</value>
   </data>
   <data name="Menu:AreaNames" xml:space="preserve">
     <value>&amp;Area Names</value>
@@ -249,6 +240,9 @@
   <data name="Menu:AreaNamesShort" xml:space="preserve">
     <value>&amp;Area Names (Search)</value>
   </data>
+  <data name="Menu:Armor" xml:space="preserve">
+    <value>Armor</value>
+  </data>
   <data name="Menu:BlueMagicHelp" xml:space="preserve">
     <value>&amp;Blue Magic Help Text</value>
   </data>
@@ -258,11 +252,26 @@
   <data name="Menu:ChatFilterTypes" xml:space="preserve">
     <value>&amp;Chat Filter Types</value>
   </data>
+  <data name="Menu:Common" xml:space="preserve">
+    <value>&amp;Common</value>
+  </data>
+  <data name="Menu:Currency" xml:space="preserve">
+    <value>&amp;Currency</value>
+  </data>
   <data name="Menu:DayNames" xml:space="preserve">
     <value>&amp;Day Names</value>
   </data>
+  <data name="Menu:DialogTables" xml:space="preserve">
+    <value>&amp;Dialog Tables</value>
+  </data>
   <data name="Menu:Directions" xml:space="preserve">
     <value>&amp;Directions</value>
+  </data>
+  <data name="Menu:EmoteMessages" xml:space="preserve">
+    <value>&amp;Emote Messages</value>
+  </data>
+  <data name="Menu:English" xml:space="preserve">
+    <value>&amp;English</value>
   </data>
   <data name="Menu:EquipmentLocations" xml:space="preserve">
     <value>&amp;Equipment Locations</value>
@@ -270,11 +279,38 @@
   <data name="Menu:ErrorMessages" xml:space="preserve">
     <value>&amp;Error Messages</value>
   </data>
+  <data name="Menu:FontsAndMenus" xml:space="preserve">
+    <value>&amp;Fonts &amp;&amp; Menus</value>
+  </data>
+  <data name="Menu:French" xml:space="preserve">
+    <value>&amp;French</value>
+  </data>
+  <data name="Menu:Full" xml:space="preserve">
+    <value>&amp;Full</value>
+  </data>
+  <data name="Menu:GeneralItems" xml:space="preserve">
+    <value>&amp;General Items</value>
+  </data>
+  <data name="Menu:German" xml:space="preserve">
+    <value>&amp;German</value>
+  </data>
+  <data name="Menu:Highlight" xml:space="preserve">
+    <value>Highlight: </value>
+  </data>
+  <data name="Menu:Images" xml:space="preserve">
+    <value>&amp;Images</value>
+  </data>
   <data name="Menu:InGameMessages1" xml:space="preserve">
     <value>&amp;In-Game Messages (1)</value>
   </data>
   <data name="Menu:InGameMessages2" xml:space="preserve">
     <value>&amp;In-Game Messages (2)</value>
+  </data>
+  <data name="Menu:ItemData" xml:space="preserve">
+    <value>I&amp;tem Data</value>
+  </data>
+  <data name="Menu:Japanese" xml:space="preserve">
+    <value>&amp;Japanese</value>
   </data>
   <data name="Menu:JobNames" xml:space="preserve">
     <value>&amp;Job Names</value>
@@ -284,6 +320,12 @@
   </data>
   <data name="Menu:KeyItems" xml:space="preserve">
     <value>Key Items</value>
+  </data>
+  <data name="Menu:MapN" xml:space="preserve">
+    <value>Map &amp;</value>
+  </data>
+  <data name="Menu:Maps" xml:space="preserve">
+    <value>&amp;Maps</value>
   </data>
   <data name="Menu:MenuItemDesc" xml:space="preserve">
     <value>&amp;Menu Item Descriptions</value>
@@ -297,11 +339,26 @@
   <data name="Menu:Missions" xml:space="preserve">
     <value>Missions</value>
   </data>
+  <data name="Menu:MobLists" xml:space="preserve">
+    <value>&amp;NPC/Monster Lists</value>
+  </data>
+  <data name="Menu:MonsterSkillNames" xml:space="preserve">
+    <value>&amp;Monster Skill Names</value>
+  </data>
   <data name="Menu:MoonPhases" xml:space="preserve">
     <value>&amp;Moon Phases</value>
   </data>
+  <data name="Menu:NorthHalf" xml:space="preserve">
+    <value>&amp;North Half</value>
+  </data>
+  <data name="Menu:Other" xml:space="preserve">
+    <value>&amp;Other</value>
+  </data>
   <data name="Menu:POLMessages" xml:space="preserve">
     <value>&amp;POL Messages</value>
+  </data>
+  <data name="Menu:PuppetItems" xml:space="preserve">
+    <value>Puppet Items</value>
   </data>
   <data name="Menu:Quests" xml:space="preserve">
     <value>Quests</value>
@@ -309,23 +366,44 @@
   <data name="Menu:RaceNames" xml:space="preserve">
     <value>&amp;Race Names</value>
   </data>
+  <data name="Menu:RankBastok" xml:space="preserve">
+    <value>&amp;Rank (Bastok)</value>
+  </data>
+  <data name="Menu:RankSandOria" xml:space="preserve">
+    <value>&amp;Rank (San d'Oria)</value>
+  </data>
+  <data name="Menu:RankWindurst" xml:space="preserve">
+    <value>&amp;Rank (Windurst)</value>
+  </data>
   <data name="Menu:RegionNames" xml:space="preserve">
     <value>&amp;Region Names</value>
   </data>
-  <data name="Menu:Spells" xml:space="preserve">
-    <value>&amp;Spells</value>
+  <data name="Menu:SouthHalf" xml:space="preserve">
+    <value>&amp;South Half</value>
+  </data>
+  <data name="Menu:SpellDescriptions" xml:space="preserve">
+    <value>&amp;Spell Descriptions</value>
   </data>
   <data name="Menu:SpellNames" xml:space="preserve">
     <value>&amp;Spell Names</value>
   </data>
-  <data name="Menu:SpellDescriptions" xml:space="preserve">
-    <value>&amp;Spell Descriptions</value>
+  <data name="Menu:Spells" xml:space="preserve">
+    <value>&amp;Spells</value>
   </data>
   <data name="Menu:StatusInfo" xml:space="preserve">
     <value>&amp;Statuses</value>
   </data>
   <data name="Menu:StatusNames" xml:space="preserve">
     <value>&amp;Status Names</value>
+  </data>
+  <data name="Menu:StringTables" xml:space="preserve">
+    <value>&amp;String Tables</value>
+  </data>
+  <data name="Menu:StyleN" xml:space="preserve">
+    <value>Style &amp;</value>
+  </data>
+  <data name="Menu:SystemMessages" xml:space="preserve">
+    <value>&amp;System Messages</value>
   </data>
   <data name="Menu:TimeAndPronouns" xml:space="preserve">
     <value>&amp;Time-Related Terms + Pronouns</value>
@@ -336,11 +414,20 @@
   <data name="Menu:TransportRoutes" xml:space="preserve">
     <value>&amp;Transport Routes</value>
   </data>
+  <data name="Menu:UIWindows" xml:space="preserve">
+    <value>&amp;UI Windows</value>
+  </data>
+  <data name="Menu:UsableItems" xml:space="preserve">
+    <value>&amp;Usable Items</value>
+  </data>
   <data name="Menu:Various1" xml:space="preserve">
     <value>&amp;Various (1)</value>
   </data>
   <data name="Menu:Various2" xml:space="preserve">
     <value>&amp;Various (2)</value>
+  </data>
+  <data name="Menu:Weapons" xml:space="preserve">
+    <value>Weapons</value>
   </data>
   <data name="Menu:WeatherTypes" xml:space="preserve">
     <value>&amp;Weather Types</value>
@@ -348,38 +435,21 @@
   <data name="Menu:WithPirates" xml:space="preserve">
     <value> (With Pirates)</value>
   </data>
-  <data name="AbilityCheck" xml:space="preserve">
-    <value>Checking whether the file contains ability information...</value>
+  <data name="Message:InvalidQuery" xml:space="preserve">
+    <value>Query component #{0} is not valid: {1}
+Correct the problem and try again.</value>
   </data>
-  <data name="AbilityLoad" xml:space="preserve">
-    <value>Loading ability information - please wait...</value>
+  <data name="Query:BadQueryType" xml:space="preserve">
+    <value>Unknown or unhandled query type.</value>
   </data>
-  <data name="AbilityLoadProgress" xml:space="preserve">
-    <value>Loading ability information ({0}/{1}) - please wait...</value>
+  <data name="Query:BadRegexp" xml:space="preserve">
+    <value>Invalid regular expression.</value>
   </data>
-  <data name="DialogCheck" xml:space="preserve">
-    <value>Checking whether the file contains dialog strings...</value>
+  <data name="Query:NoEmptyString" xml:space="preserve">
+    <value>Cannot run this test using an empty string.</value>
   </data>
-  <data name="DialogLoad" xml:space="preserve">
-    <value>Loading dialog strings - please wait...</value>
-  </data>
-  <data name="DialogLoadProgress" xml:space="preserve">
-    <value>Loading dialog strings ({0}/{1}) - please wait...</value>
-  </data>
-  <data name="ImageScan" xml:space="preserve">
-    <value>Scanning file for images - please wait...</value>
-  </data>
-  <data name="ImageScanProgress" xml:space="preserve">
-    <value>Scanning file for images ({0} found so far) - please wait...</value>
-  </data>
-  <data name="ItemCheck" xml:space="preserve">
-    <value>Checking whether the file contains item data...</value>
-  </data>
-  <data name="ItemLoad" xml:space="preserve">
-    <value>Loading item information - please wait...</value>
-  </data>
-  <data name="ItemLoadProgress" xml:space="preserve">
-    <value>Loading item information ({0}/{1}) - please wait...</value>
+  <data name="Query:NoQueryType" xml:space="preserve">
+    <value>No (valid) query method selected.</value>
   </data>
   <data name="QuestCheck" xml:space="preserve">
     <value>Checking whether the file contains quest/mission/key item information...</value>
@@ -399,6 +469,12 @@
   <data name="SpellLoadProgress" xml:space="preserve">
     <value>Loading spell information ({0}/{1}) - please wait...</value>
   </data>
+  <data name="Status:ItemSearch" xml:space="preserve">
+    <value>Searching... ({0} match(es) found so far)</value>
+  </data>
+  <data name="Status:ItemSearchDone" xml:space="preserve">
+    <value>Found {0} matching item(s) (out of {1})</value>
+  </data>
   <data name="StatusCheck" xml:space="preserve">
     <value>Checking whether the file contains status information...</value>
   </data>
@@ -417,71 +493,7 @@
   <data name="StringLoadProgress" xml:space="preserve">
     <value>Loading string table entries ({0}/{1}) - please wait...</value>
   </data>
-  <data name="Status:ItemSearch" xml:space="preserve">
-    <value>Searching... ({0} match(es) found so far)</value>
-  </data>
-  <data name="Status:ItemSearchDone" xml:space="preserve">
-    <value>Found {0} matching item(s) (out of {1})</value>
-  </data>
-  <data name="E:Test.Contains" xml:space="preserve">
-    <value>contains</value>
-  </data>
-  <data name="E:Test.DoesntContain" xml:space="preserve">
-    <value>doesn't contain</value>
-  </data>
-  <data name="E:Test.Equals" xml:space="preserve">
-    <value>exactly matches</value>
-  </data>
-  <data name="E:Test.StartsWith" xml:space="preserve">
-    <value>starts with</value>
-  </data>
-  <data name="E:Test.EndsWith" xml:space="preserve">
-    <value>ends with</value>
-  </data>
-  <data name="E:Test.MatchesRegexp" xml:space="preserve">
-    <value>matches regexp</value>
-  </data>
-  <data name="E:Test.DoesntMatchRegexp" xml:space="preserve">
-    <value>doesn't match regexp</value>
-  </data>
-  <data name="ColumnHeader:Index" xml:space="preserve">
-    <value>Index</value>
-  </data>
-  <data name="Export:DirDialogDesc" xml:space="preserve">
-    <value>Select the folder where the exported item data will be placed.  The file name will be based on the data language and type, and will include a timestamp.</value>
-  </data>
   <data name="Title:InvalidQuery" xml:space="preserve">
     <value>Invalid Query</value>
-  </data>
-  <data name="Message:InvalidQuery" xml:space="preserve">
-    <value>Query component #{0} is not valid: {1}
-Correct the problem and try again.</value>
-  </data>
-  <data name="Query:NoEmptyString" xml:space="preserve">
-    <value>Cannot run this test using an empty string.</value>
-  </data>
-  <data name="Query:BadRegexp" xml:space="preserve">
-    <value>Invalid regular expression.</value>
-  </data>
-  <data name="Query:NoQueryType" xml:space="preserve">
-    <value>No (valid) query method selected.</value>
-  </data>
-  <data name="Query:BadQueryType" xml:space="preserve">
-    <value>Unknown or unhandled query type.</value>
-  </data>
-  <data name="Dialog:ExportFileContents" xml:space="preserve">
-    <value>Exporting file contents to XML.
-This may take quite a while.</value>
-  </data>
-  <data name="Dialog:SaveAllImages" xml:space="preserve">
-    <value>Saving all images to disk.
-This may take quite a while.</value>
-  </data>
-  <data name="Description:BrowseImageExportFolder" xml:space="preserve">
-    <value>Select the folder where the images should be saved.
-WARNING: Existing files with the same name will be overwritten without prompting.</value>
-  </data>
-  <data name="ItemField:Any" xml:space="preserve">
-    <value>Any Field</value>
   </data>
 </root>

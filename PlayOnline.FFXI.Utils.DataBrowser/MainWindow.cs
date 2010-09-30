@@ -81,11 +81,15 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  this.MenuItems.Clear();
 	  foreach (XmlNode XN in this.XCategory_.ChildNodes) {
 	    if (XN is XmlElement) {
-	      if (XN.Name == "category")
-		this.MenuItems.Add(new CategoryMenuItem(XN, this.ROMMenuItemClick_));
+	      if (XN.Name == "category") {
+		// Only add it if there's stuff in it
+		if (XN.SelectSingleNode("./category | ./rom-file") != null)
+		  this.MenuItems.Add(new CategoryMenuItem(XN, this.ROMMenuItemClick_));
+	      }
 	      else if (XN.Name == "separator")
 		this.MenuItems.Add("-");
 	      else if (XN.Name == "rom-file") {
+		// Don't add it unless it points somewhere (note: can cause empty category items)
 		if (XN.Attributes["id"] != null)
 		  this.MenuItems.Add(new ROMMenuItem(this.BuildItemName(XN), XmlConvert.ToInt32(XN.Attributes["id"].InnerText), this.ROMMenuItemClick_));
 		else if (XN.Attributes["app"] != null && XN.Attributes["dir"] != null && XN.Attributes["file"] != null) {
@@ -113,11 +117,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  XmlElement XE = XN as XmlElement;
 	    if (XE.Name == "i18n-string" && XE.HasAttribute("id"))
 	      ItemName += I18N.GetText(XE.Attributes["id"].InnerText);
-	    else if (XE.Name == "ffxi-string" && XE.HasAttribute("id")) {
-	    uint ResID = 0;
-	      try { ResID = uint.Parse(XE.Attributes["id"].InnerText, NumberStyles.HexNumber); } catch { }
-	      ItemName += FFXIResourceManager.GetResourceString(ResID);
-	     }
+	    else if (XE.Name == "area-name" && XE.HasAttribute("id")) {
+	    ushort ID = 0;
+	      try { ID = ushort.Parse(XE.Attributes["id"].InnerText); } catch { }
+	      ItemName += FFXIResourceManager.GetAreaName(ID);
+	    }
+	    else if (XE.Name == "region-name" && XE.HasAttribute("id")) {
+	    ushort ID = 0;
+	      try { ID = ushort.Parse(XE.Attributes["id"].InnerText); } catch { }
+	      ItemName += FFXIResourceManager.GetRegionName(ID);
+	    }
 	    else
 	      ItemName += '?' + XE.Name + '?';
 	  }
@@ -142,7 +151,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Console.WriteLine("{0}", E.ToString());
 	this.tvDataFiles.ImageList = null;
       }
-      for (int i = 1; i < 9; ++i) {
+      for (int i = 1; i < 10; ++i) {
       string DataDir = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "Rom");
 	if (i > 1)
 	  DataDir += i.ToString();
