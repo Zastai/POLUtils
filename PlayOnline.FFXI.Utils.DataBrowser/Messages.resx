@@ -132,6 +132,15 @@
   <data name="FFXI5" xml:space="preserve">
     <value>Wings of the Goddess</value>
   </data>
+  <data name="FFXI6" xml:space="preserve">
+    <value>A Crystalline Prophecy</value>
+  </data>
+  <data name="FFXI7" xml:space="preserve">
+    <value>A Moogle Kupo d'Etat</value>
+  </data>
+  <data name="FFXI8" xml:space="preserve">
+    <value>A Shantotto Ascension</value>
+  </data>
   <data name="InvalidEntry" xml:space="preserve">
     <value>&lt;invalid entry&gt;</value>
   </data>
