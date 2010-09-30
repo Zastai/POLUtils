@@ -336,6 +336,9 @@
   <data name="F::reuse-delay" xml:space="preserve">
     <value>Reuse Delay</value>
   </data>
+  <data name="F::shared-timer-id" xml:space="preserve">
+    <value>Shared Timer ID</value>
+  </data>
   <data name="F::shield-size" xml:space="preserve">
     <value>Shield Size</value>
   </data>
@@ -407,6 +410,9 @@
   </data>
   <data name="F::text" xml:space="preserve">
     <value>Text</value>
+  </data>
+  <data name="F::tp-cost" xml:space="preserve">
+    <value>TP Cost</value>
   </data>
   <data name="F::type" xml:space="preserve">
     <value>Type</value>
@@ -485,6 +491,9 @@
   </data>
   <data name="FT:SpellInfo" xml:space="preserve">
     <value>Spell Info</value>
+  </data>
+  <data name="FT:SpellAndAbilityInfo" xml:space="preserve">
+    <value>Spell &amp; Ability Info</value>
   </data>
   <data name="FT:StatusInfo" xml:space="preserve">
     <value>Status Info</value>

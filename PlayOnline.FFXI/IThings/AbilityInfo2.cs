@@ -42,8 +42,8 @@ namespace PlayOnline.FFXI.Things {
 	  "list-icon-id",
 	  "mp-cost",
 	  "valid-targets",
-	  "unknown-1",
-	  "unknown-2",
+	  "shared-timer-id",
+	  "tp-cost",
 	});
       }
     }
@@ -58,20 +58,20 @@ namespace PlayOnline.FFXI.Things {
     private AbilityType? Type_;
     private byte?        ListIconID_;
     private ushort?      MPCost_;
-    private ushort?      Unknown1_;
+    private ushort?      SharedTimerID_;
     private ValidTarget? ValidTargets_;
-    private sbyte?       Unknown2_;
+    private sbyte?       TPCost_;
     
     #endregion
 
     public override void Clear() {
-      this.ID_           = null;
-      this.Type_         = null;
-      this.ListIconID_   = null;
-      this.MPCost_       = null;
-      this.Unknown1_     = null;
-      this.ValidTargets_ = null;
-      this.Unknown2_     = null;
+      this.ID_            = null;
+      this.Type_          = null;
+      this.ListIconID_    = null;
+      this.MPCost_        = null;
+      this.SharedTimerID_ = null;
+      this.ValidTargets_  = null;
+      this.TPCost_        = null;
     }
 
     #endregion
@@ -81,56 +81,60 @@ namespace PlayOnline.FFXI.Things {
     public override bool HasField(string Field) {
       switch (Field) {
 	// Nullables
-	case "id":            return this.ID_.HasValue;
-	case "list-icon-id":  return this.ListIconID_.HasValue;
-	case "mp-cost":       return this.MPCost_.HasValue;
-	case "type":          return this.Type_.HasValue;
-	case "unknown-1":     return this.Unknown1_.HasValue;
-	case "unknown-2":     return this.Unknown2_.HasValue;
-	case "valid-targets": return this.ValidTargets_.HasValue;
-	default:              return false;
+	case "id":              return this.ID_.HasValue;
+	case "list-icon-id":    return this.ListIconID_.HasValue;
+	case "mp-cost":         return this.MPCost_.HasValue;
+	case "shared-timer-id": return this.SharedTimerID_.HasValue;
+	case "tp-cost":         return this.TPCost_.HasValue;
+	case "type":            return this.Type_.HasValue;
+	case "valid-targets":   return this.ValidTargets_.HasValue;
+	default:                return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
 	// Nullables - Simple Values
-	case "id":            return (!this.ID_.HasValue           ? String.Empty : String.Format("{0}", this.ID_.Value));
-	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
-	case "mp-cost":       return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
-	case "type":          return (!this.Type_.HasValue         ? String.Empty : String.Format("{0}", this.Type_.Value));
-	case "valid-targets": return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
-	// Nullables - Hex Values
-	case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
-	case "unknown-2":     return (!this.Unknown2_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown2_.Value));
-	default:              return null;
+	case "id":              return (!this.ID_.HasValue            ? String.Empty : String.Format("{0}", this.ID_.Value));
+	case "list-icon-id":    return (!this.ListIconID_.HasValue    ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
+	case "mp-cost":         return (!this.MPCost_.HasValue        ? String.Empty : String.Format("{0}", this.MPCost_.Value));
+	case "shared-timer-id": return (!this.SharedTimerID_.HasValue ? String.Empty : String.Format("{0}", this.SharedTimerID_.Value));
+	case "type":            return (!this.Type_.HasValue          ? String.Empty : String.Format("{0}", this.Type_.Value));
+	case "valid-targets":   return (!this.ValidTargets_.HasValue  ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
+	// TP Cost: show as "nn%", or blank if not applicable
+	case "tp-cost":
+	  if (!this.TPCost_.HasValue || this.TPCost_.Value == -1)
+	    return String.Empty;
+	  else
+	    return String.Format("{0}%", this.TPCost_.Value);
+	default:                return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
 	// Nullables
-	case "id":            return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
-	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
-	case "mp-cost":       return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
-	case "type":          return (!this.Type_.HasValue         ? null : (object) this.Type_.Value);
-	case "unknown-1":     return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
-	case "unknown-2":     return (!this.Unknown2_.HasValue     ? null : (object) this.Unknown2_.Value);
-	case "valid-targets": return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
-	default:              return null;
+	case "id":              return (!this.ID_.HasValue            ? null : (object) this.ID_.Value);
+	case "list-icon-id":    return (!this.ListIconID_.HasValue    ? null : (object) this.ListIconID_.Value);
+	case "mp-cost":         return (!this.MPCost_.HasValue        ? null : (object) this.MPCost_.Value);
+	case "shared-timer-id": return (!this.SharedTimerID_.HasValue ? null : (object) this.SharedTimerID_.Value);
+	case "tp-cost":         return (!this.TPCost_.HasValue        ? null : (object) this.TPCost_.Value);
+	case "type":            return (!this.Type_.HasValue          ? null : (object) this.Type_.Value);
+	case "valid-targets":   return (!this.ValidTargets_.HasValue  ? null : (object) this.ValidTargets_.Value);
+	default:                return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
 	// "Simple" Fields
-	case "id":            this.ID_           = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "list-icon-id":  this.ListIconID_   = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "mp-cost":       this.MPCost_       = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "type":          this.Type_         = (AbilityType) this.LoadHexField            (Node); break;
-	case "unknown-1":     this.Unknown1_     = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "unknown-2":     this.Unknown2_     = (sbyte)       this.LoadSignedIntegerField  (Node); break;
-	case "valid-targets": this.ValidTargets_ = (ValidTarget) this.LoadHexField            (Node); break;
+	case "id":              this.ID_            = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "list-icon-id":    this.ListIconID_    = (byte)        this.LoadUnsignedIntegerField(Node); break;
+	case "mp-cost":         this.MPCost_        = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "shared-timer-id": this.SharedTimerID_ = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+	case "tp-cost":         this.TPCost_        = (sbyte)       this.LoadSignedIntegerField  (Node); break;
+	case "type":            this.Type_          = (AbilityType) this.LoadHexField            (Node); break;
+	case "valid-targets":   this.ValidTargets_  = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
 
@@ -143,9 +147,9 @@ namespace PlayOnline.FFXI.Things {
     // 002-002 U8  Type
     // 003-003 U8  List Icon ID (e.g. 40-47 for the elemental-colored dots)
     // 004-005 U16 MP Cost
-    // 006-007 U16 Unknown (used to be the cooldown time)
+    // 006-007 U16 Shared Timer ID
     // 008-009 U16 Valid Targets
-    // 00a-00a U8  Unknown
+    // 00a-00a U8  TP Cost (percentage, or -1 if not applicable)
     // 00b-02e U8  Padding (NULs)
     // 02f-02f U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
@@ -159,13 +163,13 @@ namespace PlayOnline.FFXI.Things {
       FFXIEncoding E = new FFXIEncoding();
 	BR = new BinaryReader(new MemoryStream(Bytes, false));
       } catch { return false; }
-      this.ID_           = BR.ReadUInt16();
-      this.Type_         = (AbilityType) BR.ReadByte();
-      this.ListIconID_   = BR.ReadByte();
-      this.MPCost_       = BR.ReadUInt16();
-      this.Unknown1_     = BR.ReadUInt16();
-      this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
-      this.Unknown2_     = BR.ReadSByte();
+      this.ID_            = BR.ReadUInt16();
+      this.Type_          = (AbilityType) BR.ReadByte();
+      this.ListIconID_    = BR.ReadByte();
+      this.MPCost_        = BR.ReadUInt16();
+      this.SharedTimerID_ = BR.ReadUInt16();
+      this.ValidTargets_  = (ValidTarget) BR.ReadUInt16();
+      this.TPCost_        = BR.ReadSByte();
 #if DEBUG // Check the padding bytes for unexpected data
       for (byte i = 0; i < 36; ++i) {
       byte PaddingByte = BR.ReadByte();
