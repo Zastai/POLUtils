@@ -1,9 +1,7 @@
 # $Id$
 
-TODO: Expand this a lot and make it more readable, perhaps referring Visual Studio option settings where possible.
+A settings file for Visual Studio (POLUtils.vssettings) is provided which you can import to set up the proper indentation and
+formatting settings for working on the POLUtils code.
+Note that the use of automatic formatting of any kind is discouraged, because that tends to undo existing manual formatting.
 
-POLUtils Coding Guidelines
-==========================
-
-Indent size: 2
-Tab Size:    8
+More detailed coding and style conventions will be added to this file at some point.
