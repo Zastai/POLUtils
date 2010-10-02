@@ -44,6 +44,7 @@ namespace PlayOnline.FFXI.Things {
 	  "valid-targets",
 	  "shared-timer-id",
 	  "tp-cost",
+	  "category-id",
 	});
       }
     }
@@ -61,6 +62,7 @@ namespace PlayOnline.FFXI.Things {
     private ushort?      SharedTimerID_;
     private ValidTarget? ValidTargets_;
     private sbyte?       TPCost_;
+    private byte?        CategoryID_;
     
     #endregion
 
@@ -72,6 +74,7 @@ namespace PlayOnline.FFXI.Things {
       this.SharedTimerID_ = null;
       this.ValidTargets_  = null;
       this.TPCost_        = null;
+      this.CategoryID_    = null;
     }
 
     #endregion
@@ -81,6 +84,7 @@ namespace PlayOnline.FFXI.Things {
     public override bool HasField(string Field) {
       switch (Field) {
 	// Nullables
+	case "category-id":     return this.CategoryID_.HasValue;
 	case "id":              return this.ID_.HasValue;
 	case "list-icon-id":    return this.ListIconID_.HasValue;
 	case "mp-cost":         return this.MPCost_.HasValue;
@@ -101,6 +105,12 @@ namespace PlayOnline.FFXI.Things {
 	case "shared-timer-id": return (!this.SharedTimerID_.HasValue ? String.Empty : String.Format("{0}", this.SharedTimerID_.Value));
 	case "type":            return (!this.Type_.HasValue          ? String.Empty : String.Format("{0}", this.Type_.Value));
 	case "valid-targets":   return (!this.ValidTargets_.HasValue  ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
+	// Category ID: Blank when zero
+	case "category-id":
+	  if (!this.CategoryID_.HasValue || this.CategoryID_.Value == 0)
+	    return String.Empty;
+	  else
+	    return String.Format("{0}", this.CategoryID_.Value);
 	// TP Cost: show as "nn%", or blank if not applicable
 	case "tp-cost":
 	  if (!this.TPCost_.HasValue || this.TPCost_.Value == -1)
@@ -114,6 +124,7 @@ namespace PlayOnline.FFXI.Things {
     public override object GetFieldValue(string Field) {
       switch (Field) {
 	// Nullables
+	case "category-id":     return (!this.CategoryID_.HasValue      ? null : (object) this.CategoryID_.Value);
 	case "id":              return (!this.ID_.HasValue            ? null : (object) this.ID_.Value);
 	case "list-icon-id":    return (!this.ListIconID_.HasValue    ? null : (object) this.ListIconID_.Value);
 	case "mp-cost":         return (!this.MPCost_.HasValue        ? null : (object) this.MPCost_.Value);
@@ -128,6 +139,7 @@ namespace PlayOnline.FFXI.Things {
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
 	// "Simple" Fields
+	case "category-id":     this.CategoryID_    = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "id":              this.ID_            = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "list-icon-id":    this.ListIconID_    = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "mp-cost":         this.MPCost_        = (ushort)      this.LoadUnsignedIntegerField(Node); break;
@@ -149,8 +161,9 @@ namespace PlayOnline.FFXI.Things {
     // 004-005 U16 MP Cost
     // 006-007 U16 Shared Timer ID
     // 008-009 U16 Valid Targets
-    // 00a-00a U8  TP Cost (percentage, or -1 if not applicable)
-    // 00b-02e U8  Padding (NULs)
+    // 00a-00a I8  TP Cost (percentage, or -1 if not applicable)
+    // 00b-00b U8  Category ID (for entries that are categories instead of real abilities)
+    // 00c-02e U8  Padding (NULs)
     // 02f-02f U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
       this.Clear();
@@ -170,8 +183,9 @@ namespace PlayOnline.FFXI.Things {
       this.SharedTimerID_ = BR.ReadUInt16();
       this.ValidTargets_  = (ValidTarget) BR.ReadUInt16();
       this.TPCost_        = BR.ReadSByte();
+      this.CategoryID_    = BR.ReadByte();
 #if DEBUG // Check the padding bytes for unexpected data
-      for (byte i = 0; i < 36; ++i) {
+      for (byte i = 0; i < 35; ++i) {
       byte PaddingByte = BR.ReadByte();
 	if (PaddingByte != 0)
 	  Console.WriteLine("AbilityInfo2: Entry #{0}: Padding Byte #{1} is non-zero: {2:X2} ({2})", this.ID_, i + 1, PaddingByte);

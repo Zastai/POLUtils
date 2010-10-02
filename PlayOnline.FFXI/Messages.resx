@@ -213,6 +213,9 @@
   <data name="F::category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="F::category-id" xml:space="preserve">
+    <value>Category ID</value>
+  </data>
   <data name="F::compression" xml:space="preserve">
     <value>Compression</value>
   </data>
