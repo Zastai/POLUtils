@@ -13,6 +13,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Globalization;
@@ -138,6 +139,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #endregion
 
+    private ThingList<Item>              LoadedItems_  = null;
+    private ThingList                    LoadedThings_ = null;
+    private PleaseWaitDialog             PWD           = null;
+    private ImageList                    ListIcons_    = new ImageList();
+    private Dictionary<string, ListView> ListViews_    = new Dictionary<string, ListView>();
+    private TabControl                   ListViewTabs_ = null;
+
     public MainWindow() {
       this.InitializeComponent();
       this.Icon = Icons.CheckedPage;
@@ -162,12 +170,50 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	  Root.Nodes.Add("<dummy>").Tag = Root;
 	}
       }
-      this.lstEntries.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
       this.InitializeROMMenus();
       this.ResetViewers();
     }
 
-    private ImageList ListIcons_ = new ImageList();
+    private ListView MaybeAddListView(string Key) {
+      if (this.ListViews_.ContainsKey(Key))
+	return this.ListViews_[Key];
+    ListView LV = new ListView();
+      // Set up the listview the way we want it
+      LV.AllowColumnReorder = true;
+      LV.ContextMenu        = this.mnuEntryListContext;
+      LV.Dock               = DockStyle.Fill;
+      LV.FullRowSelect      = true;
+      LV.GridLines          = true;
+      LV.HeaderStyle        = ColumnHeaderStyle.Nonclickable;
+      LV.View               = View.Details;
+      LV.ColumnClick       += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
+      LV.DoubleClick       += new EventHandler(ListView_DoubleClick);
+      LV.KeyDown           += new KeyEventHandler(ListView_KeyDown);
+      // Add the always-present first column (so that the "real" data is always in subitems)
+      LV.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
+      if (this.ListViews_.Count == 0)
+	this.pnlGeneralContents.Controls.Add(LV);
+      else {
+	if (this.ListViewTabs_ == null) { // First switch to tabbed display mode
+	  this.ListViewTabs_ = new TabControl();
+	  this.ListViewTabs_.Dock = DockStyle.Fill;
+	  foreach (string OldKey in this.ListViews_.Keys) {
+	  TabPage TP = new TabPage(OldKey);
+	    TP.Controls.Add(this.ListViews_[OldKey]);
+	    this.ListViewTabs_.TabPages.Add(TP);
+	  }
+	  this.pnlGeneralContents.Controls.Clear();
+	  this.pnlGeneralContents.Controls.Add(ListViewTabs_);
+	}
+	{
+	TabPage TP = new TabPage(Key);
+	  TP.Controls.Add(LV);
+	  this.ListViewTabs_.TabPages.Add(TP);
+	}
+      }
+      this.ListViews_[Key] = LV;
+      return LV;
+    }
 
     private void ResetViewers() {
       // Clear the entire right-hand pane
@@ -175,12 +221,16 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.tabViewers.Visible = false;
       // Reset the viewer tabs
       this.tabViewers.TabPages.Clear();
+      this.pnlGeneralContents.Controls.Clear();
+      if (this.ListViewTabs_ != null)
+	this.ListViewTabs_.TabPages.Clear();
+      this.ListViewTabs_ = null;
       // Reset all applicable viewer tab contents
-      this.lstEntries.Items.Clear();
-      this.lstEntries.Columns.Clear();
-      this.lstEntries.ListViewItemSorter = null;
-      this.chkShowIcons.Checked = false;
+      foreach (ListView LV in this.ListViews_.Values)
+	LV.Clear();
+      this.ListViews_.Clear();
       this.ListIcons_.Images.Clear();
+      this.chkShowIcons.Checked = false;
       this.btnThingListSaveImages.Enabled = false;
       this.cmbItems.Items.Clear();
       this.cmbImageChooser.Items.Clear();
@@ -190,20 +240,21 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void LoadFile(string FileName) {
       this.ResetViewers();
-      this.LoadedItems_ = null;
+      this.LoadedThings_ = null;
       if (FileName != null && File.Exists(FileName)) {
 	this.Enabled = false;
       FileScanner FS = new FileScanner();
 	FS.ScanFile(this, FileName);
+	this.LoadedThings_ = FS.FileContents;
+	this.LoadedItems_  = new ThingList<Item>();
 	if (FS.FileContents != null) {
-	  this.LoadedItems_ = new ThingList<Item>();
-	  this.lstEntries.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-	  this.lstEntries.Columns.Add("<type>", "[Data Type]", 60, HorizontalAlignment.Left, -1);
+	int LoadCount = 0;
 	  if (FS.FileContents.Count > 0) {
 	    this.tabViewers.TabPages.Add(this.tabViewerGeneral);
 	    this.tabViewers.Visible = true;
 	    Application.DoEvents();
 	    foreach (IThing T in FS.FileContents) {
+	    ListView LV = this.MaybeAddListView(T.TypeName);
 	    int IconIndex = -1;
 	      {
 	      Image Icon = T.GetIcon();
@@ -212,37 +263,39 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 		  this.ListIcons_.Images.Add(Icon);
 		}
 	      }
-	    ListViewItem LVI = this.lstEntries.Items.Add(T.TypeName, IconIndex);
+	    ListViewItem LVI = LV.Items.Add(T.TypeName, IconIndex);
 	      LVI.Tag = T;
-	      for (int i = 1; i < this.lstEntries.Columns.Count; ++i)
+	      for (int i = 1; i < LV.Columns.Count; ++i)
 		LVI.SubItems.Add("");
 	      foreach (string Field in T.GetFields()) {
-		if (!this.lstEntries.Columns.ContainsKey(Field)) {
-		  this.lstEntries.Columns.Add(Field, T.GetFieldName(Field), 60, HorizontalAlignment.Left, -1);
+		if (!LV.Columns.ContainsKey(Field)) {
+		  LV.Columns.Add(Field, T.GetFieldName(Field), 60, HorizontalAlignment.Left, -1);
 		  LVI.SubItems.Add("");
 		}
-		LVI.SubItems[this.lstEntries.Columns[Field].Index].Text = T.GetFieldText(Field);
+		LVI.SubItems[LV.Columns[Field].Index].Text = T.GetFieldText(Field);
 	      }
 	      if (T is Item) {
 		if (this.cmbItems.Items.Count == 0)
 		  this.tabViewers.TabPages.Add(this.tabViewerItems);
 		this.cmbItems.Items.Add(T);
-		this.LoadedItems_.Add(T as Item); // Only for the ItemFindDialog at the moment really
+		this.LoadedItems_.Add(T as Item);
 	      }
 	      else if (T is Graphic) {
 		if (this.cmbImageChooser.Items.Count == 0)
 		  this.tabViewers.TabPages.Add(this.tabViewerImages);
 		this.cmbImageChooser.Items.Add(T);
 	      }
-	      if ((this.lstEntries.Items.Count % 256) == 255)
+	      if ((++LoadCount % 100) == 0)
 		Application.DoEvents();
 	    }
-	    if (this.ListIcons_.Images.Count == 0)
-	      this.lstEntries.SmallImageList = null;
 	    this.btnThingListSaveImages.Enabled = (this.ListIcons_.Images.Count != 0);
 	    this.chkShowIcons.Enabled = (this.ListIcons_.Images.Count != 0);
 	    Application.DoEvents();
-	    this.lstEntries.HeaderStyle = ColumnHeaderStyle.Clickable;
+	    foreach (ListView LV in this.ListViews_.Values) {
+	      if (this.ListIcons_.Images.Count == 0)
+		LV.SmallImageList = null;
+	      LV.HeaderStyle = ColumnHeaderStyle.Clickable;
+	    }
 	    this.ResizeListColumns();
 	  }
 	  if (this.cmbImageChooser.Items.Count > 0) {
@@ -267,11 +320,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void ResizeListColumns() {
-      foreach (ColumnHeader CH in this.lstEntries.Columns) {
-	CH.Width = -2;
-	CH.Width += 2;
+      foreach (ListView LV in this.ListViews_.Values) {
+	foreach (ColumnHeader CH in LV.Columns) {
+	  CH.Width = -2;
+	  CH.Width += 2;
+	}
+	Application.DoEvents();
       }
-      Application.DoEvents();
     }
 
     #region Image Viewer Events
@@ -382,9 +437,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region Item Data Viewer Events
 
-    private ThingList<Item>  LoadedItems_ = null;
-    private PleaseWaitDialog PWD = null;
-
     private void btnFindItems_Click(object sender, System.EventArgs e) {
       using (ItemFindDialog IFD = new ItemFindDialog(this.LoadedItems_)) {
 	if (IFD.ShowDialog(this) == DialogResult.OK && IFD.SelectedItem != null)
@@ -406,9 +458,9 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     #region General Viewer Events
 
-    private void CopyEntry() {
+    private void CopyEntry(ListView LV) {
     string FullText = String.Empty;
-      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+      foreach (ListViewItem LVI in LV.SelectedItems) {
       string ItemText = String.Empty;
 	foreach (ListViewItem.ListViewSubItem LVSI in LVI.SubItems) {
 	  if (ItemText != String.Empty)
@@ -423,17 +475,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Clipboard.SetDataObject(FullText, true);
     }
 
-    private void lstEntries_DoubleClick(object sender, EventArgs e) {
-      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
+    private void ListView_DoubleClick(object sender, EventArgs e) {
+    ListView LV = sender as ListView;
+      foreach (ListViewItem LVI in LV.SelectedItems) {
       ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
 	TPP.Show(this);
       }
     }
 
-    private void lstEntries_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+    private void ListView_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+    ListView LV = sender as ListView;
       // Support Ctrl-Ins in addition to the Ctrl-C supported by the context menu
       if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Insert)
-	this.CopyEntry();
+	this.CopyEntry(LV);
     }
 
     private void ExportThings(IEnumerable ThingsToExport) {
@@ -461,7 +515,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void btnThingListExportXML_Click(object sender, EventArgs e) {
-      this.ExportThings(this.lstEntries.Items);
+      this.ExportThings(this.LoadedThings_);
     }
 
     private FolderBrowserDialog dlgBrowseFolder = null;
@@ -483,20 +537,17 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       PleaseWaitDialog PWD = new PleaseWaitDialog(I18N.GetText("Dialog:SaveAllImages"));
       Thread T = new Thread(new ThreadStart(delegate () {
 	  Application.DoEvents();
-	  foreach (ListViewItem LVI in this.lstEntries.Items) {
-	    if (LVI.Tag is IThing) {
-	    IThing X = LVI.Tag as IThing;
-	    Image I = X.GetIcon(); // FIXME: Assumes no IThing has more than one image
-	      if (I != null) {
-	      string ImageFileName = X.ToString() + ".png";
-		foreach (char C in Path.GetInvalidFileNameChars())
-		  ImageFileName = ImageFileName.Replace(C, '_');
-		I.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, ImageFileName), ImageFormat.Png);
-	      }
+	  foreach (IThing X in this.LoadedThings_) {
+	  Image I = X.GetIcon(); // FIXME: Assumes no IThing has more than one image
+	    if (I != null) {
+	    string ImageFileName = X.ToString() + ".png";
+	      foreach (char C in Path.GetInvalidFileNameChars())
+		ImageFileName = ImageFileName.Replace(C, '_');
+	      I.Save(Path.Combine(this.dlgBrowseFolder.SelectedPath, ImageFileName), ImageFormat.Png);
 	    }
 	    Application.DoEvents();
 	  }
-	  PWD.Close();
+	  PWD.Invoke(new AnonymousMethod(delegate() { PWD.Close(); }));
 	}));
 	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
 	T.Start();
@@ -508,51 +559,74 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void chkShowIcons_CheckedChanged(object sender, EventArgs e) {
-      this.lstEntries.SmallImageList = (this.chkShowIcons.Checked ? this.ListIcons_ : null);
+      foreach (ListView LV in this.ListViews_.Values) {
+	LV.SmallImageList = (this.chkShowIcons.Checked ? this.ListIcons_ : null);
+      }
     }
 
     #region Context Menu Events
 
     private void mnuELCProperties_Click(object sender, EventArgs e) {
-      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
-      ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
-	TPP.Show(this);
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused) {
+	  foreach (ListViewItem LVI in LV.SelectedItems) {
+	  ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
+	    TPP.Show(this);
+	  }
+	}
       }
     }
 
     private void mnuELCCopyRow_Click(object sender, System.EventArgs e) {
-      this.CopyEntry();
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused)
+	  this.CopyEntry(LV);
+      }
     }
 
     private void CopyEntryFieldMenuItem_Click(object sender, System.EventArgs e) {
     MenuItem MI = sender as MenuItem;
     string CopyText = String.Empty;
-      foreach (ListViewItem LVI in this.lstEntries.SelectedItems) {
-	if (CopyText != "")
-	  CopyText += "\r\n";
-	CopyText += LVI.SubItems[MI.Index].Text;
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused) {
+	  foreach (ListViewItem LVI in LV.SelectedItems) {
+	    if (CopyText != "")
+	      CopyText += "\r\n";
+	    CopyText += LVI.SubItems[MI.Index].Text;
+	  }
+	}
       }
       Clipboard.SetDataObject(CopyText, true);
     }
 
 
     private void mnuStringTableContext_Popup(object sender, System.EventArgs e) {
-      if (this.lstEntries.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
-	this.mnuELCCopyField.MenuItems.Clear();
-	foreach (ColumnHeader CH in this.lstEntries.Columns)
-	  this.mnuELCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyEntryFieldMenuItem_Click)));
-	this.mnuELCCopyField.Enabled = true;
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused) {
+	  if (LV.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
+	    this.mnuELCCopyField.MenuItems.Clear();
+	    foreach (ColumnHeader CH in LV.Columns)
+	      this.mnuELCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyEntryFieldMenuItem_Click)));
+	    this.mnuELCCopyField.Enabled = true;
+	  }
+	  else
+	    this.mnuELCCopyField.Enabled = false;
+	}
       }
-      else
-	this.mnuELCCopyField.Enabled = false;
     }
 
     private void mnuELCEAll_Click(object sender, EventArgs e) {
-      this.ExportThings(this.lstEntries.Items);
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused)
+	  this.ExportThings(LV.Items);
+      }
     }
 
     private void mnuELCESelected_Click(object sender, EventArgs e) {
-      this.ExportThings(this.lstEntries.SelectedItems);
+      foreach (ListView LV in this.ListViews_.Values) {
+	if (LV.Focused)
+	  this.ExportThings(LV.SelectedItems);
+      }
     }
 
     #endregion

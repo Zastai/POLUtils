@@ -64,7 +64,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.cmbImageChooser = new System.Windows.Forms.ComboBox();
       this.lblImageChooser = new System.Windows.Forms.Label();
       this.tabViewerGeneral = new System.Windows.Forms.ThemedTabPage();
-      this.lstEntries = new System.Windows.Forms.ListView();
       this.pnlThingListActions = new System.Windows.Forms.Panel();
       this.chkShowIcons = new System.Windows.Forms.CheckBox();
       this.btnThingListSaveImages = new System.Windows.Forms.Button();
@@ -73,6 +72,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.btnReloadFile = new System.Windows.Forms.Button();
       this.lblNoViewers = new System.Windows.Forms.Label();
       this.dlgExportFile = new System.Windows.Forms.SaveFileDialog();
+      this.pnlGeneralContents = new System.Windows.Forms.Panel();
       this.pnlViewerArea.SuspendLayout();
       this.tabViewers.SuspendLayout();
       this.tabViewerItems.SuspendLayout();
@@ -348,24 +348,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // tabViewerGeneral
       // 
-      this.tabViewerGeneral.Controls.Add(this.lstEntries);
+      this.tabViewerGeneral.Controls.Add(this.pnlGeneralContents);
       this.tabViewerGeneral.Controls.Add(this.pnlThingListActions);
       resources.ApplyResources(this.tabViewerGeneral, "tabViewerGeneral");
       this.tabViewerGeneral.Name = "tabViewerGeneral";
       this.tabViewerGeneral.UseVisualStyleBackColor = true;
-      // 
-      // lstEntries
-      // 
-      this.lstEntries.AllowColumnReorder = true;
-      this.lstEntries.ContextMenu = this.mnuEntryListContext;
-      resources.ApplyResources(this.lstEntries, "lstEntries");
-      this.lstEntries.FullRowSelect = true;
-      this.lstEntries.GridLines = true;
-      this.lstEntries.Name = "lstEntries";
-      this.lstEntries.UseCompatibleStateImageBehavior = false;
-      this.lstEntries.View = System.Windows.Forms.View.Details;
-      this.lstEntries.DoubleClick += new System.EventHandler(this.lstEntries_DoubleClick);
-      this.lstEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstEntries_KeyDown);
       // 
       // pnlThingListActions
       // 
@@ -421,6 +408,11 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.dlgExportFile.DefaultExt = "xml";
       resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
       // 
+      // pnlGeneralContents
+      // 
+      resources.ApplyResources(this.pnlGeneralContents, "pnlGeneralContents");
+      this.pnlGeneralContents.Name = "pnlGeneralContents";
+      // 
       // MainWindow
       // 
       resources.ApplyResources(this, "$this");
@@ -464,7 +456,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.ContextMenu mnuEntryListContext;
     private System.Windows.Forms.Panel pnlViewerArea;
     private System.Windows.Forms.TabControl tabViewers;
-    private System.Windows.Forms.ListView lstEntries;
     private System.Windows.Forms.PictureBox picImageViewer;
     private System.Windows.Forms.Panel pnlImageChooser;
     private System.Windows.Forms.Label lblImageChooser;
@@ -493,6 +484,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private System.Windows.Forms.Button btnThingListSaveImages;
     private System.Windows.Forms.Button btnReloadFile;
     private System.Windows.Forms.CheckBox chkShowIcons;
+    private System.Windows.Forms.Panel pnlGeneralContents;
 
   }
 
