@@ -47,7 +47,7 @@ namespace PlayOnline.FFXI.Things {
 	  "mp-cost",
 	  "casting-time",
 	  "recast-delay",
-	  "unknown-1",
+	  "list-icon-id",
 	  "japanese-name",
 	  "english-name",
 	  "japanese-description",
@@ -72,7 +72,7 @@ namespace PlayOnline.FFXI.Things {
     private ushort?      RecastDelay_;
     private byte[]       LevelRequired_;
     private ushort?      ID_;
-    private byte?        Unknown1_;
+    private byte?        ListIconID_;
     private string       JapaneseName_;
     private string       EnglishName_;
     private string       JapaneseDescription_;
@@ -91,7 +91,7 @@ namespace PlayOnline.FFXI.Things {
       this.RecastDelay_         = null;
       this.LevelRequired_       = null;
       this.ID_                  = null;
-      this.Unknown1_            = null;
+      this.ListIconID_          = null;
       this.JapaneseName_        = null;
       this.EnglishName_         = null;
       this.JapaneseDescription_ = null;
@@ -115,11 +115,11 @@ namespace PlayOnline.FFXI.Things {
 	case "element":              return this.Element_.HasValue;
 	case "id":                   return this.ID_.HasValue;
 	case "index":                return this.Index_.HasValue;
+	case "list-icon-id":         return this.ListIconID_.HasValue;
 	case "magic-type":           return this.MagicType_.HasValue;
 	case "mp-cost":              return this.MPCost_.HasValue;
 	case "recast-delay":         return this.RecastDelay_.HasValue;
 	case "skill":                return this.Skill_.HasValue;
-	case "unknown-1":            return this.Unknown1_.HasValue;
 	case "valid-targets":        return this.ValidTargets_.HasValue;
 	default:                     return false;
       }
@@ -150,12 +150,11 @@ namespace PlayOnline.FFXI.Things {
 	case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
 	case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
 	case "index":                return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.Index_.Value));
+	case "list-icon-id":         return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
 	case "magic-type":           return (!this.MagicType_.HasValue    ? String.Empty : String.Format("{0}", this.MagicType_.Value));
 	case "mp-cost":              return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
 	case "skill":                return (!this.Skill_.HasValue        ? String.Empty : String.Format("{0}", this.Skill_.Value));
 	case "valid-targets":        return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
-	// Nullables - Hex Values
-	case "unknown-1":            return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown1_.Value));
 	// Nullables - Time Values
 	case "casting-time":         return (!this.CastingTime_.HasValue  ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
 	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? String.Empty : this.FormatTime(this.RecastDelay_.Value / 4.0));
@@ -176,11 +175,11 @@ namespace PlayOnline.FFXI.Things {
 	case "element":              return (!this.Element_.HasValue      ? null : (object) this.Element_.Value);
 	case "id":                   return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
 	case "index":                return (!this.Index_.HasValue        ? null : (object) this.Index_.Value);
+	case "list-icon-id":         return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
 	case "magic-type":           return (!this.MagicType_.HasValue    ? null : (object) this.MagicType_.Value);
 	case "mp-cost":              return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
 	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? null : (object) this.RecastDelay_.Value);
 	case "skill":                return (!this.Skill_.HasValue        ? null : (object) this.Skill_.Value);
-	case "unknown-1":            return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
 	case "valid-targets":        return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
 	default:                     return null;
       }
@@ -198,11 +197,11 @@ namespace PlayOnline.FFXI.Things {
 	case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
 	case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
 	case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
+	case "list-icon-id":         this.ListIconID_          = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "magic-type":           this.MagicType_           = (MagicType)   this.LoadHexField            (Node); break;
 	case "mp-cost":              this.MPCost_              = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "recast-delay":         this.RecastDelay_         = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "skill":                this.Skill_               = (Skill)       this.LoadHexField            (Node); break;
-	case "unknown-1":            this.Unknown1_            = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "valid-targets":        this.ValidTargets_        = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
@@ -222,7 +221,7 @@ namespace PlayOnline.FFXI.Things {
     // 00d-00d U8  Recast Delay (1/4 second)
     // 00e-025 U8  Level required (1 byte per job, 0xff if not learnable; first is for the NUL job, so always 0xff; only 24 slots despite 32 possible job flags)
     // 026-027 U16 ID (0 for "unused" spells; starts out equal to the index, but doesn't stay that way)
-    // 028-028 U8  Unknown
+    // 028-028 U8  List Icon ID (not sure what this is an index of, but it seems to match differences in item icon)
     // 029-03c CHR Japanese Name (20 bytes)
     // 03d-051 CHR English Name (20 bytes)
     // 052-0d1 CHR Japanese Description (128 bytes)
@@ -249,7 +248,7 @@ namespace PlayOnline.FFXI.Things {
       this.RecastDelay_   = BR.ReadByte();
       this.LevelRequired_ = BR.ReadBytes(24);
       this.ID_            = BR.ReadUInt16();
-      this.Unknown1_      = BR.ReadByte();
+      this.ListIconID_    = BR.ReadByte();
       FFXIEncoding E = new FFXIEncoding();
       this.JapaneseName_        = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
       this.EnglishName_         = E.GetString(BR.ReadBytes( 20)).TrimEnd('\0');
