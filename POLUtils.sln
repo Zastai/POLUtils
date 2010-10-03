@@ -47,6 +47,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayOnline.Utils.TetraViewe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POLUtils", "POLUtils\POLUtils.csproj", "{AF3C3123-0BD1-4AD4-9AF4-FD0C33871901}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki Pages", "Wiki Pages", "{E32CF1CD-AD65-42C0-9F35-5D60F26E0F8C}"
+	ProjectSection(SolutionItems) = preProject
+		Wiki\FFXIDATFileEncryption.wiki = Wiki\FFXIDATFileEncryption.wiki
+		Wiki\FileFormats.wiki = Wiki\FileFormats.wiki
+		Wiki\NPCListFormat.wiki = Wiki\NPCListFormat.wiki
+		Wiki\ReleaseHistory.wiki = Wiki\ReleaseHistory.wiki
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -173,5 +181,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3A9BFA35-9A50-47A8-8585-3C18B9B3F708} = {A032E7DB-67AF-4ADF-9D15-085DBBCFA524}
+		{E32CF1CD-AD65-42C0-9F35-5D60F26E0F8C} = {A032E7DB-67AF-4ADF-9D15-085DBBCFA524}
 	EndGlobalSection
 EndGlobal
