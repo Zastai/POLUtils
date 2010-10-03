@@ -24,4 +24,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark    ("PlayOnline, Final Fantasy and Vanadiel are registered trademarks of Square Enix Co., Ltd.")]
 [assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("0.9.8.0")]
+[assembly: AssemblyVersion      ("0.9.9.0")]
