@@ -21,7 +21,8 @@ namespace PlayOnline.FFXI {
 
   // TODO: Make a real design decision on how to decide what language a string resource should be returned as.
   //       Should it be the UI language, the selected POL region, ...?
-  // For now, this will always return the English text, except for non-expando autotrans messages, which will be in the language specified by their ID.
+  // For now, this will always return the English text, except for non-expando autotrans messages, which will be in the
+  // language specified by their ID.
   public class FFXIResourceManager {
 
     private static FFXIEncoding E = new FFXIEncoding();
@@ -36,15 +37,15 @@ namespace PlayOnline.FFXI {
     }
 
     public static string GetAreaName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry(55465, ID);
+      return FFXIResourceManager.GetStringTableEntry(55465, ID); // JP = 55535
     }
 
     public static string GetJobName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry(55467, ID);
+      return FFXIResourceManager.GetStringTableEntry(55467, ID); // JP = 55536
     }
 
     public static string GetRegionName(ushort ID) {
-      return FFXIResourceManager.GetStringTableEntry(55654, ID);
+      return FFXIResourceManager.GetStringTableEntry(55654, ID); // JP = 55534
     }
 
     public static string GetAbilityName(ushort ID) {
@@ -190,6 +191,15 @@ namespace PlayOnline.FFXI {
     byte   Language = (byte) ((ResourceID >> 16) & 0xff);
     ushort ID       = (ushort) (ResourceID & 0xffff);
       switch (Category) {
+	case 0x00: // My own additions (scheduled for removal now that there are separate accessors for them)
+	  switch (Language) {
+	    case 1: return FFXIResourceManager.GetRegionName(ID);
+	    case 2: return FFXIResourceManager.GetAreaName(ID);
+	    case 3: return FFXIResourceManager.GetJobName(ID);
+	    case 4: return FFXIResourceManager.GetAbilityName(ID);
+	    case 5: return FFXIResourceManager.GetSpellName(ID);
+	  }
+	  break;
 	case 0x02: return FFXIResourceManager.GetAutoTranslatorMessage(Category, Language, ID);
 	case 0x04: return FFXIResourceManager.GetAutoTranslatorMessage(Category, Language, ID);
 	case 0x06: return FFXIResourceManager.GetItemName(Language, ID);

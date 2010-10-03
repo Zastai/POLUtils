@@ -3,10 +3,14 @@
 Requirements for building POLUtils
 ==================================
 
-Main requirement is Visual Studio 2008. I think Visual C# Express 2008 is not enough (I don't think it does 64-bit builds).
+Main requirement is Visual Studio 2005. I think Visual C# Express 2005 is not enough (I don't think it does 64-bit builds).
 A command-line Subversion client (svn.exe) needs to be in Visual Studio's executables path (either in the global PATH or specified via
 Tools>Options, Projects and Solutions, VC++ Directories, Executable files) for the build to work (the current revision number is embedded
 in the POLUtils executable). Convenient MSI packages (both for 32-bit and 64 bit) can be retrieved from http://www.sliksvn.com/en/download.
+
+The solution also tries to build the website pages via a makefile; for this you'll need GNU make, cp (from coreutils) and xsltproc
+(from libxslt). These are all available via the Cygwin project, and should be in Visual Studio's path as well (see above). Note that
+this is completely optional - by the time the web site build is done, all relevant executables will already be built.
 
 Building the installer requires NSIS (http://nsis.sourceforge.net/).
 

@@ -150,8 +150,7 @@ namespace PlayOnline.FFXI.Things {
 
     // Block Layout:
     // 000-001 U16 Index
-    // 002-002 U8  Type
-    // 003-003 U8  List Icon ID (e.g. 40-47 for the elemental-colored dots)
+    // 002-003 U16 List Icon ID (e.g. 40-47 for the elemental-colored dots)
     // 004-005 U16 MP Cost
     // 006-007 U16 Unknown (used to be the cooldown time)
     // 008-009 U16 Valid Targets

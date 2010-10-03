@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id$ -->
+<website name="Pebbles&apos; Program Page" url="http://users.telenet.be/pebbles/" news-feed="news.rdf">
+  <!-- News Items -->
+  <news file="news.html">
+    <news-item title="POLUtils Now Open Source" author="Pebbles" date="July 4th, 2010">
+      <p>POLUtils has been made Open Source - it's available from
+         <a href="http://code.google.com/p/polutils/">Google Code</a> now, under the
+         <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License</a>.
+         Someone has also come forward to take over maintainership, so POLUtils will soon be
+         under new management as well. Watch this space.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.7 Released" author="Pebbles" date="July 8th, 2008">
+      <p>Today I'm releasing POLUtils 0.9.7, a collection of PlayOnline-related utilities.</p>
+      <p>Only minor tweaks, no major changes. Consider this the "final" version - I don't expect
+         there to be any versions after this (I have some offers regarding continued fixes for
+         formats broken by patches, but we'll have to see if/how that pans out).</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.6 Released" author="Pebbles" date="March 11th, 2008">
+      <p>Today I'm releasing POLUtils 0.9.6, a collection of PlayOnline-related utilities.</p>
+      <p>Updates item loading for the DAT changes in the March update.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.5 Released" author="Pebbles" date="December 8th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.5, a collection of PlayOnline-related utilities.</p>
+      <p>This improves WotG support in the data browsers (maps aren't catalogued yet), and
+         adds macro book support to the macro editor.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.4 Released" author="Pebbles" date="November 20th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.4, a collection of PlayOnline-related utilities.</p>
+      <p>Not too many changes this time, mainly fixing the loading of the armor DATs, and
+         adding some extra field values (DNC, SCH for jobs, SoulPlate and Reflector for item
+         types).</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.3 Released" author="Pebbles" date="June 11th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.3, a collection of PlayOnline-related utilities.</p>
+      <p>A new utility was added which allows editing npc/monster names (which violates the TOS,
+         so use at your own risk). Also, the data browser was updated with new DAT locations,
+         and adds the French &amp; German DATs as well.</p>
+      <p>Note that support for the new DATs is fairly rough (the raw string tables are shown),
+         and some of the related resource strings (as seen in the macro editor) are not supported
+         properly yet. Also, because of the various new DAT formats, EngrishOnry has been
+         disabled until I take it upon myself to redo it for full EN-FR-DE-JP resource switching
+         including support for the new DAT formats.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.2 Released" author="Pebbles" date="January 7th, 2007">
+      <p>Today I'm releasing POLUtils 0.9.2, a collection of PlayOnline-related utilities.</p>
+      <p>The only changes here are fixed item &amp; autotrans translation in EngrishOnry, and
+         an update of the German translation.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.1 Released" author="Pebbles" date="December 20th, 2006">
+      <p>Today I'm releasing POLUtils 0.9.1, a collection of PlayOnline-related utilities.</p>
+      <p>There are some changes under the hood, but the main reason for this release is the
+         DAT changes of the 20061218 patch.  EngrishOnry currently has its item and autotrans
+         translation disabled (both are broken); I may push a 0.9.2 release before the end of the
+         year with a working EngrishOnry.</p>
+    </news-item>
+    <news-item title="DAT Format Changes" author="Pebbles" date="December 18th, 2006">
+      <p>Today's patch changed the Item and Status DAT formats (as well as the string table format),
+         breaking POLUtils - this is being worked on.  In the meantime, do NOT use Engrishonry as
+         it will corrupt the item data.</p>
+    </news-item>
+    <news-item title="POLUtils 0.9.0 Released" author="Pebbles" date="July 25th, 2006">
+      <p>Today I'm releasing POLUtils 0.9.0, a collection of PlayOnline-related utilities.</p>
+      <p>This is mainly a bugfix release; there aren't many new features.  Support was added
+         for Mob/NPC lists; that's about it.  Some of the ROM mappings were fixed, and clipboard
+         access was finally fixed (so stuff you copy will stay there after POLUtils closes).</p>
+      <p>POLUtils is now available as two separate builds - one for x86 (32-bit) systems and
+         one for x64 systems (no Itanium build, sorry).  Unfortunately only Managed DirectX 2.0
+         supports x64, and its interface is completely different from that of MDX 1.0, so the
+         x64 build currently does not support audio playback.</p>
+    </news-item>
+    <news-item title="POLUtils 0.8.3 Released" author="Pebbles" date="April 25th, 2006">
+      <p>Today I'm releasing POLUtils 0.8.3, a collection of PlayOnline-related utilities.</p>
+      <p>This version adds (almost) full ToAU support; most dialog tables are known by EngrishOnry
+         and the data browser, and most map DATs are listed as well.  In addition, some of the
+	 other DAT fields were adjusted (most notably some changes to the Abilities info, and
+	 the addition of PuppetItem items).</p>
+    </news-item>
+    <news-item title="POLUtils 0.8.2 Released" author="Pebbles" date="March 21st, 2006">
+      <p>Today I'm releasing POLUtils 0.8.2, a collection of PlayOnline-related utilities.</p>
+      <p>This version corrects the Strange Apparatus Passcode generator - the one in 0.8.1
+         listed the wrong elements (the codes were correct for each given zone though).</p>
+    </news-item>
+    <news-item title="POLUtils 0.8.1 Released" author="Pebbles" date="March 20th, 2006">
+      <p>Today I'm releasing POLUtils 0.8.1, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>New component: a passcode generator for the Strange Apparatuses.</li>
+        <li>The AudioManager has been changed to incorporate the buffering playback used by the
+            oldest POLUtils version.  If this buffered playback is used (the default), all tracks
+            (well, except the ATRAC-3 ones, of course) will be playable (no more exceptions on the longer
+            ones) and consume far less memory.  As a drawback, playback will skip if another DirectSound
+            application (WinAmp, POL Viewer, ...) is active at the same time, and there is a bug that
+            causes the last second or so of some tracks to loop.</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>An issue that prevented correct POL detection on some systems has been resolved.</li>
+      </ul></p>
+      <p>Microsoft has a new DirectX SDK available, which includes a version of Managed DirectX
+         that targets .NET 2.0.  I'll be testing that out shortly; if all goes well, that means
+         audio playback will be available on 64-bit systems starting from the next version of
+         POLUtils.</p>
+    </news-item>
+    <news-item title="Forums Created" author="Pebbles" date="March 10th, 2006">
+      I've set up a simple forum at <a href="http://polutils.forumer.com/">polutils.forumer.com</a> -
+      feel free to head over there &amp; register.
+    </news-item>
+    <news-item title="POLUtils 0.8.0 Released" author="Pebbles" date="February 23rd, 2006">
+      <p>Today I'm releasing POLUtils 0.8.0, a collection of PlayOnline-related utilities.</p>
+      <p>It's fairly light on new features; the main thing is a complete rewrite of the core DAT
+         loading code, to make the various forms of data accessible in a generic way.<br/>
+         From the user's point of view, this currently mainly manifests itself as an ability to
+         export pretty much any supported DAT type to XML.  0.9.0 will see the item find dialog
+         replaced by a generic version, making text searches possible in the dialog tables, for
+         example; and the item list comparison tool will also be made generic.<br/>
+         As a side-effect, the XML format has been changed once again, but should now be stable;
+         as with 0.7.0, the ItemListUpgrade utility will convert old files to the new format.
+         CSV Export is currently unavailable.</p>
+      <p>The German translation of the main UI, and the German, Spanish and French installer translations
+         are included.  The old and extremely incomplete Dutch &amp; Japanese UI translations were removed.
+      </p>
+      <p>POLUtils will run natively on Win64 and should now correctly detect POL &amp; FFXI on those systems.
+         Audio playback will probably be unavailable until Microsoft released a 64-bit version of Managed
+         DirectX.  I may switch to using specifically 32-bit targeted builds in future releases to avoid
+         further issues on Win64.</p>
+    </news-item>
+    <news-item title="More Translation News" author="Pebbles" date="February 16th, 2006">
+      The installer can now speak Spanish and French (thanks to Kapibara from the Phoenix server);
+      translations for the tools themselves are in progress, but probably won't make it into 0.8.0
+      (which is slated to be released next week after the patch).
+    </news-item>
+    <news-item title="Status Update" author="Pebbles" date="February 5th, 2006">
+      The rewrite of the core file content handling is pretty much completed; as a result, it will
+      be much easier for me to handle any changes S/E may make to the file format in future patches.
+      In addition, it will be possible to export the data from any file format supported by the data
+      browser to XML, making it much easier to detect the changes made by a patch.  In fact, one of the
+      main remaining tasks is to rework the item comparison app to handle comparing other data too.
+      I would expect that 0.8.0 will be relesed shortly after ther February patch (there's bound to be
+      some data changes in that).
+    </news-item>
+    <news-item title="German Translation In Progress" author="Pebbles" date="January 18th, 2006">
+      A volunteer has stepped forward to provide a German translation of POLUtils - the installer has
+      been covered already, with the full UI to follow soon.  A round of applause for Andy Müller
+      (Missingno on Fairy) please!<br/>
+      As always, volunteers for translations are most welcome (French and Spanish already have a candidate,
+      but that leaves many languages to choose from).  In fact, I'd especially like people to do a Japanese
+      translation - I'll probably remove my partial bits of Japanese and Dutch translation from the next
+      release.
+    </news-item>
+    <news-item title="POLUtils 0.7.0 Released" author="Pebbles" date="December 24th, 2005">
+      <p>This is the next baseline release; it's not much more than a .NET 2.0 build of POLUtils 0.6.4.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>Built using .NET 2.0; some UI tweaks have been made to match this switch (nothing major yet).</li>
+	<li>Integrated EngrishOnry into POLUtils.</li>
+        <li>Added ItemListUpgrade, a simple utility that converts an "old" item list XML dump to the current format.</li>
+        <li>CSV Item Export now puts in Description as a single multiline field (tested import with Excel and Access),
+	    and will always include the item's icon info.</li>
+	<li>If anyone's interested in providing translations for POLUtils, a kit is now available (in the
+	    downloads section). Note that translating anything except the installer requires Visual Studio 2005
+	    (might work with Visual C# 2005 Express too, but that is untested).<br/>
+	    Do let me know before you start working on this (to avoid duplicate efforts).</li>
+      </ul></p>
+    </news-item>
+    <news-item title="RSS Feed Added" author="Pebbles" date="December 24th, 2005">
+      Added an RSS feed for the news items; this allows you to add live bookmarks or to put the news items on
+      your Google home page.
+    </news-item>
+    <news-item title="POLUtils 0.6.4 Released" author="Pebbles" date="December 15th, 2005">
+      <p>Another emergency release - turns out S/E also changed the autotranslator file's structure, breaking
+         EngrishOnry's autotrans translation as well as the Macro Editor component of POLUtils.</p>
+    </news-item>
+    <news-item title="POLUtils 0.6.3 Released" author="Pebbles" date="December 13th, 2005">
+      <p>An emergency release due to the data changes for items and spells of yesterday's patch.
+         Note that the spell data now has 24 slots for job level, up 8 from the previous layout, so it seems like
+         S/E is keeping its options open for possible future expansions (although they've said in the past that
+         they probably wouldn't do more than 3 expansions).</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>EngrishOnry had non-functional ability translation; this is now fixed.</li>
+	<li>The item viewer control had some broken behaviour (layout issues), this is now fixed.</li>
+      </ul></p>
+    </news-item>
+    <news-item title="Refreshed 0.6.2 Installer" author="Pebbles" date="December 5th, 2005">
+      I uploaded a fresh installer, which returns to the "old-style" .NET detection, and allows installation to continue if the
+      detection fails.  This should resolve the problems people reported.<br/>
+      In other news, I may release 0.7.0 soon - this will simply be 0.6.2 but built for version 2.0 of the .NET framework. It may
+      end up being one of the last releases, because I am seriously considering quitting the game (I haven't played in over a month);
+      let's hope the holidays + december patch can draw me back in.
+    </news-item>
+    <news-item title="POLUtils 0.6.2 Released" author="Pebbles" date="November 20th, 2005">
+      <p>After a looooooong delay (caused by ZoneAlarm-induced BSOD issues), I'm back with another minor update (0.6.2).</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>The autotranslator translation of EngrishOnry was fixed (it broke the game, making text input impossible).</li>
+      </ul></p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>EngrishOnry was made more configurable. For example, in the case of the autotranslator translation, you can choose to keep the
+	    Japanese abbreviations (e.g. "ari&lt;TAB&gt;" to get "(Thank you.)").</li>
+        <li>Thanks to some digging by Stephen Newby, several new fields were added to the item viewer (including element &amp; storage size on
+            furniture items).  One of the fields applies specifically to beastmaster "jugs"; it's currently marked as "jug size" (with a
+            value ranging from 1 to 5 much like shield size), but its exact meaning has not yet been determined.  For all I know it could be
+            a pet damage or summon time multiplier.  Any feedback from BSTs is appreciated.</li>
+        <li>The text for quests/missions/key items is now viewable (from the String Table menu), bringing POLUtils closer to matching ffxitool's
+         non-3D functionality.</li>
+      </ul></p>
+      <p><em>Note</em>: the XML output format has changed in this version (and will hopefully be fairly future-proof).  I may release a small
+         tool to "upgrade" existing exports, but it's not a priority for me at this time.</p>
+    </news-item>
+    <news-item title="POLUtils 0.6.1 Released" author="Pebbles" date="August 2nd, 2005">
+      <p>Just a quick bugfix release - fixes dialog and string table translation in EngrishOnry,
+         and corrects/extends the list of dialog tables in the data browser.</p>
+    </news-item>
+    <news-item title="POLUtils 0.6.0 Released" author="Pebbles" date="July 31st, 2005">
+      <p>Today I'm releasing POLUtils 0.6.0, a collection of PlayOnline-related utilities.</p>
+      <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
+         (email is on main page).</p>
+      <p>I'm also interested in DAT file mappings - if you know what a particular DAT file contains, and it's
+         not yet linked to from the data browser menu, let me know.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  Includes EngrishOnry, a small utility that allows you to translate pieces of the Japanese interface,
+	  making use of the JP POL client more comfortable for native English speakers.  Because this utility
+	  modifies and/or swaps DAT files, it violates the TOS, so use at your own risk.  Note that it is merely
+	  installed alongside POLUtils (if selected in the installer) - no shortcuts for it are created.
+	</li><li>
+	  Includes an Item Comparison tool - this allows comparing XML exports of item data (useful after a patch
+	  to find new/changed items).
+	</li><li>
+	  Several more bits of info are show (such as improved ability &amp; status info, and spell info) - most of these
+	  are linked from the "String Tables" menu in the data browser.
+	</li><li>
+	  The casting time of enchanted items is now listed as well.
+	</li><li>
+	  List views now autosize themselves.
+	</li>
+      </ul></p>
+      <p><strong>Known Issues:</strong><br/><ul>
+	<li>Some of the dialog tables linked to from the menu aren't shown (no viewers available). This is being looked into.</li>
+      </ul></p>
+    </news-item>
+    <news-item title="foo_pol 1.3 Released" author="Pebbles" date="July 31st, 2005">
+      <p>This release fixes the borked configuration page.</p>
+    </news-item>
+    <news-item title="foo_pol 1.2 Released" author="Pebbles" date="July 22nd, 2005">
+      <p>As of the July patch, S/E has been using ATRAC-3 for music and sound effects in FFXI.
+         I updated foo_pol to recognize those files, but it's unable to play them (ATRAC-3 is a
+         proprietary codec by Sony; why they use it is beyond me as it's worse than MP3 quality-wise - they
+         should have gone for Ogg Vorbis instead).  Unless some major bug is found, this will probably
+         be the last foo_pol release until foobar2000 0.9 comes out.</p>
+      <p>I also plan to move up the POLUtils 0.6.0.0 release - it won't have all the features I would
+         like, but should be nice nonetheless.  It will also include EngrishOnry, a small utility
+         to translate portions of a JP FFXI installation.</p>
+    </news-item>
+    <news-item title="Still not dead" author="Pebbles" date="July 6th, 2005">
+      <p>POLUtils still isn't dead, I've just been doing other stuff; there's not much to report
+         at the moment.  0.6.0.0 will be done when it's done.</p>
+    </news-item>
+    <news-item title="POLUtils 0.5.1 Release" author="Pebbles" date="May 6th, 2005">
+      <p>Today I'm releasing POLUtils 0.5.1, a collection of PlayOnline-related utilities.</p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>Fixed broken loading of Managed DirectSound.</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.5.0 Release" author="Pebbles" date="May 1st, 2005">
+      <p>Today I'm releasing POLUtils 0.5.0, a collection of PlayOnline-related utilities.</p>
+      <p>If you have remarks/comments/gripes/corrections/suggestions/whatever, please, please let me know
+         (email is on main page).</p>
+      <p>I'm also interested in DAT file mappings - if you know what a particular DAT file contains, and it's
+         not yet linked to from the data browser menu, let me know.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  Improved installer; added warning message to make sure people only use installers they
+	  dowload from the official page.
+	</li><li>
+	  Fully implemented character set conversion using internal translation tables - this means POLUtils
+	  no longer depends on any Windows codepages; it should be fully Unicode.  There will probably still
+	  be gaps in the extended mappings added by SE; if you see any &lt;BAD CHAR: xxxx&gt; markers, please
+	  report them (and if possible, let me know what character shouldve been shown instead).
+	</li><li>
+	  Lots of improvement to the data browser.  The item viewer was completely overhauled, and a
+	  "find item" dialog was added, with moderately poweful query capability.  Exporting item data
+	  to XML or CSV is also fully supported (no progress window for it yet though).  Several more
+	  string table formats are supported (titles, abilities, area dialog tables).
+	</li><li>
+	  The data browser has 2 settings of its own (not currently preserved between runs) - you can
+	  opt to see a more detailed progress report (e.g. "loaded 5/200 items" instead of "loading items..."),
+	  and you can choose to make the file scan abortable.  Either option slows down the file scans though,
+	  so they're disabled by default.
+	</li><li>
+	  Added FFXI Config Editor.  Currently allows changing only resolution and sound effect count
+	  (free editing, not limited options).
+	</li>
+      </ul></p>
+      <p><strong>New Bugs:</strong><br/><ul>
+	<li>Lots. Probably.</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>Too many to mention.</li>
+      </ul></p>
+      <p><strong>Plans For Next Release</strong><br/><ul>
+	<li>
+	  Overhaul the macro editor.  If you have any layout/design suggestions, please let me know.
+	</li><li>
+	  Rework the menu system for the data browser, perhaps basing the menus completely on an XML file
+	  that describes known DAT files.
+	</li><li>
+	  Rework the audio manager so that it doesn't do a full scan, but instead only scans parts of the
+	  directory tree on an as-needed basis.  While not much an issue for the music files, scanning the
+	  SFX files takes waaaay too long.
+	</li><li>
+	  (Maybe) Add a recipe database.
+	</li><li>
+	  Add a tool to compare exported item lists (mainly for my own use, so that i can report item data
+	  changes after each patch).
+	</li><li>
+	  (Maybe) Extend the config editor to allow full configuration (would help people that use JP POL +
+	  NA POL + 1 FFXI install, as that means no JP FFXIConfig).
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="I ATEN'T DEAD" author="Pebbles" date="March 6th, 2005">
+      <p>No, the POLUtils project isn't dead.  I am rewriting a lot of stuff (data browser, macro editor)
+         and am writing a text decoder from scratch (good: no more codepage dependencies, bad: lots of
+         boring mapping table data entry).  On top of all that, I plan to add an FFXI config editor
+         (resolution / sample count already in; also looking into other stuff) and an item search (i.e.
+         look for all items containing "Aketon" in their name or "Ranged Accuracy" in their description).</p>
+      <p>This is all going to take some time, and I'm not going to release 0.5.0 until that's finished;
+         so bear with me ^^.</p>
+    </news-item>
+    <news-item title="foo_pol 1.1 Released" author="Pebbles" date="January 20th, 2005">
+      <p>I'm release an update to foo_pol today. Nothing spectacular, but rather useful.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  There is a new "Fade Out (10 seconds)" loop option.  For looped files, this will cause
+	  it to loop for a maximum of 10 seconds, with a slow fade.  This makes listening to looped
+	  tracks more pleasant.  This feature was suggested by Feenicks on the FFXIOnline forums.
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.4.0 Released" author="Pebbles" date="January 16th, 2005">
+      <p>Today I'm releasing POLUtils 0.4.0, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  POLUtils is deployed via an installer now - this also checks for the presence of the .NET
+	  framework 1.1, to avoid unexpected and/or cryptic Windows errors.
+	</li><li>
+	  The language choice on the main dialog will now only list available options (and in its
+	  native form).  Additionally, the selection will be preserved across runs.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  There was a logic error in the data browser - if a second item data file was opened, the
+	  item icons of the first one were reused.  This is now fixed.
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.3.5 Released" author="Pebbles" date="January 15th, 2005">
+      <p>Today I'm releasing POLUtils 0.3.5, a collection of PlayOnline-related utilities.<br/>
+         This is really an intermediate release, there weren't enough major changes to
+         warrant a 0.4 version.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  The data browser has a menu now, that allows you to easily find several kinds of "interesting" files
+	  (maps, item data, etc.).
+	</li><li>
+	  The data browser now has support for item data - not quite all available info has been figured out
+	  at the moment (e.g. Rare/Ex/NoAuction flags).
+	</li><li>
+	  The data browser will now scan files for any images they may contain (instead of just checking the
+	  start of the file and displaying the first one it found).  Unfortunately, this can take some time,
+	  and you cannot abort the scan at the moment.  I will look into making that more convenient (improving
+	  the speed probably won't be possible, but I'll try the too) - however, threading doesn't play very
+	  nice when Windows Forms controls are involved, so it's a bit tricky.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  Some of the picture loading code was broken and/or missing - the current data browser should
+	  support most formats (DXT1-DXT5 and the various bitmaps) properly.
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.3 Released" author="Pebbles" date="January 4th, 2005">
+      <p>Today I'm releasing POLUtils 0.3, a collection of PlayOnline-related utilities.</p>
+      <p><strong>New Features:</strong><br/><ul>
+	<li>
+	  You can select the interface language - only small portions have been localized at the moment,
+	  and only for Dutch and Japanese.  Volunteers will be needed to assist further.
+	</li><li>
+	  FFXI Data Browser - allows browsing the contents of the .DAT files of FFXI.<br/>
+	  Currently, only string tables (e.g. ROM\97\17-57.DAT) and maps (e.g. ROM3\4\0-20.DAT) will be shown
+	  (although some non-map images will also be shown (e.g. ROM\0\1.DAT, which contains the game's font,
+	  and ROM\97\10.DAT, which has the treasure chest texture).<br/>
+	  I'll probably add menus in the next version to help locate "interesting" files.
+	</li>
+      </ul></p>
+      <p><strong>Fixes:</strong><br/><ul>
+	<li>
+	  POLUtils will refuse to start if no POL clients are installed (instead of crashing).
+	</li><li>
+	  The AudioManager now dynamically loads Managed DirectSound - previously it had a hard dependency on it
+	  so for most people it would simply crash when started.  It also no longer tries to buffer the sound
+	  files itself; this fixes the stuttering issue (although it seems DirectSound preloads the entire file
+	  now, causing a noticeable delay when starting playback, and also causing a marked increase in memory
+	  use).
+	</li>
+      </ul></p>
+    </news-item>
+    <news-item title="POLUtils 0.2 Released" author="Pebbles" date="December 26th, 2004">
+      <p>Today I'm releasing POLUtils 0.2, a collection of PlayOnline-related utilities.</p>
+      <p><strong>Current Features:</strong><br/><ul>
+	<li>Audio Browser - allows playing &amp; decoding of all PlayOnline-related audio files.</li>
+	<li>Macro Manager - allows editing of character macro bars (with auto-translator support).</li>
+	<li>TetraMaster image viewer - allows viewing (and extracting) of the image files of Tetra Master.</li>
+      </ul></p>
+      <p><strong>Known Issues:</strong><br/><ul>
+	<li>
+	  Macro editing works, but is in a beta stage - I recommend using it on macro bars that are currently
+	  empty, to avoid loss of data. Note that you need to explicitly ask the tool to save changes; so it
+	  is perfectly safe to simply browse the macros.
+	</li><li>
+	  POLUtils loads the icons it needs at runtime (from POL and Windows files); if you run anything other
+	  than WinXP, they may not look right. If that is the case, let me know (e.g. by sending screenshots
+	  and mentioning what OS version you use).
+	</li>
+      </ul></p>
+      <p><strong>Things I would like:</strong><br/><ul>
+	<li>
+	  The name mappings for the music and sound effect files is incomplete; if you can put a name to any
+	  unnamed tracks, let me know.
+	</li><li>
+	  The "Insert Special Character" and "Insert Faces" context menu entries for the macro command text
+	  are not implemented yet. I welcome suggestions, especially for the Faces category (the special chars
+	  I can extract from the shift-jis character set).
+	</li><li>
+	  Any and all suggestions/requests are welcomed (new utility, new feature in existing utility, ...). But
+	  please don't request a model viewer (yet) - that's outside the scope of my technical skills for the
+	  moment.
+	</li><li>
+	  If you have the JP client and have Front Mission Online installed, please contact me, so I can get some
+	  information from you.
+	</li><li>
+	  If you have the EU client, let me know - i need to verify some registry settings. If you can provide an
+	  ISO or whatever of the EU POL Viewer disc, even better.
+	</li><li>
+	  Send in your favourite macros, for future inclusion in the standard macro library.
+	</li>
+      </ul></p>
+    </news-item>
+  </news>
+  <!-- Downloads -->
+  <downloads>
+    <group name="POLUtils - Stable Beta">
+      <file name="POLUtils-0.9.7-Release-x86.exe"/>
+      <file name="POLUtils-0.9.7-Release-x64.exe">
+	Minor tweaks.<br/>
+      </file>
+      <file name="POLUtils-0.9.6-Release-x86.exe"/>
+      <file name="POLUtils-0.9.6-Release-x64.exe">
+	Fixed item loading broken by the 20080310 patch.<br/>
+      </file>
+      <file name="POLUtils-0.9.5-Release-x86.exe"/>
+      <file name="POLUtils-0.9.5-Release-x64.exe">
+	More WotG support + handle macro books.<br/>
+      </file>
+      <file name="POLUtils-0.9.4-Release-x86.exe"/>
+      <file name="POLUtils-0.9.4-Release-x64.exe">
+	Minor DAT loading fixes.<br/>
+      </file>
+      <file name="POLUtils-0.9.3-Release-x86.exe"/>
+      <file name="POLUtils-0.9.3-Release-x64.exe">
+	NPC Renamer; French/German DATs.<br/>
+      </file>
+      <file name="POLUtils-0.9.2-Release-x86.exe"/>
+      <file name="POLUtils-0.9.2-Release-x64.exe">
+	Fixed EngrishOnry (items, autotrans).<br/>
+      </file>
+      <file name="POLUtils-0.9.1-Release-x86.exe"/>
+      <file name="POLUtils-0.9.1-Release-x64.exe">
+	Bugfixes and NPC/Mob list support.<br/>
+      </file>
+      <file name="POLUtils-0.9.0-Release-x86.exe"/>
+      <file name="POLUtils-0.9.0-Release-x64.exe">
+	Bugfixes and NPC/Mob list support.<br/>
+      </file>
+      <file name="POLUtils-0.8.3-Release.exe">
+	Updated data browser &amp; EngrishOnry for ToAU.<br/>
+      </file>
+      <file name="POLUtils-0.8.2-Release.exe">
+	Corrected the Strange Apparatus passcode generator.<br/>
+      </file>
+      <file name="POLUtils-0.8.1-Release.exe">
+	Strange Apparatus passcode generator, improved audio playback.<br/>
+      </file>
+      <file name="POLUtils-0.8.0-Release.exe">
+	Major core rewrite, minor tweaks &amp; fixes.<br/>
+      </file>
+      <file name="POLUtils-0.7.0-Release.exe">
+	Built for .NET 2.0.  Integrated EngrishOnry + minor cosmetic changes.<br/>
+      </file>
+      <file name="POLUtils-0.6.4-Release.exe">
+	Updated for the changed autotranslator file structure of the 20051212 patch.<br/>
+      </file>
+      <file name="POLUtils-0.6.3-Release.exe">
+	Another EngrishOnry fix + updated for the data changes of the 20051212 patch.<br/>
+      </file>
+      <file name="POLUtils-0.6.2-Release.exe">
+	Fixed EngrishOnry and made it more configurable; added several new item fields, and added quest/mission/key item viewing.<br/>
+      </file>
+      <file name="POLUtils-0.6.1-Release.exe">
+	Fixed EngrishOnry; adjusted dialog table lists in the data browser.<br/>
+      </file>
+      <file name="POLUtils-0.6.0-Release.exe">
+	Added an item data comparison tool, and bundled EngrishOnry.<br/>
+      </file>
+      <file name="POLUtils-0.5.1-Release.exe">
+	Fixed loading of Managed DirectSound.<br/>
+      </file>
+      <file name="POLUtils-0.5.0-Release.exe">
+	Reworked data browser, removed codepage dependencies, added config editor.<br/>
+      </file>
+      <file name="POLUtils-0.4.0-Release.exe">
+	Added installer, fixed data browser bug, improved localization support.<br/>
+      </file>
+      <file name="POLUtils-0.3.5-Release.zip">
+	Some data browser enhancements: an item data viewer and a menu to easily find some "interesting" files.<br/>
+      </file>
+      <file name="POLUtils-0.3.0-Release.zip">
+	The second release of the POL Utils; introduces an initial version of the FFXI Data Browser.<br/>
+      </file>
+      <file name="POLUtils-0.2.0-Release.zip">
+	The first real release of the POL Utils.<br/>
+      </file>
+    </group>
+    <group name="POLUtils - Translator's Kit">
+      <description>
+	This kit can be used to provide me with localized resources for POLUtils (i.e. translations for the
+	installer and GUI).<br/>
+	Note that for optimal efficiency in doing the translation, Visual Studio 2005 or Visual C# 2005 Express
+	is required (otherwise you would not be able to size the controls to match the changed text).<br/>
+	The installer texts can be localized with a plain text editor, so you can still contribute if you're
+	unable or unwilling to use Visual Studio/C#.
+      </description>
+      <file name="POLUtils-Localization.zip">Current localization kit.</file>
+    </group>
+    <group name="POLUtils - Support Files">
+      <file name="mdxredist.msi">
+	The latest version (9.0c, December 2004) of the Microsoft Managed DirectX redistributable.<br/>
+	As of version 0.3, the POLUtils Audio Manager component dynamically accesses Managed DirectSound, so
+	it no longer depends on a specific version being installed (in fact it should be able to handle its
+	absence just fine).  So if you already have an older version installed, it's not required to install
+	this as well (but it also doesn't hurt).
+      </file>
+      <file name="mdxredist-0.2.msi">
+	Microsoft Managed DirectX redistributable (9.0b) - needed by the Audio Manager component of POLUtils 0.2.
+      </file>
+    </group>
+    <group name="foo_pol">
+      <file name="foo_pol-1.3.zip">
+	Fixes the configuration page.<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
+      <file name="foo_pol-1.2.zip">
+	Fixes playback of PCM sound effects.  Adds recognition for non-PCM, non-ADPCM files (playback of those is
+	NOT supported).<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
+      <file name="foo_pol-1.1.zip">
+	Adds a "fade out" loop mode.<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
+      <file name="foo_pol-1.0.zip">
+	Version 1.0 of a plugin for the <a href="http://www.foobar2000.org/">FooBar2000</a> audio player that allows
+	playback of .bgw and .spw files.<br/>
+	For use with version 0.8.3 (and compatible) of foobar2000.
+      </file>
+    </group>
+    <group name="Other Stuff">
+    </group>
+  </downloads>
+  <!-- Links -->
+  <links>
+    <group name="Info Sites">
+      <link target="http://ffxi.somepage.com/" name="SomePage">Great resource repository, updated frequently.</link>
+      <link target="http://mysterytour.web.infoseek.co.jp/ffxi/us/" name="MysteryTour">One of the most comprehensive FFXI sites.</link>
+      <link target="http://ffxi-atlas.com/" name="Vana'diel Atlas">The only map site you'll ever need.</link>
+    </group>
+    <group name="Forum Sites">
+      <link target="http://polutils.forumer.com/" name="POLUtils">
+        The official POLUtils forums.
+      </link>
+      <link target="http://ffxi.killvoid.com/" name="KillingIfrit">
+        One of the main FFXI forums; high moron and flame count, occasional nugget of useful info.
+      </link>
+      <link target="http://www.ffxionline.com/" name="FFXIOnline">
+        Like KillingIfrit, but with greatly reduced moron and flame count, and more useful info.
+      </link>
+    </group>
+  </links>
+  <!-- Site Sections -->
+  <section name="Home" file="index.html">
+    <para>Welcome to Pebbles&apos; Program Page.</para>
+    <para>
+      Here you can find several tools written by Pebbles of Pandemonium; they will either be related to
+      <acronym title="Final Fantasy XI">FFXI</acronym> Online, or to <acronym title="PlayOnline">POL</acronym> in general.
+    </para>
+    <news-headlines/>
+    <para><span class="link-description">Pebbles can be contacted via email (pebbles DOT pandemonium AT telenet DOT be).</span></para>
+  </section>
+  <section name="News" file="news.html">
+    <news/>
+  </section>
+  <section name="FAQ" file="faq.html">
+    <para>
+      <h3>1. What is POLUtils anyway?</h3>
+      <p>
+        POLUtils is a collection of utilities related to PlayOnline, Square/Enix' online gaming framework.<br/>
+        It currently contains:<br/>
+        <ul>
+	  <li>an audio manager (with POL, TetraMaster and FFXI support - would add FMO support if I could get
+	      someone to give me the info)</li>
+	  <li>data browsers for Tetra Master and FFXI</li>
+	  <li>an offline macro editor for FFXI</li>
+	  <li>a configuration editor for FFXI</li>
+	</ul>
+      </p>
+    </para>
+    <para>
+      <h3>2. What are the system requirements?</h3>
+      <p>
+        Well, POLUtils requires the .NET Framework 1.1 to be installed, and the Audio Manager has an additional
+        dependency on Managed DirectX (part of DirectX 9 or higher) if you want audio playback (and that's a
+        rather essential element of that particular tool).  Unfortunately, Managed DirectX is not automatically
+        installed along with DirectX - you can find a suitable installer for it on the downloads page.<br/>
+        As for Windows version, any version of windows that can install those two dependencies should do (which
+        basically means Windows 98 or later).  Future versions of POLUtils may use the 2.0 framework, which will
+        probably require Win2K or later.
+      </p>
+    </para>
+    <para>
+      <h3>3. I get an exception saying Invalid Codepage - why is that?</h3>
+      <p>
+        FFXI uses a text encoding based on shift-jis, and it seems the .NET framework relies on a Windows code
+        page to process shift-jis.  However, the shift-jis codepage isn't installed by default.  You can easily
+        install it in one of two ways: either you enable support for East-Asian languages (Control Panel\Regional
+        and Language Options\Languages), but that requires 230MB of disk space, or you can just make sure
+        codepages 1250, 1251 and 932 are checked on the Advanced tab of the same control panel applet.<br/>
+        As of version 0.5.0, POLUtils uses a handwritten encoding handler for FFXI, so no additional codepages
+        should be needed.
+      </p>
+    </para>
+    <para>
+      <h3>4. Why isn't POLUtils available in <em>&lt;insert language here&gt;</em>?</h3>
+      <p>
+	Easy - noone has volunteered to help with the translation yet.  If you want to provide the translation,
+	let me know; all help is appreciated.
+      </p>
+    </para>
+    <para>
+      <h3>5. Is POLUtils going to steal my passwords or destroy my PC?</h3>
+      <p>
+	I sure hope not ^^.  POLUtils currently never ever connects to the internet, so your passwords
+	are safe.  As for destroying your PC, that's unlikely as well (of course, the .Net framework is
+	Microsoft technology, so you never know).
+      </p>
+    </para>
+    <para>
+      <h3>6. Will you make a WinAmp plugin for .bgw/.spw files?</h3>
+      <p>
+	No.  I considered doing so, but decided against it since a) there already is such a plugin, and b) the
+	WinAmp SDK is, well, crap (I never realized how great the foobar APIs were until I saw the WinAmp SDK).
+      </p>
+    </para>
+    <para>
+      <h3>7. The menus in the Macro Editor only show little squares instead of symbols, but I do have East-Asian supprt installed. Help!</h3>
+      <p>
+	This probably means you're using an older (pre-XP) version of Windows.  POLUtils has no control over the
+	font of its menus; that's handled by the system.  Try setting the menu font (via the Appearance tab of
+	the Display properties in the Control Panel) to Tahoma, that should work. If running on Vista, also try
+	setting POLUtils to run in XP SP2 Compatibility mode.
+      </p>
+    </para>
+    <para>
+      <h3>8. What is that EngrishOnry thing?</h3>
+      <p>
+	EngrishOnry is a utility to help out those people playing the JP version of FFXI who would like most
+	of the game to be in English.  It will translate many of the game's assets to make that happen.
+      </p>
+    </para>
+    <para>
+      <h3>9. There's a game patch coming up!  How will this affect my use of EngrishOnry?</h3>
+      <p>
+	Good question.  If there is a patch, you must take two steps to avoid your game becoming corrupted:
+	1) Restore all translations BEFORE applying the patch, and 2) Delete EngrishOnry's backup folder
+	([FFXI Install Dir]\EngrishFFXI-Backup).  If you fail to do the first step the patch may fail, and
+	you may be forced to reinstall the game.  If you fail to do the second, EngrishOnry will be unable to
+	Restore the original file (it will restore the file from BEFORE the patch) - again, possibly forcing
+	you to reinstall.<br/>
+	Note: in some cases you may be able to force a full file check + redownload of corrupted files by
+	deleting the "patch.ver" in the FFXI installation directory.  But this is by no means guaranteed.
+      </p>
+    </para>
+  </section>
+  <section name="Download Area" file="downloads.html">
+    <para>Here you can download Pebbles&apos; programs.</para>
+    <downloads/>
+  </section>
+  <section name="Links" file="links.html">
+    <para>This page contains various links you may (or may not) find useful.</para>
+    <links/>
+  </section>
+</website>

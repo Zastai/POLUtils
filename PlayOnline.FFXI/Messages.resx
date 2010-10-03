@@ -213,9 +213,6 @@
   <data name="F::category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="F::category-id" xml:space="preserve">
-    <value>Category ID</value>
-  </data>
   <data name="F::compression" xml:space="preserve">
     <value>Compression</value>
   </data>
@@ -339,9 +336,6 @@
   <data name="F::reuse-delay" xml:space="preserve">
     <value>Reuse Delay</value>
   </data>
-  <data name="F::shared-timer-id" xml:space="preserve">
-    <value>Shared Timer ID</value>
-  </data>
   <data name="F::shield-size" xml:space="preserve">
     <value>Shield Size</value>
   </data>
@@ -413,9 +407,6 @@
   </data>
   <data name="F::text" xml:space="preserve">
     <value>Text</value>
-  </data>
-  <data name="F::tp-cost" xml:space="preserve">
-    <value>TP Cost</value>
   </data>
   <data name="F::type" xml:space="preserve">
     <value>Type</value>
@@ -495,9 +486,6 @@
   <data name="FT:SpellInfo" xml:space="preserve">
     <value>Spell Info</value>
   </data>
-  <data name="FT:SpellAndAbilityInfo" xml:space="preserve">
-    <value>Spell &amp; Ability Info</value>
-  </data>
   <data name="FT:StatusInfo" xml:space="preserve">
     <value>Status Info</value>
   </data>
@@ -537,9 +525,6 @@
   <data name="T:AbilityInfo" xml:space="preserve">
     <value>Ability Info</value>
   </data>
-  <data name="T:AbilityInfo2" xml:space="preserve">
-    <value>Ability Info</value>
-  </data>
   <data name="T:DialogTableEntry" xml:space="preserve">
     <value>Dialog Table Entry</value>
   </data>
@@ -565,9 +550,6 @@
     <value>String Table Entry</value>
   </data>
   <data name="T:SpellInfo" xml:space="preserve">
-    <value>Spell Info</value>
-  </data>
-  <data name="T:SpellInfo2" xml:space="preserve">
     <value>Spell Info</value>
   </data>
   <data name="T:StatusInfo" xml:space="preserve">

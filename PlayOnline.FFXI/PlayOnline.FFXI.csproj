@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -20,6 +20,10 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
@@ -91,7 +95,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FFXI.cs" />
-    <Compile Include="FileTypes\SpellAndAbilityInfo.cs" />
     <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\DMSGStringTable3.cs" />
     <Compile Include="FileTypes\MobList.cs" />
@@ -100,8 +103,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IThings\AbilityInfo.cs" />
-    <Compile Include="IThings\AbilityInfo2.cs" />
-    <Compile Include="IThings\SpellInfo2.cs" />
     <Compile Include="IThings\DMSGStringBlock.cs" />
     <Compile Include="IThings\MobListEntry.cs" />
     <Compile Include="IThings\DMSGStringTableEntry.cs" />

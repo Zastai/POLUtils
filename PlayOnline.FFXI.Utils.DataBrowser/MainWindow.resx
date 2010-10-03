@@ -186,9 +186,6 @@
   <metadata name="mnuPictureContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>141, 17</value>
   </metadata>
-  <data name="mnuPCMode.Text" xml:space="preserve">
-    <value>&amp;Mode</value>
-  </data>
   <data name="mnuPCModeNormal.Text" xml:space="preserve">
     <value>&amp;Normal</value>
   </data>
@@ -201,8 +198,8 @@
   <data name="mnuPCModeZoomed.Text" xml:space="preserve">
     <value>&amp;Zoomed</value>
   </data>
-  <data name="mnuPCBackground.Text" xml:space="preserve">
-    <value>&amp;Background</value>
+  <data name="mnuPCMode.Text" xml:space="preserve">
+    <value>&amp;Mode</value>
   </data>
   <data name="mnuPCBackgroundBlack.Text" xml:space="preserve">
     <value>&amp;Black</value>
@@ -212,6 +209,9 @@
   </data>
   <data name="mnuPCBackgroundTransparent.Text" xml:space="preserve">
     <value>&amp;Transparent</value>
+  </data>
+  <data name="mnuPCBackground.Text" xml:space="preserve">
+    <value>&amp;Background</value>
   </data>
   <data name="mnuPCSaveAs.Text" xml:space="preserve">
     <value>&amp;Save As...</value>
@@ -246,324 +246,18 @@
   <data name="mnuELCSep2.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="mnuELCExport.Text" xml:space="preserve">
-    <value>&amp;Export</value>
-  </data>
   <data name="mnuELCEAll.Text" xml:space="preserve">
     <value>&amp;All Entries...</value>
   </data>
   <data name="mnuELCESelected.Text" xml:space="preserve">
     <value>&amp;Selected Entries...</value>
   </data>
+  <data name="mnuELCExport.Text" xml:space="preserve">
+    <value>&amp;Export</value>
+  </data>
   <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>579, 17</value>
   </metadata>
-  <data name="&gt;&gt;ieItemViewer.Name" xml:space="preserve">
-    <value>ieItemViewer</value>
-  </data>
-  <data name="&gt;&gt;ieItemViewer.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.9.8.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;ieItemViewer.Parent" xml:space="preserve">
-    <value>tabViewerItems</value>
-  </data>
-  <data name="&gt;&gt;ieItemViewer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Name" xml:space="preserve">
-    <value>grpMainItemActions</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Parent" xml:space="preserve">
-    <value>tabViewerItems</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabViewerItems.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabViewerItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 401</value>
-  </data>
-  <data name="tabViewerItems.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabViewerItems.Text" xml:space="preserve">
-    <value>Item Data</value>
-  </data>
-  <data name="&gt;&gt;tabViewerItems.Name" xml:space="preserve">
-    <value>tabViewerItems</value>
-  </data>
-  <data name="&gt;&gt;tabViewerItems.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.7.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;tabViewerItems.Parent" xml:space="preserve">
-    <value>tabViewers</value>
-  </data>
-  <data name="&gt;&gt;tabViewerItems.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;picImageViewer.Name" xml:space="preserve">
-    <value>picImageViewer</value>
-  </data>
-  <data name="&gt;&gt;picImageViewer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;picImageViewer.Parent" xml:space="preserve">
-    <value>tabViewerImages</value>
-  </data>
-  <data name="&gt;&gt;picImageViewer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Name" xml:space="preserve">
-    <value>pnlImageChooser</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Parent" xml:space="preserve">
-    <value>tabViewerImages</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabViewerImages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabViewerImages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 401</value>
-  </data>
-  <data name="tabViewerImages.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabViewerImages.Text" xml:space="preserve">
-    <value>Image(s)</value>
-  </data>
-  <data name="tabViewerImages.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tabViewerImages.Name" xml:space="preserve">
-    <value>tabViewerImages</value>
-  </data>
-  <data name="&gt;&gt;tabViewerImages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.7.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;tabViewerImages.Parent" xml:space="preserve">
-    <value>tabViewers</value>
-  </data>
-  <data name="&gt;&gt;tabViewerImages.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlGeneralContents.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlGeneralContents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 28</value>
-  </data>
-  <data name="pnlGeneralContents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 373</value>
-  </data>
-  <data name="pnlGeneralContents.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;pnlGeneralContents.Name" xml:space="preserve">
-    <value>pnlGeneralContents</value>
-  </data>
-  <data name="&gt;&gt;pnlGeneralContents.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlGeneralContents.Parent" xml:space="preserve">
-    <value>tabViewerGeneral</value>
-  </data>
-  <data name="&gt;&gt;pnlGeneralContents.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;chkShowIcons.Name" xml:space="preserve">
-    <value>chkShowIcons</value>
-  </data>
-  <data name="&gt;&gt;chkShowIcons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkShowIcons.Parent" xml:space="preserve">
-    <value>pnlThingListActions</value>
-  </data>
-  <data name="&gt;&gt;chkShowIcons.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnThingListSaveImages.Name" xml:space="preserve">
-    <value>btnThingListSaveImages</value>
-  </data>
-  <data name="&gt;&gt;btnThingListSaveImages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnThingListSaveImages.Parent" xml:space="preserve">
-    <value>pnlThingListActions</value>
-  </data>
-  <data name="&gt;&gt;btnThingListSaveImages.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnThingListExportXML.Name" xml:space="preserve">
-    <value>btnThingListExportXML</value>
-  </data>
-  <data name="&gt;&gt;btnThingListExportXML.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnThingListExportXML.Parent" xml:space="preserve">
-    <value>pnlThingListActions</value>
-  </data>
-  <data name="&gt;&gt;btnThingListExportXML.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pnlThingListActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="pnlThingListActions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlThingListActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 28</value>
-  </data>
-  <data name="pnlThingListActions.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;pnlThingListActions.Name" xml:space="preserve">
-    <value>pnlThingListActions</value>
-  </data>
-  <data name="&gt;&gt;pnlThingListActions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlThingListActions.Parent" xml:space="preserve">
-    <value>tabViewerGeneral</value>
-  </data>
-  <data name="&gt;&gt;pnlThingListActions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabViewerGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabViewerGeneral.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 401</value>
-  </data>
-  <data name="tabViewerGeneral.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabViewerGeneral.Text" xml:space="preserve">
-    <value>General Contents</value>
-  </data>
-  <data name="&gt;&gt;tabViewerGeneral.Name" xml:space="preserve">
-    <value>tabViewerGeneral</value>
-  </data>
-  <data name="&gt;&gt;tabViewerGeneral.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.7.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
-  </data>
-  <data name="&gt;&gt;tabViewerGeneral.Parent" xml:space="preserve">
-    <value>tabViewers</value>
-  </data>
-  <data name="&gt;&gt;tabViewerGeneral.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tabViewers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tabViewers.ItemSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 18</value>
-  </data>
-  <data name="tabViewers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 30</value>
-  </data>
-  <data name="tabViewers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 427</value>
-  </data>
-  <data name="tabViewers.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;tabViewers.Name" xml:space="preserve">
-    <value>tabViewers</value>
-  </data>
-  <data name="&gt;&gt;tabViewers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabViewers.Parent" xml:space="preserve">
-    <value>pnlViewerArea</value>
-  </data>
-  <data name="&gt;&gt;tabViewers.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Name" xml:space="preserve">
-    <value>btnReloadFile</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Parent" xml:space="preserve">
-    <value>pnlNoViewers</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblNoViewers.Name" xml:space="preserve">
-    <value>lblNoViewers</value>
-  </data>
-  <data name="&gt;&gt;lblNoViewers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblNoViewers.Parent" xml:space="preserve">
-    <value>pnlNoViewers</value>
-  </data>
-  <data name="&gt;&gt;lblNoViewers.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlNoViewers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="pnlNoViewers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlNoViewers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 30</value>
-  </data>
-  <data name="pnlNoViewers.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;pnlNoViewers.Name" xml:space="preserve">
-    <value>pnlNoViewers</value>
-  </data>
-  <data name="&gt;&gt;pnlNoViewers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlNoViewers.Parent" xml:space="preserve">
-    <value>pnlViewerArea</value>
-  </data>
-  <data name="&gt;&gt;pnlNoViewers.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlViewerArea.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlViewerArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 0</value>
-  </data>
-  <data name="pnlViewerArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 457</value>
-  </data>
-  <data name="pnlViewerArea.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;pnlViewerArea.Name" xml:space="preserve">
-    <value>pnlViewerArea</value>
-  </data>
-  <data name="&gt;&gt;pnlViewerArea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlViewerArea.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlViewerArea.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="ieItemViewer.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 44</value>
   </data>
@@ -577,58 +271,13 @@
     <value>ieItemViewer</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Type" xml:space="preserve">
-    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.9.8.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+    <value>PlayOnline.FFXI.ItemEditor, PlayOnline.FFXI, Version=0.9.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.Parent" xml:space="preserve">
     <value>tabViewerItems</value>
   </data>
   <data name="&gt;&gt;ieItemViewer.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmbItems.Name" xml:space="preserve">
-    <value>cmbItems</value>
-  </data>
-  <data name="&gt;&gt;cmbItems.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbItems.Parent" xml:space="preserve">
-    <value>grpMainItemActions</value>
-  </data>
-  <data name="&gt;&gt;cmbItems.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnFindItems.Name" xml:space="preserve">
-    <value>btnFindItems</value>
-  </data>
-  <data name="&gt;&gt;btnFindItems.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFindItems.Parent" xml:space="preserve">
-    <value>grpMainItemActions</value>
-  </data>
-  <data name="&gt;&gt;btnFindItems.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpMainItemActions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="grpMainItemActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 40</value>
-  </data>
-  <data name="grpMainItemActions.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Name" xml:space="preserve">
-    <value>grpMainItemActions</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.Parent" xml:space="preserve">
-    <value>tabViewerItems</value>
-  </data>
-  <data name="&gt;&gt;grpMainItemActions.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="cmbItems.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -693,6 +342,51 @@
   <data name="&gt;&gt;btnFindItems.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="grpMainItemActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="grpMainItemActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 40</value>
+  </data>
+  <data name="grpMainItemActions.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpMainItemActions.Name" xml:space="preserve">
+    <value>grpMainItemActions</value>
+  </data>
+  <data name="&gt;&gt;grpMainItemActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMainItemActions.Parent" xml:space="preserve">
+    <value>tabViewerItems</value>
+  </data>
+  <data name="&gt;&gt;grpMainItemActions.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabViewerItems.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabViewerItems.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 401</value>
+  </data>
+  <data name="tabViewerItems.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabViewerItems.Text" xml:space="preserve">
+    <value>Item Data</value>
+  </data>
+  <data name="&gt;&gt;tabViewerItems.Name" xml:space="preserve">
+    <value>tabViewerItems</value>
+  </data>
+  <data name="&gt;&gt;tabViewerItems.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  </data>
+  <data name="&gt;&gt;tabViewerItems.Parent" xml:space="preserve">
+    <value>tabViewers</value>
+  </data>
+  <data name="&gt;&gt;tabViewerItems.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="picImageViewer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -719,54 +413,6 @@
   </data>
   <data name="&gt;&gt;picImageViewer.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmbImageChooser.Name" xml:space="preserve">
-    <value>cmbImageChooser</value>
-  </data>
-  <data name="&gt;&gt;cmbImageChooser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbImageChooser.Parent" xml:space="preserve">
-    <value>pnlImageChooser</value>
-  </data>
-  <data name="&gt;&gt;cmbImageChooser.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblImageChooser.Name" xml:space="preserve">
-    <value>lblImageChooser</value>
-  </data>
-  <data name="&gt;&gt;lblImageChooser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblImageChooser.Parent" xml:space="preserve">
-    <value>pnlImageChooser</value>
-  </data>
-  <data name="&gt;&gt;lblImageChooser.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlImageChooser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="pnlImageChooser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlImageChooser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 36</value>
-  </data>
-  <data name="pnlImageChooser.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Name" xml:space="preserve">
-    <value>pnlImageChooser</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.Parent" xml:space="preserve">
-    <value>tabViewerImages</value>
-  </data>
-  <data name="&gt;&gt;pnlImageChooser.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="cmbImageChooser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -824,6 +470,81 @@
   </data>
   <data name="&gt;&gt;lblImageChooser.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="pnlImageChooser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlImageChooser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlImageChooser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 36</value>
+  </data>
+  <data name="pnlImageChooser.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlImageChooser.Name" xml:space="preserve">
+    <value>pnlImageChooser</value>
+  </data>
+  <data name="&gt;&gt;pnlImageChooser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlImageChooser.Parent" xml:space="preserve">
+    <value>tabViewerImages</value>
+  </data>
+  <data name="&gt;&gt;pnlImageChooser.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabViewerImages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabViewerImages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 401</value>
+  </data>
+  <data name="tabViewerImages.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabViewerImages.Text" xml:space="preserve">
+    <value>Image(s)</value>
+  </data>
+  <data name="tabViewerImages.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tabViewerImages.Name" xml:space="preserve">
+    <value>tabViewerImages</value>
+  </data>
+  <data name="&gt;&gt;tabViewerImages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  </data>
+  <data name="&gt;&gt;tabViewerImages.Parent" xml:space="preserve">
+    <value>tabViewers</value>
+  </data>
+  <data name="&gt;&gt;tabViewerImages.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lstEntries.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lstEntries.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 28</value>
+  </data>
+  <data name="lstEntries.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 373</value>
+  </data>
+  <data name="lstEntries.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lstEntries.Name" xml:space="preserve">
+    <value>lstEntries</value>
+  </data>
+  <data name="&gt;&gt;lstEntries.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstEntries.Parent" xml:space="preserve">
+    <value>tabViewerGeneral</value>
+  </data>
+  <data name="&gt;&gt;lstEntries.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="chkShowIcons.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -903,6 +624,81 @@
   <data name="&gt;&gt;btnThingListExportXML.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="pnlThingListActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlThingListActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlThingListActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 28</value>
+  </data>
+  <data name="pnlThingListActions.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Name" xml:space="preserve">
+    <value>pnlThingListActions</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.Parent" xml:space="preserve">
+    <value>tabViewerGeneral</value>
+  </data>
+  <data name="&gt;&gt;pnlThingListActions.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabViewerGeneral.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabViewerGeneral.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 401</value>
+  </data>
+  <data name="tabViewerGeneral.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabViewerGeneral.Text" xml:space="preserve">
+    <value>General Contents</value>
+  </data>
+  <data name="&gt;&gt;tabViewerGeneral.Name" xml:space="preserve">
+    <value>tabViewerGeneral</value>
+  </data>
+  <data name="&gt;&gt;tabViewerGeneral.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ThemedTabPage, PlayOnline.Core, Version=0.9.0.0, Culture=neutral, PublicKeyToken=8ac349c25b70e1ce</value>
+  </data>
+  <data name="&gt;&gt;tabViewerGeneral.Parent" xml:space="preserve">
+    <value>tabViewers</value>
+  </data>
+  <data name="&gt;&gt;tabViewerGeneral.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabViewers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tabViewers.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 18</value>
+  </data>
+  <data name="tabViewers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 30</value>
+  </data>
+  <data name="tabViewers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 427</value>
+  </data>
+  <data name="tabViewers.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;tabViewers.Name" xml:space="preserve">
+    <value>tabViewers</value>
+  </data>
+  <data name="&gt;&gt;tabViewers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabViewers.Parent" xml:space="preserve">
+    <value>pnlViewerArea</value>
+  </data>
+  <data name="&gt;&gt;tabViewers.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnReloadFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -962,6 +758,54 @@
   </data>
   <data name="&gt;&gt;lblNoViewers.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="pnlNoViewers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlNoViewers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlNoViewers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 30</value>
+  </data>
+  <data name="pnlNoViewers.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pnlNoViewers.Name" xml:space="preserve">
+    <value>pnlNoViewers</value>
+  </data>
+  <data name="&gt;&gt;pnlNoViewers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlNoViewers.Parent" xml:space="preserve">
+    <value>pnlViewerArea</value>
+  </data>
+  <data name="&gt;&gt;pnlNoViewers.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlViewerArea.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pnlViewerArea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>328, 0</value>
+  </data>
+  <data name="pnlViewerArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 457</value>
+  </data>
+  <data name="pnlViewerArea.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;pnlViewerArea.Name" xml:space="preserve">
+    <value>pnlViewerArea</value>
+  </data>
+  <data name="&gt;&gt;pnlViewerArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlViewerArea.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlViewerArea.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="dlgExportFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>676, 17</value>
