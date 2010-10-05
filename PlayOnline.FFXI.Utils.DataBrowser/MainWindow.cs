@@ -490,18 +490,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	this.CopyEntry(LV);
     }
 
-    private void ExportThings(IEnumerable ThingsToExport) {
+    private void ExportThings(ThingList ThingsToExport) {
       this.dlgExportFile.FileName = "";
       if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
 	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportFileContents"));
       Thread T = new Thread(new ThreadStart(delegate () {
-	  Application.DoEvents();
-	ThingList Entries = new ThingList();
-	  foreach (ListViewItem LVI in ThingsToExport) {
-	    if (LVI.Tag is IThing)
-	      Entries.Add(LVI.Tag as IThing);
-	  }
-	  Entries.Save(this.dlgExportFile.FileName);
+	  ThingsToExport.Save(this.dlgExportFile.FileName);
 	  Application.DoEvents();
 	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
 	}));
@@ -567,65 +561,70 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Context Menu Events
 
     private void mnuELCProperties_Click(object sender, EventArgs e) {
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused) {
-	  foreach (ListViewItem LVI in LV.SelectedItems) {
-	  ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
-	    TPP.Show(this);
-	  }
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
+      if (LV != null) {
+	foreach (ListViewItem LVI in LV.SelectedItems) {
+	ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as IThing);
+	  TPP.Show(this);
 	}
       }
     }
 
     private void mnuELCCopyRow_Click(object sender, System.EventArgs e) {
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused)
-	  this.CopyEntry(LV);
-      }
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
+      if (LV != null)
+	this.CopyEntry(LV);
     }
 
     private void CopyEntryFieldMenuItem_Click(object sender, System.EventArgs e) {
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
     MenuItem MI = sender as MenuItem;
-    string CopyText = String.Empty;
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused) {
-	  foreach (ListViewItem LVI in LV.SelectedItems) {
-	    if (CopyText != "")
-	      CopyText += "\r\n";
-	    CopyText += LVI.SubItems[MI.Index].Text;
-	  }
+      if (LV != null && MI != null) {
+      string CopyText = String.Empty;
+	foreach (ListViewItem LVI in LV.SelectedItems) {
+	  if (CopyText != "")
+	    CopyText += "\r\n";
+	  CopyText += LVI.SubItems[MI.Index].Text;
 	}
+	Clipboard.SetDataObject(CopyText, true);
       }
-      Clipboard.SetDataObject(CopyText, true);
     }
 
-
     private void mnuStringTableContext_Popup(object sender, System.EventArgs e) {
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused) {
-	  if (LV.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
-	    this.mnuELCCopyField.MenuItems.Clear();
-	    foreach (ColumnHeader CH in LV.Columns)
-	      this.mnuELCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyEntryFieldMenuItem_Click)));
-	    this.mnuELCCopyField.Enabled = true;
-	  }
-	  else
-	    this.mnuELCCopyField.Enabled = false;
-	}
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
+      if (LV != null && LV.SelectedItems.Count > 0) { // Set up sub-menu with all available columns
+	this.mnuELCCopyField.MenuItems.Clear();
+	foreach (ColumnHeader CH in LV.Columns)
+	  this.mnuELCCopyField.MenuItems.Add(CH.Index, new MenuItem(CH.Text, new EventHandler(this.CopyEntryFieldMenuItem_Click)));
+	this.mnuELCCopyField.Enabled = true;
       }
+      else
+	this.mnuELCCopyField.Enabled = false;
     }
 
     private void mnuELCEAll_Click(object sender, EventArgs e) {
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused)
-	  this.ExportThings(LV.Items);
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
+      if (LV != null) {
+      ThingList ThingsToExport = new ThingList();
+	foreach (ListViewItem LVI in LV.Items) {
+	  if (LVI.Tag is IThing)
+	    ThingsToExport.Add(LVI.Tag as IThing);
+	}
+	if (ThingsToExport.Count > 0)
+	  this.ExportThings(ThingsToExport);
       }
     }
 
     private void mnuELCESelected_Click(object sender, EventArgs e) {
-      foreach (ListView LV in this.ListViews_.Values) {
-	if (LV.Focused)
-	  this.ExportThings(LV.SelectedItems);
+    ListView LV = this.mnuEntryListContext.SourceControl as ListView;
+      if (LV != null) {
+      ThingList ThingsToExport = new ThingList();
+	foreach (ListViewItem LVI in LV.SelectedItems) {
+	  if (LVI.Tag is IThing)
+	    ThingsToExport.Add(LVI.Tag as IThing);
+	}
+	if (ThingsToExport.Count > 0)
+	  this.ExportThings(ThingsToExport);
       }
     }
 
