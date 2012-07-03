@@ -141,8 +141,8 @@ namespace MassExtractor {
 		    if (VBR.ReadByte() == i) {
 		      FBR.BaseStream.Seek(2 * j, SeekOrigin.Begin);
 		    ushort FileDir = FBR.ReadUInt16();
-		    byte Dir  = (byte) (FileDir / 0x80);
-		    byte File = (byte) (FileDir % 0x80);
+		    short Dir = (short) (FileDir / 0x80);
+		    byte File = (byte)  (FileDir % 0x80);
 		      FileTable.WriteLine("{0}\t\"{1}\"\t\"{2}\"\t\"{3}\"", j, Path.GetFileName(DataDir), Dir.ToString(), Path.ChangeExtension(File.ToString(), ".dat"));
 		    }
 		  }
@@ -156,7 +156,60 @@ namespace MassExtractor {
 	    Console.ForegroundColor = ConsoleColor.Green;
 	    Console.WriteLine(I18N.GetText("OK"));
 	    Console.ForegroundColor = ConsoleColor.White;
-	  }
+      }
+      //resources files
+      if (!Directory.Exists("resources"))
+          Directory.CreateDirectory("resources");
+
+      Program.ExtractFile(81, "resources/spellAbilCommon.xml");
+
+      Program.ExtractFile(73, "resources/generalE.xml");
+      Program.ExtractFile(74, "resources/usableE.xml");
+      Program.ExtractFile(75, "resources/weaponE.xml");
+      Program.ExtractFile(76, "resources/armorE.xml");
+      Program.ExtractFile(77, "resources/puppetE.xml");
+      Program.ExtractFile(91, "resources/currencyE.xml");
+      Program.ExtractFile(94, "resources/slipE.xml");
+      Program.ExtractFile(55701, "resources/abilE.xml");
+      Program.ExtractFile(55465, "resources/areaE.xml");
+      Program.ExtractFile(55702, "resources/spellE.xml");
+      Program.ExtractFile(55726, "resources/statusE.xml");
+
+      Program.ExtractFile(56235, "resources/generalF.xml");
+      Program.ExtractFile(56236, "resources/usableF.xml");
+      Program.ExtractFile(56237, "resources/weaponF.xml");
+      Program.ExtractFile(56238, "resources/armorF.xml");
+      Program.ExtractFile(56239, "resources/puppetF.xml");
+      Program.ExtractFile(56240, "resources/currencyF.xml");
+      Program.ExtractFile(56207, "resources/slipF.xml");
+      Program.ExtractFile(56241, "resources/abilF.xml");
+      Program.ExtractFile(56195, "resources/areaF.xml");
+      Program.ExtractFile(56242, "resources/spellF.xml");
+      Program.ExtractFile(56272, "resources/statusF.xml");
+
+      Program.ExtractFile(55815, "resources/generalD.xml");
+      Program.ExtractFile(55816, "resources/usableD.xml");
+      Program.ExtractFile(55817, "resources/weaponD.xml");
+      Program.ExtractFile(55818, "resources/armorD.xml");
+      Program.ExtractFile(55819, "resources/puppetD.xml");
+      Program.ExtractFile(55820, "resources/currencyD.xml");
+      Program.ExtractFile(55787, "resources/slipD.xml");
+      Program.ExtractFile(55821, "resources/abilD.xml");
+      Program.ExtractFile(55775, "resources/areaD.xml");
+      Program.ExtractFile(55822, "resources/spellD.xml");
+      Program.ExtractFile(55852, "resources/statusD.xml");
+
+      Program.ExtractFile(4, "resources/generalJ.xml");
+      Program.ExtractFile(5, "resources/usableJ.xml");
+      Program.ExtractFile(6, "resources/weaponJ.xml");
+      Program.ExtractFile(7, "resources/armorJ.xml");
+      Program.ExtractFile(8, "resources/puppetJ.xml");
+      Program.ExtractFile(9, "resources/currencyJ.xml");
+      Program.ExtractFile(93, "resources/slipJ.xml");
+      Program.ExtractFile(55581, "resources/abilJ.xml");
+      Program.ExtractFile(55535, "resources/areaJ.xml");
+      Program.ExtractFile(55582, "resources/spellJ.xml");
+      Program.ExtractFile(55605, "resources/statusJ.xml");
 	  // Interesting Data
 	  Program.ExtractFile(11, "old-spells-1.xml");
 	  Program.ExtractFile(73, "items-general.xml");
@@ -167,11 +220,14 @@ namespace MassExtractor {
 	  Program.ExtractFile(82, "quests.xml");
 	  Program.ExtractFile(85, "old-abilities.xml");
 	  Program.ExtractFile(86, "old-spells-2.xml");
-	  Program.ExtractFile(87, "old-statuses.xml");
-	  Program.ExtractFile(91, "items-currency.xml");
+      Program.ExtractFile(87, "old-statuses.xml");
+      Program.ExtractFile(91, "items-currency.xml");
+      Program.ExtractFile(94, "items-voucher-slip.xml");
 	  // Dialog Tables
 	  for (ushort i = 0; i < 0x100; ++i)
 	    Program.ExtractFile(6420 + i, String.Format("dialog-table-{0:000}.xml", i));
+      // Whitegate's 2nd dialog table
+      Program.ExtractFile(57945, "dialog-table-50-2.xml");
 	  // Mob Lists
 	  for (ushort i = 0; i < 0x100; ++i)
 	    Program.ExtractFile(6720 + i, String.Format("mob-list-{0:000}.xml", i));
@@ -220,7 +276,11 @@ namespace MassExtractor {
 	  Program.ExtractFile(55721, "missions-ahtuhrgan.xml");
 	  Program.ExtractFile(55722, "quests-goddess.xml");
 	  Program.ExtractFile(55723, "missions-goddess.xml");
-	  Program.ExtractFile(55724, "missions-campaign.xml");
+      Program.ExtractFile(55724, "missions-campaign.xml");
+      Program.ExtractFile(55713, "quests-abyssea.xml");
+      Program.ExtractFile(55735, "missions-prophecy.xml");
+      Program.ExtractFile(55736, "missions-moogle.xml");
+      Program.ExtractFile(55737, "missions-shantotto.xml");
 	  Program.ExtractFile(55725, "status-names.xml");
 	  Program.ExtractFile(55733, "ability-descriptions.xml");
 	  Program.ExtractFile(55734, "spell-descriptions.xml");
