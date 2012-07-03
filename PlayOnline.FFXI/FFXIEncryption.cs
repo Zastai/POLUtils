@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2004-2010 Tim Van Holder
+// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -90,7 +90,20 @@ namespace PlayOnline.FFXI {
     }
 
     public static bool DecodeDataBlock(IList<byte> Data) {
-      return FFXIEncryption.DecodeDataBlock(Data, 0, Data.Count);
+      return FFXIEncryption.DecodeDataBlock(Data);
+    }    
+      
+    public static bool DecodeDataBlockMask(IList<byte> Data)
+    {
+      byte save3 = Data[2];
+      byte save12 = Data[11];
+      byte save13 = Data[12];
+      bool returnvalue = FFXIEncryption.DecodeDataBlock(Data, 0, Data.Count);
+      Data[2] = save3;
+      Data[11] = save12;
+      Data[12] = save13;
+
+      return returnvalue;
     }
 
     public static bool DecodeDataBlock(IList<byte> Data, int Offset, int Size) {

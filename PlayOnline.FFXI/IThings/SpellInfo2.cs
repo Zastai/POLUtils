@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2010 Chris Baggett, Tim Van Holder
+// Copyright © 2010-2012 Chris Baggett, Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -8,7 +8,6 @@
 // Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +48,9 @@ namespace PlayOnline.FFXI.Things {
 	  "recast-delay",
 	  "list-icon-id",
 	  "unknown-1",
+	  "unknown-2",
+	  "unknown-3",
+	  "unknown-4",
 	});
       }
     }
@@ -71,6 +73,9 @@ namespace PlayOnline.FFXI.Things {
     private ushort?      ID_;
     private byte?        ListIconID_;
     private byte?        Unknown1_;
+    private byte?        Unknown2_;
+    private byte?        Unknown3_;
+    private byte?        Unknown4_;
     
     #endregion
 
@@ -87,6 +92,9 @@ namespace PlayOnline.FFXI.Things {
       this.ID_            = null;
       this.ListIconID_    = null;
       this.Unknown1_      = null;
+      this.Unknown2_      = null;
+      this.Unknown3_      = null;
+      this.Unknown4_      = null;
     }
 
     #endregion
@@ -108,6 +116,9 @@ namespace PlayOnline.FFXI.Things {
 	case "recast-delay":   return this.RecastDelay_.HasValue;
 	case "skill":          return this.Skill_.HasValue;
 	case "unknown-1":      return this.Unknown1_.HasValue;
+	case "unknown-2":      return this.Unknown2_.HasValue;
+	case "unknown-3":      return this.Unknown3_.HasValue;
+	case "unknown-4":      return this.Unknown4_.HasValue;
 	case "valid-targets":  return this.ValidTargets_.HasValue;
 	default:               return false;
       }
@@ -140,6 +151,9 @@ namespace PlayOnline.FFXI.Things {
 	case "valid-targets": return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
 	// Nullables - Hex Values
 	case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown1_.Value));
+	case "unknown-2":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown2_.Value));
+	case "unknown-3":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown3_.Value));
+	case "unknown-4":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown4_.Value));
 	// Nullables - Time Values
 	case "casting-time":  return (!this.CastingTime_.HasValue  ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
 	case "recast-delay":  return (!this.RecastDelay_.HasValue  ? String.Empty : this.FormatTime(this.RecastDelay_.Value / 4.0));
@@ -162,6 +176,9 @@ namespace PlayOnline.FFXI.Things {
 	case "recast-delay":   return (!this.RecastDelay_.HasValue  ? null : (object) this.RecastDelay_.Value);
 	case "skill":          return (!this.Skill_.HasValue        ? null : (object) this.Skill_.Value);
 	case "unknown-1":      return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
+	case "unknown-2":      return (!this.Unknown2_.HasValue     ? null : (object) this.Unknown2_.Value);
+	case "unknown-3":      return (!this.Unknown3_.HasValue     ? null : (object) this.Unknown3_.Value);
+	case "unknown-4":      return (!this.Unknown4_.HasValue     ? null : (object) this.Unknown4_.Value);
 	case "valid-targets":  return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
 	default:               return null;
       }
@@ -181,6 +198,9 @@ namespace PlayOnline.FFXI.Things {
 	case "recast-delay":   this.RecastDelay_   = (ushort)      this.LoadUnsignedIntegerField(Node); break;
 	case "skill":          this.Skill_         = (Skill)       this.LoadHexField            (Node); break;
 	case "unknown-1":      this.Unknown1_      = (byte)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-2":      this.Unknown2_      = (byte)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-3":      this.Unknown3_      = (byte)        this.LoadUnsignedIntegerField(Node); break;
+	case "unknown-4":      this.Unknown4_      = (byte)        this.LoadUnsignedIntegerField(Node); break;
 	case "valid-targets":  this.ValidTargets_  = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
@@ -202,7 +222,10 @@ namespace PlayOnline.FFXI.Things {
     // 026-027 U16 ID (0 for "unused" spells; starts out equal to the index, but doesn't stay that way)
     // 028-028 U8  List Icon ID (not sure what this is an index of, but it seems to match differences in item icon)
     // 029-029 U8  Unknown #1
-    // 02a-03e U8  Padding (NULs)
+    // 02a-02b U8  Unknown #2
+    // 02c-02d U8  Unknown #3
+    // 02e-02f U8  Unknown #4
+    // 030-03e U8  Padding (NULs)
     // 03f-03f U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
       this.Clear();
@@ -210,7 +233,7 @@ namespace PlayOnline.FFXI.Things {
       byte[] Bytes = BR.ReadBytes(0x40);
 	if (Bytes[0x3] != 0x00 || Bytes[0x5] != 0x00 || Bytes[0x7] != 0x00 || Bytes[0x9] != 0x00 || Bytes[0xf] != 0xff || Bytes[0x3f] != 0xff)
 	  return false;
-	if (!FFXIEncryption.DecodeDataBlock(Bytes))
+	if (!FFXIEncryption.DecodeDataBlockMask(Bytes))
 	  return false;
 	BR = new BinaryReader(new MemoryStream(Bytes, false));
       } catch { return false; }
@@ -226,8 +249,11 @@ namespace PlayOnline.FFXI.Things {
       this.ID_            = BR.ReadUInt16();
       this.ListIconID_    = BR.ReadByte();
       this.Unknown1_      = BR.ReadByte();
+      this.Unknown2_      = BR.ReadByte();
+      this.Unknown3_      = BR.ReadByte();
+      this.Unknown4_      = BR.ReadByte();
 #if DEBUG // Check the padding bytes for unexpected data
-      for (byte i = 0; i < 20; ++i) {
+      for (byte i = 0; i < 14 ; ++i) {
       byte PaddingByte = BR.ReadByte();
 	if (PaddingByte != 0)
 	  Console.WriteLine("SpellInfo2: Entry #{0}: Padding Byte #{1} is non-zero: {2:X2} ({2})", this.Index_, i + 1, PaddingByte);

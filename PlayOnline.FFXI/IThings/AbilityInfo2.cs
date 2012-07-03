@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2010 Chris Baggett, Tim Van Holder
+// Copyright © 2010-2012 Chris Baggett, Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -45,6 +45,7 @@ namespace PlayOnline.FFXI.Things {
 	  "shared-timer-id",
 	  "tp-cost",
 	  "category-id",
+      "unknown-1",
 	});
       }
     }
@@ -63,6 +64,7 @@ namespace PlayOnline.FFXI.Things {
     private ValidTarget? ValidTargets_;
     private sbyte?       TPCost_;
     private byte?        CategoryID_;
+    private ushort?      Unknown1_;
     
     #endregion
 
@@ -75,6 +77,7 @@ namespace PlayOnline.FFXI.Things {
       this.ValidTargets_  = null;
       this.TPCost_        = null;
       this.CategoryID_    = null;
+      this.Unknown1_      = null;
     }
 
     #endregion
@@ -92,6 +95,7 @@ namespace PlayOnline.FFXI.Things {
 	case "tp-cost":         return this.TPCost_.HasValue;
 	case "type":            return this.Type_.HasValue;
 	case "valid-targets":   return this.ValidTargets_.HasValue;
+	case "unknown-1":       return this.Unknown1_.HasValue;
 	default:                return false;
       }
     }
@@ -105,6 +109,8 @@ namespace PlayOnline.FFXI.Things {
 	case "shared-timer-id": return (!this.SharedTimerID_.HasValue ? String.Empty : String.Format("{0}", this.SharedTimerID_.Value));
 	case "type":            return (!this.Type_.HasValue          ? String.Empty : String.Format("{0}", this.Type_.Value));
 	case "valid-targets":   return (!this.ValidTargets_.HasValue  ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
+	// Nullables - Hex Values
+	case "unknown-1":       return (!this.Unknown1_.HasValue      ? String.Empty : String.Format("{0:X2} ({0})", this.Unknown1_.Value));
 	// Category ID: Blank when zero
 	case "category-id":
 	  if (!this.CategoryID_.HasValue || this.CategoryID_.Value == 0)
@@ -124,7 +130,7 @@ namespace PlayOnline.FFXI.Things {
     public override object GetFieldValue(string Field) {
       switch (Field) {
 	// Nullables
-	case "category-id":     return (!this.CategoryID_.HasValue      ? null : (object) this.CategoryID_.Value);
+	case "category-id":     return (!this.CategoryID_.HasValue     ? null : (object) this.CategoryID_.Value);
 	case "id":              return (!this.ID_.HasValue            ? null : (object) this.ID_.Value);
 	case "list-icon-id":    return (!this.ListIconID_.HasValue    ? null : (object) this.ListIconID_.Value);
 	case "mp-cost":         return (!this.MPCost_.HasValue        ? null : (object) this.MPCost_.Value);
@@ -132,6 +138,7 @@ namespace PlayOnline.FFXI.Things {
 	case "tp-cost":         return (!this.TPCost_.HasValue        ? null : (object) this.TPCost_.Value);
 	case "type":            return (!this.Type_.HasValue          ? null : (object) this.Type_.Value);
 	case "valid-targets":   return (!this.ValidTargets_.HasValue  ? null : (object) this.ValidTargets_.Value);
+	case "unknown-1":       return (!this.Unknown1_.HasValue      ? null : (object) this.Unknown1_.Value);
 	default:                return null;
       }
     }
@@ -147,6 +154,7 @@ namespace PlayOnline.FFXI.Things {
 	case "tp-cost":         this.TPCost_        = (sbyte)       this.LoadSignedIntegerField  (Node); break;
 	case "type":            this.Type_          = (AbilityType) this.LoadHexField            (Node); break;
 	case "valid-targets":   this.ValidTargets_  = (ValidTarget) this.LoadHexField            (Node); break;
+	case "unknown-1":       this.Unknown1_      = (byte)        this.LoadUnsignedIntegerField(Node); break;
       }
     }
 
@@ -158,20 +166,21 @@ namespace PlayOnline.FFXI.Things {
     // 000-001 U16 Index
     // 002-002 U8  Type
     // 003-003 U8  List Icon ID (e.g. 40-47 for the elemental-colored dots)
-    // 004-005 U16 MP Cost
-    // 006-007 U16 Shared Timer ID
-    // 008-009 U16 Valid Targets
-    // 00a-00a I8  TP Cost (percentage, or -1 if not applicable)
-    // 00b-00b U8  Category ID (for entries that are categories instead of real abilities)
-    // 00c-02e U8  Padding (NULs)
+    // 004-005 U16 Unknown #1
+    // 006-007 U16 MP Cost
+    // 008-009 U16 Shared Timer ID
+    // 00a-00b U16 Valid Targets
+    // 00c-00c I8  TP Cost (percentage, or -1 if not applicable)
+    // 00d-00d U8  Category ID (for entries that are categories instead of real abilities)
+    // 010-02e U8  Padding (NULs)
     // 02f-02f U8  End marker (0xff)
     public bool Read(BinaryReader BR) {
       this.Clear();
       try {
       byte[] Bytes = BR.ReadBytes(0x30);
-	if (Bytes[0x9] != 0x00 || Bytes[0x2f] != 0xff)
+	if (Bytes[0x9] > 0x81 || Bytes[0x2f] != 0xff)
 	  return false;
-	if (!FFXIEncryption.DecodeDataBlock(Bytes))
+	if (!FFXIEncryption.DecodeDataBlockMask(Bytes))
 	  return false;
       FFXIEncoding E = new FFXIEncoding();
 	BR = new BinaryReader(new MemoryStream(Bytes, false));
@@ -179,13 +188,14 @@ namespace PlayOnline.FFXI.Things {
       this.ID_            = BR.ReadUInt16();
       this.Type_          = (AbilityType) BR.ReadByte();
       this.ListIconID_    = BR.ReadByte();
+      this.Unknown1_      = BR.ReadUInt16();
       this.MPCost_        = BR.ReadUInt16();
       this.SharedTimerID_ = BR.ReadUInt16();
       this.ValidTargets_  = (ValidTarget) BR.ReadUInt16();
       this.TPCost_        = BR.ReadSByte();
       this.CategoryID_    = BR.ReadByte();
 #if DEBUG // Check the padding bytes for unexpected data
-      for (byte i = 0; i < 35; ++i) {
+      for (byte i = 0; i < 31; ++i) {
       byte PaddingByte = BR.ReadByte();
 	if (PaddingByte != 0)
 	  Console.WriteLine("AbilityInfo2: Entry #{0}: Padding Byte #{1} is non-zero: {2:X2} ({2})", this.ID_, i + 1, PaddingByte);
