@@ -121,7 +121,7 @@ namespace MassExtractor {
 	  { // Dump File Table
 	  StreamWriter FileTable = new StreamWriter("file-table.csv", false, Encoding.UTF8);
 	    FileTable.WriteLine("\"File ID\"\t\"ROMDir\"\t\"Dir\"\t\"File\"");
-	    for (byte i = 1; i < 10; ++i) {
+	    for (byte i = 1; i < 20; ++i) {
 	    string Suffix = "";
 	    string DataDir = FFXIFolder;
 	      if (i > 1) {
@@ -240,7 +240,7 @@ namespace MassExtractor {
 
     private static void DoFullFileScan(string FFXIFolder, string OutputFolder) {
       Directory.SetCurrentDirectory(FFXIFolder);
-      for (int i = 1; i < 10; ++i) {
+      for (int i = 1; i < 20; ++i) {
       string ROMFolder = "Rom";
 	if (i > 1)
 	  ROMFolder += i.ToString();

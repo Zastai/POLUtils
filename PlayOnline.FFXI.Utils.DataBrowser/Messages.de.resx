@@ -430,4 +430,7 @@ WARNUNG: Exsistierende Dateien mit dem gleichen Namen werden ohne zu Fragen übe
   <data name="Menu:VouchersAndSlips" xml:space="preserve">
     <value>&amp;Gutscheine und Slips</value>
   </data>
+  <data name="Menu:Dynamis" xml:space="preserve">
+    <value>&amp;Dynamis</value>
+  </data>
 </root>

@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2004-2010 Tim Van Holder
+// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -53,12 +53,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       }
 
       public byte   ROMApp  { get { return this.App_;  } }
-      public byte   ROMDir  { get { return this.Dir_;  } }
+      public short  ROMDir  { get { return this.Dir_;  } }
       public byte   ROMFile { get { return this.File_; } }
       public string ROMPath { get { return this.Path_; } }
 
       private byte   App_;
-      private byte   Dir_;
+      private short  Dir_;
       private byte   File_;
       private string Path_;
 
@@ -159,7 +159,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	Console.WriteLine("{0}", E.ToString());
 	this.tvDataFiles.ImageList = null;
       }
-      for (int i = 1; i < 10; ++i) {
+      for (int i = 1; i < 20; ++i) {
       string DataDir = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "Rom");
 	if (i > 1)
 	  DataDir += i.ToString();

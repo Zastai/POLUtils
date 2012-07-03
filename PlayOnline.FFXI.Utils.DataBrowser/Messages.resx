@@ -267,6 +267,9 @@ This may take quite a while.</value>
   <data name="Menu:Directions" xml:space="preserve">
     <value>&amp;Directions</value>
   </data>
+  <data name="Menu:Dynamis" xml:space="preserve">
+    <value>&amp;Dynamis</value>
+  </data>
   <data name="Menu:EmoteMessages" xml:space="preserve">
     <value>&amp;Emote Messages</value>
   </data>

@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2004-2010 Tim Van Holder
+// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -21,9 +21,9 @@ namespace PlayOnline.FFXI {
 
     private FFXI() { /* static use only */ }
 
-    public static bool GetFilePath(int FileNumber, out byte App, out byte Dir, out byte File) {
+    public static bool GetFilePath(int FileNumber, out byte App, out short Dir, out byte File) {
     string DataRoot = POL.GetApplicationPath(AppID.FFXI);
-      for (byte i = 1; i < 10; ++i) {
+      for (byte i = 1; i < 20; ++i) {
       string Suffix = "";
       string DataDir = DataRoot;
 	if (i > 1) {
@@ -44,7 +44,7 @@ namespace PlayOnline.FFXI {
 		FBR.BaseStream.Seek(2 * FileNumber, SeekOrigin.Begin);
 	      ushort FileDir = FBR.ReadUInt16();
 		App  = (byte) (i - 1);
-		Dir  = (byte) (FileDir / 0x80);
+		Dir  = (short) (FileDir / 0x80);
 		File = (byte) (FileDir % 0x80);
 		FBR.Close();
 		return true;
@@ -55,11 +55,12 @@ namespace PlayOnline.FFXI {
 	  catch { }
 	}
       }
-      App = Dir = File = 0;
+      App = File = 0;
+      Dir = 0;
       return false;
     }
 
-    public static string GetFilePath(byte App, byte Dir, byte File) {
+    public static string GetFilePath(byte App, short Dir, byte File) {
     string ROMDir = "Rom";
       if (App > 0) {
 	++App;
@@ -70,7 +71,7 @@ namespace PlayOnline.FFXI {
 
     public static string GetFilePath(int FileNumber) {
     byte App  = 0;
-    byte Dir  = 0;
+    short Dir  = 0;
     byte File = 0;
       if (!FFXI.GetFilePath(FileNumber, out App, out Dir, out File))
 	return null;
