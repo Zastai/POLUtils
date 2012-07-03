@@ -426,6 +426,9 @@ This may take quite a while.</value>
   <data name="Menu:Various2" xml:space="preserve">
     <value>&amp;Various (2)</value>
   </data>
+  <data name="Menu:VouchersAndSlips" xml:space="preserve">
+    <value>&amp;Vouchers and Slips</value>
+  </data>
   <data name="Menu:Weapons" xml:space="preserve">
     <value>Weapons</value>
   </data>

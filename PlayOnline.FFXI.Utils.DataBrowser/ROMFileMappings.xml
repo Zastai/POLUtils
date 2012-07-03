@@ -2163,6 +2163,7 @@
       <rom-file id="00077"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file id="00074"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="00075"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="00094"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:French"/></name>
       <rom-file id="56238"><i18n-string id="Menu:Armor"/></rom-file>
@@ -2171,6 +2172,7 @@
       <rom-file id="56239"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file id="56236"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="56237"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="56207"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:German"/></name>
       <rom-file id="55818"><i18n-string id="Menu:Armor"/></rom-file>
@@ -2179,6 +2181,7 @@
       <rom-file id="55819"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file id="55816"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="55817"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="55787"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
@@ -2187,6 +2190,7 @@
       <rom-file id="00008"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file id="00005"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="00006"><i18n-string id="Menu:Weapons"/></rom-file>
+      <rom-file id="00093"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
     </category>
   </category>
   <category><name><i18n-string id="Menu:MobLists"/></name>

@@ -131,10 +131,12 @@ namespace PlayOnline.FFXI {
     Reflector     = 0x0013,
     ItemType20    = 0x0014,
     LotteryTicket = 0x0015,
-    ItemType22    = 0x0016,
-    ItemType23    = 0x0017,
-    ItemType24    = 0x0018,
-    ItemType25    = 0x0019,
+    MazeTabula_M  = 0x0016,
+    MazeTabula_R  = 0x0017,
+    MazeVoucher   = 0x0018,
+    MazeRune      = 0x0019,
+    ItemType_26   = 0x001A,
+    StorageSlip   = 0x001B,
   }
 
   [Flags]

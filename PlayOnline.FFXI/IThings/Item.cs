@@ -373,7 +373,7 @@ namespace PlayOnline.FFXI.Things {
 
     #region ROM File Reading
 
-    public enum Type { Unknown, Armor, Currency, Item, PuppetItem, UsableItem, Weapon };
+    public enum Type { Unknown, Armor, Currency, Item, PuppetItem, UsableItem, Weapon, Slip };
 
     public static void DeduceType(BinaryReader BR, out Type T) {
       T = Type.Unknown;
@@ -395,8 +395,9 @@ namespace PlayOnline.FFXI.Things {
 	    else if (ID < 0x1000) T = Type.Item;
 	    else if (ID < 0x2000) T = Type.UsableItem;
 	    else if (ID < 0x2800) T = Type.PuppetItem;
-	    else if (ID < 0x4000) T = Type.Armor;
-	    else if (ID < 0x7000) T = Type.Weapon;
+        else if (ID < 0x4000) T = Type.Armor;
+        else if (ID < 0x7000) T = Type.Weapon;
+        else if (ID < 0x8000) T = Type.Slip;
 	  }
 	  if (T != Type.Unknown)
 	    break;
@@ -477,6 +478,11 @@ namespace PlayOnline.FFXI.Things {
       }
       else if (T == Type.Currency)
 	this.Unknown2_ = BR.ReadUInt16();
+      else if (T == Type.Slip) {
+	this.Unknown1_ = BR.ReadUInt16();
+    for (int counter = 0; counter < 17; counter++)
+        BR.ReadUInt32();
+      }
       // Next Up: Strings (variable size)
     long StringBase  = BR.BaseStream.Position;
     uint StringCount = BR.ReadUInt32();

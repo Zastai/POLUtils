@@ -427,4 +427,7 @@ WARNUNG: Exsistierende Dateien mit dem gleichen Namen werden ohne zu Fragen übe
   <data name="ItemField:Any" xml:space="preserve">
     <value>irgend ein Feld</value>
   </data>
+  <data name="Menu:VouchersAndSlips" xml:space="preserve">
+    <value>&amp;Gutscheine und Slips</value>
+  </data>
 </root>

@@ -148,6 +148,7 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
 	  case Things.Item.Type.PuppetItem: StringBase = 24; break;
 	  case Things.Item.Type.UsableItem: StringBase = 16; break;
 	  case Things.Item.Type.Weapon:     StringBase = 44; break;
+	  case Things.Item.Type.Slip:       StringBase = 80; break;
 	  default:
 	    this.AddLogEntry(I18N.GetText("ItemTypeBad"));
 	    goto TranslationDone;
