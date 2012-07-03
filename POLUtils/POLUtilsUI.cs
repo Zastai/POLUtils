@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2004-2010 Tim Van Holder
+// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -48,6 +48,11 @@ namespace POLUtils {
       //  2) the JP version of FFXI is installed.
       if ((POL.AvailableRegions & POL.Region.Japan) == 0 || !POL.IsAppInstalled(AppID.FFXI, POL.Region.Japan))
 	this.btnFFXIEngrishOnry.Enabled = false;
+      // FFXITC is only of use if
+      // FFXI Test Client is installed
+      if (!POL.IsAppInstalled(AppID.FFXITC))
+	this.btnFFXITCDataBrowser.Enabled = false;
+
     }
 
     private void UpdateSelectedRegion() {
@@ -115,9 +120,18 @@ namespace POLUtils {
       this.Activate();
     }
 
-    private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e) {
+    private void btnFFXIDataBrowser_Click(object sender, System.EventArgs e)
+    {
+        this.Hide();
+        using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow(AppID.FFXI))
+            Utility.ShowDialog();
+        this.Show();
+        this.Activate();
+    }
+
+    private void btnFFXITCDataBrowser_Click(object sender, System.EventArgs e) {
       this.Hide();
-      using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow())
+      using (Form Utility = new PlayOnline.FFXI.Utils.DataBrowser.MainWindow(AppID.FFXITC))
 	Utility.ShowDialog();
       this.Show();
       this.Activate();

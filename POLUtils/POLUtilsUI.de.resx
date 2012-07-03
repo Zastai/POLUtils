@@ -142,4 +142,7 @@
   <data name="btnFFXIItemComparison.Text" xml:space="preserve">
     <value>FFXI &amp;Item Daten Vergleichen</value>
   </data>
+  <data name="btnFFXITCDataBrowser.Text" xml:space="preserve">
+    <value>FFXITC &amp;Daten Browser</value>
+  </data>
 </root>

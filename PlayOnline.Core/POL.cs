@@ -1,6 +1,6 @@
 // $Id$
 
-// Copyright © 2004-2010 Tim Van Holder
+// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -23,6 +23,7 @@ namespace PlayOnline.Core {
     public const string POLViewer   = "1000";
     public const string FFXI        = "0001";
     public const string TetraMaster = "0002";
+    public const string FFXITC      = "0015";
     // FrontMission Online = ?
     // That Mahjongg thing = ?
   }

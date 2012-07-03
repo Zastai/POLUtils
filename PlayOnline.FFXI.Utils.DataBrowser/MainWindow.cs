@@ -146,7 +146,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private Dictionary<string, ListView> ListViews_    = new Dictionary<string, ListView>();
     private TabControl                   ListViewTabs_ = null;
 
-    public MainWindow() {
+    public MainWindow(string appID) {
       this.InitializeComponent();
       this.Icon = Icons.CheckedPage;
       try {
@@ -160,7 +160,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 	this.tvDataFiles.ImageList = null;
       }
       for (int i = 1; i < 20; ++i) {
-      string DataDir = Path.Combine(POL.GetApplicationPath(AppID.FFXI), "Rom");
+      string DataDir = Path.Combine(POL.GetApplicationPath(appID), "Rom");
 	if (i > 1)
 	  DataDir += i.ToString();
 	if (Directory.Exists(DataDir)) {
