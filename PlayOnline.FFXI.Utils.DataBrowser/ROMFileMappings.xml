@@ -242,6 +242,7 @@
 	<category><name><region-name id="028"/></name></category>
 	<category><name><region-name id="029"/></name>
 	  <rom-file id="06470"><area-name id="050"/></rom-file>
+	  <rom-file id="57945"><area-name id="050"/>-2</rom-file>
 	  <rom-file id="06468"><area-name id="048"/></rom-file>
 	  <rom-file id="06472"><area-name id="052"/></rom-file>
 	  <rom-file id="06490"><area-name id="070"/></rom-file>
@@ -343,6 +344,10 @@
 	<rom-file id="06465"><area-name id="045"/></rom-file>
 	<rom-file id="06637"><area-name id="217"/></rom-file>
 	<rom-file id="06602"><area-name id="182"/></rom-file>
+	<rom-file id="06473"><area-name id="253"/></rom-file>
+	<rom-file id="06674"><area-name id="254"/></rom-file>
+	<rom-file id="06675"><area-name id="255"/></rom-file>
+	<rom-file id="06638"><area-name id="218"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
 	<rom-file id="06644"><area-name id="224"/></rom-file>
@@ -363,6 +368,8 @@
 	<rom-file id="06463"><area-name id="043"/></rom-file>
 	<rom-file id="06464"><area-name id="044"/></rom-file>
 	<rom-file id="06603"><area-name id="183"/></rom-file>
+	<separator/>
+	<rom-file id="06642"><area-name id="222"/></rom-file>
 	<separator/>
 	<!-- These are not area-related -->
 	<rom-file id="07025"><i18n-string id="Menu:EmoteMessages"/></rom-file>
@@ -604,6 +611,7 @@
 	<category><name><region-name id="028"/></name></category>
 	<category><name><region-name id="029"/></name>
 	  <rom-file id="56335"><area-name id="050"/></rom-file>
+	  <rom-file id="58009"><area-name id="050"/>-2</rom-file>
 	  <rom-file id="56333"><area-name id="048"/></rom-file>
 	  <rom-file id="56337"><area-name id="052"/></rom-file>
 	  <rom-file id="56355"><area-name id="070"/></rom-file>
@@ -704,6 +712,10 @@
 	<rom-file id="56501"><area-name id="216"/></rom-file>
 	<rom-file id="56330"><area-name id="045"/></rom-file>
 	<rom-file id="56502"><area-name id="217"/></rom-file>
+	<rom-file id="56503"><area-name id="218"/></rom-file>
+	<rom-file id="56528"><area-name id="253"/></rom-file>
+	<rom-file id="56529"><area-name id="254"/></rom-file>
+	<rom-file id="56530"><area-name id="255"/></rom-file>
 	<rom-file id="56467"><area-name id="182"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
@@ -725,6 +737,10 @@
 	<rom-file id="56328"><area-name id="043"/></rom-file>
 	<rom-file id="56329"><area-name id="044"/></rom-file>
 	<rom-file id="56468"><area-name id="183"/></rom-file>
+	<separator/>
+	<rom-file id="56507"><area-name id="222"/></rom-file>
+	<separator/>
+	<rom-file id="56271"><i18n-string id="Menu:MonsterSkillNames"/></rom-file>
       </category>
     </category>
     <!-- German: 55865-56120 -->
@@ -957,6 +973,7 @@
 	<category><name><region-name id="028"/></name></category>
 	<category><name><region-name id="029"/></name>
 	  <rom-file id="55915"><area-name id="050"/></rom-file>
+	  <rom-file id="55977"><area-name id="050"/>-2</rom-file>
 	  <rom-file id="55913"><area-name id="048"/></rom-file>
 	  <rom-file id="55917"><area-name id="052"/></rom-file>
 	  <rom-file id="55935"><area-name id="070"/></rom-file>
@@ -1057,6 +1074,10 @@
 	<rom-file id="56081"><area-name id="216"/></rom-file>
 	<rom-file id="55910"><area-name id="045"/></rom-file>
 	<rom-file id="56082"><area-name id="217"/></rom-file>
+	<rom-file id="56083"><area-name id="218"/></rom-file>
+	<rom-file id="56118"><area-name id="253"/></rom-file>
+	<rom-file id="56119"><area-name id="254"/></rom-file>
+	<rom-file id="56120"><area-name id="255"/></rom-file>
 	<rom-file id="56047"><area-name id="182"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
@@ -1078,6 +1099,10 @@
 	<rom-file id="55908"><area-name id="043"/></rom-file>
 	<rom-file id="55909"><area-name id="044"/></rom-file>
 	<rom-file id="56048"><area-name id="183"/></rom-file>
+	<separator/>
+	<rom-file id="56087"><area-name id="222"/></rom-file>
+	<separator/>
+	<rom-file id="55851"><i18n-string id="Menu:MonsterSkillNames"/></rom-file>
       </category>
     </category>
     <!-- Japanese: 06120-06375 -->
@@ -1310,6 +1335,7 @@
 	<category><name><region-name id="028"/></name></category>
 	<category><name><region-name id="029"/></name>
 	  <rom-file id="06170"><area-name id="050"/></rom-file>
+	  <rom-file id="57913"><area-name id="050"/>-2</rom-file>
 	  <rom-file id="06168"><area-name id="048"/></rom-file>
 	  <rom-file id="06172"><area-name id="052"/></rom-file>
 	  <rom-file id="06190"><area-name id="070"/></rom-file>
@@ -1410,6 +1436,10 @@
 	<rom-file id="06336"><area-name id="216"/></rom-file>
 	<rom-file id="06165"><area-name id="045"/></rom-file>
 	<rom-file id="06337"><area-name id="217"/></rom-file>
+	<rom-file id="06338"><area-name id="218"/></rom-file>
+	<rom-file id="06373"><area-name id="253"/></rom-file>
+	<rom-file id="06174"><area-name id="254"/></rom-file>
+	<rom-file id="06375"><area-name id="255"/></rom-file>
 	<rom-file id="06302"><area-name id="182"/></rom-file>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
@@ -1431,6 +1461,10 @@
 	<rom-file id="06163"><area-name id="043"/></rom-file>
 	<rom-file id="06164"><area-name id="044"/></rom-file>
 	<rom-file id="06303"><area-name id="183"/></rom-file>
+	<separator/>
+	<rom-file id="06342"><area-name id="222"/></rom-file>
+	<separator/>
+	<rom-file id="07034"><i18n-string id="Menu:MonsterSkillNames"/></rom-file>
       </category>
     </category>
   </category>
@@ -2109,6 +2143,31 @@
 	<category><name><region-name id="045"/></name></category>
       </category>
       <category><name><i18n-string id="Menu:Abyssea"/></name>
+	  <rom-file id="53548"><area-name id="015"/></rom-file>
+	  <rom-file id="53549"><area-name id="045"/></rom-file>
+	  <rom-file id="53550"><area-name id="132"/></rom-file>
+	  <rom-file id="53551"><area-name id="215"/></rom-file>
+	  <rom-file id="53552"><area-name id="216"/></rom-file>
+	  <rom-file id="53553"><area-name id="217"/></rom-file>
+	  <rom-file id="53554"><area-name id="218"/></rom-file>
+	  <rom-file id="53555"><area-name id="253"/></rom-file>
+	  <rom-file id="53556"><area-name id="254"/></rom-file>
+      </category>
+      <category><name><i18n-string id="Menu:Dynamis"/></name>
+	  <rom-file id="53557"><area-name id="185"/></rom-file>
+	  <rom-file id="53558"><area-name id="186"/></rom-file>
+	  <rom-file id="53559"><area-name id="187"/></rom-file>
+	  <rom-file id="53560"><area-name id="188"/></rom-file>
+	  <rom-file id="53561"><area-name id="134"/></rom-file>
+	  <rom-file id="53562"><area-name id="135"/></rom-file>
+	  <rom-file id="53563"><area-name id="039"/></rom-file>
+	  <rom-file id="53564"><area-name id="040"/></rom-file>
+	  <rom-file id="53565"><area-name id="041"/></rom-file>
+	  <category><name><area-name id="042"/></name>
+	    <rom-file id="53566"><i18n-string id="Menu:MapN"/>1</rom-file>
+	    <rom-file id="53567"><i18n-string id="Menu:MapN"/>2</rom-file>
+	    <rom-file id="53568"><i18n-string id="Menu:MapN"/>3</rom-file>
+	  </category>
       </category>
       <category><name><i18n-string id="Menu:Other"/></name>
 	<rom-file id="53416">Besieged Map</rom-file>
@@ -2181,7 +2240,7 @@
       <rom-file id="55819"><i18n-string id="Menu:PuppetItems"/></rom-file>
       <rom-file id="55816"><i18n-string id="Menu:UsableItems"/></rom-file>
       <rom-file id="55817"><i18n-string id="Menu:Weapons"/></rom-file>
-      <rom-file id="55787"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
+      <rom-file id="56787"><i18n-string id="Menu:VouchersAndSlips"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
@@ -2523,6 +2582,10 @@
       <rom-file id="06936"><area-name id="216"/></rom-file>
       <rom-file id="06765"><area-name id="045"/></rom-file>
       <rom-file id="06937"><area-name id="217"/></rom-file>
+      <rom-file id="06938"><area-name id="218"/></rom-file>
+      <rom-file id="06973"><area-name id="253"/></rom-file>
+      <rom-file id="06974"><area-name id="254"/></rom-file>
+      <rom-file id="06975"><area-name id="255"/></rom-file>
       <rom-file id="06902"><area-name id="182"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Other"/></name>
@@ -2544,6 +2607,8 @@
       <rom-file id="06763"><area-name id="043"/></rom-file>
       <rom-file id="06764"><area-name id="044"/></rom-file>
       <rom-file id="06903"><area-name id="183"/></rom-file>
+      <separator/>
+      <rom-file id="06942"><area-name id="222"/></rom-file>
     </category>
   </category>
   <category><name><i18n-string id="Menu:StringTables"/></name>
@@ -2574,6 +2639,9 @@
 	<rom-file id="55721">Aht Urhgan</rom-file>
 	<rom-file id="55723">Goddess</rom-file>
 	<rom-file id="55724">Campaign</rom-file>
+	<rom-file id="55735">A Crystalline Prophecy</rom-file>
+	<rom-file id="55736">A Moogle Kupo d'Etat</rom-file>
+	<rom-file id="55737">A Shantotto Ascension</rom-file>
       </category>
       <rom-file id="55660"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55647"><i18n-string id="Menu:POLMessages"/></rom-file>
@@ -2586,6 +2654,7 @@
 	<rom-file id="55711">Zilart</rom-file>
 	<rom-file id="55712">Aht Urhgan</rom-file>
 	<rom-file id="55722">Goddess</rom-file>
+	<rom-file id="55713">Abyssea</rom-file>
       </category>
       <rom-file id="55469"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="55654"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2627,6 +2696,9 @@
 	<rom-file id="56261">Aht Urhgan</rom-file>
 	<rom-file id="56263">Goddess</rom-file>
 	<rom-file id="56264">Campaign</rom-file>
+	<rom-file id="56275">A Crystalline Prophecy</rom-file>
+	<rom-file id="56276">A Moogle Kupo d'Etat</rom-file>
+	<rom-file id="56277">A Shantotto Ascension</rom-file>
       </category>
       <rom-file id="56200"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="56187"><i18n-string id="Menu:POLMessages"/></rom-file>
@@ -2639,6 +2711,7 @@
 	<rom-file id="56251">Zilart</rom-file>
 	<rom-file id="56252">Aht Urhgan</rom-file>
 	<rom-file id="56262">Goddess</rom-file>
+	<rom-file id="56253">Abyssea</rom-file>
       </category>
       <rom-file id="56203"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="56194"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2680,6 +2753,9 @@
 	<rom-file id="55841">Aht Urhgan</rom-file>
 	<rom-file id="55843">Goddess</rom-file>
 	<rom-file id="55844">Campaign</rom-file>
+	<rom-file id="55855">A Crystalline Prophecy</rom-file>
+	<rom-file id="55856">A Moogle Kupo d'Etat</rom-file>
+	<rom-file id="55857">A Shantotto Ascension</rom-file>
       </category>
       <rom-file id="55780"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55767"><i18n-string id="Menu:POLMessages"/></rom-file>
@@ -2692,6 +2768,7 @@
 	<rom-file id="55831">Zilart</rom-file>
 	<rom-file id="55832">Aht Urhgan</rom-file>
 	<rom-file id="55842">Goddess</rom-file>
+	<rom-file id="55833">Abyssea</rom-file>
       </category>
       <rom-file id="55783"><i18n-string id="Menu:RaceNames"/></rom-file>
       <rom-file id="55774"><i18n-string id="Menu:RegionNames"/></rom-file>
@@ -2729,6 +2806,9 @@
 	<rom-file id="55601">Aht Urhgan</rom-file>
 	<rom-file id="55603">Goddess</rom-file>
 	<rom-file id="55604">Campaign</rom-file>
+	<rom-file id="55615">A Crystalline Prophecy</rom-file>
+	<rom-file id="55616">A Moogle Kupo d'Etat</rom-file>
+	<rom-file id="55617">A Shantotto Ascension</rom-file>
       </category>
       <rom-file id="55540"><i18n-string id="Menu:MoonPhases"/></rom-file>
       <rom-file id="55527"><i18n-string id="Menu:POLMessages"/></rom-file>
@@ -2741,6 +2821,7 @@
 	<rom-file id="55591">Zilart</rom-file>
 	<rom-file id="55592">Aht Urhgan</rom-file>
 	<rom-file id="55602">Goddess</rom-file>
+	<rom-file id="55593">Abyssea</rom-file>
       </category>
       <rom-file id="55534"><i18n-string id="Menu:RegionNames"/></rom-file>
       <rom-file id="55582"><i18n-string id="Menu:SpellNames"/></rom-file>
