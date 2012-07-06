@@ -90,7 +90,7 @@ namespace PlayOnline.FFXI {
     }
 
     public static bool DecodeDataBlock(IList<byte> Data) {
-      return FFXIEncryption.DecodeDataBlock(Data);
+      return FFXIEncryption.DecodeDataBlock(Data, 0, Data.Count);
     }    
       
     public static bool DecodeDataBlockMask(IList<byte> Data)
