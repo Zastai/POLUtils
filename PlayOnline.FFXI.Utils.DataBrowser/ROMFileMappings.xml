@@ -2217,6 +2217,7 @@
   <category><name><i18n-string id="Menu:ItemData"/></name>
     <category><name><i18n-string id="Menu:English"/></name>
       <rom-file id="00076"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="00096"><i18n-string id="Menu:Armor"/> 2</rom-file>
       <rom-file id="00091"><i18n-string id="Menu:Currency"/></rom-file>
       <rom-file id="00073"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="00077"><i18n-string id="Menu:PuppetItems"/></rom-file>
@@ -2226,6 +2227,7 @@
     </category>
     <category><name><i18n-string id="Menu:French"/></name>
       <rom-file id="56238"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="56208"><i18n-string id="Menu:Armor"/> 2</rom-file>
       <rom-file id="56240"><i18n-string id="Menu:Currency"/></rom-file>
       <rom-file id="56235"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="56239"><i18n-string id="Menu:PuppetItems"/></rom-file>
@@ -2235,6 +2237,7 @@
     </category>
     <category><name><i18n-string id="Menu:German"/></name>
       <rom-file id="55818"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="55788"><i18n-string id="Menu:Armor"/> 2</rom-file>
       <rom-file id="55820"><i18n-string id="Menu:Currency"/></rom-file>
       <rom-file id="55815"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="55819"><i18n-string id="Menu:PuppetItems"/></rom-file>
@@ -2244,6 +2247,7 @@
     </category>
     <category><name><i18n-string id="Menu:Japanese"/></name>
       <rom-file id="00007"><i18n-string id="Menu:Armor"/></rom-file>
+      <rom-file id="00095"><i18n-string id="Menu:Armor"/> 2</rom-file>
       <rom-file id="00009"><i18n-string id="Menu:Currency"/></rom-file>
       <rom-file id="00004"><i18n-string id="Menu:GeneralItems"/></rom-file>
       <rom-file id="00008"><i18n-string id="Menu:PuppetItems"/></rom-file>

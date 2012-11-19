@@ -396,7 +396,8 @@ namespace PlayOnline.FFXI.Things {
 	    else if (ID < 0x2000) T = Type.UsableItem;
 	    else if (ID < 0x2800) T = Type.PuppetItem;
         else if (ID < 0x4000) T = Type.Armor;
-        else if (ID < 0x7000) T = Type.Weapon;
+        else if (ID < 0x6000) T = Type.Weapon;
+        else if (ID < 0x7000) T = Type.Armor;
         else if (ID < 0x8000) T = Type.Slip;
 	  }
 	  if (T != Type.Unknown)

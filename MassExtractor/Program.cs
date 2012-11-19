@@ -167,6 +167,7 @@ namespace MassExtractor {
       Program.ExtractFile(74, "resources/usableE.xml");
       Program.ExtractFile(75, "resources/weaponE.xml");
       Program.ExtractFile(76, "resources/armorE.xml");
+      Program.ExtractFile(96, "resources/armor2E.xml");
       Program.ExtractFile(77, "resources/puppetE.xml");
       Program.ExtractFile(91, "resources/currencyE.xml");
       Program.ExtractFile(94, "resources/slipE.xml");
@@ -179,6 +180,7 @@ namespace MassExtractor {
       Program.ExtractFile(56236, "resources/usableF.xml");
       Program.ExtractFile(56237, "resources/weaponF.xml");
       Program.ExtractFile(56238, "resources/armorF.xml");
+      Program.ExtractFile(56208, "resources/armor2F.xml");
       Program.ExtractFile(56239, "resources/puppetF.xml");
       Program.ExtractFile(56240, "resources/currencyF.xml");
       Program.ExtractFile(56207, "resources/slipF.xml");
@@ -191,6 +193,7 @@ namespace MassExtractor {
       Program.ExtractFile(55816, "resources/usableD.xml");
       Program.ExtractFile(55817, "resources/weaponD.xml");
       Program.ExtractFile(55818, "resources/armorD.xml");
+      Program.ExtractFile(55788, "resources/armor2D.xml");
       Program.ExtractFile(55819, "resources/puppetD.xml");
       Program.ExtractFile(55820, "resources/currencyD.xml");
       Program.ExtractFile(55787, "resources/slipD.xml");
@@ -203,6 +206,7 @@ namespace MassExtractor {
       Program.ExtractFile(5, "resources/usableJ.xml");
       Program.ExtractFile(6, "resources/weaponJ.xml");
       Program.ExtractFile(7, "resources/armorJ.xml");
+      Program.ExtractFile(95, "resources/armor2J.xml");
       Program.ExtractFile(8, "resources/puppetJ.xml");
       Program.ExtractFile(9, "resources/currencyJ.xml");
       Program.ExtractFile(93, "resources/slipJ.xml");
@@ -216,6 +220,7 @@ namespace MassExtractor {
 	  Program.ExtractFile(74, "items-usable.xml");
 	  Program.ExtractFile(75, "items-weapons.xml");
 	  Program.ExtractFile(76, "items-armor.xml");
+      Program.ExtractFile(96, "items-armor2.xml");
 	  Program.ExtractFile(77, "items-puppet.xml");
 	  Program.ExtractFile(82, "quests.xml");
 	  Program.ExtractFile(85, "old-abilities.xml");
