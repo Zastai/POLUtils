@@ -579,4 +579,7 @@
   <data name="WrongThingToLoad" xml:space="preserve">
     <value>Attempt to load "{0}" data from an XML element that contains a different kind of data.</value>
   </data>
+  <data name="T:MonsterSpellInfo2" xml:space="preserve">
+    <value>Monster Spell Info</value>
+  </data>
 </root>

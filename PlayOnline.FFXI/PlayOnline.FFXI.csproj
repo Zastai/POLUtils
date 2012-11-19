@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -91,6 +91,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FFXI.cs" />
+    <Compile Include="FileTypes\MonsterSpellInfo.cs" />
     <Compile Include="FileTypes\SpellAndAbilityInfo.cs" />
     <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\DMSGStringTable3.cs" />
