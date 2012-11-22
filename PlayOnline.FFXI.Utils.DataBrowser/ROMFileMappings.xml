@@ -2141,6 +2141,64 @@
 	<category><name><region-name id="043"/></name></category>
 	<category><name><region-name id="044"/></name></category>
 	<category><name><region-name id="045"/></name></category>
+  <category><name><area-name id="086"/></name>
+    <rom-file id="53496"><i18n-string id="Menu:MapN"/>1</rom-file>
+    <rom-file id="53497"><i18n-string id="Menu:MapN"/>2</rom-file>
+    <rom-file id="53498"><i18n-string id="Menu:MapN"/>3</rom-file>
+    <rom-file id="53499"><i18n-string id="Menu:MapN"/>4</rom-file>
+    <rom-file id="53500"><i18n-string id="Menu:MapN"/>5</rom-file>
+    <rom-file id="53501"><i18n-string id="Menu:MapN"/>6</rom-file>
+    <rom-file id="53502"><i18n-string id="Menu:MapN"/>7</rom-file>
+    <rom-file id="53503"><i18n-string id="Menu:MapN"/>8</rom-file>
+    <rom-file id="53504"><i18n-string id="Menu:MapN"/>9</rom-file>
+    <rom-file id="53505"><i18n-string id="Menu:MapN"/>10</rom-file>
+    <rom-file id="53506"><i18n-string id="Menu:MapN"/>11</rom-file>
+    <rom-file id="53507"><i18n-string id="Menu:MapN"/>12</rom-file>
+    <rom-file id="53508"><i18n-string id="Menu:MapN"/>13</rom-file>
+    <rom-file id="53509"><i18n-string id="Menu:MapN"/>14</rom-file>
+    <rom-file id="53510"><i18n-string id="Menu:MapN"/>15</rom-file>
+    <rom-file id="53511"><i18n-string id="Menu:MapN"/>16</rom-file>
+    <rom-file id="53512"><i18n-string id="Menu:MapN"/>17</rom-file>
+    <rom-file id="53513"><i18n-string id="Menu:MapN"/>18</rom-file>
+  </category>
+  <category><name><area-name id="093"/></name>
+    <rom-file id="53514"><i18n-string id="Menu:MapN"/>1</rom-file>
+    <rom-file id="53515"><i18n-string id="Menu:MapN"/>2</rom-file>
+    <rom-file id="53516"><i18n-string id="Menu:MapN"/>3</rom-file>
+    <rom-file id="53517"><i18n-string id="Menu:MapN"/>4</rom-file>
+    <rom-file id="53518"><i18n-string id="Menu:MapN"/>5</rom-file>
+    <rom-file id="53519"><i18n-string id="Menu:MapN"/>6</rom-file>
+    <rom-file id="53520"><i18n-string id="Menu:MapN"/>7</rom-file>
+    <rom-file id="53521"><i18n-string id="Menu:MapN"/>8</rom-file>
+    <rom-file id="53522"><i18n-string id="Menu:MapN"/>9</rom-file>
+    <rom-file id="53523"><i18n-string id="Menu:MapN"/>10</rom-file>
+    <rom-file id="53524"><i18n-string id="Menu:MapN"/>11</rom-file>
+    <rom-file id="53525"><i18n-string id="Menu:MapN"/>12</rom-file>
+    <rom-file id="53526"><i18n-string id="Menu:MapN"/>13</rom-file>
+    <rom-file id="53527"><i18n-string id="Menu:MapN"/>14</rom-file>
+    <rom-file id="53528"><i18n-string id="Menu:MapN"/>15</rom-file>
+    <rom-file id="53529"><i18n-string id="Menu:MapN"/>16</rom-file>
+  </category>
+  <category><name><area-name id="129"/></name>
+    <rom-file id="53530"><i18n-string id="Menu:MapN"/>1</rom-file>
+    <rom-file id="53531"><i18n-string id="Menu:MapN"/>2</rom-file>
+    <rom-file id="53532"><i18n-string id="Menu:MapN"/>3</rom-file>
+    <rom-file id="53533"><i18n-string id="Menu:MapN"/>4</rom-file>
+    <rom-file id="53534"><i18n-string id="Menu:MapN"/>5</rom-file>
+    <rom-file id="53535"><i18n-string id="Menu:MapN"/>6</rom-file>
+    <rom-file id="53536"><i18n-string id="Menu:MapN"/>7</rom-file>
+    <rom-file id="53537"><i18n-string id="Menu:MapN"/>8</rom-file>
+    <rom-file id="53538"><i18n-string id="Menu:MapN"/>9</rom-file>
+    <rom-file id="53539"><i18n-string id="Menu:MapN"/>10</rom-file>
+    <rom-file id="53540"><i18n-string id="Menu:MapN"/>11</rom-file>
+    <rom-file id="53541"><i18n-string id="Menu:MapN"/>12</rom-file>
+    <rom-file id="53542"><i18n-string id="Menu:MapN"/>13</rom-file>
+    <rom-file id="53543"><i18n-string id="Menu:MapN"/>14</rom-file>
+    <rom-file id="53544"><i18n-string id="Menu:MapN"/>15</rom-file>
+    <rom-file id="53545"><i18n-string id="Menu:MapN"/>16</rom-file>
+    <rom-file id="53546"><i18n-string id="Menu:MapN"/>17</rom-file>
+    <rom-file id="53547"><i18n-string id="Menu:MapN"/>18</rom-file>
+  </category>
       </category>
       <category><name><i18n-string id="Menu:Abyssea"/></name>
 	  <rom-file id="53548"><area-name id="015"/></rom-file>
