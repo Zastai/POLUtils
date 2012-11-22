@@ -231,6 +231,18 @@ This may take quite a while.</value>
   <data name="Menu:Abyssea" xml:space="preserve">
     <value>&amp;Abyssea</value>
   </data>
+  <data name="Menu:Actualization" xml:space="preserve">
+    <value>Actualization Team</value>
+  </data>
+  <data name="Menu:Adjunct" xml:space="preserve">
+    <value>Adjunct</value>
+  </data>
+  <data name="Menu:Appropriation" xml:space="preserve">
+    <value>Appropriation Team</value>
+  </data>
+  <data name="Menu:AquaticDepopulation" xml:space="preserve">
+    <value>Aquatic Depopulation Team</value>
+  </data>
   <data name="Menu:AreaNames" xml:space="preserve">
     <value>&amp;Area Names</value>
   </data>
@@ -242,6 +254,12 @@ This may take quite a while.</value>
   </data>
   <data name="Menu:Armor" xml:space="preserve">
     <value>Armor</value>
+  </data>
+  <data name="Menu:Assistant" xml:space="preserve">
+    <value>Assistant</value>
+  </data>
+  <data name="Menu:AssociateResearcher" xml:space="preserve">
+    <value>Associate Researcher</value>
   </data>
   <data name="Menu:BlueMagicHelp" xml:space="preserve">
     <value>&amp;Blue Magic Help Text</value>
@@ -309,6 +327,9 @@ This may take quite a while.</value>
   <data name="Menu:InGameMessages2" xml:space="preserve">
     <value>&amp;In-Game Messages (2)</value>
   </data>
+  <data name="Menu:Instructor" xml:space="preserve">
+    <value>Instructor</value>
+  </data>
   <data name="Menu:ItemData" xml:space="preserve">
     <value>I&amp;tem Data</value>
   </data>
@@ -324,11 +345,20 @@ This may take quite a while.</value>
   <data name="Menu:KeyItems" xml:space="preserve">
     <value>Key Items</value>
   </data>
+  <data name="Menu:Liquidation" xml:space="preserve">
+    <value>Liquidation Team</value>
+  </data>
   <data name="Menu:MapN" xml:space="preserve">
     <value>Map &amp;</value>
   </data>
   <data name="Menu:Maps" xml:space="preserve">
     <value>&amp;Maps</value>
+  </data>
+  <data name="Menu:Materialization" xml:space="preserve">
+    <value>Materialization Team</value>
+  </data>
+  <data name="Menu:MeebleBurrows" xml:space="preserve">
+    <value>Meeble Burrows</value>
   </data>
   <data name="Menu:MenuItemDesc" xml:space="preserve">
     <value>&amp;Menu Item Descriptions</value>
@@ -341,6 +371,9 @@ This may take quite a while.</value>
   </data>
   <data name="Menu:Missions" xml:space="preserve">
     <value>Missions</value>
+  </data>
+  <data name="Menu:MoblinMaze" xml:space="preserve">
+    <value>Moblin Maze Mongers</value>
   </data>
   <data name="Menu:MobLists" xml:space="preserve">
     <value>&amp;NPC/Monster Lists</value>
@@ -380,6 +413,21 @@ This may take quite a while.</value>
   </data>
   <data name="Menu:RegionNames" xml:space="preserve">
     <value>&amp;Region Names</value>
+  </data>
+  <data name="Menu:Researcher" xml:space="preserve">
+    <value>Researcher</value>
+  </data>
+  <data name="Menu:Revitalization" xml:space="preserve">
+    <value>Revitalization Team</value>
+  </data>
+  <data name="Menu:SanitizationAlpha" xml:space="preserve">
+    <value>Sanitization Team Alpha</value>
+  </data>
+  <data name="Menu:SanitizationBeta" xml:space="preserve">
+    <value>Sanitization Team Beta</value>
+  </data>
+  <data name="Menu:SanitizationGamma" xml:space="preserve">
+    <value>Sanitization Team Gamma</value>
   </data>
   <data name="Menu:SouthHalf" xml:space="preserve">
     <value>&amp;South Half</value>

@@ -236,6 +236,8 @@ namespace MassExtractor {
 	  // Mob Lists
 	  for (ushort i = 0; i < 0x100; ++i)
 	    Program.ExtractFile(6720 + i, String.Format("mob-list-{0:000}.xml", i));
+	  for (ushort i = 0; i < 0x100; ++i)
+	    Program.ExtractFile(67910 + i, String.Format("mob-list2-{0:000}.xml", i));
 	  // String Tables
 	  Program.ExtractFile(55465, "area-names.xml");
 	  Program.ExtractFile(55466, "area-names-search.xml");

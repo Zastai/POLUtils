@@ -2593,6 +2593,25 @@
       <rom-file id="06902"><area-name id="182"/></rom-file>
     </category>
     <category><name><i18n-string id="Menu:Other"/></name>
+      <category><name><i18n-string id="Menu:MoblinMaze"/></name>
+        <rom-file id="67911"><i18n-string id="Menu:SanitizationAlpha"/></rom-file>
+        <rom-file id="67912"><i18n-string id="Menu:SanitizationBeta"/></rom-file>
+        <rom-file id="67913"><i18n-string id="Menu:SanitizationGamma"/></rom-file>
+        <rom-file id="67914"><i18n-string id="Menu:Materialization"/></rom-file>
+        <rom-file id="67915"><i18n-string id="Menu:Actualization"/></rom-file>
+        <rom-file id="67916"><i18n-string id="Menu:Appropriation"/></rom-file>
+        <rom-file id="67917"><i18n-string id="Menu:Liquidation"/></rom-file>
+        <rom-file id="67918"><i18n-string id="Menu:AquaticDepopulation"/></rom-file>
+        <rom-file id="67919"><i18n-string id="Menu:Revitalization"/></rom-file>
+      </category>
+      <category><name><i18n-string id="Menu:MeebleBurrows"/></name>
+        <rom-file id="67920"><i18n-string id="Menu:Adjunct"/></rom-file>
+        <rom-file id="67921"><i18n-string id="Menu:Assistant"/></rom-file>
+        <rom-file id="67922"><i18n-string id="Menu:Instructor"/></rom-file>
+        <rom-file id="67923"><i18n-string id="Menu:AssociateResearcher"/></rom-file>
+        <rom-file id="67924"><i18n-string id="Menu:Researcher"/></rom-file>
+      </category>
+      <separator/>
       <rom-file id="06944"><area-name id="224"/></rom-file>
       <rom-file id="06946"><area-name id="226"/></rom-file>
       <rom-file id="06943"><area-name id="223"/></rom-file>
