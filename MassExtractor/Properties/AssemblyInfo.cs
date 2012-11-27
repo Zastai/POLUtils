@@ -24,4 +24,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark    ("")]
 [assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("0.9.9.2")]
+[assembly: AssemblyVersion      ("1.0.0.0")]

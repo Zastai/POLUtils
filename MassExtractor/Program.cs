@@ -24,8 +24,14 @@ namespace MassExtractor {
 
   internal class Program {
 
+    private static bool useTest = false;
+
     private static void ExtractFile(int FileNumber, string OutputFile) {
-    string ROMPath = FFXI.GetFilePath(FileNumber);
+    string ROMPath;
+      if (useTest == true)
+    ROMPath = FFXI.GetFilePath(FileNumber, AppID.FFXITC);
+      else
+    ROMPath = FFXI.GetFilePath(FileNumber);
       if (ROMPath == null || !File.Exists(ROMPath)) {
 	Console.ForegroundColor = ConsoleColor.Red;
 	Console.WriteLine(I18N.GetText("BadFileID"), FileNumber, OutputFile);
@@ -89,7 +95,33 @@ namespace MassExtractor {
       bool   ScanAllFiles = false;
 	{
 	string[] Args = Environment.GetCommandLineArgs();
-	  if (Args.Length > 1) {
+    for (int count = 0; count < Args.Length; count++) {
+      if (Args[count].ToLower() == "-test") {
+        useTest = true;
+        try {
+          FFXIFolder = null;
+          if (FFXIFolder == null) FFXIFolder = POL.GetApplicationPath(AppID.FFXITC, POL.Region.Japan);
+          if (FFXIFolder == null) FFXIFolder = POL.GetApplicationPath(AppID.FFXITC, POL.Region.NorthAmerica);
+          if (FFXIFolder == null) FFXIFolder = POL.GetApplicationPath(AppID.FFXITC, POL.Region.Europe);
+          if (FFXIFolder == null) {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(I18N.GetText("NoFFXITC"));
+            return 1;
+          }
+        }
+        catch (Exception E) {
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine(I18N.GetText("Exception"), E.Message);
+          return 1;
+        }
+        finally { Console.ResetColor();}
+    }
+    else if (Args[count].ToLower() == "-full-scan")
+      ScanAllFiles = true;
+    else
+      OutputFolder = Args[count];
+    }
+	  /*if (Args.Length > 1) {
 	    OutputFolder = Args[1];
 	    if (OutputFolder == "-full-scan") {
 	      OutputFolder = null;
@@ -97,7 +129,7 @@ namespace MassExtractor {
 	      if (Args.Length > 2)
 		OutputFolder = Args[2];
 	    }
-	  }
+	  }*/
 	  if (OutputFolder == null) {
 	    Console.ForegroundColor = ConsoleColor.Red;
 	    Console.WriteLine(I18N.GetText("Usage"), Args[0]);

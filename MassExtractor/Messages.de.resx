@@ -172,6 +172,6 @@
     <value>Ziel Ordner: {0}</value>
   </data>
   <data name="Usage" xml:space="preserve">
-    <value>Benötigt: {0} [-full-scan] &lt;Output Folder&gt;</value>
+    <value>Benötigt: {0} [-full-scan] [-test] &lt;Output Folder&gt;</value>
   </data>
 </root>

@@ -153,6 +153,9 @@
   <data name="NoFFXI" xml:space="preserve">
     <value>There is no version of FFXI installed on this machine.</value>
   </data>
+  <data name="NoFFXITC" xml:space="preserve">
+    <value>There is no version of the  FFXI Test Client installed on this machine.</value>
+  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -172,6 +175,6 @@
     <value>Target Folder: {0}</value>
   </data>
   <data name="Usage" xml:space="preserve">
-    <value>Usage: {0} [-full-scan] &lt;Output Folder&gt;</value>
+    <value>Usage: {0} [-full-scan] [-test] &lt;Output Folder&gt;</value>
   </data>
 </root>
