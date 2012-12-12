@@ -199,10 +199,10 @@ namespace MassExtractor {
       Program.ExtractFile(74, "resources/usableE.xml");
       Program.ExtractFile(75, "resources/weaponE.xml");
       Program.ExtractFile(76, "resources/armorE.xml");
-      Program.ExtractFile(96, "resources/armor2E.xml");
+      Program.ExtractFile(55668, "resources/armor2E.xml");
       Program.ExtractFile(77, "resources/puppetE.xml");
       Program.ExtractFile(91, "resources/currencyE.xml");
-      Program.ExtractFile(94, "resources/slipE.xml");
+      Program.ExtractFile(55667, "resources/slipE.xml");
       Program.ExtractFile(55701, "resources/abilE.xml");
       Program.ExtractFile(55465, "resources/areaE.xml");
       Program.ExtractFile(55702, "resources/spellE.xml");
@@ -238,10 +238,10 @@ namespace MassExtractor {
       Program.ExtractFile(5, "resources/usableJ.xml");
       Program.ExtractFile(6, "resources/weaponJ.xml");
       Program.ExtractFile(7, "resources/armorJ.xml");
-      Program.ExtractFile(95, "resources/armor2J.xml");
+      Program.ExtractFile(55548, "resources/armor2J.xml");
       Program.ExtractFile(8, "resources/puppetJ.xml");
       Program.ExtractFile(9, "resources/currencyJ.xml");
-      Program.ExtractFile(93, "resources/slipJ.xml");
+      Program.ExtractFile(55547, "resources/slipJ.xml");
       Program.ExtractFile(55581, "resources/abilJ.xml");
       Program.ExtractFile(55535, "resources/areaJ.xml");
       Program.ExtractFile(55582, "resources/spellJ.xml");
@@ -252,14 +252,14 @@ namespace MassExtractor {
 	  Program.ExtractFile(74, "items-usable.xml");
 	  Program.ExtractFile(75, "items-weapons.xml");
 	  Program.ExtractFile(76, "items-armor.xml");
-      Program.ExtractFile(96, "items-armor2.xml");
+      Program.ExtractFile(55668, "items-armor2.xml");
 	  Program.ExtractFile(77, "items-puppet.xml");
 	  Program.ExtractFile(82, "quests.xml");
 	  Program.ExtractFile(85, "old-abilities.xml");
 	  Program.ExtractFile(86, "old-spells-2.xml");
       Program.ExtractFile(87, "old-statuses.xml");
       Program.ExtractFile(91, "items-currency.xml");
-      Program.ExtractFile(94, "items-voucher-slip.xml");
+      Program.ExtractFile(55667, "items-voucher-slip.xml");
 	  // Dialog Tables
 	  for (ushort i = 0; i < 0x100; ++i)
 	    Program.ExtractFile(6420 + i, String.Format("dialog-table-{0:000}.xml", i));
