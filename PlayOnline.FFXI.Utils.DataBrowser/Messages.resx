@@ -550,4 +550,13 @@ Correct the problem and try again.</value>
   <data name="Title:InvalidQuery" xml:space="preserve">
     <value>Invalid Query</value>
   </data>
+  <data name="Menu:BAdjunct" xml:space="preserve">
+    <value>Battalia Adjunct</value>
+  </data>
+  <data name="Menu:BAssistant" xml:space="preserve">
+    <value>Battalia Assistant</value>
+  </data>
+  <data name="Menu:BInstructor" xml:space="preserve">
+    <value>Battalia Instructor</value>
+  </data>
 </root>

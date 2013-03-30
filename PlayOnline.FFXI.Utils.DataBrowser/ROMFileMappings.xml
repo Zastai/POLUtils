@@ -2668,6 +2668,9 @@
         <rom-file id="67922"><i18n-string id="Menu:Instructor"/></rom-file>
         <rom-file id="67923"><i18n-string id="Menu:AssociateResearcher"/></rom-file>
         <rom-file id="67924"><i18n-string id="Menu:Researcher"/></rom-file>
+        <rom-file id="67925"><i18n-string id="Menu:BAdjunct"/></rom-file>
+        <rom-file id="67926"><i18n-string id="Menu:BAssistant"/></rom-file>
+        <rom-file id="67927"><i18n-string id="Menu:BInstructor"/></rom-file>
       </category>
       <separator/>
       <rom-file id="06944"><area-name id="224"/></rom-file>

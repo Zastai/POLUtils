@@ -32,6 +32,10 @@ namespace PlayOnline.FFXI {
     Flourish2     = 0x11,
     Monster       = 0x12,
     Flourish3     = 0x13,
+    Weaponskill   = 0x14,
+    Rune          = 0x15,
+    Ward          = 0x16,
+    Effusion      = 0x17,
   }
 
   public enum Element : byte {
@@ -164,8 +168,8 @@ namespace PlayOnline.FFXI {
     PUP   = 0x00040000,
     DNC   = 0x00080000,
     SCH   = 0x00100000,
-    JOB21 = 0x00200000,
-    JOB22 = 0x00400000,
+    GEO   = 0x00200000,
+    RUN   = 0x00400000,
     JOB23 = 0x00800000,
     JOB24 = 0x01000000,
     JOB25 = 0x02000000,
@@ -185,6 +189,7 @@ namespace PlayOnline.FFXI {
     Ninjutsu      = 0x04,
     BardSong      = 0x05,
     BlueMagic     = 0x06,
+    Geomancy      = 0x07,
   }
 
   public enum PuppetSlot : byte {
@@ -245,6 +250,7 @@ namespace PlayOnline.FFXI {
     StringInstrument = 0x29,
     WindInstrument   = 0x2a,
     BlueMagic        = 0x2b,
+    Geomancy         = 0x2c,
     Fishing          = 0x30,
     // These are assumed values, no known data actually uses them
     Woodworking      = 0x31,
