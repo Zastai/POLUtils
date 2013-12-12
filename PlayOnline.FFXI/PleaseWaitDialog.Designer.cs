@@ -30,35 +30,33 @@ namespace PlayOnline.FFXI {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PleaseWaitDialog));
       this.lblMessage = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // lblMessage
       // 
-      this.lblMessage.AccessibleDescription = resources.GetString("lblMessage.AccessibleDescription");
-      this.lblMessage.AccessibleName = resources.GetString("lblMessage.AccessibleName");
-      resources.ApplyResources(this.lblMessage, "lblMessage");
       this.lblMessage.BackColor = System.Drawing.Color.Transparent;
+      this.lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+      this.lblMessage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblMessage.Location = new System.Drawing.Point(0, 0);
       this.lblMessage.Name = "lblMessage";
-      this.lblMessage.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("lblMessage.RightToLeft")));
+      this.lblMessage.Size = new System.Drawing.Size(294, 76);
+      this.lblMessage.TabIndex = 0;
+      this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       this.lblMessage.UseMnemonic = false;
       // 
       // PleaseWaitDialog
       // 
-      this.AccessibleDescription = resources.GetString("$this.AccessibleDescription");
-      this.AccessibleName = resources.GetString("$this.AccessibleName");
-      resources.ApplyResources(this, "$this");
-      this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
+      this.ClientSize = new System.Drawing.Size(294, 76);
       this.ControlBox = false;
       this.Controls.Add(this.lblMessage);
-      this.Font = ((System.Drawing.Font) (resources.GetObject("$this.Font")));
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-      this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
-      this.ImeMode = ((System.Windows.Forms.ImeMode) (resources.GetObject("$this.ImeMode")));
+      this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
       this.Name = "PleaseWaitDialog";
-      this.RightToLeft = ((System.Windows.Forms.RightToLeft) (resources.GetObject("$this.RightToLeft")));
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Please Wait...";
       this.ResumeLayout(false);
 
     }

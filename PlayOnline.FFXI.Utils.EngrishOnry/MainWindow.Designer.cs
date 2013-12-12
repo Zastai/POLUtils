@@ -24,7 +24,6 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.pnlLog = new System.Windows.Forms.Panel();
       this.lblActivityLog = new System.Windows.Forms.Label();
       this.rtbActivityLog = new System.Windows.Forms.RichTextBox();
@@ -73,19 +72,35 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       this.pnlLog.Controls.Add(this.lblActivityLog);
       this.pnlLog.Controls.Add(this.rtbActivityLog);
-      resources.ApplyResources(this.pnlLog, "pnlLog");
+      this.pnlLog.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pnlLog.Location = new System.Drawing.Point(0, 72);
       this.pnlLog.Name = "pnlLog";
+      this.pnlLog.Size = new System.Drawing.Size(519, 150);
+      this.pnlLog.TabIndex = 0;
       // 
       // lblActivityLog
       // 
-      resources.ApplyResources(this.lblActivityLog, "lblActivityLog");
+      this.lblActivityLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lblActivityLog.Location = new System.Drawing.Point(4, 4);
       this.lblActivityLog.Name = "lblActivityLog";
+      this.lblActivityLog.Size = new System.Drawing.Size(507, 16);
+      this.lblActivityLog.TabIndex = 0;
+      this.lblActivityLog.Text = "Activity Log:";
       // 
       // rtbActivityLog
       // 
-      resources.ApplyResources(this.rtbActivityLog, "rtbActivityLog");
+      this.rtbActivityLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.rtbActivityLog.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8F);
+      this.rtbActivityLog.Location = new System.Drawing.Point(4, 20);
       this.rtbActivityLog.Name = "rtbActivityLog";
       this.rtbActivityLog.ReadOnly = true;
+      this.rtbActivityLog.Size = new System.Drawing.Size(511, 126);
+      this.rtbActivityLog.TabIndex = 500;
+      this.rtbActivityLog.Text = "";
+      this.rtbActivityLog.WordWrap = false;
       // 
       // mnuConfigSpellData
       // 
@@ -97,14 +112,14 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       this.mnuTranslateSpellNames.Checked = true;
       this.mnuTranslateSpellNames.Index = 0;
-      resources.ApplyResources(this.mnuTranslateSpellNames, "mnuTranslateSpellNames");
+      this.mnuTranslateSpellNames.Text = "Translate Spell &Names";
       this.mnuTranslateSpellNames.Click += new System.EventHandler(this.mnuTranslateSpellNames_Click);
       // 
       // mnuTranslateSpellDescriptions
       // 
       this.mnuTranslateSpellDescriptions.Checked = true;
       this.mnuTranslateSpellDescriptions.Index = 1;
-      resources.ApplyResources(this.mnuTranslateSpellDescriptions, "mnuTranslateSpellDescriptions");
+      this.mnuTranslateSpellDescriptions.Text = "Translate Spell &Descriptions";
       this.mnuTranslateSpellDescriptions.Click += new System.EventHandler(this.mnuTranslateSpellDescriptions_Click);
       // 
       // mnuConfigItemData
@@ -117,14 +132,14 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       this.mnuTranslateItemNames.Checked = true;
       this.mnuTranslateItemNames.Index = 0;
-      resources.ApplyResources(this.mnuTranslateItemNames, "mnuTranslateItemNames");
+      this.mnuTranslateItemNames.Text = "Translate Item &Names";
       this.mnuTranslateItemNames.Click += new System.EventHandler(this.mnuTranslateItemNames_Click);
       // 
       // mnuTranslateItemDescriptions
       // 
       this.mnuTranslateItemDescriptions.Checked = true;
       this.mnuTranslateItemDescriptions.Index = 1;
-      resources.ApplyResources(this.mnuTranslateItemDescriptions, "mnuTranslateItemDescriptions");
+      this.mnuTranslateItemDescriptions.Text = "Translate Item &Descriptions";
       this.mnuTranslateItemDescriptions.Click += new System.EventHandler(this.mnuTranslateItemDescriptions_Click);
       // 
       // mnuConfigAutoTrans
@@ -137,13 +152,13 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       this.mnuPreserveJapaneseATCompletion.Checked = true;
       this.mnuPreserveJapaneseATCompletion.Index = 0;
-      resources.ApplyResources(this.mnuPreserveJapaneseATCompletion, "mnuPreserveJapaneseATCompletion");
+      this.mnuPreserveJapaneseATCompletion.Text = "Preserve &Japanese Completion";
       this.mnuPreserveJapaneseATCompletion.Click += new System.EventHandler(this.mnuPreserveJapaneseATCompletion_Click);
       // 
       // mnuEnglishATCompletionOnly
       // 
       this.mnuEnglishATCompletionOnly.Index = 1;
-      resources.ApplyResources(this.mnuEnglishATCompletionOnly, "mnuEnglishATCompletionOnly");
+      this.mnuEnglishATCompletionOnly.Text = "&English Completion Only";
       this.mnuEnglishATCompletionOnly.Click += new System.EventHandler(this.mnuEnglishATCompletionOnly_Click);
       // 
       // pnlActions
@@ -172,149 +187,250 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       this.pnlActions.Controls.Add(this.btnTranslateAutoTrans);
       this.pnlActions.Controls.Add(this.btnRestoreItemData);
       this.pnlActions.Controls.Add(this.btnTranslateItemData);
-      resources.ApplyResources(this.pnlActions, "pnlActions");
+      this.pnlActions.Dock = System.Windows.Forms.DockStyle.Top;
+      this.pnlActions.Location = new System.Drawing.Point(0, 0);
       this.pnlActions.Name = "pnlActions";
+      this.pnlActions.Size = new System.Drawing.Size(519, 72);
+      this.pnlActions.TabIndex = 14;
       // 
       // btnConfigAbilities
       // 
-      resources.ApplyResources(this.btnConfigAbilities, "btnConfigAbilities");
+      this.btnConfigAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigAbilities.Location = new System.Drawing.Point(188, 48);
       this.btnConfigAbilities.Name = "btnConfigAbilities";
+      this.btnConfigAbilities.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigAbilities.TabIndex = 37;
+      this.btnConfigAbilities.Text = "Options";
       this.btnConfigAbilities.Click += new System.EventHandler(this.btnConfigAbilities_Click);
       // 
       // lblAbilities
       // 
       this.lblAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblAbilities, "lblAbilities");
+      this.lblAbilities.Location = new System.Drawing.Point(8, 52);
       this.lblAbilities.Name = "lblAbilities";
+      this.lblAbilities.Size = new System.Drawing.Size(60, 16);
+      this.lblAbilities.TabIndex = 34;
+      this.lblAbilities.Text = "Ability Data:";
+      this.lblAbilities.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // btnRestoreAbilities
       // 
-      resources.ApplyResources(this.btnRestoreAbilities, "btnRestoreAbilities");
+      this.btnRestoreAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreAbilities.Location = new System.Drawing.Point(128, 48);
       this.btnRestoreAbilities.Name = "btnRestoreAbilities";
+      this.btnRestoreAbilities.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreAbilities.TabIndex = 36;
+      this.btnRestoreAbilities.Text = "Restore";
       this.btnRestoreAbilities.Click += new System.EventHandler(this.btnRestoreAbilities_Click);
       // 
       // btnTranslateAbilities
       // 
-      resources.ApplyResources(this.btnTranslateAbilities, "btnTranslateAbilities");
+      this.btnTranslateAbilities.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateAbilities.Location = new System.Drawing.Point(72, 48);
       this.btnTranslateAbilities.Name = "btnTranslateAbilities";
+      this.btnTranslateAbilities.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateAbilities.TabIndex = 35;
+      this.btnTranslateAbilities.Text = "Translate";
       this.btnTranslateAbilities.Click += new System.EventHandler(this.btnTranslateAbilities_Click);
       // 
       // btnConfigDialogTables
       // 
-      resources.ApplyResources(this.btnConfigDialogTables, "btnConfigDialogTables");
+      this.btnConfigDialogTables.Enabled = false;
+      this.btnConfigDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigDialogTables.Location = new System.Drawing.Point(464, 8);
       this.btnConfigDialogTables.Name = "btnConfigDialogTables";
+      this.btnConfigDialogTables.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigDialogTables.TabIndex = 33;
+      this.btnConfigDialogTables.Text = "Options";
       // 
       // btnConfigStringTables
       // 
-      resources.ApplyResources(this.btnConfigStringTables, "btnConfigStringTables");
+      this.btnConfigStringTables.Enabled = false;
+      this.btnConfigStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigStringTables.Location = new System.Drawing.Point(464, 28);
       this.btnConfigStringTables.Name = "btnConfigStringTables";
+      this.btnConfigStringTables.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigStringTables.TabIndex = 32;
+      this.btnConfigStringTables.Text = "Options";
       // 
       // btnConfigAutoTrans
       // 
-      resources.ApplyResources(this.btnConfigAutoTrans, "btnConfigAutoTrans");
+      this.btnConfigAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigAutoTrans.Location = new System.Drawing.Point(464, 48);
       this.btnConfigAutoTrans.Name = "btnConfigAutoTrans";
+      this.btnConfigAutoTrans.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigAutoTrans.TabIndex = 27;
+      this.btnConfigAutoTrans.Text = "Options";
       this.btnConfigAutoTrans.Click += new System.EventHandler(this.btnConfigAutoTrans_Click);
       // 
       // btnConfigItemData
       // 
-      resources.ApplyResources(this.btnConfigItemData, "btnConfigItemData");
+      this.btnConfigItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigItemData.Location = new System.Drawing.Point(188, 28);
       this.btnConfigItemData.Name = "btnConfigItemData";
+      this.btnConfigItemData.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigItemData.TabIndex = 24;
+      this.btnConfigItemData.Text = "Options";
       this.btnConfigItemData.Click += new System.EventHandler(this.btnConfigItemData_Click);
       // 
       // btnConfigSpellData
       // 
-      resources.ApplyResources(this.btnConfigSpellData, "btnConfigSpellData");
+      this.btnConfigSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnConfigSpellData.Location = new System.Drawing.Point(188, 8);
       this.btnConfigSpellData.Name = "btnConfigSpellData";
+      this.btnConfigSpellData.Size = new System.Drawing.Size(48, 20);
+      this.btnConfigSpellData.TabIndex = 21;
+      this.btnConfigSpellData.Text = "Options";
       this.btnConfigSpellData.Click += new System.EventHandler(this.btnConfigSpellData_Click);
       // 
       // lblItemData
       // 
       this.lblItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblItemData, "lblItemData");
+      this.lblItemData.Location = new System.Drawing.Point(8, 32);
       this.lblItemData.Name = "lblItemData";
+      this.lblItemData.Size = new System.Drawing.Size(60, 16);
+      this.lblItemData.TabIndex = 17;
+      this.lblItemData.Text = "Item Data:";
+      this.lblItemData.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lblAutoTranslator
       // 
       this.lblAutoTranslator.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblAutoTranslator, "lblAutoTranslator");
+      this.lblAutoTranslator.Location = new System.Drawing.Point(260, 52);
       this.lblAutoTranslator.Name = "lblAutoTranslator";
+      this.lblAutoTranslator.Size = new System.Drawing.Size(82, 16);
+      this.lblAutoTranslator.TabIndex = 14;
+      this.lblAutoTranslator.Text = "Auto-Translator:";
+      this.lblAutoTranslator.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lblSpellData
       // 
       this.lblSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblSpellData, "lblSpellData");
+      this.lblSpellData.Location = new System.Drawing.Point(8, 12);
       this.lblSpellData.Name = "lblSpellData";
+      this.lblSpellData.Size = new System.Drawing.Size(60, 16);
+      this.lblSpellData.TabIndex = 15;
+      this.lblSpellData.Text = "Spell Data:";
+      this.lblSpellData.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lblStringTables
       // 
       this.lblStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblStringTables, "lblStringTables");
+      this.lblStringTables.Location = new System.Drawing.Point(240, 32);
       this.lblStringTables.Name = "lblStringTables";
+      this.lblStringTables.Size = new System.Drawing.Size(104, 16);
+      this.lblStringTables.TabIndex = 16;
+      this.lblStringTables.Text = "Other String Tables:";
+      this.lblStringTables.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lblDialogTables
       // 
       this.lblDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblDialogTables, "lblDialogTables");
+      this.lblDialogTables.Location = new System.Drawing.Point(240, 12);
       this.lblDialogTables.Name = "lblDialogTables";
+      this.lblDialogTables.Size = new System.Drawing.Size(104, 16);
+      this.lblDialogTables.TabIndex = 18;
+      this.lblDialogTables.Text = "Zone Dialog Tables:";
+      this.lblDialogTables.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // btnRestoreSpellData
       // 
-      resources.ApplyResources(this.btnRestoreSpellData, "btnRestoreSpellData");
+      this.btnRestoreSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreSpellData.Location = new System.Drawing.Point(128, 8);
       this.btnRestoreSpellData.Name = "btnRestoreSpellData";
+      this.btnRestoreSpellData.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreSpellData.TabIndex = 20;
+      this.btnRestoreSpellData.Text = "Restore";
       this.btnRestoreSpellData.Click += new System.EventHandler(this.btnRestoreSpellData_Click);
       // 
       // btnTranslateSpellData
       // 
-      resources.ApplyResources(this.btnTranslateSpellData, "btnTranslateSpellData");
+      this.btnTranslateSpellData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateSpellData.Location = new System.Drawing.Point(72, 8);
       this.btnTranslateSpellData.Name = "btnTranslateSpellData";
+      this.btnTranslateSpellData.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateSpellData.TabIndex = 19;
+      this.btnTranslateSpellData.Text = "Translate";
       this.btnTranslateSpellData.Click += new System.EventHandler(this.btnTranslateSpellData_Click);
       // 
       // btnRestoreStringTables
       // 
-      resources.ApplyResources(this.btnRestoreStringTables, "btnRestoreStringTables");
+      this.btnRestoreStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreStringTables.Location = new System.Drawing.Point(404, 28);
       this.btnRestoreStringTables.Name = "btnRestoreStringTables";
+      this.btnRestoreStringTables.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreStringTables.TabIndex = 31;
+      this.btnRestoreStringTables.Text = "Restore";
       this.btnRestoreStringTables.Click += new System.EventHandler(this.btnRestoreStringTables_Click);
       // 
       // btnTranslateStringTables
       // 
-      resources.ApplyResources(this.btnTranslateStringTables, "btnTranslateStringTables");
+      this.btnTranslateStringTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateStringTables.Location = new System.Drawing.Point(348, 28);
       this.btnTranslateStringTables.Name = "btnTranslateStringTables";
+      this.btnTranslateStringTables.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateStringTables.TabIndex = 30;
+      this.btnTranslateStringTables.Text = "Translate";
       this.btnTranslateStringTables.Click += new System.EventHandler(this.btnTranslateStringTables_Click);
       // 
       // btnRestoreDialogTables
       // 
-      resources.ApplyResources(this.btnRestoreDialogTables, "btnRestoreDialogTables");
+      this.btnRestoreDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreDialogTables.Location = new System.Drawing.Point(404, 8);
       this.btnRestoreDialogTables.Name = "btnRestoreDialogTables";
+      this.btnRestoreDialogTables.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreDialogTables.TabIndex = 29;
+      this.btnRestoreDialogTables.Text = "Restore";
       this.btnRestoreDialogTables.Click += new System.EventHandler(this.btnRestoreDialogTables_Click);
       // 
       // btnTranslateDialogTables
       // 
-      resources.ApplyResources(this.btnTranslateDialogTables, "btnTranslateDialogTables");
+      this.btnTranslateDialogTables.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateDialogTables.Location = new System.Drawing.Point(348, 8);
       this.btnTranslateDialogTables.Name = "btnTranslateDialogTables";
+      this.btnTranslateDialogTables.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateDialogTables.TabIndex = 28;
+      this.btnTranslateDialogTables.Text = "Translate";
       this.btnTranslateDialogTables.Click += new System.EventHandler(this.btnTranslateDialogTables_Click);
       // 
       // btnRestoreAutoTrans
       // 
-      resources.ApplyResources(this.btnRestoreAutoTrans, "btnRestoreAutoTrans");
+      this.btnRestoreAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreAutoTrans.Location = new System.Drawing.Point(404, 48);
       this.btnRestoreAutoTrans.Name = "btnRestoreAutoTrans";
+      this.btnRestoreAutoTrans.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreAutoTrans.TabIndex = 26;
+      this.btnRestoreAutoTrans.Text = "Restore";
       this.btnRestoreAutoTrans.Click += new System.EventHandler(this.btnRestoreAutoTrans_Click);
       // 
       // btnTranslateAutoTrans
       // 
-      resources.ApplyResources(this.btnTranslateAutoTrans, "btnTranslateAutoTrans");
+      this.btnTranslateAutoTrans.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateAutoTrans.Location = new System.Drawing.Point(348, 48);
       this.btnTranslateAutoTrans.Name = "btnTranslateAutoTrans";
+      this.btnTranslateAutoTrans.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateAutoTrans.TabIndex = 25;
+      this.btnTranslateAutoTrans.Text = "Translate";
       this.btnTranslateAutoTrans.Click += new System.EventHandler(this.btnTranslateAutoTrans_Click);
       // 
       // btnRestoreItemData
       // 
-      resources.ApplyResources(this.btnRestoreItemData, "btnRestoreItemData");
+      this.btnRestoreItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRestoreItemData.Location = new System.Drawing.Point(128, 28);
       this.btnRestoreItemData.Name = "btnRestoreItemData";
+      this.btnRestoreItemData.Size = new System.Drawing.Size(60, 20);
+      this.btnRestoreItemData.TabIndex = 23;
+      this.btnRestoreItemData.Text = "Restore";
       this.btnRestoreItemData.Click += new System.EventHandler(this.btnRestoreItemData_Click);
       // 
       // btnTranslateItemData
       // 
-      resources.ApplyResources(this.btnTranslateItemData, "btnTranslateItemData");
+      this.btnTranslateItemData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnTranslateItemData.Location = new System.Drawing.Point(72, 28);
       this.btnTranslateItemData.Name = "btnTranslateItemData";
+      this.btnTranslateItemData.Size = new System.Drawing.Size(56, 20);
+      this.btnTranslateItemData.TabIndex = 22;
+      this.btnTranslateItemData.Text = "Translate";
       this.btnTranslateItemData.Click += new System.EventHandler(this.btnTranslateItemData_Click);
       // 
       // mnuConfigAbilities
@@ -327,20 +443,22 @@ namespace PlayOnline.FFXI.Utils.EngrishOnry {
       // 
       this.mnuTranslateAbilityNames.Checked = true;
       this.mnuTranslateAbilityNames.Index = 0;
-      resources.ApplyResources(this.mnuTranslateAbilityNames, "mnuTranslateAbilityNames");
+      this.mnuTranslateAbilityNames.Text = "Translate Ability &Names";
       // 
       // mnuTranslateAbilityDescriptions
       // 
       this.mnuTranslateAbilityDescriptions.Checked = true;
       this.mnuTranslateAbilityDescriptions.Index = 1;
-      resources.ApplyResources(this.mnuTranslateAbilityDescriptions, "mnuTranslateAbilityDescriptions");
+      this.mnuTranslateAbilityDescriptions.Text = "Translate Ability &Descriptions";
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(519, 222);
       this.Controls.Add(this.pnlLog);
       this.Controls.Add(this.pnlActions);
       this.Name = "MainWindow";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Make JP FFXI Engrish!";
       this.pnlLog.ResumeLayout(false);
       this.pnlActions.ResumeLayout(false);
       this.ResumeLayout(false);

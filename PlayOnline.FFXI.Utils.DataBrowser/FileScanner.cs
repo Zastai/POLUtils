@@ -9,14 +9,10 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System;
 using System.IO;
 using System.Threading;
-using System.Text;
 using System.Windows.Forms;
-
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
 
@@ -28,37 +24,33 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     public void ScanFile(IWin32Window ParentForm, string FileName) {
       lock (this.FSD) {
-	if (FileName != null && File.Exists(FileName)) {
-	  this.FSD = new FileScanDialog();
-	Thread T = new Thread(new ThreadStart(delegate () {
-	  try {
-	    Application.DoEvents();
-	    while (!this.FSD.Visible) {
-	      Thread.Sleep(0);
-	      Application.DoEvents();
-	    }
-	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.ResetProgress(); }));
-	    this.FileContents = FileType.LoadAll(FileName, new FileType.ProgressCallback(
-	      delegate (string Message, double PercentCompleted) {
-		this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.SetProgress(Message, PercentCompleted); }));
-	      }
-	    ));
-	    this.FSD.Invoke(new AnonymousMethod(delegate() { this.FSD.Finish(); }));
-	  } catch {
-	    this.FileContents = null;
-	  }
-	}));
-	  T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-	  T.Start();
-	  if (this.FSD.ShowDialog(ParentForm) == DialogResult.Abort) {
-	    this.FSD.Finish();
-	    this.FileContents = null;
-	  }
-	  if (T.IsAlive)
-	    T.Abort();
-	  this.FSD.Dispose();
-	  this.FSD = null;
-	}
+        if (FileName != null && File.Exists(FileName)) {
+          this.FSD = new FileScanDialog();
+          var T = new Thread(() => {
+            try {
+              Application.DoEvents();
+              while (!this.FSD.Visible) {
+                Thread.Sleep(0);
+                Application.DoEvents();
+              }
+              this.FSD.Invoke(new AnonymousMethod(() => this.FSD.ResetProgress()));
+              this.FileContents = FileType.LoadAll(FileName, (msg, pct) => this.FSD.Invoke(new AnonymousMethod(() => this.FSD.SetProgress(msg, pct))));
+              this.FSD.Invoke(new AnonymousMethod(() => this.FSD.Finish()));
+            } catch {
+              this.FileContents = null;
+            }
+          });
+          T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+          T.Start();
+          if (this.FSD.ShowDialog(ParentForm) == DialogResult.Abort) {
+            this.FSD.Finish();
+            this.FileContents = null;
+          }
+          if (T.IsAlive)
+            T.Abort();
+          this.FSD.Dispose();
+          this.FSD = null;
+        }
       }
     }
 

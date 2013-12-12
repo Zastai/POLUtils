@@ -10,13 +10,6 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.IO;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace PlayOnline.FFXI.Utils.DataBrowser {
@@ -36,7 +29,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     public void SetProgress(string Message, double PercentCompleted) {
       if (Message != null)
-	this.lblScanProgress.Text = Message;
+        this.lblScanProgress.Text = Message;
       this.prbScanProgress.Value = Math.Min((int) (PercentCompleted * this.prbScanProgress.Maximum), this.prbScanProgress.Maximum);
     }
 

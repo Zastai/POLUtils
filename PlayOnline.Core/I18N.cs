@@ -9,7 +9,6 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -26,10 +25,10 @@ namespace PlayOnline.Core {
       try {
       ResourceManager Resources = new ResourceManager("Messages", A);
       string ResourceString = Resources.GetObject(Name, CultureInfo.CurrentUICulture) as string;
-	if (ResourceString == null)
-	  ResourceString = Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
-	if (ResourceString != null)
-	  return ResourceString;
+        if (ResourceString == null)
+          ResourceString = Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
+        if (ResourceString != null)
+          return ResourceString;
       } catch { }
       return Name;
     }

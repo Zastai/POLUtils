@@ -13,14 +13,9 @@
 // provide one.  If set, a loop marker will also be added to the WAV file if appropriate.
 #define LocalWAVHeader
 
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-
 using PlayOnline.Core.Audio;
 
 namespace PlayOnline.Utils.AudioManager {
@@ -52,25 +47,25 @@ namespace PlayOnline.Utils.AudioManager {
 #if LocalWAVHeader
       this.prbBytesWritten.Maximum += 0x2c;
       if (this.AF.Looped)
-	this.prbBytesWritten.Maximum += 0x48; // For the "Loop Start" cue marker
+        this.prbBytesWritten.Maximum += 0x48; // For the "Loop Start" cue marker
       { // Write WAV header
       BinaryWriter BW = new BinaryWriter(this.FS, Encoding.ASCII);
-	// File Header
-	BW.Write("RIFF".ToCharArray());
-	BW.Write(this.prbBytesWritten.Maximum);
-	// Wave Format Header
-	BW.Write("WAVEfmt ".ToCharArray());
-	BW.Write((int) 0x10);
-	// Wave Format Data
-	BW.Write((short) 1); // PCM
-	BW.Write((short) this.AF.Channels);
-	BW.Write((int)   this.AF.SampleRate);
-	BW.Write((int)   (2 * this.AF.Channels * this.AF.SampleRate)); // bytes per second
-	BW.Write((short) (2 * this.AF.Channels)); // bytes per sample
-	BW.Write((short) 16); // bits
-	// Wave Data Header
-	BW.Write("data".ToCharArray());
-	BW.Write((int) this.AFS.Length);
+        // File Header
+        BW.Write("RIFF".ToCharArray());
+        BW.Write(this.prbBytesWritten.Maximum);
+        // Wave Format Header
+        BW.Write("WAVEfmt ".ToCharArray());
+        BW.Write((int) 0x10);
+        // Wave Format Data
+        BW.Write((short) 1); // PCM
+        BW.Write((short) this.AF.Channels);
+        BW.Write((int)   this.AF.SampleRate);
+        BW.Write((int)   (2 * this.AF.Channels * this.AF.SampleRate)); // bytes per second
+        BW.Write((short) (2 * this.AF.Channels)); // bytes per sample
+        BW.Write((short) 16); // bits
+        // Wave Data Header
+        BW.Write("data".ToCharArray());
+        BW.Write((int) this.AFS.Length);
       }
       this.prbBytesWritten.Value = 0x2c;
 #endif
@@ -78,33 +73,33 @@ namespace PlayOnline.Utils.AudioManager {
     byte[] data = new byte[this.ChunkSize];
       while (true) {
       int read = AFS.Read(data, 0, this.ChunkSize);
-	this.prbBytesWritten.Value += read;
-	FS.Write(data, 0, read);
-	if (read != this.ChunkSize)
-	  break;
+        this.prbBytesWritten.Value += read;
+        FS.Write(data, 0, read);
+        if (read != this.ChunkSize)
+          break;
       }
       AFS.Close();
 #if LocalWAVHeader
       // Write "Loop Start" cue marker
       if (this.AF.Looped) {
       BinaryWriter BW = new BinaryWriter(this.FS, Encoding.ASCII);
-	BW.Write("cue ".ToCharArray());
-	BW.Write((int) 0x1c);
-	BW.Write((int) 1);
-	BW.Write((int) 1);
-	BW.Write((int) (this.AF.LoopStart * this.AF.SampleRate));
-	BW.Write("data".ToCharArray());
-	BW.Write((int) 0);
-	BW.Write((int) 0);
-	BW.Write((int) (this.AF.LoopStart * this.AF.SampleRate));
-	BW.Write("LIST".ToCharArray());
-	BW.Write((int) 0x10 + 12);
-	BW.Write("adtl".ToCharArray());
-	BW.Write("labl".ToCharArray());
-	BW.Write((int) 0x04 + 12);
-	BW.Write((int) 1);
-	BW.Write("Loop Start\0\0".ToCharArray());
-	this.prbBytesWritten.Value += 0x48;
+        BW.Write("cue ".ToCharArray());
+        BW.Write((int) 0x1c);
+        BW.Write((int) 1);
+        BW.Write((int) 1);
+        BW.Write((int) (this.AF.LoopStart * this.AF.SampleRate));
+        BW.Write("data".ToCharArray());
+        BW.Write((int) 0);
+        BW.Write((int) 0);
+        BW.Write((int) (this.AF.LoopStart * this.AF.SampleRate));
+        BW.Write("LIST".ToCharArray());
+        BW.Write((int) 0x10 + 12);
+        BW.Write("adtl".ToCharArray());
+        BW.Write("labl".ToCharArray());
+        BW.Write((int) 0x04 + 12);
+        BW.Write((int) 1);
+        BW.Write("Loop Start\0\0".ToCharArray());
+        this.prbBytesWritten.Value += 0x48;
       }
 #endif
       FS.Close();
@@ -114,11 +109,11 @@ namespace PlayOnline.Utils.AudioManager {
       this.Refresh();
       Application.DoEvents();
       if (this.AFS == null)
-	MessageBox.Show(this, "Could not create input audio stream", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, "Could not create input audio stream", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       else if (this.FS == null)
-	MessageBox.Show(this, "Could not create output file stream", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, "Could not create output file stream", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       else
-	this.WriteWave();
+        this.WriteWave();
       this.Close();
     }
 

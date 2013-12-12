@@ -57,7 +57,6 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
 
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.tvMacroTree = new System.Windows.Forms.TreeView();
       this.mnuTreeContext = new System.Windows.Forms.ContextMenu();
       this.mnuTreeClear = new System.Windows.Forms.MenuItem();
@@ -94,20 +93,25 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       // 
       this.tvMacroTree.AllowDrop = true;
       this.tvMacroTree.ContextMenu = this.mnuTreeContext;
-      resources.ApplyResources(this.tvMacroTree, "tvMacroTree");
+      this.tvMacroTree.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tvMacroTree.HideSelection = false;
       this.tvMacroTree.HotTracking = true;
+      this.tvMacroTree.ImageIndex = 0;
       this.tvMacroTree.ImageList = this.ilBrowserIcons;
       this.tvMacroTree.LabelEdit = true;
+      this.tvMacroTree.Location = new System.Drawing.Point(0, 0);
       this.tvMacroTree.Name = "tvMacroTree";
       this.tvMacroTree.PathSeparator = "::";
+      this.tvMacroTree.SelectedImageIndex = 0;
+      this.tvMacroTree.Size = new System.Drawing.Size(394, 412);
+      this.tvMacroTree.TabIndex = 0;
+      this.tvMacroTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_BeforeLabelEdit);
+      this.tvMacroTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_AfterLabelEdit);
+      this.tvMacroTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMacroTree_ItemDrag);
+      this.tvMacroTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMacroTree_AfterSelect);
       this.tvMacroTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvMacroTree_DragDrop);
       this.tvMacroTree.DragOver += new System.Windows.Forms.DragEventHandler(this.tvMacroTree_DragOver);
-      this.tvMacroTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_AfterLabelEdit);
-      this.tvMacroTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMacroTree_AfterSelect);
       this.tvMacroTree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tvMacroTree_KeyUp);
-      this.tvMacroTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvMacroTree_BeforeLabelEdit);
-      this.tvMacroTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tvMacroTree_ItemDrag);
       // 
       // mnuTreeContext
       // 
@@ -127,54 +131,55 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       // mnuTreeClear
       // 
       this.mnuTreeClear.Index = 0;
-      resources.ApplyResources(this.mnuTreeClear, "mnuTreeClear");
+      this.mnuTreeClear.Text = "&Clear";
       this.mnuTreeClear.Click += new System.EventHandler(this.mnuTreeClear_Click);
       // 
       // mnuTreeDelete
       // 
       this.mnuTreeDelete.Index = 1;
-      resources.ApplyResources(this.mnuTreeDelete, "mnuTreeDelete");
+      this.mnuTreeDelete.Text = "&Delete";
       this.mnuTreeDelete.Click += new System.EventHandler(this.mnuTreeDelete_Click);
       // 
       // mnuTreeRename
       // 
       this.mnuTreeRename.Index = 2;
-      resources.ApplyResources(this.mnuTreeRename, "mnuTreeRename");
+      this.mnuTreeRename.Text = "&Rename";
       this.mnuTreeRename.Click += new System.EventHandler(this.mnuTreeRename_Click);
       // 
       // mnuTreeSave
       // 
       this.mnuTreeSave.Index = 3;
-      resources.ApplyResources(this.mnuTreeSave, "mnuTreeSave");
+      this.mnuTreeSave.Text = "&Save Changes";
       this.mnuTreeSave.Click += new System.EventHandler(this.mnuTreeSave_Click);
       // 
       // mnuTreeSep
       // 
       this.mnuTreeSep.Index = 4;
-      resources.ApplyResources(this.mnuTreeSep, "mnuTreeSep");
+      this.mnuTreeSep.Text = "-";
       // 
       // mnuTreeCollapse
       // 
       this.mnuTreeCollapse.Index = 5;
-      resources.ApplyResources(this.mnuTreeCollapse, "mnuTreeCollapse");
+      this.mnuTreeCollapse.Text = "Co&llapse";
       this.mnuTreeCollapse.Click += new System.EventHandler(this.mnuTreeCollapse_Click);
       // 
       // mnuTreeExpand
       // 
       this.mnuTreeExpand.Index = 6;
-      resources.ApplyResources(this.mnuTreeExpand, "mnuTreeExpand");
+      this.mnuTreeExpand.Text = "&Expand";
       this.mnuTreeExpand.Click += new System.EventHandler(this.mnuTreeExpand_Click);
       // 
       // mnuTreeExpandAll
       // 
       this.mnuTreeExpandAll.Index = 7;
-      resources.ApplyResources(this.mnuTreeExpandAll, "mnuTreeExpandAll");
+      this.mnuTreeExpandAll.Text = "E&xpand All";
       this.mnuTreeExpandAll.Click += new System.EventHandler(this.mnuTreeExpandAll_Click);
       // 
       // mnuTreeSep2
       // 
       this.mnuTreeSep2.Index = 8;
-      resources.ApplyResources(this.mnuTreeSep2, "mnuTreeSep2");
+      this.mnuTreeSep2.Text = "-";
+      this.mnuTreeSep2.Visible = false;
       // 
       // mnuTreeNew
       // 
@@ -182,35 +187,40 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.mnuTreeNew.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuTreeNewFolder,
             this.mnuTreeNewMacro});
-      resources.ApplyResources(this.mnuTreeNew, "mnuTreeNew");
+      this.mnuTreeNew.Text = "&New";
+      this.mnuTreeNew.Visible = false;
       // 
       // mnuTreeNewFolder
       // 
       this.mnuTreeNewFolder.Index = 0;
-      resources.ApplyResources(this.mnuTreeNewFolder, "mnuTreeNewFolder");
+      this.mnuTreeNewFolder.Text = "&Folder";
       this.mnuTreeNewFolder.Click += new System.EventHandler(this.mnuTreeNewFolder_Click);
       // 
       // mnuTreeNewMacro
       // 
       this.mnuTreeNewMacro.Index = 1;
-      resources.ApplyResources(this.mnuTreeNewMacro, "mnuTreeNewMacro");
+      this.mnuTreeNewMacro.Text = "&Macro";
       this.mnuTreeNewMacro.Click += new System.EventHandler(this.mnuTreeNewMacro_Click);
       // 
       // ilBrowserIcons
       // 
       this.ilBrowserIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-      resources.ApplyResources(this.ilBrowserIcons, "ilBrowserIcons");
+      this.ilBrowserIcons.ImageSize = new System.Drawing.Size(16, 16);
       this.ilBrowserIcons.TransparentColor = System.Drawing.Color.Transparent;
       // 
       // pnlProperties
       // 
       this.pnlProperties.Controls.Add(this.grpMacroCommands);
-      resources.ApplyResources(this.pnlProperties, "pnlProperties");
+      this.pnlProperties.Dock = System.Windows.Forms.DockStyle.Right;
+      this.pnlProperties.Location = new System.Drawing.Point(394, 0);
       this.pnlProperties.Name = "pnlProperties";
+      this.pnlProperties.Size = new System.Drawing.Size(396, 412);
+      this.pnlProperties.TabIndex = 1;
       // 
       // grpMacroCommands
       // 
-      resources.ApplyResources(this.grpMacroCommands, "grpMacroCommands");
+      this.grpMacroCommands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.grpMacroCommands.Controls.Add(this.txtCommand6);
       this.grpMacroCommands.Controls.Add(this.txtCommand5);
       this.grpMacroCommands.Controls.Add(this.txtCommand4);
@@ -218,15 +228,22 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       this.grpMacroCommands.Controls.Add(this.txtCommand2);
       this.grpMacroCommands.Controls.Add(this.txtCommand1);
       this.grpMacroCommands.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpMacroCommands.Location = new System.Drawing.Point(8, 4);
       this.grpMacroCommands.Name = "grpMacroCommands";
+      this.grpMacroCommands.Size = new System.Drawing.Size(380, 216);
+      this.grpMacroCommands.TabIndex = 0;
       this.grpMacroCommands.TabStop = false;
+      this.grpMacroCommands.Text = "Macro Commands";
       // 
       // txtCommand6
       // 
       this.txtCommand6.AcceptsTab = true;
       this.txtCommand6.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand6, "txtCommand6");
+      this.txtCommand6.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand6.Location = new System.Drawing.Point(8, 180);
       this.txtCommand6.Name = "txtCommand6";
+      this.txtCommand6.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand6.TabIndex = 5;
       this.txtCommand6.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
       // mnuTextContext
@@ -241,57 +258,69 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       // mnuTextClear
       // 
       this.mnuTextClear.Index = 0;
-      resources.ApplyResources(this.mnuTextClear, "mnuTextClear");
+      this.mnuTextClear.Text = "C&lear";
       this.mnuTextClear.Click += new System.EventHandler(this.mnuTextClear_Click);
       // 
       // mnuTextCopy
       // 
       this.mnuTextCopy.Index = 1;
-      resources.ApplyResources(this.mnuTextCopy, "mnuTextCopy");
+      this.mnuTextCopy.Text = "&Copy";
       this.mnuTextCopy.Click += new System.EventHandler(this.mnuTextCopy_Click);
       // 
       // mnuTextCut
       // 
       this.mnuTextCut.Index = 2;
-      resources.ApplyResources(this.mnuTextCut, "mnuTextCut");
+      this.mnuTextCut.Text = "Cu&t";
       this.mnuTextCut.Click += new System.EventHandler(this.mnuTextCut_Click);
       // 
       // mnuTextPaste
       // 
       this.mnuTextPaste.Index = 3;
-      resources.ApplyResources(this.mnuTextPaste, "mnuTextPaste");
+      this.mnuTextPaste.Text = "&Paste";
       this.mnuTextPaste.Click += new System.EventHandler(this.mnuTextPaste_Click);
       // 
       // txtCommand5
       // 
       this.txtCommand5.AcceptsTab = true;
       this.txtCommand5.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand5, "txtCommand5");
+      this.txtCommand5.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand5.Location = new System.Drawing.Point(8, 148);
       this.txtCommand5.Name = "txtCommand5";
+      this.txtCommand5.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand5.TabIndex = 4;
       this.txtCommand5.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
       // txtCommand4
       // 
       this.txtCommand4.AcceptsTab = true;
       this.txtCommand4.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand4, "txtCommand4");
+      this.txtCommand4.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand4.Location = new System.Drawing.Point(8, 116);
       this.txtCommand4.Name = "txtCommand4";
+      this.txtCommand4.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand4.TabIndex = 3;
       this.txtCommand4.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
       // txtCommand3
       // 
       this.txtCommand3.AcceptsTab = true;
       this.txtCommand3.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand3, "txtCommand3");
+      this.txtCommand3.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand3.Location = new System.Drawing.Point(8, 84);
       this.txtCommand3.Name = "txtCommand3";
+      this.txtCommand3.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand3.TabIndex = 2;
       this.txtCommand3.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
       // txtCommand2
       // 
       this.txtCommand2.AcceptsTab = true;
       this.txtCommand2.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand2, "txtCommand2");
+      this.txtCommand2.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand2.Location = new System.Drawing.Point(8, 52);
       this.txtCommand2.Name = "txtCommand2";
+      this.txtCommand2.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand2.TabIndex = 1;
       this.txtCommand2.Tag = "";
       this.txtCommand2.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
@@ -299,19 +328,24 @@ namespace PlayOnline.FFXI.Utils.MacroManager {
       // 
       this.txtCommand1.AcceptsTab = true;
       this.txtCommand1.ContextMenu = this.mnuTextContext;
-      resources.ApplyResources(this.txtCommand1, "txtCommand1");
+      this.txtCommand1.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+      this.txtCommand1.Location = new System.Drawing.Point(8, 20);
       this.txtCommand1.Name = "txtCommand1";
+      this.txtCommand1.Size = new System.Drawing.Size(364, 26);
+      this.txtCommand1.TabIndex = 0;
       this.txtCommand1.Tag = "";
       this.txtCommand1.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(790, 412);
       this.Controls.Add(this.tvMacroTree);
       this.Controls.Add(this.pnlProperties);
       this.MaximizeBox = false;
       this.Name = "MainWindow";
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+      this.Text = "FFXI Macro Manager";
       this.pnlProperties.ResumeLayout(false);
       this.grpMacroCommands.ResumeLayout(false);
       this.grpMacroCommands.PerformLayout();

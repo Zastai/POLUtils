@@ -9,12 +9,6 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace PlayOnline.FFXI.PropertyPages {
@@ -26,7 +20,6 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.ieEditor.Item = I;
       this.Size = this.ieEditor.Size;
       ++this.Height;
-      this.IsFixedSize = true;
     }
 
   }

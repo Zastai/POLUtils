@@ -12,16 +12,11 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Collections;
-using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Xml;
-
 using PlayOnline.Core;
-using PlayOnline.FFXI;
 using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.ItemComparison {
@@ -47,10 +42,10 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     protected override void OnPaintBackground(PaintEventArgs e) {
       if (VisualStyleRenderer.IsSupported) {
       VisualStyleRenderer VSR = new VisualStyleRenderer(VisualStyleElement.Tab.Body.Normal);
-	VSR.DrawBackground(e.Graphics, this.ClientRectangle, e.ClipRectangle);
+        VSR.DrawBackground(e.Graphics, this.ClientRectangle, e.ClipRectangle);
       }
       else
-	base.OnPaintBackground(e);
+        base.OnPaintBackground(e);
     }
 
     private PleaseWaitDialog PWD = null;
@@ -63,33 +58,33 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     private void LoadItemsWorker(string FileName, ItemEditor IE) {
     ThingList<Item> TL = new ThingList<Item>();
       if (TL.Load(FileName)) {
-	if (IE == this.ieLeft)
-	  this.LeftItems = TL;
-	else
-	  this.RightItems = TL;
+        if (IE == this.ieLeft)
+          this.LeftItems = TL;
+        else
+          this.RightItems = TL;
       }
       this.LeftItemsShown  = null;
       this.RightItemsShown = null;
       if (this.RightItems == null && this.LeftItems == null)
-	this.CurrentItem = -1;
+        this.CurrentItem = -1;
       else
-	this.CurrentItem = 0;
+        this.CurrentItem = 0;
       // In general, this tool supports comparing heterogenic item sets (as useless as that may be).
       // However, the 2010-09-09 patch prepended a range of 1024 armor pieces to the previous range (so 0x2800-0x4000 instead of 0x2C00-0x4000).
       // So we detect that specific case and cope with it padding the shorter set at the front (with nulls); this also means we should drop leading null entries whenever
       // a new set is loaded.
       while (this.LeftItems != null && this.LeftItems.Count > 0 && this.LeftItems[0] == null)
-	this.LeftItems.RemoveAt(0);
+        this.LeftItems.RemoveAt(0);
       while (this.RightItems != null && this.RightItems.Count > 0 && this.RightItems[0] == null)
-	this.RightItems.RemoveAt(0);
+        this.RightItems.RemoveAt(0);
       if (this.RightItems != null && this.LeftItems != null) {
-	if (this.LeftItems.Count != this.RightItems.Count) {
-	uint LID = (uint) this.LeftItems [0].GetFieldValue("id");
-	uint RID = (uint) this.RightItems[0].GetFieldValue("id");
-	  if (LID == 0x2800 && RID == 0x2c00) this.RightItems.InsertRange(0, new Item[0x400]);
-	  if (LID == 0x2c00 && RID == 0x2800) this.LeftItems .InsertRange(0, new Item[0x400]);
-	}
-	this.btnRemoveUnchanged.Invoke(new AnonymousMethod(delegate () { this.btnRemoveUnchanged.Enabled = true; }));
+        if (this.LeftItems.Count != this.RightItems.Count) {
+        uint LID = (uint) this.LeftItems [0].GetFieldValue("id");
+        uint RID = (uint) this.RightItems[0].GetFieldValue("id");
+          if (LID == 0x2800 && RID == 0x2c00) this.RightItems.InsertRange(0, new Item[0x400]);
+          if (LID == 0x2c00 && RID == 0x2800) this.LeftItems .InsertRange(0, new Item[0x400]);
+        }
+        this.btnRemoveUnchanged.Invoke(new AnonymousMethod(delegate () { this.btnRemoveUnchanged.Enabled = true; }));
       }
       this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
     }
@@ -115,46 +110,46 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       Item LI = this.LeftItems [i];
       Item RI = this.RightItems[i];
       bool DifferenceSeen = false;
-	if (LI == null)
-	  DifferenceSeen = !(RI == null || RI.GetFieldText("name") == String.Empty || RI.GetFieldText("name") == ".");
-	else if (RI == null)
-	  DifferenceSeen = !(LI == null || LI.GetFieldText("name") == String.Empty || LI.GetFieldText("name") == ".");
-	else if (this.GetIconString(LI) != this.GetIconString(RI))
-	  DifferenceSeen = true;
-	else {
-	  foreach (string Field in Item.AllFields) {
-	    if (!this.ieLeft.IsFieldShown(Field)) // If we can't see the difference, there's no point
-	      continue;
-	    if (LI.GetFieldText(Field) != RI.GetFieldText(Field)) {
-	      DifferenceSeen = true;
-	      break;
-	    }
-	  }
-	}
-	if (DifferenceSeen) {
-	  this.LeftItemsShown .Add(LI);
-	  this.RightItemsShown.Add(RI);
-	}
-	Application.DoEvents();
+        if (LI == null)
+          DifferenceSeen = !(RI == null || RI.GetFieldText("name") == String.Empty || RI.GetFieldText("name") == ".");
+        else if (RI == null)
+          DifferenceSeen = !(LI == null || LI.GetFieldText("name") == String.Empty || LI.GetFieldText("name") == ".");
+        else if (this.GetIconString(LI) != this.GetIconString(RI))
+          DifferenceSeen = true;
+        else {
+          foreach (string Field in Item.AllFields) {
+            if (!this.ieLeft.IsFieldShown(Field)) // If we can't see the difference, there's no point
+              continue;
+            if (LI.GetFieldText(Field) != RI.GetFieldText(Field)) {
+              DifferenceSeen = true;
+              break;
+            }
+          }
+        }
+        if (DifferenceSeen) {
+          this.LeftItemsShown .Add(LI);
+          this.RightItemsShown.Add(RI);
+        }
+        Application.DoEvents();
       }
       // All non-dummy overflow items are "changed"
       if (this.LeftItems.Count < this.RightItems.Count) {
       int OverflowPos = this.LeftItems.Count;
-	while (OverflowPos < this.RightItems.Count) {
-	Item I = this.RightItems[OverflowPos++];
-	  if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
-	    continue;
-	  this.RightItemsShown.Add(I);
-	}
+        while (OverflowPos < this.RightItems.Count) {
+        Item I = this.RightItems[OverflowPos++];
+          if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
+            continue;
+          this.RightItemsShown.Add(I);
+        }
       }
       else if (this.LeftItems.Count > this.RightItems.Count) {
       int OverflowPos = this.RightItems.Count;
-	while (OverflowPos < this.LeftItems.Count) {
-	Item I = this.LeftItems[OverflowPos++];
-	  if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
-	    continue;
-	  this.LeftItemsShown.Add(I);
-	}
+        while (OverflowPos < this.LeftItems.Count) {
+        Item I = this.LeftItems[OverflowPos++];
+          if (I == null || I.GetFieldText("name") == String.Empty || I.GetFieldText("name") == ".")
+            continue;
+          this.LeftItemsShown.Add(I);
+        }
       }
       this.CurrentItem = ((this.LeftItemsShown.Count == 0) ? -1 : 0);
       this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
@@ -183,28 +178,28 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     Image Icon = I.GetIcon();
       if (Icon != null) {
       MemoryStream MS = new MemoryStream();
-	Icon.Save(MS, ImageFormat.Png);
-	IconString += Convert.ToBase64String(MS.GetBuffer());
-	MS.Close();
+        Icon.Save(MS, ImageFormat.Png);
+        IconString += Convert.ToBase64String(MS.GetBuffer());
+        MS.Close();
       }
       return IconString;
     }
 
     private void MarkItemChanges() {
       if (this.ieLeft.Item != null && this.ieRight.Item != null) {
-	// Compare fields
-	foreach (string Field in Item.AllFields) {
-	  if (this.ieLeft.IsFieldShown(Field)) {
-	  bool FieldChanged = (this.ieLeft.Item.GetFieldText(Field) != this.ieRight.Item.GetFieldText(Field));
-	    this.ieLeft.MarkField (Field, FieldChanged);
-	    this.ieRight.MarkField(Field, FieldChanged);
-	  }
-	}
-	{ // Compare icon
-	bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
-	  this.ieLeft.MarkField ("icon", IconChanged);
-	  this.ieRight.MarkField("icon", IconChanged);
-	}
+        // Compare fields
+        foreach (string Field in Item.AllFields) {
+          if (this.ieLeft.IsFieldShown(Field)) {
+          bool FieldChanged = (this.ieLeft.Item.GetFieldText(Field) != this.ieRight.Item.GetFieldText(Field));
+            this.ieLeft.MarkField (Field, FieldChanged);
+            this.ieRight.MarkField(Field, FieldChanged);
+          }
+        }
+        { // Compare icon
+        bool IconChanged = (this.GetIconString(this.ieLeft.Item) != this.GetIconString(this.ieRight.Item));
+          this.ieLeft.MarkField ("icon", IconChanged);
+          this.ieRight.MarkField("icon", IconChanged);
+        }
       }
     }
 
@@ -216,33 +211,33 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     Item LeftItem  = null;
     Item RightItem = null;
       if (this.CurrentItem >= 0) {
-	if (this.LeftItemsShown != null) {
-	  if (this.CurrentItem < this.LeftItemsShown.Count)
-	    LeftItem = this.LeftItemsShown[this.CurrentItem];
-	  if (this.CurrentItem < this.LeftItemsShown.Count - 1)
-	    this.btnNext.Enabled = true;
-	}
-	else if (this.LeftItems != null) {
-	  if (this.CurrentItem < this.LeftItems.Count)
-	    LeftItem = this.LeftItems[this.CurrentItem];
-	  if (this.CurrentItem < this.LeftItems.Count - 1)
-	    this.btnNext.Enabled = true;
-	}
-	if (this.RightItemsShown != null) {
-	  if (this.CurrentItem < this.RightItemsShown.Count)
-	    RightItem = this.RightItemsShown[this.CurrentItem];
-	  if (this.CurrentItem < this.RightItemsShown.Count - 1)
-	    this.btnNext.Enabled = true;
-	}
-	else if (this.RightItems != null) {
-	  if (this.CurrentItem < this.RightItems.Count)
-	    RightItem = this.RightItems[this.CurrentItem];
-	  if (this.CurrentItem < this.RightItems.Count - 1)
-	    this.btnNext.Enabled = true;
-	}
+        if (this.LeftItemsShown != null) {
+          if (this.CurrentItem < this.LeftItemsShown.Count)
+            LeftItem = this.LeftItemsShown[this.CurrentItem];
+          if (this.CurrentItem < this.LeftItemsShown.Count - 1)
+            this.btnNext.Enabled = true;
+        }
+        else if (this.LeftItems != null) {
+          if (this.CurrentItem < this.LeftItems.Count)
+            LeftItem = this.LeftItems[this.CurrentItem];
+          if (this.CurrentItem < this.LeftItems.Count - 1)
+            this.btnNext.Enabled = true;
+        }
+        if (this.RightItemsShown != null) {
+          if (this.CurrentItem < this.RightItemsShown.Count)
+            RightItem = this.RightItemsShown[this.CurrentItem];
+          if (this.CurrentItem < this.RightItemsShown.Count - 1)
+            this.btnNext.Enabled = true;
+        }
+        else if (this.RightItems != null) {
+          if (this.CurrentItem < this.RightItems.Count)
+            RightItem = this.RightItems[this.CurrentItem];
+          if (this.CurrentItem < this.RightItems.Count - 1)
+            this.btnNext.Enabled = true;
+        }
       }
       else
-	this.btnNext.Enabled = false;
+        this.btnNext.Enabled = false;
       this.ieLeft.Item  = LeftItem;
       this.ieRight.Item = RightItem;
     }
@@ -260,16 +255,16 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
 
     private void btnLoadItemSet1_Click(object sender, System.EventArgs e) {
       if (this.dlgLoadItems1 == null)
-	this.dlgLoadItems1 = this.CreateLoadItemsDialog();
+        this.dlgLoadItems1 = this.CreateLoadItemsDialog();
       if (this.dlgLoadItems1.ShowDialog(this) == DialogResult.OK)
-	this.LoadItems(this.dlgLoadItems1.FileName, this.ieLeft);
+        this.LoadItems(this.dlgLoadItems1.FileName, this.ieLeft);
     }
 
     private void btnLoadItemSet2_Click(object sender, System.EventArgs e) {
       if (this.dlgLoadItems2 == null)
-	this.dlgLoadItems2 = this.CreateLoadItemsDialog();
+        this.dlgLoadItems2 = this.CreateLoadItemsDialog();
       if (this.dlgLoadItems2.ShowDialog(this) == DialogResult.OK)
-	this.LoadItems(this.dlgLoadItems2.FileName, this.ieRight);
+        this.LoadItems(this.dlgLoadItems2.FileName, this.ieRight);
     }
 
     private void btnPrevious_Click(object sender, System.EventArgs e) {
@@ -291,7 +286,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     private void ItemViewerSizeChanged(object sender, System.EventArgs e) {
     int WantedHeight = this.StartupHeight + Math.Max(this.ieLeft.Height, this.ieRight.Height) + 4;
       if (this.Height < WantedHeight)
-	this.Height = WantedHeight;
+        this.Height = WantedHeight;
     }
 
     #endregion

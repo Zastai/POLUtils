@@ -10,9 +10,6 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using PlayOnline.Core;
 
 namespace PlayOnline.FFXI {
@@ -34,15 +31,15 @@ namespace PlayOnline.FFXI {
 
     public MoonPhase Phase {
       get {
-	if (this.Percentage_ >= -10 && this.Percentage_ <=   5) return MoonPhase.NewMoon;
-	if (this.Percentage_ >    5 && this.Percentage_ <   40) return MoonPhase.WaxingCrescent;
-	if (this.Percentage_ >=  40 && this.Percentage_ <=  55) return MoonPhase.FirstQuarterMoon;
-	if (this.Percentage_ >   55 && this.Percentage_ <   90) return MoonPhase.WaxingGibbous;
-	if (this.Percentage_ >=  90 || this.Percentage_ <= -95) return MoonPhase.FullMoon;
-	if (this.Percentage_ >  -95 && this.Percentage_ <= -60) return MoonPhase.WaningGibbous;
-	if (this.Percentage_ >=  60 && this.Percentage_ <= -45) return MoonPhase.LastQuarterMoon;
-	if (this.Percentage_ >  -45 && this.Percentage_ <  -10) return MoonPhase.WaningCrescent;
-	return MoonPhase.NewMoon;
+        if (this.Percentage_ >= -10 && this.Percentage_ <=   5) return MoonPhase.NewMoon;
+        if (this.Percentage_ >    5 && this.Percentage_ <   40) return MoonPhase.WaxingCrescent;
+        if (this.Percentage_ >=  40 && this.Percentage_ <=  55) return MoonPhase.FirstQuarterMoon;
+        if (this.Percentage_ >   55 && this.Percentage_ <   90) return MoonPhase.WaxingGibbous;
+        if (this.Percentage_ >=  90 || this.Percentage_ <= -95) return MoonPhase.FullMoon;
+        if (this.Percentage_ >  -95 && this.Percentage_ <= -60) return MoonPhase.WaningGibbous;
+        if (this.Percentage_ >=  60 && this.Percentage_ <= -45) return MoonPhase.LastQuarterMoon;
+        if (this.Percentage_ >  -45 && this.Percentage_ <  -10) return MoonPhase.WaningCrescent;
+        return MoonPhase.NewMoon;
       }
     }
 
@@ -64,9 +61,9 @@ namespace PlayOnline.FFXI {
     internal RSEInfo(long Week) {
       this.Race_ = (Race) (2 << (byte) ((Week + 2) % 8));
       switch (Week % 3) {
-	case 0: this.ZoneID_ = 193; break; // Ordelle's Caves
-	case 1: this.ZoneID_ = 196; break; // Gusgen Mines
-	case 2: this.ZoneID_ = 198; break; // Maze of Shakrami
+        case 0: this.ZoneID_ = 193; break; // Ordelle's Caves
+        case 1: this.ZoneID_ = 196; break; // Gusgen Mines
+        case 2: this.ZoneID_ = 198; break; // Maze of Shakrami
       }
     }
 
@@ -93,7 +90,7 @@ namespace PlayOnline.FFXI {
 
   public class VanadielDate {
 
-    private DateTime VanadielEpoch = new DateTime(2002, 6, 23, 15, 00, 00, DateTimeKind.Utc);
+    private readonly DateTime VanadielEpoch = new DateTime(2002, 6, 23, 15, 00, 00, DateTimeKind.Utc);
 
     public VanadielDate() : this(DateTime.Now) { }
 

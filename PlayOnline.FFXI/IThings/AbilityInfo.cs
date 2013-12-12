@@ -13,8 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using PlayOnline.Core;
-
 namespace PlayOnline.FFXI.Things {
 
   public class AbilityInfo : Thing {
@@ -36,16 +34,16 @@ namespace PlayOnline.FFXI.Things {
 
     public static List<string> AllFields {
       get {
-	return new List<string>(new string[] {
-	  "id",
-	  "type",
-	  "list-icon-id",
-	  "mp-cost",
-	  "valid-targets",
-	  "name",
-	  "description",
-	  "unknown-1",
-	});
+        return new List<string>(new string[] {
+          "id",
+          "type",
+          "list-icon-id",
+          "mp-cost",
+          "valid-targets",
+          "name",
+          "description",
+          "unknown-1",
+        });
       }
     }
 
@@ -83,64 +81,64 @@ namespace PlayOnline.FFXI.Things {
 
     public override bool HasField(string Field) {
       switch (Field) {
-	// Objects
-	case "description":   return (this.Description_ != null);
-	case "name":          return (this.Name_        != null);
-	// Nullables
-	case "id":            return this.ID_.HasValue;
-	case "list-icon-id":  return this.ListIconID_.HasValue;
-	case "mp-cost":       return this.MPCost_.HasValue;
-	case "type":          return this.Type_.HasValue;
-	case "unknown-1":     return this.Unknown1_.HasValue;
-	case "valid-targets": return this.ValidTargets_.HasValue;
-	default:              return false;
+        // Objects
+        case "description":   return (this.Description_ != null);
+        case "name":          return (this.Name_        != null);
+        // Nullables
+        case "id":            return this.ID_.HasValue;
+        case "list-icon-id":  return this.ListIconID_.HasValue;
+        case "mp-cost":       return this.MPCost_.HasValue;
+        case "type":          return this.Type_.HasValue;
+        case "unknown-1":     return this.Unknown1_.HasValue;
+        case "valid-targets": return this.ValidTargets_.HasValue;
+        default:              return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	// Objects
-	case "description":   return this.Description_;
-	case "name":          return this.Name_;
-	// Nullables - Simple Values
-	case "id":            return (!this.ID_.HasValue           ? String.Empty : String.Format("{0}", this.ID_.Value));
-	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
-	case "mp-cost":       return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
-	case "type":          return (!this.Type_.HasValue         ? String.Empty : String.Format("{0}", this.Type_.Value));
-	case "valid-targets": return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
-	// Nullables - Hex Values
-	case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
-	default:              return null;
+        // Objects
+        case "description":   return this.Description_;
+        case "name":          return this.Name_;
+        // Nullables - Simple Values
+        case "id":            return (!this.ID_.HasValue           ? String.Empty : String.Format("{0}", this.ID_.Value));
+        case "list-icon-id":  return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
+        case "mp-cost":       return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
+        case "type":          return (!this.Type_.HasValue         ? String.Empty : String.Format("{0}", this.Type_.Value));
+        case "valid-targets": return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
+        // Nullables - Hex Values
+        case "unknown-1":     return (!this.Unknown1_.HasValue     ? String.Empty : String.Format("{0:X4} ({0})", this.Unknown1_.Value));
+        default:              return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
-	// Objects
-	case "description":   return this.Description_;
-	case "name":          return this.Name_;
-	// Nullables
-	case "id":            return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
-	case "list-icon-id":  return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
-	case "mp-cost":       return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
-	case "type":          return (!this.Type_.HasValue         ? null : (object) this.Type_.Value);
-	case "unknown-1":     return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
-	case "valid-targets": return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
-	default:              return null;
+        // Objects
+        case "description":   return this.Description_;
+        case "name":          return this.Name_;
+        // Nullables
+        case "id":            return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
+        case "list-icon-id":  return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
+        case "mp-cost":       return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
+        case "type":          return (!this.Type_.HasValue         ? null : (object) this.Type_.Value);
+        case "unknown-1":     return (!this.Unknown1_.HasValue     ? null : (object) this.Unknown1_.Value);
+        case "valid-targets": return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
+        default:              return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	// "Simple" Fields
-	case "description":   this.Description_  =               this.LoadTextField           (Node); break;
-	case "id":            this.ID_           = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "list-icon-id":  this.ListIconID_   = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "mp-cost":       this.MPCost_       = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "name":          this.Name_         =               this.LoadTextField           (Node); break;
-	case "type":          this.Type_         = (AbilityType) this.LoadHexField            (Node); break;
-	case "unknown-1":     this.Unknown1_     = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "valid-targets": this.ValidTargets_ = (ValidTarget) this.LoadHexField            (Node); break;
+        // "Simple" Fields
+        case "description":   this.Description_  =               this.LoadTextField           (Node); break;
+        case "id":            this.ID_           = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "list-icon-id":  this.ListIconID_   = (byte)        this.LoadUnsignedIntegerField(Node); break;
+        case "mp-cost":       this.MPCost_       = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "name":          this.Name_         =               this.LoadTextField           (Node); break;
+        case "type":          this.Type_         = (AbilityType) this.LoadHexField            (Node); break;
+        case "unknown-1":     this.Unknown1_     = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "valid-targets": this.ValidTargets_ = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
 
@@ -163,20 +161,20 @@ namespace PlayOnline.FFXI.Things {
       this.Clear();
       try {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !FFXIEncryption.DecodeDataBlock(Bytes))
-	  return false;
+        if (Bytes[0x3ff] != 0xff || Bytes[9] != 0x00 || !FFXIEncryption.DecodeDataBlock(Bytes))
+          return false;
       FFXIEncoding E = new FFXIEncoding();
-	BR = new BinaryReader(new MemoryStream(Bytes, false));
-	this.ID_           = BR.ReadUInt16();
-	this.Type_         = (AbilityType) BR.ReadByte();
-	this.ListIconID_   = BR.ReadByte();
-	this.MPCost_       = BR.ReadUInt16();
-	this.Unknown1_     = BR.ReadUInt16();
-	this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
-	this.Name_         = E.GetString(BR.ReadBytes(32)).TrimEnd('\0');
-	this.Description_  = E.GetString(BR.ReadBytes(256)).TrimEnd('\0');
-	BR.Close();
-	return true;
+        BR = new BinaryReader(new MemoryStream(Bytes, false));
+        this.ID_           = BR.ReadUInt16();
+        this.Type_         = (AbilityType) BR.ReadByte();
+        this.ListIconID_   = BR.ReadByte();
+        this.MPCost_       = BR.ReadUInt16();
+        this.Unknown1_     = BR.ReadUInt16();
+        this.ValidTargets_ = (ValidTarget) BR.ReadUInt16();
+        this.Name_         = E.GetString(BR.ReadBytes(32)).TrimEnd('\0');
+        this.Description_  = E.GetString(BR.ReadBytes(256)).TrimEnd('\0');
+        BR.Close();
+        return true;
       } catch { return false; }
     }
 

@@ -10,16 +10,13 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
 using System.Xml;
-
 using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.Things {
@@ -37,12 +34,12 @@ namespace PlayOnline.FFXI.Things {
       get {
       string MessageID = String.Format("T:{0}", this.GetType().Name);
       string Result = MessageID;
-	try {
-	  Result = I18N.GetText(MessageID, this.GetType().Assembly);
-	} catch { }
-	if (Result == MessageID)
-	  Result = this.GetType().Name;
-	return Result;
+        try {
+          Result = I18N.GetText(MessageID, this.GetType().Assembly);
+        } catch { }
+        if (Result == MessageID)
+          Result = this.GetType().Name;
+        return Result;
       }
     }
 
@@ -50,36 +47,36 @@ namespace PlayOnline.FFXI.Things {
     string MessageID = String.Format("F:{0}:{1}", this.GetType().Name, Field);
     string Name = MessageID;
       try {
-	Name = I18N.GetText(MessageID, this.GetType().Assembly);
+        Name = I18N.GetText(MessageID, this.GetType().Assembly);
       } catch { }
       if (Name == MessageID) {
-	MessageID = String.Format("F::{0}", Field);
-	Name = MessageID;
-	try {
-	  Name = I18N.GetText(MessageID, this.GetType().Assembly);
-	} catch { }
-	if (Name == MessageID)
-	  Name = Field;
+        MessageID = String.Format("F::{0}", Field);
+        Name = MessageID;
+        try {
+          Name = I18N.GetText(MessageID, this.GetType().Assembly);
+        } catch { }
+        if (Name == MessageID)
+          Name = Field;
       }
       return Name;
     }
 
     public virtual Image GetIcon() {
       if (this.IconField_ == null)
-	return null;
+        return null;
     object IconValue = this.GetFieldValue(this.IconField_);
       if (IconValue == null || IconValue is Image)
-	return IconValue as Image;
+        return IconValue as Image;
       else if (IconValue is IThing)
-	return ((IThing) IconValue).GetIcon();
+        return ((IThing) IconValue).GetIcon();
       return null;
     }
 
     public virtual List<string> GetFields() {
       List<String> Fields = new List<string>();
       foreach (string Field in this.GetAllFields()) {
-	if (this.HasField(Field))
-	  Fields.Add(Field);
+        if (this.HasField(Field))
+          Fields.Add(Field);
       }
       return Fields;
     }
@@ -93,17 +90,17 @@ namespace PlayOnline.FFXI.Things {
     public virtual void Load(XmlElement Element) {
       this.Clear();
       if (Element == null)
-	throw new ArgumentNullException();
+        throw new ArgumentNullException();
       if (Element.Name != "thing" || !Element.HasAttribute("type"))
-	throw new ArgumentException(String.Format(I18N.GetText("InvalidThingToLoad"), this.TypeName));
+        throw new ArgumentException(String.Format(I18N.GetText("InvalidThingToLoad"), this.TypeName));
       if (Element.GetAttribute("type") != this.GetType().Name)
-	throw new ArgumentException(String.Format(I18N.GetText("WrongThingToLoad"), this.TypeName));
+        throw new ArgumentException(String.Format(I18N.GetText("WrongThingToLoad"), this.TypeName));
       foreach (string FieldName in this.GetAllFields()) {
-	try {
-	XmlElement FieldElement = Element.SelectSingleNode(String.Format("./child::field[@name = '{0}']", FieldName)) as XmlElement;
-	  if (FieldElement != null)
-	    this.LoadField(FieldName, FieldElement);
-	} catch { }
+        try {
+        XmlElement FieldElement = Element.SelectSingleNode(String.Format("./child::field[@name = '{0}']", FieldName)) as XmlElement;
+          if (FieldElement != null)
+            this.LoadField(FieldName, FieldElement);
+        } catch { }
       }
     }
 
@@ -111,18 +108,18 @@ namespace PlayOnline.FFXI.Things {
     XmlElement E = Document.CreateElement("thing");
       {
       XmlAttribute A = Document.CreateAttribute("type");
-	A.InnerText = this.GetType().Name;
-	E.Attributes.Append(A);
+        A.InnerText = this.GetType().Name;
+        E.Attributes.Append(A);
       }
       foreach (string FieldName in this.GetFields()) {
       XmlElement F = Document.CreateElement("field");
-	{
-	XmlAttribute A = Document.CreateAttribute("name");
-	  A.InnerText = FieldName;
-	  F.Attributes.Append(A);
-	}
-	this.SaveField(FieldName, Document, F);
-	E.AppendChild(F);
+        {
+        XmlAttribute A = Document.CreateAttribute("name");
+          A.InnerText = FieldName;
+          F.Attributes.Append(A);
+        }
+        this.SaveField(FieldName, Document, F);
+        E.AppendChild(F);
       }
       return E;
     }
@@ -140,13 +137,13 @@ namespace PlayOnline.FFXI.Things {
       hours %= 24;
     string Result = String.Empty;
       if (days > 0)
-	Result += String.Format("{0}d", days);
+        Result += String.Format("{0}d", days);
       if (hours > 0)
-	Result += String.Format("{0}h", hours);
+        Result += String.Format("{0}h", hours);
       if (minutes > 0)
-	Result += String.Format("{0}m", minutes);
+        Result += String.Format("{0}m", minutes);
       if (seconds > 0 || Result == String.Empty)
-	Result += String.Format("{0}s", seconds);
+        Result += String.Format("{0}s", seconds);
       return Result;
     }
 
@@ -162,18 +159,18 @@ namespace PlayOnline.FFXI.Things {
     protected byte[] LoadByteArray(XmlElement Node) {
     int ArraySize = 0;
       try {
-	ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
+        ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
       } catch { return null; }
       if (ArraySize < 0)
-	return null;
+        return null;
     byte[] Result = new byte[ArraySize];
       for (int i = 0; i < ArraySize; ++i) {
-	try {
-	XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
-	  if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
-	    Result[i] = (byte) ulong.Parse(ElementNode.InnerText, NumberStyles.Integer);
-	  }
-	} catch { return null; }
+        try {
+        XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
+          if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
+            Result[i] = (byte) ulong.Parse(ElementNode.InnerText, NumberStyles.Integer);
+          }
+        } catch { return null; }
       }
       return Result;
     }
@@ -181,18 +178,18 @@ namespace PlayOnline.FFXI.Things {
     protected string[] LoadTextArray(XmlElement Node) {
     int ArraySize = 0;
       try {
-	ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
+        ArraySize = int.Parse(Node.GetAttribute("array-size"), NumberStyles.Integer);
       } catch { return null; }
       if (ArraySize < 0)
-	return null;
+        return null;
     string[] Result = new string[ArraySize];
       for (int i = 0; i < ArraySize; ++i) {
-	try {
-	XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
-	  if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
-	    Result[i] = ElementNode.InnerText;
-	  }
-	} catch { return null; }
+        try {
+        XmlNode ElementNode = Node.SelectSingleNode(String.Format("./element[@index = '{0}']", i));
+          if (ElementNode != null && ElementNode is System.Xml.XmlElement) {
+            Result[i] = ElementNode.InnerText;
+          }
+        } catch { return null; }
       }
       return Result;
     }
@@ -203,9 +200,9 @@ namespace PlayOnline.FFXI.Things {
 
     protected Image LoadImageField(XmlElement Node) {
       if (!Node.HasAttribute("format") || Node.GetAttribute("format") != "image/png")
-	return null;
+        return null;
       if (!Node.HasAttribute("encoding") || Node.GetAttribute("encoding") != "base64")
-	return null;
+        return null;
     byte[] ImageData = Convert.FromBase64String(Node.InnerText);
     MemoryStream MS = new MemoryStream(ImageData, false);
     Image Result = new Bitmap(MS);
@@ -221,9 +218,9 @@ namespace PlayOnline.FFXI.Things {
     protected void LoadThingField(XmlElement Node, IThing T) {
     XmlElement ThingRoot = Node.SelectSingleNode(String.Format("./child::thing[@type = '{0}']", T.GetType().Name)) as XmlElement;
       if (ThingRoot != null)
-	T.Load(ThingRoot);
+        T.Load(ThingRoot);
       else
-	throw new ArgumentException(String.Format(I18N.GetText("InvalidThingField"), T.TypeName));
+        throw new ArgumentException(String.Format(I18N.GetText("InvalidThingField"), T.TypeName));
     }
 
     protected string LoadTextField(XmlElement Node) {
@@ -242,47 +239,47 @@ namespace PlayOnline.FFXI.Things {
       // - Enum            -> save as hex number
       // - Everything Else -> Value.ToString()
       if (Value != null) {
-	if (Value is IThing)
-	  Element.AppendChild(((IThing) Value).Save(Document));
-	else if (Value is Array) {
-	Array Values = Value as Array;
-	  {
-	  XmlAttribute A = Document.CreateAttribute("array-size");
-	    A.InnerText = Values.Length.ToString();
-	    Element.Attributes.Append(A);
-	  }
-	  for (int i = 0; i < Values.Length; ++i) {
-	  XmlElement E = Document.CreateElement("element");
-	    {
-	    XmlAttribute A = Document.CreateAttribute("index");
-	      A.InnerText = i.ToString();
-	      E.Attributes.Append(A);
-	    }
-	    this.SaveField(Values.GetValue(i), Document, E);
-	    Element.AppendChild(E);
-	  }
-	}
-	else if (Value is Image) {
-	  {
-	  XmlAttribute A = Document.CreateAttribute("format");
-	    A.InnerText = "image/png";
-	    Element.Attributes.Append(A);
-	  }
-	  {
-	  XmlAttribute A = Document.CreateAttribute("encoding");
-	    A.InnerText = "base64";
-	    Element.Attributes.Append(A);
-	  }
-	MemoryStream MS = new MemoryStream();
-	  ((Image) Value).Save(MS, ImageFormat.Png);
-	  Element.InnerText = Convert.ToBase64String(MS.GetBuffer());
-	  MS.Close();
-	  MS.Dispose();
-	}
-	else if (Value is Enum) // Store enums as hex numbers
-	  Element.InnerText = ((Enum) Value).ToString("X");
-	else
-	  Element.InnerText = Value.ToString();
+        if (Value is IThing)
+          Element.AppendChild(((IThing) Value).Save(Document));
+        else if (Value is Array) {
+        Array Values = Value as Array;
+          {
+          XmlAttribute A = Document.CreateAttribute("array-size");
+            A.InnerText = Values.Length.ToString();
+            Element.Attributes.Append(A);
+          }
+          for (int i = 0; i < Values.Length; ++i) {
+          XmlElement E = Document.CreateElement("element");
+            {
+            XmlAttribute A = Document.CreateAttribute("index");
+              A.InnerText = i.ToString();
+              E.Attributes.Append(A);
+            }
+            this.SaveField(Values.GetValue(i), Document, E);
+            Element.AppendChild(E);
+          }
+        }
+        else if (Value is Image) {
+          {
+          XmlAttribute A = Document.CreateAttribute("format");
+            A.InnerText = "image/png";
+            Element.Attributes.Append(A);
+          }
+          {
+          XmlAttribute A = Document.CreateAttribute("encoding");
+            A.InnerText = "base64";
+            Element.Attributes.Append(A);
+          }
+        MemoryStream MS = new MemoryStream();
+          ((Image) Value).Save(MS, ImageFormat.Png);
+          Element.InnerText = Convert.ToBase64String(MS.GetBuffer());
+          MS.Close();
+          MS.Dispose();
+        }
+        else if (Value is Enum) // Store enums as hex numbers
+          Element.InnerText = ((Enum) Value).ToString("X");
+        else
+          Element.InnerText = Value.ToString();
       }
     }
 
@@ -307,7 +304,7 @@ namespace PlayOnline.FFXI.Things {
     public static IThing Create(string TypeName) {
       try {
       string FullName = typeof(Thing).Namespace + "." + TypeName;
-	return Assembly.GetExecutingAssembly().CreateInstance(FullName, false) as IThing;
+        return Assembly.GetExecutingAssembly().CreateInstance(FullName, false) as IThing;
       } catch { }
       return null;
     }

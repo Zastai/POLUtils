@@ -25,13 +25,13 @@ namespace System.Windows.Forms {
     // the current visual style.  This corrects that error.
     protected override void OnPaintBackground(PaintEventArgs e) {
       if (!VisualStyleRenderer.IsSupported || !this.UseVisualStyleBackColor) {
-	base.OnPaintBackground(e);
-	return;
+        base.OnPaintBackground(e);
+        return;
       }
     TabControl P = this.Parent as TabControl;
       if (P == null || P.Appearance != TabAppearance.Normal) {
-	base.OnPaintBackground(e);
-	return;
+        base.OnPaintBackground(e);
+        return;
       }
     VisualStyleRenderer VSR = new VisualStyleRenderer(VisualStyleElement.Tab.Body.Normal);
       VSR.DrawBackground(e.Graphics, this.ClientRectangle, e.ClipRectangle);

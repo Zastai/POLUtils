@@ -9,10 +9,6 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System;
-using System.Collections;
-using System.Xml;
-
 namespace PlayOnline.FFXI {
 
   public class MacroFolder {
@@ -31,9 +27,9 @@ namespace PlayOnline.FFXI {
     public MacroFolder Clone() {
     MacroFolder MF = new MacroFolder(this.Name_);
       foreach (MacroFolder SubFolder in this.Folders_)
-	MF.Folders_.Add(SubFolder.Clone());
+        MF.Folders_.Add(SubFolder.Clone());
       foreach (Macro M in this.Macros_)
-	MF.Macros_.Add(M.Clone());
+        MF.Macros_.Add(M.Clone());
       return MF;
     }
 
@@ -44,7 +40,7 @@ namespace PlayOnline.FFXI {
     public void LockTree() {
       this.Lock();
       foreach (MacroFolder MF in this.Folders_)
-	MF.LockTree();
+        MF.LockTree();
     }
 
     public void Unlock() {
@@ -54,7 +50,7 @@ namespace PlayOnline.FFXI {
     public void UnlockTree() {
       this.Unlock();
       foreach (MacroFolder MF in this.Folders_)
-	MF.LockTree();
+        MF.LockTree();
     }
 
     public virtual bool CanSave { get { return false; } }

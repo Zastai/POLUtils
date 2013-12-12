@@ -10,16 +10,9 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
 using PlayOnline.Core;
 using PlayOnline.FFXI.Things;
 
@@ -42,10 +35,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.lstItems.Columns.Add(I18N.GetText("ColumnHeader:Index"), 40, HorizontalAlignment.Left);
       { // Add all item fields as columns for the result, and as entries on the "Copy" context menu
       Item I = new Item();
-	foreach (string Field in I.GetAllFields()) {
-	  this.lstItems.Columns.Add(I.GetFieldName(Field), 100, HorizontalAlignment.Left);
-	  this.mnuILCCopy.MenuItems.Add(new MenuItem(I.GetFieldName(Field), new EventHandler(this.CopyContextMenu_Click)));
-	}
+        foreach (string Field in I.GetAllFields()) {
+          this.lstItems.Columns.Add(I.GetFieldName(Field), 100, HorizontalAlignment.Left);
+          this.mnuILCCopy.MenuItems.Add(new MenuItem(I.GetFieldName(Field), new EventHandler(this.CopyContextMenu_Click)));
+        }
       }
       this.lstItems.ColumnClick += new ColumnClickEventHandler(ListViewColumnSorter.ListView_ColumnClick);
       this.AddPredicate();
@@ -61,10 +54,10 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       IP.Left     = 0;
       if (this.Predicates_.Count > 0) {
       ItemPredicate LastIP = this.Predicates_[this.Predicates_.Count - 1];
-	IP.Top    = LastIP.Top + LastIP.Height;
+        IP.Top    = LastIP.Top + LastIP.Height;
       }
       else
-	IP.Top    = this.btnClose.Top;
+        IP.Top    = this.btnClose.Top;
       IP.Anchor   = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
       this.pnlSearchOptions.Height += IP.Height;
       this.pnlSearchOptions.Controls.Add(IP);
@@ -79,12 +72,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       B.Left      = IP.Left + IP.Width;
       B.Anchor    = AnchorStyles.Right | AnchorStyles.Top;
       if (this.Predicates_.Count == 0) {
-	B.Text    = "+";
-	B.Click  += new EventHandler(this.AddButton_Click);
+        B.Text    = "+";
+        B.Click  += new EventHandler(this.AddButton_Click);
       }
       else {
-	B.Text    = "-";
-	B.Click  += new EventHandler(this.RemoveButton_Click);
+        B.Text    = "-";
+        B.Click  += new EventHandler(this.RemoveButton_Click);
       }
       this.pnlSearchOptions.Controls.Add(B);
       this.Predicates_.Add(IP);
@@ -97,21 +90,21 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void RemoveButton_Click(object sender, System.EventArgs e) {
     Button B = sender as Button;
       if (B == null)
-	return;
+        return;
     ItemPredicate IP = B.Tag as ItemPredicate;
       if (IP != null) {
       int idx = this.Predicates_.IndexOf(IP);
-	this.pnlSearchOptions.Controls.Remove(IP);
-	this.pnlSearchOptions.Controls.Remove(B);
-	this.Predicates_.Remove(IP);
-	for (int i = idx; i < this.Predicates_.Count; ++i) {
-	ItemPredicate LowerIP = this.Predicates_[i];
-	  LowerIP.Top -= 4 + IP.Height;
-	Button LowerButton = LowerIP.Tag as Button;
-	  if (LowerButton != null)
-	    LowerButton.Top -= 4 + IP.Height;
-	}
-	this.pnlSearchOptions.Height -= 4 + IP.Height;
+        this.pnlSearchOptions.Controls.Remove(IP);
+        this.pnlSearchOptions.Controls.Remove(B);
+        this.Predicates_.Remove(IP);
+        for (int i = idx; i < this.Predicates_.Count; ++i) {
+        ItemPredicate LowerIP = this.Predicates_[i];
+          LowerIP.Top -= 4 + IP.Height;
+        Button LowerButton = LowerIP.Tag as Button;
+          if (LowerButton != null)
+            LowerButton.Top -= 4 + IP.Height;
+        }
+        this.pnlSearchOptions.Height -= 4 + IP.Height;
       }
     }
 
@@ -131,8 +124,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void FinalizeResultsPane() {
       foreach (ColumnHeader CH in this.lstItems.Columns) {
-	CH.Width = -1;
-	CH.Width += 2;
+        CH.Width = -1;
+        CH.Width += 2;
       }
       this.lstItems.HeaderStyle = ColumnHeaderStyle.Clickable;
       this.mnuILCEResults.Enabled = (this.lstItems.Items.Count > 0);
@@ -142,8 +135,8 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private bool CheckQuery(Item I) {
       // Assume AND between predicates for now
       foreach (ItemPredicate IP in this.Predicates_) {
-	if (!IP.IsMatch(I))
-	  return false;
+        if (!IP.IsMatch(I))
+          return false;
       }
       return true;
     }
@@ -152,19 +145,19 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void DoExport(ThingList<Item> Items) {
       if (this.dlgExportFile.ShowDialog() == DialogResult.OK) {
-	this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
+        this.PWD = new PleaseWaitDialog(I18N.GetText("Dialog:ExportItems"));
       Thread T = new Thread(new ThreadStart(delegate () {
-	  Application.DoEvents();
-	  Items.Save(this.dlgExportFile.FileName);
-	  Application.DoEvents();
-	  this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
-	}));
-	T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-	T.Start();
-	this.PWD.ShowDialog(this);
-	this.Activate();
-	this.PWD.Dispose();
-	this.PWD = null;
+          Application.DoEvents();
+          Items.Save(this.dlgExportFile.FileName);
+          Application.DoEvents();
+          this.PWD.Invoke(new AnonymousMethod(delegate() { this.PWD.Close(); }));
+        }));
+        T.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+        T.Start();
+        this.PWD.ShowDialog(this);
+        this.Activate();
+        this.PWD.Dispose();
+        this.PWD = null;
       }
     }
 
@@ -174,31 +167,31 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // Ensure the query is valid
       for (int i = 0; i < this.Predicates_.Count; ++i) {
       ItemPredicate IP = this.Predicates_[i];
-	if (IP == null)
-	  continue;
+        if (IP == null)
+          continue;
       string ValidationError = IP.ValidateQuery();
-	if (ValidationError != null) {
-	  MessageBox.Show(this, String.Format(I18N.GetText("Message:InvalidQuery"), i + 1, ValidationError), I18N.GetText("Title:InvalidQuery"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-	  return;
-	}
+        if (ValidationError != null) {
+          MessageBox.Show(this, String.Format(I18N.GetText("Message:InvalidQuery"), i + 1, ValidationError), I18N.GetText("Title:InvalidQuery"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          return;
+        }
       }
       // Clear the results
       this.InitializeResultsPane();
       // And add all items that match
       foreach (Item I in this.Items_) {
-	if (this.CheckQuery(I)) {
-	  this.SearchResults_.Add(I);
-	  this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.SearchResults_.Count);
-	  Application.DoEvents();
-	}
+        if (this.CheckQuery(I)) {
+          this.SearchResults_.Add(I);
+          this.stbStatus.Text = String.Format(I18N.GetText("Status:ItemSearch"), this.SearchResults_.Count);
+          Application.DoEvents();
+        }
       }
       foreach (Item I in this.SearchResults_) {
-	this.ilItemIcons.Images.Add(I.GetIcon());
+        this.ilItemIcons.Images.Add(I.GetIcon());
       ListViewItem LVI = this.lstItems.Items.Add("", this.ilItemIcons.Images.Count - 1);
-	LVI.Tag = I;
-	LVI.Text = this.lstItems.Items.Count.ToString();
-	foreach (string Field in I.GetAllFields())
-	  LVI.SubItems.Add(I.GetFieldText(Field));
+        LVI.Tag = I;
+        LVI.Text = this.lstItems.Items.Count.ToString();
+        foreach (string Field in I.GetAllFields())
+          LVI.SubItems.Add(I.GetFieldText(Field));
       }
       this.FinalizeResultsPane();
     }
@@ -224,7 +217,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void mnuILCProperties_Click(object sender, EventArgs e) {
       foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
       ThingPropertyPages TPP = new ThingPropertyPages(LVI.Tag as Item);
-	TPP.Show(this);
+        TPP.Show(this);
       }
     }
 
@@ -232,12 +225,12 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     MenuItem MI = sender as MenuItem;
       if (MI != null && this.lstItems.SelectedItems.Count > 0) {
       string CopyText = String.Empty;
-	foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
-	  if (CopyText != "")
-	    CopyText += '\n';
-	  CopyText += LVI.SubItems[MI.Index + 1].Text;
-	}
-	Clipboard.SetDataObject(CopyText, true);
+        foreach (ListViewItem LVI in this.lstItems.SelectedItems) {
+          if (CopyText != "")
+            CopyText += '\n';
+          CopyText += LVI.SubItems[MI.Index + 1].Text;
+        }
+        Clipboard.SetDataObject(CopyText, true);
       }
     }
 
@@ -252,7 +245,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void mnuILCESelected_Click(object sender, EventArgs e) {
     ThingList<Item> Items = new ThingList<Item>();
       foreach (ListViewItem LVI in this.lstItems.SelectedItems)
-	Items.Add(LVI.Tag as Item);
+        Items.Add(LVI.Tag as Item);
       this.DoExport(Items);
       Items.Clear();
     }

@@ -13,8 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using PlayOnline.Core;
-
 namespace PlayOnline.FFXI.Things {
 
   public class SpellInfo : Thing {
@@ -36,23 +34,23 @@ namespace PlayOnline.FFXI.Things {
 
     public static List<string> AllFields {
       get {
-	return new List<string>(new string[] {
-	  "index",
-	  "id",
-	  "magic-type",
-	  "element",
-	  "valid-targets",
-	  "skill",
-	  "level-required",
-	  "mp-cost",
-	  "casting-time",
-	  "recast-delay",
-	  "list-icon-id",
-	  "japanese-name",
-	  "english-name",
-	  "japanese-description",
-	  "english-description",
-	});
+        return new List<string>(new string[] {
+          "index",
+          "id",
+          "magic-type",
+          "element",
+          "valid-targets",
+          "skill",
+          "level-required",
+          "mp-cost",
+          "casting-time",
+          "recast-delay",
+          "list-icon-id",
+          "japanese-name",
+          "english-name",
+          "japanese-description",
+          "english-description",
+        });
       }
     }
 
@@ -104,105 +102,105 @@ namespace PlayOnline.FFXI.Things {
 
     public override bool HasField(string Field) {
       switch (Field) {
-	// Objects
-	case "english-description":  return (this.EnglishDescription_  != null);
-	case "english-name":         return (this.EnglishName_         != null);
-	case "japanese-description": return (this.JapaneseDescription_ != null);
-	case "japanese-name":        return (this.JapaneseName_        != null);
-	case "level-required":       return (this.LevelRequired_       != null);
-	// Nullables
-	case "casting-time":         return this.CastingTime_.HasValue;
-	case "element":              return this.Element_.HasValue;
-	case "id":                   return this.ID_.HasValue;
-	case "index":                return this.Index_.HasValue;
-	case "list-icon-id":         return this.ListIconID_.HasValue;
-	case "magic-type":           return this.MagicType_.HasValue;
-	case "mp-cost":              return this.MPCost_.HasValue;
-	case "recast-delay":         return this.RecastDelay_.HasValue;
-	case "skill":                return this.Skill_.HasValue;
-	case "valid-targets":        return this.ValidTargets_.HasValue;
-	default:                     return false;
+        // Objects
+        case "english-description":  return (this.EnglishDescription_  != null);
+        case "english-name":         return (this.EnglishName_         != null);
+        case "japanese-description": return (this.JapaneseDescription_ != null);
+        case "japanese-name":        return (this.JapaneseName_        != null);
+        case "level-required":       return (this.LevelRequired_       != null);
+        // Nullables
+        case "casting-time":         return this.CastingTime_.HasValue;
+        case "element":              return this.Element_.HasValue;
+        case "id":                   return this.ID_.HasValue;
+        case "index":                return this.Index_.HasValue;
+        case "list-icon-id":         return this.ListIconID_.HasValue;
+        case "magic-type":           return this.MagicType_.HasValue;
+        case "mp-cost":              return this.MPCost_.HasValue;
+        case "recast-delay":         return this.RecastDelay_.HasValue;
+        case "skill":                return this.Skill_.HasValue;
+        case "valid-targets":        return this.ValidTargets_.HasValue;
+        default:                     return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	// Special Values
-	case "level-required": {
-	string LevelInfo = String.Empty;
-	  if (this.LevelRequired_ == null || this.LevelRequired_.Length > sizeof(Job) * 8)
-	    return LevelInfo;
-	  for (int i = 0; i < this.LevelRequired_.Length; ++i) {
-	    if (this.LevelRequired_[i] != 0xff) {
-	      if (LevelInfo != String.Empty)
-		LevelInfo += '/';
-	      LevelInfo += String.Format("{0:00}{1}", this.LevelRequired_[i], (Job) (1 << i));
-	    }
-	  }
-	  return LevelInfo;
-	}
-	// Strings
-	case "english-description":  return (this.EnglishDescription_  == null ? String.Empty : this.EnglishDescription_);
-	case "english-name":         return (this.EnglishName_         == null ? String.Empty : this.EnglishName_);
-	case "japanese-description": return (this.JapaneseDescription_ == null ? String.Empty : this.JapaneseDescription_);
-	case "japanese-name":        return (this.JapaneseName_        == null ? String.Empty : this.JapaneseName_);
-	// Nullables - Simple Values
-	case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
-	case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
-	case "index":                return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.Index_.Value));
-	case "list-icon-id":         return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
-	case "magic-type":           return (!this.MagicType_.HasValue    ? String.Empty : String.Format("{0}", this.MagicType_.Value));
-	case "mp-cost":              return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
-	case "skill":                return (!this.Skill_.HasValue        ? String.Empty : String.Format("{0}", this.Skill_.Value));
-	case "valid-targets":        return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
-	// Nullables - Time Values
-	case "casting-time":         return (!this.CastingTime_.HasValue  ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
-	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? String.Empty : this.FormatTime(this.RecastDelay_.Value / 4.0));
-	default:                     return null;
+        // Special Values
+        case "level-required": {
+        string LevelInfo = String.Empty;
+          if (this.LevelRequired_ == null || this.LevelRequired_.Length > sizeof(Job) * 8)
+            return LevelInfo;
+          for (int i = 0; i < this.LevelRequired_.Length; ++i) {
+            if (this.LevelRequired_[i] != 0xff) {
+              if (LevelInfo != String.Empty)
+                LevelInfo += '/';
+              LevelInfo += String.Format("{0:00}{1}", this.LevelRequired_[i], (Job) (1 << i));
+            }
+          }
+          return LevelInfo;
+        }
+        // Strings
+        case "english-description":  return (this.EnglishDescription_  == null ? String.Empty : this.EnglishDescription_);
+        case "english-name":         return (this.EnglishName_         == null ? String.Empty : this.EnglishName_);
+        case "japanese-description": return (this.JapaneseDescription_ == null ? String.Empty : this.JapaneseDescription_);
+        case "japanese-name":        return (this.JapaneseName_        == null ? String.Empty : this.JapaneseName_);
+        // Nullables - Simple Values
+        case "element":              return (!this.Element_.HasValue      ? String.Empty : String.Format("{0}", this.Element_.Value));
+        case "id":                   return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.ID_.Value));
+        case "index":                return (!this.ID_.HasValue           ? String.Empty : String.Format("{0:000}", this.Index_.Value));
+        case "list-icon-id":         return (!this.ListIconID_.HasValue   ? String.Empty : String.Format("{0}", this.ListIconID_.Value));
+        case "magic-type":           return (!this.MagicType_.HasValue    ? String.Empty : String.Format("{0}", this.MagicType_.Value));
+        case "mp-cost":              return (!this.MPCost_.HasValue       ? String.Empty : String.Format("{0}", this.MPCost_.Value));
+        case "skill":                return (!this.Skill_.HasValue        ? String.Empty : String.Format("{0}", this.Skill_.Value));
+        case "valid-targets":        return (!this.ValidTargets_.HasValue ? String.Empty : String.Format("{0}", this.ValidTargets_.Value));
+        // Nullables - Time Values
+        case "casting-time":         return (!this.CastingTime_.HasValue  ? String.Empty : this.FormatTime(this.CastingTime_.Value / 4.0));
+        case "recast-delay":         return (!this.RecastDelay_.HasValue  ? String.Empty : this.FormatTime(this.RecastDelay_.Value / 4.0));
+        default:                     return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
-	// Objects
-	case "english-description":  return this.EnglishDescription_;
-	case "english-name":         return this.EnglishName_;
-	case "japanese-description": return this.JapaneseDescription_;
-	case "japanese-name":        return this.JapaneseName_;
-	case "level-required":       return this.LevelRequired_;
-	// Nullables
-	case "casting-time":         return (!this.CastingTime_.HasValue  ? null : (object) this.CastingTime_.Value);
-	case "element":              return (!this.Element_.HasValue      ? null : (object) this.Element_.Value);
-	case "id":                   return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
-	case "index":                return (!this.Index_.HasValue        ? null : (object) this.Index_.Value);
-	case "list-icon-id":         return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
-	case "magic-type":           return (!this.MagicType_.HasValue    ? null : (object) this.MagicType_.Value);
-	case "mp-cost":              return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
-	case "recast-delay":         return (!this.RecastDelay_.HasValue  ? null : (object) this.RecastDelay_.Value);
-	case "skill":                return (!this.Skill_.HasValue        ? null : (object) this.Skill_.Value);
-	case "valid-targets":        return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
-	default:                     return null;
+        // Objects
+        case "english-description":  return this.EnglishDescription_;
+        case "english-name":         return this.EnglishName_;
+        case "japanese-description": return this.JapaneseDescription_;
+        case "japanese-name":        return this.JapaneseName_;
+        case "level-required":       return this.LevelRequired_;
+        // Nullables
+        case "casting-time":         return (!this.CastingTime_.HasValue  ? null : (object) this.CastingTime_.Value);
+        case "element":              return (!this.Element_.HasValue      ? null : (object) this.Element_.Value);
+        case "id":                   return (!this.ID_.HasValue           ? null : (object) this.ID_.Value);
+        case "index":                return (!this.Index_.HasValue        ? null : (object) this.Index_.Value);
+        case "list-icon-id":         return (!this.ListIconID_.HasValue   ? null : (object) this.ListIconID_.Value);
+        case "magic-type":           return (!this.MagicType_.HasValue    ? null : (object) this.MagicType_.Value);
+        case "mp-cost":              return (!this.MPCost_.HasValue       ? null : (object) this.MPCost_.Value);
+        case "recast-delay":         return (!this.RecastDelay_.HasValue  ? null : (object) this.RecastDelay_.Value);
+        case "skill":                return (!this.Skill_.HasValue        ? null : (object) this.Skill_.Value);
+        case "valid-targets":        return (!this.ValidTargets_.HasValue ? null : (object) this.ValidTargets_.Value);
+        default:                     return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	// "Simple" Fields
-	case "casting-time":         this.CastingTime_         = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "element":              this.Element_             = (Element)     this.LoadHexField            (Node); break;
-	case "english-description":  this.EnglishDescription_  =               this.LoadTextField           (Node); break;
-	case "english-name":         this.EnglishName_         =               this.LoadTextField           (Node); break;
-	case "id":                   this.ID_                  = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "index":                this.Index_               = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
-	case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
-	case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
-	case "list-icon-id":         this.ListIconID_          = (byte)        this.LoadUnsignedIntegerField(Node); break;
-	case "magic-type":           this.MagicType_           = (MagicType)   this.LoadHexField            (Node); break;
-	case "mp-cost":              this.MPCost_              = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "recast-delay":         this.RecastDelay_         = (ushort)      this.LoadUnsignedIntegerField(Node); break;
-	case "skill":                this.Skill_               = (Skill)       this.LoadHexField            (Node); break;
-	case "valid-targets":        this.ValidTargets_        = (ValidTarget) this.LoadHexField            (Node); break;
+        // "Simple" Fields
+        case "casting-time":         this.CastingTime_         = (byte)        this.LoadUnsignedIntegerField(Node); break;
+        case "element":              this.Element_             = (Element)     this.LoadHexField            (Node); break;
+        case "english-description":  this.EnglishDescription_  =               this.LoadTextField           (Node); break;
+        case "english-name":         this.EnglishName_         =               this.LoadTextField           (Node); break;
+        case "id":                   this.ID_                  = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "index":                this.Index_               = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "japanese-description": this.JapaneseDescription_ =               this.LoadTextField           (Node); break;
+        case "japanese-name":        this.JapaneseName_        =               this.LoadTextField           (Node); break;
+        case "level-required":       this.LevelRequired_       =               this.LoadByteArray           (Node); break;
+        case "list-icon-id":         this.ListIconID_          = (byte)        this.LoadUnsignedIntegerField(Node); break;
+        case "magic-type":           this.MagicType_           = (MagicType)   this.LoadHexField            (Node); break;
+        case "mp-cost":              this.MPCost_              = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "recast-delay":         this.RecastDelay_         = (ushort)      this.LoadUnsignedIntegerField(Node); break;
+        case "skill":                this.Skill_               = (Skill)       this.LoadHexField            (Node); break;
+        case "valid-targets":        this.ValidTargets_        = (ValidTarget) this.LoadHexField            (Node); break;
       }
     }
 
@@ -232,11 +230,11 @@ namespace PlayOnline.FFXI.Things {
       this.Clear();
       try {
       byte[] Bytes = BR.ReadBytes(0x400);
-	if (Bytes[0x3] != 0x00 || Bytes[0x5] != 0x00 || Bytes[0x7] != 0x00 || Bytes[0x9] != 0x00 || Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff)
-	  return false;
-	if (!FFXIEncryption.DecodeDataBlock(Bytes))
-	  return false;
-	BR = new BinaryReader(new MemoryStream(Bytes, false));
+        if (Bytes[0x3] != 0x00 || Bytes[0x5] != 0x00 || Bytes[0x7] != 0x00 || Bytes[0x9] != 0x00 || Bytes[0xf] != 0xff || Bytes[0x3ff] != 0xff)
+          return false;
+        if (!FFXIEncryption.DecodeDataBlock(Bytes))
+          return false;
+        BR = new BinaryReader(new MemoryStream(Bytes, false));
       } catch { return false; }
       this.Index_         = BR.ReadUInt16();
       this.MagicType_     = (MagicType)   BR.ReadUInt16();
@@ -262,11 +260,11 @@ namespace PlayOnline.FFXI.Things {
 #if DEBUG
       { // Read the next 64 bits, and report if it's not 0 (means there's new data to identify)
       ulong Next64 = BR.ReadUInt64();
-	if (Next64 != 0) {
-	  Console.ForegroundColor = ConsoleColor.Red;
-	  Console.WriteLine("Nonzero data after entry (Spell #{0}): {1:X16}", this.ID_, Next64);
-	  Console.ResetColor();
-	}
+        if (Next64 != 0) {
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine("Nonzero data after entry (Spell #{0}): {1:X16}", this.ID_, Next64);
+          Console.ResetColor();
+        }
       }
 #endif
       BR.Close();

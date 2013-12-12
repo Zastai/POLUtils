@@ -11,13 +11,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
-using System.Windows.Forms;
-
-using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.Things {
 
@@ -35,7 +30,7 @@ namespace PlayOnline.FFXI.Things {
     }
 
     public override List<PropertyPages.IThing> GetPropertyPages() {
-    List<PropertyPages.IThing> Pages = base.GetPropertyPages();
+      var Pages = base.GetPropertyPages();
       Pages.Add(new PropertyPages.Item(this));
       return Pages;
     }
@@ -395,10 +390,10 @@ namespace PlayOnline.FFXI.Things {
             else if (ID < 0x1000) T = Type.Item;
             else if (ID < 0x2000) T = Type.UsableItem;
             else if (ID < 0x2800) T = Type.PuppetItem;
-	    else if (ID < 0x4000) T = Type.Armor;
-	    else if (ID < 0x6000) T = Type.Weapon;
-	    else if (ID < 0x7000) T = Type.Armor;
-	    else if (ID < 0x8000) T = Type.Slip;
+            else if (ID < 0x4000) T = Type.Armor;
+            else if (ID < 0x6000) T = Type.Weapon;
+            else if (ID < 0x7000) T = Type.Armor;
+            else if (ID < 0x8000) T = Type.Slip;
           }
           if (T != Type.Unknown)
             break;
@@ -505,7 +500,7 @@ namespace PlayOnline.FFXI.Things {
         }
         // Flag seems to be 1 if the offset is not actually an offset. Could just be padding to make StringCount unique per language, or it could
         // be an indication of the pronoun to use (a/an/the/...).
-	// The latter makes sense because of the increased number of such flags for French and German.
+        // The latter makes sense because of the increased number of such flags for French and German.
         if (Flag == 0) {
           BR.BaseStream.Position = Offset;
           Strings[i] = this.ReadString(BR, E);

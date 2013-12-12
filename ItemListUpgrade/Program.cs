@@ -10,13 +10,9 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Reflection;
 using System.Resources;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Xsl;
@@ -40,9 +36,9 @@ namespace ItemListUpgrade {
 
     private void Run() {
      if (this.dlgOldFile.ShowDialog() != DialogResult.OK)
-	return;
+        return;
       if (this.dlgNewFile.ShowDialog() != DialogResult.OK)
-	return;
+        return;
       this.PerformUpgrade(this.dlgOldFile.FileName, this.dlgNewFile.FileName);
     }
 
@@ -53,11 +49,11 @@ namespace ItemListUpgrade {
     private string GetText(string Name) {
     string ResourceString = this.Resources.GetObject(Name, CultureInfo.CurrentUICulture) as string;
       if (ResourceString == null)
-	ResourceString = this.Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
+        ResourceString = this.Resources.GetObject(Name, CultureInfo.InvariantCulture) as string;
       if (ResourceString == null)
-	return Name;
+        return Name;
       else
-	return ResourceString;
+        return ResourceString;
     }
 
     #endregion
@@ -68,33 +64,33 @@ namespace ItemListUpgrade {
 
     private void PrepareTransform() {
       if (this.UpgradeTransform != null)
-	return;
+        return;
       try {
-	this.UpgradeTransform = new XslCompiledTransform();
+        this.UpgradeTransform = new XslCompiledTransform();
       XmlReader XR = new XmlTextReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("ItemListUpgrade.xslt"));
-	this.UpgradeTransform.Load(XR);
-	XR.Close();
+        this.UpgradeTransform.Load(XR);
+        XR.Close();
       } catch {
-	this.UpgradeTransform = null;
+        this.UpgradeTransform = null;
       }
     }
 
     private void PerformUpgrade(string OldListFile, string NewListFile) {
       this.PrepareTransform();
       if (this.UpgradeTransform != null) {
-	try {
-	XmlDocument XD = new XmlDocument();
-	  XD.Load(OldListFile);
-	XmlWriter XW = XmlTextWriter.Create(NewListFile, this.UpgradeTransform.OutputSettings);
-	  this.UpgradeTransform.Transform(XD, XW);
-	  XW.Close();
-	  MessageBox.Show(null, this.GetText("UpgradeSuccess"), this.GetText("Title:UpgradeComplete"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-	} catch (Exception E) {
-	  MessageBox.Show(null, String.Format(this.GetText("UpgradeFailed"), E.Message), this.GetText("Title:UpgradeFailed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-	}
+        try {
+        XmlDocument XD = new XmlDocument();
+          XD.Load(OldListFile);
+        XmlWriter XW = XmlTextWriter.Create(NewListFile, this.UpgradeTransform.OutputSettings);
+          this.UpgradeTransform.Transform(XD, XW);
+          XW.Close();
+          MessageBox.Show(null, this.GetText("UpgradeSuccess"), this.GetText("Title:UpgradeComplete"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        } catch (Exception E) {
+          MessageBox.Show(null, String.Format(this.GetText("UpgradeFailed"), E.Message), this.GetText("Title:UpgradeFailed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
       }
       else
-	MessageBox.Show(null, this.GetText("PrepareFailed"), this.GetText("Title:UpgradeFailed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(null, this.GetText("PrepareFailed"), this.GetText("Title:UpgradeFailed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     #endregion

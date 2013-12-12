@@ -21,7 +21,7 @@ CRCCheck on
 
 Name "POLUtils"
 
-!define REQUIRED_DOTNET_VERSION 2.0
+!define REQUIRED_DOTNET_VERSION 4.0
 
 !define SITE_URL "http://code.google.com/p/polutils/"
 
@@ -34,8 +34,6 @@ OutFile "Installers\POLUtils-${VERSION}-${BUILD}-${PLATFORM}.exe"
 !define MUI_LANGDLL_REGISTRY_ROOT      HKLM
 !define MUI_LANGDLL_REGISTRY_KEY       "${INSTALLER_REG_KEY}"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Install Language"
-
-!insertmacro MUI_RESERVEFILE_LANGDLL
 
 InstallDirRegKey HKLM "${INSTALLER_REG_KEY}" "Install Location"
 
@@ -78,11 +76,9 @@ Page Custom PagePreInstallCheck PagePreInstallCheckDone
 !include "Languages.nsh"
 
 Function .oninit
-  !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Function un.onInit
-  !insertmacro MUI_UNGETLANGUAGE
 FunctionEnd
 
 !include "DotNet.nsh"
@@ -99,7 +95,6 @@ FunctionEnd
 
 ;; --- Sections ---
 
-InstType $(INSTTYPE_BASIC)
 InstType $(INSTTYPE_FULL)
 
 Section "-DotNetCheck"
@@ -129,39 +124,16 @@ Section "-ManagedDirectXCheck"
 SectionEnd
 
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
-  SectionIn 1 2 RO
+  SectionIn 1 RO
   SetOutPath "$INSTDIR"
   File           "${BUILDDIR}\${PLATFORM}\PlayOnline.Core.dll"
   File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.Utils.*.dll"
   File           "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.dll"
   File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.Utils.*.dll"
   File           "${BUILDDIR}\${PLATFORM}\POLUtils.exe"
-  File           "${BUILDDIR}\${PLATFORM}\Translators.txt"
   File           "${BUILDDIR}\${PLATFORM}\ItemListUpgrade.exe"
   File           "${BUILDDIR}\${PLATFORM}\MassExtractor.exe"
 SectionEnd
-
-SubSection $(NAME_SECTION_TRANS) SECTION_TRANS
-
-  Section $(NAME_SECTION_TR_DE) SECTION_TR_DE
-    SectionIn 2
-    SetOutPath "$INSTDIR\de"
-    File /nonfatal "${BUILDDIR}\${PLATFORM}\de\*.resources.dll"
-  SectionEnd
-
-  ;Section $(NAME_SECTION_TR_JA) SECTION_TR_JA
-  ;  SectionIn 2
-  ;  SetOutPath "$INSTDIR\ja"
-  ;  File /nonfatal "${BUILDDIR}\${PLATFORM}\ja\*.resources.dll"
-  ;SectionEnd
-
-  ;Section $(NAME_SECTION_TR_NL) SECTION_TR_NL
-  ;  SectionIn 2
-  ;  SetOutPath "$INSTDIR\nl"
-  ;  File /nonfatal "${BUILDDIR}\${PLATFORM}\nl\*.resources.dll"
-  ;SectionEnd
-
-SubSectionEnd
 
 Section $(NAME_SECTION_DESKTOP_SHORTCUT) SECTION_DESKTOP_SHORTCUT
   SetOutPath "$INSTDIR"
@@ -178,18 +150,6 @@ Section "-RegisterInstallationInfo"
   !insertmacro SectionFlagIsSet ${SECTION_MAIN} ${SF_SELECTED} +1 +2
   IntOp $R0 0 + 1
   WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components" $(NAME_SECTION_MAIN) $R0
-  IntOp $R0 0 + 0
-  !insertmacro SectionFlagIsSet ${SECTION_TR_DE} ${SF_SELECTED} +1 +2
-  IntOp $R0 0 + 1
-  WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_DE) $R0
-  ;IntOp $R0 0 + 0
-  ;!insertmacro SectionFlagIsSet ${SECTION_TR_JA} ${SF_SELECTED} +1 +2
-  ;IntOp $R0 0 + 1
-  ;WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_JA) $R0
-  ;IntOp $R0 0 + 0
-  ;!insertmacro SectionFlagIsSet ${SECTION_TR_NL} ${SF_SELECTED} +1 +2
-  ;IntOp $R0 0 + 1
-  ;WriteRegDWORD HKLM "${INSTALLER_REG_KEY}\Components\$(NAME_SECTION_TRANS)" $(NAME_SECTION_TR_NL) $R0
   IntOp $R0 0 + 0
   !insertmacro SectionFlagIsSet ${SECTION_DESKTOP_SHORTCUT} ${SF_SELECTED} +1 +2
   IntOp $R0 0 + 1
@@ -224,16 +184,8 @@ Section "Uninstall"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.Utils.*.dll"
   Delete "$INSTDIR\POLUtils.exe"
-  Delete "$INSTDIR\Translators.txt"
   Delete "$INSTDIR\ItemListUpgrade.exe"
   Delete "$INSTDIR\MassExtractor.exe"
-  ;; Translations
-  Delete "$INSTDIR\de\*.resources.dll"
-  RMDir "$INSTDIR\de"
-  Delete "$INSTDIR\ja\*.resources.dll"
-  RMDir "$INSTDIR\ja"
-  Delete "$INSTDIR\nl\*.resources.dll"
-  RMDir "$INSTDIR\nl"
   ;; Desktop Shortcut
   Delete "$DESKTOP\POLUtils.lnk"
   ;; Start Menu Entries
@@ -256,7 +208,7 @@ Section "Uninstall"
   ;; NPC Renamer History
   IfFileExists "$LOCALAPPDATA\Pebbles\POLUtils\npc-name-change-history.xml" +1 RenameHistoryRemovalComplete
     MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 $(MB_DELETE_NPC_RENAMER_HISTORY) IDNO RenameHistoryRemovalComplete
-    Delete "$LOCALAPPDATA\Pebbles\POLUtils\macro-library.xml"
+    Delete "$LOCALAPPDATA\Pebbles\POLUtils\npc-name-change-history.xml"
   RenameHistoryRemovalComplete:
   RMDir "$LOCALAPPDATA\Pebbles\POLUtils"
   RMDir "$LOCALAPPDATA\Pebbles"
@@ -271,9 +223,5 @@ SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_MAIN}             $(DESC_SECTION_MAIN)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TRANS}            $(DESC_SECTION_TRANS)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_DE}            $(DESC_SECTION_TR_DE)
-  ;!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_JA}            $(DESC_SECTION_TR_JA)
-  ;!insertmacro MUI_DESCRIPTION_TEXT ${SECTION_TR_NL}            $(DESC_SECTION_TR_NL)
   !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_DESKTOP_SHORTCUT} $(DESC_SECTION_DESKTOP_SHORTCUT)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END

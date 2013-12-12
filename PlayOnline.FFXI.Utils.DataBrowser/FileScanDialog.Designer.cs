@@ -31,31 +31,44 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileScanDialog));
       this.prbScanProgress = new System.Windows.Forms.ProgressBar();
       this.lblScanProgress = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // prbScanProgress
       // 
-      resources.ApplyResources(this.prbScanProgress, "prbScanProgress");
+      this.prbScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.prbScanProgress.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.prbScanProgress.Location = new System.Drawing.Point(5, 32);
       this.prbScanProgress.Maximum = 1000;
       this.prbScanProgress.Name = "prbScanProgress";
+      this.prbScanProgress.Size = new System.Drawing.Size(436, 16);
+      this.prbScanProgress.TabIndex = 5;
+      this.prbScanProgress.Visible = false;
       // 
       // lblScanProgress
       // 
-      resources.ApplyResources(this.lblScanProgress, "lblScanProgress");
+      this.lblScanProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lblScanProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.lblScanProgress.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblScanProgress.Location = new System.Drawing.Point(5, 8);
       this.lblScanProgress.Name = "lblScanProgress";
+      this.lblScanProgress.Size = new System.Drawing.Size(436, 16);
+      this.lblScanProgress.TabIndex = 4;
+      this.lblScanProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // FileScanDialog
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(446, 52);
       this.Controls.Add(this.prbScanProgress);
       this.Controls.Add(this.lblScanProgress);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
       this.Name = "FileScanDialog";
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Scanning File...";
       this.ResumeLayout(false);
 
     }

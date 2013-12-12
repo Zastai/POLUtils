@@ -9,14 +9,8 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System;
-using System.Collections;
 using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Xml;
-
-using PlayOnline.Core;
 using PlayOnline.FFXI.Things;
 
 namespace PlayOnline.FFXI.Utils.ConfigEditor {
@@ -35,7 +29,7 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
     public string CharacterName { // For ComboBox purposes
       get {
-	return ((this.Character_ == null) ? "<No Character>" : this.Character_.Name);
+        return ((this.Character_ == null) ? "<No Character>" : this.Character_.Name);
       }
     }
 
@@ -50,29 +44,29 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
     private void LoadConfig() {
       if (this.Character_ == null)
-	return;
+        return;
       try {
       BinaryReader BR = new BinaryReader(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.Read));
-	if (BR != null) {
-	  BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
-	  this.Colors_ = new Color[23];
-	  for (int i = 0; i < 23; ++i)
-	    this.Colors_[i] = Graphic.ReadColor(BR, 32);
-	  BR.Close();
-	}
+        if (BR != null) {
+          BR.BaseStream.Seek(0x50, SeekOrigin.Begin);
+          this.Colors_ = new Color[23];
+          for (int i = 0; i < 23; ++i)
+            this.Colors_[i] = Graphic.ReadColor(BR, 32);
+          BR.Close();
+        }
       }
       catch { this.Colors_ = null; }
     }
 
     public void Save() {
       if (this.Character_ == null || this.Colors_ == null)
-	return;
+        return;
     BinaryWriter BW = new BinaryWriter(this.Character_.OpenUserFile("cnf.dat", FileMode.Open, FileAccess.ReadWrite));
       if (BW != null) {
-	BW.BaseStream.Seek(0x50, SeekOrigin.Begin);
-	for (int i = 0; i < 23; ++i)
-	  Graphic.WriteColor(BW, this.Colors_[i], 32);
-	BW.Close();
+        BW.BaseStream.Seek(0x50, SeekOrigin.Begin);
+        for (int i = 0; i < 23; ++i)
+          Graphic.WriteColor(BW, this.Colors_[i], 32);
+        BW.Close();
       }
     }
 

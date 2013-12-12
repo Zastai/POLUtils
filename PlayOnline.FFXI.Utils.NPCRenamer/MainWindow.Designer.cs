@@ -29,85 +29,120 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
     /// </summary>
     private void InitializeComponent() {
       System.Windows.Forms.ColumnHeader colNPCName;
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.grpArea = new System.Windows.Forms.GroupBox();
       this.cmbArea = new System.Windows.Forms.ComboBox();
       this.grpNames = new System.Windows.Forms.GroupBox();
       this.lstNPCNames = new System.Windows.Forms.ListView();
       this.btnClose = new System.Windows.Forms.Button();
       this.btnShowChanges = new System.Windows.Forms.Button();
-      colNPCName = new System.Windows.Forms.ColumnHeader();
+      colNPCName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.grpArea.SuspendLayout();
       this.grpNames.SuspendLayout();
       this.SuspendLayout();
       // 
       // colNPCName
       // 
-      resources.ApplyResources(colNPCName, "colNPCName");
+      colNPCName.Text = "NPC Name";
+      colNPCName.Width = 200;
       // 
       // grpArea
       // 
-      resources.ApplyResources(this.grpArea, "grpArea");
+      this.grpArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.grpArea.Controls.Add(this.cmbArea);
+      this.grpArea.Location = new System.Drawing.Point(12, 12);
       this.grpArea.Name = "grpArea";
+      this.grpArea.Size = new System.Drawing.Size(243, 51);
+      this.grpArea.TabIndex = 1;
       this.grpArea.TabStop = false;
+      this.grpArea.Text = "Area";
       // 
       // cmbArea
       // 
-      resources.ApplyResources(this.cmbArea, "cmbArea");
+      this.cmbArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbArea.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.cmbArea.FormattingEnabled = true;
+      this.cmbArea.Location = new System.Drawing.Point(6, 19);
       this.cmbArea.Name = "cmbArea";
+      this.cmbArea.Size = new System.Drawing.Size(231, 21);
       this.cmbArea.Sorted = true;
+      this.cmbArea.TabIndex = 2;
       this.cmbArea.SelectedIndexChanged += new System.EventHandler(this.cmbArea_SelectedIndexChanged);
       // 
       // grpNames
       // 
-      resources.ApplyResources(this.grpNames, "grpNames");
+      this.grpNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.grpNames.Controls.Add(this.lstNPCNames);
+      this.grpNames.Location = new System.Drawing.Point(12, 69);
       this.grpNames.Name = "grpNames";
+      this.grpNames.Size = new System.Drawing.Size(243, 211);
+      this.grpNames.TabIndex = 3;
       this.grpNames.TabStop = false;
+      this.grpNames.Text = "NPC Names";
       // 
       // lstNPCNames
       // 
-      resources.ApplyResources(this.lstNPCNames, "lstNPCNames");
+      this.lstNPCNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lstNPCNames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             colNPCName});
       this.lstNPCNames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
       this.lstNPCNames.LabelEdit = true;
+      this.lstNPCNames.Location = new System.Drawing.Point(6, 19);
       this.lstNPCNames.MultiSelect = false;
       this.lstNPCNames.Name = "lstNPCNames";
       this.lstNPCNames.ShowGroups = false;
+      this.lstNPCNames.Size = new System.Drawing.Size(231, 186);
+      this.lstNPCNames.TabIndex = 4;
       this.lstNPCNames.UseCompatibleStateImageBehavior = false;
       this.lstNPCNames.View = System.Windows.Forms.View.Details;
-      this.lstNPCNames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstNPCNames_KeyDown);
       this.lstNPCNames.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.lstNPCNames_AfterLabelEdit);
+      this.lstNPCNames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstNPCNames_KeyDown);
       // 
       // btnClose
       // 
-      resources.ApplyResources(this.btnClose, "btnClose");
+      this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnClose.Location = new System.Drawing.Point(180, 286);
       this.btnClose.Name = "btnClose";
+      this.btnClose.Size = new System.Drawing.Size(75, 23);
+      this.btnClose.TabIndex = 100;
+      this.btnClose.Text = "&Close";
       this.btnClose.UseVisualStyleBackColor = true;
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
       // btnShowChanges
       // 
-      resources.ApplyResources(this.btnShowChanges, "btnShowChanges");
+      this.btnShowChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnShowChanges.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnShowChanges.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnShowChanges.Location = new System.Drawing.Point(79, 286);
       this.btnShowChanges.Name = "btnShowChanges";
+      this.btnShowChanges.Size = new System.Drawing.Size(95, 23);
+      this.btnShowChanges.TabIndex = 99;
+      this.btnShowChanges.Text = "&Show Changes...";
       this.btnShowChanges.UseVisualStyleBackColor = true;
       this.btnShowChanges.Click += new System.EventHandler(this.btnShowChanges_Click);
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.btnClose;
+      this.ClientSize = new System.Drawing.Size(267, 321);
       this.Controls.Add(this.btnShowChanges);
       this.Controls.Add(this.btnClose);
       this.Controls.Add(this.grpNames);
       this.Controls.Add(this.grpArea);
       this.Name = "MainWindow";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "FFXI NPC Renamer";
       this.Shown += new System.EventHandler(this.MainWindow_Shown);
       this.grpArea.ResumeLayout(false);
       this.grpNames.ResumeLayout(false);

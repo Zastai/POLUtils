@@ -34,26 +34,26 @@ namespace PlayOnline.Utils.TetraViewer {
 
       public TOCEntry(Stream S, long BaseOffset) {
       BinaryReader BR = new BinaryReader(S, Encoding.ASCII);
-	this.Type_ = (EntryType) BR.ReadInt32();
-	Console.WriteLine("TOC Entry Type: 0x{0:x}", (int) this.Type_);
-	this.Name_ = new string (BR.ReadChars(12));
-	{
-	int end = this.Name_.IndexOf('\0');
-	  if (end >= 0)
-	    this.Name_ = this.Name_.Substring(0, end);
-	}
-	//foreach (char c in Path.InvalidPathChars)
-	//  this.Name = this.Name.Replace(c, '_');
-	this.Offset_ = BaseOffset + BR.ReadInt32();
-	this.Size_   = BR.ReadInt32();
+        this.Type_ = (EntryType) BR.ReadInt32();
+        Console.WriteLine("TOC Entry Type: 0x{0:x}", (int) this.Type_);
+        this.Name_ = new string (BR.ReadChars(12));
+        {
+        int end = this.Name_.IndexOf('\0');
+          if (end >= 0)
+            this.Name_ = this.Name_.Substring(0, end);
+        }
+        //foreach (char c in Path.InvalidPathChars)
+        //  this.Name = this.Name.Replace(c, '_');
+        this.Offset_ = BaseOffset + BR.ReadInt32();
+        this.Size_   = BR.ReadInt32();
 #if DEBUG
-	Console.WriteLine("Name     : {0}",     this.Name_);
-	Console.WriteLine("Offset   : 0x{0:X}", this.Offset_);
-	Console.WriteLine("Size     : {0}",     this.Size_);
-	Console.WriteLine("Unknown 1: {0}",     BR.ReadInt32());
-	Console.WriteLine("Unknown 2: {0}",     BR.ReadInt32());
+        Console.WriteLine("Name     : {0}",     this.Name_);
+        Console.WriteLine("Offset   : 0x{0:X}", this.Offset_);
+        Console.WriteLine("Size     : {0}",     this.Size_);
+        Console.WriteLine("Unknown 1: {0}",     BR.ReadInt32());
+        Console.WriteLine("Unknown 2: {0}",     BR.ReadInt32());
 #else
-	BR.ReadBytes(4);
+        BR.ReadBytes(4);
 #endif
       }
 
@@ -89,24 +89,24 @@ namespace PlayOnline.Utils.TetraViewer {
     TOCEntry TE = new TOCEntry(S, BaseOffset);
     bool ValidEntry = true;
       while (ValidEntry) {
-	switch (TE.Type) {
-	  case EntryType.SubTOC:
-	  long Pos = S.Position;
-	    S.Seek(BaseOffset + TE.Offset_, SeekOrigin.Begin);
-	  TOC SubTOC = new TOC();
-	    SubTOC.Name = TE.Name;
-	    this.ReadTOC(S, SubTOC);
-	    SubTOCs.Add(SubTOC);
-	    S.Seek(Pos, SeekOrigin.Begin);
-	    break;
-	  case EntryType.PNG:
-	    Entries.Add(TE);
-	    break;
-	  default:
-	    ValidEntry = false;
-	    break;
-	}
-	TE = new TOCEntry(S, BaseOffset);
+        switch (TE.Type) {
+          case EntryType.SubTOC:
+          long Pos = S.Position;
+            S.Seek(BaseOffset + TE.Offset_, SeekOrigin.Begin);
+          TOC SubTOC = new TOC();
+            SubTOC.Name = TE.Name;
+            this.ReadTOC(S, SubTOC);
+            SubTOCs.Add(SubTOC);
+            S.Seek(Pos, SeekOrigin.Begin);
+            break;
+          case EntryType.PNG:
+            Entries.Add(TE);
+            break;
+          default:
+            ValidEntry = false;
+            break;
+        }
+        TE = new TOCEntry(S, BaseOffset);
       }
       T.SubTOCs = (TOC[])      SubTOCs.ToArray(typeof(TOC));
       T.Entries = (TOCEntry[]) Entries.ToArray(typeof(TOCEntry));

@@ -34,7 +34,6 @@ namespace PlayOnline.Core {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseRegionDialog));
       this.lblExplanation = new System.Windows.Forms.Label();
       this.radJapan = new System.Windows.Forms.RadioButton();
       this.radNorthAmerica = new System.Windows.Forms.RadioButton();
@@ -44,68 +43,80 @@ namespace PlayOnline.Core {
       // 
       // lblExplanation
       // 
-      this.lblExplanation.AccessibleDescription = null;
-      this.lblExplanation.AccessibleName = null;
-      resources.ApplyResources(this.lblExplanation, "lblExplanation");
+      this.lblExplanation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lblExplanation.BackColor = System.Drawing.SystemColors.Control;
       this.lblExplanation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblExplanation.Font = null;
+      this.lblExplanation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblExplanation.Location = new System.Drawing.Point(6, 6);
       this.lblExplanation.Name = "lblExplanation";
+      this.lblExplanation.Size = new System.Drawing.Size(271, 89);
+      this.lblExplanation.TabIndex = 0;
+      this.lblExplanation.Text = "Multiple versions of the PlayOnline client software are installed on this machine.\nDifferent applications may be installed under the different clients, and this program needs to know where to find those applications (and their data files).\nPlease select the region you wish to use:";
       // 
       // radJapan
       // 
-      this.radJapan.AccessibleDescription = null;
-      this.radJapan.AccessibleName = null;
-      resources.ApplyResources(this.radJapan, "radJapan");
-      this.radJapan.BackgroundImage = null;
-      this.radJapan.Font = null;
+      this.radJapan.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+      this.radJapan.AutoSize = true;
+      this.radJapan.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.radJapan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.radJapan.Location = new System.Drawing.Point(83, 98);
       this.radJapan.Name = "radJapan";
+      this.radJapan.Size = new System.Drawing.Size(60, 18);
+      this.radJapan.TabIndex = 1;
+      this.radJapan.Text = "&Japan";
       // 
       // radNorthAmerica
       // 
-      this.radNorthAmerica.AccessibleDescription = null;
-      this.radNorthAmerica.AccessibleName = null;
-      resources.ApplyResources(this.radNorthAmerica, "radNorthAmerica");
-      this.radNorthAmerica.BackgroundImage = null;
-      this.radNorthAmerica.Font = null;
+      this.radNorthAmerica.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+      this.radNorthAmerica.AutoSize = true;
+      this.radNorthAmerica.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.radNorthAmerica.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.radNorthAmerica.Location = new System.Drawing.Point(83, 122);
       this.radNorthAmerica.Name = "radNorthAmerica";
+      this.radNorthAmerica.Size = new System.Drawing.Size(98, 18);
+      this.radNorthAmerica.TabIndex = 2;
+      this.radNorthAmerica.Text = "North &America";
       // 
       // radEurope
       // 
-      this.radEurope.AccessibleDescription = null;
-      this.radEurope.AccessibleName = null;
-      resources.ApplyResources(this.radEurope, "radEurope");
-      this.radEurope.BackgroundImage = null;
-      this.radEurope.Font = null;
+      this.radEurope.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+      this.radEurope.AutoSize = true;
+      this.radEurope.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.radEurope.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.radEurope.Location = new System.Drawing.Point(83, 146);
       this.radEurope.Name = "radEurope";
+      this.radEurope.Size = new System.Drawing.Size(117, 18);
+      this.radEurope.TabIndex = 3;
+      this.radEurope.Text = "&Europe && Australia";
       // 
       // btnOK
       // 
-      this.btnOK.AccessibleDescription = null;
-      this.btnOK.AccessibleName = null;
-      resources.ApplyResources(this.btnOK, "btnOK");
-      this.btnOK.BackgroundImage = null;
+      this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
       this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.btnOK.Font = null;
+      this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnOK.Location = new System.Drawing.Point(109, 172);
       this.btnOK.Name = "btnOK";
+      this.btnOK.Size = new System.Drawing.Size(65, 24);
+      this.btnOK.TabIndex = 4;
+      this.btnOK.Text = "&OK";
       this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
       // 
       // ChooseRegionDialog
       // 
-      this.AccessibleDescription = null;
-      this.AccessibleName = null;
-      resources.ApplyResources(this, "$this");
-      this.BackgroundImage = null;
+      this.ClientSize = new System.Drawing.Size(282, 204);
       this.ControlBox = false;
       this.Controls.Add(this.btnOK);
       this.Controls.Add(this.radEurope);
       this.Controls.Add(this.radNorthAmerica);
       this.Controls.Add(this.radJapan);
       this.Controls.Add(this.lblExplanation);
-      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Icon = null;
       this.Name = "ChooseRegionDialog";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+      this.Text = "Select Region";
       this.ResumeLayout(false);
       this.PerformLayout();
 

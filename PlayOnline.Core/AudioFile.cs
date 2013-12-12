@@ -57,14 +57,14 @@ namespace PlayOnline.Core.Audio {
     public double SamplesToSeconds(long Samples) {
     double ByteCount = Samples;
       if (this.SampleFormat == SampleFormat.ADPCM)
-	ByteCount *= this.BlockSize;
+        ByteCount *= this.BlockSize;
       return ByteCount / this.SampleRate;
     }
 
     public long SecondsToSamples(double Seconds) {
     double ByteCount = Seconds * this.SampleRate;
       if (this.SampleFormat == SampleFormat.ADPCM)
-	ByteCount /= this.BlockSize;
+        ByteCount /= this.BlockSize;
       return (long) Math.Floor(ByteCount);
     }
 
@@ -84,39 +84,39 @@ namespace PlayOnline.Core.Audio {
       this.Path_ = Path;
       try {
       BinaryReader BR = new BinaryReader(new FileStream(this.Path_, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 0x30), Encoding.ASCII);
-	this.DetermineType(BR);
-	if (this.Type_ != AudioFileType.Unknown) {
-	  this.Header_ = new AudioFileHeader();
-	  switch (this.Type_) {
-	    case AudioFileType.BGMStream:
-	      this.Header_.SampleFormat = (SampleFormat) BR.ReadInt32();
-	      this.Header_.Size         = BR.ReadInt32();
-	      break;
-	    case AudioFileType.SoundEffect:
-	      this.Header_.Size         = BR.ReadInt32();
-	      this.Header_.SampleFormat = (SampleFormat) BR.ReadInt32();
-	      break;
-	  }
-	  this.Header_.ID             = BR.ReadInt32();
-	  this.Header_.SampleBlocks   = BR.ReadInt32();
-	  this.Header_.LoopStart      = BR.ReadInt32();
-	  this.Header_.SampleRateHigh = BR.ReadInt32();
-	  this.Header_.SampleRateLow  = BR.ReadInt32();
-	  this.Header_.Unknown1       = BR.ReadInt32();
-	  this.Header_.Unknown2       = BR.ReadByte ();
-	  this.Header_.Unknown3       = BR.ReadByte ();
-	  this.Header_.Channels       = BR.ReadByte ();
-	  this.Header_.BlockSize      = BR.ReadByte ();
-	  switch (this.Type_) {
-	    case AudioFileType.BGMStream:   this.Header_.Unknown4 = 0;              break;
-	    case AudioFileType.SoundEffect: this.Header_.Unknown4 = BR.ReadInt32(); break;
-	  }
-	}
-	BR.Close();
+        this.DetermineType(BR);
+        if (this.Type_ != AudioFileType.Unknown) {
+          this.Header_ = new AudioFileHeader();
+          switch (this.Type_) {
+            case AudioFileType.BGMStream:
+              this.Header_.SampleFormat = (SampleFormat) BR.ReadInt32();
+              this.Header_.Size         = BR.ReadInt32();
+              break;
+            case AudioFileType.SoundEffect:
+              this.Header_.Size         = BR.ReadInt32();
+              this.Header_.SampleFormat = (SampleFormat) BR.ReadInt32();
+              break;
+          }
+          this.Header_.ID             = BR.ReadInt32();
+          this.Header_.SampleBlocks   = BR.ReadInt32();
+          this.Header_.LoopStart      = BR.ReadInt32();
+          this.Header_.SampleRateHigh = BR.ReadInt32();
+          this.Header_.SampleRateLow  = BR.ReadInt32();
+          this.Header_.Unknown1       = BR.ReadInt32();
+          this.Header_.Unknown2       = BR.ReadByte ();
+          this.Header_.Unknown3       = BR.ReadByte ();
+          this.Header_.Channels       = BR.ReadByte ();
+          this.Header_.BlockSize      = BR.ReadByte ();
+          switch (this.Type_) {
+            case AudioFileType.BGMStream:   this.Header_.Unknown4 = 0;              break;
+            case AudioFileType.SoundEffect: this.Header_.Unknown4 = BR.ReadInt32(); break;
+          }
+        }
+        BR.Close();
       }
       catch {
-	this.Type_   = AudioFileType.Unknown;
-	this.Header_ = new AudioFileHeader();
+        this.Type_   = AudioFileType.Unknown;
+        this.Header_ = new AudioFileHeader();
       }
     }
 
@@ -126,15 +126,15 @@ namespace PlayOnline.Core.Audio {
 
     public AudioFileStream OpenStream(bool AddWAVHeader) {
       if (this.Type_ == AudioFileType.Unknown || this.Header_ == null)
-	return null;
+        return null;
       if (!AudioFileStream.IsFormatSupported(this.Header_.SampleFormat))
-	return null;
+        return null;
       return new AudioFileStream(this.Path_, this.Header_, AddWAVHeader);
     }
 
     public bool Playable {
       get {
-	return (this.Header_ != null && AudioFileStream.IsFormatSupported(this.Header_.SampleFormat));
+        return (this.Header_ != null && AudioFileStream.IsFormatSupported(this.Header_.SampleFormat));
       }
     }
 
@@ -157,11 +157,11 @@ namespace PlayOnline.Core.Audio {
     private void DetermineType(BinaryReader BR) {
     string marker = new string(BR.ReadChars(8));
       if (marker == "SeWave\0\0")
-	this.Type_ = AudioFileType.SoundEffect;
+        this.Type_ = AudioFileType.SoundEffect;
       else {
-	marker += new string(BR.ReadChars(4));
-	if (marker == "BGMStream\0\0\0")
-	  this.Type_ = AudioFileType.BGMStream;
+        marker += new string(BR.ReadChars(4));
+        if (marker == "BGMStream\0\0\0")
+          this.Type_ = AudioFileType.BGMStream;
       }
     }
 

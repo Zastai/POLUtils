@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -151,10 +151,7 @@
     <value> Load </value>
   </data>
   <data name="NoFFXI" xml:space="preserve">
-    <value>There is no version of FFXI installed on this machine.</value>
-  </data>
-  <data name="NoFFXITC" xml:space="preserve">
-    <value>There is no version of the  FFXI Test Client installed on this machine.</value>
+    <value>No installation of the requested FFXI version was found on this machine.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>

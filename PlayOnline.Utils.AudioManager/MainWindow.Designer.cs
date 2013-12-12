@@ -41,6 +41,8 @@ namespace PlayOnline.Utils.AudioManager {
     private System.Windows.Forms.Button btnPlay;
     private System.Windows.Forms.Button btnPause;
     private System.Windows.Forms.Button btnStop;
+    private System.Windows.Forms.CheckBox chkBufferedPlayback;
+    private System.Windows.Forms.ToolTip ttInfo;
 
     private System.ComponentModel.IContainer components;
 
@@ -56,7 +58,6 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.ilMusicBrowserIcons = new System.Windows.Forms.ImageList(this.components);
       this.pnlInfoArea = new System.Windows.Forms.Panel();
       this.chkBufferedPlayback = new System.Windows.Forms.CheckBox();
@@ -95,7 +96,7 @@ namespace PlayOnline.Utils.AudioManager {
       // ilMusicBrowserIcons
       // 
       this.ilMusicBrowserIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-      resources.ApplyResources(this.ilMusicBrowserIcons, "ilMusicBrowserIcons");
+      this.ilMusicBrowserIcons.ImageSize = new System.Drawing.Size(16, 16);
       this.ilMusicBrowserIcons.TransparentColor = System.Drawing.Color.Transparent;
       // 
       // pnlInfoArea
@@ -106,45 +107,77 @@ namespace PlayOnline.Utils.AudioManager {
       this.pnlInfoArea.Controls.Add(this.btnPlay);
       this.pnlInfoArea.Controls.Add(this.btnDecode);
       this.pnlInfoArea.Controls.Add(this.grpFileInfo);
-      resources.ApplyResources(this.pnlInfoArea, "pnlInfoArea");
+      this.pnlInfoArea.Dock = System.Windows.Forms.DockStyle.Right;
+      this.pnlInfoArea.Location = new System.Drawing.Point(392, 0);
       this.pnlInfoArea.Name = "pnlInfoArea";
+      this.pnlInfoArea.Size = new System.Drawing.Size(412, 490);
+      this.pnlInfoArea.TabIndex = 1;
       // 
       // chkBufferedPlayback
       // 
-      resources.ApplyResources(this.chkBufferedPlayback, "chkBufferedPlayback");
+      this.chkBufferedPlayback.AutoSize = true;
       this.chkBufferedPlayback.Checked = true;
       this.chkBufferedPlayback.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.chkBufferedPlayback.Location = new System.Drawing.Point(4, 203);
       this.chkBufferedPlayback.Name = "chkBufferedPlayback";
-      this.ttInfo.SetToolTip(this.chkBufferedPlayback, resources.GetString("chkBufferedPlayback.ToolTip"));
+      this.chkBufferedPlayback.Size = new System.Drawing.Size(135, 17);
+      this.chkBufferedPlayback.TabIndex = 667;
+      this.chkBufferedPlayback.Text = "Use &Buffered Playback";
+      this.ttInfo.SetToolTip(this.chkBufferedPlayback, "If checked, playback will use a buffering thread, resulting a less memory use (and enabling playback of longer tracks such as Castle Zvahl and Yuhtunga Jungle).\nHowever, this will cause skipping and/or garbled playback if another DirectSound application (such as the POL Viewer) is open.");
       this.chkBufferedPlayback.UseVisualStyleBackColor = true;
       // 
       // btnStop
       // 
-      resources.ApplyResources(this.btnStop, "btnStop");
+      this.btnStop.Enabled = false;
+      this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnStop.Location = new System.Drawing.Point(164, 172);
       this.btnStop.Name = "btnStop";
+      this.btnStop.Size = new System.Drawing.Size(76, 24);
+      this.btnStop.TabIndex = 3;
+      this.btnStop.Text = "&Stop";
       this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
       // 
       // btnPause
       // 
-      resources.ApplyResources(this.btnPause, "btnPause");
+      this.btnPause.Enabled = false;
+      this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnPause.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnPause.Location = new System.Drawing.Point(84, 172);
       this.btnPause.Name = "btnPause";
+      this.btnPause.Size = new System.Drawing.Size(76, 24);
+      this.btnPause.TabIndex = 2;
+      this.btnPause.Text = "&Pause";
       this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
       // 
       // btnPlay
       // 
-      resources.ApplyResources(this.btnPlay, "btnPlay");
+      this.btnPlay.Enabled = false;
+      this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnPlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnPlay.Location = new System.Drawing.Point(4, 172);
       this.btnPlay.Name = "btnPlay";
+      this.btnPlay.Size = new System.Drawing.Size(76, 24);
+      this.btnPlay.TabIndex = 1;
+      this.btnPlay.Text = "&Play";
       this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
       // 
       // btnDecode
       // 
-      resources.ApplyResources(this.btnDecode, "btnDecode");
+      this.btnDecode.Enabled = false;
+      this.btnDecode.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnDecode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnDecode.Location = new System.Drawing.Point(328, 172);
       this.btnDecode.Name = "btnDecode";
+      this.btnDecode.Size = new System.Drawing.Size(76, 24);
+      this.btnDecode.TabIndex = 3;
+      this.btnDecode.Text = "&Decode...";
       this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
       // 
       // grpFileInfo
       // 
-      resources.ApplyResources(this.grpFileInfo, "grpFileInfo");
+      this.grpFileInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.grpFileInfo.Controls.Add(this.txtComposer);
       this.grpFileInfo.Controls.Add(this.lblComposer);
       this.grpFileInfo.Controls.Add(this.txtTitle);
@@ -158,145 +191,227 @@ namespace PlayOnline.Utils.AudioManager {
       this.grpFileInfo.Controls.Add(this.txtLocation);
       this.grpFileInfo.Controls.Add(this.lblLocation);
       this.grpFileInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.grpFileInfo.Location = new System.Drawing.Point(4, 4);
       this.grpFileInfo.Name = "grpFileInfo";
+      this.grpFileInfo.Size = new System.Drawing.Size(400, 164);
+      this.grpFileInfo.TabIndex = 666;
       this.grpFileInfo.TabStop = false;
+      this.grpFileInfo.Text = "File Information";
       // 
       // txtComposer
       // 
-      resources.ApplyResources(this.txtComposer, "txtComposer");
+      this.txtComposer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtComposer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtComposer.Location = new System.Drawing.Point(64, 132);
       this.txtComposer.Name = "txtComposer";
       this.txtComposer.ReadOnly = true;
+      this.txtComposer.Size = new System.Drawing.Size(328, 20);
+      this.txtComposer.TabIndex = 11;
       // 
       // lblComposer
       // 
       this.lblComposer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblComposer, "lblComposer");
+      this.lblComposer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblComposer.Location = new System.Drawing.Point(8, 136);
       this.lblComposer.Name = "lblComposer";
+      this.lblComposer.Size = new System.Drawing.Size(52, 16);
+      this.lblComposer.TabIndex = 10;
+      this.lblComposer.Text = "Composer:";
       // 
       // txtTitle
       // 
-      resources.ApplyResources(this.txtTitle, "txtTitle");
+      this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtTitle.Location = new System.Drawing.Point(64, 104);
       this.txtTitle.Name = "txtTitle";
       this.txtTitle.ReadOnly = true;
+      this.txtTitle.Size = new System.Drawing.Size(328, 20);
+      this.txtTitle.TabIndex = 9;
       // 
       // lblTitle
       // 
       this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblTitle, "lblTitle");
+      this.lblTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblTitle.Location = new System.Drawing.Point(8, 108);
       this.lblTitle.Name = "lblTitle";
+      this.lblTitle.Size = new System.Drawing.Size(52, 16);
+      this.lblTitle.TabIndex = 8;
+      this.lblTitle.Text = "Title:";
       // 
       // txtFileLength
       // 
-      resources.ApplyResources(this.txtFileLength, "txtFileLength");
+      this.txtFileLength.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtFileLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtFileLength.Location = new System.Drawing.Point(312, 76);
       this.txtFileLength.Name = "txtFileLength";
       this.txtFileLength.ReadOnly = true;
+      this.txtFileLength.Size = new System.Drawing.Size(80, 20);
+      this.txtFileLength.TabIndex = 7;
       // 
       // lblFileLength
       // 
       this.lblFileLength.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblFileLength, "lblFileLength");
+      this.lblFileLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFileLength.Location = new System.Drawing.Point(272, 80);
       this.lblFileLength.Name = "lblFileLength";
+      this.lblFileLength.Size = new System.Drawing.Size(40, 16);
+      this.lblFileLength.TabIndex = 6;
+      this.lblFileLength.Text = "Length:";
       // 
       // txtFormat
       // 
-      resources.ApplyResources(this.txtFormat, "txtFormat");
+      this.txtFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtFormat.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtFormat.Location = new System.Drawing.Point(64, 76);
       this.txtFormat.Name = "txtFormat";
       this.txtFormat.ReadOnly = true;
+      this.txtFormat.Size = new System.Drawing.Size(200, 20);
+      this.txtFormat.TabIndex = 5;
       // 
       // lblFormat
       // 
       this.lblFormat.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblFormat, "lblFormat");
+      this.lblFormat.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFormat.Location = new System.Drawing.Point(8, 80);
       this.lblFormat.Name = "lblFormat";
+      this.lblFormat.Size = new System.Drawing.Size(52, 16);
+      this.lblFormat.TabIndex = 4;
+      this.lblFormat.Text = "Format:";
       // 
       // txtFileType
       // 
-      resources.ApplyResources(this.txtFileType, "txtFileType");
+      this.txtFileType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtFileType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtFileType.Location = new System.Drawing.Point(64, 48);
       this.txtFileType.Name = "txtFileType";
       this.txtFileType.ReadOnly = true;
+      this.txtFileType.Size = new System.Drawing.Size(328, 20);
+      this.txtFileType.TabIndex = 3;
       // 
       // lblFileType
       // 
       this.lblFileType.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblFileType, "lblFileType");
+      this.lblFileType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFileType.Location = new System.Drawing.Point(8, 52);
       this.lblFileType.Name = "lblFileType";
+      this.lblFileType.Size = new System.Drawing.Size(52, 16);
+      this.lblFileType.TabIndex = 2;
+      this.lblFileType.Text = "File Type:";
       // 
       // txtLocation
       // 
-      resources.ApplyResources(this.txtLocation, "txtLocation");
+      this.txtLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtLocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtLocation.Location = new System.Drawing.Point(64, 20);
       this.txtLocation.Name = "txtLocation";
       this.txtLocation.ReadOnly = true;
+      this.txtLocation.Size = new System.Drawing.Size(328, 20);
+      this.txtLocation.TabIndex = 1;
       // 
       // lblLocation
       // 
       this.lblLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblLocation, "lblLocation");
+      this.lblLocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblLocation.Location = new System.Drawing.Point(8, 24);
       this.lblLocation.Name = "lblLocation";
+      this.lblLocation.Size = new System.Drawing.Size(52, 16);
+      this.lblLocation.TabIndex = 0;
+      this.lblLocation.Text = "Location:";
       // 
       // tabBrowsers
       // 
       this.tabBrowsers.Controls.Add(this.tabMusicBrowser);
       this.tabBrowsers.Controls.Add(this.tabSoundBrowser);
-      resources.ApplyResources(this.tabBrowsers, "tabBrowsers");
+      this.tabBrowsers.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabBrowsers.ImageList = this.ilMusicBrowserIcons;
+      this.tabBrowsers.ItemSize = new System.Drawing.Size(42, 19);
+      this.tabBrowsers.Location = new System.Drawing.Point(0, 0);
       this.tabBrowsers.Name = "tabBrowsers";
       this.tabBrowsers.SelectedIndex = 0;
+      this.tabBrowsers.Size = new System.Drawing.Size(392, 490);
+      this.tabBrowsers.TabIndex = 1;
       this.tabBrowsers.SelectedIndexChanged += new System.EventHandler(this.tabBrowsers_SelectedIndexChanged);
       // 
       // tabMusicBrowser
       // 
       this.tabMusicBrowser.Controls.Add(this.tvMusicBrowser);
-      resources.ApplyResources(this.tabMusicBrowser, "tabMusicBrowser");
+      this.tabMusicBrowser.Location = new System.Drawing.Point(4, 23);
       this.tabMusicBrowser.Name = "tabMusicBrowser";
+      this.tabMusicBrowser.Size = new System.Drawing.Size(384, 463);
+      this.tabMusicBrowser.TabIndex = 0;
+      this.tabMusicBrowser.Text = "Music";
       // 
       // tvMusicBrowser
       // 
-      resources.ApplyResources(this.tvMusicBrowser, "tvMusicBrowser");
+      this.tvMusicBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tvMusicBrowser.HideSelection = false;
       this.tvMusicBrowser.HotTracking = true;
+      this.tvMusicBrowser.ImageIndex = 0;
       this.tvMusicBrowser.ImageList = this.ilMusicBrowserIcons;
+      this.tvMusicBrowser.Indent = 19;
       this.tvMusicBrowser.ItemHeight = 16;
+      this.tvMusicBrowser.Location = new System.Drawing.Point(0, 0);
       this.tvMusicBrowser.Name = "tvMusicBrowser";
+      this.tvMusicBrowser.SelectedImageIndex = 0;
+      this.tvMusicBrowser.Size = new System.Drawing.Size(384, 463);
+      this.tvMusicBrowser.TabIndex = 0;
       this.tvMusicBrowser.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterCollapse);
-      this.tvMusicBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       this.tvMusicBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
+      this.tvMusicBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       // 
       // tabSoundBrowser
       // 
       this.tabSoundBrowser.Controls.Add(this.tvSoundBrowser);
-      resources.ApplyResources(this.tabSoundBrowser, "tabSoundBrowser");
+      this.tabSoundBrowser.Location = new System.Drawing.Point(4, 23);
       this.tabSoundBrowser.Name = "tabSoundBrowser";
+      this.tabSoundBrowser.Size = new System.Drawing.Size(384, 463);
+      this.tabSoundBrowser.TabIndex = 1;
+      this.tabSoundBrowser.Text = "Sound Effects";
       // 
       // tvSoundBrowser
       // 
-      resources.ApplyResources(this.tvSoundBrowser, "tvSoundBrowser");
+      this.tvSoundBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tvSoundBrowser.HideSelection = false;
       this.tvSoundBrowser.HotTracking = true;
+      this.tvSoundBrowser.ImageIndex = 0;
       this.tvSoundBrowser.ImageList = this.ilSoundBrowserIcons;
+      this.tvSoundBrowser.Indent = 19;
       this.tvSoundBrowser.ItemHeight = 16;
+      this.tvSoundBrowser.Location = new System.Drawing.Point(0, 0);
       this.tvSoundBrowser.Name = "tvSoundBrowser";
+      this.tvSoundBrowser.SelectedImageIndex = 0;
+      this.tvSoundBrowser.Size = new System.Drawing.Size(384, 463);
+      this.tvSoundBrowser.TabIndex = 0;
       this.tvSoundBrowser.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterCollapse);
-      this.tvSoundBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       this.tvSoundBrowser.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterExpand);
+      this.tvSoundBrowser.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvBrowser_AfterSelect);
       // 
       // ilSoundBrowserIcons
       // 
       this.ilSoundBrowserIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-      resources.ApplyResources(this.ilSoundBrowserIcons, "ilSoundBrowserIcons");
+      this.ilSoundBrowserIcons.ImageSize = new System.Drawing.Size(16, 16);
       this.ilSoundBrowserIcons.TransparentColor = System.Drawing.Color.Transparent;
       // 
       // dlgSaveWave
       // 
       this.dlgSaveWave.DefaultExt = "wav";
-      resources.ApplyResources(this.dlgSaveWave, "dlgSaveWave");
+      this.dlgSaveWave.Filter = "Wave Files (*.wav)|*.wav|All Files (*.*)|*.*";
       this.dlgSaveWave.RestoreDirectory = true;
+      this.dlgSaveWave.Title = "Decode To Wave...";
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(804, 490);
       this.Controls.Add(this.tabBrowsers);
       this.Controls.Add(this.pnlInfoArea);
       this.Name = "MainWindow";
+      this.Text = "PlayOnline Audio Manager";
       this.Closed += new System.EventHandler(this.MainWindow_Closed);
       this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
       this.pnlInfoArea.ResumeLayout(false);
@@ -311,9 +426,6 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     #endregion
-
-    private System.Windows.Forms.CheckBox chkBufferedPlayback;
-    private System.Windows.Forms.ToolTip ttInfo;
 
   }
 

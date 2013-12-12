@@ -13,8 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using PlayOnline.Core;
-
 namespace PlayOnline.FFXI.Things {
 
   public class MobListEntry : Thing {
@@ -36,10 +34,10 @@ namespace PlayOnline.FFXI.Things {
 
     public static List<string> AllFields {
       get {
-	return new List<string>(new string[] {
-	  "id",
-	  "name",
-	});
+        return new List<string>(new string[] {
+          "id",
+          "name",
+        });
       }
     }
 
@@ -65,32 +63,32 @@ namespace PlayOnline.FFXI.Things {
 
     public override bool HasField(string Field) {
       switch (Field) {
-	case "id":   return this.ID_.HasValue;
-	case "name": return (this.Name_ != null);
-	default:     return false;
+        case "id":   return this.ID_.HasValue;
+        case "name": return (this.Name_ != null);
+        default:     return false;
       }
     }
 
     public override string GetFieldText(string Field) {
       switch (Field) {
-	case "id":   return (!this.ID_.HasValue ? String.Empty : String.Format("{0:X8}", this.ID_.Value));
-	case "name": return this.Name_;
-	default:     return null;
+        case "id":   return (!this.ID_.HasValue ? String.Empty : String.Format("{0:X8}", this.ID_.Value));
+        case "name": return this.Name_;
+        default:     return null;
       }
     }
 
     public override object GetFieldValue(string Field) {
       switch (Field) {
-	case "id":   return (!this.ID_.HasValue ? null : (object) this.ID_.Value);
-	case "name": return this.Name_;
-	default:     return null;
+        case "id":   return (!this.ID_.HasValue ? null : (object) this.ID_.Value);
+        case "name": return this.Name_;
+        default:     return null;
       }
     }
 
     protected override void LoadField(string Field, System.Xml.XmlElement Node) {
       switch (Field) {
-	case "id":   this.ID_   = (uint) this.LoadUnsignedIntegerField(Node); break;
-	case "name": this.Name_ =        this.LoadTextField           (Node); break;
+        case "id":   this.ID_   = (uint) this.LoadUnsignedIntegerField(Node); break;
+        case "name": this.Name_ =        this.LoadTextField           (Node); break;
       }
     }
 
@@ -102,13 +100,13 @@ namespace PlayOnline.FFXI.Things {
       this.Clear();
       try {
       FFXIEncoding E = new FFXIEncoding();
-	this.Name_ = E.GetString(BR.ReadBytes(0x18)).TrimEnd('\0');
-	this.ID_   = BR.ReadUInt32();
-	// ID seems to be 010 + zone id + mob id (=> there's a hard max of 0xFFF (= 4095) mobs per zone, which seems plenty :))
+        this.Name_ = E.GetString(BR.ReadBytes(0x18)).TrimEnd('\0');
+        this.ID_   = BR.ReadUInt32();
+        // ID seems to be 010 + zone id + mob id (=> there's a hard max of 0xFFF (= 4095) mobs per zone, which seems plenty :))
     // Special 'instanced' zones like MMM or Meebles use 013 + 'zone id' + mob id.
     if ((this.ID_ != 0 && (this.ID_ & 0xFFF00000) != 0x01000000) && (this.ID_ != 0 && (this.ID_ & 0xFFF00000) != 0x01300000) && (this.ID_ != 0 && (this.ID_ & 0xFFF00000) != 0x01100000))
-	  return false;
-	return true;
+          return false;
+        return true;
       } catch { return false; }
     }
 

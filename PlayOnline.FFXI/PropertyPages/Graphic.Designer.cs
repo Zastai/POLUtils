@@ -17,14 +17,13 @@ namespace PlayOnline.FFXI.PropertyPages {
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
-	components.Dispose();
+        components.Dispose();
       base.Dispose(disposing);
     }
 
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Graphic));
       this.btnSelectColor = new System.Windows.Forms.Button();
       this.lblBackColor = new System.Windows.Forms.Label();
       this.cmbViewMode = new System.Windows.Forms.ComboBox();
@@ -34,40 +33,67 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.cmbBackColor = new System.Windows.Forms.ComboBox();
       this.btnSave = new System.Windows.Forms.Button();
       this.dlgSaveImage = new System.Windows.Forms.SaveFileDialog();
-      ((System.ComponentModel.ISupportInitialize) (this.picImage)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
       this.SuspendLayout();
       // 
       // btnSelectColor
       // 
-      resources.ApplyResources(this.btnSelectColor, "btnSelectColor");
+      this.btnSelectColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.btnSelectColor.Enabled = false;
+      this.btnSelectColor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnSelectColor.Location = new System.Drawing.Point(199, 356);
       this.btnSelectColor.Name = "btnSelectColor";
+      this.btnSelectColor.Size = new System.Drawing.Size(59, 23);
+      this.btnSelectColor.TabIndex = 5;
+      this.btnSelectColor.Text = "Select...";
       this.btnSelectColor.UseVisualStyleBackColor = true;
       this.btnSelectColor.Click += new System.EventHandler(this.btnSelectColor_Click);
       // 
       // lblBackColor
       // 
-      resources.ApplyResources(this.lblBackColor, "lblBackColor");
+      this.lblBackColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblBackColor.AutoSize = true;
+      this.lblBackColor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblBackColor.Location = new System.Drawing.Point(3, 361);
       this.lblBackColor.Name = "lblBackColor";
+      this.lblBackColor.Size = new System.Drawing.Size(68, 13);
+      this.lblBackColor.TabIndex = 3;
+      this.lblBackColor.Text = "Background:";
       // 
       // cmbViewMode
       // 
-      resources.ApplyResources(this.cmbViewMode, "cmbViewMode");
+      this.cmbViewMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.cmbViewMode.DisplayMember = "Name";
       this.cmbViewMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbViewMode.Location = new System.Drawing.Point(72, 329);
       this.cmbViewMode.Name = "cmbViewMode";
+      this.cmbViewMode.Size = new System.Drawing.Size(251, 21);
+      this.cmbViewMode.TabIndex = 2;
       this.cmbViewMode.ValueMember = "Value";
       this.cmbViewMode.SelectedIndexChanged += new System.EventHandler(this.cmbViewMode_SelectedIndexChanged);
       // 
       // lblViewMode
       // 
-      resources.ApplyResources(this.lblViewMode, "lblViewMode");
+      this.lblViewMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.lblViewMode.AutoSize = true;
+      this.lblViewMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblViewMode.Location = new System.Drawing.Point(3, 332);
       this.lblViewMode.Name = "lblViewMode";
+      this.lblViewMode.Size = new System.Drawing.Size(63, 13);
+      this.lblViewMode.TabIndex = 1;
+      this.lblViewMode.Text = "View Mode:";
       // 
       // picImage
       // 
-      resources.ApplyResources(this.picImage, "picImage");
+      this.picImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.picImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.picImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.picImage.Location = new System.Drawing.Point(3, 3);
       this.picImage.Name = "picImage";
+      this.picImage.Size = new System.Drawing.Size(320, 320);
+      this.picImage.TabIndex = 9;
       this.picImage.TabStop = false;
       // 
       // dlgChooseColor
@@ -77,30 +103,39 @@ namespace PlayOnline.FFXI.PropertyPages {
       // 
       // cmbBackColor
       // 
-      resources.ApplyResources(this.cmbBackColor, "cmbBackColor");
+      this.cmbBackColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.cmbBackColor.DisplayMember = "Name";
       this.cmbBackColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cmbBackColor.Items.AddRange(new object[] {
-            resources.GetString("cmbBackColor.Items"),
-            resources.GetString("cmbBackColor.Items1")});
+            "Transparent",
+            "Solid Color"});
+      this.cmbBackColor.Location = new System.Drawing.Point(72, 358);
       this.cmbBackColor.Name = "cmbBackColor";
+      this.cmbBackColor.Size = new System.Drawing.Size(121, 21);
+      this.cmbBackColor.TabIndex = 4;
       this.cmbBackColor.ValueMember = "Value";
       this.cmbBackColor.SelectedIndexChanged += new System.EventHandler(this.cmbBackColor_SelectedIndexChanged);
       // 
       // btnSave
       // 
-      resources.ApplyResources(this.btnSave, "btnSave");
+      this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.btnSave.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnSave.Location = new System.Drawing.Point(264, 356);
       this.btnSave.Name = "btnSave";
+      this.btnSave.Size = new System.Drawing.Size(59, 23);
+      this.btnSave.TabIndex = 6;
+      this.btnSave.Text = "&Save...";
       this.btnSave.UseVisualStyleBackColor = true;
       this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
       // 
       // dlgSaveImage
       // 
-      resources.ApplyResources(this.dlgSaveImage, "dlgSaveImage");
+      this.dlgSaveImage.Filter = "Portable Network Graphic (*.png)|*.png";
+      this.dlgSaveImage.Title = "Save Graphic As...";
       // 
       // Graphic
       // 
-      resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.btnSave);
       this.Controls.Add(this.cmbBackColor);
@@ -111,7 +146,8 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.Controls.Add(this.picImage);
       this.Name = "Graphic";
       this.TabName = "Graphic";
-      ((System.ComponentModel.ISupportInitialize) (this.picImage)).EndInit();
+      this.Size = new System.Drawing.Size(326, 382);
+      ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 

@@ -13,7 +13,6 @@ using System;
 using System.Collections;
 using System.IO;
 using Microsoft.Win32;
-
 using PlayOnline.Core;
 
 namespace PlayOnline.FFXI {
@@ -33,21 +32,21 @@ namespace PlayOnline.FFXI {
       get {
       string DefaultName = String.Format("Unknown Character ({0})", this.ID_);
       string value = null;
-	using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
-	  if (NameMappings != null)
-	    value = NameMappings.GetValue(this.ID_, null) as string;
-	}
-	return ((value == null) ? DefaultName : value);
+        using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
+          if (NameMappings != null)
+            value = NameMappings.GetValue(this.ID_, null) as string;
+        }
+        return ((value == null) ? DefaultName : value);
       }
       set {
-	using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
-	  if (NameMappings != null) {
-	    if (value == null)
-	      NameMappings.DeleteValue(this.ID_, false);
-	    else
-	      NameMappings.SetValue(this.ID_, value);
-	  }
-	}
+        using (RegistryKey NameMappings = POL.OpenPOLUtilsConfigKey("Character Names", true)) {
+          if (NameMappings != null) {
+            if (value == null)
+              NameMappings.DeleteValue(this.ID_, false);
+            else
+              NameMappings.SetValue(this.ID_, value);
+          }
+        }
       }
     }
 
@@ -86,11 +85,11 @@ namespace PlayOnline.FFXI {
 
     public Character this[string ID] {
       get {
-	foreach (Character C in this.InnerList) {
-	  if (C.ID == ID)
-	    return C;
-	}
-	return null;
+        foreach (Character C in this.InnerList) {
+          if (C.ID == ID)
+            return C;
+        }
+        return null;
       }
     }
 
