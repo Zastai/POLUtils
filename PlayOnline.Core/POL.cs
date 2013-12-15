@@ -43,7 +43,7 @@ namespace PlayOnline.Core {
 
     public static void DetectRegions() {
       // Get configured region
-      using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey(true)) {
+      using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey()) {
         if (SettingsKey != null) {
         string UserRegion = SettingsKey.GetValue("Region", "None") as string;
           try {
@@ -111,7 +111,7 @@ namespace PlayOnline.Core {
       }
       else // No multiple regions installed? No choice to be made then!
         POL.SelectedRegion_ = POL.AvailableRegions_;
-      using (RegistryKey POLKey = POL.OpenPOLUtilsConfigKey(true)) {
+      using (RegistryKey POLKey = POL.OpenPOLUtilsConfigKey()) {
         if (POLKey != null)
           POLKey.SetValue("Region", POL.SelectedRegion_.ToString());
       }
@@ -201,24 +201,15 @@ namespace PlayOnline.Core {
     }
 
     public static RegistryKey OpenPOLUtilsConfigKey() {
-      return POL.OpenPOLUtilsConfigKey(null, false);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(bool MachineWide) {
-      return POL.OpenPOLUtilsConfigKey(null, MachineWide);
+      return POL.OpenPOLUtilsConfigKey(null);
     }
 
     public static RegistryKey OpenPOLUtilsConfigKey(string SubKey) {
-      return POL.OpenPOLUtilsConfigKey(SubKey, false);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey, bool MachineWide) {
-    RegistryKey Root = (MachineWide ? Registry.LocalMachine : Registry.CurrentUser);
       try {
       string KeyName = @"Software\Pebbles\POLUtils\";
         if (SubKey != null)
           KeyName += SubKey;
-        return Root.CreateSubKey(KeyName);
+        return Registry.CurrentUser.CreateSubKey(KeyName);
       } catch { }
       return null;
     }

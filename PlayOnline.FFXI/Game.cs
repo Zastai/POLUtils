@@ -9,6 +9,7 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
+using System.Collections.Generic;
 using System.IO;
 using PlayOnline.Core;
 
@@ -16,12 +17,12 @@ namespace PlayOnline.FFXI {
 
   public class Game {
 
-    private static CharacterCollection Characters_;
+    private static List<Character> Characters_;
 
-    public static CharacterCollection Characters {
+    public static IEnumerable<Character> Characters {
       get {
         if (Game.Characters_ == null) {
-          Game.Characters_ = new CharacterCollection();
+          Game.Characters_ = new List<Character>();
         string AppPath = POL.GetApplicationPath(AppID.FFXI);
           if (AppPath != null) {
             foreach (string SubDir in Directory.GetDirectories(Path.Combine(AppPath, "User"))) {
