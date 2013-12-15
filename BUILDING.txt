@@ -3,8 +3,8 @@
 Requirements for building POLUtils
 ==================================
 
-Main requirement is Visual Studio 2010, 2012 or 2013.
-For maintenance and patch creation, use of VS2010 is recommended (to avoid undesirable solution/project file changes).
+Main requirement is Visual Studio 2012 or 2013 (Visual Studio 2010 can work too, but it doesn't support restoring NuGet
+packages, so you'd have to put the dependencies in place manually).
 Target framework should remain at v4.0 until further notice, to keep support for Windows XP.
 
 A command-line Subversion client (specifically svnversion.exe) needs to be in Visual Studio's executables path (either in

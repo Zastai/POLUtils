@@ -41,7 +41,6 @@ namespace PlayOnline.Utils.AudioManager {
     private System.Windows.Forms.Button btnPlay;
     private System.Windows.Forms.Button btnPause;
     private System.Windows.Forms.Button btnStop;
-    private System.Windows.Forms.CheckBox chkBufferedPlayback;
     private System.Windows.Forms.ToolTip ttInfo;
 
     private System.ComponentModel.IContainer components;
@@ -60,7 +59,6 @@ namespace PlayOnline.Utils.AudioManager {
       this.components = new System.ComponentModel.Container();
       this.ilMusicBrowserIcons = new System.Windows.Forms.ImageList(this.components);
       this.pnlInfoArea = new System.Windows.Forms.Panel();
-      this.chkBufferedPlayback = new System.Windows.Forms.CheckBox();
       this.btnStop = new System.Windows.Forms.Button();
       this.btnPause = new System.Windows.Forms.Button();
       this.btnPlay = new System.Windows.Forms.Button();
@@ -101,7 +99,6 @@ namespace PlayOnline.Utils.AudioManager {
       // 
       // pnlInfoArea
       // 
-      this.pnlInfoArea.Controls.Add(this.chkBufferedPlayback);
       this.pnlInfoArea.Controls.Add(this.btnStop);
       this.pnlInfoArea.Controls.Add(this.btnPause);
       this.pnlInfoArea.Controls.Add(this.btnPlay);
@@ -112,19 +109,6 @@ namespace PlayOnline.Utils.AudioManager {
       this.pnlInfoArea.Name = "pnlInfoArea";
       this.pnlInfoArea.Size = new System.Drawing.Size(412, 490);
       this.pnlInfoArea.TabIndex = 1;
-      // 
-      // chkBufferedPlayback
-      // 
-      this.chkBufferedPlayback.AutoSize = true;
-      this.chkBufferedPlayback.Checked = true;
-      this.chkBufferedPlayback.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkBufferedPlayback.Location = new System.Drawing.Point(4, 203);
-      this.chkBufferedPlayback.Name = "chkBufferedPlayback";
-      this.chkBufferedPlayback.Size = new System.Drawing.Size(135, 17);
-      this.chkBufferedPlayback.TabIndex = 667;
-      this.chkBufferedPlayback.Text = "Use &Buffered Playback";
-      this.ttInfo.SetToolTip(this.chkBufferedPlayback, "If checked, playback will use a buffering thread, resulting a less memory use (and enabling playback of longer tracks such as Castle Zvahl and Yuhtunga Jungle).\nHowever, this will cause skipping and/or garbled playback if another DirectSound application (such as the POL Viewer) is open.");
-      this.chkBufferedPlayback.UseVisualStyleBackColor = true;
       // 
       // btnStop
       // 
@@ -415,7 +399,6 @@ namespace PlayOnline.Utils.AudioManager {
       this.Closed += new System.EventHandler(this.MainWindow_Closed);
       this.VisibleChanged += new System.EventHandler(this.MainWindow_VisibleChanged);
       this.pnlInfoArea.ResumeLayout(false);
-      this.pnlInfoArea.PerformLayout();
       this.grpFileInfo.ResumeLayout(false);
       this.grpFileInfo.PerformLayout();
       this.tabBrowsers.ResumeLayout(false);

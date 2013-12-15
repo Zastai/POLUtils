@@ -9,10 +9,6 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-// Define this to write the WAV header in the WaveWriter class instead of relying on AudioFileStream to
-// provide one.  If set, a loop marker will also be added to the WAV file if appropriate.
-#define LocalWAVHeader
-
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -28,11 +24,7 @@ namespace PlayOnline.Utils.AudioManager {
       this.txtSource.Text = AF.Path;
       this.txtTarget.Text = TargetFile;
       this.AF  = AF;
-#if LocalWAVHeader
       this.AFS = AF.OpenStream(false);
-#else
-      this.AFS = AF.OpenStream(true);
-#endif
       this.FS  = new FileStream(TargetFile, FileMode.Create, FileAccess.Write);
     }
 
@@ -44,12 +36,11 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void WriteWave() {
       this.prbBytesWritten.Maximum = (int) this.AFS.Length;
-#if LocalWAVHeader
       this.prbBytesWritten.Maximum += 0x2c;
       if (this.AF.Looped)
         this.prbBytesWritten.Maximum += 0x48; // For the "Loop Start" cue marker
       { // Write WAV header
-      BinaryWriter BW = new BinaryWriter(this.FS, Encoding.ASCII);
+      var BW = new BinaryWriter(this.FS, Encoding.ASCII);
         // File Header
         BW.Write("RIFF".ToCharArray());
         BW.Write(this.prbBytesWritten.Maximum);
@@ -68,9 +59,8 @@ namespace PlayOnline.Utils.AudioManager {
         BW.Write((int) this.AFS.Length);
       }
       this.prbBytesWritten.Value = 0x2c;
-#endif
       // Write PCM data
-    byte[] data = new byte[this.ChunkSize];
+    var data = new byte[this.ChunkSize];
       while (true) {
       int read = AFS.Read(data, 0, this.ChunkSize);
         this.prbBytesWritten.Value += read;
@@ -79,10 +69,9 @@ namespace PlayOnline.Utils.AudioManager {
           break;
       }
       AFS.Close();
-#if LocalWAVHeader
       // Write "Loop Start" cue marker
       if (this.AF.Looped) {
-      BinaryWriter BW = new BinaryWriter(this.FS, Encoding.ASCII);
+      var BW = new BinaryWriter(this.FS, Encoding.ASCII);
         BW.Write("cue ".ToCharArray());
         BW.Write((int) 0x1c);
         BW.Write((int) 1);
@@ -101,7 +90,6 @@ namespace PlayOnline.Utils.AudioManager {
         BW.Write("Loop Start\0\0".ToCharArray());
         this.prbBytesWritten.Value += 0x48;
       }
-#endif
       FS.Close();
     }
 

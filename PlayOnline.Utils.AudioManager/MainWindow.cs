@@ -9,22 +9,20 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-// Define to "hard link" with Managed DirectSound.  Requires adding a reference.
-// Note that this means the entire audio manager will not be able to run when MDX is not available.
-//#define UseDirectX
-
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+
+// This needs work - the current code is based on the original "buffered playback" code, and it mostly works quite nicely.
+// However, there are occasional access violations, so perhaps it should be rewritten to use XAudio (which does add even more dependencies).
+using SharpDX;
+using SharpDX.DirectSound;
+using SharpDX.Multimedia;
+
 using PlayOnline.Core;
 using PlayOnline.Core.Audio;
-#if UseDirectX
-using Microsoft.DirectX.DirectSound;
-#else
-using ManagedDirectX;
-using ManagedDirectX.DirectSound;
-#endif
 
 namespace PlayOnline.Utils.AudioManager {
 
@@ -32,13 +30,6 @@ namespace PlayOnline.Utils.AudioManager {
 
     public MainWindow() {
       this.InitializeComponent();
-#if !UseDirectX
-      if (!ManagedDirectSound.Available) {
-        MessageBox.Show(this, "Managed DirectX is not available; sound playback will be disabled.", "DirectSound Initialization Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        this.AudioEnabled = false;
-        this.chkBufferedPlayback.Enabled = false;
-      }
-#endif
       this.Icon = Icons.AudioStuff;
       try {
         this.ilMusicBrowserIcons.Images.Add(Icons.AudioFolder);
@@ -59,13 +50,13 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void RefreshBrowser() {
       this.ClearFileInfo();
-      using (InfoBuilder IB = new InfoBuilder()) {
+      using (var IB = new InfoBuilder()) {
         Application.DoEvents();
         // Clear treeview, create main root and fill them
         switch (this.tabBrowsers.SelectedIndex) {
           case 0: // Music
             this.tvMusicBrowser.Nodes.Clear();
-          TreeNode MusicRoot = new TreeNode("Music");
+            var MusicRoot = new TreeNode("Music");
             this.tvMusicBrowser.Nodes.Add(MusicRoot);
             IB.TargetNode   = MusicRoot;
             IB.FileTypeName = MusicRoot.Text;
@@ -77,7 +68,7 @@ namespace PlayOnline.Utils.AudioManager {
             break;
           case 1: // Sound Effects
             this.tvSoundBrowser.Nodes.Clear();
-          TreeNode SoundRoot = new TreeNode("Sound Effects");
+            var SoundRoot = new TreeNode("Sound Effects");
             this.tvSoundBrowser.Nodes.Add(SoundRoot);
             IB.TargetNode   = SoundRoot;
             IB.FileTypeName = SoundRoot.Text;
@@ -106,18 +97,15 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void ClearFileInfo() {
-      foreach (Control C in this.grpFileInfo.Controls) {
-        if (C is TextBox)
-          C.Text = null;
-      }
+      foreach (var tb in this.grpFileInfo.Controls.OfType<TextBox>())
+        tb.Text = null;
       this.btnPlay.Enabled = false;
-      this.chkBufferedPlayback.Enabled = false;
       this.btnDecode.Enabled = false;
     }
 
     private string LengthText(double seconds) {
-    TimeSpan FileLength = new TimeSpan((long) (seconds * 10000000));
-    string Result = String.Format("{0}s", FileLength.Seconds);
+      var FileLength = new TimeSpan((long) (seconds * 10000000));
+      var Result = string.Format("{0}s", FileLength.Seconds);
       if (FileLength.Minutes > 0)
         Result = String.Format("{0}m ", FileLength.Minutes) + Result;
       if (FileLength.TotalHours >= 1)
@@ -125,17 +113,15 @@ namespace PlayOnline.Utils.AudioManager {
       return Result;
     }
 
-    private bool            AudioEnabled       = true;
-    private readonly int    AudioBufferSize    = 256 * 1024;
+    private readonly int    AudioBufferMarkers = 4;
+    private readonly int    AudioBufferSize    = 1024 * 1024;
     private bool            AudioIsLooping     = false;
-    private AudioFileStream CurrentStream      = null;
-
-    private Device          AudioDevice        = null;
-    private SecondaryBuffer CurrentBuffer      = null;
-
-    private readonly int    AudioBufferMarkers = 2;
     private AutoResetEvent  AudioUpdateTrigger = null;
     private Thread          AudioUpdateThread  = null;
+    private AudioFileStream CurrentStream      = null;
+
+    private DirectSound          DS            = null;
+    private SecondarySoundBuffer CurrentBuffer = null;
 
     private void AudioUpdate() {
       while (this.CurrentBuffer != null && this.CurrentStream != null && this.AudioUpdateThread == Thread.CurrentThread) {
@@ -149,31 +135,50 @@ namespace PlayOnline.Utils.AudioManager {
         if (this.CurrentBuffer == null || this.CurrentStream == null)
           return;
         // Determine the proper update location
-      int ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
-      int StartPos  = (int) this.CurrentStream.Position;
-      int EndPos    = StartPos + ChunkSize;
+        var chunksize = this.AudioBufferSize / this.AudioBufferMarkers;
+        var startpos  = (int) this.CurrentStream.Position;
+        var endpos    = startpos + chunksize;
         // Normalize it vs the buffer size
-        StartPos %= this.AudioBufferSize;
-        EndPos   %= this.AudioBufferSize;
+        startpos %= this.AudioBufferSize;
+        endpos   %= this.AudioBufferSize;
         // Ensure the region we want to write isn't currently being played
-        if (this.CurrentBuffer.PlayPosition >= StartPos && this.CurrentBuffer.PlayPosition < EndPos) {
+        int playpos, writepos;
+        this.CurrentBuffer.GetCurrentPosition(out playpos, out writepos);
+        if ((endpos < startpos && (playpos >= startpos || playpos < endpos)) || (endpos > startpos && playpos >= startpos && playpos < endpos)) {
           // If we're at the end of the file, stop playback
           if (this.CurrentStream.Position == this.CurrentStream.Length)
-            this.StopPlayback();
+            goto AtEnd; // Need to escape the lock block, since StopPlayback() also locks the form
           return;
         }
         // Write the data
-        this.CurrentBuffer.Write(StartPos, this.CurrentStream, ChunkSize, LockFlag.None);
+        var bytes = new byte[chunksize];
+        var readbytes = this.CurrentStream.Read(bytes, 0, chunksize);
+        if (readbytes < chunksize)
+          Array.Clear(bytes, readbytes, chunksize - readbytes);
+        if (endpos < startpos && endpos != 0) // Adjust it so we write until the end of the buffer
+          chunksize = this.AudioBufferSize - startpos;
+        DataStream audiodata2;
+        var audiodata1 = this.CurrentBuffer.Lock(startpos, chunksize, LockFlags.None, out audiodata2);
+        audiodata1.Write(bytes, 0, chunksize);
+        this.CurrentBuffer.Unlock(audiodata1, audiodata2);
+        if (endpos < startpos && endpos != 0) { // Now write the rest at the start of the buffer
+          audiodata1 = this.CurrentBuffer.Lock(0, endpos, LockFlags.None, out audiodata2);
+          audiodata1.Write(bytes, chunksize, endpos);
+          this.CurrentBuffer.Unlock(audiodata1, audiodata2);
+        }
       }
+      return;
+    AtEnd:
+      this.Invoke(new Action(this.StopPlayback));
     }
 
     private void PausePlayback() {
-      if (this.CurrentBuffer.Status.Playing) {
+      if ((this.CurrentBuffer.Status & (int) BufferStatus.Playing) == (int) BufferStatus.Playing) {
         this.CurrentBuffer.Stop();
         this.btnPause.Text = "&Resume";
       }
       else {
-        this.CurrentBuffer.Play(0, (this.AudioIsLooping ? BufferPlayFlags.Looping : BufferPlayFlags.Default));
+        this.CurrentBuffer.Play(0, (this.AudioIsLooping ? PlayFlags.Looping : PlayFlags.None));
         this.btnPause.Text = "Pa&use";
       }
     }
@@ -189,8 +194,7 @@ namespace PlayOnline.Utils.AudioManager {
           this.CurrentStream.Close();
           this.CurrentStream = null;
         }
-        if (this.AudioUpdateThread != null)
-          this.AudioUpdateThread = null;
+        this.AudioUpdateThread = null;
       }
       this.btnPause.Enabled = false;
       this.btnPause.Text = "Pa&use";
@@ -200,59 +204,51 @@ namespace PlayOnline.Utils.AudioManager {
     
     private void PlayFile(FileInfo FI) {
       lock (this) {
-        if (this.AudioDevice == null) {
-          this.AudioDevice = new Device();
-          AudioDevice.SetCooperativeLevel(this, CooperativeLevel.Normal);
+        if (this.DS == null) {
+          this.DS = new DirectSound();
+          this.DS.SetCooperativeLevel(this.Handle, CooperativeLevel.Normal);
         }
         this.StopPlayback();
-      WaveFormat fmt = new WaveFormat();
-        fmt.FormatTag = WaveFormatTag.Pcm;
-        fmt.Channels = FI.AudioFile.Channels;
-        fmt.SamplesPerSecond = FI.AudioFile.SampleRate;
-        fmt.BitsPerSample = 16;
-        fmt.BlockAlign = (short) (FI.AudioFile.Channels * (fmt.BitsPerSample / 8));
-        fmt.AverageBytesPerSecond = fmt.SamplesPerSecond * fmt.BlockAlign;
-      BufferDescription BD = new BufferDescription(fmt);
-        BD.BufferBytes = this.AudioBufferSize;
-        BD.GlobalFocus = true;
-        BD.StickyFocus = true;
-        if (this.chkBufferedPlayback.Checked) {
-          BD.ControlPositionNotify = true;
-          this.CurrentBuffer = new SecondaryBuffer(BD, this.AudioDevice);
-          if (this.AudioUpdateTrigger == null)
-            this.AudioUpdateTrigger = new AutoResetEvent(false);
-        int ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
-        BufferPositionNotify[] UpdatePositions = new BufferPositionNotify[this.AudioBufferMarkers];
-          for (int i = 0; i < this.AudioBufferMarkers; ++i) {
-            UpdatePositions[i] = new BufferPositionNotify();
-            UpdatePositions[i].EventNotifyHandle = this.AudioUpdateTrigger.SafeWaitHandle.DangerousGetHandle();
-            UpdatePositions[i].Offset = ChunkSize * i;
-          }
-        Notify N = new Notify(this.CurrentBuffer);
-          N.SetNotificationPositions(UpdatePositions);
-          this.CurrentStream = FI.AudioFile.OpenStream();
-          this.CurrentBuffer.Write(0, this.CurrentStream, this.CurrentBuffer.Caps.BufferBytes, LockFlag.EntireBuffer);
-          if (this.CurrentStream.Position < this.CurrentStream.Length) {
-            this.AudioUpdateTrigger.Reset();
-            this.AudioUpdateThread = new Thread(new ThreadStart(this.AudioUpdate));
-            this.AudioUpdateThread.Start();
-            this.btnPause.Enabled = true;
-            this.btnStop.Enabled = true;
-            this.AudioIsLooping = true;
-          }
-          else {
-            this.CurrentStream.Close();
-            this.CurrentStream = null;
-            this.AudioIsLooping = false;
-          }
+        var bd = new SoundBufferDescription {
+          Format      = new WaveFormat(FI.AudioFile.SampleRate, 16, FI.AudioFile.Channels),
+          BufferBytes = this.AudioBufferSize,
+          Flags       = BufferFlags.GlobalFocus | BufferFlags.StickyFocus | BufferFlags.ControlVolume | BufferFlags.GetCurrentPosition2 | BufferFlags.ControlPositionNotify
+        };
+        this.CurrentBuffer = new SecondarySoundBuffer(this.DS, bd);
+        if (this.AudioUpdateTrigger == null)
+          this.AudioUpdateTrigger = new AutoResetEvent(false);
+        var ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
+        var UpdatePositions = new NotificationPosition[this.AudioBufferMarkers];
+        for (int i = 0; i < this.AudioBufferMarkers; ++i) {
+          UpdatePositions[i] = new NotificationPosition() {
+            WaitHandle = this.AudioUpdateTrigger,
+            Offset = ChunkSize * i
+          };
         }
-        else {
-          this.CurrentStream = FI.AudioFile.OpenStream(true);
-          this.CurrentBuffer = new SecondaryBuffer(this.CurrentStream, BD, this.AudioDevice);
+        this.CurrentBuffer.SetNotificationPositions(UpdatePositions);
+        this.CurrentStream = FI.AudioFile.OpenStream();
+        {
+          var bytes = new byte[this.CurrentBuffer.Capabilities.BufferBytes];
+          var readbytes = this.CurrentStream.Read(bytes, 0, this.CurrentBuffer.Capabilities.BufferBytes);
+          DataStream audiodata2;
+          var audiodata1 = this.CurrentBuffer.Lock(0, readbytes, LockFlags.EntireBuffer, out audiodata2);
+          audiodata1.Write(bytes, 0, readbytes);
+          this.CurrentBuffer.Unlock(audiodata1, audiodata2);
+        }
+        if (this.CurrentStream.Position < this.CurrentStream.Length) {
+          this.AudioUpdateTrigger.Reset();
+          this.AudioUpdateThread = new Thread(this.AudioUpdate);
+          this.AudioUpdateThread.Start();
           this.btnPause.Enabled = true;
           this.btnStop.Enabled = true;
+          this.AudioIsLooping = true;
         }
-        this.CurrentBuffer.Play(0, (this.AudioIsLooping ? BufferPlayFlags.Looping : BufferPlayFlags.Default));
+        else {
+          this.CurrentStream.Close();
+          this.CurrentStream = null;
+          this.AudioIsLooping = false;
+        }
+        this.CurrentBuffer.Play(0, (this.AudioIsLooping ? PlayFlags.Looping : PlayFlags.None));
       }
     }
 
@@ -308,9 +304,8 @@ namespace PlayOnline.Utils.AudioManager {
           }
           this.txtFormat.Text     = String.Format("{0}-channel {1}-bit {2}Hz {3}", FI.AudioFile.Channels, FI.AudioFile.BitsPerSample, FI.AudioFile.SampleRate, FI.AudioFile.SampleFormat);
           this.txtFileLength.Text = this.LengthText(FI.AudioFile.Length);
-          this.chkBufferedPlayback.Enabled = FI.AudioFile.Playable && this.AudioEnabled;
-          this.btnDecode.Enabled           = FI.AudioFile.Playable;
-          this.btnPlay.Enabled             = FI.AudioFile.Playable && this.AudioEnabled;
+          this.btnDecode.Enabled  = FI.AudioFile.Playable;
+          this.btnPlay.Enabled    = FI.AudioFile.Playable;
         }
         else
           this.txtFileType.Text = "Folder";
@@ -350,7 +345,7 @@ namespace PlayOnline.Utils.AudioManager {
             string SafeName = this.dlgSaveWave.FileName;
               foreach (char C in Path.GetInvalidPathChars())
                 SafeName = SafeName.Replace(C, '_');
-              using (WaveWriter WW = new WaveWriter(FI.AudioFile, SafeName))
+              using (var WW = new WaveWriter(FI.AudioFile, SafeName))
                 WW.ShowDialog(this);
             } catch (Exception E) {
               MessageBox.Show("Failed to decode audio file: " + E.Message, "Audio Decode Failed");

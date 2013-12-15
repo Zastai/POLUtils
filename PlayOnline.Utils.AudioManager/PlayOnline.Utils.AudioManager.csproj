@@ -77,6 +77,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\packages\SharpDX.2.5.0\lib\net40\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectSound">
+      <HintPath>..\packages\SharpDX.DirectSound.2.5.0\lib\net40\SharpDX.DirectSound.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -112,9 +118,6 @@
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagedDirectX.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="WaveWriter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +126,9 @@
     </Compile>
     <EmbeddedResource Include="MusicInfo.xml" />
     <EmbeddedResource Include="SFXInfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
