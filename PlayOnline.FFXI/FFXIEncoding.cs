@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -20,19 +21,16 @@ namespace PlayOnline.FFXI {
 
   public class FFXIEncoding : Encoding { // http://www.microsoft.com/globaldev/reference/dbcs/932.htm
 
-    // The main table, and the 60 lead-byte tables
-    private static SortedList ConversionTables = new SortedList(61);
-
-    public FFXIEncoding() {
-    }
-
     public override string EncodingName { get { return "Japanese (Shift-JIS, with FFXI extensions)"; } }
     public override string BodyName     { get { return "iso-2022-jp-ffxi"; } }
     public override string HeaderName   { get { return "iso-2022-jp-ffxi"; } }
     public override string WebName      { get { return "iso-2022-jp-ffxi"; } }
 
-    public static readonly char SpecialMarkerStart = '\u227A'; // ≺
-    public static readonly char SpecialMarkerEnd   = '\u227B'; // ≻
+    public const char SpecialMarkerStart = '\u227A'; // ≺
+    public const char SpecialMarkerEnd   = '\u227B'; // ≻
+
+    // The main table, and the 60 lead-byte tables
+    private static readonly Dictionary<byte, BinaryReader> ConversionTables = new Dictionary<byte, BinaryReader>(61);
 
     #region Utility Functions
 
@@ -55,22 +53,25 @@ namespace PlayOnline.FFXI {
       return byteCount * 15;
     }
 
-    internal BinaryReader GetConversionTable(byte Table) {
-      if (FFXIEncoding.ConversionTables[Table] == null) {
-      Stream ResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(String.Format("ConversionTables.{0:X2}xx.dat", Table));
-        if (ResourceStream != null)
-          FFXIEncoding.ConversionTables[Table] = new BinaryReader(ResourceStream);
+    private BinaryReader GetConversionTable(byte table) {
+      if (FFXIEncoding.ConversionTables.ContainsKey(table))
+        return FFXIEncoding.ConversionTables[table];
+      try {
+        var rs = Assembly.GetExecutingAssembly().GetManifestResourceStream(String.Format("PlayOnline.FFXI.ConversionTables.{0:X2}xx.dat", table));
+        FFXIEncoding.ConversionTables[table] = (rs != null) ? new BinaryReader(rs) : null;
       }
-      return FFXIEncoding.ConversionTables[Table] as BinaryReader;
+      catch {
+        FFXIEncoding.ConversionTables[table] = null;
+      }
+      return FFXIEncoding.ConversionTables[table];
     }
 
-    private ushort GetTableEntry(byte Table, byte Entry) {
-    BinaryReader BR = this.GetConversionTable(Table);
-      if (BR != null) {
-        BR.BaseStream.Seek(2 * Entry, SeekOrigin.Begin);
-        return BR.ReadUInt16();
-      }
-      return 0xFFFF;
+    private ushort GetTableEntry(byte table, byte entry) {
+      var BR = this.GetConversionTable(table);
+      if (BR == null)
+        return 0xFFFF;
+      BR.BaseStream.Seek(2 * entry, SeekOrigin.Begin);
+      return BR.ReadUInt16();
     }
 
     #endregion

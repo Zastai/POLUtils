@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -679,7 +680,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private void InitializeROMMenus() {
     XmlDocument XD = new XmlDocument();
       try {
-      Stream InfoData = this.GetType().Assembly.GetManifestResourceStream("ROMFileMappings.xml");
+        var InfoData = Assembly.GetExecutingAssembly().GetManifestResourceStream("PlayOnline.FFXI.Utils.DataBrowser.ROMFileMappings.xml");
         if (InfoData != null) {
           XD.Load(new XmlTextReader(InfoData));
           InfoData.Close();

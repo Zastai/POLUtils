@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,7 +6,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectGuid>{3B4721B1-F1AD-4F44-88C8-7AE5B25FEDDF}</ProjectGuid>
     <AssemblyName>PlayOnline.FFXI.Utils.StrangeApparatus</AssemblyName>
-    <RootNamespace />
+    <RootNamespace>PlayOnline.FFXI.Utils.StrangeApparatus</RootNamespace>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SignAssembly>true</SignAssembly>

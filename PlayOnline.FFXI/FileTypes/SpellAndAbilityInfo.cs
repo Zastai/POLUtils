@@ -47,7 +47,7 @@ namespace PlayOnline.FFXI.FileTypes {
           goto Failed;
       uint EntryCount = (BlockSize - 0x10) / 0x40;
         while (EntryCount-- > 0) {
-        Things.MonsterSpellInfo2 MSI2 = new Things.MonsterSpellInfo2();
+        Things.MonsterSpellInfo MSI2 = new Things.MonsterSpellInfo();
           if (!MSI2.Read(BR))
             goto Failed;
           if (ProgressCallback != null)

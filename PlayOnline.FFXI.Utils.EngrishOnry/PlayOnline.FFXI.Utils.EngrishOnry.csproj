@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,7 @@
     <ProjectGuid>{CBB91A27-923B-4853-9C7F-46B1955D436A}</ProjectGuid>
     <AssemblyName>PlayOnline.FFXI.Utils.EngrishOnry</AssemblyName>
     <OutputType>Library</OutputType>
-    <RootNamespace />
+    <RootNamespace>PlayOnline.FFXI.Utils.EngrishOnry</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\POLUtils.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>

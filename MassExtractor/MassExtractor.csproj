@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,7 +6,7 @@
     <ProjectGuid>{C9683F0B-16CA-4CEF-907A-2802B5F12C43}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace />
+    <RootNamespace>MassExtractor</RootNamespace>
     <AssemblyName>MassExtractor</AssemblyName>
     <StartupObject>MassExtractor.Program</StartupObject>
     <SignAssembly>true</SignAssembly>
