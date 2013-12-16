@@ -11,11 +11,12 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PlayOnline.Core;
 
 namespace PlayOnline.FFXI {
 
-  public class Game {
+  public static class Game {
 
     private static List<Character> Characters_;
 
@@ -23,11 +24,12 @@ namespace PlayOnline.FFXI {
       get {
         if (Game.Characters_ == null) {
           Game.Characters_ = new List<Character>();
-        string AppPath = POL.GetApplicationPath(AppID.FFXI);
-          if (AppPath != null) {
-            foreach (string SubDir in Directory.GetDirectories(Path.Combine(AppPath, "User"))) {
-              if (File.Exists(Path.Combine(SubDir, "ffxiusr.msg")))
-                Game.Characters_.Add(new Character(Path.GetFileName(SubDir)));
+          var appPath = POL.GetApplicationPath(AppID.FFXI);
+          if (appPath != null) {
+            var userDir = Path.Combine(appPath, "User");
+            if (Directory.Exists(userDir)) {
+              foreach (var subdir in Directory.GetDirectories(userDir).Where(subdir => File.Exists(Path.Combine(subdir, "ffxiusr.msg"))))
+                Game.Characters_.Add(new Character(Path.GetFileName(subdir)));
             }
           }
         }

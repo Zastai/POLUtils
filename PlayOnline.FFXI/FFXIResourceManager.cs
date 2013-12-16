@@ -200,22 +200,24 @@ namespace PlayOnline.FFXI {
     }
 
     private static string GetStringTableEntry(ushort FileNumber, ushort ID) {
-    BinaryReader BR = FFXIResourceManager.OpenDATFile(FileNumber);
+      var br = FFXIResourceManager.OpenDATFile(FileNumber);
+      if (br == null)
+        return null;
       try {
-        if (BR != null) {
-          BR.BaseStream.Position = 0x18;
+        if (br != null) {
+          br.BaseStream.Position = 0x18;
         // FIXME: Assumes single-string table; code should be made more generic.
-        uint HeaderBytes = BR.ReadUInt32();
-        uint EntryBytes  = BR.ReadUInt32();
-          BR.ReadUInt32();
-        uint DataBytes   = BR.ReadUInt32();
-          if (HeaderBytes == 0x40 && ID * 8 < EntryBytes && HeaderBytes + EntryBytes + DataBytes == BR.BaseStream.Length) {
-            BR.BaseStream.Position = 0x40 + ID * 8;
-          uint Offset = (BR.ReadUInt32() ^ 0xFFFFFFFF);
-          uint Length = (BR.ReadUInt32() ^ 0xFFFFFFFF) - 40;
+        uint HeaderBytes = br.ReadUInt32();
+        uint EntryBytes  = br.ReadUInt32();
+          br.ReadUInt32();
+        uint DataBytes   = br.ReadUInt32();
+          if (HeaderBytes == 0x40 && ID * 8 < EntryBytes && HeaderBytes + EntryBytes + DataBytes == br.BaseStream.Length) {
+            br.BaseStream.Position = 0x40 + ID * 8;
+          uint Offset = (br.ReadUInt32() ^ 0xFFFFFFFF);
+          uint Length = (br.ReadUInt32() ^ 0xFFFFFFFF) - 40;
             if (Length >= 0 && 40 + Offset + Length <= DataBytes) {
-              BR.BaseStream.Position = HeaderBytes + EntryBytes + 40 + Offset;
-            byte[] TextBytes = BR.ReadBytes((int) Length);
+              br.BaseStream.Position = HeaderBytes + EntryBytes + 40 + Offset;
+            byte[] TextBytes = br.ReadBytes((int) Length);
               for (uint i = 0; i < TextBytes.Length; ++i)
                 TextBytes[i] ^= 0xff;
               return E.GetString(TextBytes).TrimEnd('\0');
@@ -225,7 +227,7 @@ namespace PlayOnline.FFXI {
       } catch {
         // ignore
       } finally {
-        BR.Close();
+        br.Close();
       }
       return null;
     }

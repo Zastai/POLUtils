@@ -27,7 +27,7 @@ Name "POLUtils"
 
 !include "Version.nsh"
 
-OutFile "Installers\POLUtils-${VERSION}-${BUILD}-${PLATFORM}.exe"
+OutFile "Installers\POLUtils-${VERSION}-${BUILD}.exe"
 
 !define INSTALLER_REG_KEY Software\Pebbles\Installation\POLUtils
 
@@ -112,27 +112,18 @@ Section "-DotNetCheck"
   NETTestDone:
 SectionEnd
 
-Section "-ManagedDirectXCheck"
-  ;; TODO: Maybe check the same regkey that POLUtils uses
-  IfFileExists $WINDIR\Assembly\GAC\Microsoft.DirectX.* MDXFound
-    MessageBox MB_OK|MB_ICONINFORMATION $(MB_MDX_NOT_FOUND)
-    DetailPrint $(LOG_MDX_NOT_FOUND)
-    GoTo MDXTestDone
-  MDXFound:
-    DetailPrint $(LOG_MDX_FOUND)
-  MDXTestDone:
-SectionEnd
-
 Section $(NAME_SECTION_MAIN) SECTION_MAIN
   SectionIn 1 RO
   SetOutPath "$INSTDIR"
-  File           "${BUILDDIR}\${PLATFORM}\PlayOnline.Core.dll"
-  File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.Utils.*.dll"
-  File           "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.dll"
-  File /nonfatal "${BUILDDIR}\${PLATFORM}\PlayOnline.FFXI.Utils.*.dll"
-  File           "${BUILDDIR}\${PLATFORM}\POLUtils.exe"
-  File           "${BUILDDIR}\${PLATFORM}\ItemListUpgrade.exe"
-  File           "${BUILDDIR}\${PLATFORM}\MassExtractor.exe"
+  File           "${BUILDDIR}\POLUtils.exe"
+  File           "${BUILDDIR}\PlayOnline.Core.dll"
+  File /nonfatal "${BUILDDIR}\PlayOnline.Utils.*.dll"
+  File           "${BUILDDIR}\PlayOnline.FFXI.dll"
+  File /nonfatal "${BUILDDIR}\PlayOnline.FFXI.Utils.*.dll"
+  File           "${BUILDDIR}\SharpDX.dll"
+  File           "${BUILDDIR}\SharpDX.*.dll"
+  File           "${BUILDDIR}\ItemListUpgrade.exe"
+  File           "${BUILDDIR}\MassExtractor.exe"
 SectionEnd
 
 Section $(NAME_SECTION_DESKTOP_SHORTCUT) SECTION_DESKTOP_SHORTCUT
@@ -179,11 +170,13 @@ SectionEnd
 
 Section "Uninstall"
   ;; Main Program
+  Delete "$INSTDIR\POLUtils.exe"
   Delete "$INSTDIR\PlayOnline.Core.dll"
   Delete "$INSTDIR\PlayOnline.Utils.*.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.dll"
   Delete "$INSTDIR\PlayOnline.FFXI.Utils.*.dll"
-  Delete "$INSTDIR\POLUtils.exe"
+  Delete "$INSTDIR\SharpDX.dll"
+  Delete "$INSTDIR\SharpDX.*.dll"
   Delete "$INSTDIR\ItemListUpgrade.exe"
   Delete "$INSTDIR\MassExtractor.exe"
   ;; Desktop Shortcut

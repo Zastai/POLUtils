@@ -50,34 +50,36 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void RefreshBrowser() {
       this.ClearFileInfo();
-      using (var IB = new InfoBuilder()) {
+      using (var ib = new InfoBuilder()) {
         Application.DoEvents();
         // Clear treeview, create main root and fill them
         switch (this.tabBrowsers.SelectedIndex) {
-          case 0: // Music
+          case 0: { // Music
             this.tvMusicBrowser.Nodes.Clear();
-            var MusicRoot = new TreeNode("Music");
-            this.tvMusicBrowser.Nodes.Add(MusicRoot);
-            IB.TargetNode   = MusicRoot;
-            IB.FileTypeName = MusicRoot.Text;
-            IB.FilePattern  = "*.bgw";
-            IB.ResourceName = "MusicInfo.xml";
-            IB.ShowDialog(this);
-            MusicRoot.Expand();
-            this.tvMusicBrowser.SelectedNode = MusicRoot;
+            var root = new TreeNode("Music");
+            this.tvMusicBrowser.Nodes.Add(root);
+            ib.TargetNode = root;
+            ib.FileTypeName = root.Text;
+            ib.FilePattern = "*.bgw";
+            ib.ResourceName = "PlayOnline.Utils.AudioManager.MusicInfo.xml";
+            ib.ShowDialog(this);
+            root.Expand();
+            this.tvMusicBrowser.SelectedNode = root;
             break;
-          case 1: // Sound Effects
+          }
+          case 1: { // Sound Effects
             this.tvSoundBrowser.Nodes.Clear();
-            var SoundRoot = new TreeNode("Sound Effects");
-            this.tvSoundBrowser.Nodes.Add(SoundRoot);
-            IB.TargetNode   = SoundRoot;
-            IB.FileTypeName = SoundRoot.Text;
-            IB.FilePattern  = "*.spw";
-            IB.ResourceName = "SFXInfo.xml";
-            IB.ShowDialog(this);
-            SoundRoot.Expand();
-            this.tvSoundBrowser.SelectedNode = SoundRoot;
+            var root = new TreeNode("Sound Effects");
+            this.tvSoundBrowser.Nodes.Add(root);
+            ib.TargetNode = root;
+            ib.FileTypeName = root.Text;
+            ib.FilePattern = "*.spw";
+            ib.ResourceName = "PlayOnline.Utils.AudioManager.SFXInfo.xml";
+            ib.ShowDialog(this);
+            root.Expand();
+            this.tvSoundBrowser.SelectedNode = root;
             break;
+          }
         }
       }
     }
@@ -217,22 +219,24 @@ namespace PlayOnline.Utils.AudioManager {
         this.CurrentBuffer = new SecondarySoundBuffer(this.DS, bd);
         if (this.AudioUpdateTrigger == null)
           this.AudioUpdateTrigger = new AutoResetEvent(false);
-        var ChunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
-        var UpdatePositions = new NotificationPosition[this.AudioBufferMarkers];
-        for (int i = 0; i < this.AudioBufferMarkers; ++i) {
-          UpdatePositions[i] = new NotificationPosition() {
+        var chunkSize = this.AudioBufferSize / this.AudioBufferMarkers;
+        var updatePositions = new NotificationPosition[this.AudioBufferMarkers];
+        for (var i = 0; i < this.AudioBufferMarkers; ++i) {
+          updatePositions[i] = new NotificationPosition() {
             WaitHandle = this.AudioUpdateTrigger,
-            Offset = ChunkSize * i
+            Offset = chunkSize * i
           };
         }
-        this.CurrentBuffer.SetNotificationPositions(UpdatePositions);
+        this.CurrentBuffer.SetNotificationPositions(updatePositions);
         this.CurrentStream = FI.AudioFile.OpenStream();
         {
           var bytes = new byte[this.CurrentBuffer.Capabilities.BufferBytes];
           var readbytes = this.CurrentStream.Read(bytes, 0, this.CurrentBuffer.Capabilities.BufferBytes);
+          if (readbytes < this.CurrentBuffer.Capabilities.BufferBytes)
+            Array.Clear(bytes, readbytes, this.CurrentBuffer.Capabilities.BufferBytes - readbytes);
           DataStream audiodata2;
-          var audiodata1 = this.CurrentBuffer.Lock(0, readbytes, LockFlags.EntireBuffer, out audiodata2);
-          audiodata1.Write(bytes, 0, readbytes);
+          var audiodata1 = this.CurrentBuffer.Lock(0, this.CurrentBuffer.Capabilities.BufferBytes, LockFlags.EntireBuffer, out audiodata2);
+          audiodata1.Write(bytes, 0, this.CurrentBuffer.Capabilities.BufferBytes);
           this.CurrentBuffer.Unlock(audiodata1, audiodata2);
         }
         if (this.CurrentStream.Position < this.CurrentStream.Length) {
@@ -257,29 +261,29 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void MainWindow_VisibleChanged(object sender, System.EventArgs e) {
-      if (this.Visible) {
-      TreeView Browser = null;
-        switch (this.tabBrowsers.SelectedIndex) {
-          case 0: Browser = this.tvMusicBrowser; break;
-          case 1: Browser = this.tvSoundBrowser; break;
-        }
-        if (Browser != null && Browser.Nodes.Count == 0) {
-          this.Show();
-          Application.DoEvents();
-          this.Activate();
-          Application.DoEvents();
-          this.Refresh();
-          Application.DoEvents();
-          this.RefreshBrowser();
-        }
+      if (!this.Visible)
+        return;
+      TreeView browser = null;
+      switch (this.tabBrowsers.SelectedIndex) {
+        case 0: browser = this.tvMusicBrowser; break;
+        case 1: browser = this.tvSoundBrowser; break;
       }
+      if (browser == null || browser.Nodes.Count != 0)
+        return;
+      this.Show();
+      Application.DoEvents();
+      this.Activate();
+      Application.DoEvents();
+      this.Refresh();
+      Application.DoEvents();
+      this.RefreshBrowser();
     }
 
     private void tvBrowser_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e) {
       this.ClearFileInfo();
-    object data = e.Node.Tag;
-    FileInfo FI = data as FileInfo;
-      if (FI == null) { // Root or App Directory
+    var data = e.Node.Tag;
+    var fi = data as FileInfo;
+      if (fi == null) { // Root or App Directory
         if (e.Node.Parent == null)
           this.txtLocation.Text = "<Root Node>";
         else
@@ -287,11 +291,11 @@ namespace PlayOnline.Utils.AudioManager {
         this.txtFileType.Text = "Folder";
       }
       else { // File
-        this.txtLocation.Text = FI.Location;
-        this.txtTitle.Text    = FI.Title;
-        this.txtComposer.Text = FI.Composer;
-        if (FI != null && FI.AudioFile != null) {
-          switch (FI.AudioFile.Type) {
+        this.txtLocation.Text = fi.Location;
+        this.txtTitle.Text    = fi.Title;
+        this.txtComposer.Text = fi.Composer;
+        if (fi.AudioFile != null) {
+          switch (fi.AudioFile.Type) {
             case AudioFileType.SoundEffect:
               this.txtFileType.Text = "Sound Effect";
               break;
@@ -302,10 +306,10 @@ namespace PlayOnline.Utils.AudioManager {
               this.txtFileType.Text = "Unknown Type";
               break;
           }
-          this.txtFormat.Text     = String.Format("{0}-channel {1}-bit {2}Hz {3}", FI.AudioFile.Channels, FI.AudioFile.BitsPerSample, FI.AudioFile.SampleRate, FI.AudioFile.SampleFormat);
-          this.txtFileLength.Text = this.LengthText(FI.AudioFile.Length);
-          this.btnDecode.Enabled  = FI.AudioFile.Playable;
-          this.btnPlay.Enabled    = FI.AudioFile.Playable;
+          this.txtFormat.Text     = String.Format("{0}-channel {1}-bit {2}Hz {3}", fi.AudioFile.Channels, fi.AudioFile.BitsPerSample, fi.AudioFile.SampleRate, fi.AudioFile.SampleFormat);
+          this.txtFileLength.Text = this.LengthText(fi.AudioFile.Length);
+          this.btnDecode.Enabled  = fi.AudioFile.Playable;
+          this.btnPlay.Enabled    = fi.AudioFile.Playable;
         }
         else
           this.txtFileType.Text = "Folder";
@@ -313,17 +317,17 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void tvBrowser_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e) {
-      if (e.Node.Parent != null && e.Node.Nodes.Count != 0) { // Folders only
-        ++e.Node.ImageIndex;
-        ++e.Node.SelectedImageIndex;
-      }
+      if (e.Node.Parent == null || e.Node.Nodes.Count == 0)
+        return; // Folders only
+      ++e.Node.ImageIndex;
+      ++e.Node.SelectedImageIndex;
     }
 
     private void tvBrowser_AfterCollapse(object sender, System.Windows.Forms.TreeViewEventArgs e) {
-      if (e.Node.Parent != null && e.Node.Nodes.Count != 0) { // Folders only
-        --e.Node.ImageIndex;
-        --e.Node.SelectedImageIndex;
-      }
+      if (e.Node.Parent == null || e.Node.Nodes.Count == 0)
+        return; // Folders only
+      --e.Node.ImageIndex;
+      --e.Node.SelectedImageIndex;
     }
 
     private void tabBrowsers_SelectedIndexChanged(object sender, System.EventArgs e) {
@@ -331,42 +335,41 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void btnDecode_Click(object sender, System.EventArgs e) {
-    TreeNode TN = null;
+    TreeNode tn = null;
       switch (this.tabBrowsers.SelectedIndex) {
-        case 0: TN = this.tvMusicBrowser.SelectedNode; break;
-        case 1: TN = this.tvSoundBrowser.SelectedNode; break;
+        case 0: tn = this.tvMusicBrowser.SelectedNode; break;
+        case 1: tn = this.tvSoundBrowser.SelectedNode; break;
       }
-      if (TN != null) {
-      FileInfo FI = TN.Tag as FileInfo;
-        if (FI != null && FI.AudioFile != null) {
-          this.dlgSaveWave.FileName = TN.Text;
-          if (this.dlgSaveWave.ShowDialog() == DialogResult.OK) {
-            try {
-            string SafeName = this.dlgSaveWave.FileName;
-              foreach (char C in Path.GetInvalidPathChars())
-                SafeName = SafeName.Replace(C, '_');
-              using (var WW = new WaveWriter(FI.AudioFile, SafeName))
-                WW.ShowDialog(this);
-            } catch (Exception E) {
-              MessageBox.Show("Failed to decode audio file: " + E.Message, "Audio Decode Failed");
-            }
-          }
-        }
+      if (tn == null)
+        return;
+      var fi = tn.Tag as FileInfo;
+      if (fi == null || fi.AudioFile == null)
+        return;
+      this.dlgSaveWave.FileName = tn.Text;
+      if (this.dlgSaveWave.ShowDialog() != DialogResult.OK)
+        return;
+      try {
+        var safeName = Path.GetInvalidPathChars().Aggregate(this.dlgSaveWave.FileName, (current, C) => current.Replace(C, '_'));
+        using (var ww = new WaveWriter(fi.AudioFile, safeName))
+          ww.ShowDialog(this);
+      }
+      catch (Exception ex) {
+        MessageBox.Show("Failed to decode audio file: " + ex.Message, "Audio Decode Failed");
       }
     }
 
     private void btnPlay_Click(object sender, System.EventArgs e) {
-    TreeNode TN = null;
+    TreeNode tn = null;
       switch (this.tabBrowsers.SelectedIndex) {
-        case 0: TN = this.tvMusicBrowser.SelectedNode; break;
-        case 1: TN = this.tvSoundBrowser.SelectedNode; break;
+        case 0: tn = this.tvMusicBrowser.SelectedNode; break;
+        case 1: tn = this.tvSoundBrowser.SelectedNode; break;
       }
-      if (TN == null)
+      if (tn == null)
         return;
-    FileInfo FI = TN.Tag as FileInfo;
-      if (FI == null || FI.AudioFile == null)
+    var fi = tn.Tag as FileInfo;
+      if (fi == null || fi.AudioFile == null)
         return;
-      this.PlayFile(FI);
+      this.PlayFile(fi);
     }
 
     private void btnPause_Click(object sender, System.EventArgs e) {

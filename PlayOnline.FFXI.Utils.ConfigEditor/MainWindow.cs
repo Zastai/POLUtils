@@ -11,6 +11,7 @@
 
 using System;
 using System.Drawing;
+using System.Security;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using PlayOnline.Core;
@@ -27,8 +28,8 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
       this.picWarning.Image = Icons.POLConfigWarn.ToBitmap();
       this.lblWarning.Text = I18N.GetText("SettingsWarning");
       this.cmbCharacters.Items.Clear();
-      foreach (Character C in Game.Characters) {
-      CharacterConfig CC = new CharacterConfig(C);
+      foreach (var C in Game.Characters) {
+        var CC = new CharacterConfig(C);
         if (CC.Colors != null)
           this.cmbCharacters.Items.Add(CC);
       }
@@ -73,15 +74,15 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
 
     private void LoadSettings() {
       // Load Global settings
-    RegistryKey ConfigKey = POL.OpenAppConfigKey(AppID.FFXI);
-      if (ConfigKey == null)
+    var configKey = POL.OpenAppConfigKey(AppID.FFXI, false);
+      if (configKey == null)
         this.grpGlobalConfig.Enabled = false;
       else {
-        this.txtGUIWidth.Text     = String.Format("{0}", ConfigKey.GetValue("0001"));
-        this.txtGUIHeight.Text    = String.Format("{0}", ConfigKey.GetValue("0002"));
-        this.txt3DWidth.Text      = String.Format("{0}", ConfigKey.GetValue("0003"));
-        this.txt3DHeight.Text     = String.Format("{0}", ConfigKey.GetValue("0004"));
-        this.txtSoundEffects.Text = String.Format("{0}", ConfigKey.GetValue("0029"));
+        this.txtGUIWidth.Text     = String.Format("{0}", configKey.GetValue("0001"));
+        this.txtGUIHeight.Text    = String.Format("{0}", configKey.GetValue("0002"));
+        this.txt3DWidth.Text      = String.Format("{0}", configKey.GetValue("0003"));
+        this.txt3DHeight.Text     = String.Format("{0}", configKey.GetValue("0004"));
+        this.txtSoundEffects.Text = String.Format("{0}", configKey.GetValue("0029"));
       }
       // Select the first character to trigger loading its config
       if (this.cmbCharacters.Items.Count > 0)
@@ -92,15 +93,21 @@ namespace PlayOnline.FFXI.Utils.ConfigEditor {
     private void SaveSettings() {
       if (this.btnApply.Enabled) {
         if (this.grpGlobalConfig.Enabled) {
-        RegistryKey ConfigKey = POL.OpenAppConfigKey(AppID.FFXI);
-          try { ConfigKey.SetValue("0001", int.Parse(this.txtGUIWidth.Text));     } catch { }
-          try { ConfigKey.SetValue("0002", int.Parse(this.txtGUIHeight.Text));    } catch { }
-          try { ConfigKey.SetValue("0003", int.Parse(this.txt3DWidth.Text));      } catch { }
-          try { ConfigKey.SetValue("0004", int.Parse(this.txt3DHeight.Text));     } catch { }
-          try { ConfigKey.SetValue("0029", int.Parse(this.txtSoundEffects.Text)); } catch { }
+          var configKey = POL.OpenAppConfigKey(AppID.FFXI, true);
+          if (configKey == null) {
+            MessageBox.Show(this, "Unable to open the configuration registry key for writing. You may need to run POLUtils as administrator to be able to save changes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.grpGlobalConfig.Enabled = false;
+          }
+          else {
+            try { configKey.SetValue("0001", int.Parse(this.txtGUIWidth.Text));     } catch { }
+            try { configKey.SetValue("0002", int.Parse(this.txtGUIHeight.Text));    } catch { }
+            try { configKey.SetValue("0003", int.Parse(this.txt3DWidth.Text));      } catch { }
+            try { configKey.SetValue("0004", int.Parse(this.txt3DHeight.Text));     } catch { }
+            try { configKey.SetValue("0029", int.Parse(this.txtSoundEffects.Text)); } catch { }
+          }
         }
-        foreach (CharacterConfig CC in this.cmbCharacters.Items)
-          CC.Save();
+        foreach (CharacterConfig cc in this.cmbCharacters.Items)
+          cc.Save();
         this.btnApply.Enabled = false;
       }
     }

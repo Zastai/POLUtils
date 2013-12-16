@@ -140,11 +140,11 @@ namespace PlayOnline.Core {
       return (POL.GetApplicationPath(ID, Region) != null);
     }
 
-    public static RegistryKey OpenAppConfigKey(string ID) {
-      return POL.OpenAppConfigKey(ID, POL.SelectedRegion_);
+    public static RegistryKey OpenAppConfigKey(string ID, bool writable = false) {
+      return POL.OpenAppConfigKey(ID, POL.SelectedRegion_, writable);
     }
 
-    public static RegistryKey OpenAppConfigKey(string ID, Region Region) {
+    public static RegistryKey OpenAppConfigKey(string ID, Region Region, bool writable = false) {
     string BaseKey;
       switch (Region) {
         case Region.Europe:       BaseKey = "SquareEnix"; break;
@@ -157,59 +157,48 @@ namespace PlayOnline.Core {
       else if (ID == AppID.TetraMaster) AppKey = "TetraMaster";
       else if (ID == AppID.POLViewer)   AppKey = "PlayOnlineViewer";
       else return null;
-      return POL.OpenRegistryKey(Region, Path.Combine(BaseKey, AppKey), true);
+      return POL.OpenRegistryKey(Region, Path.Combine(BaseKey, AppKey), writable);
     }
 
-    private static RegistryKey OpenRegistryKey(string KeyName) {
-      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, false);
+    private static RegistryKey OpenRegistryKey(string KeyName, bool writable = false) {
+      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, writable);
     }
 
-    private static RegistryKey OpenRegistryKey(string KeyName, bool Writable) {
-      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, Writable);
-    }
-
-    private static RegistryKey OpenRegistryKey(Region Region, string KeyName) {
-      return POL.OpenRegistryKey(Region, KeyName, false);
-    }
-
-    private static RegistryKey OpenRegistryKey(Region Region, string KeyName, bool Writable) {
-    string SubKey;
+    private static RegistryKey OpenRegistryKey(Region region, string name, bool writable = false) {
+    string subKey;
       {
-      string POLKey = "PlayOnline";
-        switch (Region) {
-          case Region.Europe:       POLKey += "EU"; break;
+        var polKey = "PlayOnline";
+        switch (region) {
+          case Region.Europe:       polKey += "EU"; break;
           case Region.Japan:                        break;
-          case Region.NorthAmerica: POLKey += "US"; break;
-          default: return null;
+          case Region.NorthAmerica: polKey += "US"; break;
+          default:
+            return null;
         }
-        SubKey = Path.Combine(POLKey, KeyName);
+        subKey = Path.Combine(polKey, name);
       }
       try {
-        using (RegistryKey Win64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
-          if (Win64Root != null) {
-          RegistryKey Win64Key = Win64Root.OpenSubKey(SubKey, Writable);
-            if (Win64Key != null)
-              return Win64Key;
+        using (var w64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
+          if (w64Root != null) {
+            var w64Key = w64Root.OpenSubKey(subKey, writable);
+            if (w64Key != null)
+              return w64Key;
           }
         }
       } catch { }
       try {
-        return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", SubKey), Writable);
+        return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", subKey), writable);
       } catch {
         return null;
       }
     }
 
-    public static RegistryKey OpenPOLUtilsConfigKey() {
-      return POL.OpenPOLUtilsConfigKey(null);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey) {
+    public static RegistryKey OpenPOLUtilsConfigKey(string name = null) {
       try {
-      string KeyName = @"Software\Pebbles\POLUtils\";
-        if (SubKey != null)
-          KeyName += SubKey;
-        return Registry.CurrentUser.CreateSubKey(KeyName);
+        var fullname = @"Software\Pebbles\POLUtils\";
+        if (name != null)
+          fullname += name;
+        return Registry.CurrentUser.CreateSubKey(fullname);
       } catch { }
       return null;
     }

@@ -10,6 +10,7 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -50,68 +51,73 @@ namespace PlayOnline.Utils.AudioManager {
       set { this.FilePattern_ = value; }
     }
 
-    public void Run() {
-    Stream InfoData = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.ResourceName_);
-      if (InfoData != null) {
-      XmlReader XR = new XmlTextReader(InfoData);
-        try {
-        XmlDocument XD = new XmlDocument();
-          XD.Load(XR);
-        XmlNodeList Apps = XD.SelectNodes("/pol-audio-data/application");
-          this.txtApplication.Text    = null;
-          this.prbApplication.Value   = 0;
-          this.prbApplication.Maximum = Apps.Count;
-          foreach (XmlNode App in Apps) {
-            try {
-            string AppName = App.Attributes["name"].InnerText;
-              this.txtApplication.Text = String.Format("[{0}/{1}] {2}", this.prbApplication.Value + 1, this.prbApplication.Maximum, AppName);
-              this.txtDirectory.Text   = "Scanning...";
-              this.txtFile.Text        = "Scanning...";
-              this.prbDirectory.Value  = 0;
-              this.prbFile.Value       = 0;
-              Application.DoEvents();
-            string AppPath = POL.GetApplicationPath(App.Attributes["id"].InnerText);
-              if (AppPath != null) {
-              TreeNode AppNode = new TreeNode(AppName);
-                AppNode.ImageIndex = 1;
-                AppNode.SelectedImageIndex = 1;
-                AppNode.Tag = AppPath;
-              XmlNodeList DataPaths = App.SelectNodes("data-path");
-                // Precompute totals for directories/files
-                this.prbDirectory.Maximum = 0;
-                this.prbFile.Maximum = 0;
-                foreach (XmlNode DataPath in DataPaths)
-                  this.PreScanDataPath(Path.Combine(AppPath, DataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)));
-                ++this.prbApplication.Value;
-                // Now do a full scan
-                foreach (XmlNode DataPath in DataPaths)
-                  this.ScanDataPath(App, Path.Combine(AppPath, DataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)), AppNode);
-                if (AppNode.Nodes.Count > 0)
-                  this.TargetNode_.Nodes.Add(AppNode);
-              }
-              else
-                ++this.prbApplication.Value;
+    private void Run() {
+    var asm = Assembly.GetExecutingAssembly();
+    var info = asm.GetManifestResourceStream(this.ResourceName_);
+      if (info == null)
+        return;
+      var xr = new XmlTextReader(info);
+      try {
+        var xd = new XmlDocument();
+        xd.Load(xr);
+        var apps = xd.SelectNodes("/pol-audio-data/application");
+        if (apps == null)
+          return;
+        this.txtApplication.Text = null;
+        this.prbApplication.Value = 0;
+        this.prbApplication.Maximum = apps.Count;
+        foreach (XmlNode app in apps) {
+          try {
+            var name = app.Attributes["name"].InnerText;
+            this.txtApplication.Text = String.Format("[{0}/{1}] {2}", this.prbApplication.Value + 1, this.prbApplication.Maximum, name);
+            this.txtDirectory.Text = "Scanning...";
+            this.txtFile.Text = "Scanning...";
+            this.prbDirectory.Value = 0;
+            this.prbFile.Value = 0;
+            Application.DoEvents();
+            var applicationPath = POL.GetApplicationPath(app.Attributes["id"].InnerText);
+            if (applicationPath != null) {
+              var tn = new TreeNode(name);
+              tn.ImageIndex = 1;
+              tn.SelectedImageIndex = 1;
+              tn.Tag = applicationPath;
+              var dataPaths = app.SelectNodes("data-path");
+              // Precompute totals for directories/files
+              this.prbDirectory.Maximum = 0;
+              this.prbFile.Maximum = 0;
+              foreach (XmlNode dataPath in dataPaths)
+                this.PreScanDataPath(Path.Combine(applicationPath, dataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)));
+              ++this.prbApplication.Value;
+              // Now do a full scan
+              foreach (XmlNode dataPath in dataPaths)
+                this.ScanDataPath(app, Path.Combine(applicationPath, dataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)), tn);
+              if (tn.Nodes.Count > 0)
+                this.TargetNode_.Nodes.Add(tn);
             }
-            catch (Exception E) {
-              Console.WriteLine(E.ToString());
-            }
+            else
+              ++this.prbApplication.Value;
+          }
+          catch (Exception e) {
+            Debug.WriteLine("Exception: " + e);
           }
         }
-        catch (Exception E) {
-          Console.WriteLine(E.ToString());
-        }
-        XR.Close();
-        InfoData.Close();
+      }
+      catch (Exception e) {
+        Debug.WriteLine("Exception: " + e);
+      }
+      finally {
+        xr.Close();
+        info.Close();
       }
     }
 
-    private void PreScanDataPath(string DataPath) {
-      if (!Directory.Exists(DataPath))
+    private void PreScanDataPath(string path) {
+      if (!Directory.Exists(path))
         return;
       ++this.prbDirectory.Maximum;
-      this.prbFile.Maximum += Directory.GetFiles(DataPath, this.FilePattern_).Length;
-      foreach (string SubDir in Directory.GetDirectories(DataPath))
-        this.PreScanDataPath(SubDir);
+      this.prbFile.Maximum += Directory.GetFiles(path, this.FilePattern_).Length;
+      foreach (var dir in Directory.GetDirectories(path))
+        this.PreScanDataPath(dir);
     }
 
     private void ScanDataPath(XmlNode App, string DataPath, TreeNode AppNode) {
