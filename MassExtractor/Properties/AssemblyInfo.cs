@@ -1,6 +1,6 @@
 ﻿// $Id$
 
-// Copyright © 2004-2012 Tim Van Holder, Nevin Stepan
+// Copyright © 2004-2015 Tim Van Holder, Nevin Stepan
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -19,8 +19,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany      ("")]
 [assembly: AssemblyProduct      ("POLUtils")]
-[assembly: AssemblyCopyright    ("Copyright © 2004-2012 Tim Van Holder, Nevin Stepan")]
+[assembly: AssemblyCopyright    ("Copyright © 2004-2015 Tim Van Holder, Nevin Stepan")]
 [assembly: AssemblyTrademark    ("")]
 [assembly: AssemblyCulture      ("")]
 
-[assembly: AssemblyVersion      ("1.0.1.0")]
+[assembly: AssemblyVersion      ("1.1.0.0")]
