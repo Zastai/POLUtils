@@ -4,8 +4,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A032E7DB-67AF-4ADF-9D15-085DBBCFA524}"
 	ProjectSection(SolutionItems) = preProject
-		BUILDING.md = BUILDING.md
-		CODING.md = CODING.md
 		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
@@ -21,8 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer Sources", "Instal
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E32CF1CD-AD65-42C0-9F35-5D60F26E0F8C}"
 	ProjectSection(SolutionItems) = preProject
+		BUILDING.md = BUILDING.md
+		CODING.md = CODING.md
 		Docs\FFXIDATFileEncryption.md = Docs\FFXIDATFileEncryption.md
-		Docs\FileFormats.md = Docs\FileFormats.md
 		Docs\NPCListFormat.md = Docs\NPCListFormat.md
 		Docs\README.md = Docs\README.md
 		Docs\ReleaseHistory.md = Docs\ReleaseHistory.md
