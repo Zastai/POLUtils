@@ -1,6 +1,6 @@
 ;; $Id$
 
-;; Copyright © 2004-2010 Tim Van Holder
+;; Copyright © 2004-2015 Tim Van Holder
 ;; 
 ;; Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 ;; You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -21,9 +21,9 @@ CRCCheck on
 
 Name "POLUtils"
 
-!define REQUIRED_DOTNET_VERSION 4.0
+!define REQUIRED_DOTNET_VERSION 4.0 ;; Can't require 4.5 or 4.0, since DotNet.nsh can't detect those
 
-!define SITE_URL "http://code.google.com/p/polutils/"
+!define SITE_URL "http://github.com/Zastai/POLUtils"
 
 !include "Version.nsh"
 
@@ -74,12 +74,6 @@ Page Custom PagePreInstallCheck PagePreInstallCheckDone
 !insertmacro MUI_UNPAGE_INSTFILES
 
 !include "Languages.nsh"
-
-Function .oninit
-FunctionEnd
-
-Function un.onInit
-FunctionEnd
 
 !include "DotNet.nsh"
 

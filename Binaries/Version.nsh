@@ -1,6 +1,6 @@
 ;; $Id$
 
-;; Copyright © 2004-2013 Tim Van Holder, Nevin Stepan
+;; Copyright © 2004-2015 Tim Van Holder, Nevin Stepan
 ;; 
 ;; Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 ;; You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -11,14 +11,14 @@
 
 ;; --- Version Information ---
 
-VIProductVersion 1.0.1.0
+VIProductVersion 1.1.0.0
 
-!define VERSION 1.0.1.0
+!define VERSION 1.1.0.0
 
 VIAddVersionKey  "Build Time"      "${__DATE__} ${__TIME__}"
 VIAddVersionKey  "ProductName"     "POLUtils"
 VIAddVersionKey  "ProductVersion"  "${VERSION}"
 VIAddVersionKey  "FileVersion"     "${VERSION} (${BUILD})"
 VIAddVersionKey  "FileDescription" "Installer for POLUtils ${VERSION}"
-VIAddVersionKey  "LegalCopyright"  "Copyright © 2004-2013 Tim Van Holder, Nevin Stepan"
+VIAddVersionKey  "LegalCopyright"  "Copyright © 2004-2015 Tim Van Holder, Nevin Stepan"
 VIAddVersionKey  "SpecialBuild"    "${BUILD}"
