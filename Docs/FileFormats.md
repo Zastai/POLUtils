@@ -1,1 +1,0 @@
-TODO: Move file format explanations here from the forums.
