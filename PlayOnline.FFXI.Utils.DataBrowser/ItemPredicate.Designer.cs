@@ -24,7 +24,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemPredicate));
       this.cmbTest = new System.Windows.Forms.ComboBox();
       this.txtTestParameter = new System.Windows.Forms.TextBox();
       this.cmbField = new System.Windows.Forms.ComboBox();
@@ -35,22 +34,33 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.cmbTest.DisplayMember = "Name";
       this.cmbTest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cmbTest.FormattingEnabled = true;
-      resources.ApplyResources(this.cmbTest, "cmbTest");
+      this.cmbTest.ItemHeight = 13;
+      this.cmbTest.Location = new System.Drawing.Point(228, 0);
       this.cmbTest.Name = "cmbTest";
+      this.cmbTest.Size = new System.Drawing.Size(136, 21);
+      this.cmbTest.TabIndex = 2;
       this.cmbTest.ValueMember = "Value";
       // 
       // txtTestParameter
       // 
-      resources.ApplyResources(this.txtTestParameter, "txtTestParameter");
+      this.txtTestParameter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTestParameter.Location = new System.Drawing.Point(370, 0);
       this.txtTestParameter.Name = "txtTestParameter";
+      this.txtTestParameter.Size = new System.Drawing.Size(339, 20);
+      this.txtTestParameter.TabIndex = 3;
       // 
       // cmbField
       // 
       this.cmbField.DisplayMember = "Name";
       this.cmbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cmbField.FormattingEnabled = true;
-      resources.ApplyResources(this.cmbField, "cmbField");
+      this.cmbField.ItemHeight = 13;
+      this.cmbField.Location = new System.Drawing.Point(3, 0);
       this.cmbField.Name = "cmbField";
+      this.cmbField.Size = new System.Drawing.Size(219, 21);
+      this.cmbField.TabIndex = 1;
       this.cmbField.ValueMember = "Field";
       // 
       // ItemPredicate
@@ -60,7 +70,7 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.Controls.Add(this.cmbTest);
       this.Controls.Add(this.txtTestParameter);
       this.Name = "ItemPredicate";
-      resources.ApplyResources(this, "$this");
+      this.Size = new System.Drawing.Size(712, 25);
       this.ResumeLayout(false);
       this.PerformLayout();
 

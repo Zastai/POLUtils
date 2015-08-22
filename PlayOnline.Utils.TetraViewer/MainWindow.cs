@@ -14,9 +14,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
-using System.Collections;
 using System.Windows.Forms;
-
 using PlayOnline.Core;
 
 namespace PlayOnline.Utils.TetraViewer {
@@ -31,10 +29,10 @@ namespace PlayOnline.Utils.TetraViewer {
     string TetraDir = POL.GetApplicationPath(AppID.TetraMaster);
       foreach (string DataFilePath in Directory.GetFiles(Path.Combine(TetraDir, "data"), "gW*.dat")) {
       TreeNode TN = new TreeNode(Path.GetFileName(DataFilePath));
-	TN.Tag = DataFilePath;
-	Root.Nodes.Add(TN);
+        TN.Tag = DataFilePath;
+        Root.Nodes.Add(TN);
       FileStream F = new FileStream(DataFilePath, FileMode.Open, FileAccess.Read);
-	this.ReadTOC(F, TN);
+        this.ReadTOC(F, TN);
       }
       Root.Expand();
     }
@@ -47,21 +45,21 @@ namespace PlayOnline.Utils.TetraViewer {
       public int    Size;
 
       public TOCEntry(Stream S, long BaseOffset) {
-	this.Source = S;
+        this.Source = S;
       BinaryReader BR = new BinaryReader(S, Encoding.ASCII);
-	this.Type = BR.ReadInt32();
-	this.Name = new string (BR.ReadChars(12));
-	{
-	int end = this.Name.IndexOf('\0');
-	  if (end >= 0)
-	    this.Name = this.Name.Substring(0, end);
-	}
-	foreach (char c in Path.GetInvalidFileNameChars())
-	  this.Name = this.Name.Replace(c, '_');
-	this.Offset = BaseOffset + BR.ReadInt32();
-	this.Size   = BR.ReadInt32();
-	BR.ReadInt32();
-	BR.ReadInt32();
+        this.Type = BR.ReadInt32();
+        this.Name = new string (BR.ReadChars(12));
+        {
+        int end = this.Name.IndexOf('\0');
+          if (end >= 0)
+            this.Name = this.Name.Substring(0, end);
+        }
+        foreach (char c in Path.GetInvalidFileNameChars())
+          this.Name = this.Name.Replace(c, '_');
+        this.Offset = BaseOffset + BR.ReadInt32();
+        this.Size   = BR.ReadInt32();
+        BR.ReadInt32();
+        BR.ReadInt32();
       }
     }
 
@@ -70,9 +68,9 @@ namespace PlayOnline.Utils.TetraViewer {
     TOCEntry TE = new TOCEntry(S, BaseOffset);
       while (TE.Type == 0x4000) {
       TreeNode TN = new TreeNode(TE.Name);
-	TN.Tag = TE;
-	Root.Nodes.Add(TN);
-	TE = new TOCEntry(S, BaseOffset);
+        TN.Tag = TE;
+        Root.Nodes.Add(TN);
+        TE = new TOCEntry(S, BaseOffset);
       }
     }
 
@@ -81,10 +79,10 @@ namespace PlayOnline.Utils.TetraViewer {
     TOCEntry TE = new TOCEntry(S, BaseOffset);
       while (TE.Type == 0x8000) {
       long Pos = S.Position;
-	S.Seek(BaseOffset + TE.Offset, SeekOrigin.Begin);
-	this.ReadSubTOC(S, Root);
-	S.Seek(Pos, SeekOrigin.Begin);
-	TE = new TOCEntry(S, BaseOffset);
+        S.Seek(BaseOffset + TE.Offset, SeekOrigin.Begin);
+        this.ReadSubTOC(S, Root);
+        S.Seek(Pos, SeekOrigin.Begin);
+        TE = new TOCEntry(S, BaseOffset);
       }
     }
 
@@ -109,60 +107,60 @@ namespace PlayOnline.Utils.TetraViewer {
 
     private void ShowImage() {
       if (this.tvDataFiles.SelectedNode == null)
-	return;
+        return;
     TOCEntry TE = this.tvDataFiles.SelectedNode.Tag as TOCEntry;
       if (TE == null)
-	return;
+        return;
       TE.Source.Seek(TE.Offset, SeekOrigin.Begin);
       try {
       Image I = null;
-	{ // Create buffer and make the image from that - Image.FromStream(this.CurrentFile) does NOT work
-	BinaryReader BR = new BinaryReader(TE.Source);
-	byte[] ImageData = BR.ReadBytes(TE.Size);
-	MemoryStream MS = new MemoryStream(ImageData, false);
-	  I = Image.FromStream(MS);
-	  MS.Close();
-	}
-	if (this.mnuTiledImage.Checked)
-	  this.picViewer.BackgroundImage = I;
-	else
-	  this.picViewer.Image = I;
+        { // Create buffer and make the image from that - Image.FromStream(this.CurrentFile) does NOT work
+        BinaryReader BR = new BinaryReader(TE.Source);
+        byte[] ImageData = BR.ReadBytes(TE.Size);
+        MemoryStream MS = new MemoryStream(ImageData, false);
+          I = Image.FromStream(MS);
+          MS.Close();
+        }
+        if (this.mnuTiledImage.Checked)
+          this.picViewer.BackgroundImage = I;
+        else
+          this.picViewer.Image = I;
         this.picViewer.SizeMode = (this.mnuStretchImage.Checked ? PictureBoxSizeMode.StretchImage : PictureBoxSizeMode.CenterImage);
       int bitdepth = 0;
-	switch (I.PixelFormat) {
-	  case PixelFormat.Format1bppIndexed:
-	    bitdepth = 1;
-	    break;
-	  case PixelFormat.Format4bppIndexed:
-	    bitdepth = 4;
-	    break;
-	  case PixelFormat.Format8bppIndexed:
-	    bitdepth = 8;
-	    break;
-	  case PixelFormat.Format16bppGrayScale:
-	  case PixelFormat.Format16bppArgb1555:
-	  case PixelFormat.Format16bppRgb555:
-	  case PixelFormat.Format16bppRgb565:
-	    bitdepth = 16;
-	    break;
-	  case PixelFormat.Format24bppRgb:
-	    bitdepth = 24;
-	    break;
-	  case PixelFormat.Format32bppArgb:
-	  case PixelFormat.Format32bppPArgb:
-	  case PixelFormat.Format32bppRgb:
-	    bitdepth = 32;
-	    break;
-	  case PixelFormat.Format48bppRgb:
-	    bitdepth = 48;
-	    break;
-	  case PixelFormat.Format64bppArgb:
-	  case PixelFormat.Format64bppPArgb:
-	    bitdepth = 64;
-	    break;
-	}
-	//ImageConverter IC = new ImageConverter();
-	this.sbrStatus.Text = String.Format("PNG Image - {0}x{1} {2}bpp", I.Width, I.Height, bitdepth);
+        switch (I.PixelFormat) {
+          case PixelFormat.Format1bppIndexed:
+            bitdepth = 1;
+            break;
+          case PixelFormat.Format4bppIndexed:
+            bitdepth = 4;
+            break;
+          case PixelFormat.Format8bppIndexed:
+            bitdepth = 8;
+            break;
+          case PixelFormat.Format16bppGrayScale:
+          case PixelFormat.Format16bppArgb1555:
+          case PixelFormat.Format16bppRgb555:
+          case PixelFormat.Format16bppRgb565:
+            bitdepth = 16;
+            break;
+          case PixelFormat.Format24bppRgb:
+            bitdepth = 24;
+            break;
+          case PixelFormat.Format32bppArgb:
+          case PixelFormat.Format32bppPArgb:
+          case PixelFormat.Format32bppRgb:
+            bitdepth = 32;
+            break;
+          case PixelFormat.Format48bppRgb:
+            bitdepth = 48;
+            break;
+          case PixelFormat.Format64bppArgb:
+          case PixelFormat.Format64bppPArgb:
+            bitdepth = 64;
+            break;
+        }
+        //ImageConverter IC = new ImageConverter();
+        this.sbrStatus.Text = String.Format("PNG Image - {0}x{1} {2}bpp", I.Width, I.Height, bitdepth);
       }
       catch {}
     }
@@ -173,18 +171,18 @@ namespace PlayOnline.Utils.TetraViewer {
       this.mnuExportAll.Visible = false;
       this.ClearImage();
       if (e.Node == null)
-	return;
+        return;
       if (e.Node.Parent != null && e.Node.Parent.Parent != null && e.Node.Nodes.Count == 0)
-	this.mnuExport.Visible = true;
+        this.mnuExport.Visible = true;
       if (e.Node.Parent != null && e.Node.Parent.Parent == null && e.Node.Nodes.Count != 0)
-	this.mnuExportAll.Visible = true;
+        this.mnuExportAll.Visible = true;
       this.ShowImage();
     }
 
     private void ImageOption_Click(object sender, System.EventArgs e) {
       this.ClearImage();
       foreach (MenuItem MI in this.mnuPictureContext.MenuItems)
-	MI.Checked = (MI == sender);
+        MI.Checked = (MI == sender);
       this.ShowImage();
     }
 

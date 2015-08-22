@@ -1,7 +1,10 @@
 # $Id$
 
-A settings file for Visual Studio (POLUtils.vssettings) is provided which you can import to set up the proper indentation and
-formatting settings for working on the POLUtils code.
-Note that the use of automatic formatting of any kind is discouraged, because that tends to undo existing manual formatting.
+Main important Visual Studio setting: indentation: indent size 2, no tab insertion.
+This can be easily configured by importing the POLUtils.vssettings files in Visual Studio.
 
-More detailed coding and style conventions will be added to this file at some point.
+An effort should be made to avoid placing TAB characters in sources, since they have a tendency
+to make code appear different/ugly to different people, depending on editor/settings used.
+
+A further solution-level settings file for ReSharper is provided as well.
+If you have ReSharper installed, it should be used automatically.

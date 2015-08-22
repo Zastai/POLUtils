@@ -37,7 +37,6 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoBuilder));
       this.prbApplication = new System.Windows.Forms.ProgressBar();
       this.lblApplication = new System.Windows.Forms.Label();
       this.txtApplication = new System.Windows.Forms.TextBox();
@@ -51,94 +50,88 @@ namespace PlayOnline.Utils.AudioManager {
       // 
       // prbApplication
       // 
-      this.prbApplication.AccessibleDescription = null;
-      this.prbApplication.AccessibleName = null;
-      resources.ApplyResources(this.prbApplication, "prbApplication");
-      this.prbApplication.BackgroundImage = null;
-      this.prbApplication.Font = null;
+      this.prbApplication.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.prbApplication.Location = new System.Drawing.Point(356, 12);
       this.prbApplication.Name = "prbApplication";
+      this.prbApplication.Size = new System.Drawing.Size(152, 20);
+      this.prbApplication.TabIndex = 2;
       // 
       // lblApplication
       // 
-      this.lblApplication.AccessibleDescription = null;
-      this.lblApplication.AccessibleName = null;
-      resources.ApplyResources(this.lblApplication, "lblApplication");
       this.lblApplication.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblApplication.Font = null;
+      this.lblApplication.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblApplication.Location = new System.Drawing.Point(8, 16);
       this.lblApplication.Name = "lblApplication";
+      this.lblApplication.Size = new System.Drawing.Size(56, 16);
+      this.lblApplication.TabIndex = 0;
+      this.lblApplication.Text = "Application:";
       // 
       // txtApplication
       // 
-      this.txtApplication.AccessibleDescription = null;
-      this.txtApplication.AccessibleName = null;
-      resources.ApplyResources(this.txtApplication, "txtApplication");
-      this.txtApplication.BackgroundImage = null;
-      this.txtApplication.Font = null;
+      this.txtApplication.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtApplication.Location = new System.Drawing.Point(68, 12);
       this.txtApplication.Name = "txtApplication";
       this.txtApplication.ReadOnly = true;
+      this.txtApplication.Size = new System.Drawing.Size(280, 20);
+      this.txtApplication.TabIndex = 1;
       // 
       // txtDirectory
       // 
-      this.txtDirectory.AccessibleDescription = null;
-      this.txtDirectory.AccessibleName = null;
-      resources.ApplyResources(this.txtDirectory, "txtDirectory");
-      this.txtDirectory.BackgroundImage = null;
-      this.txtDirectory.Font = null;
+      this.txtDirectory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtDirectory.Location = new System.Drawing.Point(68, 40);
       this.txtDirectory.Name = "txtDirectory";
       this.txtDirectory.ReadOnly = true;
+      this.txtDirectory.Size = new System.Drawing.Size(280, 20);
+      this.txtDirectory.TabIndex = 4;
       // 
       // lblDirectory
       // 
-      this.lblDirectory.AccessibleDescription = null;
-      this.lblDirectory.AccessibleName = null;
-      resources.ApplyResources(this.lblDirectory, "lblDirectory");
       this.lblDirectory.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblDirectory.Font = null;
+      this.lblDirectory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblDirectory.Location = new System.Drawing.Point(8, 44);
       this.lblDirectory.Name = "lblDirectory";
+      this.lblDirectory.Size = new System.Drawing.Size(56, 16);
+      this.lblDirectory.TabIndex = 3;
+      this.lblDirectory.Text = "Directory:";
       // 
       // prbDirectory
       // 
-      this.prbDirectory.AccessibleDescription = null;
-      this.prbDirectory.AccessibleName = null;
-      resources.ApplyResources(this.prbDirectory, "prbDirectory");
-      this.prbDirectory.BackgroundImage = null;
-      this.prbDirectory.Font = null;
+      this.prbDirectory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.prbDirectory.Location = new System.Drawing.Point(356, 40);
       this.prbDirectory.Name = "prbDirectory";
+      this.prbDirectory.Size = new System.Drawing.Size(152, 20);
+      this.prbDirectory.TabIndex = 5;
       // 
       // txtFile
       // 
-      this.txtFile.AccessibleDescription = null;
-      this.txtFile.AccessibleName = null;
-      resources.ApplyResources(this.txtFile, "txtFile");
-      this.txtFile.BackgroundImage = null;
-      this.txtFile.Font = null;
+      this.txtFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtFile.Location = new System.Drawing.Point(68, 68);
       this.txtFile.Name = "txtFile";
       this.txtFile.ReadOnly = true;
+      this.txtFile.Size = new System.Drawing.Size(280, 20);
+      this.txtFile.TabIndex = 7;
       // 
       // lblFile
       // 
-      this.lblFile.AccessibleDescription = null;
-      this.lblFile.AccessibleName = null;
-      resources.ApplyResources(this.lblFile, "lblFile");
       this.lblFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      this.lblFile.Font = null;
+      this.lblFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFile.Location = new System.Drawing.Point(8, 72);
       this.lblFile.Name = "lblFile";
+      this.lblFile.Size = new System.Drawing.Size(56, 16);
+      this.lblFile.TabIndex = 6;
+      this.lblFile.Text = "File:";
       // 
       // prbFile
       // 
-      this.prbFile.AccessibleDescription = null;
-      this.prbFile.AccessibleName = null;
-      resources.ApplyResources(this.prbFile, "prbFile");
-      this.prbFile.BackgroundImage = null;
-      this.prbFile.Font = null;
+      this.prbFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.prbFile.Location = new System.Drawing.Point(356, 68);
       this.prbFile.Name = "prbFile";
+      this.prbFile.Size = new System.Drawing.Size(152, 20);
+      this.prbFile.TabIndex = 8;
       // 
       // InfoBuilder
       // 
-      this.AccessibleDescription = null;
-      this.AccessibleName = null;
-      resources.ApplyResources(this, "$this");
-      this.BackgroundImage = null;
+      this.ClientSize = new System.Drawing.Size(518, 96);
       this.ControlBox = false;
       this.Controls.Add(this.txtFile);
       this.Controls.Add(this.txtDirectory);
@@ -149,11 +142,11 @@ namespace PlayOnline.Utils.AudioManager {
       this.Controls.Add(this.prbDirectory);
       this.Controls.Add(this.lblApplication);
       this.Controls.Add(this.prbApplication);
-      this.Font = null;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Icon = null;
       this.Name = "InfoBuilder";
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Gathering Information...";
       this.VisibleChanged += new System.EventHandler(this.InfoBuilder_VisibleChanged);
       this.ResumeLayout(false);
       this.PerformLayout();

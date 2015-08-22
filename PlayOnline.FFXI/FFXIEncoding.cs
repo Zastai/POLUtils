@@ -1,4 +1,4 @@
-// $Id$
+﻿// $Id$
 
 // Copyright © 2004-2010 Tim Van Holder
 // 
@@ -11,30 +11,26 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
 
-using PlayOnline.Core;
-
 namespace PlayOnline.FFXI {
 
   public class FFXIEncoding : Encoding { // http://www.microsoft.com/globaldev/reference/dbcs/932.htm
-
-    // The main table, and the 60 lead-byte tables
-    private static SortedList ConversionTables = new SortedList(61);
-
-    public FFXIEncoding() {
-    }
 
     public override string EncodingName { get { return "Japanese (Shift-JIS, with FFXI extensions)"; } }
     public override string BodyName     { get { return "iso-2022-jp-ffxi"; } }
     public override string HeaderName   { get { return "iso-2022-jp-ffxi"; } }
     public override string WebName      { get { return "iso-2022-jp-ffxi"; } }
 
-    public static readonly char SpecialMarkerStart = '\u227A'; // ≺
-    public static readonly char SpecialMarkerEnd   = '\u227B'; // ≻
+    public const char SpecialMarkerStart = '\u227A'; // ≺
+    public const char SpecialMarkerEnd   = '\u227B'; // ≻
+
+    // The main table, and the 60 lead-byte tables
+    private static readonly Dictionary<byte, BinaryReader> ConversionTables = new Dictionary<byte, BinaryReader>(61);
 
     #region Utility Functions
 
@@ -57,22 +53,25 @@ namespace PlayOnline.FFXI {
       return byteCount * 15;
     }
 
-    internal BinaryReader GetConversionTable(byte Table) {
-      if (FFXIEncoding.ConversionTables[Table] == null) {
-      Stream ResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(String.Format("ConversionTables.{0:X2}xx.dat", Table));
-	if (ResourceStream != null)
-	  FFXIEncoding.ConversionTables[Table] = new BinaryReader(ResourceStream);
+    private BinaryReader GetConversionTable(byte table) {
+      if (FFXIEncoding.ConversionTables.ContainsKey(table))
+        return FFXIEncoding.ConversionTables[table];
+      try {
+        var rs = Assembly.GetExecutingAssembly().GetManifestResourceStream(String.Format("PlayOnline.FFXI.ConversionTables.{0:X2}xx.dat", table));
+        FFXIEncoding.ConversionTables[table] = (rs != null) ? new BinaryReader(rs) : null;
       }
-      return FFXIEncoding.ConversionTables[Table] as BinaryReader;
+      catch {
+        FFXIEncoding.ConversionTables[table] = null;
+      }
+      return FFXIEncoding.ConversionTables[table];
     }
 
-    private ushort GetTableEntry(byte Table, byte Entry) {
-    BinaryReader BR = this.GetConversionTable(Table);
-      if (BR != null) {
-	BR.BaseStream.Seek(2 * Entry, SeekOrigin.Begin);
-	return BR.ReadUInt16();
-      }
-      return 0xFFFF;
+    private ushort GetTableEntry(byte table, byte entry) {
+      var BR = this.GetConversionTable(table);
+      if (BR == null)
+        return 0xFFFF;
+      BR.BaseStream.Seek(2 * entry, SeekOrigin.Begin);
+      return BR.ReadUInt16();
     }
 
     #endregion
@@ -82,49 +81,49 @@ namespace PlayOnline.FFXI {
     private byte[] EncodeSpecialMarker(string Marker) {
       if (Marker.StartsWith("BAD CHAR:")) {
       string HexBytes = Marker.Substring(9).Trim();
-	if (HexBytes.Length > 0 && (HexBytes.Length % 2) == 0) {
-	  try {
-	  byte[] EncodedBadChar = new byte[HexBytes.Length / 2];
-	    for (int i = 0; i < EncodedBadChar.Length; ++i)
-	      EncodedBadChar[i] = byte.Parse(HexBytes.Substring(2 * i, 2), NumberStyles.HexNumber);
-	    return EncodedBadChar;
-	  } catch { }
-	}
+        if (HexBytes.Length > 0 && (HexBytes.Length % 2) == 0) {
+          try {
+          byte[] EncodedBadChar = new byte[HexBytes.Length / 2];
+            for (int i = 0; i < EncodedBadChar.Length; ++i)
+              EncodedBadChar[i] = byte.Parse(HexBytes.Substring(2 * i, 2), NumberStyles.HexNumber);
+            return EncodedBadChar;
+          } catch { }
+        }
       }
       else if (Marker.StartsWith("AutoTrans:")) {
       byte[] Result = new byte[] { 0xEF, 0x00 };
-	switch (Marker.Substring(8).Trim()) {
-	  case "Start": Result[1] = 0x27; break;
-	  case "End":   Result[1] = 0x28; break;
-	}
-	if (Result[1] != 0x00)
-	  return Result;
+        switch (Marker.Substring(8).Trim()) {
+          case "Start": Result[1] = 0x27; break;
+          case "End":   Result[1] = 0x28; break;
+        }
+        if (Result[1] != 0x00)
+          return Result;
       }
       else if (Marker.StartsWith("Element:")) {
       byte[] Result = new byte[] { 0xEF, 0x00 };
-	try {
-	  Result[1] = (byte) Enum.Parse(typeof(Element), Marker.Substring(8).Trim());
-	  Result[1] += 0x1f;
-	} catch { }
-	if (Result[1] >= 0x1f && Result[1] <= 0x26)
-	  return Result;
+        try {
+          Result[1] = (byte) Enum.Parse(typeof(Element), Marker.Substring(8).Trim());
+          Result[1] += 0x1f;
+        } catch { }
+        if (Result[1] >= 0x1f && Result[1] <= 0x26)
+          return Result;
       }
       else if (Marker.StartsWith("[")) {
       int CloseBracket = Marker.IndexOf(']', 1);
-	if (CloseBracket > 0) {
-	string HexID = Marker.Substring(1, CloseBracket - 1);
-	  try {
-	  uint ResourceID = uint.Parse(HexID, NumberStyles.HexNumber);
-	  byte[] EncodedResourceString = new byte[6];
-	    EncodedResourceString[5] = 0xFD;
-	    EncodedResourceString[4] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[3] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[2] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[1] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
-	    EncodedResourceString[0] = 0xFD;
-	    return EncodedResourceString;
-	  } catch { }
-	}
+        if (CloseBracket > 0) {
+        string HexID = Marker.Substring(1, CloseBracket - 1);
+          try {
+          uint ResourceID = uint.Parse(HexID, NumberStyles.HexNumber);
+          byte[] EncodedResourceString = new byte[6];
+            EncodedResourceString[5] = 0xFD;
+            EncodedResourceString[4] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+            EncodedResourceString[3] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+            EncodedResourceString[2] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+            EncodedResourceString[1] = (byte) (ResourceID & 0xff); ResourceID >>= 8;
+            EncodedResourceString[0] = 0xFD;
+            return EncodedResourceString;
+          } catch { }
+        }
       }
       // No match with one of our special marker formats => let GetBytes() do regular processing
       return null;
@@ -134,22 +133,22 @@ namespace PlayOnline.FFXI {
       // Check main table, branching off to other tables if main table indicates a valid lead byte
     BinaryReader MainBR = this.GetConversionTable(0x00);
       if (MainBR != null) {
-	MainBR.BaseStream.Seek(0, SeekOrigin.Begin);
-	for (ushort i = 0; i <= 0xff; ++i) {
-	ushort MainEntry = MainBR.ReadUInt16();
-	  if (MainEntry == (ushort) C) // match found
-	    return i;
-	  else if (MainEntry == 0xFFFE) { // valid lead byte
-	  BinaryReader SubBR = this.GetConversionTable((byte) i);
-	    if (SubBR != null) {
-	      SubBR.BaseStream.Seek(0, SeekOrigin.Begin);
-	      for (ushort j = 0x00; j <= 0xff; ++j) {
-		if (SubBR.ReadUInt16() == (ushort) C) // match found
-		  return (ushort) ((i << 8) + j);
-	      }
-	    }
-	  }
-	}
+        MainBR.BaseStream.Seek(0, SeekOrigin.Begin);
+        for (ushort i = 0; i <= 0xff; ++i) {
+        ushort MainEntry = MainBR.ReadUInt16();
+          if (MainEntry == (ushort) C) // match found
+            return i;
+          else if (MainEntry == 0xFFFE) { // valid lead byte
+          BinaryReader SubBR = this.GetConversionTable((byte) i);
+            if (SubBR != null) {
+              SubBR.BaseStream.Seek(0, SeekOrigin.Begin);
+              for (ushort j = 0x00; j <= 0xff; ++j) {
+                if (SubBR.ReadUInt16() == (ushort) C) // match found
+                  return (ushort) ((i << 8) + j);
+              }
+            }
+          }
+        }
       }
       return 0xFFFF; // no such entry in conversion tables => cannot be encoded
     }
@@ -157,25 +156,25 @@ namespace PlayOnline.FFXI {
     public override byte[] GetBytes(char[] chars, int index, int count) {
     ArrayList EncodedBytes = new ArrayList();
       for (int pos = index; pos < index + count; ++pos) {
-	if (chars[pos] == FFXIEncoding.SpecialMarkerStart) { // Potential special string
-	int endpos = pos + 1;
-	  while (endpos < index + count && chars[endpos] != FFXIEncoding.SpecialMarkerEnd)
-	    ++endpos;
-	  if (endpos < index + count) { // valid end marker found => parse
-	  byte[] EncodedMarker = this.EncodeSpecialMarker(new string(chars, pos + 1, endpos - pos - 1));
-	    if (EncodedMarker != null) {
-	      EncodedBytes.AddRange(EncodedMarker);
-	      pos = endpos;
-	      continue;
-	    }
-	  }
-	}
+        if (chars[pos] == FFXIEncoding.SpecialMarkerStart) { // Potential special string
+        int endpos = pos + 1;
+          while (endpos < index + count && chars[endpos] != FFXIEncoding.SpecialMarkerEnd)
+            ++endpos;
+          if (endpos < index + count) { // valid end marker found => parse
+          byte[] EncodedMarker = this.EncodeSpecialMarker(new string(chars, pos + 1, endpos - pos - 1));
+            if (EncodedMarker != null) {
+              EncodedBytes.AddRange(EncodedMarker);
+              pos = endpos;
+              continue;
+            }
+          }
+        }
       ushort TableEntry = this.FindTableEntry(chars[pos]);
-	if (TableEntry != 0xFFFF) {
-	  if (TableEntry > 0xff)
-	    EncodedBytes.Add((byte) ((TableEntry & 0xFF00) >> 8));
-	  EncodedBytes.Add((byte) (TableEntry & 0xFF));
-	}
+        if (TableEntry != 0xFFFF) {
+          if (TableEntry > 0xff)
+            EncodedBytes.Add((byte) ((TableEntry & 0xFF00) >> 8));
+          EncodedBytes.Add((byte) (TableEntry & 0xFF));
+        }
       }
       return (byte[]) EncodedBytes.ToArray(typeof(byte));
     }
@@ -197,51 +196,51 @@ namespace PlayOnline.FFXI {
     public override string GetString(byte[] bytes, int index, int count) {
     string DecodedString = String.Empty;
       for (int pos = index; pos < index + count; ++pos) {
-	// FFXI Extension: Elemental symbols
-	if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x1F && bytes[pos + 1] <= 0x26) {
-	  DecodedString += String.Format("{0}Element: {1}{2}", FFXIEncoding.SpecialMarkerStart, (Element) (bytes[++pos] - 0x1f), FFXIEncoding.SpecialMarkerEnd);
-	  continue;
-	}
-	// FFXI Extension: Open/Close AutoTranslator Text
-	if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x27 && bytes[pos + 1] <= 0x28) {
-	  DecodedString += FFXIEncoding.SpecialMarkerStart;
-	  DecodedString += "AutoTrans: ";
-	  switch (bytes[++pos]) {
-	    case 0x27: DecodedString += "Start"; break;
-	    case 0x28: DecodedString += "End";  break;
-	  }
-	  DecodedString += FFXIEncoding.SpecialMarkerEnd;
-	  continue;
-	}
-	// FFXI Extension: Resource Text (Auto-Translator/Item/Key Item)
-	if (bytes[pos] == 0xFD && pos + 5 < index + count && bytes[pos + 5] == 0xFD) {
-	uint ResourceID = 0;
-	  ResourceID <<= 8; ResourceID += bytes[pos + 1];
-	  ResourceID <<= 8; ResourceID += bytes[pos + 2];
-	  ResourceID <<= 8; ResourceID += bytes[pos + 3];
-	  ResourceID <<= 8; ResourceID += bytes[pos + 4];
-	  DecodedString += String.Format("{0}[{1:X8}] {2}{3}", FFXIEncoding.SpecialMarkerStart, ResourceID, FFXIResourceManager.GetResourceString(ResourceID), FFXIEncoding.SpecialMarkerEnd);
-	  pos += 5;
-	  continue;
-	}
-	// Default behaviour - use table
+        // FFXI Extension: Elemental symbols
+        if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x1F && bytes[pos + 1] <= 0x26) {
+          DecodedString += String.Format("{0}Element: {1}{2}", FFXIEncoding.SpecialMarkerStart, (Element) (bytes[++pos] - 0x1f), FFXIEncoding.SpecialMarkerEnd);
+          continue;
+        }
+        // FFXI Extension: Open/Close AutoTranslator Text
+        if (bytes[pos] == 0xEF && (pos + 1) < (index + count) && bytes[pos + 1] >= 0x27 && bytes[pos + 1] <= 0x28) {
+          DecodedString += FFXIEncoding.SpecialMarkerStart;
+          DecodedString += "AutoTrans: ";
+          switch (bytes[++pos]) {
+            case 0x27: DecodedString += "Start"; break;
+            case 0x28: DecodedString += "End";  break;
+          }
+          DecodedString += FFXIEncoding.SpecialMarkerEnd;
+          continue;
+        }
+        // FFXI Extension: Resource Text (Auto-Translator/Item/Key Item)
+        if (bytes[pos] == 0xFD && pos + 5 < index + count && bytes[pos + 5] == 0xFD) {
+        uint ResourceID = 0;
+          ResourceID <<= 8; ResourceID += bytes[pos + 1];
+          ResourceID <<= 8; ResourceID += bytes[pos + 2];
+          ResourceID <<= 8; ResourceID += bytes[pos + 3];
+          ResourceID <<= 8; ResourceID += bytes[pos + 4];
+          DecodedString += String.Format("{0}[{1:X8}] {2}{3}", FFXIEncoding.SpecialMarkerStart, ResourceID, FFXIResourceManager.GetResourceString(ResourceID), FFXIEncoding.SpecialMarkerEnd);
+          pos += 5;
+          continue;
+        }
+        // Default behaviour - use table
       ushort DecodedChar = this.GetTableEntry(0, bytes[pos]);
-	if (DecodedChar == 0xFFFE) { // Possible Lead Byte
-	  if (pos + 1 < index + count) {
-	  byte Table = bytes[pos++];
-	    DecodedChar = this.GetTableEntry(Table, bytes[pos]);
-	    if (DecodedChar == 0xFFFF)
-	      DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2:X2}{3}", FFXIEncoding.SpecialMarkerStart, Table, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
-	    else
-	      DecodedString += (char) DecodedChar;
-	  }
-	  else
-	    DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2}", FFXIEncoding.SpecialMarkerStart, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
-	}
-	else if (DecodedChar == 0xFFFF)
-	  DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2}", FFXIEncoding.SpecialMarkerStart, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
-	else
-	  DecodedString += (char) DecodedChar;
+        if (DecodedChar == 0xFFFE) { // Possible Lead Byte
+          if (pos + 1 < index + count) {
+          byte Table = bytes[pos++];
+            DecodedChar = this.GetTableEntry(Table, bytes[pos]);
+            if (DecodedChar == 0xFFFF)
+              DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2:X2}{3}", FFXIEncoding.SpecialMarkerStart, Table, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
+            else
+              DecodedString += (char) DecodedChar;
+          }
+          else
+            DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2}", FFXIEncoding.SpecialMarkerStart, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
+        }
+        else if (DecodedChar == 0xFFFF)
+          DecodedString += String.Format("{0}BAD CHAR: {1:X2}{2}", FFXIEncoding.SpecialMarkerStart, bytes[pos], FFXIEncoding.SpecialMarkerEnd);
+        else
+          DecodedString += (char) DecodedChar;
       }
       return DecodedString;
     }

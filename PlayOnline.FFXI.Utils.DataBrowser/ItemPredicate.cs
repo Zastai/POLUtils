@@ -10,14 +10,9 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
 using PlayOnline.Core;
 using PlayOnline.FFXI.Things;
 
@@ -38,22 +33,22 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     private class ItemField {
 
       public string Field {
-	get {
-	  return this.Field_;
-	}
+        get {
+          return this.Field_;
+        }
       }
       private string Field_;
 
       public string Name {
-	get {
-	  return this.Name_;
-	}
+        get {
+          return this.Name_;
+        }
       }
       private string Name_;
 
       public ItemField(string Field, string Name) {
-	this.Field_ = Field;
-	this.Name_  = Name;
+        this.Field_ = Field;
+        this.Name_  = Name;
       }
 
     }
@@ -62,13 +57,13 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       this.InitializeComponent();
       { // Add all item fields
       List<ItemField> ItemFields = new List<ItemField>();
-	ItemFields.Add(new ItemField(null, I18N.GetText("ItemField:Any")));
-	{
-	Item I = new Item();
-	  foreach (string Field in I.GetAllFields())
-	    ItemFields.Add(new ItemField(Field, I.GetFieldName(Field)));
-	}
-	this.cmbField.DataSource = ItemFields;
+        ItemFields.Add(new ItemField(null, I18N.GetText("ItemField:Any")));
+        {
+        Item I = new Item();
+          foreach (string Field in I.GetAllFields())
+            ItemFields.Add(new ItemField(Field, I.GetFieldName(Field)));
+        }
+        this.cmbField.DataSource = ItemFields;
       }
       this.cmbField.SelectedIndex = 0; // Any Field
       this.cmbTest.Items.AddRange(NamedEnum.GetAll(typeof(Test)));
@@ -78,22 +73,22 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
     public string ValidateQuery() {
     NamedEnum NE = this.cmbTest.SelectedItem as NamedEnum;
       if (NE == null)
-	return I18N.GetText("Query:NoQueryType");
+        return I18N.GetText("Query:NoQueryType");
     Test T = (Test) NE.Value;
       switch (T) {
-	case Test.StartsWith: case Test.EndsWith: case Test.Contains: case Test.DoesntContain:
-	  if (this.txtTestParameter.Text == String.Empty)
-	    return I18N.GetText("Query:NoEmptyString");
-	  return null;
-	case Test.Equals:
-	  return null;
-	case Test.MatchesRegexp: case Test.DoesntMatchRegexp:
-	  if (this.txtTestParameter.Text == String.Empty)
-	    return I18N.GetText("Query:NoEmptyString");
-	  try { // Try to parse the regex
-	    Regex RE = new Regex(this.txtTestParameter.Text, RegexOptions.Multiline | RegexOptions.ExplicitCapture);
-	  } catch { return I18N.GetText("Query:BadRegexp"); }
-	  return null;
+        case Test.StartsWith: case Test.EndsWith: case Test.Contains: case Test.DoesntContain:
+          if (this.txtTestParameter.Text == String.Empty)
+            return I18N.GetText("Query:NoEmptyString");
+          return null;
+        case Test.Equals:
+          return null;
+        case Test.MatchesRegexp: case Test.DoesntMatchRegexp:
+          if (this.txtTestParameter.Text == String.Empty)
+            return I18N.GetText("Query:NoEmptyString");
+          try { // Try to parse the regex
+            Regex RE = new Regex(this.txtTestParameter.Text, RegexOptions.Multiline | RegexOptions.ExplicitCapture);
+          } catch { return I18N.GetText("Query:BadRegexp"); }
+          return null;
       }
       return I18N.GetText("Query:BadQueryType");
     }
@@ -102,37 +97,37 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private bool MatchString(string S) {
       if (S == null)
-	return false;
+        return false;
     NamedEnum NE = this.cmbTest.SelectedItem as NamedEnum;
       if (NE == null)
-	return false;
+        return false;
     Test T = (Test) NE.Value;
       switch (T) {
-	case Test.StartsWith:    return S.StartsWith(this.txtTestParameter.Text);
-	case Test.EndsWith:      return S.EndsWith(this.txtTestParameter.Text);
-	case Test.Equals:        return (S == this.txtTestParameter.Text);
-	case Test.Contains: case Test.DoesntContain: {
-	int Pos = S.IndexOf(this.txtTestParameter.Text);
-	  return ((T == Test.Contains) ? (Pos >= 0) : (Pos < 0));
-	}
-	case Test.MatchesRegexp: case Test.DoesntMatchRegexp: {
-	Regex RE = new Regex(this.txtTestParameter.Text, RegexOptions.Multiline | RegexOptions.ExplicitCapture);
-	  return ((T == Test.MatchesRegexp) ? RE.IsMatch(S) : !RE.IsMatch(S));
-	}
+        case Test.StartsWith:    return S.StartsWith(this.txtTestParameter.Text);
+        case Test.EndsWith:      return S.EndsWith(this.txtTestParameter.Text);
+        case Test.Equals:        return (S == this.txtTestParameter.Text);
+        case Test.Contains: case Test.DoesntContain: {
+        int Pos = S.IndexOf(this.txtTestParameter.Text);
+          return ((T == Test.Contains) ? (Pos >= 0) : (Pos < 0));
+        }
+        case Test.MatchesRegexp: case Test.DoesntMatchRegexp: {
+        Regex RE = new Regex(this.txtTestParameter.Text, RegexOptions.Multiline | RegexOptions.ExplicitCapture);
+          return ((T == Test.MatchesRegexp) ? RE.IsMatch(S) : !RE.IsMatch(S));
+        }
       }
       return false;
     }
 
     public bool IsMatch(Item I) {
       if (this.cmbField.SelectedValue == null) { // Any Field
-	foreach (string Field in I.GetFields()) {
-	  if (this.MatchString(I.GetFieldText(Field)))
-	    return true;
-	}
-	return false;
+        foreach (string Field in I.GetFields()) {
+          if (this.MatchString(I.GetFieldText(Field)))
+            return true;
+        }
+        return false;
       }
       else
-	return this.MatchString(I.GetFieldText(this.cmbField.SelectedValue as string));
+        return this.MatchString(I.GetFieldText(this.cmbField.SelectedValue as string));
     }
 
     #endregion

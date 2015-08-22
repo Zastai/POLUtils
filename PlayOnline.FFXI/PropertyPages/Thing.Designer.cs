@@ -17,78 +17,108 @@ namespace PlayOnline.FFXI.PropertyPages {
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
-	components.Dispose();
+        components.Dispose();
       base.Dispose(disposing);
     }
 
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.Windows.Forms.ColumnHeader colFieldName;
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Thing));
-      System.Windows.Forms.ColumnHeader colFieldValue;
+      this.colFieldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.colFieldValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.lblText = new System.Windows.Forms.Label();
       this.lstFields = new System.Windows.Forms.ListView();
       this.lblFields = new System.Windows.Forms.Label();
       this.lblTypeName = new System.Windows.Forms.Label();
       this.lblType = new System.Windows.Forms.Label();
       this.picIcon = new System.Windows.Forms.PictureBox();
-      colFieldName = new System.Windows.Forms.ColumnHeader();
-      colFieldValue = new System.Windows.Forms.ColumnHeader();
-      ((System.ComponentModel.ISupportInitialize) (this.picIcon)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
       this.SuspendLayout();
       // 
       // colFieldName
       // 
-      resources.ApplyResources(colFieldName, "colFieldName");
+      this.colFieldName.Text = "Name";
+      this.colFieldName.Width = 100;
       // 
       // colFieldValue
       // 
-      resources.ApplyResources(colFieldValue, "colFieldValue");
+      this.colFieldValue.Text = "Value";
+      this.colFieldValue.Width = 195;
       // 
       // lblText
       // 
-      resources.ApplyResources(this.lblText, "lblText");
+      this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lblText.AutoEllipsis = true;
+      this.lblText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblText.Location = new System.Drawing.Point(41, 4);
       this.lblText.Name = "lblText";
+      this.lblText.Size = new System.Drawing.Size(285, 13);
+      this.lblText.TabIndex = 11;
+      this.lblText.Text = "Thing Text";
       // 
       // lstFields
       // 
-      resources.ApplyResources(this.lstFields, "lstFields");
+      this.lstFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lstFields.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            colFieldName,
-            colFieldValue});
+            this.colFieldName,
+            this.colFieldValue});
       this.lstFields.FullRowSelect = true;
+      this.lstFields.Location = new System.Drawing.Point(3, 60);
       this.lstFields.Name = "lstFields";
+      this.lstFields.Size = new System.Drawing.Size(320, 319);
+      this.lstFields.TabIndex = 10;
       this.lstFields.UseCompatibleStateImageBehavior = false;
       this.lstFields.View = System.Windows.Forms.View.Details;
       this.lstFields.ItemActivate += new System.EventHandler(this.lstFields_ItemActivate);
       // 
       // lblFields
       // 
-      resources.ApplyResources(this.lblFields, "lblFields");
+      this.lblFields.AutoSize = true;
+      this.lblFields.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblFields.Location = new System.Drawing.Point(0, 44);
       this.lblFields.Name = "lblFields";
+      this.lblFields.Size = new System.Drawing.Size(37, 13);
+      this.lblFields.TabIndex = 9;
+      this.lblFields.Text = "Fields:";
       // 
       // lblTypeName
       // 
-      resources.ApplyResources(this.lblTypeName, "lblTypeName");
+      this.lblTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lblTypeName.AutoEllipsis = true;
+      this.lblTypeName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblTypeName.Location = new System.Drawing.Point(81, 21);
       this.lblTypeName.Name = "lblTypeName";
+      this.lblTypeName.Size = new System.Drawing.Size(242, 13);
+      this.lblTypeName.TabIndex = 8;
+      this.lblTypeName.Text = "Thing Type";
       // 
       // lblType
       // 
-      resources.ApplyResources(this.lblType, "lblType");
+      this.lblType.AutoSize = true;
+      this.lblType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblType.Location = new System.Drawing.Point(41, 21);
       this.lblType.Name = "lblType";
+      this.lblType.Size = new System.Drawing.Size(34, 13);
+      this.lblType.TabIndex = 7;
+      this.lblType.Text = "Type:";
       // 
       // picIcon
       // 
-      resources.ApplyResources(this.picIcon, "picIcon");
+      this.picIcon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.picIcon.Location = new System.Drawing.Point(3, 3);
       this.picIcon.Name = "picIcon";
+      this.picIcon.Size = new System.Drawing.Size(32, 32);
+      this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.picIcon.TabIndex = 6;
       this.picIcon.TabStop = false;
       // 
       // Thing
       // 
-      resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.lblText);
       this.Controls.Add(this.lstFields);
@@ -97,8 +127,9 @@ namespace PlayOnline.FFXI.PropertyPages {
       this.Controls.Add(this.lblType);
       this.Controls.Add(this.picIcon);
       this.Name = "Thing";
+      this.Size = new System.Drawing.Size(326, 382);
       this.TabName = "General";
-      ((System.ComponentModel.ISupportInitialize) (this.picIcon)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -112,6 +143,8 @@ namespace PlayOnline.FFXI.PropertyPages {
     private System.Windows.Forms.Label lblTypeName;
     private System.Windows.Forms.Label lblType;
     private System.Windows.Forms.PictureBox picIcon;
+    private System.Windows.Forms.ColumnHeader colFieldName;
+    private System.Windows.Forms.ColumnHeader colFieldValue;
 
 
   }

@@ -198,6 +198,9 @@ This may take quite a while.</value>
   <data name="FFXI8" xml:space="preserve">
     <value>A Shantotto Ascension</value>
   </data>
+  <data name="FFXI9" xml:space="preserve">
+    <value>Seekers of Adoulin</value>
+  </data>
   <data name="ImageScan" xml:space="preserve">
     <value>Scanning file for images - please wait...</value>
   </data>

@@ -3,7 +3,6 @@
 using System;
 using System.IO;
 using System.Xml;
-
 using PlayOnline.Core.Audio;
 
 namespace PlayOnline.Utils.AudioManager {
@@ -23,7 +22,7 @@ namespace PlayOnline.Utils.AudioManager {
     string Directory = Path.GetFileName(FullPath);
     XmlNode SubDir = App.SelectSingleNode(String.Format("subdir[@name = '{0}']", Directory));
       if (SubDir != null)
-	this.Title = SubDir.InnerText;
+        this.Title = SubDir.InnerText;
     }
 
     public FileInfo(XmlNode App, AudioFile AudioFile) {
@@ -32,24 +31,24 @@ namespace PlayOnline.Utils.AudioManager {
     XmlNode Track = null;
       {
       XmlNodeList Tracks = App.SelectNodes(String.Format("track[@id = {0}]", AudioFile.ID));
-	if (Tracks.Count > 1)
-	  Track = App.SelectSingleNode(String.Format("track[@id = {0} and @filename = '{1}']", AudioFile.ID, Path.GetFileName(AudioFile.Path)));
-	else if (Tracks.Count > 0)
-	  Track = Tracks[0];
+        if (Tracks.Count > 1)
+          Track = App.SelectSingleNode(String.Format("track[@id = {0} and @filename = '{1}']", AudioFile.ID, Path.GetFileName(AudioFile.Path)));
+        else if (Tracks.Count > 0)
+          Track = Tracks[0];
       }
       if (Track != null) {
       XmlNode Title = Track.SelectSingleNode("title");
-	if (Title != null)
-	  this.Title = Title.InnerText;
+        if (Title != null)
+          this.Title = Title.InnerText;
       XmlNode Composer = Track.SelectSingleNode("composer");
-	if (Composer == null)
-	  Composer = App.SelectSingleNode("composer");
-	if (Composer != null)
-	  this.Composer = Composer.InnerText;
+        if (Composer == null)
+          Composer = App.SelectSingleNode("composer");
+        if (Composer != null)
+          this.Composer = Composer.InnerText;
       }
       else {
-	this.Title = null;
-	this.Composer = null;
+        this.Title = null;
+        this.Composer = null;
       }
     }
 

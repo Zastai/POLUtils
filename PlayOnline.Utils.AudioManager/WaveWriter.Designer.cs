@@ -34,7 +34,6 @@ namespace PlayOnline.Utils.AudioManager {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WaveWriter));
       this.prbBytesWritten = new System.Windows.Forms.ProgressBar();
       this.lblSource = new System.Windows.Forms.Label();
       this.lblTarget = new System.Windows.Forms.Label();
@@ -44,36 +43,53 @@ namespace PlayOnline.Utils.AudioManager {
       // 
       // prbBytesWritten
       // 
-      resources.ApplyResources(this.prbBytesWritten, "prbBytesWritten");
+      this.prbBytesWritten.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.prbBytesWritten.Location = new System.Drawing.Point(8, 64);
       this.prbBytesWritten.Name = "prbBytesWritten";
+      this.prbBytesWritten.Size = new System.Drawing.Size(468, 24);
+      this.prbBytesWritten.TabIndex = 0;
       // 
       // lblSource
       // 
       this.lblSource.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblSource, "lblSource");
+      this.lblSource.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblSource.Location = new System.Drawing.Point(8, 12);
       this.lblSource.Name = "lblSource";
+      this.lblSource.Size = new System.Drawing.Size(40, 16);
+      this.lblSource.TabIndex = 1;
+      this.lblSource.Text = "Source:";
       // 
       // lblTarget
       // 
       this.lblTarget.FlatStyle = System.Windows.Forms.FlatStyle.System;
-      resources.ApplyResources(this.lblTarget, "lblTarget");
+      this.lblTarget.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.lblTarget.Location = new System.Drawing.Point(8, 40);
       this.lblTarget.Name = "lblTarget";
+      this.lblTarget.Size = new System.Drawing.Size(40, 16);
+      this.lblTarget.TabIndex = 2;
+      this.lblTarget.Text = "Target:";
       // 
       // txtSource
       // 
-      resources.ApplyResources(this.txtSource, "txtSource");
+      this.txtSource.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtSource.Location = new System.Drawing.Point(52, 8);
       this.txtSource.Name = "txtSource";
       this.txtSource.ReadOnly = true;
+      this.txtSource.Size = new System.Drawing.Size(424, 20);
+      this.txtSource.TabIndex = 3;
       // 
       // txtTarget
       // 
-      resources.ApplyResources(this.txtTarget, "txtTarget");
+      this.txtTarget.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.txtTarget.Location = new System.Drawing.Point(52, 36);
       this.txtTarget.Name = "txtTarget";
       this.txtTarget.ReadOnly = true;
+      this.txtTarget.Size = new System.Drawing.Size(424, 20);
+      this.txtTarget.TabIndex = 4;
       // 
       // WaveWriter
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(484, 96);
       this.ControlBox = false;
       this.Controls.Add(this.txtTarget);
       this.Controls.Add(this.txtSource);
@@ -83,6 +99,8 @@ namespace PlayOnline.Utils.AudioManager {
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Name = "WaveWriter";
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Decoding to Wave...";
       this.Activated += new System.EventHandler(this.WaveWriter_Activated);
       this.ResumeLayout(false);
       this.PerformLayout();

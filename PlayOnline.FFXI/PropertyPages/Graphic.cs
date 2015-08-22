@@ -10,14 +10,9 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-
 using PlayOnline.Core;
 
 namespace PlayOnline.FFXI.PropertyPages {
@@ -46,24 +41,24 @@ namespace PlayOnline.FFXI.PropertyPages {
     private void cmbBackColor_SelectedIndexChanged(object sender, EventArgs e) {
       this.btnSelectColor.Enabled = (this.cmbBackColor.SelectedIndex != 0);
       switch (this.cmbBackColor.SelectedIndex) {
-	case 0:  this.picImage.BackColor = Color.Transparent; break;
-	case 1:  this.picImage.BackColor = this.SolidColor_;  break;
-	default: this.picImage.BackColor = Color.Black;       break;
+        case 0:  this.picImage.BackColor = Color.Transparent; break;
+        case 1:  this.picImage.BackColor = this.SolidColor_;  break;
+        default: this.picImage.BackColor = Color.Black;       break;
       }
     }
 
     private void btnSelectColor_Click(object sender, EventArgs e) {
       this.dlgChooseColor.Color = this.SolidColor_;
       if (this.dlgChooseColor.ShowDialog(this) == DialogResult.OK) {
-	this.SolidColor_ = this.dlgChooseColor.Color;
-	this.picImage.BackColor = this.SolidColor_;
-	// FIXME: Persist custom colors?
+        this.SolidColor_ = this.dlgChooseColor.Color;
+        this.picImage.BackColor = this.SolidColor_;
+        // FIXME: Persist custom colors?
       }
     }
 
     private void btnSave_Click(object sender, EventArgs e) {
       if (this.dlgSaveImage.ShowDialog(this) == DialogResult.OK)
-	this.picImage.Image.Save(this.dlgSaveImage.FileName, ImageFormat.Png);
+        this.picImage.Image.Save(this.dlgSaveImage.FileName, ImageFormat.Png);
     }
 
   }

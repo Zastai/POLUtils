@@ -9,8 +9,6 @@
 // BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and limitations under the License.
 
-using System.IO;
-
 namespace PlayOnline.FFXI {
 
   public class CharacterMacros : SpecialMacroFolder {
@@ -18,10 +16,10 @@ namespace PlayOnline.FFXI {
     public CharacterMacros(Character C) : base(C.Name) {
     MacroBook[] Books = MacroBook.Load(C);
       if (Books != null)
-	this.Folders.AddRange(Books);
+        this.Folders.AddRange(Books);
       else {
-	for (int j = 0; j < 10; ++j)
-	  this.Folders.Add(MacroSet.Load(C.GetUserFileName(string.Format("mcr{0:#####}.dat", j)), string.Format("Macro Set {0}", j + 1)));
+        for (int j = 0; j < 10; ++j)
+          this.Folders.Add(MacroSet.Load(C.GetUserFileName(string.Format("mcr{0:#####}.dat", j)), string.Format("Macro Set {0}", j + 1)));
       }
     }
 
@@ -30,8 +28,8 @@ namespace PlayOnline.FFXI {
     public override bool Save() {
     bool OK = true;
       foreach (MacroFolder MF in this.Folders) {
-	if (MF.CanSave)
-	  OK = OK && MF.Save();
+        if (MF.CanSave)
+          OK = OK && MF.Save();
       }
       return OK;
     }

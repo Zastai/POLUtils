@@ -17,14 +17,13 @@ namespace PlayOnline.FFXI.PropertyPages {
 
     protected override void Dispose(bool disposing) {
       if (disposing && components != null)
-	components.Dispose();
+        components.Dispose();
       base.Dispose(disposing);
     }
 
     #region Component Designer generated code
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Item));
       this.ieEditor = new PlayOnline.FFXI.ItemEditor();
       this.SuspendLayout();
       // 
@@ -32,16 +31,20 @@ namespace PlayOnline.FFXI.PropertyPages {
       // 
       this.ieEditor.BackColor = System.Drawing.Color.Transparent;
       this.ieEditor.Item = null;
-      resources.ApplyResources(this.ieEditor, "ieEditor");
+      this.ieEditor.Location = new System.Drawing.Point(0, 0);
       this.ieEditor.Name = "ieEditor";
+      this.ieEditor.Size = new System.Drawing.Size(424, 260);
+      this.ieEditor.TabIndex = 0;
       // 
       // Item
       // 
-      resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.ieEditor);
       this.Name = "Item";
       this.TabName = "Item";
+      this.IsFixedSize = true;
+      this.Size = new System.Drawing.Size(424, 260);
       this.ResumeLayout(false);
 
     }
@@ -49,7 +52,6 @@ namespace PlayOnline.FFXI.PropertyPages {
     #endregion
 
     private ItemEditor ieEditor;
-
 
   }
 

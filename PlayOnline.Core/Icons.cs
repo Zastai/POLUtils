@@ -12,8 +12,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
 
 namespace PlayOnline.Core {
@@ -38,9 +36,9 @@ namespace PlayOnline.Core {
     Icon Result = null;
       if (hDLL != IntPtr.Zero) {
       IntPtr hIcon = Icons.LoadIcon(hDLL, new IntPtr(ResourceID));
-	if (hIcon != IntPtr.Zero)
-	  Result = Icon.FromHandle(hIcon);
-	Icons.FreeLibrary(hDLL);
+        if (hIcon != IntPtr.Zero)
+          Result = Icon.FromHandle(hIcon);
+        Icons.FreeLibrary(hDLL);
       }
       return Result;
     }
@@ -48,14 +46,14 @@ namespace PlayOnline.Core {
     private static Icon GetPOLIcon(ushort ResourceID) {
     string POLPath = POL.GetApplicationPath("1000");
       if (POLPath == null)
-	return null;
+        return null;
       return Icons.GetIcon(Path.Combine(POLPath, "pol.exe"), ResourceID);
     }
 
     private static Icon GetPOLConfigIcon(ushort ResourceID) {
     string POLPath = POL.GetApplicationPath("1000");
       if (POLPath == null)
-	return null;
+        return null;
       return Icons.GetIcon(Path.Combine(POLPath, Path.Combine("polcfg", "polcfg.exe")), ResourceID);
     }
 

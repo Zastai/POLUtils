@@ -27,11 +27,10 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
     /// </summary>
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NameChanges));
       this.lstNameChanges = new System.Windows.Forms.ListView();
-      this.chArea = new System.Windows.Forms.ColumnHeader();
-      this.chOldName = new System.Windows.Forms.ColumnHeader();
-      this.chNewName = new System.Windows.Forms.ColumnHeader();
+      this.chArea = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.chOldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.chNewName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.mnuNameChangeContext = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.mnuWriteSelected = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuRevertSelected = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,29 +50,37 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
       // 
       // lstNameChanges
       // 
-      resources.ApplyResources(this.lstNameChanges, "lstNameChanges");
+      this.lstNameChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.lstNameChanges.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chArea,
             this.chOldName,
             this.chNewName});
       this.lstNameChanges.ContextMenuStrip = this.mnuNameChangeContext;
       this.lstNameChanges.FullRowSelect = true;
+      this.lstNameChanges.Location = new System.Drawing.Point(12, 12);
       this.lstNameChanges.Name = "lstNameChanges";
+      this.lstNameChanges.Size = new System.Drawing.Size(888, 521);
+      this.lstNameChanges.TabIndex = 0;
       this.lstNameChanges.UseCompatibleStateImageBehavior = false;
       this.lstNameChanges.View = System.Windows.Forms.View.Details;
       this.lstNameChanges.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstNameChanges_KeyDown);
       // 
       // chArea
       // 
-      resources.ApplyResources(this.chArea, "chArea");
+      this.chArea.Text = "Area";
+      this.chArea.Width = 280;
       // 
       // chOldName
       // 
-      resources.ApplyResources(this.chOldName, "chOldName");
+      this.chOldName.Text = "Old Name";
+      this.chOldName.Width = 280;
       // 
       // chNewName
       // 
-      resources.ApplyResources(this.chNewName, "chNewName");
+      this.chNewName.Text = "New Name";
+      this.chNewName.Width = 280;
       // 
       // mnuNameChangeContext
       // 
@@ -83,101 +90,147 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
             this.mnuSaveSelected});
       this.mnuNameChangeContext.Name = "mnuNameChangeContext";
       this.mnuNameChangeContext.ShowImageMargin = false;
-      resources.ApplyResources(this.mnuNameChangeContext, "mnuNameChangeContext");
+      this.mnuNameChangeContext.Size = new System.Drawing.Size(179, 70);
       this.mnuNameChangeContext.Opening += new System.ComponentModel.CancelEventHandler(this.mnuNameChangeContext_Opening);
       // 
       // mnuWriteSelected
       // 
       this.mnuWriteSelected.Name = "mnuWriteSelected";
-      resources.ApplyResources(this.mnuWriteSelected, "mnuWriteSelected");
+      this.mnuWriteSelected.Size = new System.Drawing.Size(178, 22);
+      this.mnuWriteSelected.Text = "&Write Selected Changes";
       this.mnuWriteSelected.Click += new System.EventHandler(this.mnuWriteSelected_Click);
       // 
       // mnuRevertSelected
       // 
       this.mnuRevertSelected.Name = "mnuRevertSelected";
-      resources.ApplyResources(this.mnuRevertSelected, "mnuRevertSelected");
+      this.mnuRevertSelected.Size = new System.Drawing.Size(178, 22);
+      this.mnuRevertSelected.Text = "&Revert Selected Changes";
       this.mnuRevertSelected.Click += new System.EventHandler(this.mnuRevertSelected_Click);
       // 
       // mnuSaveSelected
       // 
       this.mnuSaveSelected.Name = "mnuSaveSelected";
-      resources.ApplyResources(this.mnuSaveSelected, "mnuSaveSelected");
+      this.mnuSaveSelected.Size = new System.Drawing.Size(178, 22);
+      this.mnuSaveSelected.Text = "&Save Selected Changes...";
       this.mnuSaveSelected.Click += new System.EventHandler(this.mnuSaveSelected_Click);
       // 
       // btnDiscardPending
       // 
-      resources.ApplyResources(this.btnDiscardPending, "btnDiscardPending");
+      this.btnDiscardPending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnDiscardPending.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnDiscardPending.Location = new System.Drawing.Point(525, 539);
       this.btnDiscardPending.Name = "btnDiscardPending";
+      this.btnDiscardPending.Size = new System.Drawing.Size(146, 23);
+      this.btnDiscardPending.TabIndex = 2;
+      this.btnDiscardPending.Text = "&Discard Pending Changes";
       this.btnDiscardPending.UseVisualStyleBackColor = true;
       this.btnDiscardPending.Click += new System.EventHandler(this.btnDiscardPending_Click);
       // 
       // btnWritePending
       // 
-      resources.ApplyResources(this.btnWritePending, "btnWritePending");
+      this.btnWritePending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnWritePending.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnWritePending.Location = new System.Drawing.Point(677, 539);
       this.btnWritePending.Name = "btnWritePending";
+      this.btnWritePending.Size = new System.Drawing.Size(142, 23);
+      this.btnWritePending.TabIndex = 3;
+      this.btnWritePending.Text = "&Write Pending Changes";
       this.btnWritePending.UseVisualStyleBackColor = true;
       this.btnWritePending.Click += new System.EventHandler(this.btnWritePending_Click);
       // 
       // btnClose
       // 
-      resources.ApplyResources(this.btnClose, "btnClose");
+      this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnClose.Location = new System.Drawing.Point(825, 539);
       this.btnClose.Name = "btnClose";
+      this.btnClose.Size = new System.Drawing.Size(75, 23);
+      this.btnClose.TabIndex = 4;
+      this.btnClose.Text = "&Close";
       this.btnClose.UseVisualStyleBackColor = true;
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
       // btnRevertAll
       // 
-      resources.ApplyResources(this.btnRevertAll, "btnRevertAll");
+      this.btnRevertAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnRevertAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRevertAll.Location = new System.Drawing.Point(403, 539);
       this.btnRevertAll.Name = "btnRevertAll";
+      this.btnRevertAll.Size = new System.Drawing.Size(116, 23);
+      this.btnRevertAll.TabIndex = 5;
+      this.btnRevertAll.Text = "&Revert All Changes";
       this.btnRevertAll.UseVisualStyleBackColor = true;
       this.btnRevertAll.Click += new System.EventHandler(this.btnRevertAll_Click);
       // 
       // btnForgetAll
       // 
-      resources.ApplyResources(this.btnForgetAll, "btnForgetAll");
+      this.btnForgetAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnForgetAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnForgetAll.Location = new System.Drawing.Point(283, 539);
       this.btnForgetAll.Name = "btnForgetAll";
+      this.btnForgetAll.Size = new System.Drawing.Size(114, 23);
+      this.btnForgetAll.TabIndex = 6;
+      this.btnForgetAll.Text = "&Forget All Changes";
       this.btnForgetAll.UseVisualStyleBackColor = true;
       this.btnForgetAll.Click += new System.EventHandler(this.btnForgetAll_Click);
       // 
       // btnApplySet
       // 
-      resources.ApplyResources(this.btnApplySet, "btnApplySet");
+      this.btnApplySet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.btnApplySet.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnApplySet.Location = new System.Drawing.Point(12, 539);
       this.btnApplySet.Name = "btnApplySet";
+      this.btnApplySet.Size = new System.Drawing.Size(106, 23);
+      this.btnApplySet.TabIndex = 7;
+      this.btnApplySet.Text = "&Apply Changeset..";
       this.btnApplySet.UseVisualStyleBackColor = true;
       this.btnApplySet.Click += new System.EventHandler(this.btnApplySet_Click);
       // 
       // btnUnapplySet
       // 
-      resources.ApplyResources(this.btnUnapplySet, "btnUnapplySet");
+      this.btnUnapplySet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.btnUnapplySet.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnUnapplySet.Location = new System.Drawing.Point(124, 539);
       this.btnUnapplySet.Name = "btnUnapplySet";
+      this.btnUnapplySet.Size = new System.Drawing.Size(114, 23);
+      this.btnUnapplySet.TabIndex = 8;
+      this.btnUnapplySet.Text = "&Unapply Changeset...";
       this.btnUnapplySet.UseVisualStyleBackColor = true;
       this.btnUnapplySet.Click += new System.EventHandler(this.btnUnapplySet_Click);
       // 
       // dlgLoadChangeset
       // 
       this.dlgLoadChangeset.DefaultExt = "xml";
-      resources.ApplyResources(this.dlgLoadChangeset, "dlgLoadChangeset");
+      this.dlgLoadChangeset.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
       this.dlgLoadChangeset.SupportMultiDottedExtensions = true;
+      this.dlgLoadChangeset.Title = "Load Changeset";
       // 
       // dlgSaveChangeset
       // 
       this.dlgSaveChangeset.DefaultExt = "xml";
-      resources.ApplyResources(this.dlgSaveChangeset, "dlgSaveChangeset");
+      this.dlgSaveChangeset.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
       this.dlgSaveChangeset.SupportMultiDottedExtensions = true;
+      this.dlgSaveChangeset.Title = "Save Changeset";
       // 
       // prbWriteChanges
       // 
-      resources.ApplyResources(this.prbWriteChanges, "prbWriteChanges");
+      this.prbWriteChanges.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.prbWriteChanges.Location = new System.Drawing.Point(12, 513);
       this.prbWriteChanges.Name = "prbWriteChanges";
+      this.prbWriteChanges.Size = new System.Drawing.Size(888, 20);
       this.prbWriteChanges.Step = 1;
       this.prbWriteChanges.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+      this.prbWriteChanges.TabIndex = 9;
+      this.prbWriteChanges.Visible = false;
       // 
       // NameChanges
       // 
-      resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.btnClose;
+      this.ClientSize = new System.Drawing.Size(912, 574);
       this.Controls.Add(this.prbWriteChanges);
       this.Controls.Add(this.btnWritePending);
       this.Controls.Add(this.btnForgetAll);
@@ -188,7 +241,10 @@ namespace PlayOnline.FFXI.Utils.NPCRenamer {
       this.Controls.Add(this.btnClose);
       this.Controls.Add(this.btnDiscardPending);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+      this.MinimumSize = new System.Drawing.Size(880, 230);
       this.Name = "NameChanges";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Name Changes";
       this.mnuNameChangeContext.ResumeLayout(false);
       this.ResumeLayout(false);
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- $Id$ -->
 <!--
 // Copyright © 2004-2010 Tim Van Holder
@@ -164,16 +164,16 @@
   <application id="0001" name="Final Fantasy XI - Wings of the Goddess">
     <data-path>sound5/win/music/data</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#5)">
+  <application id="0001" name="Final Fantasy XI - A Crystalline Prophecy">
     <data-path>sound6/win/music/data</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#6)">
+  <application id="0001" name="Final Fantasy XI - A Moogle Kupo d'Etat">
     <data-path>sound7/win/music/data</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#7)">
+  <application id="0001" name="Final Fantasy XI - A Shantotto Ascension">
     <data-path>sound8/win/music/data</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#8)">
+  <application id="0001" name="Final Fantasy XI - Seekers of Adoulin">
     <data-path>sound9/win/music/data</data-path>
   </application>
   <application id="0002" name="Tetra Master">

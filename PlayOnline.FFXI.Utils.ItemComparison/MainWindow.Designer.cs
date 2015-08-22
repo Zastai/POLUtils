@@ -36,7 +36,6 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.ieLeft = new PlayOnline.FFXI.ItemEditor();
       this.ieRight = new PlayOnline.FFXI.ItemEditor();
       this.btnLoadItemSet1 = new System.Windows.Forms.Button();
@@ -50,51 +49,84 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       // 
       this.ieLeft.BackColor = System.Drawing.Color.Transparent;
       this.ieLeft.Item = null;
-      resources.ApplyResources(this.ieLeft, "ieLeft");
+      this.ieLeft.Location = new System.Drawing.Point(4, 32);
       this.ieLeft.Name = "ieLeft";
+      this.ieLeft.Size = new System.Drawing.Size(424, 260);
+      this.ieLeft.TabIndex = 0;
       this.ieLeft.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // ieRight
       // 
-      resources.ApplyResources(this.ieRight, "ieRight");
+      this.ieRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.ieRight.BackColor = System.Drawing.Color.Transparent;
       this.ieRight.Item = null;
+      this.ieRight.Location = new System.Drawing.Point(436, 32);
       this.ieRight.Name = "ieRight";
+      this.ieRight.Size = new System.Drawing.Size(424, 260);
+      this.ieRight.TabIndex = 0;
       this.ieRight.SizeChanged += new System.EventHandler(this.ItemViewerSizeChanged);
       // 
       // btnLoadItemSet1
       // 
-      resources.ApplyResources(this.btnLoadItemSet1, "btnLoadItemSet1");
+      this.btnLoadItemSet1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnLoadItemSet1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnLoadItemSet1.Location = new System.Drawing.Point(4, 4);
       this.btnLoadItemSet1.Name = "btnLoadItemSet1";
+      this.btnLoadItemSet1.Size = new System.Drawing.Size(104, 24);
+      this.btnLoadItemSet1.TabIndex = 1;
+      this.btnLoadItemSet1.Text = "Load Item Set &1...";
       this.btnLoadItemSet1.Click += new System.EventHandler(this.btnLoadItemSet1_Click);
       // 
       // btnLoadItemSet2
       // 
-      resources.ApplyResources(this.btnLoadItemSet2, "btnLoadItemSet2");
+      this.btnLoadItemSet2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnLoadItemSet2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnLoadItemSet2.Location = new System.Drawing.Point(756, 4);
       this.btnLoadItemSet2.Name = "btnLoadItemSet2";
+      this.btnLoadItemSet2.Size = new System.Drawing.Size(104, 24);
+      this.btnLoadItemSet2.TabIndex = 4;
+      this.btnLoadItemSet2.Text = "Load Item Set &2...";
       this.btnLoadItemSet2.Click += new System.EventHandler(this.btnLoadItemSet2_Click);
       // 
       // btnPrevious
       // 
-      resources.ApplyResources(this.btnPrevious, "btnPrevious");
+      this.btnPrevious.Enabled = false;
+      this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnPrevious.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnPrevious.Location = new System.Drawing.Point(301, 4);
       this.btnPrevious.Name = "btnPrevious";
+      this.btnPrevious.Size = new System.Drawing.Size(60, 24);
+      this.btnPrevious.TabIndex = 2;
+      this.btnPrevious.Text = "< &Previous";
       this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
       // 
       // btnNext
       // 
-      resources.ApplyResources(this.btnNext, "btnNext");
+      this.btnNext.Enabled = false;
+      this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnNext.Location = new System.Drawing.Point(505, 4);
       this.btnNext.Name = "btnNext";
+      this.btnNext.Size = new System.Drawing.Size(60, 24);
+      this.btnNext.TabIndex = 3;
+      this.btnNext.Text = "&Next >";
       this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
       // 
       // btnRemoveUnchanged
       // 
-      resources.ApplyResources(this.btnRemoveUnchanged, "btnRemoveUnchanged");
+      this.btnRemoveUnchanged.Enabled = false;
+      this.btnRemoveUnchanged.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRemoveUnchanged.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnRemoveUnchanged.Location = new System.Drawing.Point(365, 4);
       this.btnRemoveUnchanged.Name = "btnRemoveUnchanged";
+      this.btnRemoveUnchanged.Size = new System.Drawing.Size(136, 24);
+      this.btnRemoveUnchanged.TabIndex = 5;
+      this.btnRemoveUnchanged.Text = "&Remove Unchanged Items";
       this.btnRemoveUnchanged.Click += new System.EventHandler(this.btnRemoveUnchanged_Click);
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(866, 31);
       this.Controls.Add(this.btnRemoveUnchanged);
       this.Controls.Add(this.btnNext);
       this.Controls.Add(this.btnPrevious);
@@ -105,6 +137,7 @@ namespace PlayOnline.FFXI.Utils.ItemComparison {
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.MaximizeBox = false;
       this.Name = "MainWindow";
+      this.Text = "FFXI Item Data Comparison";
       this.ResumeLayout(false);
 
     }

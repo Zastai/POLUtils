@@ -3,13 +3,16 @@
 Requirements for building POLUtils
 ==================================
 
-Main requirement is Visual Studio 2008. I think Visual C# Express 2008 is not enough (I don't think it does 64-bit builds).
-A command-line Subversion client (svn.exe) needs to be in Visual Studio's executables path (either in the global PATH or specified via
-Tools>Options, Projects and Solutions, VC++ Directories, Executable files) for the build to work (the current revision number is embedded
-in the POLUtils executable). Convenient MSI packages (both for 32-bit and 64 bit) can be retrieved from http://www.sliksvn.com/en/download.
+Main requirement is Visual Studio 2012 or 2013 (Visual Studio 2010 can work too, but it doesn't support restoring NuGet
+packages, so you'd have to put the dependencies in place manually).
+Target framework should remain at v4.0 until further notice, to keep support for Windows XP.
 
-Building the installer requires NSIS (http://nsis.sourceforge.net/).
+A command-line Subversion client (specifically svnversion.exe) needs to be in Visual Studio's executables path (either in
+the global PATH or specified via Tools>Options, Projects and Solutions, VC++ Directories, Executable files) for the build
+to work (the current revision number is embedded in the POLUtils executable). Installing TortoiseSVN (a must for SVN use
+on Windows, really) provides the option to install command-line utilities (and probably adds them to PATH as well).
 
-For building the translator kit, more GNU tools will be required (at least bash and awk). Advanced use only.
+Building the installer currently requires NSIS (http://nsis.sourceforge.net/).
+This may switch to the Wix toolkit in the near future.
 
 See also CODING.txt for coding and style guidelines, if you want to modify the code.

@@ -1,75 +1,36 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectGuid>{F98E06E7-A9BF-4E8A-9059-96DF4DD2BEEC}</ProjectGuid>
     <AssemblyName>PlayOnline.FFXI</AssemblyName>
-    <AssemblyOriginatorKeyFile>..\POLUtils.snk</AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
+    <RootNamespace>PlayOnline.FFXI</RootNamespace>
     <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\POLUtils.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <NoWarn>1607</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Release\</OutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <NoWarn>1607</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <NoWarn>1607</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Data">
-      <Name>System.Data</Name>
     </Reference>
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
@@ -91,7 +52,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FFXI.cs" />
-    <Compile Include="FileTypes\MonsterSpellInfo.cs" />
+    <Compile Include="Things\MonsterSpellInfo.cs" />
     <Compile Include="FileTypes\SpellAndAbilityInfo.cs" />
     <Compile Include="FileTypes\DMSGStringTable2.cs" />
     <Compile Include="FileTypes\DMSGStringTable3.cs" />
@@ -100,21 +61,21 @@
     <Compile Include="Game.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IThings\AbilityInfo.cs" />
-    <Compile Include="IThings\AbilityInfo2.cs" />
-    <Compile Include="IThings\SpellInfo2.cs" />
-    <Compile Include="IThings\DMSGStringBlock.cs" />
-    <Compile Include="IThings\MobListEntry.cs" />
-    <Compile Include="IThings\DMSGStringTableEntry.cs" />
-    <Compile Include="IThings\DialogTableEntry.cs" />
-    <Compile Include="IThings\Graphic.cs" />
-    <Compile Include="IThings\Item.cs" />
-    <Compile Include="IThings\QuestInfo.cs" />
-    <Compile Include="IThings\SimpleStringTableEntry.cs" />
-    <Compile Include="IThings\SpellInfo.cs" />
-    <Compile Include="IThings\StatusInfo.cs" />
-    <Compile Include="IThings\Thing.cs" />
-    <Compile Include="IThings\XIStringTableEntry.cs" />
+    <Compile Include="Things\AbilityInfo.cs" />
+    <Compile Include="Things\AbilityInfo2.cs" />
+    <Compile Include="Things\SpellInfo2.cs" />
+    <Compile Include="Things\DMSGStringBlock.cs" />
+    <Compile Include="Things\MobListEntry.cs" />
+    <Compile Include="Things\DMSGStringTableEntry.cs" />
+    <Compile Include="Things\DialogTableEntry.cs" />
+    <Compile Include="Things\Graphic.cs" />
+    <Compile Include="Things\Item.cs" />
+    <Compile Include="Things\QuestInfo.cs" />
+    <Compile Include="Things\SimpleStringTableEntry.cs" />
+    <Compile Include="Things\SpellInfo.cs" />
+    <Compile Include="Things\StatusInfo.cs" />
+    <Compile Include="Things\Thing.cs" />
+    <Compile Include="Things\XIStringTableEntry.cs" />
     <Compile Include="FileTypes\SpellInfo.cs" />
     <Compile Include="FileTypes\SimpleStringTable.cs" />
     <Compile Include="FileTypes\DialogTable.cs" />
@@ -135,7 +96,7 @@
       <DependentUpon>IThing.cs</DependentUpon>
     </Compile>
     <Compile Include="ThingList.cs" />
-    <Compile Include="IThing.cs" />
+    <Compile Include="Things\IThing.cs" />
     <Compile Include="PleaseWaitDialog.Designer.cs">
       <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
     </Compile>
@@ -247,58 +208,9 @@
     <EmbeddedResource Include="ConversionTables\FAxx.dat" />
     <EmbeddedResource Include="ConversionTables\FBxx.dat" />
     <EmbeddedResource Include="ConversionTables\FCxx.dat" />
-    <EmbeddedResource Include="ItemEditor.de.resx">
-      <DependentUpon>ItemEditor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ItemEditor.resx">
-      <DependentUpon>ItemEditor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messages.de.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Messages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PleaseWaitDialog.de.resx">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PleaseWaitDialog.resx">
-      <DependentUpon>PleaseWaitDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyPages\Item.resx">
-      <DependentUpon>Item.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyPages\IThing.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>IThing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyPages\Thing.resx">
-      <DependentUpon>Thing.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyPages\Graphic.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Graphic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThingPropertyPages.de.resx">
-      <DependentUpon>ThingPropertyPages.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThingPropertyPages.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ThingPropertyPages.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>

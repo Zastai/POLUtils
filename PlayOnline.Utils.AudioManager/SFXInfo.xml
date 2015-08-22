@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- $Id$ -->
 <!--
 // Copyright © 2004-2010 Tim Van Holder
@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and limitations under the License.
 -->
 <pol-audio-data>
-  <application id="0001" name="FinalFantasy XI">
+  <application id="0001" name="Final Fantasy XI">
     <data-path>sound/win/se</data-path>
     <subdir name="se000">Main Sounds</subdir>
     <track id="1"><title>Main Sounds - Menu Movement</title></track>
@@ -139,7 +139,7 @@
     <subdir name="129">Various Effects</subdir>
     <subdir name="se201">Monster SFX - Bird</subdir>
   </application>
-  <application id="0001" name="FinalFantasy XI - Rise of the Zilart">
+  <application id="0001" name="Final Fantasy XI - Rise of the Zilart">
     <data-path>sound2/win/se</data-path>
     <subdir name="se270">Monster SFX - Spider A</subdir>
     <track id="270001"><title>Monster SFX - Spider A #01</title></track>
@@ -176,25 +176,19 @@
     <track id="271015"><title>Monster SFX - Spider B #15</title></track>
     <track id="271016"><title>Monster SFX - Spider B #16</title></track>
   </application>
-  <application id="0001" name="FinalFantasy XI - Chains of Promathia">
-    <data-path>sound3/win/se</data-path>
-  </application>
-  <application id="0001" name="Final Fantasy XI - Treasures of Aht Urhgan">
-    <data-path>sound4/win/se</data-path>
-  </application>
   <application id="0001" name="Final Fantasy XI - Wings of the Goddess">
     <data-path>sound5/win/se</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#5)">
+  <application id="0001" name="Final Fantasy XI - A Crystalline Prophecy">
     <data-path>sound6/win/se</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#6)">
+  <application id="0001" name="Final Fantasy XI - A Moogle Kupo d'Etat">
     <data-path>sound7/win/se</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#7)">
+  <application id="0001" name="Final Fantasy XI - A Shantotto Ascension">
     <data-path>sound8/win/se</data-path>
   </application>
-  <application id="0001" name="Final Fantasy XI - Future Expansion (#8)">
+  <application id="0001" name="Final Fantasy XI - Seekers of Adoulin">
     <data-path>sound9/win/se</data-path>
   </application>
   <application id="0002" name="Tetra Master">

@@ -18,16 +18,16 @@
   <xsl:template match="/">
     <xsl:choose>
       <xsl:when test="/ffxi-item-info">
-	<xsl:apply-templates mode="format-1" select="/ffxi-item-info"/>
+        <xsl:apply-templates mode="format-1" select="/ffxi-item-info"/>
       </xsl:when>
       <xsl:when test="/ItemList">
-	<xsl:apply-templates mode="format-2" select="/ItemList"/>
+        <xsl:apply-templates mode="format-2" select="/ItemList"/>
       </xsl:when>
       <xsl:when test="/thing-list">
-	<xsl:apply-templates mode="format-3" select="/thing-list"/>
+        <xsl:apply-templates mode="format-3" select="/thing-list"/>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:message terminate="yes">Sorry, this file could not be recognized as an item dump.</xsl:message>
+        <xsl:message terminate="yes">Sorry, this file could not be recognized as an item dump.</xsl:message>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -43,9 +43,9 @@
   <xsl:template mode="format-1" match="/ffxi-item-info">
     <thing-list>
       <xsl:for-each select="item">
-	<thing type="Item">
-	  <xsl:apply-templates mode="format-1" select="."/>
-	</thing>
+        <thing type="Item">
+          <xsl:apply-templates mode="format-1" select="."/>
+        </thing>
       </xsl:for-each>
     </thing-list>
   </xsl:template>
@@ -53,27 +53,27 @@
   <xsl:template mode="format-1" match="/ffxi-item-info/item">
     <xsl:for-each select="field">
       <xsl:choose>
-	<xsl:when test="@name = 'EnglishName'">
-	  <xsl:if test="/ffxi-item-info/data-language = 'English'">
-	    <field>
-	      <xsl:attribute name="name">name</xsl:attribute>
-	      <xsl:value-of select="."/>
-	    </field>
-	  </xsl:if>
-	</xsl:when>
-	<xsl:when test="@name = 'JapaneseName'">
-	  <xsl:if test="/ffxi-item-info/data-language = 'Japanese'">
-	    <field>
-	      <xsl:attribute name="name">name</xsl:attribute>
-	      <xsl:value-of select="."/>
-	    </field>
-	  </xsl:if>
-	</xsl:when>
-	<xsl:otherwise>
-	  <field>
-	    <xsl:apply-templates mode="format-1" select="."/>
-	  </field>
-	</xsl:otherwise>
+        <xsl:when test="@name = 'EnglishName'">
+          <xsl:if test="/ffxi-item-info/data-language = 'English'">
+            <field>
+              <xsl:attribute name="name">name</xsl:attribute>
+              <xsl:value-of select="."/>
+            </field>
+          </xsl:if>
+        </xsl:when>
+        <xsl:when test="@name = 'JapaneseName'">
+          <xsl:if test="/ffxi-item-info/data-language = 'Japanese'">
+            <field>
+              <xsl:attribute name="name">name</xsl:attribute>
+              <xsl:value-of select="."/>
+            </field>
+          </xsl:if>
+        </xsl:when>
+        <xsl:otherwise>
+          <field>
+            <xsl:apply-templates mode="format-1" select="."/>
+          </field>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
     <!-- Calculate DPS -->
@@ -92,7 +92,7 @@
   <xsl:template mode="format-1-map-field-name" match="/ffxi-item-info/item/field">
     <xsl:attribute name="name">
       <xsl:call-template name="map-field-name">
-	<xsl:with-param name="field-name" select="@name"/>
+        <xsl:with-param name="field-name" select="@name"/>
       </xsl:call-template>
     </xsl:attribute>
   </xsl:template>
@@ -250,12 +250,12 @@
   <xsl:template mode="format-1" match="/ffxi-item-info/item/icon">
     <field name="icon">
       <thing type="Graphic">
-	<xsl:if test="@category"><field name="category"><xsl:value-of select="@category"/></field></xsl:if>
-	<xsl:if test="@id"><field name="id"><xsl:value-of select="@id"/></field></xsl:if>
-	<xsl:if test="@format"><field name="format"><xsl:value-of select="@format"/></field></xsl:if>
-	<field name="image" format="image/png" encoding="base64">
-	  <xsl:value-of select="."/>
-	</field>
+        <xsl:if test="@category"><field name="category"><xsl:value-of select="@category"/></field></xsl:if>
+        <xsl:if test="@id"><field name="id"><xsl:value-of select="@id"/></field></xsl:if>
+        <xsl:if test="@format"><field name="format"><xsl:value-of select="@format"/></field></xsl:if>
+        <field name="image" format="image/png" encoding="base64">
+          <xsl:value-of select="."/>
+        </field>
       </thing>
     </field>
   </xsl:template>
@@ -272,9 +272,9 @@
   <xsl:template mode="format-2" match="/ItemList">
     <thing-list>
       <xsl:for-each select="Item">
-	<thing type="Item">
-	  <xsl:apply-templates mode="format-2" select="."/>
-	</thing>
+        <thing type="Item">
+          <xsl:apply-templates mode="format-2" select="."/>
+        </thing>
       </xsl:for-each>
     </thing-list>
   </xsl:template>
@@ -282,50 +282,50 @@
   <xsl:template mode="format-2" match="/ItemList/Item">
     <xsl:for-each select="./child::*">
       <xsl:choose>
-	<xsl:when test="name() = 'EnglishName'">
-	  <xsl:if test="/ItemList[@Language = 'English']">
-	    <field>
-	      <xsl:attribute name="name">name</xsl:attribute>
-	      <xsl:value-of select="."/>
-	    </field>
-	  </xsl:if>
-	</xsl:when>
-	<xsl:when test="name() = 'JapaneseName'">
-	  <xsl:if test="/ItemList[@Language = 'Japanese']">
-	    <field>
-	      <xsl:attribute name="name">name</xsl:attribute>
-	      <xsl:value-of select="."/>
-	    </field>
-	  </xsl:if>
-	</xsl:when>
-	<xsl:when test="name() = 'Icon'">
-	  <field>
-	    <xsl:attribute name="name">
-	      <xsl:call-template name="map-field-name">
-		<xsl:with-param name="field-name" select="name()"/>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	    <thing type="Graphic">
-	      <xsl:if test="@Category"><field name="category"><xsl:value-of select="@Category"/></field></xsl:if>
-	      <xsl:if test="@ID"><field name="id"><xsl:value-of select="@ID"/></field></xsl:if>
-	      <xsl:if test="@Format"><field name="format"><xsl:value-of select="@Format"/></field></xsl:if>
-	      <field name="image" format="image/png" encoding="base64">
-		<xsl:value-of select="."/>
-	      </field>
-	    </thing>
-	  </field>
-	</xsl:when>
-	<xsl:otherwise>
-	  <field>
-	    <xsl:attribute name="name">
-	      <xsl:call-template name="map-field-name">
-		<xsl:with-param name="field-name" select="name()"/>
-	      </xsl:call-template>
-	    </xsl:attribute>
-	    <xsl:if test="name() = 'Jobs'">0000</xsl:if>
-	    <xsl:value-of select="."/>
-	  </field>
-	</xsl:otherwise>
+        <xsl:when test="name() = 'EnglishName'">
+          <xsl:if test="/ItemList[@Language = 'English']">
+            <field>
+              <xsl:attribute name="name">name</xsl:attribute>
+              <xsl:value-of select="."/>
+            </field>
+          </xsl:if>
+        </xsl:when>
+        <xsl:when test="name() = 'JapaneseName'">
+          <xsl:if test="/ItemList[@Language = 'Japanese']">
+            <field>
+              <xsl:attribute name="name">name</xsl:attribute>
+              <xsl:value-of select="."/>
+            </field>
+          </xsl:if>
+        </xsl:when>
+        <xsl:when test="name() = 'Icon'">
+          <field>
+            <xsl:attribute name="name">
+              <xsl:call-template name="map-field-name">
+                <xsl:with-param name="field-name" select="name()"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <thing type="Graphic">
+              <xsl:if test="@Category"><field name="category"><xsl:value-of select="@Category"/></field></xsl:if>
+              <xsl:if test="@ID"><field name="id"><xsl:value-of select="@ID"/></field></xsl:if>
+              <xsl:if test="@Format"><field name="format"><xsl:value-of select="@Format"/></field></xsl:if>
+              <field name="image" format="image/png" encoding="base64">
+                <xsl:value-of select="."/>
+              </field>
+            </thing>
+          </field>
+        </xsl:when>
+        <xsl:otherwise>
+          <field>
+            <xsl:attribute name="name">
+              <xsl:call-template name="map-field-name">
+                <xsl:with-param name="field-name" select="name()"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:if test="name() = 'Jobs'">0000</xsl:if>
+            <xsl:value-of select="."/>
+          </field>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
@@ -350,32 +350,32 @@
     <thing>
       <xsl:copy-of select="@*"/>
       <xsl:for-each select="field">
-	<xsl:choose>
-	  <!-- english-name and japanese-name were obsoleted by the 20061218 patch; either discard or rename to 'name' -->
-	  <xsl:when test="@name = 'english-name'">
-	    <xsl:if test="../field[@name = 'log-name-singular']">
-	      <field>
-		<xsl:copy-of select="@*"/>
-		<xsl:attribute name="name">name</xsl:attribute>
-		<xsl:copy-of select="*"/>
-		<xsl:copy-of select="text()"/>
-	      </field>
-	    </xsl:if>
-	  </xsl:when>
-	  <xsl:when test="@name = 'japanese-name'">
-	    <xsl:if test="not(../field[@name = 'log-name-singular'])">
-	      <field>
-		<xsl:copy-of select="@*"/>
-		<xsl:attribute name="name">name</xsl:attribute>
-		<xsl:copy-of select="*"/>
-		<xsl:copy-of select="text()"/>
-	      </field>
-	    </xsl:if>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:copy-of select="."/>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:choose>
+          <!-- english-name and japanese-name were obsoleted by the 20061218 patch; either discard or rename to 'name' -->
+          <xsl:when test="@name = 'english-name'">
+            <xsl:if test="../field[@name = 'log-name-singular']">
+              <field>
+                <xsl:copy-of select="@*"/>
+                <xsl:attribute name="name">name</xsl:attribute>
+                <xsl:copy-of select="*"/>
+                <xsl:copy-of select="text()"/>
+              </field>
+            </xsl:if>
+          </xsl:when>
+          <xsl:when test="@name = 'japanese-name'">
+            <xsl:if test="not(../field[@name = 'log-name-singular'])">
+              <field>
+                <xsl:copy-of select="@*"/>
+                <xsl:attribute name="name">name</xsl:attribute>
+                <xsl:copy-of select="*"/>
+                <xsl:copy-of select="text()"/>
+              </field>
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:for-each>
     </thing>
   </xsl:template>
@@ -397,16 +397,16 @@
 
     <xsl:if test="$rest != 0">
       <xsl:call-template name="format-number-as-hex">
-	<xsl:with-param name="number" select="$rest"/>
+        <xsl:with-param name="number" select="$rest"/>
       </xsl:call-template>
     </xsl:if>
 
     <xsl:choose>
       <xsl:when test="$this-nybble &gt;= 10">
-	<xsl:value-of select="translate(string($this-nybble - 10), '012345', 'ABCDEF')"/>
+        <xsl:value-of select="translate(string($this-nybble - 10), '012345', 'ABCDEF')"/>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:value-of select="$this-nybble"/>
+        <xsl:value-of select="$this-nybble"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

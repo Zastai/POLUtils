@@ -34,13 +34,13 @@ namespace PlayOnline.FFXI {
       public uint ResID { get { return (uint) ((this.Category << 24) + (this.Language << 16) + (this.ParentGroup << 8) + this.ID); } }
 
       internal MessageGroup() {
-	this.Category    = 0;
-	this.Language    = 0;
-	this.ID          = 0;
-	this.ParentGroup = 0;
-	this.Title       = String.Empty;
-	this.Description = String.Empty;
-	this.Messages    = new MessageCollection();
+        this.Category    = 0;
+        this.Language    = 0;
+        this.ID          = 0;
+        this.ParentGroup = 0;
+        this.Title       = String.Empty;
+        this.Description = String.Empty;
+        this.Messages    = new MessageCollection();
       }
 
     }
@@ -53,52 +53,52 @@ namespace PlayOnline.FFXI {
       public byte ParentGroup;
 
       public string Text {
-	get { return this.MaybeExpand(ref this.Text_); }
-	set { this.Text_ = value; }
+        get { return this.MaybeExpand(ref this.Text_); }
+        set { this.Text_ = value; }
       }
       private string Text_;
 
       public string AlternateText {
-	get { return this.MaybeExpand(ref this.AlternateText_); }
-	set { this.AlternateText_ = value; }
+        get { return this.MaybeExpand(ref this.AlternateText_); }
+        set { this.AlternateText_ = value; }
       }
       private string AlternateText_;
 
       public uint ResID { get { return (uint) ((this.Category << 24) + (this.Language << 16) + (this.ParentGroup << 8) + this.ID); } }
 
       internal Message() {
-	this.Category      = 0;
-	this.Language      = 0;
-	this.ID            = 0;
-	this.ParentGroup   = 0;
-	this.Text          = String.Empty;
-	this.AlternateText = String.Empty;
+        this.Category      = 0;
+        this.Language      = 0;
+        this.ID            = 0;
+        this.ParentGroup   = 0;
+        this.Text          = String.Empty;
+        this.AlternateText = String.Empty;
       }
 
       private string MaybeExpand(ref string Text) {
-	// Reference to a string table entry? => return referenced string
-	if (Text != null && Text.Length > 2 && Text.Length <= 6 && Text[0] == '@') {
-	char ReferenceType = Text[1];
-	  try {
-	  ushort EntryNumber = ushort.Parse(Text.Substring(2), NumberStyles.AllowHexSpecifier);
-	    switch (ReferenceType) {
-	      case 'A': Text = FFXIResourceManager.GetAreaName   (EntryNumber); break;
-	      case 'C': Text = FFXIResourceManager.GetSpellName  (EntryNumber); break;
-	      case 'J': Text = FFXIResourceManager.GetJobName    (EntryNumber); break;
-	      case 'Y': Text = FFXIResourceManager.GetAbilityName(EntryNumber); break;
-	    }
-	  } catch { }
-	}
-	return Text;
+        // Reference to a string table entry? => return referenced string
+        if (Text != null && Text.Length > 2 && Text.Length <= 6 && Text[0] == '@') {
+        char ReferenceType = Text[1];
+          try {
+          ushort EntryNumber = ushort.Parse(Text.Substring(2), NumberStyles.AllowHexSpecifier);
+            switch (ReferenceType) {
+              case 'A': Text = FFXIResourceManager.GetAreaName   (EntryNumber); break;
+              case 'C': Text = FFXIResourceManager.GetSpellName  (EntryNumber); break;
+              case 'J': Text = FFXIResourceManager.GetJobName    (EntryNumber); break;
+              case 'Y': Text = FFXIResourceManager.GetAbilityName(EntryNumber); break;
+            }
+          } catch { }
+        }
+        return Text;
       }
 
     }
 
     public static MessageGroupCollection Data {
       get {
-	if (AutoTranslator.Data_ == null)
-	  AutoTranslator.LoadData();
-	return AutoTranslator.Data_;
+        if (AutoTranslator.Data_ == null)
+          AutoTranslator.LoadData();
+        return AutoTranslator.Data_;
       }
     }
     private static MessageGroupCollection Data_ = null;
@@ -110,9 +110,9 @@ namespace PlayOnline.FFXI {
       FileStream FS = new FileStream(DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
       Encoding E = new FFXIEncoding();
       BinaryReader BR = new BinaryReader(FS, E);
-	while (FS.Position < FS.Length)
-	  AutoTranslator.Data_.Add(AutoTranslator.ReadMessageGroup(BR, E));
-	BR.Close();
+        while (FS.Position < FS.Length)
+          AutoTranslator.Data_.Add(AutoTranslator.ReadMessageGroup(BR, E));
+        BR.Close();
       } catch (Exception E) { Console.WriteLine(E.ToString()); }
     }
 
@@ -127,7 +127,7 @@ namespace PlayOnline.FFXI {
     uint MessageCount = BR.ReadUInt32();
       /* MessageBytes */ BR.ReadUInt32();
       for (int i = 0; i < MessageCount; ++i)
-	MG.Messages.Add(AutoTranslator.ReadMessage(BR, E));
+        MG.Messages.Add(AutoTranslator.ReadMessage(BR, E));
       return MG;
     }
 
@@ -139,7 +139,7 @@ namespace PlayOnline.FFXI {
       M.ID          = BR.ReadByte();
       M.Text        = E.GetString(BR.ReadBytes(BR.ReadByte())).TrimEnd('\0');
       if (M.Category == 4)
-	M.AlternateText = E.GetString(BR.ReadBytes(BR.ReadByte())).TrimEnd('\0');
+        M.AlternateText = E.GetString(BR.ReadBytes(BR.ReadByte())).TrimEnd('\0');
       return M;
     }
 

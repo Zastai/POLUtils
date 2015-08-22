@@ -10,7 +10,6 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -29,9 +28,9 @@ namespace PlayOnline.FFXI {
 
     public static bool Rotate(IList<byte> Data, int Offset, int Size, byte ShiftSize) {
       if (ShiftSize < 1 || ShiftSize > 8)
-	return false;
+        return false;
       for (int i = 0; i < Size; ++i)
-	Data[Offset + i] = FFXIEncryption.Rotate(Data[Offset + i], ShiftSize);
+        Data[Offset + i] = FFXIEncryption.Rotate(Data[Offset + i], ShiftSize);
       return true;
     }
 
@@ -47,36 +46,36 @@ namespace PlayOnline.FFXI {
 
     private static byte GetTextShiftSize(IList<byte> Data, int Offset, int Size) {
       if (Size < 2)
-	return 0;
+        return 0;
       if (Data[Offset + 0] == 0 && Data[Offset + 1] == 0)
-	return 0;
+        return 0;
       // This is the heuristic that ffxitool uses to determine the shift size - it makes absolutely no
       // sense to me, but it works; I suppose the author of ffxitool reverse engineered what FFXI does.
     int BitCount = FFXIEncryption.CountBits(Data[Offset + 1]) - FFXIEncryption.CountBits(Data[Offset + 0]);
       switch (Math.Abs(BitCount) % 5) {
-	case 0: return 1;
-	case 1: return 7;
-	case 2: return 2;
-	case 3: return 6;
-	case 4: return 3;
+        case 0: return 1;
+        case 1: return 7;
+        case 2: return 2;
+        case 3: return 6;
+        case 4: return 3;
       }
       return 0;
     }
 
     private static byte GetDataShiftSize(IList<byte> Data, int Offset, int Size) {
       if (Size < 13)
-	return 0;
+        return 0;
       // This is the heuristic that ffxitool uses to determine the shift size - it makes absolutely no
       // sense to me, but it works; I suppose the author of ffxitool reverse engineered what FFXI does.
     int BitCount = FFXIEncryption.CountBits(Data[Offset +  2])
                  - FFXIEncryption.CountBits(Data[Offset + 11])
                  + FFXIEncryption.CountBits(Data[Offset + 12]);
       switch (Math.Abs(BitCount) % 5) {
-	case 0: return 7;
-	case 1: return 1;
-	case 2: return 6;
-	case 3: return 2;
-	case 4: return 5;
+        case 0: return 7;
+        case 1: return 1;
+        case 2: return 6;
+        case 3: return 2;
+        case 4: return 5;
       }
       return 0;
     }

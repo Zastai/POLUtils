@@ -25,7 +25,6 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
 
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemFindDialog));
       this.lstItems = new System.Windows.Forms.ListView();
       this.mnuItemListContext = new System.Windows.Forms.ContextMenu();
       this.mnuILCProperties = new System.Windows.Forms.MenuItem();
@@ -46,22 +45,21 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
       // 
       // lstItems
       // 
-      this.lstItems.AccessibleDescription = null;
-      this.lstItems.AccessibleName = null;
-      resources.ApplyResources(this.lstItems, "lstItems");
       this.lstItems.AllowColumnReorder = true;
-      this.lstItems.BackgroundImage = null;
       this.lstItems.ContextMenu = this.mnuItemListContext;
-      this.lstItems.Font = null;
+      this.lstItems.Dock = System.Windows.Forms.DockStyle.Fill;
       this.lstItems.FullRowSelect = true;
       this.lstItems.GridLines = true;
       this.lstItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
       this.lstItems.HideSelection = false;
+      this.lstItems.Location = new System.Drawing.Point(0, 28);
       this.lstItems.Name = "lstItems";
+      this.lstItems.Size = new System.Drawing.Size(640, 410);
+      this.lstItems.TabIndex = 5;
       this.lstItems.UseCompatibleStateImageBehavior = false;
       this.lstItems.View = System.Windows.Forms.View.Details;
-      this.lstItems.DoubleClick += new System.EventHandler(this.lstItems_DoubleClick);
       this.lstItems.SelectedIndexChanged += new System.EventHandler(this.lstItems_SelectedIndexChanged);
+      this.lstItems.DoubleClick += new System.EventHandler(this.lstItems_DoubleClick);
       // 
       // mnuItemListContext
       // 
@@ -69,122 +67,126 @@ namespace PlayOnline.FFXI.Utils.DataBrowser {
             this.mnuILCProperties,
             this.mnuILCCopy,
             this.mnuILCExport});
-      resources.ApplyResources(this.mnuItemListContext, "mnuItemListContext");
       // 
       // mnuILCProperties
       // 
-      resources.ApplyResources(this.mnuILCProperties, "mnuILCProperties");
       this.mnuILCProperties.Index = 0;
+      this.mnuILCProperties.Text = "&Properties...";
       this.mnuILCProperties.Click += new System.EventHandler(this.mnuILCProperties_Click);
       // 
       // mnuILCCopy
       // 
-      resources.ApplyResources(this.mnuILCCopy, "mnuILCCopy");
       this.mnuILCCopy.Index = 1;
+      this.mnuILCCopy.Text = "&Copy";
       // 
       // mnuILCExport
       // 
-      resources.ApplyResources(this.mnuILCExport, "mnuILCExport");
       this.mnuILCExport.Index = 2;
       this.mnuILCExport.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuILCEAll,
             this.mnuILCEResults,
             this.mnuILCESelected});
+      this.mnuILCExport.Text = "&Export";
       // 
       // mnuILCEAll
       // 
-      resources.ApplyResources(this.mnuILCEAll, "mnuILCEAll");
       this.mnuILCEAll.Index = 0;
+      this.mnuILCEAll.Text = "&All Items...";
       this.mnuILCEAll.Click += new System.EventHandler(this.mnuILCECAll_Click);
       // 
       // mnuILCEResults
       // 
-      resources.ApplyResources(this.mnuILCEResults, "mnuILCEResults");
+      this.mnuILCEResults.Enabled = false;
       this.mnuILCEResults.Index = 1;
+      this.mnuILCEResults.Text = "Search &Results...";
       // 
       // mnuILCESelected
       // 
-      resources.ApplyResources(this.mnuILCESelected, "mnuILCESelected");
+      this.mnuILCESelected.Enabled = false;
       this.mnuILCESelected.Index = 2;
+      this.mnuILCESelected.Text = "&Selected Item(s)...";
       // 
       // ilItemIcons
       // 
       this.ilItemIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-      resources.ApplyResources(this.ilItemIcons, "ilItemIcons");
+      this.ilItemIcons.ImageSize = new System.Drawing.Size(16, 16);
       this.ilItemIcons.TransparentColor = System.Drawing.Color.Transparent;
       // 
       // pnlSearchOptions
       // 
-      this.pnlSearchOptions.AccessibleDescription = null;
-      this.pnlSearchOptions.AccessibleName = null;
-      resources.ApplyResources(this.pnlSearchOptions, "pnlSearchOptions");
-      this.pnlSearchOptions.BackgroundImage = null;
       this.pnlSearchOptions.Controls.Add(this.chkShowIcons);
       this.pnlSearchOptions.Controls.Add(this.btnClose);
       this.pnlSearchOptions.Controls.Add(this.btnRunQuery);
-      this.pnlSearchOptions.Font = null;
+      this.pnlSearchOptions.Dock = System.Windows.Forms.DockStyle.Top;
+      this.pnlSearchOptions.Location = new System.Drawing.Point(0, 0);
       this.pnlSearchOptions.Name = "pnlSearchOptions";
+      this.pnlSearchOptions.Size = new System.Drawing.Size(640, 28);
+      this.pnlSearchOptions.TabIndex = 7;
       // 
       // chkShowIcons
       // 
-      this.chkShowIcons.AccessibleDescription = null;
-      this.chkShowIcons.AccessibleName = null;
-      resources.ApplyResources(this.chkShowIcons, "chkShowIcons");
-      this.chkShowIcons.BackgroundImage = null;
-      this.chkShowIcons.Font = null;
+      this.chkShowIcons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.chkShowIcons.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.chkShowIcons.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chkShowIcons.Location = new System.Drawing.Point(388, 6);
       this.chkShowIcons.Name = "chkShowIcons";
+      this.chkShowIcons.Size = new System.Drawing.Size(76, 16);
+      this.chkShowIcons.TabIndex = 17;
+      this.chkShowIcons.Text = "&Show Icons";
       this.chkShowIcons.CheckedChanged += new System.EventHandler(this.chkShowIcons_CheckedChanged);
       // 
       // btnClose
       // 
-      this.btnClose.AccessibleDescription = null;
-      this.btnClose.AccessibleName = null;
-      resources.ApplyResources(this.btnClose, "btnClose");
-      this.btnClose.BackgroundImage = null;
+      this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.btnClose.Font = null;
+      this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnClose.Location = new System.Drawing.Point(561, 3);
       this.btnClose.Name = "btnClose";
+      this.btnClose.Size = new System.Drawing.Size(76, 20);
+      this.btnClose.TabIndex = 13;
+      this.btnClose.Text = "&Close";
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
       // 
       // btnRunQuery
       // 
-      this.btnRunQuery.AccessibleDescription = null;
-      this.btnRunQuery.AccessibleName = null;
-      resources.ApplyResources(this.btnRunQuery, "btnRunQuery");
-      this.btnRunQuery.BackgroundImage = null;
-      this.btnRunQuery.Font = null;
+      this.btnRunQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnRunQuery.FlatStyle = System.Windows.Forms.FlatStyle.System;
+      this.btnRunQuery.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnRunQuery.Location = new System.Drawing.Point(479, 3);
       this.btnRunQuery.Name = "btnRunQuery";
+      this.btnRunQuery.Size = new System.Drawing.Size(76, 20);
+      this.btnRunQuery.TabIndex = 7;
+      this.btnRunQuery.Text = "&Run Query";
       this.btnRunQuery.Click += new System.EventHandler(this.btnRunQuery_Click);
       // 
       // stbStatus
       // 
-      this.stbStatus.AccessibleDescription = null;
-      this.stbStatus.AccessibleName = null;
-      resources.ApplyResources(this.stbStatus, "stbStatus");
-      this.stbStatus.BackgroundImage = null;
-      this.stbStatus.Font = null;
+      this.stbStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.stbStatus.Location = new System.Drawing.Point(0, 420);
       this.stbStatus.Name = "stbStatus";
+      this.stbStatus.Size = new System.Drawing.Size(640, 18);
+      this.stbStatus.TabIndex = 8;
+      this.stbStatus.Visible = false;
       // 
       // dlgExportFile
       // 
       this.dlgExportFile.DefaultExt = "xml";
-      resources.ApplyResources(this.dlgExportFile, "dlgExportFile");
+      this.dlgExportFile.Filter = "XML Files (*.xml)|*.xml|All Files|*.*";
+      this.dlgExportFile.Title = "Select File To Export To";
       // 
       // ItemFindDialog
       // 
       this.AcceptButton = this.btnRunQuery;
-      this.AccessibleDescription = null;
-      this.AccessibleName = null;
-      resources.ApplyResources(this, "$this");
-      this.BackgroundImage = null;
       this.CancelButton = this.btnClose;
+      this.ClientSize = new System.Drawing.Size(640, 438);
       this.Controls.Add(this.stbStatus);
       this.Controls.Add(this.lstItems);
       this.Controls.Add(this.pnlSearchOptions);
-      this.Font = null;
-      this.Icon = null;
       this.Name = "ItemFindDialog";
       this.ShowInTaskbar = false;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Find Item(s)";
       this.pnlSearchOptions.ResumeLayout(false);
       this.ResumeLayout(false);
 

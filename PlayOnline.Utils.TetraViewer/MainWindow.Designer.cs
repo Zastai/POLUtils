@@ -40,7 +40,6 @@ namespace PlayOnline.Utils.TetraViewer {
     }
 
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
       this.dlgBrowseFolder = new System.Windows.Forms.FolderBrowserDialog();
       this.tvDataFiles = new System.Windows.Forms.TreeView();
       this.mnuTreeContext = new System.Windows.Forms.ContextMenu();
@@ -52,20 +51,24 @@ namespace PlayOnline.Utils.TetraViewer {
       this.mnuNormalImage = new System.Windows.Forms.MenuItem();
       this.mnuStretchImage = new System.Windows.Forms.MenuItem();
       this.mnuTiledImage = new System.Windows.Forms.MenuItem();
-      ((System.ComponentModel.ISupportInitialize) (this.picViewer)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picViewer)).BeginInit();
       this.SuspendLayout();
       // 
       // dlgBrowseFolder
       // 
-      resources.ApplyResources(this.dlgBrowseFolder, "dlgBrowseFolder");
+      this.dlgBrowseFolder.Description = "Select the directory where the exported files should be stored:";
       // 
       // tvDataFiles
       // 
       this.tvDataFiles.ContextMenu = this.mnuTreeContext;
-      resources.ApplyResources(this.tvDataFiles, "tvDataFiles");
+      this.tvDataFiles.Dock = System.Windows.Forms.DockStyle.Left;
       this.tvDataFiles.HideSelection = false;
+      this.tvDataFiles.Indent = 19;
       this.tvDataFiles.ItemHeight = 16;
+      this.tvDataFiles.Location = new System.Drawing.Point(0, 0);
       this.tvDataFiles.Name = "tvDataFiles";
+      this.tvDataFiles.Size = new System.Drawing.Size(212, 374);
+      this.tvDataFiles.TabIndex = 0;
       this.tvDataFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvDataFiles_AfterSelect);
       // 
       // mnuTreeContext
@@ -76,24 +79,34 @@ namespace PlayOnline.Utils.TetraViewer {
       // 
       // mnuExportAll
       // 
-      resources.ApplyResources(this.mnuExportAll, "mnuExportAll");
+      this.mnuExportAll.Enabled = false;
       this.mnuExportAll.Index = 0;
+      this.mnuExportAll.Text = "&Export All...";
       // 
       // mnuExport
       // 
-      resources.ApplyResources(this.mnuExport, "mnuExport");
+      this.mnuExport.Enabled = false;
       this.mnuExport.Index = 1;
+      this.mnuExport.Text = "&Export...";
       // 
       // sbrStatus
       // 
-      resources.ApplyResources(this.sbrStatus, "sbrStatus");
+      this.sbrStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.sbrStatus.Location = new System.Drawing.Point(0, 374);
       this.sbrStatus.Name = "sbrStatus";
+      this.sbrStatus.Size = new System.Drawing.Size(584, 20);
+      this.sbrStatus.TabIndex = 1;
       // 
       // picViewer
       // 
       this.picViewer.ContextMenu = this.mnuPictureContext;
-      resources.ApplyResources(this.picViewer, "picViewer");
+      this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.picViewer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.picViewer.Location = new System.Drawing.Point(212, 0);
       this.picViewer.Name = "picViewer";
+      this.picViewer.Size = new System.Drawing.Size(372, 374);
+      this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+      this.picViewer.TabIndex = 2;
       this.picViewer.TabStop = false;
       // 
       // mnuPictureContext
@@ -108,31 +121,34 @@ namespace PlayOnline.Utils.TetraViewer {
       this.mnuNormalImage.Checked = true;
       this.mnuNormalImage.Index = 0;
       this.mnuNormalImage.RadioCheck = true;
-      resources.ApplyResources(this.mnuNormalImage, "mnuNormalImage");
+      this.mnuNormalImage.Text = "&Normal";
       this.mnuNormalImage.Click += new System.EventHandler(this.ImageOption_Click);
       // 
       // mnuStretchImage
       // 
       this.mnuStretchImage.Index = 1;
       this.mnuStretchImage.RadioCheck = true;
-      resources.ApplyResources(this.mnuStretchImage, "mnuStretchImage");
+      this.mnuStretchImage.Text = "&Strech";
       this.mnuStretchImage.Click += new System.EventHandler(this.ImageOption_Click);
       // 
       // mnuTiledImage
       // 
-      resources.ApplyResources(this.mnuTiledImage, "mnuTiledImage");
+      this.mnuTiledImage.Enabled = false;
       this.mnuTiledImage.Index = 2;
       this.mnuTiledImage.RadioCheck = true;
+      this.mnuTiledImage.Text = "&Tiled";
       this.mnuTiledImage.Click += new System.EventHandler(this.ImageOption_Click);
       // 
       // MainWindow
       // 
-      resources.ApplyResources(this, "$this");
+      this.ClientSize = new System.Drawing.Size(584, 394);
       this.Controls.Add(this.picViewer);
       this.Controls.Add(this.tvDataFiles);
       this.Controls.Add(this.sbrStatus);
       this.Name = "MainWindow";
-      ((System.ComponentModel.ISupportInitialize) (this.picViewer)).EndInit();
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+      this.Text = "Tetra Viewer";
+      ((System.ComponentModel.ISupportInitialize)(this.picViewer)).EndInit();
       this.ResumeLayout(false);
 
     }

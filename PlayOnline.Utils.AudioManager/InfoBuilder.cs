@@ -10,15 +10,11 @@
 // See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-
 using PlayOnline.Core;
 using PlayOnline.Core.Audio;
 
@@ -55,102 +51,107 @@ namespace PlayOnline.Utils.AudioManager {
       set { this.FilePattern_ = value; }
     }
 
-    public void Run() {
-    Stream InfoData = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.ResourceName_);
-      if (InfoData != null) {
-      XmlReader XR = new XmlTextReader(InfoData);
-	try {
-	XmlDocument XD = new XmlDocument();
-	  XD.Load(XR);
-	XmlNodeList Apps = XD.SelectNodes("/pol-audio-data/application");
-	  this.txtApplication.Text    = null;
-	  this.prbApplication.Value   = 0;
-	  this.prbApplication.Maximum = Apps.Count;
-	  foreach (XmlNode App in Apps) {
-	    try {
-	    string AppName = App.Attributes["name"].InnerText;
-	      this.txtApplication.Text = String.Format("[{0}/{1}] {2}", this.prbApplication.Value + 1, this.prbApplication.Maximum, AppName);
-	      this.txtDirectory.Text   = "Scanning...";
-	      this.txtFile.Text        = "Scanning...";
-	      this.prbDirectory.Value  = 0;
-	      this.prbFile.Value       = 0;
-	      Application.DoEvents();
-	    string AppPath = POL.GetApplicationPath(App.Attributes["id"].InnerText);
-	      if (AppPath != null) {
-	      TreeNode AppNode = new TreeNode(AppName);
-		AppNode.ImageIndex = 1;
-		AppNode.SelectedImageIndex = 1;
-		AppNode.Tag = AppPath;
-	      XmlNodeList DataPaths = App.SelectNodes("data-path");
-		// Precompute totals for directories/files
-		this.prbDirectory.Maximum = 0;
-		this.prbFile.Maximum = 0;
-		foreach (XmlNode DataPath in DataPaths)
-		  this.PreScanDataPath(Path.Combine(AppPath, DataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)));
-		++this.prbApplication.Value;
-		// Now do a full scan
-		foreach (XmlNode DataPath in DataPaths)
-		  this.ScanDataPath(App, Path.Combine(AppPath, DataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)), AppNode);
-		if (AppNode.Nodes.Count > 0)
-		  this.TargetNode_.Nodes.Add(AppNode);
-	      }
-	      else
-		++this.prbApplication.Value;
-	    }
-	    catch (Exception E) {
-	      Console.WriteLine(E.ToString());
-	    }
-	  }
-	}
-	catch (Exception E) {
-	  Console.WriteLine(E.ToString());
-	}
-	XR.Close();
-	InfoData.Close();
+    private void Run() {
+    var asm = Assembly.GetExecutingAssembly();
+    var info = asm.GetManifestResourceStream(this.ResourceName_);
+      if (info == null)
+        return;
+      var xr = new XmlTextReader(info);
+      try {
+        var xd = new XmlDocument();
+        xd.Load(xr);
+        var apps = xd.SelectNodes("/pol-audio-data/application");
+        if (apps == null)
+          return;
+        this.txtApplication.Text = null;
+        this.prbApplication.Value = 0;
+        this.prbApplication.Maximum = apps.Count;
+        foreach (XmlNode app in apps) {
+          try {
+            var name = app.Attributes["name"].InnerText;
+            this.txtApplication.Text = String.Format("[{0}/{1}] {2}", this.prbApplication.Value + 1, this.prbApplication.Maximum, name);
+            this.txtDirectory.Text = "Scanning...";
+            this.txtFile.Text = "Scanning...";
+            this.prbDirectory.Value = 0;
+            this.prbFile.Value = 0;
+            Application.DoEvents();
+            var applicationPath = POL.GetApplicationPath(app.Attributes["id"].InnerText);
+            if (applicationPath != null) {
+              var tn = new TreeNode(name);
+              tn.ImageIndex = 1;
+              tn.SelectedImageIndex = 1;
+              tn.Tag = applicationPath;
+              var dataPaths = app.SelectNodes("data-path");
+              // Precompute totals for directories/files
+              this.prbDirectory.Maximum = 0;
+              this.prbFile.Maximum = 0;
+              foreach (XmlNode dataPath in dataPaths)
+                this.PreScanDataPath(Path.Combine(applicationPath, dataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)));
+              ++this.prbApplication.Value;
+              // Now do a full scan
+              foreach (XmlNode dataPath in dataPaths)
+                this.ScanDataPath(app, Path.Combine(applicationPath, dataPath.InnerText.Replace('/', Path.DirectorySeparatorChar)), tn);
+              if (tn.Nodes.Count > 0)
+                this.TargetNode_.Nodes.Add(tn);
+            }
+            else
+              ++this.prbApplication.Value;
+          }
+          catch (Exception e) {
+            Debug.WriteLine("Exception: " + e);
+          }
+        }
+      }
+      catch (Exception e) {
+        Debug.WriteLine("Exception: " + e);
+      }
+      finally {
+        xr.Close();
+        info.Close();
       }
     }
 
-    private void PreScanDataPath(string DataPath) {
-      if (!Directory.Exists(DataPath))
-	return;
+    private void PreScanDataPath(string path) {
+      if (!Directory.Exists(path))
+        return;
       ++this.prbDirectory.Maximum;
-      this.prbFile.Maximum += Directory.GetFiles(DataPath, this.FilePattern_).Length;
-      foreach (string SubDir in Directory.GetDirectories(DataPath))
-	this.PreScanDataPath(SubDir);
+      this.prbFile.Maximum += Directory.GetFiles(path, this.FilePattern_).Length;
+      foreach (var dir in Directory.GetDirectories(path))
+        this.PreScanDataPath(dir);
     }
 
     private void ScanDataPath(XmlNode App, string DataPath, TreeNode AppNode) {
       if (!Directory.Exists(DataPath))
-	return;
+        return;
       this.txtDirectory.Text = String.Format("[{0}/{1}] {2}", this.prbDirectory.Value + 1, this.prbDirectory.Maximum, DataPath);
       Application.DoEvents();
       foreach (string File in Directory.GetFiles(DataPath, this.FilePattern_)) {
-	this.txtFile.Text = String.Format("[{0}/{1}] {2}", this.prbFile.Value + 1, this.prbFile.Maximum, Path.GetFileName(File));
-	Application.DoEvents();
+        this.txtFile.Text = String.Format("[{0}/{1}] {2}", this.prbFile.Value + 1, this.prbFile.Maximum, Path.GetFileName(File));
+        Application.DoEvents();
       AudioFile AF = new AudioFile(File);
-	if (AF.Type != AudioFileType.Unknown) {
-	FileInfo FI = new FileInfo(App, AF);
-	TreeNode FileNode = new TreeNode(String.Format("[{0}] {1}", AF.ID, ((FI.Title == null) ? Path.GetFileName(File) : FI.Title)));
-	  FileNode.ImageIndex = 3;
-	  FileNode.SelectedImageIndex = 3;
-	  FileNode.Tag = FI;
-	  AppNode.Nodes.Add(FileNode);
-	}
-	++this.prbFile.Value;
+        if (AF.Type != AudioFileType.Unknown) {
+        FileInfo FI = new FileInfo(App, AF);
+        TreeNode FileNode = new TreeNode(String.Format("[{0}] {1}", AF.ID, ((FI.Title == null) ? Path.GetFileName(File) : FI.Title)));
+          FileNode.ImageIndex = 3;
+          FileNode.SelectedImageIndex = 3;
+          FileNode.Tag = FI;
+          AppNode.Nodes.Add(FileNode);
+        }
+        ++this.prbFile.Value;
       }
       ++this.prbDirectory.Value;
       // Recurse
       foreach (string SubDir in Directory.GetDirectories(DataPath)) {
       TreeNode DirNode = new TreeNode(Path.GetFileName(SubDir));
-	DirNode.ImageIndex = 1;
-	DirNode.SelectedImageIndex = 1;
+        DirNode.ImageIndex = 1;
+        DirNode.SelectedImageIndex = 1;
       FileInfo FI = new FileInfo(App, SubDir);
-	DirNode.Tag = FI;
-	if (FI.Title != null)
-	  DirNode.Text += String.Format(" - {0}", FI.Title);
-	this.ScanDataPath(App, SubDir, DirNode);
-	if (DirNode.Nodes.Count > 0)
-	  AppNode.Nodes.Add(DirNode);
+        DirNode.Tag = FI;
+        if (FI.Title != null)
+          DirNode.Text += String.Format(" - {0}", FI.Title);
+        this.ScanDataPath(App, SubDir, DirNode);
+        if (DirNode.Nodes.Count > 0)
+          AppNode.Nodes.Add(DirNode);
       }
     }
 
@@ -158,11 +159,11 @@ namespace PlayOnline.Utils.AudioManager {
 
     private void InfoBuilder_VisibleChanged(object sender, System.EventArgs e) {
       if (this.TargetNode == null)
-	throw new InvalidOperationException("No target node set.");
+        throw new InvalidOperationException("No target node set.");
       lock (this) {
-	if (this.Running)
-	  return;
-	this.Running = true;
+        if (this.Running)
+          return;
+        this.Running = true;
       }
       this.Show();
       Application.DoEvents();

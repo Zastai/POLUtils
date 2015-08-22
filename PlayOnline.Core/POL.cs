@@ -43,77 +43,77 @@ namespace PlayOnline.Core {
 
     public static void DetectRegions() {
       // Get configured region
-      using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey(true)) {
-	if (SettingsKey != null) {
-	string UserRegion = SettingsKey.GetValue("Region", "None") as string;
-	  try {
-	    POL.SelectedRegion_ = (Region) Enum.Parse(typeof(Region), UserRegion, true);
-	  }
-	  catch {
-	    POL.SelectedRegion_ = Region.None;
-	  }
-	}
+      using (RegistryKey SettingsKey = POL.OpenPOLUtilsConfigKey()) {
+        if (SettingsKey != null) {
+        string UserRegion = SettingsKey.GetValue("Region", "None") as string;
+          try {
+            POL.SelectedRegion_ = (Region) Enum.Parse(typeof(Region), UserRegion, true);
+          }
+          catch {
+            POL.SelectedRegion_ = Region.None;
+          }
+        }
       }
       // Check for installed POL software
       foreach (Region R in Enum.GetValues(typeof(Region))) {
-	using (RegistryKey POLKey = POL.OpenRegistryKey(R, "InstallFolder")) {
-	  if (POLKey != null)
-	    POL.AvailableRegions_ |= R;
-	}
+        using (RegistryKey POLKey = POL.OpenRegistryKey(R, "InstallFolder")) {
+          if (POLKey != null)
+            POL.AvailableRegions_ |= R;
+        }
       }
       // If user's choice is not available, clear that selection
       if ((POL.AvailableRegions_ & POL.SelectedRegion_) != POL.SelectedRegion_)
-	POL.SelectedRegion_ = Region.None;
+        POL.SelectedRegion_ = Region.None;
       // Select a region based on what's available
       if (POL.SelectedRegion_ == Region.None) {
-	if ((POL.AvailableRegions_ & Region.NorthAmerica) != 0)
-	  POL.SelectedRegion_ = Region.NorthAmerica;
-	else if ((POL.AvailableRegions_ & Region.Europe) != 0)
-	  POL.SelectedRegion_ = Region.Europe;
-	else if ((POL.AvailableRegions_ & Region.Japan) != 0)
-	  POL.SelectedRegion_ = Region.Japan;
+        if ((POL.AvailableRegions_ & Region.NorthAmerica) != 0)
+          POL.SelectedRegion_ = Region.NorthAmerica;
+        else if ((POL.AvailableRegions_ & Region.Europe) != 0)
+          POL.SelectedRegion_ = Region.Europe;
+        else if ((POL.AvailableRegions_ & Region.Japan) != 0)
+          POL.SelectedRegion_ = Region.Japan;
       }
     }
 
     public static Region AvailableRegions {
       get {
-	POL.DetectRegions();
-	return POL.AvailableRegions_;
+        POL.DetectRegions();
+        return POL.AvailableRegions_;
       }
     }
 
     public static Region SelectedRegion {
       get {
-	return POL.SelectedRegion_;
+        return POL.SelectedRegion_;
       }
       set {
-	if ((POL.AvailableRegions & value) == value)
-	  POL.SelectedRegion_ = value;
-	else
-	  throw new ArgumentOutOfRangeException("SelectedRegion", value, I18N.GetText("POLRegionNotInstalled"));
+        if ((POL.AvailableRegions & value) == value)
+          POL.SelectedRegion_ = value;
+        else
+          throw new ArgumentOutOfRangeException("SelectedRegion", value, I18N.GetText("POLRegionNotInstalled"));
       }
     }
 
     public static bool MultipleRegionsAvailable {
       get {
-	return (POL.AvailableRegions_ != Region.None         &&
-		POL.AvailableRegions_ != Region.Japan        &&
-		POL.AvailableRegions_ != Region.NorthAmerica &&
-		POL.AvailableRegions_ != Region.Europe);
+        return (POL.AvailableRegions_ != Region.None         &&
+                POL.AvailableRegions_ != Region.Japan        &&
+                POL.AvailableRegions_ != Region.NorthAmerica &&
+                POL.AvailableRegions_ != Region.Europe);
       }
     }
 
     public static void ChooseRegion(Form Parent) {
       POL.DetectRegions();
       if (POL.MultipleRegionsAvailable) {
-	using (ChooseRegionDialog CRD = new ChooseRegionDialog())
-	  CRD.ShowDialog(Parent);
+        using (ChooseRegionDialog CRD = new ChooseRegionDialog())
+          CRD.ShowDialog(Parent);
       }
       else // No multiple regions installed? No choice to be made then!
-	POL.SelectedRegion_ = POL.AvailableRegions_;
-      using (RegistryKey POLKey = POL.OpenPOLUtilsConfigKey(true)) {
-	if (POLKey != null)
-	  POLKey.SetValue("Region", POL.SelectedRegion_.ToString());
+        POL.SelectedRegion_ = POL.AvailableRegions_;
+      using (RegistryKey POLKey = POL.OpenPOLUtilsConfigKey()) {
+        if (POLKey != null)
+          POLKey.SetValue("Region", POL.SelectedRegion_.ToString());
       }
     }
 
@@ -123,10 +123,10 @@ namespace PlayOnline.Core {
 
     public static string GetApplicationPath(string ID, Region Region) {
       if ((POL.AvailableRegions & Region) == 0)
-	return null;
+        return null;
     RegistryKey POLKey = POL.OpenRegistryKey(Region, "InstallFolder");
       if (POLKey == null)
-	return null;
+        return null;
     string InstallPath = POLKey.GetValue(ID, null) as string;
       POLKey.Close();
       return InstallPath;
@@ -140,85 +140,65 @@ namespace PlayOnline.Core {
       return (POL.GetApplicationPath(ID, Region) != null);
     }
 
-    public static RegistryKey OpenAppConfigKey(string ID) {
-      return POL.OpenAppConfigKey(ID, POL.SelectedRegion_);
+    public static RegistryKey OpenAppConfigKey(string ID, bool writable = false) {
+      return POL.OpenAppConfigKey(ID, POL.SelectedRegion_, writable);
     }
 
-    public static RegistryKey OpenAppConfigKey(string ID, Region Region) {
+    public static RegistryKey OpenAppConfigKey(string ID, Region Region, bool writable = false) {
     string BaseKey;
       switch (Region) {
-	case Region.Europe:       BaseKey = "SquareEnix"; break;
-	case Region.Japan:        BaseKey = "SQUARE";     break;
-	case Region.NorthAmerica: BaseKey = "SquareEnix"; break;
-	default: return null;
+        case Region.Europe:       BaseKey = "SquareEnix"; break;
+        case Region.Japan:        BaseKey = "SQUARE";     break;
+        case Region.NorthAmerica: BaseKey = "SquareEnix"; break;
+        default: return null;
       }
     string AppKey;
            if (ID == AppID.FFXI)        AppKey = "FinalFantasyXI";
       else if (ID == AppID.TetraMaster) AppKey = "TetraMaster";
       else if (ID == AppID.POLViewer)   AppKey = "PlayOnlineViewer";
       else return null;
-      return POL.OpenRegistryKey(Region, Path.Combine(BaseKey, AppKey), true);
+      return POL.OpenRegistryKey(Region, Path.Combine(BaseKey, AppKey), writable);
     }
 
-    private static RegistryKey OpenRegistryKey(string KeyName) {
-      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, false);
+    private static RegistryKey OpenRegistryKey(string KeyName, bool writable = false) {
+      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, writable);
     }
 
-    private static RegistryKey OpenRegistryKey(string KeyName, bool Writable) {
-      return POL.OpenRegistryKey(POL.SelectedRegion_, KeyName, Writable);
-    }
-
-    private static RegistryKey OpenRegistryKey(Region Region, string KeyName) {
-      return POL.OpenRegistryKey(Region, KeyName, false);
-    }
-
-    private static RegistryKey OpenRegistryKey(Region Region, string KeyName, bool Writable) {
-    string SubKey;
+    private static RegistryKey OpenRegistryKey(Region region, string name, bool writable = false) {
+    string subKey;
       {
-      string POLKey = "PlayOnline";
-	switch (Region) {
-	  case Region.Europe:       POLKey += "EU"; break;
-	  case Region.Japan:                        break;
-	  case Region.NorthAmerica: POLKey += "US"; break;
-	  default: return null;
-	}
-	SubKey = Path.Combine(POLKey, KeyName);
+        var polKey = "PlayOnline";
+        switch (region) {
+          case Region.Europe:       polKey += "EU"; break;
+          case Region.Japan:                        break;
+          case Region.NorthAmerica: polKey += "US"; break;
+          default:
+            return null;
+        }
+        subKey = Path.Combine(polKey, name);
       }
       try {
-	using (RegistryKey Win64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
-	  if (Win64Root != null) {
-	  RegistryKey Win64Key = Win64Root.OpenSubKey(SubKey, Writable);
-	    if (Win64Key != null)
-	      return Win64Key;
-	  }
-	}
+        using (var w64Root = Registry.LocalMachine.OpenSubKey(@"Software\WOW6432Node")) {
+          if (w64Root != null) {
+            var w64Key = w64Root.OpenSubKey(subKey, writable);
+            if (w64Key != null)
+              return w64Key;
+          }
+        }
       } catch { }
       try {
-	return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", SubKey), Writable);
+        return Registry.LocalMachine.OpenSubKey(Path.Combine("Software", subKey), writable);
       } catch {
-	return null;
+        return null;
       }
     }
 
-    public static RegistryKey OpenPOLUtilsConfigKey() {
-      return POL.OpenPOLUtilsConfigKey(null, false);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(bool MachineWide) {
-      return POL.OpenPOLUtilsConfigKey(null, MachineWide);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey) {
-      return POL.OpenPOLUtilsConfigKey(SubKey, false);
-    }
-
-    public static RegistryKey OpenPOLUtilsConfigKey(string SubKey, bool MachineWide) {
-    RegistryKey Root = (MachineWide ? Registry.LocalMachine : Registry.CurrentUser);
+    public static RegistryKey OpenPOLUtilsConfigKey(string name = null) {
       try {
-      string KeyName = @"Software\Pebbles\POLUtils\";
-	if (SubKey != null)
-	  KeyName += SubKey;
-	return Root.CreateSubKey(KeyName);
+        var fullname = @"Software\Pebbles\POLUtils\";
+        if (name != null)
+          fullname += name;
+        return Registry.CurrentUser.CreateSubKey(fullname);
       } catch { }
       return null;
     }
